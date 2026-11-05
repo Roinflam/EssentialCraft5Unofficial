@@ -1,0 +1,429 @@
+{
+  "id": "scrolls",
+  "order": 107,
+  "group": "side",
+  "title": "支线 · 古卷",
+  "subtitle": "先辈留下的七卷书",
+  "icon": "essentialcraft5:ancient_scroll",
+  "if": "cfg:general.ancient_scrolls.enabled",
+  "entries": [
+    {
+      "id": "scrolls",
+      "title": "{lang:item.essentialcraft5.ancient_scroll}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "去哪找、怎么读",
+      "items": [
+        "essentialcraft5:ancient_scroll"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "这几卷是我一卷一卷找齐的。纸已经发脆，有几处字缺了，我没有替先辈补上，抄进这本书时，缺的地方照样空着。",
+          "by": "编者按"
+        },
+        {
+          "type": "p",
+          "text": "先辈把学问写成了书，传到今天的只剩七卷，就是这些{lang:item.essentialcraft5.ancient_scroll}，散在各处。七卷是序和卷一至卷六，你读过哪一卷，这一章就打开哪一篇。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "先辈把学问写成了书，传到今天的只剩七卷，就是这些{lang:item.essentialcraft5.ancient_scroll}，散在各处。主世界能找到其中五卷，是序和卷一至卷四，你读过哪一卷，这一章就打开哪一篇。",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "h",
+          "text": "去哪找"
+        },
+        {
+          "type": "list",
+          "items": [
+            "上古遗迹里的箱子，每个有 35% 的几率压着一卷，开出来的只会是序或卷一至卷四。",
+            "主世界、下界和末地的箱子，像村庄、废弃矿井、要塞、下界要塞、堡垒遗迹、末地城里的，别的模组建筑里的箱子也算。你亲手打开时每个有 10% 的几率出一卷，只出序和卷一至卷四里你还没有的：读过的、开到过的都不会再出，五卷都有了就不再出。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "海纳尔城镇废墟里塔顶的箱子，每个有 10% 的几率，开出来的是序或卷一至卷五。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "海纳尔古代墓穴出口房间里的那个箱子，有 40% 的几率，开出来的只会是卷五。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "[[inquisitorium/sentinel|审判庭哨兵]]被玩家打倒时必定掉下卷六，几个人一起打也只掉一卷。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "上古遗迹和海纳尔的箱子开出残卷时，只要这个箱子能出的卷里还有你没读过、也没开到过的，开出来的这一卷至少有四分之三的几率是你缺的。"
+        },
+        {
+          "type": "h",
+          "text": "怎么读"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把残卷拿在手里，按住右键{cfg:general.ancient_scrolls.read_ticks|sec}。",
+            {
+              "if": "cfg:general.ancient_scrolls.consume_on_read",
+              "text": "读完以后这张残卷就用掉了，动作栏上会提示你读完了哪一卷，手册里多了一篇。"
+            },
+            {
+              "if": "!cfg:general.ancient_scrolls.consume_on_read",
+              "text": "读完以后残卷还留在手里，动作栏上会提示你读完了哪一卷，手册里多了一篇。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "物品提示上写着「{lang:tooltip.essentialcraft5.ancient_scroll.unread}」的残卷才读得了，读过的卷右键读不了，可以送给还没读过的人。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "各读各的",
+          "text": "读没读过是各人算各人的，别人读过的卷，你还得自己再读一遍。"
+        },
+        {
+          "type": "p",
+          "text": "全部读完还有一份奖励，见[[scrolls/complete_set]]。",
+          "if": "cfg:general.ancient_scrolls.set_resistance>0"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/loot_tables/chests/elder_mrucu.json — 上古遗迹箱子：整张引用原版地牢表 + 一池 random_chance 0.35 的残卷，scroll_volume min 0 max 4",
+        "worldgen/ElderMRUCUFeature.java:74 CHEST_LOOT — 遗迹笼子里的箱子用这张表",
+        "data/essentialcraft5/loot_modifiers/ancient_scroll_chests.json + lore/ScrollChestModifier.java — 主世界 / 下界 / 末地、路径 chests/ 开头的别家箱子表（不含本模组的表和出生奖励箱），要有开箱玩家，chance 0.1，卷 0～4 里 ScrollVolumes.has 为假的平均抽一卷，出了 markGiven；范围里都有了不出",
+        "lore/ScrollVolumes.java has / markGiven — 读过或掉给过都算有了，掉给过记在玩家持久数据 essentialcraft5:scrolls_given（按位），ScrollVolumeFunction 抽中也记",
+        "data/essentialcraft5/loot_tables/chests/town_tower.json — 城镇废墟塔顶箱子：残卷池 random_chance 0.1，卷 0～5（tools/gen/hoanna_loot.py SCROLL_POOLS）",
+        "data/essentialcraft5/loot_tables/chests/catacombs.json — 墓穴出口箱子：残卷池 random_chance 0.4，卷 5～5",
+        "data/essentialcraft5/loot_tables/entities/inquisitorium_sentinel.json — 哨兵：残卷池只有 killed_by_player（必掉 1 张），卷 6～6，prefer_unread 0",
+        "lore/ScrollVolumeFunction.java:89 pick — 有开箱人 / 打倒它的玩家、范围里有没读过的卷时，按 prefer_unread（表里写 0.75）在没读过的里抽，否则整个范围平均抽；所以缺的卷至少占 3/4",
+        "item/AncientScrollItem.java:100 use — 没有卷号的不能读；读过的（客户端看本人进度、服务端再判）不起手，动作栏提示可以送人",
+        "item/AncientScrollItem.java:151 finishUsingItem — 读完：发这一卷的进度 → consume_on_read 为真且不是创造模式时用掉 1 张 → 动作栏提示 → 判集齐",
+        "registry/ECScrolls.java:82 read_ticks — 按住多久读完（默认 40 刻）；:86 consume_on_read 默认 true；:90 set_resistance 默认 0.1",
+        "lore/ScrollVolumes.java:107 isRead — 读没读过是这名玩家自己的进度"
+      ]
+    },
+    {
+      "id": "preface",
+      "title": "{lang:lore.essentialcraft5.scroll.v0.label} · {lang:lore.essentialcraft5.scroll.v0.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "为什么写下这几卷",
+      "complete": "essentialcraft5:guide/scrolls/preface",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/preface",
+      "locked_hint": "这一卷压在上古遗迹或主世界、下界、末地的箱子里，读过以后这一篇才会打开。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "辐光散在万物里时，从不伤人。海纳尔人把它聚起来，赶着它干活，后来海纳尔烧了。"
+        },
+        {
+          "type": "p",
+          "text": "我们也在聚，也在赶。这里头的手艺，有的是从海纳尔传过来的，有的是我们自己一回一回试出来的。这几卷不出自一人之手，各人记下各人弄懂的，前后说法不一的地方，照原样留着。只有卷五不同，抄的是我们最老的一个故事。"
+        },
+        {
+          "type": "p",
+          "text": "这几卷记的是做法，该在哪里停手，我们还没弄清。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "残卷里说的辐光就是 MRU，见[[start/mru]]。"
+        }
+      ],
+      "_src": [
+        "lore/ScrollVolumes.java:52 ADVANCEMENTS — 卷号 0 → guide/scrolls/preface，n → guide/scrolls/book_n；读完时代码发给读的人（item/AncientScrollItem.java:159）",
+        "tools/lang/keys/ecscrolls.json — 标题里的卷名（lore.essentialcraft5.scroll.v<n>.label / .title），物品提示第一行用的是同一个键"
+      ]
+    },
+    {
+      "id": "book_1",
+      "title": "{lang:lore.essentialcraft5.scroll.v1.label} · {lang:lore.essentialcraft5.scroll.v1.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "元素、魔晶、灵魂石与饰品",
+      "complete": "essentialcraft5:guide/scrolls/book_1",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_1",
+      "locked_hint": "这一卷压在上古遗迹或主世界、下界、末地的箱子里，读过以后这一篇才会打开。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "这个世界本来没有辐光。辐光是化作千万道射线落下来的，穿过了这个世界的每一层岩石，有些石头把它留在了里面。凿开这样的石头，里面是凝成颗粒的地、水、火、风。"
+        },
+        {
+          "type": "p",
+          "text": "不凿石头也有法子。地上摆对了方块，丢下对的东西，同一种元素便会聚成一簇，敲碎了一样能用。后面几卷的做法，大多从这四样颗粒起步。"
+        },
+        {
+          "type": "p",
+          "text": "灵魂石是我们用来看清矩阵的头一样东西。矩阵是什么，见卷二。"
+        },
+        {
+          "type": "p",
+          "text": "旧箱子里常能翻出比我们更早的人留下的饰品。这些指环、护身符和腰带，做法已经失传，箱子里翻到一件就是一件，世上不会再多出来。戴之前先读上面的字，有的给你一样，也要拿走一样。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "魔晶从[[elements/ores]]讲起，饰品见[[baubles/finding]]。"
+        }
+      ],
+      "_src": [
+        "lore/ScrollVolumes.java:52 ADVANCEMENTS — 卷号 0 → guide/scrolls/preface，n → guide/scrolls/book_n；读完时代码发给读的人（item/AncientScrollItem.java:159）",
+        "tools/lang/keys/ecscrolls.json — 标题里的卷名（lore.essentialcraft5.scroll.v<n>.label / .title），物品提示第一行用的是同一个键"
+      ]
+    },
+    {
+      "id": "book_2",
+      "title": "{lang:lore.essentialcraft5.scroll.v2.label} · {lang:lore.essentialcraft5.scroll.v2.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "MRU、矩阵与聚集体",
+      "complete": "essentialcraft5:guide/scrolls/book_2",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_2",
+      "locked_hint": "这一卷压在上古遗迹或主世界、下界、末地的箱子里，读过以后这一篇才会打开。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "落进万物里的这股光，海纳尔人叫它辐光。我们要称它、记它，就按份数来算，叫作 MRU，意思是魔法辐射单位。刚落下来的 MRU 是平衡的，聚得多了、赶得急了就会偏，偏了的又会把身边的也带偏。"
+        },
+        {
+          "type": "p",
+          "text": "凡活物身上都罩着一层矩阵，是心神看管着的一小片 MRU。头一份能拿来驱动机器的 MRU，我们是从自己身上取下来的。后来才学会从杀死的活物身上取。"
+        },
+        {
+          "type": "p",
+          "text": "MRU 聚在一处不散，就成了聚集体。小的不伤人，长满了，站在近旁的人矩阵就要受伤。聚集体藏在墙后、地下的时候最危险，等你发觉，它多半已经长满了。先做一片能隔墙看见它的镜片，再做一身挡得住它的衣服。"
+        },
+        {
+          "type": "p",
+          "text": "矩阵伤得多了，会落下病根，有的在手脚上，有的在心神里。怎么治，见卷四。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "矩阵和第一份 MRU 从[[mru/soul_stone]]讲起，聚集体见[[start/mrucu]]。"
+        }
+      ],
+      "_src": [
+        "lore/ScrollVolumes.java:52 ADVANCEMENTS — 卷号 0 → guide/scrolls/preface，n → guide/scrolls/book_n；读完时代码发给读的人（item/AncientScrollItem.java:159）",
+        "tools/lang/keys/ecscrolls.json — 标题里的卷名（lore.essentialcraft5.scroll.v<n>.label / .title），物品提示第一行用的是同一个键"
+      ]
+    },
+    {
+      "id": "book_3",
+      "title": "{lang:lore.essentialcraft5.scroll.v3.label} · {lang:lore.essentialcraft5.scroll.v3.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "机器、水晶、精华与日光",
+      "complete": "essentialcraft5:guide/scrolls/book_3",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_3",
+      "locked_hint": "这一卷压在上古遗迹或主世界、下界、末地的箱子里，读过以后这一篇才会打开。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "机器干一刻活，就往外漏一刻 MRU。漏出来的走不远，聚在近旁，越聚越亮，亮到一定地步，站在旁边的人就要受伤。造机器的地方，离睡觉的地方要远一些。"
+        },
+        {
+          "type": "p",
+          "text": "石英提得越纯，装得下的 MRU 越多。装满一颗揣在身上，出门在外，法杖和护符就有了着落。东西灌够了 MRU，就会褪成淡青色，到了某些场合，能冒名顶替别的东西。顶替的本事，是拿大量 MRU 换来的。"
+        },
+        {
+          "type": "p",
+          "text": "从前 MRU 浓得化不开的地方，会自己长出水晶，一夜就成。世界变过一回，它们一颗也不剩了。我们照旧法子造出来的，生下来很小，要种在地上慢慢养大。古时的水晶碎了，会落下一层粉，那粉就是精华。如今的水晶舍不得打碎，我们学会了从它身上一点一点地抽。"
+        },
+        {
+          "type": "p",
+          "text": "日光里也夹着一点 MRU，散得很开，要用透镜聚起来才派得上用场。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "机器漏 MRU 的事见[[crafting/corruption]]，水晶从[[crystal/crystal_former]]讲起。"
+        }
+      ],
+      "_src": [
+        "lore/ScrollVolumes.java:52 ADVANCEMENTS — 卷号 0 → guide/scrolls/preface，n → guide/scrolls/book_n；读完时代码发给读的人（item/AncientScrollItem.java:159）",
+        "tools/lang/keys/ecscrolls.json — 标题里的卷名（lore.essentialcraft5.scroll.v<n>.label / .title），物品提示第一行用的是同一个键"
+      ]
+    },
+    {
+      "id": "book_4",
+      "title": "{lang:lore.essentialcraft5.scroll.v4.label} · {lang:lore.essentialcraft5.scroll.v4.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "绿太阳、ESPE 与五芒星",
+      "complete": "essentialcraft5:guide/scrolls/book_4",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_4",
+      "locked_hint": "这一卷压在上古遗迹或主世界、下界、末地的箱子里，读过以后这一篇才会打开。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "绿太阳远在另一个位面，看不见，也摸不着。它的脉冲穿过这个世界时早已弱得伤不了谁，却顺路捎上了几道 MRU 射线，把一些石头染成了米斯莱。"
+        },
+        {
+          "type": "p",
+          "text": "绿太阳，我们也叫它末影之星。拿米斯莱做成柱子，朝着天立起来，柱子就会一点一点地攒下这种脉冲，攒下来的叫 ESPE。ESPE 和 MRU 是两回事。"
+        },
+        {
+          "type": "p",
+          "text": "矩阵受了伤落下的病根，拿 MRU 去治只会更糟。治得好它的只有绿太阳的脉冲，万物能活着，靠的就是这个。五芒星便是为此而画，借柱子里攒下的脉冲去治那些病根。"
+        },
+        {
+          "type": "p",
+          "text": "风之符文也吃这种脉冲。拿着东西去碰符文，脉冲注进去，东西就换了一副样子。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "米斯莱和水晶柱见[[mithriline/crystal_pillar]]，五芒星见[[pentacle/pentacle]]。"
+        }
+      ],
+      "_src": [
+        "lore/ScrollVolumes.java:52 ADVANCEMENTS — 卷号 0 → guide/scrolls/preface，n → guide/scrolls/book_n；读完时代码发给读的人（item/AncientScrollItem.java:159）",
+        "tools/lang/keys/ecscrolls.json — 标题里的卷名（lore.essentialcraft5.scroll.v<n>.label / .title），物品提示第一行用的是同一个键"
+      ]
+    },
+    {
+      "id": "book_5",
+      "title": "{lang:lore.essentialcraft5.scroll.v5.label} · {lang:lore.essentialcraft5.scroll.v5.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "抄下的《海纳尔传说》",
+      "complete": "essentialcraft5:guide/scrolls/book_5",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_5",
+      "locked_hint": "这一卷压在海纳尔塔顶或墓穴出口的箱子里，读过以后这一篇才会打开。",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "海纳尔传说"
+        },
+        {
+          "type": "p",
+          "text": "那是科技与魔法交融的世界，一切都运转得好好的。它□□□□……"
+        },
+        {
+          "type": "p",
+          "text": "那人呼唤了风，风便亲自来到他身边，带他去往梦幻的大陆，去往海纳尔，一个有无限可能的世界。"
+        },
+        {
+          "type": "p",
+          "text": "他看见灰石铺成的大路，从城中心一直伸到望不见的地方。他看见比山还高的塔，楼房的墙角埋着能把重物托在半空的器物。那里的人管一种光叫辐光，他们把辐光聚起来，赶着它□□□□，夜里的城和白天一样亮。"
+        },
+        {
+          "type": "p",
+          "text": "他在海纳尔住了很久，学会了那里的法子。后来风又把他送了回来，他便把学到的教给了这边的人。"
+        },
+        {
+          "type": "p",
+          "text": "再往后，没有人叫得出风的名字了，去往海纳尔的门便关上了。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "海纳尔本身从[[hoanna/legend]]讲起。"
+        }
+      ],
+      "_src": [
+        "lore/ScrollVolumes.java:52 ADVANCEMENTS — 卷号 0 → guide/scrolls/preface，n → guide/scrolls/book_n；读完时代码发给读的人（item/AncientScrollItem.java:159）",
+        "tools/lang/keys/ecscrolls.json — 标题里的卷名（lore.essentialcraft5.scroll.v<n>.label / .title），物品提示第一行用的是同一个键"
+      ]
+    },
+    {
+      "id": "book_6",
+      "title": "{lang:lore.essentialcraft5.scroll.v6.label} · {lang:lore.essentialcraft5.scroll.v6.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "只有卷名和一句话",
+      "complete": "essentialcraft5:guide/scrolls/book_6",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_6",
+      "locked_hint": "这一卷在审判庭哨兵身上，打倒它、读过以后这一篇才会打开。",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "黑暗降临……"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "这一卷只有卷名和上面这一句，往后都是白页。"
+        },
+        {
+          "type": "p",
+          "text": "它是从[[inquisitorium/sentinel|审判庭哨兵]]身上掉下来的。"
+        }
+      ],
+      "_src": [
+        "lore/ScrollVolumes.java:52 ADVANCEMENTS — 卷号 0 → guide/scrolls/preface，n → guide/scrolls/book_n；读完时代码发给读的人（item/AncientScrollItem.java:159）",
+        "tools/lang/keys/ecscrolls.json — 标题里的卷名（lore.essentialcraft5.scroll.v<n>.label / .title），物品提示第一行用的是同一个键"
+      ]
+    },
+    {
+      "id": "complete_set",
+      "title": "读完全部残卷",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "全部读完的奖励",
+      "complete": "essentialcraft5:guide/scrolls/complete",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：读完全部七卷残卷，序和卷一至卷六。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：读完主世界能找到的五卷残卷，序和卷一至卷四。",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "读完最后一卷，你的 MRU 腐化抗性永久增加 {cfg:general.ancient_scrolls.set_resistance|pct}，和饰品给的抗性加在一起算，「MRU 腐化」效果的伤害和聚集体造成的矩阵损伤都按它打折扣。",
+          "if": "cfg:general.ancient_scrolls.set_resistance>0"
+        },
+        {
+          "type": "p",
+          "text": "海纳尔辐射抗性也永久增加同样多，在海纳尔里辐射涨得慢一些。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled",
+            "cfg:general.ancient_scrolls.set_resistance>0"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "读完最后一卷时，聊天栏里出现一行字，同时响起挑战完成的音效。"
+        }
+      ],
+      "_src": [
+        "lore/ScrollVolumes.java:91 requiredCount — 门开着 7 卷（COUNT，序 + 卷一～卷六），关着 5 卷（OVERWORLD，序 + 卷一～卷四）",
+        "lore/ScrollVolumes.java:134 tryAwardComplete — 读完一卷、每次登录各判一次；发 guide/scrolls/complete，聊天栏一行字 + 只给本人放 UI_TOAST_CHALLENGE_COMPLETE",
+        "lore/ScrollVolumes.java:159 setResistance — 拿到集齐进度的人才有，值是 general.ancient_scrolls.set_resistance（默认 0.1），0 就没有奖励（块带 >0 条件）",
+        "api/MRUResistance.java:85 — 加进「其它饰品」那一项，只对 MRU_CORRUPTION、HOANNA_RADIATION 两种（CORRUPTION_RADIATION 不加）",
+        "api/MRUResistance.java:29 类注释 — MRU_CORRUPTION 管 MRU 腐化效果的伤害和聚集体给的矩阵损伤；HOANNA_RADIATION 管海纳尔里每 20 刻涨的辐射"
+      ]
+    }
+  ]
+}

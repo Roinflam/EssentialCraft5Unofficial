@@ -1,0 +1,936 @@
+{
+  "id": "demons",
+  "order": 100,
+  "group": "main",
+  "title": "Chapter 17 · Demons",
+  "subtitle": "Summon demons, trade for Ackronite",
+  "icon": "essentialcraft5:demonic_pentacle",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "void_crystal_pillar",
+      "title": "{item:essentialcraft5:void_crystal_pillar}",
+      "icon": "essentialcraft5:void_crystal_pillar",
+      "summary": "One tier above the Pale pillar",
+      "complete": "essentialcraft5:guide/demons/void_crystal_pillar",
+      "items": [
+        "essentialcraft5:void_crystal_pillar"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Ackronite grows only in Hell, and only demons can see it or dig it. If you want it, you must call a demon up and bargain. What they ask for is strange, but pay it and you will always get ackronite back. How much is up to them.",
+          "by": "The Forgotten Necronomicon"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make your first {item:essentialcraft5:void_crystal_pillar}. In this chapter you build a Demonic Pentacle, summon demons onto it and trade with them for {item:essentialcraft5:ackronite_ingot}s, which nearly everything in the next two chapters needs."
+        },
+        {
+          "type": "p",
+          "text": "The forebears knew little about demons, and what they knew came from an old book they did not fully trust. The pentacle needs 4 Void Crystal Pillars, the hardest part of the chapter to gather, so start with them."
+        },
+        {
+          "type": "h",
+          "text": "Shopping list for the chapter"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Material",
+            "How many",
+            "Where from"
+          ],
+          "widths": [
+            4,
+            2,
+            5
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:void_core}",
+              "<t>5</t>",
+              "From Hoanna ruin chests ([[hoanna/relics]])"
+            ],
+            [
+              "{item:essentialcraft5:void_mru_reactor}",
+              "<t>4</t>",
+              "Same"
+            ],
+            [
+              "{item:essentialcraft5:void_plating}",
+              "<t>28</t>",
+              "One Void Stone each, pressed in a Magician Table ([[hoanna/void_plating]])"
+            ],
+            [
+              "{item:essentialcraft5:void_stone}",
+              "<t>41</t>",
+              "13 for the floor, 28 for the plates; one craft makes 16 ([[hoanna/void_stone]])"
+            ],
+            [
+              "{item:essentialcraft5:fire_focus}",
+              "<t>4</t>",
+              "[[essence/fuel_and_focus]]"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_crystal_pillar}",
+              "<t>16</t>",
+              "12 of them upgraded to Pale ([[pentacle/pale_crystal_pillar]])"
+            ],
+            [
+              "{item:essentialcraft5:pale_plating}",
+              "<t>20</t>",
+              "[[alloys/plating]]"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_plating}",
+              "<t>4</t>",
+              "[[mithriline/furnace]]"
+            ],
+            [
+              "{item:minecraft:glowstone}",
+              "<t>4</t>",
+              "The Nether"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_crystal}",
+              "<t>49</t>",
+              "33 to turn into Fading Crystals and 16 for the pillars. Crafting them all takes about 830 Mithriline Dust, or about 250 with furnace-made ingots, and Resonating Crystals can stand in one for one ([[mithriline/conversions]])"
+            ],
+            [
+              "{item:minecraft:ender_eye}, {item:minecraft:ender_pearl}",
+              "<t>16</t> each",
+              "for the 16 Mithriline Pillars, plus 96 Mithriline Dust for the pillars themselves"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The pillars on your Wind Rune altars and Soul Pentacle are still needed for Wind Crystals and cures, so leave them standing and make these 16 as a separate batch."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+          "title": "The cores are the hard part",
+          "text": "Void Cores and MRU Reactors only come from ruin chests, roughly one of each per 5 chests. Five cores mean about 25 chests, around two towns' worth, and the four reactors come along on the way. Keep them as you loot. Any you have slotted into the Magician Table as upgrades must come back out before you craft the pillars ([[storage/upgrades]])."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "title": "The cores are the hard part",
+          "text": "Void Cores and MRU Reactors come slowest. Ruin chests give roughly one of each per 5 chests, and an MRUCU collapsing in an Enrichment Chamber takes {cfg:machines.enrichment_chamber.collapse.seconds|div:60|round:1} minutes for just 1 ([[hoanna/collapse]]). For the 5 cores and 4 reactors, work both ends, keeping them as you loot and keeping a chamber or two collapsing in Hoanna. Any you have slotted into the Magician Table as upgrades must come back out before you craft the pillars ([[storage/upgrades]])."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Start the Pale pillars early",
+          "text": "Twelve Pale pillars need 33 {item:essentialcraft5:fading_crystal}s, 24 used as they are and 9 turned into 72 {item:essentialcraft5:fading_dust} in a furnace. The Mithriline Furnace draws about 12,000 ESPE for the lot ([[mithriline/conversions]]), so get it running before you set off for the ruins."
+        },
+        {
+          "type": "h",
+          "text": "Making a Void Crystal Pillar"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:void_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "Surround a {item:essentialcraft5:pale_crystal_pillar} with 6 {item:essentialcraft5:void_plating}s, 1 {item:essentialcraft5:void_core} and 1 {item:essentialcraft5:void_mru_reactor}. The Pale pillar is used up."
+        },
+        {
+          "type": "p",
+          "text": "Like every other crystal pillar it is three blocks tall, gathers ESPE, and drops whole if you break any part of it ([[mithriline/crystal_pillar]]). Higher tiers gather faster, going up from Mithriline to Pale, Void and Demonic, with the factors on that same page. A spot that asks for \"Void or better\" only takes Void or Demonic pillars."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Void Crystal Pillar."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A tier 2 Soul Pentacle needs 4 Void pillars ([[pentacle/tier_two]]).",
+            "With Ackronite Ingots and Demonic Cores a Void pillar becomes a Demonic Crystal Pillar, used by the tier 3 Soul Pentacle ([[pentacle/tier_three]]).",
+            "Next to a {item:essentialcraft5:magical_enchanter}, one pillar counts as <t>30</t> bookshelves, though only the bottom block counts. The Magical Enchantment Table goes up to level {cfg:machines.magical_enchanter.max_enchant_level} ([[devices/magical_enchanter]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demonic_pentacle",
+      "title": "{item:essentialcraft5:demonic_pentacle}",
+      "icon": "essentialcraft5:demonic_pentacle",
+      "summary": "A 7×7 ritual five layers tall, 16 pillars",
+      "complete": "essentialcraft5:guide/demons/pentacle",
+      "items": [
+        "essentialcraft5:demonic_pentacle"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a Demonic Pentacle. Demons have nothing to do with MRU. The pentacle's 16 crystal pillars gather ESPE for you, and once they hold enough, you can summon a demon. ESPE is the energy that crystal pillars collect from the open sky ([[start/glossary]])."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_pentacle"
+        },
+        {
+          "type": "p",
+          "text": "The pentacle itself is 4 {item:essentialcraft5:fire_focus}es and 4 {item:essentialcraft5:void_plating}s around 1 {item:essentialcraft5:void_core}."
+        },
+        {
+          "type": "h",
+          "text": "Layout"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:demonic_pentacle"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "Pick a flat spot under open sky where you spend a lot of time, so the pillars can gather ESPE. Glass and other see-through blocks above them don't get in the way. The Pitfall below explains why the spot should be one you spend time at."
+            },
+            {
+              "if": "!cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "Pick a flat spot where you spend a lot of time (the Pitfall below says why)."
+            },
+            "Lay the bottom layer with 13 {item:essentialcraft5:void_stone} and 20 {item:essentialcraft5:pale_plating}, in any colors.",
+            "Put the pentacle on the middle Void Stone. On the same layer, place a {item:minecraft:glowstone} three blocks out in each straight direction and a {item:essentialcraft5:mithriline_plating} two blocks out on each diagonal.",
+            "Place the 16 crystal pillars as in the table below, bottoms on the marked spots.",
+            "Keep the pentacle's own block space and the one above it clear, since the demon stands there."
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Pillar spot",
+            "How many",
+            "At least"
+          ],
+          "widths": [
+            5,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "On Mithriline Plating",
+              "<t>4</t>",
+              "Any crystal pillar"
+            ],
+            [
+              "On the outer Pale Plating",
+              "<t>8</t>",
+              "Pale Crystal Pillar"
+            ],
+            [
+              "On glowstone",
+              "<t>4</t>",
+              "Void Crystal Pillar"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The rune on the ground turns from dark grey to dark red and starts slowly turning and pulsing, and red sparks drift up and down the pillars."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Pillars only gather while a player is nearby ([[mithriline/crystal_pillar]]). While you are off looting in Hoanna the pentacle stops, so build it at home or wherever you spend your time."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:general.demon.clear_radius>0",
+          "title": "Not next to a mob farm",
+          "text": "A summoned demon kills hostile mobs within {cfg:general.demon.clear_radius} blocks, and what it kills drops nothing ([[demons/demon]])."
+        },
+        {
+          "type": "h",
+          "text": "How fast it fills"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "One pillar per second",
+              "Overworld {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:20}, the End {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:20}"
+            ],
+            [
+              "16 pillars per second",
+              "Overworld {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:320}, the End {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:320}"
+            ],
+            [
+              "One pillar holds",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe}"
+            ],
+            [
+              "One summoning",
+              "{cfg:general.demon.summon_espe} ESPE"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.demon.summon_espe==666",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "Starting from empty, the pillars fill enough for one summoning in about a minute and a half in the Overworld, or twenty-odd seconds in the End. They keep filling while you are busy nearby, and each holds a lot, so after a while you can summon several in a row."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Faster",
+          "text": "The End fills far faster, as the table shows. The next two chapters take a lot of demon trades, so long-time players often move the pentacle to the End along with their Wind Rune altars and idle there."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book gave the Demonic Pentacle an odd subtitle that explains nothing: \"They seek souls and the king... Casual.\""
+        }
+      ]
+    },
+    {
+      "id": "summoning",
+      "title": "Summoning",
+      "icon": "minecraft:soul_lantern",
+      "summary": "Spend ESPE to call a demon onto the ritual",
+      "complete": "essentialcraft5:guide/demons/summon",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: right-click a finished pentacle to draw {cfg:general.demon.summon_espe} ESPE from its pillars and summon a demon."
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "text": "Wait until the 16 pillars hold {cfg:general.demon.summon_espe} ESPE between them. They pay the full amount, with none of the discount the Soul Pentacle gets ([[pentacle/cure]])."
+            },
+            {
+              "if": "!cfg:general.corruption.effects_enabled",
+              "text": "Wait until the 16 pillars hold {cfg:general.demon.summon_espe} ESPE between them. They pay the full amount, with no discount."
+            },
+            "Make sure the pentacle's block and the one above it are empty.",
+            "Right-click the pentacle yourself."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "A low growl, and a winged figure with glowing eyes rises in the middle of the rune, facing you, as wisps of black smoke curl around the ritual."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "If it fails",
+          "text": "The action bar tells you why. It may be a wrong block in the structure, something in the space above, a demon already standing there, or too little ESPE in the pillars, in which case it shows how much they hold and how much is needed. A failed summoning costs no ESPE at all."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Only one demon can stand on a pentacle at a time, and you only find out what it wants once it appears. If you don't want to pay, hit it once and it leaves, then summon another ([[demons/demon]]). The ESPE spent on the one you sent away is not refunded."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "ESPE is drawn one pillar at a time in a fixed order, first the 4 on Mithriline Plating, then the outer 8, and the 4 on glowstone last.",
+            "A player has to right-click it in person; machines and automated tools from other mods get no response.",
+            "The demon stays on the ritual without moving, waiting for you to trade ([[demons/trade]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demon",
+      "title": "Demon",
+      "icon": "essentialcraft5:demon_spawn_egg",
+      "summary": "Guards the ritual, clears mobs, awaits trade",
+      "items": [
+        "essentialcraft5:demon_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:demon"
+        },
+        {
+          "type": "p",
+          "text": "Demons come up from Hell to trade, or so it seems. A demon stands on the pentacle that summoned it and never takes a step, only turning its head to watch whoever is near. Fire and potions do nothing to it, it can't be pushed or leashed, and it never despawns. Until you send it away, it keeps waiting to trade."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.demon.clear_radius>0",
+          "text": "It clears mobs"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.demon.clear_radius>0",
+          "text": "Every {cfg:general.demon.clear_interval|sec} it picks a hostile mob within {cfg:general.demon.clear_radius} blocks and hits it for 1.6 times its max health, which almost always kills it. <b>Mobs it kills drop nothing and give no experience</b>."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.demon.clear_radius>0",
+            "cfg:general.demon.explosion_power>0"
+          ],
+          "text": "Each strike also sets off a blast at the mob's feet that only hurts the kind of mob the demon would strike. Players, pets, villagers, animals and dropped items are untouched, and no blocks break."
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.demon.clear_radius>0",
+          "items": [
+            "It leaves bosses (the Wither, the Ender Dragon) alone.",
+            "It also leaves named, tamed and leashed mobs alone, and mobs that have picked items up.",
+            "It only clears mobs where its summoner may build, so where its range reaches into someone else's claim, it leaves the mobs there alone. While the summoner is offline, it only clears places it checked while they were online, and that record lasts an hour at most. After the world is reopened, or once nobody is around and the area unloads, it waits for the summoner to come online and check again."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Sending it away"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The player who summoned it (or a player in creative mode) hits it once, and it leaves. Anyone else's hits, arrows and explosions do nothing.",
+            "If the pentacle's structure breaks, it leaves within a few seconds.",
+            "After a finished trade it takes its payment and goes ([[demons/trade]]).",
+            "However it leaves, the ESPE spent on summoning it is not refunded."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The creative inventory has a {item:essentialcraft5:demon_spawn_egg}. A demon from the egg has no summoner, so anyone can trade with it, but in multiplayer it clears no mobs, because there is nobody whose building rights it could go by. If it isn't standing on a pentacle, it leaves within 2 seconds."
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "title": "Trading",
+      "icon": "essentialcraft5:ackronite_ingot",
+      "summary": "Give it what it wants for Ackronite Ingots",
+      "complete": "essentialcraft5:guide/demons/trade",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: finish a trade with a demon and get your first {item:essentialcraft5:ackronite_ingot}s. Trading is the only way to get Ackronite, and the next two chapters use several hundred."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Right-click the demon to open the trade screen. The left side shows what it wants and how many, with the payment below. Only the player who summoned it, or a player in creative mode, can trade with it.",
+            "Put the items in the slot on the right. It only takes what the demon wants, and no more than it asks for. The rest stays with you.",
+            "The moment the count is reached, the deal is done. The items are taken, {cfg:general.demon.reward_min}–{cfg:general.demon.reward_max} Ackronite Ingots go straight into your inventory, or drop at your feet if it is full, and the demon departs."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Ackronite Ingots appear in your inventory and you earn the advancement \"{lang:advancements.essentialcraft5.demon_trade.title}\"."
+        },
+        {
+          "type": "h",
+          "text": "What it may ask for"
+        },
+        {
+          "type": "p",
+          "text": "Each demon picks one thing it wants at random when it appears. Some are cheap and some are not."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.demon.standing.enabled",
+          "text": "Once your Demonic Renown reaches Regular, it names two prices and either one will do ([[demons/standing]])."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Kind",
+            "What it may want"
+          ],
+          "widths": [
+            2,
+            7
+          ],
+          "rows": [
+            [
+              "Souls",
+              "<t>1–7</t> {item:essentialcraft5:captured_soul}s of villagers, endermen or wind mages, or <t>2</t> of Nether Imps or Remnant Scavengers ([[demons/soul_scriber]])"
+            ],
+            [
+              "Vanilla materials",
+              "{item:minecraft:iron_block} ×8, {item:minecraft:diamond_block} ×2, {item:minecraft:ender_eye} ×32, {item:minecraft:bookshelf} ×64, {item:minecraft:tnt} ×64, {item:minecraft:enchanting_table} ×16"
+            ],
+            [
+              "Vanilla rarities",
+              "{item:minecraft:beacon}, {item:minecraft:enchanted_golden_apple}, {item:minecraft:nether_star}, {item:minecraft:filled_map}, {item:minecraft:player_head}, {item:minecraft:music_disc_11}, one each"
+            ],
+            [
+              "Machines from this mod",
+              "{item:essentialcraft5:heat_generator} ×3, {item:essentialcraft5:magical_teleporter} ×2; {item:essentialcraft5:magical_enchanter}, {item:essentialcraft5:magical_repairer}, {item:essentialcraft5:mru_coil}, {item:essentialcraft5:ultra_heat_generator}, one each"
+            ],
+            [
+              "Pillars and blocks",
+              "{item:essentialcraft5:mithriline_crystal_pillar} ×12, {item:essentialcraft5:pale_crystal_pillar} ×6, {item:essentialcraft5:void_crystal_pillar} ×3, {item:essentialcraft5:elemental_drops_block} ×32"
+            ],
+            [
+              "Gear and tools",
+              "the 5 wind tools, the 4 pieces of wind armor ([[wind_gear/wind_tools]]), the four guns ([[guns/weapon_maker]]), {item:essentialcraft5:magical_shield}, {item:essentialcraft5:spiky_shield}, {item:essentialcraft5:emerald_heart}, {item:essentialcraft5:magic_water_bottle}, {item:essentialcraft5:magical_porkchop}, {item:essentialcraft5:chaos_fork}, {item:essentialcraft5:research_book}, one each"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Be picky",
+          "text": "Pay the cheap ones, such as a few souls, 8 iron blocks, 3 Heat Generators or a Research Book. For 64 bookshelves, 16 enchanting tables or 12 Mithriline pillars it is often cheaper to send the demon away and summon another, since a summoning only costs {cfg:general.demon.summon_espe} ESPE."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Items that take damage, such as tools, armor and shields, must be undamaged, and the screen says so. Guns are taken in any condition. Renamed and enchanted items are fine.",
+            "If you change your mind halfway, close the screen and the items come back. They also come back if the demon leaves in the meantime.",
+            "Walk more than 8 blocks from the demon and the trade screen closes by itself, returning what was in the slot.",
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "Every completed trade adds 1 to your [[demons/standing|Demonic Renown]], and enough of it gets you better terms from demons."
+            },
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "Your Demonic Renown is shown at the right of the trade screen's title. Hover over it to see what each tier gives."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book says no other book was any help. Only the Forgotten Necronomicon tells of Ackronite, a metal that exists only in Hell, which only demons can see and mine. The research book goes on to warn that demons care only about themselves and will try to fool you."
+        }
+      ]
+    },
+    {
+      "id": "standing",
+      "title": "Demonic Renown",
+      "icon": "essentialcraft5:ackronite_ingot",
+      "summary": "The more you trade, the easier demons get",
+      "if": "cfg:general.demon.standing.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Each trade you complete with a demon adds 1 to your <hl>Demonic Renown</hl>. Sending a demon away neither adds nor takes any, and dying or changing dimension doesn't lose it. The trade screen shows your current renown, such as \"Renown 23 (Patron)\"."
+        },
+        {
+          "type": "p",
+          "text": "At certain amounts demons offer you better terms. Each tier keeps the ones before it:"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Regular · {cfg:general.demon.standing.regular}",
+              "A summoned demon asks two prices and either one will do. The second is steeper, {cfg:general.demon.standing.premium_multiplier|x} the usual count, and is always something that still fits in the offering slot at that count ({item:minecraft:filled_map}, {item:minecraft:player_head} and other items that never stack with each other are only ever asked one at a time, and never as the second price). If nothing fits, it asks for 2 {item:essentialcraft5:captured_soul} from the same kind of creature instead"
+            ],
+            [
+              "Patron · {cfg:general.demon.standing.patron}",
+              "Every completed trade also gives {cfg:general.demon.standing.patron_xp} experience points"
+            ],
+            [
+              "Blood Bargain · {cfg:general.demon.standing.blood}",
+              "Once per summoned demon, sneak and right-click it holding a Captured Soul to hand the soul over and reroll both prices"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Sworn · {cfg:general.demon.standing.oath}",
+                "Sneak and right-click a demon you summoned yourself, holding {item:essentialcraft5:umbral_crystal}s to hand over {cfg:general.demon.standing.oath_cost} of them and swear an oath, for a {item:essentialcraft5:demon_oath} ([[shade/oath]])"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "[[demons/soul_scriber]] covers how to get Captured Souls. Renown doesn't pay extra Ackronite; it just means fewer summons and fewer wasted trips."
+        }
+      ]
+    },
+    {
+      "id": "soul_scriber",
+      "title": "Soul Scriber and Captured Souls",
+      "icon": "essentialcraft5:soul_scriber",
+      "summary": "Souls of villagers, endermen, wind mages, imps",
+      "complete": "essentialcraft5:guide/demons/soul",
+      "optional": true,
+      "items": [
+        "essentialcraft5:soul_scriber",
+        "essentialcraft5:captured_soul"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): take a {item:essentialcraft5:captured_soul} with a {item:essentialcraft5:soul_scriber}. Sometimes a demon wants not an item but the soul of a certain creature, and only this knife can take one. What demons do with souls, the old book does not say."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:soul_scriber"
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 1 netherrack, 1 nether quartz and 1 stick, in a vertical line from top to bottom."
+        },
+        {
+          "type": "h",
+          "text": "How to take a soul"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hit a villager, an enderman, a [[wind_mage/wind_mages|wind mage]], a [[bestiary/nether_imp|Nether Imp]] or a [[bestiary/hoanna_scavenger|Remnant Scavenger]] with the scriber yourself.",
+            "If that hit leaves it below 1.5 hearts, the scriber takes its soul. It drops dead on the spot and leaves nothing but a Captured Soul.",
+            "If the hit kills it outright, that works too. It drops its usual loot plus a soul."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Captured Soul."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Taking a soul is a kill",
+          "text": "The hit that takes a soul counts as killing the creature. A villager's bed and workstation are freed, and nearby iron golems and villagers remember it. Where you can't hit it, such as in someone else's claim, you can't take its soul either."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Souls are sorted by creature and stack to 64 per kind; the brackets after the item name say whose soul it is.",
+            "Hitting creatures costs the scriber no durability, and it only deals 2 attack damage against a wooden sword's 4, which is handy for wearing health down slowly.",
+            "Only hits by a player in person count; machines and sweep attacks take nothing. Zombie villagers and wandering traders do not count as villagers.",
+            "Endermen are easiest to find in the End. A demon asks for 1–7 souls at a time, or just 2 for Nether Imps and Remnant Scavengers, so keep a few in stock.",
+            "Nether Imps live only in Nether Wastes and Soul Sand Valleys. Their elite, the Imp Chieftain, has no soul to take.",
+            "Remnant Scavengers roam the Dreadlands and the Hoanna Desert, by day as well. Their elite, the Remnant Captain, and the scavengers it calls in have no souls to take."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ackronite",
+      "title": "Ackronite",
+      "icon": "essentialcraft5:ackronite_ingot",
+      "summary": "Ingot → Demonic Plate → Demonic Core",
+      "complete": "essentialcraft5:guide/demons/ackronite",
+      "items": [
+        "essentialcraft5:ackronite_ingot",
+        "essentialcraft5:demonic_plate",
+        "essentialcraft5:demonic_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: press the demon's {item:essentialcraft5:ackronite_ingot}s into {item:essentialcraft5:demonic_plate}s. Nearly every material in the next two chapters starts from Demonic Plates. The armor sketched in the Workshop Notebook was never built, and its drawings call for these plates."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:demonic_plate",
+            "essentialcraft5:demonic_core"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "In a {item:essentialcraft5:magician_table}, put 1 {item:essentialcraft5:magic_fortified_plating} in the middle and 4 Ackronite Ingots in the corners. For 2,000 MRU it makes 4 Demonic Plates ([[crafting/magician_table]]).",
+            "Then 4 Demonic Plates and 4 {item:essentialcraft5:elemental_gem}s around 1 {item:essentialcraft5:mru_resonating_crystal} make a {item:essentialcraft5:demonic_core}."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Demonic Plate."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Put your first Demonic Core in the table",
+          "text": "Right-click the Magician Table with a Demonic Core to install it, making it <t>×16</t> faster ([[storage/upgrades]]). Take it back out when you need it for crafting. Ahead of you are seventy-odd plate pressings and thirty Combined Magical Alloys, so one core installed now saves you hours."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "You will need a lot",
+          "text": "The four pieces of the Computer Guy's Suit take 287 Demonic Plates, which means 72 pressings and 288 ingots, and each trade pays only {cfg:general.demon.reward_min}–{cfg:general.demon.reward_max}. From now on keep the pentacle filling with ESPE and summon whenever you have a moment ([[computer/costs]])."
+        },
+        {
+          "type": "h",
+          "text": "Uses"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Any recipe that takes a \"magic plate\" accepts a Demonic Plate, and any that takes a \"magic core\" accepts a Demonic Core. The core slot of the [[guns/weapon_maker|weapon workbenches]] takes Demonic Cores too.",
+            "It is the main ingredient of Neuronic Enriched Plating and the Computer Guy's parts ([[hologram/neuronic_plating]], [[computer/force_parts]]).",
+            "4 Demonic Plates make 16 {item:essentialcraft5:demonic_plating} ([[demons/demonic_plating]]).",
+            "6 ingots, 2 Demonic Cores and a Void pillar make a Demonic Crystal Pillar, needed for the tier 3 Soul Pentacle ([[pentacle/tier_three]]).",
+            "As gun material, Ackronite Ingots give 26 damage, 20 rounds and no recoil, and 16× zoom as a sniper scope ([[guns/parts]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "purge",
+      "title": "Purge: Tier 2 Pentacle",
+      "icon": "essentialcraft5:void_crystal_pillar",
+      "summary": "Reach tier 2 to cure matrix effects",
+      "complete": "essentialcraft5:guide/pentacle/tier2",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: raise the Soul Pentacle from Chapter 12 to tier 2 ([[pentacle/tier_two]]). This chapter has you making Void Stone and Void Crystal Pillars anyway, so the materials are at hand."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "From here on, matrix damage builds up fast. Growing a full MRUCU adds 80 per second, and being hit by someone else's magical gun adds some too ([[corruption/matrix_damage]]). Tier 2 cures 11 of the 14 [[corruption/matrix|matrix effects]], so what matrix damage leaves behind finally has a cure."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Once you have opened any finished pentacle, matrix damage can form matrix effects. Tier 2 is the first tier that cures them, and the three costing 72,000 need tier 3."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Void Stone",
+              "8, any color ([[hoanna/void_stone]])"
+            ],
+            [
+              "Void Crystal Pillars",
+              "4 ([[demons/void_crystal_pillar]]); Demonic Crystal Pillars count too"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "These 4 pillars have to be extra ones, because taking the 4 from the Demonic Pentacle leaves it unformed. Each takes 6 Void Plates, 1 Pale Crystal Pillar, 1 Void Core and 1 MRU Reactor."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "If you are short of cores and reactors, let your Enrichment Chamber in Hoanna collapse a few more times ([[hoanna/collapse]])."
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier2"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Keep the whole tier 1 structure in place; not a single block may be missing.",
+            "Starting on the pentacle's own layer, stack two Void Stones on each of the four outer corners, right above the corners the plating diamond leaves out.",
+            "Stand a Void Crystal Pillar on top of each stack, then right-click the pentacle to open it."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The rune turns purple and the window reads \"Tier 2\". The step is ticked the first time you open the tier 2 window, so if you already raised it to tier 2 back in Chapter 12, it is ticked already."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "Tier 2 draws from 16 pillars, {cfg:machines.mithriline_crystal_pillar.max_espe|mul:5.76|int} usable when all are full, which covers 11 of the 14 matrix effects."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "title": "What tier 2 cannot cure",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_12}, {lang:corruption_effect.essentialcraft5.matrix_19} and {lang:corruption_effect.essentialcraft5.matrix_20} cost 72,000 each, more than a full tier 2 holds; they need tier 3 ([[pentacle/tier_three]])."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.effects_enabled||!cfg:general.corruption.matrix_effects_enabled",
+          "text": "Tier 2 adds 4 more pillars, so it has more ESPE to spend, and tier 3 is built on top of it ([[pentacle/tier_three]])."
+        }
+      ]
+    },
+    {
+      "id": "rank_6",
+      "title": "Rank 6 · Covenant",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "Alignment II",
+      "complete": "essentialcraft5:guide/matrix/rank_6",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.gates.holopad==6",
+          "text": "<em>Goal</em>: reach matrix rank 6, Covenant. Next chapter's Holopad only summons the Holographic Projection for rank 6 and up."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.gates.holopad!=6",
+          "text": "<em>Goal</em>: reach matrix rank 6, Covenant, and raise your Alignment to II."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "24 kinds in all, at least 4 of them killed in Hoanna and 2 of them Hoanna natives"
+            ],
+            [
+              "Site",
+              "A tier 2 Soul Pentacle, which you just built"
+            ],
+            [
+              "Offerings",
+              "2 {item:essentialcraft5:condensed_matrix}, 1 {item:essentialcraft5:void_mru_reactor}, 4 {item:essentialcraft5:ackronite_ingot}, 4 of any one [[hoanna_explore/specialties|Hoanna specialty]]"
+            ],
+            [
+              "Energy",
+              "60,000 MRU in the Crucible and 6,000 ESPE in the pentacle's pillars"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "7 in all, up to 3 at once; 80 health each, 9 damage a hit; 120 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "Stand still for {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:60} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hoanna kills are kept on their own list, so kinds you have from the Overworld count again when killed there.",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "MRU Reactors come from Hoanna's ruins or from a collapsing Enrichment Chamber ([[hoanna/collapse]])."
+            },
+            "Place the offerings in the Crucible's offering slots and fill it with enough MRU through a Bound Gem.",
+            "Stand within 3 blocks with your bound Soul Stone in your main hand, open the screen, and once everything on the right is ticked, start the trial.",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Defeat enough Matrix Echoes, and don't stray far from the Crucible."
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Stay next to the Crucible without moving or getting hurt until the channel finishes."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "\"Rank 6 · Covenant\" appears in the middle of the screen, and your Soul Stone's tooltip shows matrix rank 6."
+        },
+        {
+          "type": "p",
+          "text": "Rank 6 gives you Alignment II, a clear step up from I, and Matrix Traits get stronger with it ([[matrix/alignment]]). Your reservoir grows to {cfg:general.matrix_rank.pool_per_rank|mul:5}."
+        }
+      ]
+    },
+    {
+      "id": "demonic_plating",
+      "title": "{item:essentialcraft5:demonic_plating}",
+      "icon": "essentialcraft5:demonic_plating",
+      "summary": "The best MRU shielding, in 16 colors",
+      "items": [
+        "essentialcraft5:demonic_plating"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Craft 4 {item:essentialcraft5:demonic_plate}s together in any arrangement to make 16 {item:essentialcraft5:demonic_plating}. It shields against MRU better than any other plating."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_plating"
+        },
+        {
+          "type": "list",
+          "items": [
+            "With it between you and an MRUCU, only 1 in 36 of the MRUCU's matrix damage reaches you, against 1 in 10 for Pale Plating ([[alloys/plating]]).",
+            "It counts as an [[enrichment/controller|Enrichment Chamber]] shell block and can be used for the base of an [[tesla/mru_coil|MRU Coil]].",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "When a Hoanna chamber collapses an MRUCU, it counts toward the shell blocks you need, together with Void Stone and Void Glass ([[hoanna/collapse]])."
+            },
+            "The tier 3 Soul Pentacle needs 4 ([[pentacle/tier_three]]).",
+            "It takes dye like other platings. Right-click with a dye to recolor it, or sneak + right-click to dye an area. It always drops white.",
+            "The Magical Chisel carves it into 16 patterns ([[decorations/magical_chisel]]).",
+            "Hardness 3, blast resistance 60; needs a pickaxe."
+          ]
+        }
+      ]
+    }
+  ]
+}

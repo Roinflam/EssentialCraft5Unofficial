@@ -1,0 +1,693 @@
+{
+  "id": "baubles",
+  "order": 93,
+  "group": "side",
+  "title": "Side Chapter · Special Baubles",
+  "subtitle": "Rings, amulets and belts from the past",
+  "icon": "essentialcraft5:eta_amulet",
+  "entries": [
+    {
+      "id": "finding",
+      "title": "Where to Find Them",
+      "icon": "essentialcraft5:eta_amulet",
+      "summary": "Dungeon and ruin chests",
+      "complete": "essentialcraft5:guide/baubles/finding",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "The craft that made these rings, amulets and belts is lost. Whatever you find in a chest is all there is, and the world will make no more. Read what is written on one before you put it on. Some take something in return for what they give.",
+          "by": "Fragments of Essence, Book I"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): find special baubles and wear them. These rings, amulets and belts lie at the bottom of chests in dungeons and ruins. The Fragments record what each one does but not who made them, and the makers seem to have come before the forebears. There are 32 of them, and each one bends a rule of the game, such as more [[mru/ubmru|UBMRU]] from kills, damage bounced back or extra drops from mining. They can't be crafted, only found, so you can start looking from day one."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book gives these baubles a single page, tucked into its \"World Changes\" section on the ancient ruins. Twenty-four of the thirty-two are simply named after Greek letters, from α to ω, and only the other eight have ordinary names."
+        },
+        {
+          "type": "h",
+          "text": "Where to look"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Chests in vanilla dungeons, the small cobblestone rooms with a monster spawner.",
+            "Chests in [[start/mrucu|ancient ruins]], which hold the same loot as dungeons. Most ruins are cages buried in stone with 4 chests each, which makes them the best haul.",
+            {
+              "if": "cfg:general.ancient_scrolls.enabled",
+              "text": "Ruin chests sometimes hold a volume of the [[scrolls/scrolls|Fragments of Essence]] as well, one of the books the forebears left."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each chest rolls 1 to 3 times with a 3 in 4 chance of a bauble per roll, 1.5 per chest on average, and every kind is equally likely. Hunting one particular bauble takes about twenty chests on average."
+        },
+        {
+          "type": "p",
+          "if": [
+            "bauble:essentialcraft5:mystical_accessory",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "Hoanna ruin chests also hold the {item:essentialcraft5:mystical_accessory}. Its shape and resistances are random, and it isn't one of the 32 ([[baubles/mystical_accessory]])."
+        },
+        {
+          "type": "h",
+          "text": "How to wear them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The accessory slots sit outside the vanilla inventory. Open your inventory and click the accessory button next to your character, or just press {keybind:key.curios.open.desc}.",
+            "They go in your accessory slots: necklace, belt and ring, usually 1 necklace, 1 belt and 2 rings. Right-click one in your hand to put it on.",
+            "<em>Only one of each kind counts.</em> While you wear an {item:essentialcraft5:omega_ring}, a second one won't go on.",
+            "Each one's tooltip says what it does."
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "If your accessory slots are shaded dark purple with a sealed icon, someone nearby wearing the whole Computer Guy's Suit has you inside a [[computer/seal_field|Curio Seal Field]]. Your curios do nothing for now, but they are still there, and they work again once you are more than {cfg:general.computer_seal.radius|add:2} blocks from that player."
+        },
+        {
+          "type": "h",
+          "text": "By purpose"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Page",
+            "About"
+          ],
+          "rows": [
+            [
+              "[[baubles/kill_ubmru]]",
+              "Changing the UBMRU you get from kills"
+            ],
+            [
+              "[[baubles/ubmru_other]]",
+              "Earning more UBMRU and turning it into MRU"
+            ],
+            [
+              "[[baubles/combat]]",
+              "A different way to fight"
+            ],
+            [
+              "[[baubles/harvest]]",
+              "A little more from blocks and mobs"
+            ],
+            [
+              "[[baubles/wind_corruption]]",
+              "Wind relation and MRU Corruption"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[baubles/radiation]]",
+                "Hoanna radiation and embers"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "if": [
+            "bauble:essentialcraft5:omega_ring",
+            "bauble:essentialcraft5:portable_matrix_destructor"
+          ],
+          "style": "info",
+          "title": "What to hope for",
+          "text": "Early on, the two most useful are the {item:essentialcraft5:omega_ring}, which doubles the UBMRU from kills, and the {item:essentialcraft5:portable_matrix_destructor}, which turns UBMRU into MRU you carry."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any special bauble."
+        }
+      ]
+    },
+    {
+      "id": "kill_ubmru",
+      "title": "Kill Rewards",
+      "icon": "essentialcraft5:omega_ring",
+      "summary": "Change the UBMRU you get from kills",
+      "complete": "essentialcraft5:guide/baubles/kill_ubmru",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ring_of_stability",
+        "essentialcraft5:ring_of_experience",
+        "essentialcraft5:life_pendant",
+        "essentialcraft5:doctors_belt",
+        "essentialcraft5:chi_ring",
+        "essentialcraft5:omega_ring"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "These change the [[mru/ubmru|UBMRU]] you get when you kill a creature yourself, about 400 for a zombie. With several on, they apply one after another in slot order, rounding down each time. UBMRU taken from another player you kill isn't affected."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:ring_of_stability",
+              "text": "{item:essentialcraft5:ring_of_stability}: 0 to 99 more each time."
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_experience",
+              "text": "{item:essentialcraft5:ring_of_experience}: 10% less, and every {cfg:general.bauble_limits.experience_ring_ubmru_per_xp} of what you lose appears next to you as 1 experience. A zombie costs you about 40."
+            },
+            {
+              "if": "bauble:essentialcraft5:life_pendant",
+              "text": "{item:essentialcraft5:life_pendant}: 30% less, and what you lose, divided by 30, heals you. Killing a zombie heals about 4 health, or 2 hearts."
+            },
+            {
+              "if": "bauble:essentialcraft5:doctors_belt",
+              "text": "{item:essentialcraft5:doctors_belt}: Nothing at all. In return, eight harmful effects on you (Wither, Poison, Hunger, Blindness, Nausea, Mining Fatigue, Slowness, Weakness) last half as long."
+            },
+            {
+              "if": "bauble:essentialcraft5:chi_ring",
+              "text": "{item:essentialcraft5:chi_ring}: Halved. In return, experience orbs give you {cfg:general.bauble_limits.chi_xp_bonus|pct} extra, and that extra share doesn't go toward repairing Mending gear."
+            },
+            {
+              "if": "bauble:essentialcraft5:omega_ring",
+              "text": "{item:essentialcraft5:omega_ring}: Doubled."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier>0"
+          ],
+          "text": "The extra UBMRU from a [[matrix/codex|Matrix Codex]] first kill is worked out from the amount after these accessories."
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:doctors_belt",
+          "style": "info",
+          "title": "Mind what you wear",
+          "text": "When you want UBMRU for a [[mru/matrix_absorber]] or a Portable Matrix Destructor, take the {item:essentialcraft5:doctors_belt} off. With it on, kills give next to nothing."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one of them."
+        }
+      ]
+    },
+    {
+      "id": "ubmru_other",
+      "title": "More from Your Matrix",
+      "icon": "essentialcraft5:portable_matrix_destructor",
+      "summary": "Earn UBMRU and turn it into MRU",
+      "complete": "essentialcraft5:guide/baubles/ubmru_other",
+      "optional": true,
+      "items": [
+        "essentialcraft5:portable_matrix_destructor",
+        "essentialcraft5:kappa_ring",
+        "essentialcraft5:alpha_ring"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "These three earn you a little more UBMRU, or turn it into MRU you carry around."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:portable_matrix_destructor",
+              "text": "{item:essentialcraft5:portable_matrix_destructor}: A Matrix Destructor you wear around your neck. It turns your UBMRU into MRU stored in itself at the [[mru/matrix_absorber]]'s rate of {cfg:machines.matrix_absorber.ubmru_usage} UBMRU for {cfg:machines.matrix_absorber.mru_generated} MRU, up to 20 times a second, and holds up to 5,000. It counts as soul storage, so staffs, charms and other MRU users draw on it first."
+            },
+            {
+              "if": "bauble:essentialcraft5:kappa_ring",
+              "text": "{item:essentialcraft5:kappa_ring}: 1 more UBMRU every half second, 7,200 an hour. The price is faster hunger, about 1 point every 20 seconds, taken from saturation first."
+            },
+            {
+              "if": "bauble:essentialcraft5:alpha_ring",
+              "text": "{item:essentialcraft5:alpha_ring}: Each {item:essentialcraft5:magical_water} you drink gives 500 UBMRU. Without the ring, drinking Magical Water does nothing."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:portable_matrix_destructor",
+          "style": "info",
+          "text": "Fight with the Portable Matrix Destructor on and the UBMRU from your kills slowly becomes MRU on hand for [[staffs/golden_orb|staffs]] and [[charms/charms|charms]], saving trips to the charger."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one of them."
+        }
+      ]
+    },
+    {
+      "id": "combat",
+      "title": "Combat",
+      "icon": "essentialcraft5:zeta_amulet",
+      "summary": "A different way to fight",
+      "complete": "essentialcraft5:guide/baubles/combat",
+      "optional": true,
+      "items": [
+        "essentialcraft5:zeta_amulet",
+        "essentialcraft5:eta_amulet",
+        "essentialcraft5:theta_belt",
+        "essentialcraft5:iota_ring",
+        "essentialcraft5:sigma_ring",
+        "essentialcraft5:nu_amulet",
+        "essentialcraft5:psi_ring"
+      ],
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:zeta_amulet",
+              "text": "{item:essentialcraft5:zeta_amulet}: Each hit that lands costs 300 UBMRU and clears the target's invulnerability time, so your next hit lands at once. Blocked attacks cost nothing. The attack cooldown still applies, so rapid clicks each deal less."
+            },
+            {
+              "if": "bauble:essentialcraft5:eta_amulet",
+              "text": "{item:essentialcraft5:eta_amulet}: The damage you deal <em>and</em> the damage you take are both doubled."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:theta_belt",
+                "cfg:general.bauble_limits.theta_cooldown_ticks"
+              ],
+              "text": "{item:essentialcraft5:theta_belt}: A killing blow is cancelled by paying its damage after armor × 5,000 in UBMRU. Without enough UBMRU, it goes through. After cancelling one, the belt rests for {cfg:general.bauble_limits.theta_cooldown_ticks|sec}, and killing blows in that time go through. The belt in your curio slot shows the cooldown, and logging out and back in doesn't reset it. The void and /kill cannot be cancelled."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:theta_belt",
+                "!cfg:general.bauble_limits.theta_cooldown_ticks"
+              ],
+              "text": "{item:essentialcraft5:theta_belt}: A killing blow is cancelled by paying its damage after armor × 5,000 in UBMRU. Without enough UBMRU, it goes through. The void and /kill cannot be cancelled."
+            },
+            {
+              "if": "bauble:essentialcraft5:iota_ring",
+              "text": "{item:essentialcraft5:iota_ring}: 10% of the damage you deal is split off and lands right after as a separate hit of armor-piercing magic damage, after which the target's invulnerability time is cleared."
+            },
+            {
+              "if": "bauble:essentialcraft5:sigma_ring",
+              "text": "{item:essentialcraft5:sigma_ring}: When something hurts you, there is a 10% chance to send the damage straight back and take none yourself. Reflected damage is never reflected again. Nothing is sent back if the hit never actually landed on you, for example because a claim's PvP protection stopped it."
+            },
+            {
+              "if": "bauble:essentialcraft5:nu_amulet",
+              "text": "{item:essentialcraft5:nu_amulet}: Each kill deals 3 damage to every hostile mob within 6 blocks sideways and 3 up or down, nearest first, up to {cfg:general.bauble_limits.nu_max_targets} of them. Mobs killed this way don't set it off again. The price is 25% less UBMRU from kills."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "!cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:psi_ring}: When a monster targets you, it turns on another hostile mob near it instead, never a villager or a pet. The same monster switches at most once every {cfg:general.bauble_limits.psi_cooldown_ticks|sec}. Bosses such as the Wither and the Ender Dragon ignore it."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:psi_ring}: When a monster targets you, it turns on another hostile mob near it instead, never a villager or a pet. The same monster switches at most once every {cfg:general.bauble_limits.psi_cooldown_ticks|sec}."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In multiplayer, all of this damage counts as yours, so PvP settings, teams and claims still apply. When your attack is blocked, none of these take effect and no UBMRU is spent."
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:eta_amulet",
+          "style": "warn",
+          "text": "With the {item:essentialcraft5:eta_amulet} on, everything that hits you hits twice as hard, so think it over before a boss fight."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one of them."
+        }
+      ]
+    },
+    {
+      "id": "harvest",
+      "title": "Mining and Loot",
+      "icon": "essentialcraft5:omicron_amulet",
+      "summary": "A little more from blocks and mobs",
+      "complete": "essentialcraft5:guide/baubles/harvest",
+      "optional": true,
+      "items": [
+        "essentialcraft5:omicron_amulet",
+        "essentialcraft5:pi_belt",
+        "essentialcraft5:rho_ring",
+        "essentialcraft5:tau_ring",
+        "essentialcraft5:upsilon_ring",
+        "essentialcraft5:phi_ring"
+      ],
+      "blocks": [
+        {
+          "type": "h",
+          "text": "Mining"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:omicron_amulet",
+              "text": "{item:essentialcraft5:omicron_amulet}: When you mine a block, every stack in the drops that isn't a block, such as coal, diamonds, redstone or seeds, gets 1 more, for 500 UBMRU each time. Nothing is charged when only blocks drop. Things you could place and mine again get nothing extra, like redstone from redstone wire, string from tripwire and seeds from unripe crops, though ripe crops still count. The contents of pots and similar blocks get nothing extra either."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:pi_belt}: Experience from mining ores is multiplied by {cfg:general.bauble_limits.pi_xp_multiplier}, with fractions rounded up by chance. Ores that drop none, such as iron, copper and gold, have a 5% chance to give 1, unless what you mine drops the ore itself, as with Silk Touch."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "!cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:pi_belt}: Experience from mining is multiplied by {cfg:general.bauble_limits.pi_xp_multiplier}, with fractions rounded up by chance. Blocks that drop none have a 5% chance to give 1, unless what you mine drops the block itself, as with Silk Touch."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:rho_ring",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:rho_ring}: Mining ores drops no experience. Each point becomes {cfg:general.bauble_limits.rho_ubmru_per_xp} UBMRU instead. Worn with the π Belt, it multiplies first and then converts."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:rho_ring",
+                "!cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:rho_ring}: Mining drops no experience. Each point becomes {cfg:general.bauble_limits.rho_ubmru_per_xp} UBMRU instead. Worn with the π Belt, it multiplies first and then converts."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "These three only count blocks you mine yourself within reach. Blocks broken by machines or staffs don't count, and neither does anything in Creative mode."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.bauble_limits.mining_xp_ores_only",
+            "bauble:essentialcraft5:pi_belt||bauble:essentialcraft5:rho_ring"
+          ],
+          "text": "The π Belt and ρ Ring only count ores. Spawners, sculk and other blocks that drop experience still drop the usual amount while you wear them."
+        },
+        {
+          "type": "h",
+          "text": "Creatures"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "bauble:essentialcraft5:tau_ring",
+                "!cfg:general.bauble_limits.tau_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:tau_ring}: Creatures you kill drop 0 to 2 more of each stack of their own loot, for 1,000 UBMRU each time. What they wear or picked up isn't increased, and neither is the loot of bosses such as the Wither and the Ender Dragon."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:tau_ring",
+                "cfg:general.bauble_limits.tau_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:tau_ring}: Creatures you kill drop 0 to 2 more of each stack of their own loot, for 1,000 UBMRU each time. What they wear or picked up isn't increased."
+            },
+            {
+              "if": "bauble:essentialcraft5:upsilon_ring",
+              "text": "{item:essentialcraft5:upsilon_ring}: While you are the player nearest to an enderman and within 16 blocks, it cannot teleport."
+            },
+            {
+              "if": "bauble:essentialcraft5:phi_ring",
+              "text": "{item:essentialcraft5:phi_ring}: Right-click a cow, chicken, squid, spider, creeper, skeleton, magma cube, slime, zombie or snow golem with {item:minecraft:shears} to shear off 1 to 3 leather, feathers, ink sacs, string, gunpowder, bone meal, magma cream, slimeballs, rotten flesh or snow blocks, respectively. Each shearing costs 1,000 UBMRU and 32 durability, and they must be at least {cfg:general.bauble_limits.phi_cooldown_ticks|sec} apart."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:omega_ring",
+          "style": "info",
+          "text": "All of these spend UBMRU. Pair them with the {item:essentialcraft5:omega_ring} from [[baubles/kill_ubmru]] and your kills will keep them going."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one of them."
+        }
+      ]
+    },
+    {
+      "id": "wind_corruption",
+      "title": "Wind and Corruption",
+      "icon": "essentialcraft5:wind_catcher",
+      "summary": "Wind relation and MRU Corruption",
+      "complete": "essentialcraft5:guide/baubles/wind_corruption",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ring_of_resistance",
+        "essentialcraft5:wind_catcher",
+        "essentialcraft5:wind_mages_talisman",
+        "essentialcraft5:beta_ring",
+        "essentialcraft5:gamma_ring"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The first four have to do with your [[wind/air_potion|wind relation]], which is how well the wind knows you. The last one has to do with MRU Corruption."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "text": "{item:essentialcraft5:wind_mages_talisman}: Wind relation multiplier +0.3, so an Air Potion that normally gives {cfg:general.wind_affinity.base_coefficient|mul:100|int} gives {cfg:general.wind_affinity.base_coefficient|add:0.3|mul:100|int} with it on."
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "{item:essentialcraft5:wind_catcher}: Multiplier −0.1, but every gain in wind relation has a 15% chance to catch a {item:essentialcraft5:wind_keeper}, Air Potions and bottled winds included. <em>Worn alone with no other bonus, the multiplier is 0 and your relation does not grow</em>, but every bottle you drink or break still has its 15% chance to catch a {item:essentialcraft5:wind_keeper}."
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_resistance",
+              "text": "{item:essentialcraft5:ring_of_resistance}: The wind stops playing tricks on you. Once Windbound, you are no longer shoved from behind or tossed into the air, and your relation still grows."
+            },
+            {
+              "if": "bauble:essentialcraft5:beta_ring",
+              "text": "{item:essentialcraft5:beta_ring}: Once you are [[wind/windbound|Windbound]], the wind sometimes brushes past you and grants one of four boons instead, Strength II, Regeneration I, Saturation I or Haste II, for 6 minutes. Your relation still grows."
+            },
+            {
+              "if": "bauble:essentialcraft5:gamma_ring",
+              "text": "{item:essentialcraft5:gamma_ring}: MRU Corruption no longer hurts you; it heals you by the same amount instead."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:wind_catcher",
+          "style": "info",
+          "title": "A use for the Wind Catcher",
+          "text": "Normally only archmages drop a {item:essentialcraft5:wind_keeper}, and the [[wind/wind_tablet]] needs one. Drink Air Potions with the {item:essentialcraft5:wind_catcher} on and one turns up every six or seven potions on average. Swap it back out once you have enough."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one of them."
+        }
+      ]
+    },
+    {
+      "id": "radiation",
+      "title": "Radiation and Embers",
+      "icon": "essentialcraft5:mu_ring",
+      "summary": "Five baubles for Hoanna",
+      "complete": "essentialcraft5:guide/baubles/radiation",
+      "optional": true,
+      "items": [
+        "essentialcraft5:delta_ring",
+        "essentialcraft5:epsilon_belt",
+        "essentialcraft5:lambda_ring",
+        "essentialcraft5:mu_ring",
+        "essentialcraft5:xi_belt"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "These five were made for Hoanna, most likely by the people of Hoanna themselves. Four deal with Hoanna radiation and one with embers."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "[[hoanna/radiation]] explains how Hoanna radiation builds up, fades and hurts you."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "bauble:essentialcraft5:delta_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:delta_ring}: When radiation lowers your max health, only <em>half the level</em> counts, though how often it strikes still goes by the full level."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:epsilon_belt",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "{item:essentialcraft5:epsilon_belt}: Hostile mobs you kill have a {cfg:general.bauble_limits.epsilon_ember_chance|pct} chance to drop a random ember as well. Animals and players don't count. Embers are forged into swords in the [[void_machines/ember_forge]]."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:lambda_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:lambda_ring}: While you are <em>outside</em> Hoanna, radiation fades 60 faster per second, 65 instead of the usual 5. Inside Hoanna it does nothing."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mu_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:mu_ring}: In Hoanna you are immune to the Sun Array, Poison Fumes and the strong quakes. The fumes give you neither poison nor radiation, though the small stumbles during quakes still happen. The price is 20 extra radiation a second in Hoanna, which armor cannot stop."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mu_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:mu_ring}: In Hoanna you are immune to the Sun Array, Poison Fumes and the strong quakes, though the small stumbles during quakes still happen."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "cfg:general.radiation.enabled",
+                "cfg:general.bauble_limits.xi_dose_ceiling>0"
+              ],
+              "text": "{item:essentialcraft5:xi_belt}: Hitting a player gives them 5,000 radiation per point of damage, at most {cfg:general.bauble_limits.xi_dose_per_hit} per hit, and never takes them above {cfg:general.bauble_limits.xi_dose_ceiling}, so anyone already higher gets none. Hitting any other creature lowers its max health along with the health you take off, so that health never comes back. The cap goes down to 1 at the lowest, pets and mounts are spared, and the creature is restored when it is reloaded. Being hit gives you 1,000 radiation per point, up to the same {cfg:general.bauble_limits.xi_dose_ceiling}. All of this comes on top of the normal damage, and blocked attacks, shields included, count for nothing."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "!cfg:general.radiation.enabled||cfg:general.bauble_limits.xi_dose_ceiling==0"
+              ],
+              "text": "{item:essentialcraft5:xi_belt}: Hitting any creature other than a player lowers its max health along with the health you take off, on top of the normal damage. The cap goes down to 1 at the lowest, pets and mounts are spared, and the creature is restored when it is reloaded. Blocked attacks, shields included, count for nothing."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "bauble:essentialcraft5:xi_belt",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled",
+            "cfg:general.bauble_limits.xi_dose_ceiling>=10000"
+          ],
+          "text": "So however often someone with the {item:essentialcraft5:xi_belt} hits you, your health cap drops by at most {cfg:general.bauble_limits.xi_dose_ceiling|div:10000|add:0.5|round:0|int} levels, each worth {cfg:general.radiation.cap_loss_percent_per_level|pct} of your max health. Once you leave Hoanna, the radiation fades within about {cfg:general.bauble_limits.xi_dose_ceiling|add:-9999|div:300|round:0|int} minutes to where it no longer lowers your cap ([[hoanna/radiation]]). The same holds when the wearer is the one being hit."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Embers also turn up in Hoanna ruin chests ([[hoanna/relics]])."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one of them."
+        }
+      ]
+    },
+    {
+      "id": "mystical_accessory",
+      "title": "{item:essentialcraft5:mystical_accessory}",
+      "icon": "essentialcraft5:mystical_accessory",
+      "summary": "Random shape, three random resistances",
+      "items": [
+        "essentialcraft5:mystical_accessory"
+      ],
+      "if": [
+        "bauble:essentialcraft5:mystical_accessory",
+        "cfg:general.hoanna.portal_enabled"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Chests the people of Hoanna left behind sometimes hold a {item:essentialcraft5:mystical_accessory}, about half a one per chest on average ([[hoanna/relics]]). Each one is random. Whether it is a necklace, a belt or a ring, and how it looks, is settled the moment the chest is opened."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Where it goes",
+              "Depends on its shape, which the tooltip names; a necklace only fits a necklace slot, and so on"
+            ],
+            [
+              "MRU corruption resistance",
+              "0% to 10%; against MRU Corruption damage and matrix damage from MRUCUs"
+            ],
+            [
+              "Corruption radiation resistance",
+              "0% to 10%; nothing in this mod causes corruption radiation, so you can ignore it"
+            ],
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "Hoanna radiation resistance",
+                "0% to 10%; less radiation in Hoanna ([[hoanna/radiation]])"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Resistances from several Mystical Accessories add up, and the <em>one-of-each-kind rule doesn't apply</em> to them. Each kind still counts at most <t>40%</t> in total, which is a necklace, a belt and two rings all at their best, however many slots you have."
+        },
+        {
+          "type": "p",
+          "text": "They also stack with armor. The four armor pieces are added up and divided by 4, while accessories count in full. A full set of MHS armor at 25% a piece counts as 25% in all, so adding two Mystical Accessories at 10% each gives 45% MRU corruption resistance, and only 0.55 of the effect gets through."
+        },
+        {
+          "type": "formula",
+          "text": "Effect taken = 1 − sum of armor resistances ÷ 4 − sum of accessory resistances (Mystical Accessories count at most 40%)"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "A Mystical Accessory taken from the Creative inventory has no shape yet; it gets one as soon as it is in your inventory."
+        }
+      ]
+    }
+  ]
+}

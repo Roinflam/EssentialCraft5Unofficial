@@ -1,0 +1,1086 @@
+{
+  "id": "apex",
+  "order": 110,
+  "group": "main",
+  "title": "Chapter 23 · Rank Nine",
+  "subtitle": "The Calamity Beacon, the Heart, rank 9",
+  "icon": "essentialcraft5:calamity_remnant",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "intro",
+      "title": "The last chapter",
+      "icon": "essentialcraft5:calamity_beacon",
+      "summary": "Summon the Heart of Calamity and bring it down",
+      "items": [
+        "essentialcraft5:calamity_beacon"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "by": "Inquisitorium archive, fragment",
+          "text": "Calamity record: burning sun, poison fumes, long night, earthquake, in rotation, no end observed. Cause: unknown. Note: during each calamity, one reading on the waste falls and then rises, like a heartbeat. This court has made no ruling."
+        },
+        {
+          "type": "p",
+          "text": "This is the last chapter of the main line. Make a Calamity Beacon, summon the Heart of Calamity while Hoanna is in the grip of a calamity, bring it down, and use the Calamity Remnant it leaves to reach matrix rank 9. Then the main line is done.",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "This is the last chapter of the main line. Make a Calamity Beacon, summon the Heart of Calamity, bring it down, and use the Calamity Remnant it leaves to reach matrix rank 9. Then the main line is done.",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "This is the last chapter of the main line. Make a Calamity Beacon, summon the Heart of Calamity while Hoanna is in the grip of a calamity and bring it down. Then the main line is done.",
+          "if": [
+            "!cfg:general.matrix_rank.enabled",
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "This is the last chapter of the main line. Make a Calamity Beacon, summon the Heart of Calamity and bring it down. Then the main line is done.",
+          "if": [
+            "!cfg:general.matrix_rank.enabled",
+            "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Entry",
+            "What you do"
+          ],
+          "rows": [
+            [
+              "[[apex/beacon]]",
+              "Make the Calamity Beacon, which you can use again and again"
+            ],
+            [
+              "[[apex/summon]]",
+              "What the summoning needs"
+            ],
+            [
+              "[[apex/fight]]",
+              "Its three stages, and how to dodge the four calamities"
+            ],
+            [
+              "[[apex/rewards]]",
+              "A share for everyone, and the Calamity Remnant"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "[[apex/rank_9]]",
+                "Reach matrix rank 9, the last step of the main line"
+              ]
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "cells": [
+                "[[apex/ascension]]",
+                "Optional: raise the Computer Guy's Suit and the Verdict Blade to attunement stage 5"
+              ]
+            },
+            [
+              "[[apex/epilogue]]",
+              "What there is to do after the main line"
+            ]
+          ],
+          "widths": [
+            3,
+            7
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Before the fight"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "Most of the Heart's big attacks ignore armor, so dodging is what counts. The Computer Guy's Suit at attunement stage 4 blocks part of them ([[attunement/computer_armor]])."
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "Most of the Heart's big attacks ignore armor, so dodging is what counts; no amount of armor stops them."
+            },
+            "Bring a light source such as a torch. In its darkness phase you have to hold one to see it clearly ([[apex/fight]]).",
+            {
+              "if": "cfg:general.calamity_heart.per_second_cap>0",
+              "text": "There is a limit to how much health it loses each second, so more damage doesn't make the fight much shorter. Bring plenty of food and healing; a fight usually lasts several minutes."
+            },
+            {
+              "if": "!cfg:general.calamity_heart.per_second_cap>0",
+              "text": "Bring plenty of food and healing. While you dodge you can't hit back, so even then a fight takes a while."
+            },
+            "It is safer with a few friends, and everyone who takes {cfg:general.mobs.boss.loot_share|pct} or more of its health gets their own drops ([[apex/rewards]])."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original had no final boss, and the matrix had no ranks at all. The Heart of Calamity was added in this version as an ending for the calamities of Hoanna."
+        }
+      ]
+    },
+    {
+      "id": "beacon",
+      "title": "{item:essentialcraft5:calamity_beacon}",
+      "icon": "essentialcraft5:calamity_beacon",
+      "summary": "Summons the Heart, and comes back when you win",
+      "complete": "essentialcraft5:guide/apex/beacon",
+      "items": [
+        "essentialcraft5:calamity_beacon"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:calamity_beacon}."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 4 {item:essentialcraft5:twinkling_titanite}, 2 {item:essentialcraft5:shade_core}s, 1 {item:essentialcraft5:demon_oath} and 1 {item:essentialcraft5:glitchy_core}, laid out on a crafting table as shown below, with one slot left empty."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:calamity_beacon"
+        },
+        {
+          "type": "list",
+          "items": [
+            "For the Demon's Oath see [[shade/oath]]; for Shade Cores see [[shade/shade_core]].",
+            "Every time you bring down a Holographic Projection or the Inquisitorium Sentinel, it drops a Glitchy Core ([[inquisitorium/glitchy_core]]). If you have none left, fight one again."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Calamity Beacon."
+        },
+        {
+          "type": "h",
+          "text": "The beacon lasts"
+        },
+        {
+          "type": "p",
+          "text": "When you summon, the beacon leaves your hand and goes to the Heart. Once it falls, the beacon comes back to the summoner's inventory, or drops at their feet if the inventory is full, or waits until they next log in if they are offline."
+        },
+        {
+          "type": "p",
+          "text": "A beacon that has come back is empty, as its tooltip says. Summoning with an empty beacon takes {cfg:general.calamity_heart.cores_per_resummon} Shade Cores from your inventory; a newly made one takes none.",
+          "if": [
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0",
+            "cfg:general.calamity_heart.cores_per_resummon>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A beacon that has come back is empty, as its tooltip says, but it works just like a new one and costs nothing extra.",
+          "if": [
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0",
+            "!cfg:general.calamity_heart.cores_per_resummon>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In this world you don't have to wait for a calamity to summon the Heart, but every summoning takes extra Shade Cores: {cfg:general.calamity_heart.cores_extra_without_calamity} with a newly made beacon and {cfg:general.calamity_heart.cores_per_resummon|addcfg:general.calamity_heart.cores_extra_without_calamity} with an empty one.",
+          "if": [
+            "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0",
+            "cfg:general.calamity_heart.cores_extra_without_calamity>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In this world you don't have to wait for a calamity to summon the Heart. Summoning with an empty beacon takes {cfg:general.calamity_heart.cores_per_resummon} Shade Cores from your inventory; a newly made one takes none.",
+          "if": [
+            "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0",
+            "!cfg:general.calamity_heart.cores_extra_without_calamity>0",
+            "cfg:general.calamity_heart.cores_per_resummon>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If the fight ends without the Heart falling, the beacon comes back as it was, along with any Shade Cores taken for this summoning ([[apex/summon]])."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The main line only needs one beacon. It never breaks, so only make another if you lose it; don't spend a second Demon's Oath and Glitchy Core on a spare."
+        }
+      ]
+    },
+    {
+      "id": "summon",
+      "title": "Summoning the Heart",
+      "icon": "essentialcraft5:calamity_beacon",
+      "summary": "Wait for a calamity and find flat ground you can use",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Summoning is simple: hold the Calamity Beacon and right-click the ground in Hoanna. The hard part is meeting all the conditions below at once. Miss one and nothing is summoned, and the beacon isn't used."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.calamity_beacon>0"
+              ],
+              "cells": [
+                "Matrix rank",
+                "At least rank {cfg:general.matrix_rank.gates.calamity_beacon} ([[shade/rank_8]])"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.calamity_heart.require_calamity",
+                "cfg:general.hoanna_events.chance_multiplier>0",
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "Calamity",
+                "Hoanna has a calamity going on right now; a ley storm counts too"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.calamity_heart.require_calamity",
+                "cfg:general.hoanna_events.chance_multiplier>0",
+                "!cfg:general.hoanna_events.ley_storm_enabled||!cfg:general.hoanna_events.ley_storm_chance>0||!cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "Calamity",
+                "Hoanna has a calamity going on right now"
+              ]
+            },
+            {
+              "if": "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0",
+              "cells": [
+                "Calamity",
+                "No need to wait; summon any time"
+              ]
+            },
+            [
+              "Overhead",
+              "Open sky, with no blocks above you"
+            ],
+            [
+              "Ground",
+              "In a square {cfg:general.calamity_heart.pillar_offset|mul:2|add:1} blocks on a side, centered on the block you click, 25 spots of ground are checked, and the highest and lowest of them differ by no more than {cfg:general.calamity_heart.max_unevenness} blocks"
+            ],
+            [
+              "Permission",
+              "You must be allowed to build at the center and at the four spots {cfg:general.calamity_heart.pillar_offset} blocks north, south, east and west of it. That is where the pillars stand"
+            ],
+            [
+              "Nearby",
+              "No other Heart of Calamity or Matrix Specter within {cfg:general.calamity_heart.exclusive_radius} blocks"
+            ],
+            [
+              "Difficulty",
+              "Not Peaceful"
+            ],
+            [
+              "Once a day",
+              "You haven't brought it down yet today. Only a win counts; a fight that ends without one doesn't"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Calamities don't come often, and some don't last: an earthquake is over in about 4 minutes, while darkness can go on for several in-game days. Only the moment of summoning has to fall in a calamity; if it ends during the fight, the fight goes on. Once you are ready, stay in Hoanna and go as soon as the red chat message appears ([[hoanna/events]]).",
+          "if": ["cfg:general.calamity_heart.require_calamity", "cfg:general.hoanna_events.chance_multiplier>0"]
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Have the beacon, food and a light source ready. With an empty beacon, carry enough Shade Cores too ([[apex/beacon]]).",
+            {
+              "if": ["cfg:general.calamity_heart.require_calamity", "cfg:general.hoanna_events.chance_multiplier>0"],
+              "text": "Wait for a calamity to strike Hoanna."
+            },
+            "Find flat ground under open sky where you can build everywhere within {cfg:general.calamity_heart.pillar_offset} blocks.",
+            "Hold the beacon and right-click the ground. Four Calamity Pillars rise around you, and the Heart hangs in the middle."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If something is missing, the action bar says which condition, and neither the beacon nor any Shade Cores are taken."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "If the summoner dies, logs out or changes dimension, the fight ends without a win. The Heart dissipates, and the beacon and the Shade Cores taken for it come back as they were, so you can summon again today. The same happens if everyone leaves for {cfg:general.mobs.boss.abandon_ticks|sec} or the difficulty goes to Peaceful."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": ["cfg:general.calamity_heart.require_calamity", "cfg:general.hoanna_events.chance_multiplier>0"],
+              "text": "The main calamity is whichever calamity is going on at the moment you summon. During a ley storm, one of the four is picked. It decides which pillar is tougher and what extra you get for winning ([[apex/rewards]])."
+            },
+            {
+              "if": "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0",
+              "text": "The main calamity is picked at random from the four. It decides which pillar is tougher and what extra you get for winning ([[apex/rewards]])."
+            },
+            "\"Once a day\" goes by the summoner. Someone who has already won today can't summon again, but can still join a fight someone else starts.",
+            "Flatness is only checked when you summon; digging or building during the fight doesn't matter. Its attacks never break or place blocks."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "title": "Bringing down the Heart",
+      "icon": "essentialcraft5:calamity_remnant",
+      "summary": "Break the pillars, then dodge four calamities",
+      "complete": "essentialcraft5:main/calamity_heart",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: bring down the Heart of Calamity."
+        },
+        {
+          "type": "entity",
+          "id": "essentialcraft5:calamity_heart",
+          "scale": 0.5
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.calamity_heart.max_health} health and loses at most {cfg:general.calamity_heart.per_second_cap} a second, so the fight is dodging while you wear it down. Its armor, per-hit limit and other numbers are in [[bestiary/calamity_heart]].",
+          "if": "cfg:general.calamity_heart.per_second_cap>0"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.calamity_heart.max_health} health, so the fight is dodging while you wear it down. Its armor and other numbers are in [[bestiary/calamity_heart]].",
+          "if": "!cfg:general.calamity_heart.per_second_cap>0"
+        },
+        {
+          "type": "p",
+          "text": "It only takes damage dealt by fighting players themselves; pets, machines and turrets can't hurt it. Damage that isn't melee, such as arrows, magic and explosions, only counts for {cfg:general.mobs.boss.non_melee_multiplier|pct}."
+        },
+        {
+          "type": "h",
+          "text": "The opening and the Calamity Seal",
+          "if": "cfg:general.calamity_heart.intro_ticks>0||cfg:general.calamity_heart.enchant_seal"
+        },
+        {
+          "type": "p",
+          "text": "Once summoned, it takes {cfg:general.calamity_heart.intro_ticks|sec} to make its entrance: a ring of light marks the arena edge, the four pillars burst out of the ground one by one, the sky darkens and its name rises on your screen. Neither it nor the pillars can be hurt in the meantime, and it does not attack, so use the time to take your positions.",
+          "if": "cfg:general.calamity_heart.intro_ticks>0"
+        },
+        {
+          "type": "p",
+          "text": "Near the end of the opening, the Calamity Seal falls on every fighter: the enchantments on everything you carry stop working (curses excepted), the items lose their glint, and their tooltips say which pillar holds them. Vanilla enchantments and those from other mods alike. The seal is split into four parts by where an item sits, each held by one pillar. Bring that pillar down to free its part; the four little locks under its health bar light up as you do:",
+          "if": "cfg:general.calamity_heart.enchant_seal"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.calamity_heart.enchant_seal",
+          "header": [
+            "Pillar",
+            "Holds"
+          ],
+          "rows": [
+            [
+              "Sun Array (north)",
+              "Helmet and chestplate"
+            ],
+            [
+              "Earthquake (west)",
+              "Leggings and boots"
+            ],
+            [
+              "Darkness (south)",
+              "Main hand, the hotbar slot you have selected"
+            ],
+            [
+              "Miasma (east)",
+              "Off hand, curio slots and the rest of your inventory"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.calamity_heart.enchant_seal",
+          "items": [
+            "Only where an item is right now counts: move the sword from your main hand to your off hand and the Miasma pillar holds it instead. The main calamity's pillar is the toughest, so its part is the hardest to win back. Pick your order: armor protection first, or your weapon first.",
+            "With all four pillars down, everything is free. When it falls or fades, or you die, log out, change dimension or leave the fight, the seal lifts at once.",
+            {
+              "if": [
+                "cfg:general.calamity_heart.reseal_on_reraise",
+                "cfg:general.calamity_heart.reraise_pillars>0"
+              ],
+              "text": "Pillars raised again after the collapse seal their part again."
+            },
+            "Armor points and set effects stay as they are; only enchantments stop working. The items themselves never change: what you drop or put in a chest is not sealed, and no enchantment is lost afterwards."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Three stages"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "<em>Shield</em>: while any pillar still stands, even just one, it floats in the air, takes no damage at all and attacks with the calamities of the pillars still standing. Break the pillars first. Each has {cfg:general.calamity_heart.pillar_health} health, or {cfg:general.calamity_heart.main_pillar_health} for the main calamity pillar. Each one that falls makes it cast that calamity's echo (second table below), then its shield breaks for {cfg:general.calamity_heart.shield_window_ticks|sec} and it drops low enough to hit. While any pillar stands, its health stops at the collapse line.",
+            "<em>Imbalance</em>: once all four are down, it sinks lower and slowly follows the group. It uses two calamities at a time, switching pairs every {cfg:general.calamity_heart.aspect_swap_ticks|sec}, and attacks more often than before. Dodge as the table below says and hit it whenever you can.",
+            "<em>Collapse</em>: below {cfg:general.calamity_heart.collapse_threshold|pct} health it stops attacking, and its boss bar starts a {cfg:general.calamity_heart.collapse_ticks|sec} countdown. During it, it takes {cfg:general.calamity_heart.collapse_damage_taken|add:-1|pct} more damage, but every {cfg:general.calamity_heart.pulse_interval|sec} it sends out a pulse that hits every fighter within {cfg:general.calamity_heart.pulse_range} blocks for {cfg:general.calamity_heart.pulse_damage} plus {cfg:general.calamity_heart.pulse_health_percent|pct} of their maximum health."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If the countdown runs out before it falls, it raises {cfg:general.calamity_heart.reraise_pillars} pillars again and goes back to {cfg:general.calamity_heart.reraise_health|pct} health, starting over from the shield stage. This only happens once. After the second countdown it just keeps pulsing until it falls, and it never heals again.",
+          "if": "cfg:general.calamity_heart.reraise_pillars>0"
+        },
+        {
+          "type": "p",
+          "text": "If the countdown runs out before it falls, it goes back to {cfg:general.calamity_heart.reraise_health|pct} health and you go again. This only happens once. After the second countdown it just keeps pulsing until it falls, and it never heals again.",
+          "if": "!cfg:general.calamity_heart.reraise_pillars>0"
+        },
+        {
+          "type": "p",
+          "text": "The first time each pillar drops to half health, it lashes back: a red ring of {cfg:general.calamity_heart.backlash_radius} blocks lights up at its foot and bursts {cfg:general.calamity_heart.backlash_warning_ticks|sec} later. Anyone inside takes {cfg:general.calamity_heart.backlash_damage} plus {cfg:general.calamity_heart.backlash_health_percent|pct} of their max health and is thrown back. Step out when you see the ring, then come back to finish the pillar.",
+          "if": "cfg:general.calamity_heart.backlash_damage>0||cfg:general.calamity_heart.backlash_health_percent>0"
+        },
+        {
+          "type": "p",
+          "text": "The moment the last pillar falls, it casts Convergence: a golden circle of {cfg:general.calamity_heart.converge_radius} blocks lights up around it while a ring of light closes in from the arena edge. {cfg:general.calamity_heart.converge_warning_ticks|sec} later the ring meets the circle, and every fighter outside the golden circle takes {cfg:general.calamity_heart.converge_damage} plus {cfg:general.calamity_heart.converge_health_percent|pct} of their max health. It holds still while the circle is lit. Plan your route before breaking the last pillar, and run to it as soon as the circle shows.",
+          "if": "cfg:general.calamity_heart.converge_damage>0||cfg:general.calamity_heart.converge_health_percent>0"
+        },
+        {
+          "type": "p",
+          "text": "Even while collapsing it lashes out every {cfg:general.calamity_heart.collapse_echo_interval|sec}, alternating a Fault ({cfg:general.calamity_heart.fault_rings} shockwaves in a row) and a Prism Volley ({cfg:general.calamity_heart.volley_lines} prism lines, each through a fighter). Keep moving while you hit it.",
+          "if": [
+            "cfg:general.calamity_heart.collapse_echo_interval>0",
+            "cfg:general.calamity_heart.fault_rings>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Even while collapsing it lashes out every {cfg:general.calamity_heart.collapse_echo_interval|mul:2|sec} with a Prism Volley ({cfg:general.calamity_heart.volley_lines} prism lines, each through a fighter). Keep moving while you hit it.",
+          "if": [
+            "cfg:general.calamity_heart.collapse_echo_interval>0",
+            "!cfg:general.calamity_heart.fault_rings>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The four calamities"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Calamity",
+            "Attack",
+            "How to dodge"
+          ],
+          "rows": [
+            {
+              "if": [
+                "cfg:general.calamity_heart.prism_lines>0",
+                "cfg:general.calamity_heart.max_prisms>0"
+              ],
+              "cells": [
+                "Sun array",
+                "Skyfire lines: {cfg:general.calamity_heart.prism_lines} lines of light show on the ground, and a moment later beams come down along them for {cfg:general.calamity_heart.prism_damage} plus {cfg:general.calamity_heart.prism_health_percent|pct} of your maximum health, setting you on fire for {cfg:general.calamity_heart.prism_fire_seconds} seconds",
+                "Step sideways off the lines as soon as they light up"
+              ]
+            },
+            [
+              "Sun array",
+              "Sunmark: a mark lights up over your head, and if the sky is still open above you when it lands, you take {cfg:general.calamity_heart.mark_health_percent|pct} of your maximum health",
+              "Get under a block; with cover over your head it misses"
+            ],
+            {
+              "if": [
+                "cfg:general.calamity_heart.fumes_per_cast>0",
+                "cfg:general.calamity_heart.max_fumes>0"
+              ],
+              "cells": [
+                "Poison fumes",
+                "Miasma: releases {cfg:general.calamity_heart.fumes_per_cast} clouds of poison at a time, up to {cfg:general.calamity_heart.max_fumes} in the arena, like the fumes of the calamity but affecting only fighters",
+                "Go around the clouds and don't stand still in one place"
+              ]
+            },
+            {
+              "if": "cfg:general.calamity_heart.corrosion_ticks>0",
+              "cells": [
+                "Poison fumes",
+                "Corroding breath: a cone of breath {cfg:general.calamity_heart.breath_range} blocks long toward one fighter, {cfg:general.calamity_heart.breath_damage} plus {cfg:general.calamity_heart.breath_health_percent|pct} of your maximum health. Anyone hit gets Corrosion for {cfg:general.calamity_heart.corrosion_ticks|sec} and can't heal while it lasts",
+                "When a trail of green specks runs along the ground toward you, step sideways out of it"
+              ]
+            },
+            {
+              "if": "!cfg:general.calamity_heart.corrosion_ticks>0",
+              "cells": [
+                "Poison fumes",
+                "Corroding breath: a cone of breath {cfg:general.calamity_heart.breath_range} blocks long toward one fighter, {cfg:general.calamity_heart.breath_damage} plus {cfg:general.calamity_heart.breath_health_percent|pct} of your maximum health",
+                "When a trail of green specks runs along the ground toward you, step sideways out of it"
+              ]
+            },
+            [
+              "Darkness",
+              "Lights out: it fades into the dark for {cfg:general.calamity_heart.blackout_ticks|sec} and strikes {cfg:general.calamity_heart.blackout_strikes} times. Each strike marks where you stand and lands there a moment later, {cfg:general.calamity_heart.strike_damage} a hit",
+              "Hold a torch or another light source in either hand to see it and the path of each strike. A strike hits where you stood, so a few steps aside avoid it"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.quake_rings>0",
+              "cells": [
+                "Earthquake",
+                "Shockwave: {cfg:general.calamity_heart.quake_rings} rings roll out along the ground one after another. Anyone standing on the ground takes {cfg:general.calamity_heart.quake_damage} plus {cfg:general.calamity_heart.quake_health_percent|pct} of their maximum health and is thrown up",
+                "Jump as each ring reaches you"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.calamity_heart.rubble_count>0",
+                "cfg:general.calamity_heart.max_rubble>0"
+              ],
+              "cells": [
+                "Earthquake",
+                "Falling rubble: {cfg:general.calamity_heart.rubble_count} rocks drop from the sky at a time, up to {cfg:general.calamity_heart.max_rubble} in the arena, {cfg:general.calamity_heart.rubble_damage} each",
+                "Watch the shadows on the ground and move when one grows"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            5,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each pillar you break makes it cast that calamity's echo, harsher than its usual attacks:"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Calamity",
+            "Echo",
+            "How to dodge"
+          ],
+          "rows": [
+            [
+              "Sun array",
+              "Noon: after {cfg:general.calamity_heart.noon_warning_ticks|sec}, every fighter under open sky takes {cfg:general.calamity_heart.noon_health_percent|pct} of their maximum health",
+              "Before breaking the sun array pillar, pick a spot with cover close by"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.max_fumes>0",
+              "cells": [
+                "Poison fumes",
+                "Spread: fills the arena up to {cfg:general.calamity_heart.max_fumes} clouds at once, lasting {cfg:general.calamity_heart.echo_fume_ticks|sec}",
+                "Leave the thickest part and wait for them to fade"
+              ]
+            },
+            [
+              "Darkness",
+              "Long night: lights out for {cfg:general.calamity_heart.long_night_ticks|sec}, with {cfg:general.calamity_heart.long_night_strikes} strikes",
+              "As for lights out: keep a light in hand and keep moving"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.fault_rings>0",
+              "cells": [
+                "Earthquake",
+                "Fault: {cfg:general.calamity_heart.fault_rings} shockwave rings in a row",
+                "Jump as each ring reaches you"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            5,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Apart from the strikes and the rubble, these attacks ignore armor, and most of them scale with your maximum health, so even with a lot of health you still have to dodge. Strikes and rubble are plain damage that armor reduces as usual. Rubble shatters when it lands and leaves no blocks behind."
+        },
+        {
+          "type": "h",
+          "text": "Joined aspects",
+          "if": "cfg:general.calamity_heart.combo_delay_ticks>0"
+        },
+        {
+          "type": "p",
+          "text": "While unbalanced, {cfg:general.calamity_heart.combo_delay_ticks|sec} after each new pair of calamities it casts the two together once, and its name shows on your screen. The first pair waits until Convergence has landed.",
+          "if": "cfg:general.calamity_heart.combo_delay_ticks>0"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.calamity_heart.combo_delay_ticks>0",
+          "header": [
+            "Joined aspect",
+            "What it does",
+            "How to dodge"
+          ],
+          "rows": [
+            [
+              "Eclipse (Sun Array + Miasma)",
+              "4 prism lines through its body land at once, then 3 clouds of fumes",
+              "Stand in the gap between two lines; the gaps widen away from it. Stay out of the fumes"
+            ],
+            [
+              "Nightfall (Darkness + Earthquake)",
+              "A blackout with two waves of falling rubble",
+              "Hold a light, watch the shadows and step aside when one grows"
+            ],
+            [
+              "Miasma Shade (Miasma + Darkness)",
+              "A blackout with 4 strikes, each leaving a cloud of fumes where it lands",
+              "Hold a light, and don't step back where a strike landed"
+            ],
+            [
+              "Molten Rift (Earthquake + Sun Array)",
+              "Shockwaves in a row plus 4 prism lines through its body",
+              "Jump each wave and land between the lines"
+            ]
+          ],
+          "widths": [
+            3,
+            5,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The lines through its body turn by half a gap each time: last time's safe spot is right on a line the next.",
+          "if": "cfg:general.calamity_heart.combo_delay_ticks>0"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The Heart of Calamity falls. Everyone who took {cfg:general.mobs.boss.loot_share|pct} or more of its health gets their share, and this step is ticked."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Don't hope to snipe it from far away, and don't fly. Hiding in a hole in the ground doesn't help either, since its attacks still reach you; only the Sunmark cares whether there is cover overhead."
+        },
+        {
+          "type": "h",
+          "text": "Who counts as a fighter"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The summoner, and anyone who deals damage after that. Onlookers and passers-by are not, so its attacks never target them, and its fumes leave pets and villagers alone.",
+            {
+              "if": "cfg:general.calamity_heart.pull_range>0",
+              "text": "The arena reaches {cfg:general.calamity_heart.arena_radius} blocks around the summoning spot. A fighter who goes {cfg:general.calamity_heart.pull_range}–{cfg:general.calamity_heart.escape_range} blocks from the center is dragged back near it, losing {cfg:general.mobs.boss.pull_damage} health each time. Going beyond {cfg:general.calamity_heart.escape_range} blocks, dying, logging out or changing dimension takes you out of the fight."
+            },
+            {
+              "if": "!cfg:general.calamity_heart.pull_range>0",
+              "text": "The arena reaches {cfg:general.calamity_heart.arena_radius} blocks around the summoning spot. It doesn't drag anyone back. Going beyond {cfg:general.calamity_heart.escape_range} blocks from the center, dying, logging out or changing dimension takes you out of the fight."
+            },
+            "You are only dragged to a spot you are allowed to use. If it is blocked or you can't build there, you stay put, and staying out for {cfg:general.mobs.boss.abandon_ticks|sec} takes you out of the fight too."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "Its big attacks count as armor-ignoring blows. The Computer Guy's Suit blocks {cfg:general.computer_armor.piercing_share|pct} of them from attunement stage 4, and the Inquisitorium Armor cuts them by {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct} at stage 4. Void Armor dodging and phasing do nothing against it."
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "Its big attacks count as armor-ignoring blows, and Void Armor dodging and phasing do nothing against it."
+            },
+            "The sun array's attacks count as fire damage: a potion of Fire Resistance stops them entirely, and Fire Protection reduces them.",
+            {
+              "if": "cfg:general.calamity_heart.pillar_per_hit_cap>0",
+              "text": "The pillars also only take damage from fighting players, with non-melee counting for less, and lose at most {cfg:general.calamity_heart.pillar_per_hit_cap} a hit. There is no per-second limit, so pillars go down faster than the body."
+            },
+            {
+              "if": "!cfg:general.calamity_heart.pillar_per_hit_cap>0",
+              "text": "The pillars also only take damage from fighting players, with non-melee counting for less. There is no per-second limit, so pillars go down faster than the body."
+            },
+            "In the darkness phase the edges of your screen and the sky over the arena slowly dim, and slowly recover afterwards.",
+            "It has its own battle music, played only to fighters.",
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "The {item:essentialcraft5:mu_ring} only keeps off the sun array, fumes and jolts of the calamity itself. It does nothing against the Heart's attacks, and the fumes the Heart releases still poison you."
+            },
+            {
+              "if": "cfg:general.calamity_heart.enchant_seal",
+              "text": "With an anvil, grindstone, enchanting table or similar screen open, it shows all your enchantments, and nothing is lost when you put the item back."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rewards",
+      "title": "Drops and the Calamity Remnant",
+      "icon": "essentialcraft5:calamity_remnant",
+      "summary": "A share each, and where the remnant comes from",
+      "items": [
+        "essentialcraft5:calamity_remnant"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "When the Heart of Calamity falls, everyone who took {cfg:general.mobs.boss.loot_share|pct} or more of its health gets a share, straight into their inventory, or at their feet if it is full. Anyone who did less gets nothing."
+        },
+        {
+          "type": "h",
+          "text": "Each share"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.calamity_heart.first_kill_bonus>0",
+              "text": "1 {item:essentialcraft5:calamity_remnant}, plus {cfg:general.calamity_heart.first_kill_bonus} more the first time you bring it down."
+            },
+            {
+              "if": "!cfg:general.calamity_heart.first_kill_bonus>0",
+              "text": "1 {item:essentialcraft5:calamity_remnant}."
+            },
+            "2 {item:essentialcraft5:aberrant_heart}.",
+            "About 20 draws of [[hoanna/relics|Hoanna relics]], the same kind of things as in ruin chests.",
+            "The main calamity's bonus, in the table below.",
+            "{cfg:general.calamity_heart.experience} experience."
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Main calamity",
+            "Bonus"
+          ],
+          "rows": [
+            [
+              "Sun array",
+              "4 {item:essentialcraft5:twinkling_titanite}"
+            ],
+            [
+              "Poison fumes",
+              "2 {item:essentialcraft5:void_mru_reactor}"
+            ],
+            [
+              "Darkness",
+              "2 {item:essentialcraft5:void_core}"
+            ],
+            [
+              "Earthquake",
+              "1 {item:essentialcraft5:matter_of_eternity}"
+            ]
+          ],
+          "widths": [
+            3,
+            7
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For what the main calamity is, see the fine print in [[apex/summon]]."
+        },
+        {
+          "type": "h",
+          "text": "Where the remnant goes"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "1 for [[apex/rank_9|matrix rank 9]], the last step of the main line."
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "1 per piece to raise the Computer Guy's Suit or the Verdict Blade to attunement stage 5 ([[apex/ascension]])."
+            },
+            {
+              "if": [
+                "!cfg:general.matrix_rank.enabled",
+                "!cfg:general.attunement.enabled"
+              ],
+              "text": "For now it has no other use, so just keep it."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "A Calamity Remnant is in your inventory."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The beacon goes back to the summoner. The summoner also has to take {cfg:general.mobs.boss.loot_share|pct} to get a share, but gets the beacon back either way.",
+            "How many fights a day depends on how many of you summon. Each player can summon once per in-game day, but can join other people's fights, with a share from each.",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "It is a boss, so taking a tenth or more of its health records it in the boss group of your [[matrix/codex|Matrix Codex]], which rank 9 needs."
+            },
+            "If it dies to something other than a fighter, such as falling out of the world or a command, nothing drops, even if someone had just hit it.",
+            "A Heart of Calamity from a spawn egg or a command has no summoner and a random main calamity, and beating it gives nothing."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rank_9",
+      "title": "Rank 9 · Essence",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "The last step of the main line",
+      "complete": "essentialcraft5:guide/matrix/rank_9",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: reach matrix rank 9, Essence."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "33 kinds in all, including the Heart of Calamity ([[matrix/codex]])"
+            ],
+            [
+              "Site",
+              "A tier 4 Soul Pentacle ([[shade/tier4]])"
+            ],
+            [
+              "Offerings",
+              "3 {item:essentialcraft5:condensed_matrix}, 2 {item:essentialcraft5:shade_core}, 1 {item:essentialcraft5:calamity_remnant}"
+            ],
+            [
+              "Energy",
+              "100,000 MRU in the Crucible and 16,000 ESPE in the pentacle's pillars"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "10 in all, up to 4 at once; 116 health each, 12 damage a hit; 150 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "Stand still for {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:90} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the offerings in the Crucible's offering slots and fill it with enough MRU through a Bound Gem.",
+            "Stand within 3 blocks with your bound Soul Stone in your main hand, open the screen, and once everything on the right is ticked, start the trial.",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Defeat enough Matrix Echoes, and don't stray far from the Crucible."
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Stay next to the Crucible without moving or getting hurt until the channel finishes."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "\"Rank 9 · Essence\" appears in the middle of the screen, and your Soul Stone's tooltip shows matrix rank 9."
+        },
+        {
+          "type": "p",
+          "text": "Rank 9 gives you this: [[matrix/alignment|Alignment]] rises to III, your reservoir grows to {cfg:general.matrix_rank.pool_per_rank|mul:8}, and the title bar on the front page of this book shows rank 9. This is the highest matrix rank."
+        },
+        {
+          "type": "p",
+          "text": "Attunement stage 5 needs exactly this rank ([[apex/ascension]]).",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "cfg:general.attunement.rank_gate|at:4==9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ascension",
+      "title": "Attunement Stage 5",
+      "icon": "essentialcraft5:verdict_blade",
+      "summary": "The first long goal after the main line",
+      "if": "cfg:general.attunement.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): raise the Computer Guy's Suit and the Verdict Blade to attunement stage 5."
+        },
+        {
+          "type": "p",
+          "text": "This is the highest attunement stage, and what it takes comes from these two chapters: Calamity Remnants and Umbral Crystals. Raising a stage works as before ([[attunement/stage_up]])."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "Matrix rank",
+                "At least rank {cfg:general.attunement.rank_gate|at:4}"
+              ]
+            },
+            [
+              "Points",
+              "Stage 4 points full"
+            ],
+            [
+              "Corners",
+              "1 {item:essentialcraft5:calamity_remnant}, 4 {item:essentialcraft5:umbral_crystal}, 1 {item:essentialcraft5:demonic_core}, 1 {item:minecraft:nether_star}"
+            ],
+            [
+              "MRU",
+              "150,000"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each of the suit's four pieces is raised separately and needs its own set, and the Verdict Blade needs one more: 5 Calamity Remnants for everything."
+        },
+        {
+          "type": "p",
+          "text": "Your first win gives you 2; rank 9 takes 1, leaving 1 for one piece. Each win after that gives 1 more. You can summon once a day, and joining other people's fights counts too.",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.calamity_heart.first_kill_bonus==1"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.calamity_heart.first_kill_bonus==1",
+            "cfg:general.calamity_heart.first_kill_bonus>0"
+          ],
+          "text": "Your first win gives you {cfg:general.calamity_heart.first_kill_bonus|add:1}, and each win after that gives 1 more. You can summon once a day, and joining other people's fights counts too."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.calamity_heart.first_kill_bonus>0",
+          "text": "Each win over the Heart gives you 1. You can summon once a day, and joining other people's fights counts too."
+        },
+        {
+          "type": "p",
+          "text": "Your first win gives you 2, enough for two pieces. Each win after that gives 1 more. You can summon once a day, and joining other people's fights counts too.",
+          "if": [
+            "!cfg:general.matrix_rank.enabled",
+            "cfg:general.calamity_heart.first_kill_bonus==1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "What really takes time is the attunement points. The budget for them builds up with time online, and going from stage 2 to stage 5 needs about 27 hours of it at least; fight less in that time and it takes longer ([[attunement/budget]]).",
+          "if": [
+            "cfg:general.attunement.budget_per_hour==360",
+            "cfg:general.attunement.budget_cap==720"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For the materials at each stage and what stage 5 does, see [[attunement/computer_armor]] and [[attunement/verdict_blade]]."
+        }
+      ]
+    },
+    {
+      "id": "epilogue",
+      "title": "The main line is done",
+      "icon": "essentialcraft5:calamity_remnant",
+      "summary": "What comes after",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "The main line ends here"
+        },
+        {
+          "type": "p",
+          "text": "You started with your first drop and your first MRU. Since then you have built generators and an Enrichment Chamber, made mithriline, walked into Hoanna, traded with demons, brought down the Holographic Projection and the Inquisitorium Sentinel, put on the Computer Guy's Suit, gathered Umbral Crystals in the Shadow Corrupted Land, and finally brought down the Heart of Calamity, with your matrix at rank 9. This is where the main line of EssentialCraft ends.",
+          "if": "cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "You started with your first drop and your first MRU. Since then you have built generators and an Enrichment Chamber, made mithriline, walked into Hoanna, traded with demons, brought down the Holographic Projection and the Inquisitorium Sentinel, put on the Computer Guy's Suit, gathered Umbral Crystals in the Shadow Corrupted Land, and finally brought down the Heart of Calamity. This is where the main line of EssentialCraft ends.",
+          "if": "!cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "h",
+          "text": "What else there is"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "Take the Computer Guy's Suit and the Verdict Blade to attunement stage 5 ([[apex/ascension]])."
+            },
+            "Hoanna's wilds aren't done with you: sealed vaults, sunken districts and Inquisitorium outposts each hold something ([[hoanna_explore/overview]]).",
+            "The bestiary still has bosses you may not have met, such as the Ruin Watcher in the towns and the Abyssal Tidelord outside the sunken districts ([[bestiary/overview]]).",
+            "The side chapters are all still there, among them guns, void machines, ley projection and special accessories. Pick one from [[logistics/after_main_line]]."
+          ]
+        }
+      ]
+    }
+  ]
+}

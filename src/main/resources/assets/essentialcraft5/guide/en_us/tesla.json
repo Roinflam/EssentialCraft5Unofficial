@@ -1,0 +1,542 @@
+{
+  "id": "tesla",
+  "order": 94,
+  "group": "side",
+  "title": "Side Chapter · Tesla: Coils and Reactors",
+  "subtitle": "A guard tower and a fuel-free generator",
+  "icon": "essentialcraft5:mru_coil",
+  "entries": [
+    {
+      "id": "mru_magnet",
+      "title": "{item:essentialcraft5:mru_magnet}",
+      "icon": "essentialcraft5:mru_magnet",
+      "summary": "The part every coil and reactor needs",
+      "complete": "essentialcraft5:guide/tesla/mru_magnet",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mru_magnet"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "The reactor burns nothing and still makes MRU. At first I thought I had miscounted. Monsters that wander up to it are struck down and leave no bones and no experience behind. If you're after bones, do your hunting farther off.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a few {item:essentialcraft5:mru_magnet}s. The coil, the coil bases, the reactor core and the reactor supports in this chapter all need them. You can start once you can make Magical Essence in <em>Chapter 6</em>, and the reactor also needs a Nether Star."
+        },
+        {
+          "type": "h",
+          "text": "How to make it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Get 1 {item:minecraft:iron_ingot} and 1 {item:essentialcraft5:magical_essence} (see [[alloys/magical_essence]]).",
+            "Put the iron ingot in the <em>top</em> slot of a {item:essentialcraft5:radiating_chamber} and the essence in the bottom slot (see [[crafting/radiating_chamber]]).",
+            "Keep the chamber supplied with MRU, this mod's magical energy ([[start/mru]]). Each magnet takes 1,000 ticks, or 50 seconds."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_magnet"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold an MRU Magnet."
+        },
+        {
+          "type": "h",
+          "text": "How many you need"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Used in",
+            "Magnets per craft"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mru_coil}",
+              "1"
+            ],
+            [
+              "{item:essentialcraft5:mru_coil_hardener}",
+              "1 (makes 3 bases)"
+            ],
+            [
+              "{item:essentialcraft5:reactor}",
+              "1"
+            ],
+            [
+              "{item:essentialcraft5:reactor_support}",
+              "2 (makes 2; a reactor needs 4)"
+            ]
+          ],
+          "widths": [
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "All told, one reactor takes 5 magnets; a coil takes 1, plus 1 more for every 3 bases you stack under it."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Save time",
+          "text": "If a hopper feeds the chamber, make the first magnet by hand: once the chamber remembers the recipe, iron from the hopper goes into the top slot by itself and you can leave it to make a batch."
+        }
+      ]
+    },
+    {
+      "id": "mru_coil",
+      "title": "{item:essentialcraft5:mru_coil}",
+      "icon": "essentialcraft5:mru_coil",
+      "summary": "A tower that guards your home",
+      "complete": "essentialcraft5:guide/tesla/mru_coil",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mru_coil",
+        "essentialcraft5:mru_coil_hardener"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build an {item:essentialcraft5:mru_coil}. It discharges on its own to guard your base, and you, the one who placed it, are <em>never</em> zapped. The taller the stack of bases under it, the farther it reaches."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "the coil itself, with the recipe below; pale or mithriline plates work in place of the magical plates;",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "demonic plates work in the recipe too;"
+            },
+            "for the base, 25 plating blocks in any mix of {item:essentialcraft5:magic_plating}, {item:essentialcraft5:pale_plating} and {item:essentialcraft5:mithriline_plating}, any color ([[alloys/plating]]); 4 magical plates make 16 magical plating, so two crafts are enough;",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "the base also takes {item:essentialcraft5:void_stone} (see [[hoanna/void_stone]]) and {item:essentialcraft5:demonic_plating} (see [[demons/demonic_plating]]), mixed with plating if you like;"
+            },
+            "coil bases, as many as you like: one craft of {item:essentialcraft5:mru_coil_hardener} makes 3, and each adds 2 blocks of range;",
+            "1 {item:essentialcraft5:bound_gem}, bound to your MRU storage or a generator, to feed the coil (see [[crafting/bound_gem]])."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_coil"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_coil_hardener"
+        },
+        {
+          "type": "h",
+          "text": "How to build it"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:mru_coil",
+          "caption": "Shown with 2 bases; use none or as many as you like"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Lay the base: 25 plating blocks in a 7×7 rounded cross (the bottom layer in the picture).",
+            "Stack coil bases on the middle block of the base, one on top of another with no gaps. You can also skip them.",
+            "Put the coil on top. With no bases, it sits right on the middle block of the base.",
+            "Right-click the coil and put the bound {item:essentialcraft5:bound_gem} in the upper slot."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The status line in the coil's screen no longer says \"Incomplete\". It shows the range, or \"Not enough MRU\" until it has power. Once it has MRU, small purple arcs crackle above it."
+        },
+        {
+          "type": "h",
+          "text": "Range and power"
+        },
+        {
+          "type": "formula",
+          "text": "Range = 3 + 2 × bases, up to {cfg:machines.mru_coil.max_radius} blocks"
+        },
+        {
+          "type": "p",
+          "text": "The range is a sphere around the coil. It tops out at {cfg:machines.mru_coil.max_radius|add:-3|div:2|int} bases, a range of {cfg:machines.mru_coil.max_radius} blocks, and more bases do nothing."
+        },
+        {
+          "type": "p",
+          "text": "The coil holds up to {cfg:machines.mru_coil.max_mru} MRU. Each target it <em>hits</em> costs {cfg:machines.mru_coil.mru_per_hit} MRU, and misses cost nothing; when it can't afford a hit, it waits."
+        },
+        {
+          "type": "p",
+          "text": "Like most machines in this mod, the coil stops while it gets a <em>redstone</em> signal and carries on as soon as the signal is gone. A lever makes a handy off switch."
+        },
+        {
+          "type": "h",
+          "text": "What it attacks"
+        },
+        {
+          "type": "p",
+          "text": "The coil fires once every {cfg:machines.mru_coil.strike_interval|sec} and hits at most {cfg:machines.mru_coil.max_targets} targets each time, players before monsters and the nearest first.",
+          "if": [
+            "cfg:machines.mru_coil.hurt_players",
+            "cfg:machines.mru_coil.hurt_monsters"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The coil fires once every {cfg:machines.mru_coil.strike_interval|sec} and hits at most {cfg:machines.mru_coil.max_targets} targets each time, nearest first.",
+          "if": "!cfg:machines.mru_coil.hurt_players||!cfg:machines.mru_coil.hurt_monsters"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "text": "<em>Monsters</em>: zombies, skeletons, creepers and other hostile mobs take {cfg:machines.mru_coil.monster_damage} damage per hit, ignoring armor."
+            },
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "text": "<em>Only monsters where you may build</em>: where its range reaches into someone else's claim, it leaves the monsters there alone, so it won't empty a neighbor's mob farm for you. While you are offline, it only attacks monsters in places it checked while you were online, and that record lasts an hour at most. After the world restarts, or once nobody is around and the area unloads, it waits until you are online to check again."
+            },
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "cfg:machines.mru_coil.trespassers_only"
+              ],
+              "text": "<em>Players</em>: only <em>intruders</em>, meaning players standing on your ground with no permission of their own, such as someone inside your claim whom you haven't trusted. Passers-by in the wild, and players in their own claim or somewhere they are trusted, are left alone. So are players where its range reaches into someone else's claim or a protected public area, such as a town or road nobody may dig in. While you are offline, it only goes after intruders in places it checked while you were online. That record lasts an hour at most, and after the world restarts or the area unloads it waits for you to come online. In a world without claims, nobody counts as an intruder. Players on its [[tesla/player_list|whitelist]], you, the one who placed it, and players in Creative or Spectator mode are never zapped."
+            },
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "!cfg:machines.mru_coil.trespassers_only"
+              ],
+              "text": "<em>Players</em>: only those <em>not on your whitelist</em> (see [[tesla/player_list]]). You, the one who placed it, are never zapped, and neither are players in Creative or Spectator mode."
+            },
+            {
+              "if": "!cfg:machines.mru_coil.hurt_players",
+              "text": "<em>Players</em>: the coil never attacks players."
+            },
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "text": "<em>Left alone</em>: animals, villagers, pets, armor stands, anything with a name or on a lead, bosses such as the Wither and the Ender Dragon, and monsters that never despawn, such as a zombie that picked something up and may be wearing a player's gear."
+            },
+            "<em>It has to see the target</em>: solid blocks in between stop it, but glass, glass panes and iron bars don't. Put the coil under glass and it still fires, while nobody can reach it."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "No drops",
+          "text": "Monsters killed by the coil <em>drop nothing</em> and give no experience. Only what a monster picked up off the ground still drops, and that is usually a player's. It guards a base well, but it can't be the killing floor of a mob farm.",
+          "if": "cfg:machines.mru_coil.hurt_monsters"
+        },
+        {
+          "type": "h",
+          "text": "When it hits a player",
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "p",
+          "text": "This only matters in multiplayer. The coil hits people hard, but gives them a chance to walk away:",
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.mru_coil.warning_ticks",
+              "text": "when someone first enters the range, a red warning appears above their hotbar, and the coil only starts {cfg:machines.mru_coil.warning_ticks|sec} later;"
+            },
+            "each hit deals {cfg:machines.mru_coil.player_damage} plus {cfg:machines.mru_coil.player_health_percent|pct} of their max health, ignoring armor. Protection, Resistance, Absorption and Totems of Undying still help, but shields don't;",
+            {
+              "if": "cfg:machines.mru_coil.slowness_ticks",
+              "text": "a hit gives Slowness level {cfg:machines.mru_coil.slowness_level} for {cfg:machines.mru_coil.slowness_ticks|sec};"
+            },
+            {
+              "if": "cfg:machines.mru_coil.weakness_ticks",
+              "text": "a hit gives Weakness level {cfg:machines.mru_coil.weakness_level} for {cfg:machines.mru_coil.weakness_ticks|sec};"
+            },
+            {
+              "if": "cfg:machines.mru_coil.glowing_ticks",
+              "text": "a hit makes them glow for {cfg:machines.mru_coil.glowing_ticks|sec}, visible through walls;"
+            },
+            "it still fires if PvP is off in this world or the player stands in a no-PvP claim;",
+            {
+              "if": "cfg:machines.mru_coil.spawn_safe_radius",
+              "text": "players within {cfg:machines.mru_coil.spawn_safe_radius} blocks of the Overworld spawn are left alone;"
+            },
+            "a player killed by a coil drops their items as usual, and the death message names the coil's owner;",
+            {
+              "if": "cfg:machines.mru_coil.respawn_grace_ticks",
+              "text": "for {cfg:machines.mru_coil.respawn_grace_ticks|sec} after respawning, no coil attacks them."
+            }
+          ],
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "h",
+          "text": "Screen and switches"
+        },
+        {
+          "type": "p",
+          "text": "Right-click the coil to open its screen, though not while sneaking. Only <em>the one who placed it</em>, players on its whitelist and players in Creative can open it, and whitelisted players can only look, not take or add items."
+        },
+        {
+          "type": "list",
+          "items": [
+            "the upper slot takes the {item:essentialcraft5:bound_gem}, the lower-right one the {item:essentialcraft5:player_list};",
+            "the status line shows what it is doing: its range, an incomplete structure, a redstone stop or not enough MRU; hover over it for details;",
+            {
+              "if": "cfg:machines.mru_coil.hurt_players",
+              "text": "the button in the top right switches player attacks for this coil, and only the one who placed it can press it. Turn it off on a coil in a public area that is just there for monsters."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A coil not placed by a player has no owner. It never attacks players, and in multiplayer it leaves monsters alone too, since there is nobody whose claim it could go by.",
+          "if": "cfg:machines.mru_coil.hurt_players||cfg:machines.mru_coil.hurt_monsters"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Watch out",
+          "text": "You must be within 16 blocks of the coil's column when the structure is completed, or this step won't be checked off. If you were too far away, break one base block, wait a second or two and put it back.\nPatterned blocks don't count as base blocks ([[decorations/patterns]]).\nExtra coils don't stack damage, because a target is hit by at most one coil per second. More coils cover more ground and hit more targets at once."
+        },
+        {
+          "type": "h",
+          "text": "Fine print",
+          "if": "cfg:machines.mru_coil.generates_corruption"
+        },
+        {
+          "type": "p",
+          "text": "Every hit leaks up to {cfg:machines.mru_coil.corruption_per_hit} MRU into the surroundings as corruption (see [[crafting/corruption]]). Keep the coil away from machines that suffer from it.",
+          "if": "cfg:machines.mru_coil.generates_corruption"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book's page on the coil is subtitled \"The doom is here!\", and the text promises an \"unlimited radius\". Back then each base added one block of range, and there really was no cap."
+        }
+      ]
+    },
+    {
+      "id": "player_list",
+      "title": "{item:essentialcraft5:player_list}",
+      "icon": "essentialcraft5:player_list",
+      "summary": "You decide who is safe",
+      "complete": "essentialcraft5:guide/tesla/player_list",
+      "optional": true,
+      "items": [
+        "essentialcraft5:player_list"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:player_list}, write your friends on it and put it in your coil. People on the list are never zapped, and they can open the coil's screen to check on it.",
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:player_list}, write your friends on it and put it in your coil. People on the list can then open the coil's screen to check on it.",
+          "if": "!cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 1 {item:minecraft:paper} and 1 {item:essentialcraft5:bound_gem}, anywhere in a crafting grid."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:player_list"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold a Player Whitelist."
+        },
+        {
+          "type": "h",
+          "text": "Writing names"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Right-click</em>: add yourself;",
+            "<em>Right-click another player</em>: add them, no need to ask;",
+            "<em>Sneak and right-click</em>: remove yourself;",
+            "<em>Put it alone in a crafting grid</em>: clear it and get a blank list."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "One list holds up to 64 players; hover over it to see who is on it. The list recognizes the players themselves."
+        },
+        {
+          "type": "h",
+          "text": "Putting it in the coil"
+        },
+        {
+          "type": "p",
+          "text": "Open your coil and put the list in the lower-right slot. Only the one who placed the coil, or a player in Creative mode, can put a list in or take it out. Hoppers and pipes can't insert one either, so nobody can sneak their own name into your coil."
+        },
+        {
+          "type": "p",
+          "text": "The one who placed the coil doesn't need to be on the list; the coil never attacks them.",
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Editing",
+          "text": "To change the list, take it out of the coil, edit it and put it back. Every coil needs a list of its own."
+        }
+      ]
+    },
+    {
+      "id": "reactor",
+      "title": "MRU Tesla Reactor",
+      "icon": "essentialcraft5:reactor",
+      "summary": "Makes MRU without any fuel",
+      "complete": "essentialcraft5:guide/tesla/reactor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:reactor",
+        "essentialcraft5:reactor_support"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a reactor around an {item:essentialcraft5:reactor}. This is the reactor the Workshop Notebook mentions. Once built, it produces {cfg:machines.reactor.mru_generated} MRU per tick without burning any fuel, more than several early generators put together."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "the reactor core: 2 {item:essentialcraft5:magic_matrix_projection}, 1 {item:minecraft:nether_star}, 2 {item:essentialcraft5:mru_resonating_crystal}, 1 {item:essentialcraft5:mru_magnet} and 3 magical plates (pale or mithriline plates work too);",
+            "4 {item:essentialcraft5:reactor_support}: one craft makes 2, so craft twice; each craft takes 2 magnets, 1 resonating crystal, 4 magical plates, 1 {item:essentialcraft5:elemental_core} (a pale one works too) and 1 {item:essentialcraft5:magic_purified_ender_scale_alloy};",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "demonic plates work in the core and support recipes too, and a {item:essentialcraft5:demonic_core} can replace the elemental core in the supports;"
+            },
+            "15 {item:essentialcraft5:magic_plating} for the floor, any color: one craft from 4 magical plates gives 16."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "What to do first",
+          "text": "The hard part is the Nether Star, which means fighting the Wither. Everything else comes from earlier chapters ([[generators/projections]], [[alloys/resonating_crystal]], [[storage/upgrades]], [[elements/parts]]), so gather the 5 magnets and 4 resonating crystals first and craft it all once the star is in hand."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:reactor"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:reactor_support"
+        },
+        {
+          "type": "h",
+          "text": "Layout"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:reactor"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Lay a 5×3 floor of {item:essentialcraft5:magic_plating}. Only magical plating counts; pale, mithriline and patterned plating don't.",
+            "Put the core on the middle block of the floor.",
+            "On each side of the core, left and right, stand a column of two stacked supports right next to it.",
+            "In the two layers above the floor, everything except the core and the supports must be empty, including the block right above the core. It can run east–west or north–south."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The sphere above the core floats up, arcs crackle around it and the supports light up. Right-click the core with an empty hand to see its stored MRU; if the layout is wrong, it names the first misplaced block."
+        },
+        {
+          "type": "h",
+          "text": "Output"
+        },
+        {
+          "type": "list",
+          "items": [
+            "While running it makes {cfg:machines.reactor.mru_generated} MRU per tick ({cfg:machines.reactor.mru_generated|mul:20} per second) and stores up to {cfg:machines.reactor.max_mru} MRU. No fuel, and redstone doesn't matter.",
+            "It has no screen. Bind a {item:essentialcraft5:bound_gem} to the core and other machines can draw MRU from it (see [[crafting/bound_gem]]).",
+            {
+              "if": "cfg:machines.reactor.balance<0",
+              "text": "The balance of its MRU keeps moving, 0.01 per tick, from {balance:frozen} at 0 up to {balance:chaos} at 2 and back, a full cycle every 20 seconds. Balance is a 0–2 property that every bit of MRU carries ([[start/glossary]])."
+            },
+            {
+              "if": "cfg:machines.reactor.balance>=0",
+              "text": "The balance of its MRU is always {cfg:machines.reactor.balance}. Balance is a 0–2 property that every bit of MRU carries ([[start/glossary]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Balance",
+          "text": "For recipes that care about balance, such as matrix projections in the radiating chamber, don't feed the reactor's MRU straight in. Its balance keeps shifting, so you may not get what you wanted, and the machine may switch recipes halfway and start over.",
+          "if": "cfg:machines.reactor.balance<0"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "With a coil",
+          "text": "The reactor pairs well with an [[tesla/mru_coil]]. The coil only spends MRU when it hits something, and between fights the reactor fills it back up."
+        },
+        {
+          "type": "h",
+          "text": "Monsters nearby get zapped",
+          "if": "cfg:machines.reactor.damage_mobs"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Hostile mobs</em> within 3 blocks of the core (a 7×7×7 cube around it) take {cfg:machines.reactor.damage} damage every {cfg:machines.reactor.damage_interval|sec}, ignoring armor, up to {cfg:machines.reactor.max_targets} at a time.",
+            "Monsters it kills drop nothing and give no experience; anything a monster picked up still drops.",
+            "It never zaps players, animals, villagers, pets, anything with a name or on a lead, or bosses such as the Wither and the Ender Dragon."
+          ],
+          "if": "cfg:machines.reactor.damage_mobs"
+        },
+        {
+          "type": "p",
+          "text": "So it can't be the killing floor of a mob farm, but it tidies up monsters that wander into your base.",
+          "if": "cfg:machines.reactor.damage_mobs"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Next",
+          "text": "That's the end of this chapter. To see which side chapters you haven't done yet, go back to [[logistics/after_main_line]]."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book promised \"an infinite source of MRU\" and warned that the reactor is \"pretty dangerous\", to be placed \"as far away as you can\". Back then it zapped players and livestock alike, while the monsters it killed dropped loot as usual."
+        }
+      ]
+    }
+  ]
+}

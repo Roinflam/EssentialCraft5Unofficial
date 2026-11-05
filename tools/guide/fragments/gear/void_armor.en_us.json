@@ -1,0 +1,177 @@
+[
+  {
+    "id": "void_armor",
+    "title": "Void Armor",
+    "icon": "essentialcraft5:void_chestplate",
+    "summary": "While charged, melee and arrows cannot touch you",
+    "complete": "essentialcraft5:guide/gear/void_armor",
+    "optional": true,
+    "if": "cfg:general.hoanna.portal_enabled",
+    "items": [
+      "essentialcraft5:void_helmet",
+      "essentialcraft5:void_chestplate",
+      "essentialcraft5:void_leggings",
+      "essentialcraft5:void_boots"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em> (optional): upgrade the Magical Hazmat Suit into Void Armor: {item:essentialcraft5:void_helmet}, {item:essentialcraft5:void_chestplate}, {item:essentialcraft5:void_leggings}, {item:essentialcraft5:void_boots}. Its armor is heavy, the full set adds {cfg:general.void_armor.max_health|mul:4} max health, and while it holds MRU, melee hits and arrows cannot touch you."
+      },
+      {
+        "type": "p",
+        "text": "<em>Prepare</em> (full set): 4 Magical Hazmat Suit pieces ([[gear/mhs_armor]]), 7 {item:minecraft:nether_star}s, 5 {item:essentialcraft5:void_mru_reactor}s, 8 {item:essentialcraft5:void_core}s, 8 {item:essentialcraft5:void_plating}s and 4 {item:essentialcraft5:matter_of_eternity}. Void Cores and MRU Reactors only come from relic chests ([[hoanna/relics]]); this set takes 8 cores, the costliest thing in the chapter."
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:void_helmet",
+          "essentialcraft5:void_chestplate",
+          "essentialcraft5:void_leggings",
+          "essentialcraft5:void_boots"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Each recipe takes the Hazmat piece of the same slot in the middle of the second row, and uses it up. The chestplate has two reactors around a nether star on top; the other three have two nether stars around a reactor."
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "Pitfall",
+        "text": "<w>The MRU stored in the Matter Of Eternity is used up with it</w>, so drain it first; enchantments on the Hazmat piece are not carried over either."
+      },
+      {
+        "type": "h",
+        "text": "Armor"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "Armor points",
+            "helmet {cfg:general.void_armor.armor_helmet}, chestplate {cfg:general.void_armor.armor_chestplate}, leggings {cfg:general.void_armor.armor_leggings}, boots {cfg:general.void_armor.armor_boots}"
+          ],
+          [
+            "Armor toughness",
+            "{cfg:general.void_armor.toughness} per piece"
+          ],
+          [
+            "Knockback resistance",
+            "{cfg:general.void_armor.knockback_resistance|pct} per piece"
+          ],
+          [
+            "Max health",
+            "+{cfg:general.void_armor.max_health} per piece ({cfg:general.void_armor.max_health|div:2} hearts)"
+          ],
+          [
+            "Durability",
+            "2,048 / 6,144 / 4,096 / 2,048, never lost while worn"
+          ],
+          [
+            "Enchantability",
+            "40 (diamond 10, netherite 15)"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "These stats are always there, charged or not. When the set adds up to more than the game allows (armor <t>30</t>, toughness <t>20</t>), the excess does not count. Taking it off removes the extra max health, and your health drops back with it. After rejoining the world, returning from the End, or respawning with the set on, your health starts at 20 at most and regenerates from there."
+      },
+      {
+        "type": "h",
+        "text": "Charged: Blocks Physical Damage"
+      },
+      {
+        "type": "p",
+        "text": "Each piece holds <t>5000 MRU</t> (shown in its tooltip). When you take a melee hit, or one from an arrow, trident or other projectile, every charged piece blocks its share: helmet 3/20, chestplate 8/20, leggings 6/20, boots 3/20. With all four charged the whole hit is blocked and you lose no health at all (knockback still happens)."
+      },
+      {
+        "type": "p",
+        "text": "Blocking costs MRU per piece: <t>800 MRU</t> for each point of its share, rounded down, at least 1 point. It is paid from the storage items you carry first ({item:essentialcraft5:soul_shard} and the like), then from the piece itself. <w>A piece that cannot pay does not block this hit</w>, and you take that share; a piece with no MRU of its own does not block either, and does not touch your storage items."
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "A 1-point hit",
+            "every piece counts 1 point: 3200 MRU for the set"
+          ],
+          [
+            "An 8-point hit",
+            "helmet 800 + chestplate 2400 + leggings 1600 + boots 800 = 5600 MRU (the chestplate alone can only pay for two)"
+          ],
+          [
+            "A 20-point hit",
+            "the chestplate alone needs 6400, more than it can hold; without storage items you take its 8 points"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Damage changed by baubles counts as changed: take a hit of 8 while wearing the {item:essentialcraft5:eta_amulet} and you pay for the doubled 16. While you carry the {item:essentialcraft5:infinite_mru_crystal}, it pays for all of this, so Void Armor never runs out of charge."
+      },
+      {
+        "type": "p",
+        "text": "Only physical damage is blocked: fire, lava, explosions, lightning, freezing, magic, thorns, falling and drowning cost no MRU and go through the armor above as usual. Damage that ignores armor is not blocked either."
+      },
+      {
+        "type": "h",
+        "text": "What Each Piece Does"
+      },
+      {
+        "type": "table",
+        "widths": [
+          1,
+          4
+        ],
+        "header": [
+          "Piece",
+          "Effect"
+        ],
+        "rows": [
+          [
+            "{item:essentialcraft5:void_helmet}",
+            "Killing a creature (not a player) restores \"its max health ÷ 10\" hunger points (2 for a zombie, one drumstick); lets you see MRUCUs through walls"
+          ],
+          [
+            "{item:essentialcraft5:void_chestplate}",
+            "A <t>20%</t> chance to dodge any damage (except falling out of the world and /kill): no health lost, no MRU spent"
+          ],
+          [
+            "{item:essentialcraft5:void_leggings}",
+            "Nothing extra"
+          ],
+          [
+            "{item:essentialcraft5:void_boots}",
+            "Fall damage is cut to a tenth; you walk much faster and step straight up full blocks"
+          ]
+        ]
+      },
+      {
+        "type": "h",
+        "text": "MRU Resistance"
+      },
+      {
+        "type": "p",
+        "text": "Each piece: MRU Corruption 100%, corruption radiation 50%, Hoanna radiation 75%, counted only in the armor slots. A full set makes you immune to MRU Corruption, and big MRUCUs cannot add to your matrix damage. Like the other stats, it does not depend on charge."
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.radiation.enabled",
+        "text": "Hoanna radiation: a full set builds up radiation at a quarter of the rate ([[hoanna/radiation]])."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "The original research book called it \"the best armor in the game\". The leggings claim to \"phase-shift through monsters\", but the original never made that work. In the original, any charge at all made you immune to ordinary damage, even when it could not pay."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "You get any piece of Void Armor."
+      }
+    ]
+  }
+]

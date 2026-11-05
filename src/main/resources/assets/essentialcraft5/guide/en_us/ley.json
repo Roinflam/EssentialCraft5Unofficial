@@ -1,0 +1,707 @@
+{
+  "id": "ley",
+  "order": 83,
+  "group": "side",
+  "title": "Side Chapter · Ley Projection",
+  "subtitle": "Idle ores, then minerals on demand",
+  "icon": "essentialcraft5:ley_projector",
+  "if": "cfg:machines.ley_projector.enabled||cfg:machines.ley_condenser.enabled",
+  "entries": [
+    {
+      "id": "ley_projector",
+      "title": "{item:essentialcraft5:ley_projector}",
+      "icon": "essentialcraft5:ley_projector",
+      "summary": "Idle ore from MRU, no digging",
+      "complete": "essentialcraft5:guide/ley/ley_projector",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ley_projector"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "The quarry dug the ground out from under me, layer after layer, and when one patch was finished I had to pack up and move. Then it came to me that rock remembers what ore it once held. Read its shadow, and you never need to touch it.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:ley_projector}. Give it MRU and leave it alone, and ore slowly piles up inside. It never touches a block in the world, so there is no pit to dig and no need to move house. The recipe needs a Magical Digger, which you can only make once you have focuses in <em>Chapter 9</em>."
+        },
+        {
+          "type": "p",
+          "text": "Ore veins leave an image in the rock layers, and that image is a <em>ley line</em>. The projector reads the ley lines of its dimension one block at a time and turns what it reads into real items with MRU. If words like MRU or Bound Gem are new to you, look at [[start/glossary]] first."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "The hard part is the {item:essentialcraft5:magical_digger} ([[gear/magical_digger]]). It takes two {item:essentialcraft5:earth_focus}es and two {item:essentialcraft5:fire_focus}es, and focuses only come after you have grown elemental crystals and drawn essences from them ([[essence/fuel_and_focus]]). If you want a projector early, get the focuses ready first."
+        },
+        {
+          "type": "p",
+          "text": "The rest are common parts: two {item:essentialcraft5:magic_fortified_plating}s, two {item:essentialcraft5:world_interactor}s, one each of {item:essentialcraft5:fortified_frame}, {item:essentialcraft5:magical_screen} and {item:essentialcraft5:mru_catcher}, and one {item:essentialcraft5:elemental_core}, or a {item:essentialcraft5:pale_core} in its place."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ley_projector"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Before crafting",
+          "text": "Any MRU stored in the digger is lost along with it, so use it up before crafting."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the projector anywhere. It doesn't matter what is under it or how deep it sits.",
+            "Put a {item:essentialcraft5:bound_gem} linked to an MRU source in the gem slot, and the projector pulls MRU from that source by itself ([[crafting/bound_gem]]).",
+            "For a little more, put one {item:essentialcraft5:pale_gem} in the lens slot and ores drop as if mined with Fortune I ([[ley/ley_lens]]).",
+            "Every {cfg:machines.ley_projector.ticks_per_block|sec} it projects one block of rock, paying {cfg:machines.ley_projector.mru_per_block} MRU when the block starts. If that block holds ore, the ore goes into the 9 output slots on the right.",
+            "Hoppers and pipes can pull from the output slots on any side."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU capacity",
+              "{cfg:machines.ley_projector.max_mru} MRU"
+            ],
+            [
+              "Time per block",
+              "{cfg:machines.ley_projector.ticks_per_block|sec}"
+            ],
+            [
+              "MRU per block",
+              "{cfg:machines.ley_projector.mru_per_block}"
+            ],
+            [
+              "1,000 blocks",
+              "about {cfg:machines.ley_projector.ticks_per_block|mul:1000|div:1200|int} min, {cfg:machines.ley_projector.mru_per_block|mul:1000} MRU"
+            ],
+            {
+              "if": [
+                "cfg:machines.ley_projector.ticks_per_block==20",
+                "cfg:machines.ley_projector.mru_per_block==60"
+              ],
+              "cells": [
+                "Average draw",
+                "{cfg:machines.ley_projector.mru_per_block|div:20} MRU a tick, so one heat generator with lava on all four sides, at 16 MRU a tick, can run 5 of them"
+              ]
+            },
+            [
+              "Per player per chunk",
+              "{cfg:machines.ley_projector.max_per_owner_per_chunk}"
+            ],
+            {
+              "if": "cfg:machines.ley_projector.generate_corruption",
+              "cells": [
+                "Leak per block",
+                "0–{cfg:machines.ley_projector.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have a projector. Once it is placed and powered, the status bar reads \"{lang:gui.essentialcraft5.ley_projector.status.working}\", a beam shines downward inside it, and ore starts showing up in the output slots."
+        },
+        {
+          "type": "h",
+          "text": "Things to know"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>In one chunk, only the first {cfg:machines.ley_projector.max_per_owner_per_chunk} of your projectors placed there work.</em> Later ones show \"{lang:gui.essentialcraft5.ley_projector.status.duplicate}\", and hovering over the status bar tells you which one holds the place. Other players' projectors don't count against yours.",
+            "To run more, spread them over different chunks. A projector you break and place again goes to the back of the queue.",
+            "It doesn't keep its chunk loaded, so once you walk away and the chunk unloads, it stops. It keeps working while its owner is offline.",
+            "In the End and other dimensions without ley lines it does nothing, and the status bar reads \"{lang:gui.essentialcraft5.ley_projector.status.no_ley}\".",
+            "A redstone signal pauses it without losing progress. It also stops when the output is full and carries on by itself once you take things out.",
+            {
+              "if": "cfg:machines.ley_projector.generate_corruption",
+              "text": "Each projected block leaks 0–{cfg:machines.ley_projector.max_corruption_gen} MRU, so nearby MRUCUs slowly grow ([[crafting/corruption]]). Keep it away from where you spend your time."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the status bar says \"{lang:gui.essentialcraft5.owner.none}\", break it and place it again by hand.",
+            "Hoppers and pipes can only insert bound gems into the gem slot. The lens has to be put in by hand, and hoppers cannot pull it out."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Later on",
+          "text": "After you defeat a Hologram, you can turn a projector into a {item:essentialcraft5:ley_condenser} and name the mineral you want ([[ley/ley_condenser]]).",
+          "if": [
+            "cfg:machines.ley_condenser.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The projector takes over from the original's Magical Quarry, whose page in the research book was subtitled \"Move along, Buildcraft!\". Per block, the projector takes the same time and MRU as a quarry with no upgrades."
+        }
+      ],
+      "if": "cfg:machines.ley_projector.enabled"
+    },
+    {
+      "id": "ley_lens",
+      "title": "Lens and Output",
+      "icon": "essentialcraft5:pale_gem",
+      "summary": "The Pale Gem lens and the yield",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "This page is a quick reference for the projector, covering the lens, what each dimension yields and the Keep Rock switch."
+        },
+        {
+          "type": "h",
+          "text": "The lens"
+        },
+        {
+          "type": "p",
+          "text": "Put one {item:essentialcraft5:pale_gem} in the lens slot to the right of the gem slot, and projected ores drop as if mined with a <t>Fortune I</t> pickaxe. The lens is never used up, and the slot holds only one. Pale Gems are covered in [[gear/pale_gem]]."
+        },
+        {
+          "type": "h",
+          "text": "What the Overworld yields"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Item",
+            "Per 1,000 blocks",
+            "Count",
+            "With lens"
+          ],
+          "rows": [
+            [
+              "{item:minecraft:raw_copper}",
+              "3.09",
+              "2–5",
+              "×1.33 on average"
+            ],
+            [
+              "{item:minecraft:raw_iron}",
+              "2.82",
+              "1",
+              "×1.33 on average"
+            ],
+            [
+              "{item:minecraft:redstone}",
+              "1.20",
+              "4–5",
+              "+0–1"
+            ],
+            [
+              "{item:minecraft:raw_gold}",
+              "0.86",
+              "1",
+              "×1.33 on average"
+            ],
+            [
+              "{item:minecraft:lapis_lazuli}",
+              "0.84",
+              "4–9",
+              "×1.33 on average"
+            ],
+            [
+              "{item:minecraft:diamond}",
+              "0.52",
+              "1",
+              "×1.33 on average"
+            ],
+            [
+              "{item:essentialcraft5:elemental_gem}",
+              "0.27",
+              "1–2",
+              "1–4"
+            ],
+            [
+              "{item:essentialcraft5:fire_drops}, {item:essentialcraft5:water_drops}, {item:essentialcraft5:earth_drops}, {item:essentialcraft5:air_drops}",
+              "0.08 each",
+              "1–2",
+              "1–4"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_dust}",
+              "0.08",
+              "3–10",
+              "3–18"
+            ]
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "About 10 blocks in 1,000 hold ore; the rest is plain rock. Projecting 1,000 blocks takes about {cfg:machines.ley_projector.ticks_per_block|mul:1000|div:1200|int} minutes and {cfg:machines.ley_projector.mru_per_block|mul:1000} MRU."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.ley_projector.ticks_per_block==20",
+          "text": "The projector does one block a second, about 3,600 an hour. Without a lens, an hour gives roughly 39 raw copper, 10 raw iron, 19 redstone, 20 lapis, 3 raw gold and 2 diamonds, plus an Elemental Gem or two and about 2 Mithriline Dust."
+        },
+        {
+          "type": "h",
+          "text": "Other dimensions"
+        },
+        {
+          "type": "p",
+          "text": "The Nether has ley lines too. They give mostly {item:minecraft:quartz}, about 6.15 per 1,000 blocks, and {item:minecraft:gold_nugget}, about 2.15, with 2–6 nuggets each time. Elemental gems, the four elemental drops and mithriline dust turn up about twice as often as in the Overworld."
+        },
+        {
+          "type": "p",
+          "text": "Hoanna has ley lines as well. Its yield is close to the Overworld's, with slightly less copper and iron.",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "The End has no ley lines, so the projector does nothing there."
+        },
+        {
+          "type": "h",
+          "text": "Keep Rock"
+        },
+        {
+          "type": "p",
+          "text": "The cobblestone button to the right of the gem and lens slots is the Keep Rock switch. The small square in its corner is green when it is on and red when it is off. A new projector starts with it off, so blocks without ore give nothing. If you'd like some cobblestone or netherrack for building, switch it on and each of those blocks gives one piece of rock:"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Dimension",
+            "Rock"
+          ],
+          "rows": [
+            [
+              "Overworld",
+              "half {item:minecraft:cobbled_deepslate}, half {item:minecraft:cobblestone}"
+            ],
+            [
+              "Nether",
+              "90% {item:minecraft:netherrack}, 10% {item:minecraft:basalt}"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "about half {item:minecraft:cobbled_deepslate}, half {item:minecraft:cobblestone}"
+              ]
+            }
+          ],
+          "widths": [
+            1,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Rock never blocks ore",
+          "text": "Each kind of rock keeps to a single output slot, and rock takes 2 slots at most. When its slot is full, or both rock slots are taken by other kinds, new rock is simply thrown away. At least 7 slots always stay free for ore, so Keep Rock never makes the projector stall."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "No fuel",
+          "text": "The projector never gives coal or anything else that burns as fuel, and never gives ore blocks. Fuel could be burned back into more MRU in a generator and ore blocks could be doubled in a smeltery, which would make it a free farm."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "More ingots",
+          "text": "Raw ore put into the [[magmatic/smeltery]] gives 2 ingots apiece."
+        }
+      ],
+      "if": "cfg:machines.ley_projector.enabled"
+    },
+    {
+      "id": "ley_condenser",
+      "title": "{item:essentialcraft5:ley_condenser}",
+      "icon": "essentialcraft5:ley_condenser",
+      "summary": "Condense the mineral you choose",
+      "complete": "essentialcraft5:guide/ley/ley_condenser",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ley_condenser"
+      ],
+      "if": [
+        "cfg:machines.ley_condenser.enabled",
+        "cfg:general.hoanna.portal_enabled"
+      ],
+      "blocks": [
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "This is a late-game machine. You first need to defeat a Hologram in Chapter 18 and get a math core from it ([[hologram/math_cores]])."
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): upgrade a {item:essentialcraft5:ley_projector} into a {item:essentialcraft5:ley_condenser}. The projector gives whatever it happens to read, while the condenser lets you pick one vanilla mineral from its [[ley/condensing|price list]]. It never touches blocks in the world either."
+        },
+        {
+          "type": "p",
+          "text": "It can also condense {item:minecraft:nether_star}s. Every {item:essentialcraft5:matter_of_eternity} uses one, and both [[hologram/holopad|holopads]] and [[computer/force_field|force field generators]] need Matter of Eternity. Leaving the condenser to make stars is far less of a grind than hunting wither skeletons.",
+          "if": "cfg:machines.ley_condenser.nether_star.ticks>0"
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "4 {item:essentialcraft5:demonic_plate}s ([[demons/ackronite]]);",
+            "1 {item:essentialcraft5:neuronic_enriched_plating} ([[hologram/neuronic_plating]]);",
+            "1 {item:essentialcraft5:void_core} ([[hoanna/relics]]);",
+            "1 {item:essentialcraft5:matter_of_eternity}, a big battery made from a Nether Star ([[storage/soul_storage]]);",
+            "1 {item:essentialcraft5:ley_projector};",
+            "any one [[hologram/math_cores|math core]]; a spare left over from collecting all four for the {item:essentialcraft5:computer_engine} does nicely."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ley_condenser"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Before crafting",
+          "text": "Any MRU stored in the {item:essentialcraft5:matter_of_eternity} is lost in the recipe, so drain it first."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the condenser anywhere. What is under it doesn't matter.",
+            "Put a {item:essentialcraft5:bound_gem} in the gem slot, ideally linked to a big store such as an [[enrichment/controller|Enrichment Chamber]].",
+            "Click one of the mineral icons in the middle to choose a target. Each tick it pays a little MRU and the bar moves one step; when the bar is full, one item goes into the 9 output slots on the right.",
+            "Hoppers and pipes can pull from the output slots on any side."
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": [
+                "essentialcraft5:mithriline_crystal_pillar",
+                "essentialcraft5:pale_crystal_pillar",
+                "essentialcraft5:void_crystal_pillar",
+                "essentialcraft5:demonic_crystal_pillar"
+              ],
+              "label": "Any crystal pillar"
+            },
+            "R": "essentialcraft5:ley_condenser"
+          },
+          "anchor": "R",
+          "pattern": [
+            "C C C",
+            "     ",
+            "C R C",
+            "     ",
+            "C C C"
+          ],
+          "caption": "Only for Nether Stars: a ring of 8 crystal pillars of any kind, one block apart, at the same height.",
+          "if": "cfg:machines.ley_condenser.nether_star.ticks>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The pillar bases must be at the same height as the condenser.",
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "The pillars need open sky above them to gather ESPE."
+            },
+            "Pillars only gather ESPE while their chunk is loaded, so once you walk away, both they and the condenser stop.",
+            "ESPE (Ender Star Pulse Energy) is the other kind of energy the pillars gather; see [[mithriline/crystal_pillar]]."
+          ],
+          "if": "cfg:machines.ley_condenser.nether_star.ticks>0"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU capacity",
+              "{cfg:machines.ley_condenser.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "cells": [
+                "ESPE capacity",
+                "{cfg:machines.ley_condenser.max_espe} ESPE"
+              ]
+            },
+            [
+              "Per player per chunk",
+              "{cfg:machines.ley_condenser.max_per_owner_per_chunk}"
+            ],
+            {
+              "if": "cfg:machines.ley_condenser.max_per_owner>0",
+              "cells": [
+                "Running at once per player",
+                "{cfg:machines.ley_condenser.max_per_owner}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.generate_corruption",
+              "cells": [
+                "Leak per second of work",
+                "0–{cfg:machines.ley_condenser.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have a condenser. With a target chosen and MRU connected, the status bar reads \"{lang:gui.essentialcraft5.ley_condenser.status.working}\", the image above it spins, and items pile up one by one."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<w>It is very hungry for MRU.</w> Hover over a target icon and the tooltip tells you roughly how much MRU it draws per tick, far more than one heat generator makes. Feed it from big generators such as the [[solar/sun_ray_absorber]] or the [[void_machines/ultra_heat_generator]], or fill an Enrichment Chamber before you start."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.ley_condenser.raw_copper.ticks==10",
+            "cfg:machines.ley_condenser.nether_star.ticks==2400"
+          ],
+          "text": "The cheapest target, {item:minecraft:raw_copper}, draws about {cfg:machines.ley_condenser.raw_copper.mru|div:10|int} MRU a tick, which takes about {cfg:machines.ley_condenser.raw_copper.mru|div:160|int} heat generators with lava on all four sides. A {item:minecraft:nether_star} draws about {cfg:machines.ley_condenser.nether_star.mru|div:2400|int} a tick, which takes about {cfg:machines.ley_condenser.nether_star.mru|div:38400|int} generators."
+        },
+        {
+          "type": "h",
+          "text": "Things to know"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Switching targets clears the progress</em>, and what was already spent is not refunded. Clicking the selected icon again clears the target.",
+            "A redstone signal pauses it without losing progress. It also stops when the output is full and carries on by itself once you take things out.",
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "text": "In the End and other dimensions without ley lines it can only make {item:minecraft:nether_star}s, and the other icons get a red dot in the corner."
+            },
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks==0",
+              "text": "In the End and other dimensions without ley lines it does nothing."
+            },
+            "In one chunk, only the first {cfg:machines.ley_condenser.max_per_owner_per_chunk} of your condensers placed there work, and later ones show \"{lang:gui.essentialcraft5.ley_condenser.status.duplicate}\". Condensers and projectors have separate limits.",
+            {
+              "if": "cfg:machines.ley_condenser.max_per_owner>0",
+              "text": "At most {cfg:machines.ley_condenser.max_per_owner} of all your condensers run at the same time, counting only loaded ones. Extra ones show \"{lang:gui.essentialcraft5.ley_condenser.status.owner_limit}\". Break a running one or clear its target, and a waiting one starts within a few seconds."
+            },
+            "It doesn't keep its chunk loaded and stops when the chunk unloads. It keeps working while its owner is offline.",
+            {
+              "if": "cfg:machines.ley_condenser.generate_corruption",
+              "text": "While working it leaks 0–{cfg:machines.ley_condenser.max_corruption_gen} MRU per second ([[crafting/corruption]])."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the status bar says \"{lang:gui.essentialcraft5.owner.none}\", break it and place it again by hand.",
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "text": "While making a Nether Star it draws ESPE from the 8 pillars every half second; otherwise it leaves the pillars alone."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original mod had no condenser; it was added later. It borrows a math core's computing power to pick out the one mineral you name, where the projector simply takes whatever block of rock comes next. Nether Stars aren't in the rock at all, so the condenser just presses one out of ESPE."
+        }
+      ]
+    },
+    {
+      "id": "condensing",
+      "title": "What It Makes and What It Costs",
+      "icon": "minecraft:diamond",
+      "summary": "Price and time of each mineral",
+      "if": [
+        "cfg:machines.ley_condenser.enabled",
+        "cfg:general.hoanna.portal_enabled"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The condenser makes one kind at a time, one item after another. The table shows what each item costs and how long it takes. It pays a little every tick and only delivers when the bar is full, and if it stops halfway, the progress stays."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Item",
+            "MRU each",
+            "ESPE each",
+            "Time each"
+          ],
+          "rows": [
+            {
+              "if": "cfg:machines.ley_condenser.raw_copper.ticks>0",
+              "cells": [
+                "{item:minecraft:raw_copper}",
+                "{cfg:machines.ley_condenser.raw_copper.mru}",
+                "{cfg:machines.ley_condenser.raw_copper.espe}",
+                "{cfg:machines.ley_condenser.raw_copper.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.raw_iron.ticks>0",
+              "cells": [
+                "{item:minecraft:raw_iron}",
+                "{cfg:machines.ley_condenser.raw_iron.mru}",
+                "{cfg:machines.ley_condenser.raw_iron.espe}",
+                "{cfg:machines.ley_condenser.raw_iron.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.raw_gold.ticks>0",
+              "cells": [
+                "{item:minecraft:raw_gold}",
+                "{cfg:machines.ley_condenser.raw_gold.mru}",
+                "{cfg:machines.ley_condenser.raw_gold.espe}",
+                "{cfg:machines.ley_condenser.raw_gold.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.redstone.ticks>0",
+              "cells": [
+                "{item:minecraft:redstone}",
+                "{cfg:machines.ley_condenser.redstone.mru}",
+                "{cfg:machines.ley_condenser.redstone.espe}",
+                "{cfg:machines.ley_condenser.redstone.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.lapis_lazuli.ticks>0",
+              "cells": [
+                "{item:minecraft:lapis_lazuli}",
+                "{cfg:machines.ley_condenser.lapis_lazuli.mru}",
+                "{cfg:machines.ley_condenser.lapis_lazuli.espe}",
+                "{cfg:machines.ley_condenser.lapis_lazuli.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.quartz.ticks>0",
+              "cells": [
+                "{item:minecraft:quartz}",
+                "{cfg:machines.ley_condenser.quartz.mru}",
+                "{cfg:machines.ley_condenser.quartz.espe}",
+                "{cfg:machines.ley_condenser.quartz.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.diamond.ticks>0",
+              "cells": [
+                "{item:minecraft:diamond}",
+                "{cfg:machines.ley_condenser.diamond.mru}",
+                "{cfg:machines.ley_condenser.diamond.espe}",
+                "{cfg:machines.ley_condenser.diamond.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.emerald.ticks>0",
+              "cells": [
+                "{item:minecraft:emerald}",
+                "{cfg:machines.ley_condenser.emerald.mru}",
+                "{cfg:machines.ley_condenser.emerald.espe}",
+                "{cfg:machines.ley_condenser.emerald.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.ancient_debris.ticks>0",
+              "cells": [
+                "{item:minecraft:ancient_debris}",
+                "{cfg:machines.ley_condenser.ancient_debris.mru}",
+                "{cfg:machines.ley_condenser.ancient_debris.espe}",
+                "{cfg:machines.ley_condenser.ancient_debris.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "cells": [
+                "{item:minecraft:nether_star}",
+                "{cfg:machines.ley_condenser.nether_star.mru}",
+                "{cfg:machines.ley_condenser.nether_star.espe}",
+                "{cfg:machines.ley_condenser.nether_star.ticks|sec}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "MRU drawn per tick while condensing = MRU each ÷ time (in ticks; 1 second = 20 ticks)"
+        },
+        {
+          "type": "h",
+          "text": "Choosing a target"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "text": "{item:minecraft:nether_star}s need ESPE, drawn from the 8 crystal pillars around the condenser, laid out as shown in [[ley/ley_condenser]]. Together the 8 pillars gather {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:576000|int} ESPE per hour, or {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:576000|int} in the End, and one star needs {cfg:machines.ley_condenser.nether_star.espe}. Full pillars make the first few stars quickly, and after that it depends on how fast they refill."
+            },
+            {
+              "if": "cfg:machines.ley_condenser.raw_gold.ticks>0||cfg:machines.ley_condenser.emerald.ticks>0",
+              "text": "Gold and emeralds can also be made from iron and diamonds in the [[mithriline/conversions|Mithriline Furnace]], 8 iron ingots for 1 gold ingot and 2 diamonds for 1 emerald, so compare with the table to see which is cheaper. Villager trading is usually the cheapest way to get emeralds."
+            },
+            {
+              "if": "cfg:machines.ley_condenser.ancient_debris.ticks>0",
+              "text": "Smelt {item:minecraft:ancient_debris} in a furnace or blast furnace for {item:minecraft:netherite_scrap}. The [[magmatic/smeltery|ore processing]] machines don't take it."
+            },
+            "It never makes coal or anything else that burns as fuel, since those could be burned back into far more MRU than they cost."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Compared with the projector",
+          "text": "The condenser costs more but works much faster, and it gives only what you ask for. The projector is cheap and gives a little of every ore, slowly. You can run both, and in one chunk they have separate limits.",
+          "if": "cfg:machines.ley_projector.enabled"
+        }
+      ]
+    }
+  ]
+}

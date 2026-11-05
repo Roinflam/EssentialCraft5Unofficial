@@ -1,0 +1,417 @@
+{
+  "id": "wind_gear",
+  "order": 91,
+  "group": "side",
+  "title": "支线 · 风之装备",
+  "subtitle": "会自己变形的工具，能染色的护甲",
+  "icon": "essentialcraft5:wind_elemental_pickaxe",
+  "entries": [
+    {
+      "id": "wind_tools",
+      "title": "风之工具",
+      "icon": "essentialcraft5:wind_elemental_pickaxe",
+      "summary": "一把工具，五个形态",
+      "complete": "essentialcraft5:guide/wind_gear/wind_tools",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_elemental_pickaxe",
+        "essentialcraft5:wind_elemental_axe",
+        "essentialcraft5:wind_elemental_shovel",
+        "essentialcraft5:wind_elemental_hoe",
+        "essentialcraft5:wind_elemental_sword"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "你要挖石头，我就做镐；你要砍树，我就做斧。用不着谢我，往后多陪我跑几趟就好。",
+          "by": "《风语抄》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：用第十三章的风之水晶做一把风之工具。风没有固定的形状，风之水晶做成的工具也一样。{item:essentialcraft5:wind_elemental_pickaxe}、{item:essentialcraft5:wind_elemental_axe}、{item:essentialcraft5:wind_elemental_shovel}、{item:essentialcraft5:wind_elemental_hoe}、{item:essentialcraft5:wind_elemental_sword}是<em>同一把工具的五个形态</em>，做出任意一件，它就会照你的用法自己变形，不必五件都做。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:wind_elemental_pickaxe",
+            "essentialcraft5:wind_elemental_axe",
+            "essentialcraft5:wind_elemental_shovel",
+            "essentialcraft5:wind_elemental_hoe",
+            "essentialcraft5:wind_elemental_sword"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：{item:essentialcraft5:wind_gem}和木棍，摆法和原版工具一样，锹用 1 颗，锄和剑用 2 颗，镐和斧用 3 颗。风之水晶是在风之符文祭坛上给钻石注入 {cfg:general.wind.gem_espe} ESPE 得来的，ESPE 是水晶柱积攒的另一种能量，见[[wind/wind_gem]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "要攒多久",
+          "text": "一座 8 根柱子的风之祭坛在主世界每秒积攒约 4 ESPE，一颗风之水晶要等四十来分钟，同样的祭坛搭在末地快 4 倍。柱子只在区块加载时积攒，人要待在附近。最省的做法是先做只用 1 颗的锹，挖到石头它自己就会变成镐。全套护甲和主线后期还要多少颗，见[[wind_gear/wind_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "自己变形"
+        },
+        {
+          "type": "table",
+          "header": [
+            "你在做什么",
+            "它变成"
+          ],
+          "rows": [
+            [
+              "开始挖石头、矿石",
+              "{item:essentialcraft5:wind_elemental_pickaxe}"
+            ],
+            [
+              "开始挖木头",
+              "{item:essentialcraft5:wind_elemental_axe}"
+            ],
+            [
+              "开始挖泥土、沙子",
+              "{item:essentialcraft5:wind_elemental_shovel}"
+            ],
+            [
+              "开始挖树叶、干草块",
+              "{item:essentialcraft5:wind_elemental_hoe}"
+            ],
+            [
+              "开始挖蜘蛛网，或者打中生物",
+              "{item:essentialcraft5:wind_elemental_sword}"
+            ]
+          ],
+          "widths": [
+            3,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它会变成挖这个方块最快的形态，花草、火把等一碰就碎的方块和挖不动的方块不会让它变形。创造模式下挖方块不变形，打中生物照样会变成剑。"
+        },
+        {
+          "type": "p",
+          "text": "不管是哪个形态，右键方块都是锄地，碰上锄不了的方块，斧形态照样能剥树皮，锹形态照样能铲出土径。"
+        },
+        {
+          "type": "h",
+          "text": "附魔与耐久"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>每个形态的附魔是分开的</em>，给镐形态附上时运、剑形态附上锋利，它变成镐时带时运，变成剑时带锋利。铁砧的累计花费也按形态分开算，物品提示里会列出其他形态身上的附魔。",
+            "五个形态<em>共用一份耐久</em>，改过的名字也是共用的。",
+            "它不能在铁砧上用材料修，只能把两把同一形态的工具合成一把，或者靠经验修补。合并前要先让两把变成同一形态，经验修补也只在附了它的那个形态上起作用。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "数值"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "耐久",
+              "15684，元素工具为 3568"
+            ],
+            [
+              "挖掘速度",
+              "15，和元素工具一样，钻石为 8、下界合金为 9"
+            ],
+            [
+              "挖掘等级",
+              "比元素工具还高，元素工具能挖的它都能挖"
+            ],
+            [
+              "附魔能力",
+              "42，元素工具为 36"
+            ],
+            [
+              "攻击力",
+              "剑 10、斧 12、镐 8、锹 8.5、锄 1"
+            ],
+            [
+              "攻击速度",
+              "剑 1.6、镐 1.2、斧和锹 1.0、锄 7"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "剑形态每打中一下扣 1 点耐久，镐、斧、锹、锄形态打中生物不扣耐久。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一个形态。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/windgear/wind_elemental_*.json — 镐 / 斧 3、锄 / 剑 2、锹 1 颗风之水晶 + 木棍",
+        "data/essentialcraft5/recipes/wind/imbue/wind_gem.json — 钻石 + 10000 ESPE（espe_config gem_espe）",
+        "machines.mithriline_crystal_pillar.espe_generated 0.025 / 刻（末地 0.1），8 根柱 = 4 ESPE / 秒；tools/plan/progression.md 风之祭坛 4 / 16 ESPE / 秒",
+        "item/WindToolForms.java:56 bestFormFor — 按挖掘速度选最快形态，硬度 ≤ 0 不换；创造模式挖方块不换",
+        "item/WindToolForms.java:60 PER_FORM_KEYS — 附魔、铁砧累计惩罚按形态分开；耐久、名字共用",
+        "item/WindTier.java:29 WIND(11, 15684, 15, 6, 42)；item/ElementalTier.java:32 元素 3568 / 15 / 36",
+        "registry/ECWindGear.java:78~ — 攻击修正 镐 1、斧 5、锹 1.5、锄 −6、剑 3（+ 6 + 1）；速度 −2.8 / −3 / −3 / +3 / −2.4",
+        "registry/ECWindGear.java 类注释 — 没有修复材料，镐 / 斧 / 锹 / 锄打中生物不扣耐久"
+      ]
+    },
+    {
+      "id": "wind_armor",
+      "title": "风之护甲",
+      "icon": "essentialcraft5:wind_chestplate",
+      "summary": "跑得快、跳得高，还挡得住 MRU",
+      "complete": "essentialcraft5:guide/wind_gear/wind_armor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_helmet",
+        "essentialcraft5:wind_chestplate",
+        "essentialcraft5:wind_leggings",
+        "essentialcraft5:wind_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一套风之护甲，由{item:essentialcraft5:wind_helmet}、{item:essentialcraft5:wind_chestplate}、{item:essentialcraft5:wind_leggings}、{item:essentialcraft5:wind_boots}四件组成。它的护甲值比下界合金还高，每件各有一样本事，聚集体带来的矩阵损伤也能被它挡掉绝大部分。四件穿齐还有御风，能偏开飞来的箭，在空中再跳一次。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:wind_helmet",
+            "essentialcraft5:wind_chestplate",
+            "essentialcraft5:wind_leggings",
+            "essentialcraft5:wind_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：{item:essentialcraft5:wind_gem}，头盔 5 颗、胸甲 8 颗、护腿 8 颗、靴子 4 颗，全套 25 颗。摆法和原版盔甲一样，只有护腿不同，它的上面两排摆满，第三排两头各放一颗。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "要攒多久",
+          "text": "25 颗就是 25 颗钻石加 25 万 ESPE，一座 8 根柱子的主世界风之祭坛要积攒约 17 小时，搭在末地要 4 个多小时。柱子只在区块加载时积攒，人得待在附近。可以先做胸甲和靴子，跑得快、上台阶不用跳，是最先用得上的两样。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "先留够主线的",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.gem_espe==10000",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "主线后面的全息、审判庭、宅男套装和模块几章还要五十多颗风之水晶，是这一整套的两倍，一座主世界祭坛要挂机 30 多个小时，末地也要 8～9 小时，详见[[computer/costs]]。想做这套护甲，最好先在末地再建一座祭坛。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "先留够主线的",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.wind.gem_espe==10000||!cfg:machines.mithriline_crystal_pillar.espe_generated==0.025||!cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "主线后面的全息、审判庭、宅男套装和模块几章还要五十多颗风之水晶，是这一整套的两倍，详见[[computer/costs]]。想做这套护甲，最好先在末地再建一座祭坛。"
+        },
+        {
+          "type": "h",
+          "text": "护甲与本事"
+        },
+        {
+          "type": "table",
+          "header": [
+            "部位",
+            "护甲",
+            "耐久",
+            "本事"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:wind_helmet}",
+              "4",
+              "624",
+              "戴着能隔墙看见 MRU 聚集体，和{item:essentialcraft5:magic_monocle}一样"
+            ],
+            [
+              "{item:essentialcraft5:wind_chestplate}",
+              "10",
+              "1248",
+              "移动速度 +75%，即在基础速度 0.1 上加 0.075"
+            ],
+            [
+              "{item:essentialcraft5:wind_leggings}",
+              "7",
+              "936",
+              "起跳时多一股向上的力，能跳约两格半高"
+            ],
+            [
+              "{item:essentialcraft5:wind_boots}",
+              "4",
+              "624",
+              "不用跳就能走上一格高的方块"
+            ]
+          ],
+          "widths": [
+            3,
+            1,
+            2,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "text": "全套合计 25 点护甲，比下界合金的 20 点还高，每件还有 2.5 点盔甲韧性，全套 10 点，挨多重的一下都比下界合金套伤得轻。附魔能力为 40。铁砧上没有能修它的材料，可以在铁砧上把两件同样的合在一起（右边那件会被吃掉），也可以靠经验修补，或者放进[[devices/magical_repairer]]修。工作台和砂轮合不了它。"
+        },
+        {
+          "type": "h",
+          "text": "全套：御风"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0>0"
+              ],
+              "text": "每 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:0|sec}偏开一个飞来的弹射物，它会从你身上穿过去。"
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0==0"
+              ],
+              "text": "飞来的弹射物每一个都会从你身上穿过去。"
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.air_jump_velocity>0",
+                "cfg:general.wind_armor.air_jumps|stage:0>0"
+              ],
+              "text": "在空中再按一下跳跃键，能再跳 {cfg:general.wind_armor.air_jumps|stage:0} 次。"
+            },
+            {
+              "if": "cfg:general.wind_armor.fall_damage_multiplier<1",
+              "text": "摔落伤害只剩 {cfg:general.wind_armor.fall_damage_multiplier|pct}。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind.deflect_points",
+            "cfg:general.wind_armor.deflect"
+          ],
+          "text": "已经立了[[wind_mage/deflect|风之偏转]]契约的话，两边的冷却取短的那个再减半。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:2>0"
+          ],
+          "text": "同调升阶以后，偏转的间隔更短，空中还能多跳一次，见[[attunement/wind_armor]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "!cfg:general.wind_armor.air_jump_velocity>0 || !cfg:general.wind_armor.air_jumps|stage:2>0"
+          ],
+          "text": "同调升阶以后，偏转的间隔更短，见[[attunement/wind_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "MRU 抗性"
+        },
+        {
+          "type": "p",
+          "text": "每件都带 50% 的 MRU 腐化抗性，物品提示里看得到，是[[gear/mhs_armor]]的两倍。几件一起穿时按四个部位的平均值算，穿齐一套，「MRU 腐化」每次造成的伤害会从最大生命的 {cfg:general.corruption.mru_corruption_health_percent|pct} 降到 {cfg:general.corruption.mru_corruption_health_percent|mul:0.5|pct}。"
+        },
+        {
+          "type": "p",
+          "text": "对大聚集体每秒加给你的矩阵损伤，它更管用。下表斜线两侧分别是聚集体存有 1 万和存满 2 万时的数值。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "穿了几件",
+            "每秒的矩阵损伤"
+          ],
+          "rows": [
+            [
+              "没穿",
+              "40 / 80"
+            ],
+            [
+              "1 件",
+              "3 / 6"
+            ],
+            [
+              "2 件",
+              "1 / 3"
+            ],
+            [
+              "3 件",
+              "1 / 2"
+            ],
+            [
+              "一整套",
+              "0 / 1"
+            ]
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "[[hoanna/radiation|海纳尔辐射]]也是这样，穿齐一套后，在海纳尔积攒辐射的速度只剩一半。"
+        },
+        {
+          "type": "h",
+          "text": "染色"
+        },
+        {
+          "type": "p",
+          "text": "风之护甲能像皮革盔甲一样染色，在工作台里和染料放在一起就行，几种染料一起放会混出新的颜色，拿着它右键装了水的炼药锅就能洗掉颜色。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一件。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/windgear/wind_helmet / chestplate / leggings / boots.json — 5 / 8 / 8 / 4 颗",
+        "data/essentialcraft5/recipes/wind/imbue/wind_gem.json — 每颗 10000 ESPE；25 颗 25 万 ESPE ÷ 4 ESPE / 秒 ≈ 17.4 小时，末地 16 / 秒 ≈ 4.3 小时（tools/plan/progression.md）",
+        "data/essentialcraft5/recipes/computer/neuronic_enriched_plating.json、force_absorber.json、force_emitter.json — 第 18 章 2~4 颗、第 19 / 21 章约 2 颗、第 20 章 48 颗（tools/plan/progression.md；主线共 53~55 颗含第 13 章那 1 颗）",
+        "registry/ECWindGear.java:61 — 耐久 624 / 1248 / 936 / 624、护甲 4 / 10 / 7 / 4、附魔 40、韧性 2.5 / 件（tools/plan/batch13.md §4.3）、没有修复材料；WindArmorItem.isRepairable 为假（工作台修理配方、砂轮合并不收，铁砧两件合修照原版），魔力修复器按 essentialcraft5:mru_repairable 照修",
+        "registry/ECWindGear.java:72 CHESTPLATE_SPEED 0.075、:74 BOOTS_STEP_HEIGHT 0.6；item/WindGearEvents.java:28 护腿起跳 +0.2",
+        "item/WindArmorItem.java:31 — 抗性 0.5 / 0.75 / 0.5；头盔进 essentialcraft5:mru_vision",
+        "api/MRUResistance.java:82 易伤 = 1 − 盔甲之和 / 4；corruption/MRUCorruption.java damage = 最大生命 × general.corruption.mru_corruption_health_percent × 易伤",
+        "entity/MRUPresenceEntity.java:398 matrixDamage = ⌊4 × tier / (10 − 10 × 易伤)⌋：易伤 1 / 0.875 / 0.75 / 0.625 / 0.5 → 40 / 3 / 1 / 1 / 0（tier 1）、80 / 6 / 3 / 2 / 1（tier 2）",
+        "hoanna/Radiation.java gainHere — 乘海纳尔辐射易伤，全套 0.5",
+        "item/MHSArmorItem.java:65 — 魔力防护每件 0.25",
+        "主线要的风之水晶：computer/costs 四件 48 颗 + 全息台的富神经元护板；50 × gem_espe 10000 ÷（8 根柱 × 每刻 0.025 × 20 = 每秒 4 ESPE）≈ 34.7 小时，末地每刻 0.1 → 每秒 16 ESPE ≈ 8.7 小时（数字那条提示带三个默认值条件，另一条不写时长）",
+        "tools/plan/batch13.md §4.3 风之护甲 — 全套御风：弹射物偏转复用 player/WindPact.deflects，套装冷却 120 刻；立了风之偏转时取较小者再减半；空中再跳一次（竖直速度 0.5，client/WindArmorClient）；摔落 ×0.25（general.wind_armor.*）",
+        "tools/plan/batch13.md §4.1 — 25 / 10 按原版公式：D = 10 / 20 / 40 / 80 实伤 2.0 / 4.0 / 14.2 / 56.9，下界合金 2.8 / 7.2 / 20.8 / 67.2"
+      ]
+    }
+  ]
+}

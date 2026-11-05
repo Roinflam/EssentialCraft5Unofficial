@@ -1,0 +1,523 @@
+{
+  "id": "solar",
+  "order": 74,
+  "group": "main",
+  "title": "第十章 · 日光",
+  "subtitle": "把正午的太阳收进来",
+  "icon": "essentialcraft5:solar_prism",
+  "entries": [
+    {
+      "id": "sun_imbued_glass",
+      "title": "{item:essentialcraft5:sun_imbued_glass}",
+      "icon": "essentialcraft5:sun_imbued_glass",
+      "summary": "聚光的镜片",
+      "complete": "essentialcraft5:guide/solar/sun_imbued_glass",
+      "items": [
+        "essentialcraft5:sun_imbued_glass"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "拿一面放大镜，把太阳聚在 MRU 金属上，照了一整天，得了十来个 MRU。于是我做了一面很大很大的放大镜，往里灌满了 MRU，只等一个晴天的正午。",
+          "by": "《工坊手记》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做一块{item:essentialcraft5:sun_imbued_glass}。手记里那面大放大镜就是太阳棱镜，镜片用的正是这种玻璃。这一章的器物都离不开它，日光吸收器要 1 块，太阳棱镜要 5 块，一共要 6 块。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "这一章要准备什么",
+          "text": "这是到目前为止最贵的一章，6 块日光玻璃加 4 块注魔合金，一共约要 24 颗钻石、24 颗绿宝石、32 份烈焰粉、33 颗末影珍珠和 130 多块铁锭。魔力工作台要走完约 12 万点进度，折合 {cfg:machines.magician_table.mru_usage_modifier|mul:120000|int} MRU，装着注魔合金约需 20 分钟，不装要 100 分钟。钻石、绿宝石不够时，可以趁工作台在家里慢慢做，出门挖矿或找村民交易，也可以用[[gear/pale_gem]]顶替，一颗钻石能换四颗，钻石板和绿宝石板都认它。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：1 块{item:essentialcraft5:magic_purified_glass_alloy}、2 块{item:essentialcraft5:diamond_plate}和 2 块{item:essentialcraft5:emerald_plate}。钻石板、绿宝石板在普通工作台里做，每块要 2 颗钻石或绿宝石、4 块铁锭和 1 颗{item:essentialcraft5:elemental_gem}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:sun_imbued_glass"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "魔力工作台正中放玻璃合金。",
+            "四角放两块钻石板和两块绿宝石板，同一种的两块占一条对角线，哪种占哪条都行。",
+            "做一块耗 {cfg:machines.magician_table.mru_usage_modifier|mul:10000|int} MRU，工作台装着注魔合金的话约需 1 分 40 秒。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有一块日光玻璃。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "先装升级",
+          "text": "开工前确认工作台装着{item:essentialcraft5:combined_magical_alloys}，MRU 源每刻也供得上 {cfg:machines.magician_table.mru_usage_modifier|mul:5} MRU，不然这一章光是等工作台就要一个多小时。注魔合金的做法见[[alloys/combined_magical_alloys]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/alloys/sun_imbued_glass_a.json / _b.json — 魔力工作台：中心玻璃合金，钻石板、绿宝石板各占一条对角线（两种对调都有），mru 10000",
+        "data/essentialcraft5/recipes/materials/diamond_plate_h.json / _v.json、emerald_plate_h.json / _v.json — 2 × #essentialcraft5:diamonds（emeralds）+ 4 × #forge:ingots/iron + 元素晶石",
+        "data/essentialcraft5/recipes/solar/sun_ray_absorber.json（1 块）、solar_prism.json（5 块）",
+        "api/MagicianTableUpgrades.java:41 — 注魔合金 ×5：10000 / 5 = 2000 刻 = 100 秒",
+        "tools/plan/progression.md「按章节」第 10 章 — 钻石 24、绿宝石 24、烈焰粉 32、珍珠 33、铁 135；工作台 12 万（×5 约 20 分钟，不装 100 分钟）",
+        "data/essentialcraft5/recipes/radiating_chamber/pale_gem_from_diamond.json — 淡青块 + 钻石出 4 颗淡青宝石；tags/items/diamonds.json、emeralds.json 都含淡青宝石，钻石板 / 绿宝石板配方用这两个标签"
+      ]
+    },
+    {
+      "id": "sun_ray_absorber",
+      "title": "{item:essentialcraft5:sun_ray_absorber}",
+      "icon": "essentialcraft5:sun_ray_absorber",
+      "summary": "把光束变成混沌 MRU",
+      "complete": "essentialcraft5:guide/solar/sun_ray_absorber",
+      "items": [
+        "essentialcraft5:sun_ray_absorber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：造一台{item:essentialcraft5:sun_ray_absorber}。日光里也散着 MRU，只是太稀，要聚成一束才收得起来。吸收器自己不产能，等着头顶的太阳棱镜把光束打下来，被照着的每一刻产出 {cfg:machines.sun_ray_absorber.mru_generated} MRU，一道光束持续 1 秒，合计 {cfg:machines.sun_ray_absorber.mru_generated|mul:20} MRU。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：1 块日光玻璃、1 个{item:essentialcraft5:chaos_matrix_projection}，再加上产能器常用的那套零件，魔力屏幕、MRU 收集器、世界交互器、元素核心、MRU 转换矩阵各 1 个，以及 2 块魔力板。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:sun_ray_absorber"
+        },
+        {
+          "type": "h",
+          "text": "混沌矩阵投影从哪来"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在辐射仓里用平衡值 1.5 以上的 MRU 照射{item:essentialcraft5:empty_matrix_projection}，要 1 万刻，约 8 分钟，详见[[generators/projections]]。",
+            {
+              "if": "cfg:machines.heat_generator.balance<0",
+              "text": "{item:essentialcraft5:heat_generator}放下时平衡值在 0~2 之间随机，看一眼它的界面，不到 1.5 就拆掉重放，直到碰上 1.5 以上的，每次大约有四分之一的几率。"
+            },
+            "给这台产能器单独接一台空的辐射仓。辐射仓里原本存着别的 MRU 的话，两者会混在一起，平衡值就不够高了。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "吸收器放在露天处，头顶留出一整列空气，下一篇的棱镜要架在它正上方。",
+            "把用 MRU 的机器绑到它身上，最好绑富集仓的接收器，MRU 一进来就被抽走。它能存 {cfg:machines.sun_ray_absorber.max_mru} MRU，没有物品格。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一台日光吸收器。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "它的 MRU 是混沌的",
+          "text": "它产出的 MRU 平衡值是 {cfg:machines.sun_ray_absorber.balance}，2.0 就是{balance:chaos}。辐射仓里有些配方挑平衡值，比如魔力矩阵投影要 0.5~1.5，做这类东西的机器要绑到别的源头上。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "机器里存着的平衡值，是从各个源头拉进来的 MRU 按量混出来的。同一台机器在几个源头之间换着绑，也会把它们混在一起，要等存量用光，平衡值才会完全换成新源头的。",
+            "收到红石信号时停机。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/solar/sun_ray_absorber.json — SGM/ICX/PJP：魔力屏幕、日光玻璃、MRU 收集器、世界交互器、#cores/magic、MRU 转换矩阵、#plates/magic ×2、混沌矩阵投影",
+        "blockentity/SunRayAbsorberBlockEntity.java:15-28（类注释）、39-42 — 被光束照着的刻里每刻产 mru_generated（500）；balance 2.0；max_mru = GENERATOR_MAX_MRU × 10；没有物品格；红石停机",
+        "blockentity/SolarPrismBlockEntity.java:93 — 一道光束 20 刻",
+        "data/essentialcraft5/recipes/radiating_chamber/chaos_matrix_projection.json — 空白投影、mru 10000（刻）、平衡值 1.5~2.0",
+        "config_keys machines.heat_generator.balance — -1 时放下随机 [0, 2)：≥ 1.5 约四分之一；拆了重放重新随机（blockentity/RandomBalanceBlockEntity.java）",
+        "mru/MRUStorage.java:117-131 — 按量加权平均，存量为 0 时换成源头的"
+      ]
+    },
+    {
+      "id": "solar_prism",
+      "title": "{item:essentialcraft5:solar_prism}",
+      "icon": "essentialcraft5:solar_prism",
+      "summary": "把正午的阳光聚成光束",
+      "complete": "essentialcraft5:guide/solar/solar_prism",
+      "items": [
+        "essentialcraft5:solar_prism"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：在吸收器正上方架一台{item:essentialcraft5:solar_prism}。晴天正午，它把阳光聚成一道光束，笔直地打在正下方的吸收器上。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：4 块注魔合金和 5 块日光玻璃，这是到目前为止最贵的一件东西，再备 4 个任意方块当支架。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:solar_prism"
+        },
+        {
+          "type": "h",
+          "text": "棱镜这一层"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:solar_prism"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在吸收器正上方选一个高度，两者之间至少隔一格空气，隔得多些也行。",
+            "先在棱镜那一层的东南西北各<em>隔一格</em>放一个方块当支架，用什么方块都行，紧挨着棱镜的 8 格要空着。",
+            "棱镜悬在半空不好放，可以先在它正下方垫一块临时方块，放好棱镜再把垫块拆掉。",
+            "它每秒查一次摆法，摆得不对就自己掉下来，所以一定要先搭好支架再放棱镜。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "上下关系"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "S": "essentialcraft5:solar_prism",
+            "R": "essentialcraft5:sun_ray_absorber",
+            "B": {
+              "block": "minecraft:stone",
+              "label": "structure.essentialcraft5.rule.any_block"
+            },
+            "A": "air"
+          },
+          "layers": [
+            {
+              "pattern": [
+                "     ",
+                "     ",
+                "  R  ",
+                "     ",
+                "     "
+              ],
+              "label": "吸收器（在正下方，和棱镜之间至少隔一格空气）"
+            },
+            {
+              "pattern": [
+                "     ",
+                "     ",
+                "  A  ",
+                "     ",
+                "     "
+              ],
+              "label": "空气（至少一格，再多几格也行）"
+            },
+            {
+              "pattern": [
+                "  B  ",
+                " AAA ",
+                "BASAB",
+                " AAA ",
+                "  B  "
+              ],
+              "label": "棱镜"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "光束落在棱镜正下方<em>第一个不是空气</em>的方块上，所以棱镜和吸收器之间要全是空气。棱镜正下方紧挨着的那格只要有东西，就一道光束也打不出来，所以别把吸收器直接垫在棱镜底下。"
+        },
+        {
+          "type": "h",
+          "text": "什么时候出光束"
+        },
+        {
+          "type": "p",
+          "text": "下面几条同时满足时，棱镜每刻有 {cfg:machines.solar_prism.solar_beam_chance|pct} 的几率打下一道光束。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.solar_prism.requires_unobstructed_sky",
+              "text": "棱镜头顶看得到天空，普通玻璃不挡，遮光玻璃会挡。"
+            },
+            {
+              "if": "!cfg:machines.solar_prism.ignore_rain",
+              "text": "没有下雨。"
+            },
+            {
+              "if": "cfg:machines.solar_prism.requires_midday",
+              "text": "时间在正午前后，即游戏里 11 点到 13 点、太阳快到头顶的那一段，对应一天中的第 5000~7000 刻，每天只有约 100 秒。"
+            },
+            {
+              "if": "!cfg:machines.solar_prism.requires_midday",
+              "text": "不挑时间，白天黑夜都行。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每道光束持续 1 秒，也就是 20 刻，吸收器在这 20 刻里每刻产出 {cfg:machines.sun_ray_absorber.mru_generated} MRU。几道光束同时照着同一台吸收器时，产量不叠加。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.solar_prism.requires_midday",
+          "text": "算下来，正午那 100 秒里大约四成时间有光，一个晴天能收到约 40 万 MRU，吸收器却只存得下 {cfg:machines.sun_ray_absorber.max_mru}，一定要有机器或富集仓随时把它抽空。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "晴天正午，一道黄色光柱从天上落下来打在吸收器上，吸收器的 MRU 跟着往上涨。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "光束会烧怪",
+          "text": "光束落下时，落点周围水平 6 格、往下 6 格到往上 134 格范围内的<em>敌对生物</em>会着火 5 秒，光束亮着的这 1 秒里每半秒受 3 点伤害。玩家、动物和村民都不受影响，站在吸收器旁边看也没事。",
+          "if": "!cfg:machines.solar_prism.burn_players"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "小心",
+          "text": "光束落下时，落点周围水平 6 格、往下 6 格到往上 134 格范围内的敌对生物和玩家会着火 5 秒，光束亮着的这 1 秒里每半秒受 3 点伤害。动物和村民不受影响，要看的话就站得离吸收器远一些。",
+          "if": "cfg:machines.solar_prism.burn_players"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一道光束只供一台吸收器。落点就是吸收器时供给它，落在别的方块上时，供给落点旁边一格以内、往上最多两格范围里最近的那台。",
+            "想让一台吸收器更常被照到，可以多架几台棱镜，错开高度，分别架在吸收器正上方和紧挨着的几列上，让光束都落在吸收器旁边。2 台约六成时间有光，3 台约八成，每刻的产量却不会超过一道光束的量。",
+            "动物、村民、宠物，以及起了名字或拴着绳的怪物都不会被光束烧到，掉落物和盔甲架也不受影响，落点离邻居的领地再近，也烧不着那边的牲口。",
+            "光束不会点燃方块。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书提到，拿一面放大镜把阳光聚在 MRU 金属上照一整天，只得到 10 MRU 左右，后来便有了一面「巨大的、灌注了 MRU 的放大镜」，在没有一丝云的正午，它聚出的光束能熔穿金属。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "想再添一种产能器，可以看下一篇可选的[[solar/ender_generator]]，主线接着进入下一章的[[mithriline/mithriline_ingot]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/solar/solar_prism.json — ISI/SSS/ISI：注魔合金 ×4、日光玻璃 ×5",
+        "registry/ECSolar.java:123-130 — 结构 essentialcraft5:solar_prism：同层东南西北隔一格是任意方块（B）、紧挨着的 8 格是空气（A）",
+        "blockentity/SolarPrismBlockEntity.java:28-66（类注释）— 摆法不对自毁掉落（每 20 刻判一次）；光束落在正下方第一个非空气方块，正下方紧挨着那格不是空气就打不出；一道光束只给一台吸收器；不放火；只烧敌对生物（见 mayBurn）",
+        "blockentity/SolarPrismBlockEntity.java:78-89 — solar_beam_chance 0.025、requires_unobstructed_sky、requires_midday、ignore_rain；L104-105 窗口 5000~7000；L153-160 判定（下雨看 level.isRaining，天空看 canSeeSky(上方)：天空光照 15，遮光玻璃挡、普通玻璃不挡）",
+        "blockentity/SolarPrismBlockEntity.java:93-99 — 光束 20 刻、每 10 刻伤害一次、3 点、着火 5 秒；L37 水平 ±6、往下 6 往上 134",
+        "blockentity/SolarPrismBlockEntity.java:311 mayBurn — 只烧 Enemy 且不是 sparedFromBeam（起名 / 拴绳…）；玩家只在 machines.solar_prism.burn_players（默认 false）时烧，创造 / 旁观不烧；盔甲架、动物、村民一律不烧（第十批 A2）",
+        "blockentity/SolarPrismBlockEntity.java:225-246 — findAbsorber：落点是吸收器就给它，否则在水平 ±1、往下 1 往上 2 里找最近的",
+        "估算：一刻有光的几率 1 − 0.975^20 ≈ 40%；2000 刻 × 0.4 × 500 ≈ 40 万；2 台 1 − 0.6² ≈ 64%、3 台 ≈ 78%",
+        "原作 en_US.lang essentialcraft.page.solarAbsorber_0~2 — 放大镜的来历（小知识）"
+      ]
+    },
+    {
+      "id": "rank_3",
+      "title": "三阶 · 定性",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "你的矩阵属性开始起作用",
+      "complete": "essentialcraft5:guide/matrix/rank_3",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：升到矩阵三阶「定性」。这一阶起，你的矩阵属性带来一项被动，带矩阵特性的武器也开始起作用。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "一共 13 种，其中下界 3 种"
+            ],
+            [
+              "矩阵属性",
+              "不能是中性：先吸收一块混沌、冰冻、魔力或暗影矩阵投影，见[[gear/projection_use]]"
+            ],
+            [
+              "祭品",
+              "第九章的[[essence/essences|精华]] 4 个，要同一种、叠在同一格里（哪种元素、哪个稀有度都行，不能混着放）、1 块{item:essentialcraft5:combined_magical_alloys}、1 块{item:essentialcraft5:sun_imbued_glass}"
+            ],
+            [
+              "能量",
+              "台子里 1 万 MRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 4 只，同时最多 3 只；每只 44 点生命，打你一下 6 点；限时 90 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "站着不动 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:30} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "挑一种矩阵属性，吸收那种投影。选哪种属性，就是选哪种打法，四种的区别见[[matrix/alignment]]。",
+            "把祭品放进淬炼台的祭品格，台子里的 MRU 用绑定宝石备够。",
+            "站在台子 3 格内，主手拿着绑定你的灵魂石，打开界面，右边全打勾以后点「开始淬炼」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒够数的矩阵回响，别离开台子太远。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁边不动，也别受伤，等引导走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "屏幕正中出现「三阶 · 定性」，灵魂石的物品提示里写着矩阵三阶。"
+        },
+        {
+          "type": "p",
+          "text": "三阶的回报是[[matrix/alignment|相性]] I：混沌加伤害，冰冻挡近战、冻住对手，魔力省电，暗影要等八阶才有。带矩阵特性的武器打实以后，还会按你的属性多出一样效果。矩阵容量涨到 {cfg:general.matrix_rank.pool_per_rank|mul:2}。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "三阶以后再换属性，就再吸收一块别的投影，代价照旧，相性的级数不丢。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.3 九阶表、§3.1.2 试炼；进度 essentialcraft5:guide/matrix/rank_<n> 由代码在升阶成功时发（同 guide/hoanna/radiation）",
+        "tools/plan/batch13.md §3.1.3 三阶 — 图谱总数 13、下界 ≥ 3、矩阵属性不是中性；祭品精华 ×4（按 essentialcraft5:essences 标签，任意元素、任意品级）+ 注魔合金 + 日光玻璃；MRU 1 万；回响 4 / 3 / 44 / 6 / 90 秒；回报相性 I、矩阵特性、容量 × 2",
+        "tools/plan/batch13.md §3.2 — 暗影相性八阶起直接 II；换投影相性级不丢"
+      ]
+    },
+    {
+      "id": "ender_generator",
+      "title": "{item:essentialcraft5:ender_generator}",
+      "icon": "essentialcraft5:ender_generator",
+      "summary": "拿末影人产能",
+      "complete": "essentialcraft5:guide/solar/ender_generator",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ender_generator"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：造一台{item:essentialcraft5:ender_generator}。它把附近的末影人拉到自己头顶，一下一下地打，每打中一次产出 {cfg:machines.ender_generator.mru_generated} MRU。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：1 块{item:essentialcraft5:magic_purified_ender_scale_alloy}、1 个魔力强化框架、2 个 MRU 转换矩阵，再加魔力屏幕、MRU 收集器、元素核心、世界交互器、魔力板各 1 个。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ender_generator"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把它放在末地这类末影人多的地方，没有红石信号时它自己就会干活。",
+            "周围 {cfg:machines.ender_generator.radius} 格内的末影人都会被拉到它头顶，离它 2 格以内的每刻受 1 点魔法伤害，起了名字或拴着绳的末影人不受影响。",
+            "末影人挨一下以后有半秒无敌，所以一只末影人每秒最多产出两次。挨打的末影人多半会瞬移走，落点还在 {cfg:machines.ender_generator.radius} 格内就会被拉回来，跑出去就留不住了。",
+            "把用 MRU 的机器绑到它身上。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每打中一次",
+              "{cfg:machines.ender_generator.mru_generated} MRU"
+            ],
+            [
+              "一只末影人打到死",
+              "约 {cfg:machines.ender_generator.mru_generated|mul:40} MRU，按 40 点生命算"
+            ],
+            [
+              "容量",
+              "{cfg:machines.ender_generator.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.ender_generator.balance<0",
+              "cells": [
+                "平衡值",
+                "放下时在 0~2 之间随机，和热力产能器一样"
+              ]
+            },
+            {
+              "if": "cfg:machines.ender_generator.balance>=0",
+              "cells": [
+                "平衡值",
+                "{cfg:machines.ender_generator.balance}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "界面上的 MRU 在涨。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "存满以后它也不停手，末影人照样会被打死。收到红石信号时它会停机，不拉也不打。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作给这台机器的理由很干脆，末影人总偷你的方块，也该给它们一点教训了。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/solar/ender_generator.json — FSM/XCX/PIE：框架、魔力屏幕、MRU 收集器、MRU 转换矩阵 ×2、#cores/magic、#plates/magic、世界交互器、末影鳞合金",
+        "blockentity/EnderGeneratorBlockEntity.java:21-42（类注释）— 无红石时把 radius 格内的末影人拉到头顶，±2 格内的各打 1 点魔法伤害，打中一次产 mru_generated；无敌帧 10 刻；挨打后九成几率瞬移，还在范围内就拉回；满了也照打；L163 isValid 跳过 ECEntityRules.isSpared（起名、拴绳，第十批 A7）",
+        "blockentity/EnderGeneratorBlockEntity.java:54-61 — max_mru 10000、balance -1（放下随机 [0,2)）、mru_generated 500、radius 8；L70-71 ATTACK_RANGE 2、ATTACK_DAMAGE 1；L133 damageSources().magic()",
+        "原版末影人 40 点生命：40 次 × 500 = 2 万 MRU",
+        "原作 en_US.lang essentialcraft.page.enderGen_0 — 末影人偷方块的说法（小知识）"
+      ]
+    }
+  ]
+}

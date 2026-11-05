@@ -1,0 +1,344 @@
+[
+  {
+    "id": "ultra_heat_generator",
+    "title": "{item:essentialcraft5:ultra_heat_generator}",
+    "icon": "essentialcraft5:ultra_heat_generator",
+    "summary": "越烧越热，越热产得越多",
+    "complete": "essentialcraft5:guide/void_machines/ultra_heat_generator",
+    "optional": true,
+    "items": [
+      "essentialcraft5:ultra_heat_generator"
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/ultragenerators/ultra_heat_generator.json — VRV / CGC / VRV：虚空板 ×4、MRU 反应核 ×2、虚空核心 ×2，中间热力产能器",
+      "blockentity/UltraHeatGeneratorBlockEntity.java:131 step — 升温倍率与耗燃料按升温前的温度选段：< 1000 时 s = 0.1 + 0.0009 × 温度、耗 25 + (s − 0.1) × 80 / 3（25~49）；1000~10000 s = 1、耗 1；> 10000 s = 0.001 + 9990 / 温度、耗 1；温度 += mf × s",
+      "blockentity/UltraHeatGeneratorBlockEntity.java:152 generation — 按升温后的温度：< 1000 温度 × 0.01，1000~10000 2 + 温度 × 0.008，> 10000 72 + 温度 × 0.001；不到 1 不出、向下取整；产量里没有 mf",
+      "blockentity/HeatGeneratorBlockEntity.java:175 heatFactor / :187 heatModifier — 东南西北隔一格的四格系数连乘，和热力产能器同一份（岩浆 0.95、下界岩 0.75、火 0.7、其它 0.5、空气 0）",
+      "blockentity/UltraHeatGeneratorBlockEntity.java:217 / :231 — 有红石信号整台停（温度、燃烧时间不变；:319 showsFlames 客户端同样看红石，有信号不冒火）；燃烧时间到 0、格子有燃料、MRU 没满才点新燃料，正在烧的存满了照烧、温度照升；每点一个出 1 个魔力炉渣（:236），岩浆桶还空桶（:237）",
+      "blockentity/UltraHeatGeneratorBlockEntity.java:70 / :77 — machines.ultra_heat_generator.max_mru 默认 100000、max_heat 默认 0 = 不封顶；:202 getEffectiveHeat：上限只截参与计算的温度（升温、产量、显示），存值不削，上限调回去温度原样回来",
+      "blockentity/UltraHeatGeneratorBlockEntity.java:73 + RandomBalanceBlockEntity — balance 默认 −1：放下后第一次 tick 在 [0, 2) 随机一次并存盘",
+      "温度存在方块实体里，方块掉落是普通物品（不带方块实体数据），拆了重放从 0 开始",
+      "预热数字：四面岩浆（mf = 0.95⁴）烧煤（1600 刻），照 step 逐刻算：第 877 刻起出 1 MRU/t（约 44 秒）；第 3144 刻、第 65 块煤到 1000°C（10 MRU/t）；第 14193 刻、第 72 块煤到 1 万°C（82 MRU/t）；72000 刻（1 小时）约 3.23 万°C、104 MRU/t、108 块；720000 刻（10 小时）约 10.8 万°C、180 MRU/t、513 块；GameTest UltraGeneratorsTests.ultraHeatWarmUp 守着前 140 刻",
+      "原作 TileUltraHeatGenerator L44~128；原作研究书 en_US.lang L666「There is no heat limit too!」"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：用海纳尔带回来的虚空材料，把热力产能器升级成{item:essentialcraft5:ultra_heat_generator}。它照样烧燃料，但多了一个只升不降的<hl>温度</hl>：越烧越热，越热产得越多。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：4 块{item:essentialcraft5:void_plating}、2 个{item:essentialcraft5:void_mru_reactor}、2 个{item:essentialcraft5:void_core}（见[[hoanna/relics]]、[[hoanna/void_plating]]），中间放一台[[generators/heat_generator|热力产能器]]。另备 4 桶岩浆和一大堆燃料。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:ultra_heat_generator"
+      },
+      {
+        "type": "h",
+        "text": "摆法"
+      },
+      {
+        "type": "structure",
+        "key": {
+          "H": "essentialcraft5:ultra_heat_generator",
+          "L": {
+            "block": "minecraft:lava",
+            "label": "流动的也算"
+          }
+        },
+        "pattern": [
+          "  L  ",
+          "     ",
+          "L H L",
+          "     ",
+          "  L  "
+        ]
+      },
+      {
+        "type": "p",
+        "text": "四周热源的摆法和系数跟热力产能器完全一样（东南西北隔一格的四个方块，见[[generators/heat_generator]]），但在这里它们<em>只决定升温快慢</em>，不进产量：四面岩浆升得最快，四面下界岩慢得多，有一面是空气就完全不升温。"
+      },
+      {
+        "type": "h",
+        "text": "温度和产量"
+      },
+      {
+        "type": "table",
+        "header": [
+          "温度",
+          "每刻产出",
+          "每刻烧掉的燃烧时间"
+        ],
+        "rows": [
+          [
+            "1000°C 以下",
+            "温度 ÷ 100（不到 1 不出）",
+            "<w>25～49 刻</w>，越热烧得越多"
+          ],
+          [
+            "1000～1 万°C",
+            "2 + 温度 × 0.008（10～82）",
+            "1 刻，和熔炉一样"
+          ],
+          [
+            "1 万°C 以上",
+            "72 + 温度 ÷ 1000",
+            "1 刻"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "每烧一刻，温度升高「四周系数连乘 × 升温倍率」：1000°C 以下倍率从 0.1 慢慢涨到 1，1000～1 万°C 是 1，再往上越来越小（9990 ÷ 温度），所以越往后升得越慢。"
+      },
+      {
+        "type": "p",
+        "text": "产量<em>只看温度</em>。热起来以后就算把四周的岩浆拆了，它照样按当前温度产出，只是不再升温。"
+      },
+      {
+        "type": "h",
+        "text": "四面岩浆、烧煤时大约"
+      },
+      {
+        "type": "table",
+        "header": [
+          "烧了多久",
+          "温度",
+          "每刻产出"
+        ],
+        "rows": [
+          [
+            "约 44 秒",
+            "100°C",
+            "开始有 1 MRU"
+          ],
+          [
+            "约 2.6 分钟（65 块煤）",
+            "1000°C",
+            "10 MRU"
+          ],
+          [
+            "约 12 分钟（72 块煤）",
+            "1 万°C",
+            "82 MRU"
+          ],
+          [
+            "1 小时（约 108 块煤）",
+            "约 3.2 万°C",
+            "104 MRU"
+          ],
+          [
+            "10 小时（约 513 块煤）",
+            "约 10.8 万°C",
+            "180 MRU"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "1000°C 以后一块煤能烧满 80 秒，比预热期耐烧得多。四周热源差的预热要久得多：四面下界岩烧到 1000°C 约 167 块煤，四面普通石头约 841 块。"
+      },
+      {
+        "type": "h",
+        "text": "怎么用"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "按上面的图摆好四面岩浆，把燃料放进左边的格子（只收能烧的东西）。",
+          "每烧掉一个燃料，右边的格子多一个{item:essentialcraft5:magical_slag}；岩浆桶烧完会留下空桶，漏斗能把炉渣和空桶抽走。",
+          "把用 MRU 的机器的绑定宝石绑到它身上，让它一直有地方放 MRU、一直烧下去。"
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "能存多少",
+            "{cfg:machines.ultra_heat_generator.max_mru} MRU"
+          ],
+          {
+            "if": "cfg:machines.ultra_heat_generator.max_heat==0",
+            "cells": [
+              "温度上限",
+              "没有，烧多久升多久"
+            ]
+          },
+          {
+            "if": "cfg:machines.ultra_heat_generator.max_heat>0",
+            "cells": [
+              "温度上限",
+              "{cfg:machines.ultra_heat_generator.max_heat}°C，到了就不再升"
+            ]
+          },
+          {
+            "if": "cfg:machines.ultra_heat_generator.balance<0",
+            "cells": [
+              "平衡值",
+              "放下时随机得到一个 0～2 之间的数，之后不变"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "温度<b>拆了就归零</b>，挪地方等于从头预热，选好位置再放。存满 MRU 时它不再点新燃料，手上这块烧完就不再升温（温度不会降，接上机器后接着升）；收到红石信号时整台停住，温度和燃烧进度都留着。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作的研究书介绍它时特意写了一句「温度也没有上限！」，还说越热越省燃料。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "界面上「温度」那一行的数字在涨。"
+      }
+    ]
+  },
+  {
+    "id": "ultra_natural_furnace",
+    "title": "{item:essentialcraft5:ultra_natural_furnace}",
+    "icon": "essentialcraft5:ultra_natural_furnace",
+    "summary": "烧花、树叶、草和原木换 MRU",
+    "complete": "essentialcraft5:guide/void_machines/ultra_natural_furnace",
+    "optional": true,
+    "items": [
+      "essentialcraft5:ultra_natural_furnace"
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/ultragenerators/ultra_natural_furnace.json — VRV / CGC / VRV，中间自然熔炉",
+      "tools/tags/ecultragenerators.json — flowers = #minecraft:small_flowers；leaves = #minecraft:leaves；grass = #essentialcraft5:natural_furnace_grass + #minecraft:tall_flowers；logs = #minecraft:logs_that_burn",
+      "blockentity/UltraNaturalFurnaceBlockEntity.java:194 resolve — 花 → 树叶 → 草 → 原木依次判断，后面的覆盖前面的；:212 categoryOf 按 Block.byItem 的默认状态查标签",
+      "blockentity/UltraNaturalFurnaceBlockEntity.java:133~140 — machines.ultra_natural_furnace.ticks_* / mru_*：花 600 × 60、树叶 300 × 70、草 100 × 20、原木 2400 × 100；:109 两项都 > 0 才收这一类",
+      "blockentity/UltraNaturalFurnaceBlockEntity.java:129 — max_mru 默认 10000（原作注册时 setupConfig 把容量改成通用产能器的值）",
+      "blockentity/UltraNaturalFurnaceBlockEntity.java:253~275 — 有红石信号整台停；燃烧时间到 0、MRU 没满才从格子取 1 件点燃（:272），每刻产量在点燃时记下（:270）；烧完不留东西",
+      "blockentity/MRUBlockEntity — 漏斗任意面能塞（按 slotRule），isOutputSlot 默认 false 抽不出；格子上限 64",
+      "mru/MRUStorage.java:60 addMRU — 满了就停在上限，多出来的不存",
+      "原作 TileUltraFlowerBurner L99~161（烧周围 ±16 格、往上 32 格的植物，每 80 刻把附近的树苗掉落物种下）；原作研究书 en_US.lang L667"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：把自然熔炉升级成{item:essentialcraft5:ultra_natural_furnace}。它不再烧树苗，改烧花、树叶、草和原木，原木最划算；小花和草比放在普通版里产得多，高花在这里按草算，反而不如普通版。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：和终极热力产能器一样的 4 块{item:essentialcraft5:void_plating}、2 个{item:essentialcraft5:void_mru_reactor}、2 个{item:essentialcraft5:void_core}，中间换成一台[[generators/natural_furnace|自然熔炉]]。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:ultra_natural_furnace"
+      },
+      {
+        "type": "h",
+        "text": "能烧什么"
+      },
+      {
+        "type": "table",
+        "header": [
+          "类别",
+          "一件烧多久",
+          "每刻产出"
+        ],
+        "rows": [
+          {
+            "if": [
+              "cfg:machines.ultra_natural_furnace.ticks_flower",
+              "cfg:machines.ultra_natural_furnace.mru_flower"
+            ],
+            "cells": [
+              "小花（虞美人、蒲公英、郁金香……）",
+              "{cfg:machines.ultra_natural_furnace.ticks_flower|sec}",
+              "{cfg:machines.ultra_natural_furnace.mru_flower} MRU"
+            ]
+          },
+          {
+            "if": [
+              "cfg:machines.ultra_natural_furnace.ticks_leaves",
+              "cfg:machines.ultra_natural_furnace.mru_leaves"
+            ],
+            "cells": [
+              "树叶",
+              "{cfg:machines.ultra_natural_furnace.ticks_leaves|sec}",
+              "{cfg:machines.ultra_natural_furnace.mru_leaves} MRU"
+            ]
+          },
+          {
+            "if": [
+              "cfg:machines.ultra_natural_furnace.ticks_grass",
+              "cfg:machines.ultra_natural_furnace.mru_grass"
+            ],
+            "cells": [
+              "草、蕨（含高草丛、大型蕨）和高花",
+              "{cfg:machines.ultra_natural_furnace.ticks_grass|sec}",
+              "{cfg:machines.ultra_natural_furnace.mru_grass} MRU"
+            ]
+          },
+          {
+            "if": [
+              "cfg:machines.ultra_natural_furnace.ticks_log",
+              "cfg:machines.ultra_natural_furnace.mru_log"
+            ],
+            "cells": [
+              "原木（去皮的、六面树皮的木头也算）",
+              "{cfg:machines.ultra_natural_furnace.ticks_log|sec}",
+              "{cfg:machines.ultra_natural_furnace.mru_log} MRU"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "formula",
+        "text": "一件的总产出 = 烧的刻数 × 每刻产出"
+      },
+      {
+        "if": [
+          "cfg:machines.ultra_natural_furnace.ticks_log",
+          "cfg:machines.ultra_natural_furnace.mru_log"
+        ],
+        "type": "p",
+        "text": "一根原木要烧 {cfg:machines.ultra_natural_furnace.ticks_log} 刻、每刻 {cfg:machines.ultra_natural_furnace.mru_log} MRU，一根合计的产出比别的几类多得多。"
+      },
+      {
+        "type": "p",
+        "text": "向日葵、丁香、玫瑰丛、牡丹这些<em>高花按「草」那一档算</em>，不按小花算。树苗、下界的菌柄、竹子、枯萎的灌木都放不进去。"
+      },
+      {
+        "type": "h",
+        "text": "用法"
+      },
+      {
+        "type": "list",
+        "items": [
+          "格子一次放一组（64 个），它一次点燃一件，烧完什么也不留。",
+          "{item:minecraft:hopper}和管道从任意一面都能往里送（只收上面这几类），但抽不出来。",
+          "存满 {cfg:machines.ultra_natural_furnace.max_mru} MRU 时不再点新的，正在烧的那件照常烧完；收到红石信号时停机，燃烧进度留着。",
+          {
+            "if": "cfg:machines.ultra_natural_furnace.balance<0",
+            "text": "放下时随机得到一个 0～2 之间的平衡值，界面上看得到；数字不合适就拆下来重新放。"
+          }
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "它自己只存 {cfg:machines.ultra_natural_furnace.max_mru} MRU，烧原木时很快就满。满了以后正在烧的那件<b>多出来的 MRU 存不下、白白烧掉</b>，所以先把用 MRU 的机器绑到它身上，再往里放原木。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作里它会自己在周围十几格内找花草、树叶和原木点燃，还会把附近掉在地上的树苗替你种回去。现在它只烧你放进格子里的东西，不会再碰周围的林子。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "放进一根原木后，火苗亮起来，界面上的产量变成每刻 {cfg:machines.ultra_natural_furnace.mru_log} MRU。"
+      }
+    ]
+  }
+]

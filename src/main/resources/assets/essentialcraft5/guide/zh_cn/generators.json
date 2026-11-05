@@ -1,0 +1,670 @@
+{
+  "id": "generators",
+  "order": 40,
+  "group": "main",
+  "title": "第四章 · 产能器",
+  "subtitle": "让 MRU 不再紧缺",
+  "icon": "essentialcraft5:heat_generator",
+  "entries": [
+    {
+      "id": "heat_generator",
+      "title": "{item:essentialcraft5:heat_generator}",
+      "icon": "essentialcraft5:heat_generator",
+      "summary": "烧燃料，越热产得越多",
+      "complete": "essentialcraft5:guide/heat_generator",
+      "items": [
+        "essentialcraft5:heat_generator",
+        "essentialcraft5:magical_slag"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "以前要 MRU，就得出门杀点什么。后来学会了烧煤、烧花，再后来连寒气里也能析出一点。我总算能在家待着了。",
+          "by": "《工坊手记》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：造一台{item:essentialcraft5:heat_generator}，四面围上岩浆，烧煤产出 MRU。<em>产能器</em>是自己就能产出 MRU 的机器，有了它，就不必再靠打怪换 MRU 了。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：上一章做好的魔力板、魔力屏幕、MRU 转换矩阵和世界交互器，2 根{item:essentialcraft5:heating_rod}，{item:essentialcraft5:elemental_core}、{item:essentialcraft5:fortified_frame}、{item:essentialcraft5:mru_catcher}各一个，另外备好 4 桶岩浆和一些煤。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:heat_generator"
+        },
+        {
+          "type": "h",
+          "text": "摆法"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "H": "essentialcraft5:heat_generator",
+            "L": {
+              "block": "minecraft:lava",
+              "label": "流动的也算"
+            }
+          },
+          "pattern": [
+            "  L  ",
+            "     ",
+            "L H L",
+            "     ",
+            "  L  "
+          ],
+          "caption": "产量只看东西南北各隔一格、与产能器同高的四个方块"
+        },
+        {
+          "type": "p",
+          "text": "每刻的产量是 {cfg:machines.heat_generator.mru_generated} MRU 依次乘上这四个方块各自的系数，紧挨着产能器的那一圈放什么都没关系。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{block:minecraft:lava}（流动的也算）",
+              "0.95"
+            ],
+            [
+              "{block:minecraft:netherrack}",
+              "0.75"
+            ],
+            [
+              "{block:minecraft:fire}（灵魂火也算）",
+              "0.7"
+            ],
+            [
+              "别的方块",
+              "0.5"
+            ],
+            [
+              "空气",
+              "0，有一面空着就完全不产"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "四面全是岩浆时，每刻产出 {cfg:machines.heat_generator.mru_generated|mul:0.81450625|add:-0.499999|int} MRU，换成四面下界岩，每刻只有 {cfg:machines.heat_generator.mru_generated|mul:0.31640625|add:-0.499999|int} MRU。"
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下产能器，照上图在东西南北各隔一格、与产能器同高的地方各倒一桶岩浆，再拿方块把岩浆围起来，免得它到处流。",
+            "打开界面，往燃料格里放煤、木炭、木头等熔炉能烧的东西。",
+            "把用 MRU 的机器上的绑定宝石改绑到它身上，改绑前要先清掉旧的绑定，做法见[[crafting/bound_gem]]。从这以后，矩阵换能器就可以歇着了。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "热力产能器到手，摆好以后界面上的产量不是 0，MRU 一直往上涨。"
+        },
+        {
+          "type": "h",
+          "text": "平衡值"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.heat_generator.balance<0",
+          "text": "每台热力产能器放下时，会随机得到一个 0～2 之间的<em>平衡值</em>，界面上看得到，拆掉重放就重新随机。这个数在[[generators/projections]]里很要紧，0.5 以下和 1.5 以上的都用得上，碰上了先别拆。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.heat_generator.balance>=0",
+          "text": "热力产能器产出的 MRU，平衡值固定是 {cfg:machines.heat_generator.balance}，界面上看得到。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "存满 {cfg:machines.heat_generator.max_mru} MRU 以后，它不再点燃新的燃料，可<w>正在烧的那份会烧完，这期间多产的 MRU 全都浪费掉</w>。煤、木炭这类燃料正合适，一桶能烧 1000 秒的岩浆就不划算了。收到红石信号时，整台机器会停下。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每点燃一份燃料，旁边的格子里就多一个{item:essentialcraft5:magical_slag}，攒到 64 个就不再增加，燃料照烧不误。炉渣记得留着，魔力灯笼、拟态方块和磁化法杖都要用它。",
+            "岩浆桶烧完会还你一个空桶。漏斗和管道能往里送燃料，也能把炉渣和空桶抽出来。",
+            "拆掉产能器，里面存着的 MRU 也就一起没了。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "去过海纳尔以后，可以用虚空材料把它升级成[[void_machines/ultra_heat_generator]]，它越烧越热，温度越高，产量越大。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/generators/heat_generator.json — #plates/magic、魔力屏幕、转换矩阵、加热棒 ×2、#cores/magic、框架、世界交互器、收集器",
+        "blockentity/HeatGeneratorBlockEntity.java:121 — 产量 = mru_generated × 四面系数连乘，取整；默认 20 × 0.95⁴ = 16、20 × 0.75⁴ = 6",
+        "blockentity/HeatGeneratorBlockEntity.java:187 — 空气 0、下界岩 0.75（L192）、岩浆 0.95（L195，流动的同一方块）、火 #fire 0.7（L198，含灵魂火）、其它 0.5（L203）",
+        "blockentity/HeatGeneratorBlockEntity.java:131 — 没满才点新燃料，正在烧的照常烧完；L122 红石时整台停住",
+        "blockentity/HeatGeneratorBlockEntity.java:149 — 每点一个燃料出一个魔力炉渣，满 64 不加；L162 岩浆桶还空桶",
+        "blockentity/RandomBalanceBlockEntity.java:47 — 平衡值 = nextFloat × 2（[0, 2)），放下后第一刻随机一次；配置 ≥ 0 时固定（L41）",
+        "block/MachineBlock.java:115 — 拆掉时只掉物品栏，MRU 不保留（战利品表只掉方块本身）",
+        "data/essentialcraft5/recipes/essence/magical_lantern.json、redstonetools/mimic.json、staffs/magnetizing_staff.json — 用魔力炉渣",
+        "原版：煤 1600 刻（80 秒），岩浆桶 20000 刻（1000 秒）",
+        "四面岩浆 / 下界岩的占位符：先 add:-0.499999 再四舍五入，等于代码的 (int)(x + 1e-6) 截断"
+      ]
+    },
+    {
+      "id": "natural_furnace",
+      "title": "{item:essentialcraft5:natural_furnace}",
+      "icon": "essentialcraft5:natural_furnace",
+      "summary": "烧掉花草换 MRU",
+      "complete": "essentialcraft5:guide/natural_furnace",
+      "optional": true,
+      "items": [
+        "essentialcraft5:natural_furnace"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：造一台{item:essentialcraft5:natural_furnace}，把花、树苗和草烧成 MRU。它和热力产能器有一台就够，两台都造也行。"
+        },
+        {
+          "type": "p",
+          "text": "花草也是活物，身上一样罩着一层 MRU 矩阵，先辈烧花取 MRU 就是这个道理。自然熔炉用不着岩浆和煤，有一片花田和一堆骨粉，它就能一直烧下去。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:natural_furnace"
+        },
+        {
+          "type": "p",
+          "text": "材料和热力产能器相同，只是摆法不一样。"
+        },
+        {
+          "type": "h",
+          "text": "能烧什么"
+        },
+        {
+          "type": "table",
+          "header": [
+            "植物",
+            "一株烧多久"
+          ],
+          "widths": [
+            5,
+            3
+          ],
+          "rows": [
+            {
+              "if": "cfg:machines.natural_furnace.ticks_flower>0",
+              "cells": [
+                "花，包括向日葵、玫瑰丛等高花",
+                "{cfg:machines.natural_furnace.ticks_flower|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.natural_furnace.ticks_sapling>0",
+              "cells": [
+                "树苗",
+                "{cfg:machines.natural_furnace.ticks_sapling|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.natural_furnace.ticks_grass>0",
+              "cells": [
+                "草和蕨，包括高草丛和大型蕨",
+                "{cfg:machines.natural_furnace.ticks_grass|sec}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "烧着的时候每刻产出 {cfg:machines.natural_furnace.mru_generated} MRU，存满 {cfg:machines.natural_furnace.max_mru} MRU 以后就不再点新的植物。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.natural_furnace.ticks_flower>0",
+          "text": "一组 64 朵花大约能烧 {cfg:machines.natural_furnace.ticks_flower|mul:64|div:1200|round:0} 分钟。"
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下自然熔炉，打开界面。",
+            "把植物放进火苗下面的格子，最多放一组。它一次点燃一株，烧完什么也不剩。",
+            "照热力产能器的做法，把各台机器的绑定宝石绑到它身上。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "自然熔炉到手，放进一株花，界面上的火苗亮起来，MRU 开始往上涨。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.natural_furnace.balance<0",
+          "text": "它的<em>平衡值</em>和热力产能器一样，放下时随机得到 0～2 之间的一个数，拆掉重放就重新随机，用处见[[generators/projections]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.natural_furnace.balance>=0",
+          "text": "自然熔炉产出的 MRU，<em>平衡值</em>固定是 {cfg:machines.natural_furnace.balance}。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书给这一页起的副标题是「注意，植物魔法！」，冲着的是另一个以花为能的模组。书里说草和树苗身上也有 MRU 矩阵，其中最要紧的还是花。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "漏斗和管道能从任意一面往里送植物，别的东西送不进去，也抽不出任何东西。",
+            "存满以后，正在烧的那株照样烧完。收到红石信号时，整台机器会停下。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "去过海纳尔以后，可以用虚空材料把它升级成[[void_machines/ultra_natural_furnace]]，改烧花、树叶、草和原木，产量也高得多。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/generators/natural_furnace.json — 和热力产能器同一套原料",
+        "blockentity/NaturalFurnaceBlockEntity.java:65 — max_mru；L69 mru_generated；L71 / L74 / L77 花 / 树苗 / 草的燃烧刻数",
+        "data/essentialcraft5/tags/blocks/natural_furnace_flowers.json — #small_flowers + #tall_flowers；natural_furnace_saplings — #saplings；natural_furnace_grass — 草、蕨、高草丛、大型蕨",
+        "blockentity/NaturalFurnaceBlockEntity.java:174 — 没满才点新的一株；L182 一次拿走一株，不留副产物",
+        "blockentity/NaturalFurnaceBlockEntity.java:38 — 漏斗任意面只能塞植物、不能抽；L165 有红石整台停住",
+        "blockentity/RandomBalanceBlockEntity.java:47 — 放下随机平衡值",
+        "原作 TileFlowerBurner：周围 ±7 格找植物（第四批改成烧格子里的物品，policy §1.1）",
+        "blockentity/NaturalFurnaceBlockEntity.java:120 — 某一类燃烧刻数配成 0 时那一类放不进去，表里那一行隐藏",
+        "原作 en_US.lang / zh_CN.lang ec3book.discovery_essentialcraft.disc.naturalFurnace.desc「Be aware, Botania!」/「注意,植物魔法!」、essentialcraft.page.naturalFurnace_0 — 小知识的出处；原作中英文名都是自然熔炉（Natural Furnace），Flower Burner 只是代码里的类名"
+      ]
+    },
+    {
+      "id": "projections",
+      "title": "平衡值与矩阵投影",
+      "icon": "essentialcraft5:frozen_matrix_projection",
+      "summary": "冰冻、混沌、魔力与暗影",
+      "complete": "essentialcraft5:guide/frozen_projection",
+      "items": [
+        "essentialcraft5:empty_matrix_projection",
+        "essentialcraft5:frozen_matrix_projection",
+        "essentialcraft5:chaos_matrix_projection",
+        "essentialcraft5:magic_matrix_projection",
+        "essentialcraft5:shade_matrix_projection"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做一块{item:essentialcraft5:frozen_matrix_projection}，下一篇的{item:essentialcraft5:cold_distillator}要用它。"
+        },
+        {
+          "type": "p",
+          "text": "先辈用灵魂石把矩阵拓了下来，拓出来的东西叫<em>矩阵投影</em>，是一片「矩阵底片」。先照出空白的，再拿不同平衡值的 MRU 去照，底片就会染上不同的性质，平衡值是什么见[[start/mru]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "投影",
+            "要的平衡值",
+            "辐射仓照多久",
+            "后面用在"
+          ],
+          "widths": [
+            4,
+            3,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:empty_matrix_projection}",
+              "不限",
+              "1000 刻（50 秒）",
+              "下面四种的底料"
+            ],
+            [
+              "{item:essentialcraft5:frozen_matrix_projection}",
+              "0.5 及以下",
+              "1 万刻（8 分 20 秒）",
+              "冷凝器"
+            ],
+            [
+              "{item:essentialcraft5:chaos_matrix_projection}",
+              "1.5 及以上",
+              "1 万刻（8 分 20 秒）",
+              "第十章的日光吸收器"
+            ],
+            [
+              "{item:essentialcraft5:magic_matrix_projection}",
+              "0.5～1.5 之间",
+              "2 万刻（16 分 40 秒）",
+              "第八章的月亮井"
+            ],
+            [
+              "{item:essentialcraft5:shade_matrix_projection}",
+              "不限，下格另放一块{item:essentialcraft5:dark_soul_matter}",
+              "2 万刻（16 分 40 秒）",
+              "枪的暗影透镜"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把一块{item:essentialcraft5:soul_stone}放进辐射仓上格，照出一块空白投影。灵魂石绑没绑定都行，照完会被消耗掉。",
+            {
+              "if": [
+                "cfg:machines.heat_generator.balance<0",
+                "cfg:machines.natural_furnace.balance<0"
+              ],
+              "text": "找一台平衡值在 0.5 以下的产能器。热力产能器和自然熔炉的平衡值都是放下时随机定的，数不合适就拆掉重放，平均四次能碰上一次。"
+            },
+            {
+              "if": [
+                "cfg:machines.heat_generator.balance<0",
+                "cfg:machines.natural_furnace.balance>=0"
+              ],
+              "text": "找一台平衡值在 0.5 以下的{item:essentialcraft5:heat_generator}。它的平衡值是放下时随机定的，数不合适就拆掉重放，平均四次能碰上一次。"
+            },
+            {
+              "if": [
+                "cfg:machines.heat_generator.balance>=0",
+                "cfg:machines.natural_furnace.balance<0"
+              ],
+              "text": "找一台平衡值在 0.5 以下的{item:essentialcraft5:natural_furnace}。它的平衡值是放下时随机定的，数不合适就拆掉重放，平均四次能碰上一次。"
+            },
+            {
+              "if": [
+                "cfg:machines.heat_generator.balance>=0",
+                "cfg:machines.natural_furnace.balance>=0"
+              ],
+              "text": "找一台平衡值在 0.5 以下的产能器，各种产能器的平衡值列在[[start/mru]]里。"
+            },
+            "专门为这一步放一台<em>新的</em>辐射仓，把它的宝石绑到这台产能器上。也可以把旧辐射仓拆掉重放，这样里面存的 MRU 就清空了。",
+            "把空白投影放进上格，等上 1 万刻。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:empty_matrix_projection"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:frozen_matrix_projection",
+            "essentialcraft5:chaos_matrix_projection",
+            "essentialcraft5:magic_matrix_projection",
+            "essentialcraft5:shade_matrix_projection"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一块冰冻矩阵投影。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "为什么要新的辐射仓",
+          "text": "机器里的平衡值，是拉进来的所有 MRU 按数量混出来的。旧辐射仓里存满了平衡值 1.0 的纯净 MRU，平衡值不对它就不开工，存量一点不减，新的冰冻 MRU 也就拉不进来，只能一直卡在「{lang:gui.essentialcraft5.radiating_chamber.wrong_balance}」。"
+        },
+        {
+          "type": "h",
+          "text": "要点"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>拆产能器之前</em>，先把里面的 MRU 用掉，一拆，存着的 MRU 就没了。",
+            {
+              "if": "cfg:machines.heat_generator.balance<0||cfg:machines.natural_furnace.balance<0",
+              "text": "碰上平衡值 1.5 以上的产能器也先留着，第十章的混沌投影正要用它，冰冻、混沌各备一台最省事。"
+            },
+            "照到一半平衡值超出范围，进度就会清零。这活儿要很久，用不着守在旁边白挨腐化，腐化的事见[[crafting/corruption]]。",
+            "魔力投影不挑，平衡值在 0.5～1.5 之间就行，矩阵换能器的纯净 MRU 就能照。",
+            "暗影投影不看平衡值，上格放空白投影、下格放一块{item:essentialcraft5:dark_soul_matter}，照 2 万刻就成，暗黑灵魂物质的做法见[[storage/soul_storage]]。它只用来做枪的透镜，见[[guns/parts]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "聚集体会被喂大",
+          "text": "照投影的整段时间里，辐射仓都在漏 MRU。照一块要 1 万刻的冰冻或混沌投影，会往 32 格内的聚集体里灌进 5000 左右，照一块 2 万刻的魔力投影大约灌进 1 万，照上两块，聚集体就大到会伤人。把辐射仓放在离你常待的地方 13 格以外，或者照完用{item:essentialcraft5:mru_mover}把聚集体挪走，详见[[start/mrucu]]。",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen==1"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "聚集体会被喂大",
+          "text": "照一块投影要上万刻，这段时间里辐射仓一直在漏 MRU，附近的聚集体也越长越大。把辐射仓放在离你常待的地方 13 格以外，或者照完用{item:essentialcraft5:mru_mover}把聚集体挪走，详见[[start/mrucu]]。",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen!=1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "投影本身还能拿来右键，改变你自己的矩阵属性，见[[gear/projection_use]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩阵三阶起，你最后吸收的那块投影还决定你的[[matrix/alignment|相性]]：混沌、冰冻、魔力、暗影各给一种被动。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/radiating_chamber/empty_matrix_projection.json — 灵魂石，1000 刻，不限平衡值",
+        "data/essentialcraft5/recipes/radiating_chamber/frozen_matrix_projection.json — 10000 刻，平衡值 0.0~0.5；chaos — 10000 刻，1.5~2.0；magic — 20000 刻，(0.5, 1.5)；shade_matrix_projection.json — 空白投影 + 暗黑灵魂物质（下格），20000 刻，不限平衡值（原作做不出暗影投影，这条是补的；下格有东西，和另外三条不冲突）",
+        "blockentity/RadiatingChamberBlockEntity.java:283 — 按当前平衡值挑配方，不符就清零、不耗 MRU（L285），状态 WRONG_BALANCE；机器满了就不再拉，所以旧的纯净 MRU 一直卡着",
+        "mru/MRUStorage.java:117 — 拉进来的按数量加权平均",
+        "blockentity/RandomBalanceBlockEntity.java:47 — [0, 2) 均匀随机，≤ 0.5 的几率 1/4",
+        "block/MachineBlock.java:115 — 拆掉不保留 MRU",
+        "data/essentialcraft5/recipes/generators/cold_distillator.json — 冰冻投影；solar/sun_ray_absorber.json — 混沌投影；crystal/moon_well.json — 魔力投影",
+        "machines.heat_generator.balance / machines.natural_furnace.balance < 0（默认 -1）才是放下随机；配成固定值时第 2 步和「别急着拆」按条件换掉",
+        "blockentity/RadiatingChamberBlockEntity — 每刻漏 0~max_corruption_gen（默认 1，平均 0.5）：1 万刻约 5000、2 万刻约 1 万；mru/ECCorruption.java SEARCH_RADIUS 32；聚集体 12.5 格内伤人，所以 13 格外安全"
+      ]
+    },
+    {
+      "id": "cold_distillator",
+      "title": "{item:essentialcraft5:cold_distillator}",
+      "icon": "essentialcraft5:cold_distillator",
+      "summary": "从寒冷里析出 MRU",
+      "complete": "essentialcraft5:guide/cold_distillator",
+      "items": [
+        "essentialcraft5:cold_distillator",
+        "essentialcraft5:cold_stone"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：造一台{item:essentialcraft5:cold_distillator}，从周围的冰雪里析出 MRU。越冷的地方，空气里的 MRU 动得越慢，慢到一定地步就能把它滤出来。它不烧燃料，产出的又是冰冻 MRU，摆好以后就能一直转下去。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：{item:essentialcraft5:frozen_matrix_projection}、2 块{item:essentialcraft5:cold_stone}，{item:essentialcraft5:magical_screen}、{item:essentialcraft5:mru_conversion_matrix}、{item:essentialcraft5:world_interactor}、{item:essentialcraft5:magic_plate}、{item:essentialcraft5:elemental_core}、{item:essentialcraft5:mru_catcher}各一个。它不用产能器那样的加热棒和框架。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:cold_distillator"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:cold_stone"
+        },
+        {
+          "type": "p",
+          "text": "霜冻石是 4 块冰和 4 块雪块围着一块荧石合成的，它也是最冷的方块。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "p",
+          "text": "冷凝器以自己为中心，把各方向 3 格以内、7×7×7 范围里所有寒冷方块的冷值加起来，舍去小数再乘以 {cfg:machines.cold_distillator.mru_gen_modifier}，就是每刻的产量。摆上冰雪以后，产量最多 1 秒就会更新。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:cold_stone}",
+              "0.5"
+            ],
+            [
+              "{item:minecraft:blue_ice}",
+              "0.4"
+            ],
+            [
+              "{item:minecraft:packed_ice}",
+              "0.3"
+            ],
+            [
+              "{item:minecraft:snow_block}、{block:minecraft:powder_snow}",
+              "0.2"
+            ],
+            [
+              "{item:minecraft:ice}",
+              "0.15"
+            ],
+            [
+              "{item:minecraft:snow}（雪层）",
+              "0.05"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "比如周围摆 20 块霜冻石，冷值合计 10，每刻产出 {cfg:machines.cold_distillator.mru_gen_modifier|mul:10|add:-0.499999|int} MRU，换成 10 块浮冰，合计只有 3，每刻产出 {cfg:machines.cold_distillator.mru_gen_modifier|mul:3|add:-0.499999|int} MRU。冷凝器最多存 {cfg:machines.cold_distillator.max_mru} MRU，平衡值固定是 {cfg:machines.cold_distillator.balance}，收到红石信号时停机。"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "F": "essentialcraft5:cold_stone",
+            "D": "essentialcraft5:cold_distillator"
+          },
+          "anchor": "D",
+          "pattern": [
+            "FFFFF",
+            "F F F",
+            "FFDFF",
+            "F F F",
+            "FFFFF"
+          ],
+          "caption": "上面例子里的 20 块霜冻石，可以这样摆在机器这一层。以机器为中心、各方向 3 格以内（7×7×7）都算，上下几层也可以放。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "冷凝器到手，周围摆上冰雪以后，界面上的产量不是 0。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "省事的冰",
+          "text": "冰山和冰刺平原里有成片的浮冰和蓝冰，拿带精准采集的镐挖回来，比自己合成霜冻石省事得多。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:machines.cold_distillator.damage_entities_around",
+          "title": "当心寒气",
+          "text": "它工作时，每刻随机挑 3 格内的一个生物，给它 150 秒的 III 级挖掘疲劳、虚弱和缓慢，另有 20% 的几率扣 1 点血。玩家里只有放下它的人会被冻到，创造模式下不受影响，放好以后就离远一些。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.cold_distillator.damage_entities_around",
+          "text": "村民、玩家造的铁傀儡和雪傀儡、跟着玩家的悦灵、装了鞍的骆驼，还有驯服过、拴着拴绳或起了名字的生物，都不会被冻到。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "机器离源头超过 16 格的话，看[[generators/ray_tower]]，用不着就直接去第五章的[[storage/crystals]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/generators/cold_distillator.json — 魔力屏幕、收集器、转换矩阵、霜冻石 ×2、#cores/magic、#plates/magic、冰冻投影、世界交互器",
+        "data/essentialcraft5/recipes/materials/cold_stone.json — 冰 4、雪块 4、荧石 1",
+        "blockentity/ColdDistillatorBlockEntity.java:78 — 半径 3（7×7×7）；L80 每 20 刻重扫；L108 产量 = 冷值之和取整 × mru_gen_modifier",
+        "blockentity/ColdDistillatorBlockEntity.java:139 — 蓝冰 0.4、浮冰 0.3（L142）、雪块 / 细雪 0.2（L145）、冰 0.15（L148）、雪层 0.05（L151）；block/ColdStoneBlock.java:21 霜冻石 0.5",
+        "blockentity/ColdDistillatorBlockEntity.java:63 — max_mru；L64 balance 默认 0；L109 有红石不产",
+        "blockentity/ColdDistillatorBlockEntity.java:82 — 效果 3000 刻（150 秒）、放大值 2（III 级）；L169 20% 扣 1 点；L181 只影响主人、创造除外，其余按 ECEntityRules.isSpared",
+        "blockentity/ColdDistillatorBlockEntity.java:69 — damage_entities_around",
+        "例子的产量：(int)((int)(冷值之和 + 1e-6) × mru_gen_modifier + 1e-6)，占位符先 add:-0.499999 再四舍五入，结果相同"
+      ]
+    },
+    {
+      "id": "ray_tower",
+      "title": "{item:essentialcraft5:ray_tower}",
+      "icon": "essentialcraft5:ray_tower",
+      "summary": "把距离接长",
+      "complete": "essentialcraft5:guide/ray_tower",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ray_tower"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（按需）：机器离 MRU 源头超过 16 格时，用{item:essentialcraft5:ray_tower}接力。"
+        },
+        {
+          "type": "p",
+          "text": "射线塔是一座两格高的 MRU 中转站，自带一个绑定宝石槽，能存 {cfg:machines.ray_tower.max_mru} MRU。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ray_tower"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在源头 16 格以内放下射线塔，放进一颗绑着源头的宝石。",
+            "把远处那台机器的宝石绑到射线塔上，点上半截、下半截都行。",
+            "距离还不够，就再接一座，射线塔可以一座接一座地串下去。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "射线塔到手，接好以后，远处那台机器的界面上显示「{lang:gui.essentialcraft5.link.working}」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "每一座都要和上一座在同一个维度，所在区块也要加载着。中间哪一座的区块没加载，它后面的就全断了。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/generators/ray_tower.json — 魔力水 ×2、转换矩阵、魔力强化板 ×2、收集器 ×3、强化石",
+        "blockentity/RayTowerBlockEntity.java:17 — 两格高，0 号槽绑定宝石，距离同所有机器（三个轴各 16），可串联；L35 max_mru",
+        "item/BoundGemItem.java:108 — 点上半格绑到下半格（IBoundGemTarget）",
+        "mru/MRULink.java:114 — 源头区块没完全加载就不拉"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1219 @@
+{
+  "id": "matrix",
+  "order": 6,
+  "group": "start",
+  "title": "矩阵阶位速查",
+  "subtitle": "九阶、图谱、试炼与相性",
+  "icon": "essentialcraft5:soul_stone",
+  "if": "cfg:general.matrix_rank.enabled",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "你的矩阵",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "矩阵阶是什么，每阶给什么",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "矩阵并非生来如此。心神看管得久了，它会一层层加厚，经得起的也多起来。只是每厚一层，我们都得先挨上一场。",
+          "by": "《源质残卷·卷二》"
+        },
+        {
+          "type": "p",
+          "text": "你身上那层[[mru/soul_stone|MRU 矩阵]]分九阶，叫作<hl>矩阵阶</hl>，起初是零阶。矩阵阶没有经验条，只能一阶一阶地突破：每一阶先凑齐图谱、祭品和能量，再在{item:essentialcraft5:matrix_crucible}上打一场试炼。"
+        },
+        {
+          "type": "h",
+          "text": "突破要凑齐的三样"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>图谱</em>：你亲手杀过的敌对生物要够多少种，有几阶还点名要下界、海纳尔或首领，见[[matrix/codex]]。",
+            "<em>祭品和能量</em>：放进淬炼台的几样材料，以及 UBMRU、MRU 或 ESPE。能量在试炼开始时扣，祭品成功了才用掉。",
+            "<em>试炼</em>：在台子旁边打倒一批长着你自己模样的矩阵回响，见[[matrix/crucible]]。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每一次突破都是主线里的一步，第二章起每隔几章就有一次。下面是总览，每阶要的东西见[[matrix/ranks]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "阶",
+            "名字",
+            "在哪一章",
+            "新本事",
+            "矩阵容量"
+          ],
+          "rows": [
+            [
+              "一阶",
+              "觉察",
+              "第二章",
+              "拿着灵魂石看得见聚集体",
+              "—"
+            ],
+            [
+              "二阶",
+              "汲取",
+              "第五章",
+              "矩阵容量，体内能存 MRU",
+              "{cfg:general.matrix_rank.pool_per_rank|mul:1}"
+            ],
+            [
+              "三阶",
+              "定性",
+              "第十章",
+              "相性 I，武器带上矩阵特性",
+              "{cfg:general.matrix_rank.pool_per_rank|mul:2}"
+            ],
+            [
+              "四阶",
+              "凝炼",
+              "第十二章",
+              "矩阵虹吸",
+              "{cfg:general.matrix_rank.pool_per_rank|mul:3}"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "cells": [
+                "五阶",
+                "越界",
+                "第十五章",
+                "海纳尔辐射抗性 +5%",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled||!cfg:general.radiation.enabled",
+              "cells": [
+                "五阶",
+                "越界",
+                "第十五章",
+                "容量和耐受再涨一档",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "六阶",
+                "契约",
+                "第十七章",
+                "相性 II",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:5}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "七阶",
+                "审视",
+                "第十九章",
+                "矩阵稳固",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:6}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "八阶",
+                "暗影",
+                "第二十二章",
+                "暗影相性（直接 II）",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:7}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "九阶",
+                "源质",
+                "第二十三章",
+                "相性 III",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:8}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每升一阶，<em>耐受</em>还多 {cfg:general.matrix_rank.tolerance_per_rank|pct}，它只抵矩阵阶这一套带来的矩阵损伤，见[[matrix/tolerance]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "淬炼台上列着九阶。八阶在第二十二章，九阶是第二十三章、也是主线的最后一步，见[[shade/rank_8]]和[[apex/rank_9]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "淬炼台上列着九阶。六阶起要在海纳尔杀怪，去不了海纳尔的话，最高练到五阶。"
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0||cfg:general.matrix_rank.gates.holopad>0"
+          ],
+          "text": "门"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            {
+              "if": "cfg:general.matrix_rank.gates.hoanna_portal>0",
+              "cells": [
+                "海纳尔之门",
+                "矩阵阶不到 {cfg:general.matrix_rank.gates.hoanna_portal} 阶时，站进门里不会传送，魔力传送器也不往海纳尔送你，见[[hoanna/crossing]]"
+              ]
+            },
+            {
+              "if": "cfg:general.matrix_rank.gates.holopad>0",
+              "cells": [
+                "全息投影台",
+                "不到 {cfg:general.matrix_rank.gates.holopad} 阶召不出全息投影，见[[hologram/holopad]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0||cfg:general.matrix_rank.gates.holopad>0"
+          ],
+          "text": "门只拦进，不拦出，从海纳尔回来不看矩阵阶。"
+        },
+        {
+          "type": "h",
+          "text": "看自己几阶"
+        },
+        {
+          "type": "list",
+          "items": [
+            "绑定你的{item:essentialcraft5:soul_stone}，物品提示里写着你几阶、图谱几种、矩阵容量和相性，这几行只有你自己看得到。",
+            "淬炼台的界面左边是九阶表，右边列着下一阶的条件，凑齐的打勾，下面是按组翻页的图谱。"
+          ]
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1（矩阵阶）、§2.5（门）、policy.md §4.16；代码 matrix/*（MatrixRank、MatrixPool、MatrixSiphon、MatrixResonance 等）",
+        "tools/plan/batch13.md §3.1.3 — 九阶暂名定稿：三阶「相性」改「定性」（和被动「相性」同名）、七阶「回声」改「审视」（和审判庭哨兵的回声同名）；英文 Awareness / Drawing / Temper / Refining / Crossing / Covenant / Scrutiny",
+        "tools/plan/batch13.md §3.1.4 — 回报：一阶矩阵视觉、二阶容量、三 / 六阶相性 I / II、四阶虹吸、五阶海纳尔辐射抗性 +0.05、七阶稳固；容量 = pool_per_rank × (阶 − 1)",
+        "tools/plan/batch13.md §2.5 — 门：gates.hoanna_portal 5、gates.holopad 6（0 = 不设门）；只挡进不挡出",
+        "tools/plan/batch13.md §3.1.5 — 灵魂石提示（本人）写阶、图谱、容量、相性；淬炼台界面左九阶表、右下一阶条件、下面图谱按组分页",
+        "八、九阶（第二十二、二十三章）在 13e，本段只写到七阶；门关着时六阶要海纳尔击杀，停在五阶",
+        "data/essentialcraft5/matrix_ranks/rank_8.json、rank_9.json（13e 激活）— 八阶暗影：暗影相性（直接 II）、容量 × 7；九阶源质：相性 III、容量 × 8（batch13.md §3.1.3 / §3.1.4）"
+      ]
+    },
+    {
+      "id": "codex",
+      "title": "矩阵图谱",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "记下你亲手杀过的敌对生物",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<hl>矩阵图谱</hl>记着你亲手杀过哪些敌对生物，每种只记第一次，记的是种类，不是只数。突破的第一样条件就是图谱，每阶要几种见[[matrix/ranks]]。"
+        },
+        {
+          "type": "p",
+          "text": "杀到一种新的敌对生物时，快捷栏上方会写「矩阵图谱 +1：僵尸（9 / 13，三阶要 13）」这样一行。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.first_kill_ubmru_multiplier>0",
+          "text": "添上新种类的那一下，吸到的 UBMRU 另加本来的 {cfg:general.matrix_rank.first_kill_ubmru_multiplier|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "什么算数"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只算敌对生物。僵尸、骷髅、蜘蛛、苦力怕、末影人、女巫、幻翼都算，村民、动物和铁傀儡不算。别的模组加的敌对生物同样算数。",
+            "致命一击要是你自己打的，近战、弓箭、三叉戟、枪都行，宠物咬死的、别人补刀的不算。你打过它，它在 5 秒内摔死或烧死，也算你的。",
+            "首领例外：凋灵、末影龙、全息投影、审判庭哨兵这些首领，打掉它至少一成生命的人每人都记一次，几个人合打时不只记补刀的那个。聚能魔像、矩阵之影这些一下只能打掉一部分血的首领，算的是真正扣掉的那部分。",
+            "被不死图腾救下的不算死。矩阵回响、全息诱饵这类东西不记。",
+            "刷怪笼和刷怪塔里的怪照样能记，只是每种只记一次，多杀没有用。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "分组"
+        },
+        {
+          "type": "p",
+          "text": "有几阶除了总数，还要求某一组里有几种："
+        },
+        {
+          "type": "table",
+          "header": [
+            "组",
+            "怎么算"
+          ],
+          "rows": [
+            [
+              "下界",
+              "下界的九种怪：烈焰人、恶魂、岩浆怪、凋灵骷髅、猪灵、猪灵蛮兵、疣猪兽、僵尸疣猪兽、僵尸猪灵，在哪里杀的都算"
+            ],
+            [
+              "远征",
+              "掠夺者、卫道士、唤魔者、恼鬼、劫掠兽、守卫者、远古守卫者、监守者，打一场袭击或去一趟海底神殿就有"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "在海纳尔杀死的种类，单独记一份，主世界杀过的种类到海纳尔再杀一次也记"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔原生",
+                "八种海纳尔本地的怪，见[[bestiary/overview]]"
+              ]
+            },
+            [
+              "首领",
+              "凋灵、末影龙、全息投影、审判庭哨兵这类首领"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "末地",
+                "潜影贝和末影龙"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "源质魔法的生物",
+                "这个模组自己的怪，异兽录里写的那些和风法师、全息投影都算，见[[bestiary/overview]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "和平难度",
+          "text": "和平难度下不刷敌对生物，图谱这一条按已经凑齐算。换回别的难度以后照实际的图谱算，已经升上去的阶不会收回。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "图谱记在你身上，死了也不丢。",
+            "最多记 {cfg:general.matrix_rank.codex_max_entries} 种。"
+          ]
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.1 — 只记敌对（Enemy 或 MONSTER）或首领（forge:bosses，全息投影、审判庭哨兵靠这条进图谱，matrix/MatrixCodex.countable）；致命一击是真玩家，或没有攻击者、本人 100 刻内打过；首领按 ≥ 10% 有效伤害各记一次；图腾救下、growth_excluded 不记；分组：总数 / 下界 / 海纳尔（另存一份）/ 首领 / 远征（codex_expedition）等",
+        "tools/plan/batch13.md §3.1.1 — 动作栏「矩阵图谱 +1：僵尸（9 / 13，三阶要 13）」；首杀 UBMRU 另加 first_kill_ubmru_multiplier 倍；上限 codex_max_entries；和平难度按已满足算，改回难度不收回已升的阶",
+        "data/essentialcraft5/tags/entity_types/codex_expedition.json、codex_nether.json — 远征组、下界组成员（预备）；下界组按 codex_nether 标签数，不看在哪个维度杀的（matrix/MatrixCodex.Group.NETHER）",
+        "本模组和末地两组只在八阶（13e）用到，这里不写",
+        "data/essentialcraft5/tags/entity_types/hoanna_natives.json — 八种（13d-P）；matrix/MatrixCodex.Group.HOANNA_NATIVES 按标签数，不看在哪个维度杀的",
+        "matrix/MatrixCodex.Group — end = 标签 essentialcraft5:codex_end（潜影贝、末影龙）、mod = 命名空间 essentialcraft5 的敌对生物；八阶要 end 1、mod 3（13e 才用到，表里补两行）"
+      ]
+    },
+    {
+      "id": "crucible",
+      "title": "{item:essentialcraft5:matrix_crucible}",
+      "icon": "essentialcraft5:matrix_crucible",
+      "summary": "试炼储备、站点、开始与失败",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:matrix_crucible}是突破矩阵阶的地方，第二章就能做，见[[mru/crucible]]。台子里能存 {cfg:machines.matrix_crucible.max_mru} MRU，用[[crafting/bound_gem|绑定宝石]]从产能器拉；台面上的祭品格只能亲手放东西，漏斗塞不进去。"
+        },
+        {
+          "type": "p",
+          "text": "台子是谁放下的就归谁，别人能不能用，要看领地许不许他动这一格。"
+        },
+        {
+          "type": "h",
+          "text": "试炼储备"
+        },
+        {
+          "type": "p",
+          "text": "一、二阶要花 UBMRU，可 UBMRU 死了就清零，第二章的矩阵换能器又一直在抽它。拿着绑定你的{item:essentialcraft5:soul_stone}潜行右键任意一台淬炼台，身上的 UBMRU 就存进你的<em>试炼储备</em>。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "储备记在你身上，哪一台淬炼台都能用。",
+            "死了也不丢，只能花在试炼上。",
+            "最多存到下一阶要的量，多出来的留在你身上。升阶以后储备比新的上限多，多出的部分会退回你身上。",
+            "试炼进行中存不进去，等它结束再存。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "存之前先把矩阵换能器里的灵魂石取出来。换能器没存满的时候，每刻都在换走你的 UBMRU，你攒不起来。"
+        },
+        {
+          "type": "h",
+          "text": "站点"
+        },
+        {
+          "type": "p",
+          "text": "一到三阶，有淬炼台就够。四阶起，台子 8 格内要有一座搭好的[[pentacle/pentacle|灵魂五芒星]]，档位见下表。试炼要的 ESPE 从这座五芒星的柱子里抽，和五芒星治腐化效果时一样，按折算后的数算。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "四阶",
+              "0 档"
+            ],
+            [
+              "五阶",
+              "1 档"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "六阶",
+                "2 档"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "七阶",
+                "3 档"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这座五芒星要是你自己的，或者是你有权改动的。别人家的五芒星不算，界面上会写「这座五芒星不归你」，也不会抽它的 ESPE。"
+        },
+        {
+          "type": "h",
+          "text": "开始"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把这一阶的祭品放进台子，能量备够。",
+            "站在台子 3 格内，主手拿着绑定你的灵魂石，打开界面，点「开始淬炼」。",
+            "界面右边每一条都打勾才点得动。你的生命还要在一半以上，不在冷却里，也没有别的试炼正在进行。",
+            "开始的那一刻扣掉能量：UBMRU 先扣试炼储备，不够再扣身上的，MRU 扣台子里的，ESPE 扣五芒星柱子里的。祭品锁在格子里，成功了才用掉。"
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "text": "打回响"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "text": "台子周围 {cfg:general.matrix_rank.trial.spawn_radius_min}～{cfg:general.matrix_rank.trial.spawn_radius_max} 格的空地上会陆续冒出<em>矩阵回响</em>，它们长着你自己的模样，半透明，颜色随你的矩阵属性。屏幕上方有一条只有你看得见的进度条，限时内打倒够数就成功，每阶几只、限时多久见[[matrix/ranks]]。"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "items": [
+            "回响只打你，也只吃你的伤害和药水，别人帮不上忙，也妨碍不了你。",
+            "它们不掉东西，不给经验和 UBMRU，不进图谱，也不破坏方块。",
+            "台子周围没有空地，或者那里不归你改动，回响就放不出来，试炼也开不了，什么都不扣。",
+            "开始以后，回响出现过的地方变成了你动不了的领地，或者回响被拦着放不出来，试炼会中止，能量退还。那些地方要是被方块或液体堵住了，试炼照常计时。",
+            "台子最好放在开阔的平地上。回响被墙或坑困住、走不到你身边时，过几秒会被挪到你附近。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+          "text": "试炼不放回响，改成<em>引导</em>：站在台子 3 格内不动、不受伤，坚持够时间就成功。基础 {cfg:general.matrix_rank.trial.peaceful_channel_seconds} 秒，每阶再加 10 秒，走动或受伤会打断。引导也有时限，是要站的秒数的两倍再加 60 秒，进度条上写着还剩几秒，到点还没站够就算失败。"
+        },
+        {
+          "type": "h",
+          "text": "失败与冷却"
+        },
+        {
+          "type": "p",
+          "text": "这几种情况算失败：你死了、下线、换了维度、离开台子超过 {cfg:general.matrix_rank.trial.leave_radius} 格、台子被挖掉，或者时间到了还没打完（引导是还没站够）。已经扣掉的能量不退，祭品原样留在格子里（台子被挖掉时掉在原地），{cfg:general.matrix_rank.trial.fail_cooldown_seconds} 秒内不能再开，退出重进也不清冷却。"
+        },
+        {
+          "type": "h",
+          "text": "成功"
+        },
+        {
+          "type": "p",
+          "text": "成功时矩阵升一阶，祭品用掉，屏幕正中出现新阶的名字。突破也会伤到矩阵：矩阵损伤加 {cfg:general.matrix_rank.trial.success_matrix_damage_per_rank} × 新阶，按[[matrix/tolerance|耐受]]打折。"
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "style": "info",
+          "title": "和平难度",
+          "text": "和平难度下没有回响，试炼改成<em>引导</em>：站在台子 3 格内不动、不受伤，坚持 {cfg:general.matrix_rank.trial.peaceful_channel_seconds} 秒再加每阶 10 秒，走动或受伤会打断。引导也有时限，是要站的秒数的两倍再加 60 秒，进度条上写着还剩几秒，到点还没站够就算失败。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.2 — 淬炼台：MRUBlockEntity，MRU 上限 10 万（绑定宝石进）；主人 = 放下的人，别人能否使用由领地交互保护管；祭品格 slotRule 拒绝自动化插入",
+        "tools/plan/batch13.md §3.1.2 — 试炼储备：手持绑定自己的灵魂石潜行右键任意淬炼台存入 matrix_trial_reserve；上限 = 下一阶要的 UBMRU；死亡不丢、只能花在试炼上；换能器每刻扣主人 10 UBMRU，存之前先取下灵魂石",
+        "tools/plan/batch13.md §3.1.2 — 站点：四阶起 8 格内成形的灵魂五芒星，档位四阶 0 / 五阶 1 / 六阶 2 / 七阶 3；有效 ESPE 照 PlayerPentacleBlockEntity；只认自己的或 canEdit 的五芒星，界面写「这座五芒星不归你」",
+        "tools/plan/batch13.md §3.1.2 — 开始：3 格内、主手灵魂石、点「开始淬炼」；核对图谱 / 祭品 / 能量 / 站点 / 生命 ≥ 一半 / 冷却 / 无别的试炼 / 不是和平；开始时扣能量（UBMRU 先储备后身上），祭品锁格、成功才消耗",
+        "tools/plan/batch13.md §3.1.2 — 回响：trial.spawn_radius_min / max 格内逐格 canEdit + 无碰撞，开始时一只都放不出来就开不了、什么都不扣；只盯试炼者、只吃试炼者伤害和药水、不掉落不给经验 / UBMRU、不进图谱、不存盘、不破坏方块；首领血条只给试炼者看",
+        "matrix/MatrixTrials 类注释 — 中途放不出回响：放过的格子都变成不能动的领地、或者回响被插件 / 别的模组拒了，200 刻后中止退还；被方块液体堵住的照常计时、到点超时失败。走不到试炼者身边的回响连续 3 次（每 20 刻查一次）挪到试炼者周围 2~4 格；储备超过新上限的部分在存储备和试炼成功时退回身上，试炼进行中存不进",
+        "tools/plan/batch13.md §3.1.2 — 失败（死亡、下线、换维度、离台 > trial.leave_radius、超时）：能量不退、祭品留格、冷却 trial.fail_cooldown_seconds（存 PlayerData）；成功：阶 +1、祭品消耗、矩阵损伤 + trial.success_matrix_damage_per_rank × 新阶（走 addMatrixDamage，吃耐受）",
+        "tools/plan/batch13.md §3.1.2 / MatrixTrialConfig — 和平难度或 trial.mobs_enabled = false 时改「引导」：3 格内不动不受伤 peaceful_channel_seconds + 10 × 阶 秒；被打断的处理以代码为准",
+        "matrix/MatrixTrials.CHANNEL_SLACK_SECONDS — 引导时限 = 要站的时间 × 2 + 60 秒，到点按超时失败；首领血条写剩余时限"
+      ]
+    },
+    {
+      "id": "ranks",
+      "title": "各阶的条件",
+      "icon": "essentialcraft5:matrix_crucible",
+      "summary": "每阶的图谱、祭品、能量与回响",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "下面每阶的「回报」不含耐受，耐受每阶都给。能量里的 ESPE 是折算后的数，和五芒星界面上显示的一样。"
+        },
+        {
+          "type": "h",
+          "text": "一阶 · 觉察（第二章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "总数 4 种"
+            ],
+            [
+              "站点",
+              "只要淬炼台"
+            ],
+            [
+              "祭品",
+              "{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}、{item:essentialcraft5:air_drops}各 4 颗"
+            ],
+            [
+              "能量",
+              "5000 UBMRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 2 只，同时最多 2 只；每只 20 点生命，一下打 4 点；限时 70 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:10} 秒"
+              ]
+            },
+            [
+              "回报",
+              "矩阵视觉：主手或副手拿着绑定你的灵魂石时，看得见聚集体和它的存量"
+            ],
+            [
+              "步骤",
+              "[[mru/rank_1]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "二阶 · 汲取（第五章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "总数 8 种，其中下界 2 种"
+            ],
+            [
+              "站点",
+              "只要淬炼台"
+            ],
+            [
+              "祭品",
+              "2 块{item:essentialcraft5:mru_shard}、2 块{item:essentialcraft5:obsidian_plate}、4 块{item:essentialcraft5:magical_ingot}"
+            ],
+            [
+              "能量",
+              "2 万 UBMRU，台子里另要 2000 MRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 3 只，同时最多 2 只；每只 32 点生命，一下打 5 点；限时 80 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:20} 秒"
+              ]
+            },
+            [
+              "回报",
+              "[[matrix/reservoir|矩阵容量]] {cfg:general.matrix_rank.pool_per_rank|mul:1} MRU"
+            ],
+            [
+              "步骤",
+              "[[storage/rank_2]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "三阶 · 定性（第十章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "总数 13 种，其中下界 3 种；你的矩阵属性不能是中性"
+            ],
+            [
+              "站点",
+              "只要淬炼台"
+            ],
+            [
+              "祭品",
+              "第九章的精华 4 个，要同一种、叠在同一格里（哪种元素、哪个稀有度都行，不能混着放）、1 块{item:essentialcraft5:combined_magical_alloys}、1 块{item:essentialcraft5:sun_imbued_glass}"
+            ],
+            [
+              "能量",
+              "1 万 MRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 4 只，同时最多 3 只；每只 44 点生命，一下打 6 点；限时 90 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:30} 秒"
+              ]
+            },
+            [
+              "回报",
+              "[[matrix/alignment|相性]] I，带矩阵特性的武器开始起作用；矩阵容量 {cfg:general.matrix_rank.pool_per_rank|mul:2}"
+            ],
+            [
+              "步骤",
+              "[[solar/rank_3]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "四阶 · 凝炼（第十二章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "总数 17 种，其中下界 4 种"
+            ],
+            [
+              "站点",
+              "0 档灵魂五芒星"
+            ],
+            [
+              "祭品",
+              "1 个{item:essentialcraft5:condensed_matrix}、4 块{item:essentialcraft5:mithriline_ingot}、2 块{item:essentialcraft5:pale_block}"
+            ],
+            [
+              "能量",
+              "2 万 MRU + 2000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 5 只，同时最多 3 只；每只 56 点生命，一下打 7 点；限时 100 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:40} 秒"
+              ]
+            },
+            [
+              "回报",
+              "[[matrix/reservoir|矩阵虹吸]]；矩阵容量 {cfg:general.matrix_rank.pool_per_rank|mul:3}"
+            ],
+            [
+              "步骤",
+              "[[pentacle/rank_4]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "五阶 · 越界（第十五章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "总数 21 种，其中下界 4 种，要有[[wind_mage/wind_mages|风法师]]，远征至少 1 种"
+            ],
+            [
+              "站点",
+              "1 档灵魂五芒星"
+            ],
+            [
+              "祭品",
+              "1 个{item:essentialcraft5:condensed_matrix}、1 颗{item:essentialcraft5:wind_gem}、1 颗{item:essentialcraft5:air_focus}、4 块{item:essentialcraft5:mithriline_ingot}"
+            ],
+            [
+              "能量",
+              "4 万 MRU + 4000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 6 只，同时最多 3 只；每只 68 点生命，一下打 8 点；限时 110 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:50} 秒"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "cells": [
+                "回报",
+                "海纳尔辐射抗性 +5%；矩阵容量 {cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled||!cfg:general.radiation.enabled",
+              "cells": [
+                "回报",
+                "矩阵容量 {cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.matrix_rank.gates.hoanna_portal==5"
+              ],
+              "cells": [
+                "门",
+                "海纳尔之门"
+              ]
+            },
+            [
+              "步骤",
+              "[[logistics/rank_5]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "六阶 · 契约（第十七章）"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "图谱",
+              "总数 24 种，其中至少 4 种是在海纳尔杀的、2 种是海纳尔的本地怪"
+            ],
+            [
+              "站点",
+              "2 档灵魂五芒星"
+            ],
+            [
+              "祭品",
+              "2 个{item:essentialcraft5:condensed_matrix}、1 个{item:essentialcraft5:void_mru_reactor}、4 块{item:essentialcraft5:ackronite_ingot}、4 个同一种[[hoanna_explore/specialties|海纳尔特产]]"
+            ],
+            [
+              "能量",
+              "6 万 MRU + 6000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 7 只，同时最多 3 只；每只 80 点生命，一下打 9 点；限时 120 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:60} 秒"
+              ]
+            },
+            [
+              "回报",
+              "相性 II；矩阵容量 {cfg:general.matrix_rank.pool_per_rank|mul:5}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.gates.holopad==6",
+              "cells": [
+                "门",
+                "全息投影台"
+              ]
+            },
+            [
+              "步骤",
+              "[[demons/rank_6]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "七阶 · 审视（第十九章）"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "图谱",
+              "总数 27 种，其中首领至少 2 种"
+            ],
+            [
+              "站点",
+              "3 档灵魂五芒星"
+            ],
+            [
+              "祭品",
+              "2 个{item:essentialcraft5:condensed_matrix}、2 个{item:essentialcraft5:demonic_core}、1 个数学核心（加、减、乘、除哪一种都行）"
+            ],
+            [
+              "能量",
+              "8 万 MRU + 8000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 8 只，同时最多 4 只；每只 92 点生命，一下打 10 点；限时 130 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:70} 秒"
+              ]
+            },
+            [
+              "回报",
+              "[[matrix/tolerance|矩阵稳固]]；矩阵容量 {cfg:general.matrix_rank.pool_per_rank|mul:6}"
+            ],
+            [
+              "步骤",
+              "[[inquisitorium/rank_7]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "八阶 · 暗影（第二十二章）"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "图谱",
+              "总数 30 种，其中至少 8 种是在海纳尔杀的、1 种是末地的、3 种是源质魔法的生物"
+            ],
+            [
+              "站点",
+              "4 档灵魂五芒星"
+            ],
+            [
+              "祭品",
+              "3 个{item:essentialcraft5:condensed_matrix}、1 个{item:essentialcraft5:shade_core}、1 块{item:essentialcraft5:matter_of_eternity}、8 个{item:essentialcraft5:umbral_crystal}"
+            ],
+            [
+              "能量",
+              "10 万 MRU + 12000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 9 只，同时最多 4 只；每只 104 点生命，一下打 11 点；限时 140 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:80} 秒"
+              ]
+            },
+            [
+              "回报",
+              "暗影相性（直接 II）；矩阵容量 {cfg:general.matrix_rank.pool_per_rank|mul:7}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.gates.calamity_beacon==8",
+              "cells": [
+                "门",
+                "天灾信标"
+              ]
+            },
+            [
+              "步骤",
+              "[[shade/rank_8]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "九阶 · 源质（第二十三章）"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "图谱",
+              "总数 33 种，要有天灾之心"
+            ],
+            [
+              "站点",
+              "4 档灵魂五芒星"
+            ],
+            [
+              "祭品",
+              "3 个{item:essentialcraft5:condensed_matrix}、2 个{item:essentialcraft5:shade_core}、1 个{item:essentialcraft5:calamity_remnant}"
+            ],
+            [
+              "能量",
+              "10 万 MRU + 16000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 10 只，同时最多 4 只；每只 116 点生命，一下打 12 点；限时 150 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:90} 秒"
+              ]
+            },
+            [
+              "回报",
+              "相性 III；矩阵容量 {cfg:general.matrix_rank.pool_per_rank|mul:8}"
+            ],
+            [
+              "步骤",
+              "[[apex/rank_9]]"
+            ]
+          ]
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.3 — 九阶表（数据 data/essentialcraft5/matrix_ranks/rank_<n>.json）：图谱、站点、祭品、能量、回响 总数 / 同时 / 生命 / 伤害 / 时限、回报、门；回响生命 20 + 12 × (阶 − 1)、伤害 3 + 阶",
+        "data/essentialcraft5/matrix_ranks/rank_1~7.json— 祭品至多 4 项（淬炼台 4 格，batch13.md §3.1.3 表下注）：一阶是四种魔晶各 4（元素晶石淬炼台配方已经用过），六阶是凝结矩阵 ×2 + MRU 反应核 + 阿克罗尼特锭 ×4 + 海纳尔特产 ×4（MRU 反应核本身用虚空核心做）；三阶精华 ×4 按 essentialcraft5:essences 标签（四元素 × 四稀有度）；六阶「海纳尔特产」按 hoanna_specialties 标签，13d 起是六样特产（不含榍石，淬炼台一格一种，所以是同一种 4 个）；六阶的 hoanna_natives 2 按标签里的八种怪写",
+        "tools/plan/batch13.md §2.5 — 「门」一行只在门是默认阶时显示（gates.hoanna_portal == 5、gates.holopad == 6），改过阶数的看 [[matrix/overview]] 的门表",
+        "general.matrix_rank.trial.peaceful_channel_seconds + 10 × 阶 — 引导秒数（trial.mobs_enabled 关掉时）",
+        "data/essentialcraft5/matrix_ranks/rank_8.json — 30 / hoanna 8 / end 1 / mod 3；4 档；凝结矩阵 ×3、暗影核心、永恒物质、影晶 ×8；10 万 + 1.2 万；9 / 4 / 104 / 11 / 140；rank_9.json — 33 含天灾之心；4 档；凝结矩阵 ×3、暗影核心 ×2、天灾残核；10 万 + 1.6 万；10 / 4 / 116 / 12 / 150；门：gates.calamity_beacon == 8 时八阶行写天灾信标"
+      ]
+    },
+    {
+      "id": "alignment",
+      "title": "相性与矩阵特性",
+      "icon": "essentialcraft5:chaos_matrix_projection",
+      "summary": "三阶起，矩阵属性有了被动",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "你的矩阵属性由最后吸收的那块[[gear/projection_use|矩阵投影]]决定，分中性、混沌、冰冻、魔力和暗影。矩阵三阶起，属性给你一项被动，叫<hl>相性</hl>：三阶是相性 I，六阶 II，九阶 III。中性没有相性，所以三阶要求属性不是中性。"
+        },
+        {
+          "type": "p",
+          "text": "换属性就再吸收一块别的投影，代价和以前一样，换完相性的级数不丢。"
+        },
+        {
+          "type": "h",
+          "text": "四种相性"
+        },
+        {
+          "type": "table",
+          "header": [
+            "属性",
+            "相性",
+            "I / II / III"
+          ],
+          "rows": [
+            [
+              "混沌",
+              "躁动：打实的近战和弹射物伤害提高",
+              "{cfg:general.matrix_rank.resonance.chaos.damage_bonus|at:0|sign|pct} / {cfg:general.matrix_rank.resonance.chaos.damage_bonus|at:1|sign|pct} / {cfg:general.matrix_rank.resonance.chaos.damage_bonus|at:2|sign|pct}"
+            ],
+            [
+              "冰冻",
+              "凝滞：受到的近战伤害降低，用近战打中你的活物会冻上一些",
+              "−{cfg:general.matrix_rank.resonance.frozen.melee_reduction|at:0|pct} / −{cfg:general.matrix_rank.resonance.frozen.melee_reduction|at:1|pct} / −{cfg:general.matrix_rank.resonance.frozen.melee_reduction|at:2|pct}，对方冰冻 +{cfg:general.matrix_rank.resonance.frozen.retaliation_freeze_ticks|at:0} / +{cfg:general.matrix_rank.resonance.frozen.retaliation_freeze_ticks|at:1} / +{cfg:general.matrix_rank.resonance.frozen.retaliation_freeze_ticks|at:2} 刻"
+            ],
+            [
+              "魔力",
+              "澄澈：本模组随身物品耗的 MRU 打折，虹吸一次抽得更多",
+              "耗电 −{cfg:general.matrix_rank.resonance.magic.cost_discount|at:0|pct} / −{cfg:general.matrix_rank.resonance.magic.cost_discount|at:1|pct} / −{cfg:general.matrix_rank.resonance.magic.cost_discount|at:2|pct}，虹吸上限 +{cfg:general.matrix_rank.resonance.magic.siphon_bonus|at:0|pct} / +{cfg:general.matrix_rank.resonance.magic.siphon_bonus|at:1|pct} / +{cfg:general.matrix_rank.resonance.magic.siphon_bonus|at:2|pct}"
+            ],
+            [
+              "暗影",
+              "吞噬：受到的、有攻击者的魔法伤害降低，八阶起才有，直接从 II 开始",
+              "— / −{cfg:general.matrix_rank.resonance.shade.magic_reduction|at:1|pct} / −{cfg:general.matrix_rank.resonance.shade.magic_reduction|at:2|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "冰冻相性不减无视护甲的伤害。冰冻刻攒满 140，对方就冻僵了。",
+            "魔力相性的折扣不算护盾盔甲挡伤害花的电。",
+            "暗影相性不减腐化效果、「MRU 腐化」这类没有攻击者的伤害。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "矩阵特性"
+        },
+        {
+          "type": "p",
+          "text": "带矩阵特性的武器打实一下，会按你的矩阵属性多出一样效果，相性至少 I 才有，所以暗影的特性也要八阶起才有。每触发一次扣 {cfg:general.matrix_rank.resonance.trait_mru_cost} MRU，先扣身上的[[storage/soul_storage|灵魂储存]]，再扣[[matrix/reservoir|矩阵容量]]，魔力相性的折扣照算；付不起就不触发，伤害照打。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "属性",
+            "打实以后"
+          ],
+          "rows": [
+            [
+              "混沌",
+              "目标挂上 {cfg:general.guns.lens_corrosion_ticks|sec}腐蚀，挂着腐蚀回不了血；打已经挂着腐蚀的目标多 {cfg:general.matrix_rank.resonance.chaos.trait_bonus_vs_corroded|pct} 伤害"
+            ],
+            [
+              "冰冻",
+              "目标冰冻 +{cfg:general.guns.lens_freeze_per_hit} 刻；打冻僵的目标多 {cfg:general.matrix_rank.resonance.frozen.trait_bonus_vs_frozen|pct} 伤害"
+            ],
+            [
+              "魔力",
+              "驱散目标身上一个有益效果，同一个目标 {cfg:general.matrix_rank.resonance.magic.trait_dispel_cooldown_ticks|sec}一次"
+            ],
+            [
+              "暗影",
+              "这一下伤害的 {cfg:general.guns.lens_drain_percent|pctv}回到你身上"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "相性越高效果越强，I、II、III 依次是 {cfg:general.matrix_rank.resonance.trait_level_multipliers|at:0}、{cfg:general.matrix_rank.resonance.trait_level_multipliers|at:1}、{cfg:general.matrix_rank.resonance.trait_level_multipliers|at:2} 倍，时长、冰冻刻和回血比例都跟着乘，对腐蚀、冻僵的目标多打的那部分不乘。{item:essentialcraft5:holy_mace}的特性效果是别的武器的 {cfg:general.staffs.holy_mace_trait_multiplier} 倍。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "带矩阵特性的武器有{item:essentialcraft5:elemental_sword}、{item:essentialcraft5:wind_elemental_sword}、{item:essentialcraft5:chaos_fork}、{item:essentialcraft5:frozen_mace}、{item:essentialcraft5:holy_mace}和{item:essentialcraft5:forged_elemental_sword}。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "带矩阵特性的武器有{item:essentialcraft5:elemental_sword}、{item:essentialcraft5:wind_elemental_sword}、{item:essentialcraft5:chaos_fork}、{item:essentialcraft5:frozen_mace}和{item:essentialcraft5:holy_mace}。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.attunement.enabled"
+          ],
+          "text": "{item:essentialcraft5:verdict_blade}也带矩阵特性，效果是普通带特性武器的 {cfg:general.verdict_blade.trait_multiplier} 倍。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+              "text": "枪的透镜和你的矩阵属性相同、相性又至少 I 时，透镜效果是平时的 {cfg:general.matrix_rank.resonance.same_type_lens_multiplier} 倍，见[[guns/lens_effects]]。"
+            },
+            "{item:essentialcraft5:chaos_fork}和{item:essentialcraft5:frozen_mace}挂在目标身上的效果，最高等级再加上你的相性级数；目标是玩家时不加，混沌之叉给你自己的力量也不加，见[[staffs/matrix_weapons]]。",
+            "相性和特性打在玩家身上时，时长、回血和多打的百分比都只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+          ]
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.2 — 相性按 getMatrixType 生效，I / II / III 在三 / 六 / 九阶；中性没有；暗影八阶起直接 II；换投影相性级不丢",
+        "tools/plan/batch13.md §3.2 表 — 混沌 +5/10/15%；冰冻 −5/10/15%（bypasses_armor 不减），近战攻击者冰冻 +30/45/60（满 140 冻僵）；魔力耗电 −10/15/20%（不含护盾扣费）、虹吸上限 +25/50/100%；暗影 −10/15%（有攻击者、不在 unshieldable，自伤不减）",
+        "tools/plan/batch13.md §3.2 — 特性：混沌腐蚀 lens_corrosion_ticks、对腐蚀中 +10%；冰冻 lens_freeze_per_hit、对冻僵 +10%；魔力 dispelOne 同目标 40 刻一次；暗影吸取 lens_drain_percent；相性倍数 ×1 / ×1.25 / ×1.5，神圣重锤 ×2；每次 50 MRU（储存物品 → 容量，魔力折扣照算），付不起不触发",
+        "tools/tags/matrix.json — matrix_attuned：元素剑、风之剑、混沌之叉、冰冻重锤、神圣重锤、余烬元素剑",
+        "tools/plan/batch13.md §3.2 — 枪：透镜类型同矩阵属性且相性 ≥ I 时 ×1.5；两把重锤效果上限 + 相性级；对玩家 × general.attunement.pvp_effect_scale",
+        "tools/plan/batch13.md §4.4 — 裁决之刃矩阵特性 ×1.5（带 essentialcraft5:matrix_attuned）"
+      ]
+    },
+    {
+      "id": "reservoir",
+      "title": "矩阵容量与虹吸",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "体内存 MRU，从聚集体里抽",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "矩阵二阶起能直接存 MRU，叫<hl>矩阵容量</hl>，上限是 {cfg:general.matrix_rank.pool_per_rank} ×（阶 − 1）：二阶 {cfg:general.matrix_rank.pool_per_rank|mul:1}，七阶 {cfg:general.matrix_rank.pool_per_rank|mul:6}。"
+        },
+        {
+          "type": "p",
+          "text": "身上的 UBMRU 会自动换进容量，比例和[[mru/matrix_absorber|矩阵换能器]]一样，10 UBMRU 换 1 MRU，每秒最多换 {cfg:general.matrix_rank.pool_absorb_per_second} MRU，满了就停。"
+        },
+        {
+          "type": "p",
+          "text": "只换<em>保留线</em>以上的那部分 UBMRU。保留线是 {cfg:general.matrix_rank.pool_absorb_reserve} UBMRU，有几件特殊饰品按 UBMRU 扣费，这条线替它们留着家底。灵魂石的物品提示里写着现在的保留线。"
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:theta_belt",
+          "text": "戴着{item:essentialcraft5:theta_belt}时，保留线是平时的 5 倍。"
+        },
+        {
+          "type": "p",
+          "text": "换入默认开着。主手拿着绑定你的灵魂石潜行右键就能开关，副手拿着不算。四阶起面前 5 格内有聚集体时，这样按住是虹吸，见下面。"
+        },
+        {
+          "type": "h",
+          "text": "谁先付电"
+        },
+        {
+          "type": "p",
+          "text": "本模组的随身物品和护盾盔甲要用 MRU 时，先扣身上的[[storage/soul_storage|灵魂储存]]，再扣矩阵容量，最后才扣物品自己存的。"
+        },
+        {
+          "type": "tip",
+          "style": "bad",
+          "title": "死亡会清零",
+          "text": "<b>你一死，容量里的 MRU 就清零。</b>换维度、下线都不会清。"
+        },
+        {
+          "type": "h",
+          "text": "矩阵虹吸（四阶）"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "潜行，主手拿着绑定你的灵魂石，对准 5 格内的一团聚集体按住右键。",
+            "按满 1 秒，它身上最多 {cfg:general.matrix_rank.siphon.amount} MRU 抽进你的矩阵容量。",
+            "你自己挨 {cfg:general.matrix_rank.siphon.matrix_damage} 点矩阵损伤，按耐受打折；下一次要等 {cfg:general.matrix_rank.siphon.cooldown_ticks|sec}。"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "聚集体那一格要是你能改动的，规矩和{item:essentialcraft5:mrucu_container}一样。",
+            "正被稳定器压着的、装在瓶里的、关在别人仓里又不归你改动的，都抽不了。",
+            "魔力相性让一次抽得更多，见[[matrix/alignment]]。"
+          ]
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.4 — 容量：二阶起 pool_per_rank × (阶 − 1)；UBMRU 按 10 → 1 换入，每秒 ≤ pool_absorb_per_second；只换 pool_absorb_reserve 以上（戴 θ 腰带 ×5），灵魂石提示写保留线；扣费顺序：身上储存物品 → 容量 → 物品自己；死亡清零，换维度 / 下线不清",
+        "item/SoulStoneItem.use — 绑定自己的灵魂石潜行右键只认主手（副手拿着什么都不做），依次判：四阶起、5 格内有聚集体 → 虹吸；四阶起面前 6 格内有聚集体但开始不了虹吸 → 什么都不做；有容量（二阶起）→ 开关换入（MatrixPool.toggleAbsorb）；都不是才解除绑定。所以二阶以后潜行右键不再解绑",
+        "tools/plan/batch13.md §3.1.4 — 虹吸（四阶）：潜行、主手灵魂石对 5 格内聚集体按住右键 20 刻；抽 ≤ siphon.amount 进容量；本人矩阵损伤 + siphon.matrix_damage（乘易伤、吃耐受）；冷却 siphon.cooldown_ticks；权限同收容瓶 MRUMoverItem.mayMove；稳定中、在瓶里、别人仓里且不能动的不抽"
+      ]
+    },
+    {
+      "id": "tolerance",
+      "title": "耐受与矩阵稳固",
+      "icon": "essentialcraft5:player_pentacle",
+      "summary": "只抵矩阵阶带来的新损伤",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "每升一阶，你的<hl>耐受</hl>多 {cfg:general.matrix_rank.tolerance_per_rank|pct}。耐受只管矩阵阶这一套带来的矩阵损伤，试炼成功时的那一下和矩阵虹吸都算，这些损伤要除以 1 加上你的耐受。"
+        },
+        {
+          "type": "p",
+          "text": "[[bestiary/matrix_wraith|矩阵游魂]]打中你时加的矩阵损伤也照这样打折。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.tolerance_per_rank==0.1",
+          "text": "例如七阶时耐受 70%，试炼和虹吸给的矩阵损伤除以 1.7。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "七阶的<hl>矩阵稳固</hl>让这几种损伤再乘 {cfg:general.matrix_rank.stability.matrix_damage_multiplier}，和耐受连着算。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.tolerance_per_rank==0.1",
+            "cfg:general.matrix_rank.stability.matrix_damage_multiplier==0.8"
+          ],
+          "text": "七阶时两样合起来，约是原来的 47%。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "不抵的",
+          "text": "机器漏出的 MRU、聚集体、审判庭哨兵、魔力枪这些原来就有的矩阵损伤，一点都不减；腐化效果的发作几率、门槛和后遗症时长也都照旧。矩阵阶不是腐化抗性，基地里的聚集体还是要管住，见[[crafting/corruption]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.4、§8.1 D34 A — 耐受每阶 tolerance_per_rank，只作用于本批新加来源（试炼成功、虹吸；13c 起新怪命中、矩阵之影），损伤 ÷ (1 + tolerance × 阶)；已有来源（机器泄漏、聚集体、升华台、哨兵、枪械、腐化 #16）、DRAW_SCALE、门槛、上限、冷却、后遗症时长都不动",
+        "tools/plan/batch13.md §3.1.4 — 矩阵稳固（七阶）：本批新来源再 × stability.matrix_damage_multiplier，七阶合计 ÷ 1.7 × 0.8 ≈ ×0.47",
+        "13c 的新怪物命中也走这两项，等 13c 再补进正文",
+        "tools/plan/batch13.md §9.3 新怪物总则 — 矩阵游魂命中 +150 走带来源标记的 addMatrixDamage（Source.BATCH13，吃耐受）"
+      ]
+    }
+  ]
+}

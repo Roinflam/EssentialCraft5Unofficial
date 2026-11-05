@@ -1,0 +1,200 @@
+[
+  {
+    "id": "advanced_filters",
+    "title": "高级过滤器",
+    "icon": "essentialcraft5:advanced_whitelist_filter",
+    "summary": "不管耐久、NBT，或按标签收一整类",
+    "complete": "essentialcraft5:guide/logistics/advanced_filter",
+    "optional": true,
+    "if": "cfg:general.hoanna.portal_enabled",
+    "items": [
+      "essentialcraft5:advanced_whitelist_filter",
+      "essentialcraft5:advanced_blacklist_filter"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：把物品过滤器升级成{item:essentialcraft5:advanced_whitelist_filter}或{item:essentialcraft5:advanced_blacklist_filter}。它多三个开关：可以不管耐久、不管附魔和名字，或者按标签收一整类东西，比如所有铁矿石、所有颜色的羊毛。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：一个普通的物品过滤器（见[[logistics/filters]]），外加 4 块{item:essentialcraft5:void_plating}（见[[hoanna/void_plating]]）。过滤器放正中，虚空板放上下左右四格：白名单升级成高级白名单，黑名单升级成高级黑名单。"
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:advanced_whitelist_filter",
+          "essentialcraft5:advanced_blacklist_filter"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "升级时<em>样本原样带过来</em>，不用重新设。"
+      },
+      {
+        "type": "h",
+        "text": "三个开关"
+      },
+      {
+        "type": "p",
+        "text": "打开高级过滤器，界面左边从上到下有三个按钮，点一下切换。按钮上的绿勾表示「这一项要比」，红叉表示「这一项不管」。三个开关一开始都关着，所以刚升级完，它收的东西和原来的普通过滤器一样。"
+      },
+      {
+        "type": "table",
+        "header": [
+          "开关",
+          "打开以后"
+        ],
+        "rows": [
+          [
+            "<t>忽略耐久</t>",
+            "损耗多少都算一样：拿一把用旧的铁剑当样本，新铁剑也收"
+          ],
+          [
+            "<t>忽略 NBT</t>",
+            "只看是哪种物品：附魔、名字、里面装的东西都不管"
+          ],
+          [
+            "<t>按标签</t>",
+            "每个样本按自己选中的标签收一整类东西（见下面）"
+          ]
+        ],
+        "widths": [
+          1,
+          3
+        ]
+      },
+      {
+        "type": "p",
+        "text": "鼠标指着按钮能看到它现在是开是关。拿着高级过滤器时，物品提示里也列着开着的开关。"
+      },
+      {
+        "type": "h",
+        "text": "按标签"
+      },
+      {
+        "type": "p",
+        "text": "标签是游戏给物品分的类，比如「所有铁矿石」「所有原木」。打开<t>按标签</t>以后，每个样本格按自己选中的那个标签比：候选物品在这个标签里，就和样本算同一种。"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "放好样本，点第三个按钮打开<t>按标签</t>。",
+          "每个样本会自动选一个「类别/材质」标签：铁锭选 <t>forge:ingots/iron</t>，铁矿石选 <t>forge:ores/iron</t>（深板岩铁矿石也收，金矿石不收）。选了标签的格子左上角有个青色的 <t>#</t>。",
+          "想换别的标签，鼠标指着样本格滚动滚轮，在这件物品的全部标签和「按物品」之间来回切。物品提示里写着现在按哪个标签比、这个标签里有几种物品。",
+          "原木、羊毛这类没有自动标签的样本先按物品比：要收所有原木，滚到 <t>minecraft:logs</t>；要收所有颜色的羊毛，放一块羊毛当样本、滚到 <t>minecraft:wool</t>。"
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "按标签时附魔、名字照样要一样，除非同时打开<t>忽略 NBT</t>；耐久同理，看<t>忽略耐久</t>。",
+          "某一格换了样本，这一格原来选的标签就清掉；开着按标签时，换上来的样本自动选一个。",
+          "关掉<t>按标签</t>不会丢掉各格选好的标签，再打开还是原来那些。",
+          "样本格里放的过滤器不按标签，它照自己的开关判断。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "标签选得太宽会收进不想要的东西：滚到 <t>forge:ingots</t> 就是收所有的锭。自动选的总是这件物品最窄的那个类别标签，换之前先看一眼提示里的物品种数。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "铁矿石样本打开按标签后，魔力漏斗把石头里和深板岩里的铁矿石都收走，金矿石留在地上。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作第三个开关叫「忽略矿辞」，默认关着，也就是高级过滤器一做出来就按矿辞（1.12 版的物品分类）比。这里反过来：「按标签」默认关、要自己打开，免得一升级过滤器就悄悄多收东西。原作升级还会把样本清空。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/logistics/advanced_whitelist_filter.json、advanced_blacklist_filter.json — essentialcraft5:crafting_shaped_keep_nbt，「 P / PGP / P 」，P = void_plating、G = 对应的普通过滤器，nbt_source = G（整份 tag 复制给产物：样本、开关、各格标签都带过来）；原作 ItemFilter 配方产物不带 NBT",
+      "recipe/KeepNbtRecipes.java — 合成时按格号找第一件符合 nbt_source 的物品，把它的 tag 复制给产物",
+      "registry/ECLogistics.java:71~75 — 两件高级过滤器 FilterItem(…, blacklist, advanced = true)，堆叠 1",
+      "api/ItemFilters.java:107~124 — 三个开关 IGNORE_DAMAGE / IGNORE_NBT / MATCH_TAGS；L489~492 数据里没写 = 关",
+      "api/ItemFilters.java:208~245 — 只有高级过滤器读开关；按标签：样本还在所选标签里时，候选在标签里就算同一种，NBT 照样受忽略耐久 / 忽略 NBT 管（menu/GhostSlots.java:236 nbtMatches：耐久值单独比，新建物品自带的 Damage:0 和没有 NBT 算一样，火焰弹样本选 creeper_igniters 收新打火石，见 gametest/MachineBaseFrameworkTests.filterMatchTagsSpec）；没选标签的格子按物品比；过滤器样本按它自己的规格递归判定",
+      "api/ItemFilters.java:383~398 — defaultTag：forge: / c: 下路径带 / 的标签，去掉 ores_in_ground/、ore_bearing_ground/、ore_rates/、armors/、tools/（L101；L410~422 isMaterialTag），取成员最少的；铁锭 → forge:ingots/iron、铁矿石 → forge:ores/iron、原木 / 羊毛 / 弓 → 无（gametest/AdvancedFilterTests：advancedFilterDefaultTags、advancedFilterTagOres）",
+      "api/ItemFilters.java:499~528 — 打开按标签时还没选过的格子自动选默认标签、明确选了按物品的不动；L292~317 同一格换了样本清掉原选择，开着时自动选；关掉开关不清选择",
+      "api/ItemFilters.java:367~375 — tagChoices：这件样本的全部标签按 id 排序；menu/FilterMenu.java:174~219 — 滚轮在「按物品 + 全部标签」里循环（L210 floorMod），服务端校验格子有样本、开关开着",
+      "client/screen/FilterScreen.java:42~49、76 — 三个按钮在左边 (20, 6 / 30 / 54)；L99~110（L106）选了标签的格子左上角青色 #；L131~152 提示写标签名和物品种数；L154~164 滚轮往下下一个、往上上一个；L187~199（compared() L187~191，L197 按它选图标）绿勾 = 这一项要比（按标签开着），红叉 = 不管",
+      "item/FilterItem.java — 高级过滤器的提示列出开着的开关",
+      "minecraft:wool 只收 16 种颜色的羊毛（原版 VanillaItemTagsProvider 照抄 BlockTags.WOOL，地毯另在 wool_carpets）；Forge 1.20.1 没有羊毛的类别标签（ForgeItemTagsProvider）",
+      "原作 ECUtils.java L650（oreDictionaryCompare || ignoreOreDict）、GuiFilter.java L35~127 — 第三个按钮「忽略矿辞」，默认关 = 按矿辞比"
+    ]
+  },
+  {
+    "id": "void_chest",
+    "title": "{item:essentialcraft5:void_chest}",
+    "icon": "essentialcraft5:void_chest",
+    "summary": "一格大小、117 格的大箱子",
+    "complete": "essentialcraft5:guide/logistics/void_chest",
+    "optional": true,
+    "if": "cfg:general.hoanna.portal_enabled",
+    "items": [
+      "essentialcraft5:void_chest"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：做一个{item:essentialcraft5:void_chest}。它和魔力箱一样只占一格，能装的东西却是魔力箱的两倍多。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：8 块{item:essentialcraft5:void_stone}（见[[hoanna/void_stone]]），在工作台上围成一圈、中间空着。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:void_chest"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "容量",
+            "<t>117</t> 格（9 行、每行 13 格）"
+          ],
+          [
+            "漏斗和管道",
+            "哪一面都能往里放、往外取"
+          ],
+          [
+            "红石比较器",
+            "装得越满信号越强"
+          ],
+          [
+            "挖掉时",
+            "里面的东西全部撒在地上，捡回来的箱子是空的；要用镐"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "放下时正面朝着你。右键打开，潜行右键不会打开。"
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "text": "它的界面比原版箱子大一圈。界面尺寸是默认的「自动」或开到最大时，上下边框可能各少一点，格子都在；介意的话把视频设置里的「界面尺寸」调小一档。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "打开后是 9 行、每行 13 格。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/storage/void_chest.json — 「### / # # / ###」，# = void_stone → 1（原作 BlockChestEC meta 1 配方）",
+      "block/MagicalChestBlock.java:80 — Layout.VOID：9 行 × 13 列 = 117 格，界面 256 × 256（原作 GuiMagicalChest）；魔力箱 54 格",
+      "registry/ECStorage.java:66~85 — VOID_CHEST：machine(COLOR_BLACK, 1F, legacyResistance(1F, 1F, true))，要镐；同一方块类、方块实体类、菜单类，只换 Layout",
+      "blockentity/MagicalChestBlockEntity.java:254~258 — 物品能力不分面；block/MagicalChestBlock.java:203~206 — 比较器 calcRedstoneFromInventory",
+      "block/MagicalChestBlock.java:184~192 + blockentity/MagicalChestBlockEntity.java:186~197 — 挖掉撒出全部内容，掉落的箱子不带内容（gametest/StorageTests.storageVoidChestBreakSpills）",
+      "block/MagicalChestBlock.java:115 — 放下时正面朝放置者；L157 潜行右键不开",
+      "client/screen/MagicalChestScreen.java — 按 Layout 画 256 × 256 的 void_chest.png；原版界面尺寸在视频设置里。界面倍率保证缩放后高度 ≥ 240（原版 Window.calculateScale），格子区 y 8~248 正好 240 高，最坏只裁上下各 8 像素边框（block/MagicalChestBlock.java:77~78 注释）"
+    ]
+  }
+]

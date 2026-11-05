@@ -1,0 +1,310 @@
+[
+  {
+    "id": "relics",
+    "title": "遗迹里的东西",
+    "icon": "essentialcraft5:void_core",
+    "summary": "榍石、虚空三件、余烬和神秘饰品",
+    "complete": "essentialcraft5:guide/hoanna/relics",
+    "items": [
+      "essentialcraft5:titanite",
+      "essentialcraft5:twinkling_titanite",
+      "essentialcraft5:void_core",
+      "essentialcraft5:void_mru_reactor",
+      "essentialcraft5:acidic_ember",
+      "essentialcraft5:chaos_ember",
+      "essentialcraft5:common_ember",
+      "essentialcraft5:corrupted_ember",
+      "essentialcraft5:crystal_ember",
+      "essentialcraft5:divine_ember",
+      "essentialcraft5:magical_ember",
+      "essentialcraft5:flame_ember",
+      "essentialcraft5:concrete",
+      "essentialcraft5:levitator",
+      "essentialcraft5:spreader"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：从海纳尔遗迹的箱子里拿到第一件遗物。城镇废墟塔顶的箱子、古代墓穴出口房间的箱子（见[[hoanna/ruins]]）开出来的是同一套东西，每个箱子抽 6~17 次。"
+      },
+      {
+        "type": "items",
+        "items": [
+          "essentialcraft5:titanite",
+          "essentialcraft5:twinkling_titanite",
+          "essentialcraft5:void_plating",
+          "essentialcraft5:void_core",
+          "essentialcraft5:void_mru_reactor"
+        ]
+      },
+      {
+        "type": "items",
+        "items": [
+          "essentialcraft5:acidic_ember",
+          "essentialcraft5:chaos_ember",
+          "essentialcraft5:common_ember",
+          "essentialcraft5:corrupted_ember",
+          "essentialcraft5:crystal_ember",
+          "essentialcraft5:divine_ember",
+          "essentialcraft5:magical_ember",
+          "essentialcraft5:flame_ember"
+        ],
+        "per_row": 4
+      },
+      {
+        "type": "items",
+        "if": "bauble:essentialcraft5:mystical_accessory",
+        "items": [
+          "essentialcraft5:mystical_accessory"
+        ]
+      },
+      {
+        "type": "h",
+        "text": "一个箱子大约开出"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "{item:essentialcraft5:titanite}",
+            "约 4 个"
+          ],
+          [
+            "{item:essentialcraft5:twinkling_titanite}",
+            "约 1.3 个"
+          ],
+          [
+            "虚空板、虚空核心、MRU 反应核",
+            "各约 0.2 个（大约每 5 个箱子各 1 个）"
+          ],
+          [
+            "8 种余烬",
+            "合计约 9 个"
+          ],
+          {
+            "if": "bauble:essentialcraft5:mystical_accessory",
+            "cells": [
+              "{item:essentialcraft5:mystical_accessory}",
+              "约 0.5 件"
+            ]
+          },
+          [
+            "{item:essentialcraft5:magical_slag}",
+            "约 8 个"
+          ],
+          [
+            "中期材料（魔力精华、魔力锭、魔力水、魔力强化板、四种纯化合金）",
+            "各约 1.8 个"
+          ],
+          [
+            "{item:essentialcraft5:crystal_dust}",
+            "约 0.8 个"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "<em>虚空核心和 MRU 反应核只从这些箱子里来</em>，世界里挖不到、也做不出来；虚空板除了开箱，还能自己压（见[[hoanna/void_plating]]）。想多拿，就多找几座城镇和墓穴。"
+      },
+      {
+        "type": "h",
+        "text": "有什么用"
+      },
+      {
+        "type": "list",
+        "items": [
+          "榍石和闪耀榍石：做{item:essentialcraft5:void_stone}（见[[hoanna/void_stone]]）。",
+          "虚空板、虚空核心、MRU 反应核：直接放进魔术师台的升级格，速度分别 <t>×6</t>、<t>×7.5</t>、<t>×10</t>（见[[crafting/magician_table]]）。",
+          "余烬：现在还没有用处，先攒着。",
+          {
+            "if": "bauble:essentialcraft5:mystical_accessory",
+            "text": "神秘饰品：随机的项链、腰带或戒指，带三项随机的 MRU 抗性，其中一项挡海纳尔辐射（见[[baubles/mystical_accessory]]）。"
+          }
+        ]
+      },
+      {
+        "type": "p",
+        "text": "城镇里的{item:essentialcraft5:concrete}、{item:essentialcraft5:levitator}（埋在每栋房子四个墙角的正下方，一般看不见，挖开墙角下面那一格就能找到）、{item:essentialcraft5:spreader}（发光的小柱子）用镐挖下来就能带回家当装饰，它们没有配方，只能从城镇里拿。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "背包里有了任意一件遗物：榍石、虚空三件、余烬或神秘饰品。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "余烬是海纳尔旧日的火种，每一种都还带着一点那个世界的余温。老版本的中文把它叫作「灰烬」，虚空板、虚空核心也曾被误译成「空白板」「无效的核心」。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/loot_tables/chests/town_tower.json、catacombs.json（tools/gen/hoanna_loot.py 生成）— 两张相同：抽 6~17 次、总权重 343；每箱期望：榍石 4.02、闪耀榍石 1.34、虚空三件各 0.20、余烬合计 9.36、神秘饰品 0.50、炉渣 8.21、中期材料各 1.76、水晶粉 0.84（脚本打印）",
+      "loot/HoannaLoot.java — TOWN_TOWER：城镇塔顶；CATACOMBS：墓穴出口房间",
+      "api/MagicianTableUpgrades.java:44~46 — void_plating 6、void_core 7.5、void_mru_reactor 10",
+      "registry/ECVoid.java — 虚空核心、MRU 反应核没有配方；余烬 EMBERS 标签（第七批余烬锻炉用，本批没有用处）",
+      "registry/ECVoid.java:CONCRETE / LEVITATOR / SPREADER — 没有配方、要镐、掉自己；block/LevitatorBlock、SpreaderBlock（散射器亮度 15）",
+      "item/bauble/MysticalAccessoryItem.java — 形态 0~2、三项抗性各 [0, 0.1)，HOANNA_RADIATION = car",
+      "glossary.md L96~97、L115 — 误译「无效的核心」「空白板」「灰烬」"
+    ]
+  },
+  {
+    "id": "void_stone",
+    "title": "{item:essentialcraft5:void_stone}",
+    "icon": "essentialcraft5:void_stone",
+    "summary": "最结实的建材，能当外壳和线圈底座",
+    "complete": "essentialcraft5:guide/hoanna/void_stone",
+    "items": [
+      "essentialcraft5:void_stone",
+      "essentialcraft5:void_glass",
+      "essentialcraft5:void_fence"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：用遗迹里的榍石做出{item:essentialcraft5:void_stone}。它是本模组最结实的建材，也是下一篇虚空板的原料。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：4 个{item:essentialcraft5:titanite}、1 个{item:essentialcraft5:twinkling_titanite}（见[[hoanna/relics]]），外加 4 块{item:essentialcraft5:obsidian_plate}（做虚空石）或 4 个{item:essentialcraft5:fortified_frame}（做虚空玻璃）。"
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:void_stone",
+          "essentialcraft5:void_glass",
+          "essentialcraft5:void_fence"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "一次出 16 块虚空石、32 块虚空玻璃；6 块虚空石（两行三列）做 16 段虚空栅栏。"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "硬度 / 抗爆",
+            "都是 <t>8</t> / <t>90</t>"
+          ],
+          [
+            "虚空石",
+            "要镐，挖下来总是白色"
+          ],
+          [
+            "虚空玻璃",
+            "空手也能挖下来，但要十来秒；用镐快得多（钻石镐约 1.5 秒）。半透明的深紫色，怪物不会在上面生成"
+          ],
+          [
+            "虚空栅栏",
+            "要镐；和别的石质栅栏连得上"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "虚空石和虚空玻璃拿染料右键就能改颜色（染的是表面那几道纹路，底下暗色的石面、玻璃不变），不消耗染料；潜行右键把周围一片同种方块一起染（别人领地里等你不能放方块的地方不会被连带）。"
+      },
+      {
+        "type": "h",
+        "text": "有什么用"
+      },
+      {
+        "type": "list",
+        "items": [
+          "挡 MRU：隔在聚集体和你之间时，矩阵损伤落到你身上的几率是虚空石 <t>1/18</t>、虚空玻璃 <t>1/15</t>（默认设置），比护板还好（见[[alloys/plating]]）。",
+          "虚空石、虚空玻璃能当[[enrichment/controller]]的外壳；虚空石能当[[tesla/mru_coil]]的底座。",
+          "魔术师台把它压成虚空板（下一篇）。",
+          "魔力凿能把虚空石凿成花纹方块（见[[decorations/patterns]]）。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "text": "现代矿井（见[[hoanna/ruins]]）的地面和横梁就是虚空石，带上镐能直接挖一大堆。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "背包里有了虚空石。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/void/void_stone.json — ISI / STS / ISI：榍石 ×4、黑曜石板 ×4、闪耀榍石 → 16（原作矿辞 genTitanite 笔误，直接引用物品）",
+      "data/essentialcraft5/recipes/void/void_glass.json — 同形，S 换强化框架 → 32；void_fence.json — DDD / DDD → 16",
+      "registry/ECVoid.java:VOID_STONE / VOID_GLASS / VOID_FENCE — 硬度 8、legacyResistance(8, 150, false) = 90；虚空玻璃不要求工具但进 mineable/pickaxe（空手约 12 秒、钻石镐约 1.5 秒）、isValidSpawn false；栅栏进 minecraft:fences",
+      "block/DyeableBlock.java — 染料右键改色不耗染料、潜行 5×5×5（AREA_RADIUS 2）逐格放置事件、只给真玩家；挖下来白色",
+      "registry/ECMaterials.java — veinedDyeableModel：虚空石 / 虚空玻璃两层模型，底图不染色，染料色只染纹路层（tintindex 0）",
+      "entity/MRUResistances.java:DEFAULTS — void_glass=15、void_stone=18（配置 machines.mru_presence.block_resistances）；1/⌊r⌋ 放过",
+      "tools/tags/ecvoid.json — mru_coil_base += void_stone；mrucuec_casing += void_stone、void_glass",
+      "block/FancyMaterial.java:VOID_STONE — 花纹底材；tools/gen/fancy_recipes.py",
+      "现代矿井的虚空石：M6 的 ModernShaftPieces（原作 StructureModernShaftPieces 用 voidStone）"
+    ]
+  },
+  {
+    "id": "void_plating",
+    "title": "{item:essentialcraft5:void_plating}",
+    "icon": "essentialcraft5:void_plating",
+    "summary": "魔术师台压虚空石，升级、枪身都要",
+    "complete": "essentialcraft5:guide/hoanna/void_plating",
+    "items": [
+      "essentialcraft5:void_plating"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：在魔术师台上把{item:essentialcraft5:void_stone}压成{item:essentialcraft5:void_plating}。箱子里也能开到，但自己做稳定得多。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:void_plating"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "虚空石放进魔术师台正中那一格，四个角<em>空着</em>。",
+          "给魔术师台接上 MRU（见[[crafting/magician_table]]），一块虚空板要 <t>1000</t> MRU。",
+          "做好的虚空板从右边取出。"
+        ]
+      },
+      {
+        "type": "h",
+        "text": "有什么用"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "魔术师台升级",
+            "放进升级格速度 <t>×6</t>"
+          ],
+          [
+            "枪身材料",
+            "枪托、握把、机栓都能用（见[[guns/parts]]）"
+          ],
+          [
+            "狙击镜",
+            "两个 S 格放虚空板：<t>12</t> 倍（见[[guns/sniper]]）"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "以后更高级的机器和装备大多要用虚空板，攒一些不亏。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "背包里有了虚空板。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/void/void_plating.json — essentialcraft5:magician_table，中心 void_stone、四角 null、mru 1000（原作 RecipesCore L96）",
+      "api/MagicianTableUpgrades.java:44 — void_plating ×6",
+      "gun/GunMaterials.java:60 / 72 — Body void（void_plating）1200 / 18 / 4 / 2 / 6 / 2 / 8；SNIPER_SCOPES void 12F；物品注册即开放",
+      "「以后的机器」：batch6a §12.3（6b 机器共要虚空板约 30）、第七批虚空套装"
+    ]
+  }
+]

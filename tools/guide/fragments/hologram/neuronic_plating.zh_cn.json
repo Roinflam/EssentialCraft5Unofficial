@@ -1,0 +1,46 @@
+[
+  {
+    "id": "neuronic_plating",
+    "title": "{item:essentialcraft5:neuronic_enriched_plating}",
+    "icon": "essentialcraft5:neuronic_enriched_plating",
+    "summary": "全息与宅男套装的基础材料",
+    "complete": "essentialcraft5:guide/hologram/neuronic_plating",
+    "items": [
+      "essentialcraft5:neuronic_enriched_plating"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：做出{item:essentialcraft5:neuronic_enriched_plating}。全息投影台要 1 块，宅男套装的零件也几乎样样要它，是最后这两章用得最多的材料。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：5 块{item:essentialcraft5:demonic_plate}（[[demons/ackronite]]）、2 颗{item:essentialcraft5:wind_gem}（[[wind/wind_gem]]）、2 份{item:essentialcraft5:combined_magical_alloys}（[[alloys/combined_magical_alloys]]）。一次合成出 <t>4</t> 块。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:neuronic_enriched_plating"
+      },
+      {
+        "type": "list",
+        "items": [
+          "{item:essentialcraft5:holopad}：每台 1 块（[[hologram/holopad]]）；",
+          "压力稳定器、斥力发生器、推进引擎、扬声器板、视觉透镜、电脑引擎都要它（[[computer/drives]]）；",
+          "四件宅男套装和反重力板本身每件也要 2~3 块。全套加反重力板一共要做 <t>17</t> 次（[[computer/costs]]）。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到一块富神经元护板。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/computer/neuronic_enriched_plating.json — #C# / @#@ / #C#：恶魔板 ×5、风之水晶 ×2、复合魔力合金 ×2，出 4（batch8 D4 = A，原作 2）",
+      "registry/ECComputer.java NEURONIC_ENRICHED_PLATING — genitem 59",
+      "tools/gen/computer_bom.py — 全套 + 反重力板的合成次数：neuronic_enriched_plating 17",
+      "data/essentialcraft5/recipes/hologram/holopad.json — 全息投影台下面那格是富神经元护板（M1，照 1.10.2 代码配方）"
+    ]
+  }
+]

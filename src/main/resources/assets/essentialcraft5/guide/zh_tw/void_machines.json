@@ -1,0 +1,1436 @@
+{
+  "id": "void_machines",
+  "order": 98,
+  "group": "side",
+  "title": "支線 · 虛空機器",
+  "subtitle": "從海納爾帶回的材料能做些什麼",
+  "icon": "essentialcraft5:void_core",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "ultra_heat_generator",
+      "title": "{item:essentialcraft5:ultra_heat_generator}",
+      "icon": "essentialcraft5:ultra_heat_generator",
+      "summary": "越燒越熱，越熱產得越多",
+      "complete": "essentialcraft5:guide/void_machines/ultra_heat_generator",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ultra_heat_generator"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "虛空石擋得住輻光。往下再挖三十丈，就夠給全城砌一道牆。上頭催得很緊。我們挖得太晚了。",
+          "by": "海納爾礦井刻字"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：把[[generators/heat_generator|熱力產能器]]升級成{item:essentialcraft5:ultra_heat_generator}。它照樣燒燃料，只是多了一項只升不降的<hl>溫度</hl>，燒得越久溫度越高，產量也越大，熱起來以後一台能抵好幾台普通產能器。"
+        },
+        {
+          "type": "h",
+          "text": "本章要積攢的稀有材料"
+        },
+        {
+          "type": "p",
+          "text": "從海納爾帶回的虛空材料裡，最難得的兩樣出自海納爾人末年的手藝。本章的六樣東西都要用到第十六章遺蹟箱子裡的{item:essentialcraft5:void_core}，除建築魔杖外還都要{item:essentialcraft5:void_mru_reactor}，每個箱子平均各開出約 0.2 個，見[[hoanna/relics]]。{item:essentialcraft5:void_plating}倒是不缺，拿虛空石在魔力工作台上就能壓出來，見[[hoanna/void_plating]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "物品",
+            "虛空核心",
+            "反應核",
+            "虛空板",
+            "其他材料"
+          ],
+          "widths": [
+            4,
+            2,
+            2,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "[[void_machines/ultra_heat_generator]]",
+              "2",
+              "2",
+              "4",
+              "1 台熱力產能器"
+            ],
+            [
+              "[[void_machines/ultra_natural_furnace]]",
+              "2",
+              "2",
+              "4",
+              "1 台自然熔爐"
+            ],
+            [
+              "[[void_machines/magical_furnace]]",
+              "1",
+              "1",
+              "2",
+              "永恆物質、世界互動器"
+            ],
+            [
+              "[[void_machines/magical_teleporter]]",
+              "1",
+              "1",
+              "2",
+              "永恆物質、世界互動器"
+            ],
+            [
+              "[[void_machines/ember_forge]]",
+              "1",
+              "1",
+              "2",
+              "永恆物質"
+            ],
+            [
+              "[[void_machines/magical_builder]]",
+              "1",
+              "—",
+              "2",
+              "2 個世界互動器"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "六樣全做需要 8 個核心和 7 個反應核，大約要翻 40 個箱子。主線後面的[[demons]]、[[hologram]]、[[inquisitorium]]和[[computer]]還要用掉約 15 個核心和 12 個反應核，[[gear/void_armor]]另要 8 個核心、5 個反應核，三樣加起來大約得開 155 個箱子。先把主線的份額留出來，剩下的再挑最想要的做。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先做哪台",
+          "if": [
+            "cfg:machines.ultra_natural_furnace.ticks_log",
+            "cfg:machines.ultra_natural_furnace.mru_log"
+          ],
+          "text": "核心只夠做一台產能器時，手頭有樹場這類穩定的原木來源，就選[[void_machines/ultra_natural_furnace]]，原木一放進去就是每刻 {cfg:machines.ultra_natural_furnace.mru_log} MRU。想放著不管、讓它越燒越多，就選終極熱力產能器，預熱 12 分鐘後每刻 82，掛機一小時略過 100，十小時約 180。"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:matter_of_eternity}要在魔力工作台上用一顆地獄之星和 4 塊大 MRU 晶塊製作，見[[storage/soul_storage]]。"
+        },
+        {
+          "if": [
+            "cfg:machines.ley_condenser.enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.ley_condenser.nether_star.ticks>0"
+          ],
+          "type": "p",
+          "text": "地獄之星也能用{item:essentialcraft5:ley_condenser}凝聚出來，用不著每顆都去打凋零怪，見[[ley/condensing]]。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "p",
+          "text": "用 4 塊{item:essentialcraft5:void_plating}、2 個{item:essentialcraft5:void_mru_reactor}和 2 個{item:essentialcraft5:void_core}圍住中間的一台熱力產能器。再備好 4 桶岩漿和預熱用的約 72 塊煤，煤也可以換成 8 個煤炭塊或 6 桶岩漿。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ultra_heat_generator"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "H": "essentialcraft5:ultra_heat_generator",
+            "L": {
+              "block": "minecraft:lava",
+              "label": "流動的也算"
+            }
+          },
+          "pattern": [
+            "  L  ",
+            "     ",
+            "L H L",
+            "     ",
+            "  L  "
+          ]
+        },
+        {
+          "type": "p",
+          "text": "四周熱源的擺法和係數都和熱力產能器相同，放在東南西北各隔一格的位置，不過在這裡它們<em>只決定升溫快慢</em>，不算進產量。四面都是岩漿時升溫最快，只要有一面是空氣，就完全不會升溫。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下之前先選好位置，<b>一拆下來溫度就歸零</b>，換個地方等於從頭預熱。",
+            "照上圖，在東南西北各隔一格的位置倒一格岩漿。",
+            "把要用 MRU 的機器用[[crafting/bound_gem|綁定寶石]]連到它身上，產出的 MRU 才有地方去。",
+            "把燃料放進左邊的格子，這一格只收能燒的東西，燃料一放進去，它就開始燃燒、升溫。",
+            "等它慢慢熱起來，四面岩漿、燒煤的話，約 12 分鐘能升到 1 萬°C，這時每刻產出 82 MRU。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "介面上「溫度」那一行的數字一直在漲，產量也跟著變大。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "預熱的頭兩分半鐘燒得飛快，兩秒多就燒掉一塊煤，一組 64 塊正好燒到 1000°C 左右，要記得及時續上。預熱期間也得有機器取用 MRU，沒有機器取用的話幾分鐘就會存滿，存滿以後它不再點燃新燃料，溫度也就停住不漲了。"
+        },
+        {
+          "type": "h",
+          "text": "溫度和產量"
+        },
+        {
+          "type": "table",
+          "header": [
+            "溫度",
+            "每刻產出",
+            "每刻燒掉的燃燒時間"
+          ],
+          "rows": [
+            [
+              "1000°C 以下",
+              "溫度 ÷ 100，不足 1 時不產出",
+              "<w>25～49 刻</w>，越熱燒得越多"
+            ],
+            [
+              "1000～1 萬°C",
+              "2 + 溫度 × 0.008，即 10～82",
+              "1 刻，和熔爐一樣"
+            ],
+            [
+              "1 萬°C 以上",
+              "72 + 溫度 ÷ 1000",
+              "1 刻"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "四面岩漿燒煤",
+            "用掉的煤",
+            "溫度",
+            "每刻產出"
+          ],
+          "rows": [
+            [
+              "約 44 秒",
+              "15 塊",
+              "100°C",
+              "開始產出 1 MRU"
+            ],
+            [
+              "約 2.6 分鐘",
+              "65 塊",
+              "1000°C",
+              "10 MRU"
+            ],
+            [
+              "約 12 分鐘",
+              "72 塊",
+              "1 萬°C",
+              "82 MRU"
+            ],
+            [
+              "1 小時",
+              "約 108 塊",
+              "約 3.2 萬°C",
+              "104 MRU"
+            ],
+            [
+              "10 小時",
+              "約 513 塊",
+              "約 10.8 萬°C",
+              "180 MRU"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "過了 1000°C，一塊煤就能燒足 80 秒。四周熱源差一些時預熱要慢得多，四面地獄岩燒到 1000°C 約需 167 塊煤，四面石頭約需 841 塊。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每燒一刻，溫度升高「四周係數連乘 × 升溫倍率」。1000°C 以下倍率從 0.1 慢慢漲到 1，1000～1 萬°C 之間是 1，再往上是 9990 ÷ 溫度，所以越熱升得越慢。",
+            "產量<em>只看溫度</em>，熱起來以後就算拆掉四周的岩漿，它也照樣按當前溫度產出，只是不再升溫。",
+            "能存 {cfg:machines.ultra_heat_generator.max_mru} MRU。存滿時它不再點燃新燃料，正在燒的這塊照常燃燒、照常升溫，溫度不會往下掉，等有機器取用了會接著往上漲。",
+            "收到紅石訊號時整台機器停下，溫度和燃燒進度都保留著。",
+            "每點燃一份燃料，右邊的格子裡就多一個{item:essentialcraft5:magical_slag}，岩漿桶燒完會留下空桶，爐渣和空桶都能用漏斗抽走。",
+            {
+              "if": "cfg:machines.ultra_heat_generator.max_heat==0",
+              "text": "溫度沒有上限，燒得越久就升得越高。"
+            },
+            {
+              "if": "cfg:machines.ultra_heat_generator.max_heat>0",
+              "text": "溫度最高到 {cfg:machines.ultra_heat_generator.max_heat}°C，到了就不再上升。"
+            },
+            {
+              "if": "cfg:machines.ultra_heat_generator.balance<0",
+              "text": "放下時它會隨機得到一個 0～2 之間的平衡值，小於 1 偏{balance:frozen}，大於 1 偏{balance:chaos}，之後不再改變，詳見[[start/glossary]]。拆下重放會重新抽取，可溫度也會跟著清零，所以先看好平衡值，再開始預熱。"
+            },
+            {
+              "if": "cfg:machines.ultra_heat_generator.balance>=0",
+              "text": "它產出的 MRU 平衡值固定是 {cfg:machines.ultra_heat_generator.balance}，見[[start/glossary]]。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>想深入</em>：熱源係數見[[generators/heat_generator]]，MRU 怎樣送進機器見[[crafting/bound_gem]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書介紹它時，特地加了一句「溫度也沒有上限！」，還說它燒得越熱，反而越省燃料。"
+        }
+      ]
+    },
+    {
+      "id": "ultra_natural_furnace",
+      "title": "{item:essentialcraft5:ultra_natural_furnace}",
+      "icon": "essentialcraft5:ultra_natural_furnace",
+      "summary": "燒花、樹葉、草和原木來產出 MRU",
+      "complete": "essentialcraft5:guide/void_machines/ultra_natural_furnace",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ultra_natural_furnace"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：把[[generators/natural_furnace|自然熔爐]]升級成{item:essentialcraft5:ultra_natural_furnace}。它改燒花、樹葉、草和原木，每刻產量比普通版高出許多，其中燒原木最划算。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "p",
+          "text": "材料和終極熱力產能器一樣，是 4 塊{item:essentialcraft5:void_plating}、2 個{item:essentialcraft5:void_mru_reactor}和 2 個{item:essentialcraft5:void_core}，只是中間換成一台自然熔爐。再砍幾組原木留著當燃料。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ultra_natural_furnace"
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下以後，先把要用 MRU 的機器用[[crafting/bound_gem|綁定寶石]]連到它身上。",
+            "把原木、樹葉、花或草放進它唯一的格子，最多放滿一組 64 個。",
+            "它一次點燃一件，按這件所屬的類別燒上一段時間，每刻產出固定的 MRU，燒完什麼也不剩。",
+            "{item:minecraft:hopper}和管道從任意一面都能往裡送東西，它只收這幾類，接上一條原木流水線就能一直燒下去。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "放進能燒的東西以後火苗亮起來，介面上顯示出每刻的產量。"
+        },
+        {
+          "type": "h",
+          "text": "能燒什麼"
+        },
+        {
+          "type": "table",
+          "header": [
+            "類別",
+            "一件燒多久",
+            "每刻產出"
+          ],
+          "rows": [
+            {
+              "if": [
+                "cfg:machines.ultra_natural_furnace.ticks_flower",
+                "cfg:machines.ultra_natural_furnace.mru_flower"
+              ],
+              "cells": [
+                "虞美人、蒲公英、鬱金香等小花",
+                "{cfg:machines.ultra_natural_furnace.ticks_flower|sec}",
+                "{cfg:machines.ultra_natural_furnace.mru_flower} MRU"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.ultra_natural_furnace.ticks_leaves",
+                "cfg:machines.ultra_natural_furnace.mru_leaves"
+              ],
+              "cells": [
+                "樹葉",
+                "{cfg:machines.ultra_natural_furnace.ticks_leaves|sec}",
+                "{cfg:machines.ultra_natural_furnace.mru_leaves} MRU"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.ultra_natural_furnace.ticks_grass",
+                "cfg:machines.ultra_natural_furnace.mru_grass"
+              ],
+              "cells": [
+                "草、蕨、高草叢、大型蕨和高花",
+                "{cfg:machines.ultra_natural_furnace.ticks_grass|sec}",
+                "{cfg:machines.ultra_natural_furnace.mru_grass} MRU"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.ultra_natural_furnace.ticks_log",
+                "cfg:machines.ultra_natural_furnace.mru_log"
+              ],
+              "cells": [
+                "原木，去皮原木和六面樹皮的木頭也算",
+                "{cfg:machines.ultra_natural_furnace.ticks_log|sec}",
+                "{cfg:machines.ultra_natural_furnace.mru_log} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "一件的總產出 = 燃燒刻數 × 每刻產出"
+        },
+        {
+          "if": [
+            "cfg:machines.ultra_natural_furnace.ticks_log",
+            "cfg:machines.ultra_natural_furnace.mru_log"
+          ],
+          "type": "p",
+          "text": "一根原木要燒 {cfg:machines.ultra_natural_furnace.ticks_log} 刻，每刻產出 {cfg:machines.ultra_natural_furnace.mru_log} MRU，總產出比其他幾類多得多，所以砍樹是最好的燃料來源。"
+        },
+        {
+          "type": "p",
+          "text": "向日葵、丁香、玫瑰叢、牡丹等<em>高花都按「草」算</em>，樹苗、地獄的菌柄、竹子和枯萎的灌木則放不進去。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "它自己只能存 {cfg:machines.ultra_natural_furnace.max_mru} MRU，燒原木時幾秒就滿，滿了以後正在燒的那件<b>多出來的 MRU 就白白燒掉了</b>。機器用得慢的話，可以再綁一台[[storage/charging_chamber]]，往裡放一塊大的靈魂儲存物品，把多出來的 MRU 存起來，留給隨身物品用。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "和普通自然熔爐比，小花和草在這裡產得更多，高花因為按草算，反倒不如放進普通版裡燒。",
+            "存滿時它不再點燃新的一件，正在燒的那件照常燒完。",
+            "收到紅石訊號時停下，燃燒進度保留著。",
+            "漏斗和管道沒法把格子裡的東西抽出來。",
+            {
+              "if": "cfg:machines.ultra_natural_furnace.balance<0",
+              "text": "放下時它會隨機得到一個 0～2 之間的平衡值，介面上看得到，數值不合適就拆下來重新放，詳見[[start/glossary]]。"
+            },
+            {
+              "if": "cfg:machines.ultra_natural_furnace.balance>=0",
+              "text": "它產出的 MRU 平衡值固定是 {cfg:machines.ultra_natural_furnace.balance}，見[[start/glossary]]。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>想深入</em>：普通版見[[generators/natural_furnace]]，把 MRU 存進隨身物品見[[storage/soul_storage]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "在原作裡，它會自己到周圍十幾格內找花草、樹葉和原木來燒，還會把附近落在地上的樹苗替你種回土裡。如今它只燒你放進格子的東西，周圍的林子它不再碰。"
+        }
+      ]
+    },
+    {
+      "id": "magical_furnace",
+      "title": "{item:essentialcraft5:magical_furnace}",
+      "icon": "essentialcraft5:magical_furnace",
+      "complete": "essentialcraft5:guide/void_machines/magical_furnace",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_furnace"
+      ],
+      "summary": "把東西扔到頂上，熔好的產物落在四個角",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：搭起一座魔力熔爐。把原木、沙子、粗礦這類能進熔爐的東西扔到它頂上，它每 {cfg:machines.magical_furnace.ticks_required|sec}熔好一件，還有一定機率多出一份產物。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "list",
+          "items": [
+            "機器本身要用{item:essentialcraft5:magical_screen}、{item:essentialcraft5:void_mru_reactor}、{item:essentialcraft5:world_interactor}、2 塊{item:essentialcraft5:magic_fortified_plating}、{item:essentialcraft5:void_core}、2 塊{item:essentialcraft5:void_plating}和 1 塊{item:essentialcraft5:matter_of_eternity}，配方見下方。",
+            "核心和反應核從哪來見[[hoanna/relics]]，永恆物質要用一顆地獄之星，見[[storage/soul_storage]]，其餘零件見[[crafting/magician_crafts]]。",
+            "29 塊{item:essentialcraft5:void_stone}，顏色不限，見[[hoanna/void_stone]]。",
+            "4 台普通的{item:essentialcraft5:heat_generator}，終極熱力產能器代替不了，見[[generators/heat_generator]]。",
+            "一顆連著 MRU 源的{item:essentialcraft5:bound_gem}，見[[crafting/bound_gem]]。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_furnace"
+        },
+        {
+          "type": "h",
+          "text": "擺法"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:magical_furnace"
+        },
+        {
+          "type": "p",
+          "text": "先鋪一層 5×5 的虛空石當地基，把熔爐放在正中那塊上，熔爐這一層的四個角各放一塊虛空石，再往上一層的四個角各放一台熱力產能器。這幾台熱力產能器只是當架子用，不用點火。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "右鍵熔爐，把綁定寶石放進它唯一的格子給它供能。結構沒搭對時，滑鼠移到介面的狀態條上，就能看到是哪一格不對。",
+            "站在旁邊，把要熔的東西扔到熔爐頂上，一次扔一整組也行。",
+            "每熔好一件，產物落在東南角那台熱力產能器的頂上，{item:essentialcraft5:magical_slag}落在東北角。",
+            "隔一段時間回來，把四個角上的東西撿走。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "介面上的狀態寫著「熔鍊中」，扔上去的東西一件件變少，東南角出現產物，東北角出現魔力爐渣。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "某個角上堆了 8 堆以上的掉落物時，它會停下來，狀態顯示「出口堆滿了」，把東西拿走它就接著熔。掉在地上的東西放久了會消失，扔上去一大箱以後最好守在附近。"
+        },
+        {
+          "type": "h",
+          "text": "數值"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "熔一件",
+              "{cfg:machines.magical_furnace.ticks_required|sec}"
+            ],
+            [
+              "耗能",
+              "熔鍊時每刻 {cfg:machines.magical_furnace.mru_usage} MRU"
+            ],
+            [
+              "能存",
+              "{cfg:machines.magical_furnace.max_mru} MRU"
+            ],
+            [
+              "多出一份產物",
+              "{cfg:machines.magical_furnace.double_output_chance|pct}，落在西北角"
+            ],
+            [
+              "魔力爐渣",
+              "每件 1 個，落在東北角，另有 {cfg:machines.magical_furnace.double_slag_chance|pct}的機率再多 1 個，落在西南角"
+            ],
+            [
+              "經驗",
+              "沒有"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "選哪台熔爐",
+          "text": "專門加工礦石和粗礦的話，{item:essentialcraft5:magmatic_smeltery}更划算，見[[magmatic/smeltery]]。魔力熔爐的長處是什麼都能熔，不用岩漿，熔得也快。{item:essentialcraft5:magic_magmatic_furnace}和它名字相近，其實是岩漿熔爐的一檔，見[[magmatic/furnace_upgrades]]。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "熔到一半 MRU 不夠時，進度會停住，補上以後接著熔，已經花掉的不會白費。只有換了一種東西、頂上空了或者結構缺了一塊，進度才從頭算起。",
+            "收到紅石訊號時停下，進度保留著。",
+            "產物會先並進旁邊同種的那一堆，所以一個角上通常只有一兩堆。",
+            "想自動收取，可以在旁邊放一台[[logistics/magical_hopper]]，裝上只放行產物和爐渣的過濾器，見[[logistics/filters]]。不裝過濾器的話，它會連你扔在頂上等著熔的東西也一起搬走。",
+            "溼海綿和各種粉不會多出產物，爐渣照常產出，這樣就沒法靠「熔完再泡水」「磨成粉再熔」憑空多出東西。",
+            "只許別人拾取的掉落物和展示用的掉落物，它都不會碰。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書給它起的副標題是「不是地獄裡那種」。同一時期另一個魔法模組裡也有一座吞掉落物的大熔爐，這句話多半是在跟它劃清界線。"
+        }
+      ]
+    },
+    {
+      "id": "magical_teleporter",
+      "title": "{item:essentialcraft5:magical_teleporter}",
+      "icon": "essentialcraft5:magical_teleporter",
+      "complete": "essentialcraft5:guide/void_machines/magical_teleporter",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_teleporter"
+      ],
+      "summary": "站上去，就能傳到寶石記下的方塊上",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：搭起一座魔力傳送器。站上去等它蓄滿能量，你就會被傳到一顆綁定寶石記下的那個方塊頂上，同一個世界裡多遠都行。"
+        },
+        {
+          "if": "cfg:machines.magical_teleporter.allow_dimensional",
+          "type": "p",
+          "text": "它還能跨維度傳送，主世界、地獄、終界和海納爾之間都能直接往來。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.magical_teleporter.allow_dimensional",
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0"
+          ],
+          "text": "不過要往海納爾傳送，你得有矩陣 {cfg:general.matrix_rank.gates.hoanna_portal} 階，不夠時傳送器不送你過去。從海納爾傳出來不看矩陣階。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "list",
+          "items": [
+            "機器本身的配方和魔力熔爐一樣，只是兩側換成{item:essentialcraft5:magic_plate}，淡青板、米斯萊板或惡魔板也行，同樣要一塊{item:essentialcraft5:matter_of_eternity}。",
+            "36 塊{item:essentialcraft5:void_stone}和 4 塊{item:essentialcraft5:magic_plating}，顏色都不限，見[[hoanna/void_stone]]和[[alloys/plating]]。",
+            "兩顆{item:essentialcraft5:bound_gem}，一顆連著 MRU 源，另一顆綁在目的地的方塊上，見[[crafting/bound_gem]]。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_teleporter"
+        },
+        {
+          "type": "h",
+          "text": "擺法"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:magical_teleporter"
+        },
+        {
+          "type": "p",
+          "text": "傳送器所在的這一層鋪成 5×5，正東、正南、正西、正北各隔一格的那四塊是魔力護板，其餘都是虛空石。"
+        },
+        {
+          "type": "p",
+          "text": "往上的兩層，每層在四條邊上各放兩塊虛空石，圍成四對柱子，四個角和正中間空著，傳送器正上方留出兩格高的空間給人站。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿綁定寶石右鍵目的地的方塊記下落點，傳送時你會落在它頂上，點的是草或薄雪時落在下面那塊地上。要點機器、箱子這類能開啟的方塊，得潛行右鍵。",
+            "右鍵傳送器，左邊的格子放連著 MRU 源的寶石，右邊的格子放記著落點的寶石。滑鼠移到介面的狀態條上，能看到這一趟要花多少 MRU，落點能不能站人。",
+            "站到傳送器正上方別動，狀態會從「就緒」變成「蓄能中」，蓄能 {cfg:machines.magical_teleporter.ticks_required|sec}後就把你傳過去。",
+            "要是正好落在另一台傳送器上，得先走下來再站上去，它才會重新蓄能，傳送沒成功時也一樣。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "一聲煙花炸響，你已經站在那個方塊頂上，傳送器也扣掉了這一趟的 MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "蓄滿時它會檢查落點，腳下要有能站穩的方塊，頭頂兩格要空著，不能有岩漿、火、仙人掌、細雪這類傷人的方塊，那裡還得是你有權改動方塊的地方。地獄的基岩頂上去不了。落點不合格時不會傳送，也不扣 MRU，介面上會寫明原因，走下來改好再站上去就行。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "來回怎麼走",
+          "text": "一座傳送器只管單程。要往返就在兩頭各建一座，拿寶石潛行右鍵對面那座，把它設成目的地，傳過去以後先走下來，再站上去就能傳回來。每座都要一塊永恆物質，先算算地獄之星夠不夠。"
+        },
+        {
+          "type": "h",
+          "text": "費用"
+        },
+        {
+          "type": "formula",
+          "text": "同一個世界：{cfg:machines.magical_teleporter.mru_usage} × 東西、上下、南北三個方向的距離之和 ÷ 3 MRU，最多 {cfg:machines.magical_teleporter.max_mru}"
+        },
+        {
+          "type": "p",
+          "text": "比如往東 60 格、往北 30 格，距離之和是 90，一趟就要 {cfg:machines.magical_teleporter.mru_usage|mul:30} MRU。距離從傳送器算到寶石記下的那個方塊。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "蓄能",
+              "{cfg:machines.magical_teleporter.ticks_required|sec}"
+            ],
+            [
+              "容量",
+              "{cfg:machines.magical_teleporter.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.magical_teleporter.allow_dimensional",
+              "cells": [
+                "前往其他維度",
+                "存滿才能出發，一次扣光 {cfg:machines.magical_teleporter.max_mru} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "MRU 不夠這一趟時，進度會停住，補上後接著蓄能。中途換了人、寶石被拿走或者結構被拆，進度就從頭算起。",
+            "收到紅石訊號時進度停住。",
+            "騎著東西或者身上馱著別的生物時都傳送不了，得先下來。",
+            "放在別人領地裡的傳送器，只有在那裡有許可權的人站上去才會蓄能。",
+            "蓄能期間它會先把落點那一片區域載入好，到點時還沒載入完就再等幾秒，還等不到就算這一趟失敗。",
+            {
+              "if": "cfg:machines.magical_teleporter.generate_corruption",
+              "text": "每傳送一次會向周圍洩漏 0～{cfg:machines.magical_teleporter.max_corruption_gen} MRU，見[[crafting/corruption]]。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>想深入</em>：寶石的綁定和解綁見[[crafting/bound_gem]]，給它供能的主力可以選[[void_machines/ultra_heat_generator]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書管它叫「傳送門」，還接連打了好幾個感嘆號，強調它能去<em>別的維度</em>。"
+        }
+      ]
+    },
+    {
+      "id": "magical_builder",
+      "title": "建築魔杖",
+      "icon": "essentialcraft5:magical_builder_fill",
+      "summary": "圈出一片選區，一次填滿、清空或替換整片方塊",
+      "complete": "essentialcraft5:guide/void_machines/magical_builder",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_builder_fill",
+        "essentialcraft5:magical_builder_clear",
+        "essentialcraft5:magical_builder_clear_matching",
+        "essentialcraft5:magical_builder_clear_others",
+        "essentialcraft5:magical_builder_replace_all"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一根建築魔杖，圈出一片選區，把裡面的方塊一次填滿、清空或者換成另一種。它靠 MRU 幹活，幾秒就能做完一片，拆下來的東西直接進背包。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "p",
+          "text": "需要 2 個{item:essentialcraft5:world_interactor}、2 塊{item:essentialcraft5:void_plating}、1 個{item:essentialcraft5:void_core}、2 個{item:essentialcraft5:whitelist_filter}、1 把{item:essentialcraft5:magical_digger}和 1 塊{item:essentialcraft5:magic_plate}，最後一樣換成淡青板、米斯萊板或惡魔板也行。剛做出來時是填充模式。"
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:builder/magical_builder"
+        },
+        {
+          "type": "p",
+          "text": "世界互動器在普通工作台上就能做，見[[crafting/magician_crafts]]，虛空板和核心分別見[[hoanna/void_plating]]和[[hoanna/relics]]，過濾器見[[logistics/filters]]，挖掘器見[[gear/magical_digger]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿著魔杖右鍵一個方塊定下第一個角，再右鍵另一個方塊定下第二個角，兩個角之間的長方體就是選區，主手拿著魔杖時它會用品紅色的框標出來。",
+            "潛行右鍵一個方塊，就把它<hl>選定</hl>了，填充和全部替換放的就是它，清除選定方塊、清除選定以外這兩種模式也拿它來比對。",
+            "填充、全部替換這類要放方塊的模式，得先在背包裡備好選定方塊對應的物品，再對著空氣右鍵開工。魔杖會一格一格地施工，這期間要一直拿著它，人也要留在附近。",
+            "想停下就潛行對著空氣右鍵。沒在施工時這樣做會清掉兩個角，選定的方塊還留著，兩個角都設好以後想重新框選，也要先這樣清一次。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "主手拿著魔杖時看得到品紅色的選區框，對著空氣右鍵以後開始施工，做完時聊天欄會報告改了多少格。"
+        },
+        {
+          "type": "h",
+          "text": "五種模式"
+        },
+        {
+          "type": "table",
+          "header": [
+            "模式",
+            "做什麼",
+            "每格 MRU"
+          ],
+          "widths": [
+            3,
+            6,
+            2
+          ],
+          "rows": [
+            [
+              "填充",
+              "只往空氣格里放選定方塊",
+              "<t>25</t>"
+            ],
+            [
+              "清除",
+              "拆掉選區裡的所有方塊，不需要選定方塊",
+              "<t>250</t>"
+            ],
+            [
+              "清除選定方塊",
+              "只拆掉和選定方塊同種的方塊",
+              "<t>250</t>"
+            ],
+            [
+              "清除選定以外",
+              "拆掉選定方塊以外的方塊",
+              "<t>250</t>"
+            ],
+            [
+              "全部替換",
+              "在空氣、水和岩漿格里放上選定方塊，其他方塊換成它，已經是它的保持不動",
+              "放 <t>25</t>，換 <t>300</t>"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "換模式",
+          "text": "在工作台裡單獨放一根魔杖，它就會換到下一個模式，依次是填充 → 清除 → 清除選定方塊 → 清除選定以外 → 全部替換 → 填充。存著的 MRU、兩個角和選定方塊都不會丟。"
+        },
+        {
+          "type": "h",
+          "text": "MRU 從哪裡來"
+        },
+        {
+          "type": "p",
+          "text": "魔杖自己能存 5000 MRU，剛做出來時是空的，可以放進[[storage/charging_chamber]]充能。用的時候先扣你身上儲存物品裡的 MRU，不夠了才扣魔杖自己的，儲存物品見[[storage/soul_storage]]。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "填滿最大的一片",
+              "{cfg:general.builder.max_volume|mul:25} MRU"
+            ],
+            [
+              "拆光最大的一片",
+              "{cfg:general.builder.max_volume|mul:250} MRU"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "魔杖自己那 5000 MRU 只夠拆 20 格，大工程最好帶上靈魂儲存物品，一塊{item:essentialcraft5:matter_of_eternity}就能存 100 萬。MRU 只按<em>做成的格子</em>扣，空氣格和跳過的格子都不扣。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "別人領地裡的格子不會被改動，也不扣 MRU，可被拒的格子累計到 256 格時魔杖就會停下，所以框選時要避開別人的領地。基岩、屏障，以及箱子、熔爐、告示牌、機器這類方塊，哪種模式都不會碰，清除時水和岩漿也會跳過。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "選區最大",
+              "{cfg:general.builder.max_volume} 格"
+            ],
+            [
+              "兩個角最遠",
+              "{cfg:general.builder.max_point_distance} 格"
+            ],
+            [
+              "開工時離選區",
+              "{cfg:general.builder.max_reach} 格以內"
+            ],
+            [
+              "速度",
+              "每刻最多 {cfg:general.builder.cells_per_tick} 格"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "放下的方塊朝向和你站在原地親手放時一樣，樓梯這類方塊按你面朝的方向擺，台階放下半塊，蠟燭、海泡菜只放 1 個，作物從剛種下的樣子開始長。",
+            "新方塊在這一格立不住時，比如花放在石頭上、海帶放在沒水的地方，或者這一格站著人或生物，這一格就原樣不動，也不扣 MRU，全部替換也不會先拆掉原來的方塊。做完時聊天欄會報告跳過了幾格。",
+            "材料只用背包裡沒改過名、裡面沒裝東西的物品，材料用完或 MRU 不夠時就會停下，已經做好的部分留著。",
+            "拆下來的東西進背包，放不下的掉在腳下。掉什麼按方塊自己的掉落表算，不管工具合不合適，也不帶附魔效果，所以石頭給圓石，鑽石礦給 1 顆鑽石，玻璃、冰這類要絲綢之觸才會掉的方塊，拆了就沒了。",
+            "門、高花和伸出的活塞會整個拆下來。清除時從最上一層往下拆，沙子、砂礫就不會塌下來。",
+            "門、床、高花，以及箱子、告示牌、營火、機器這類方塊都不能選定。全部替換時，某一格要是能拆不能放，就會留成空氣，按拆除扣 250。",
+            "施工途中換了手裡的東西、走出 {cfg:general.builder.max_reach} 格或者換了維度，施工就會停下。每人同一時間只能有一片在施工。",
+            "創造模式下不扣 MRU，也不耗材料，拆下來的東西也不會給你。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>想深入</em>：給魔杖供能的隨身儲存物品見[[storage/soul_storage]]，如果只是挖礦、不需要圈選區，[[gear/magical_digger]]更順手。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書給它的副標題只有一行程式碼「world.edit();」，正文頭一句說這把法杖幾乎無所不能，接著叮囑能力越大，責任越大。"
+        }
+      ]
+    },
+    {
+      "id": "ember_forge",
+      "title": "{item:essentialcraft5:ember_forge}",
+      "icon": "essentialcraft5:ember_forge",
+      "complete": "essentialcraft5:guide/void_machines/ember_forge",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ember_forge"
+      ],
+      "summary": "把餘燼和焦點鍛成一把劍",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：搭起一座餘燼鍛爐，把 4 個餘燼和 4 個元素焦點鍛成一把{item:essentialcraft5:forged_elemental_sword}，鍛爐本身不耗 MRU。餘燼是海納爾那場大火燒剩的火種。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "list",
+          "items": [
+            "鍛爐本身要用{item:essentialcraft5:magical_screen}、{item:essentialcraft5:void_mru_reactor}、{item:essentialcraft5:magic_purified_ender_scale_alloy}、2 塊{item:essentialcraft5:magic_fortified_plating}、{item:essentialcraft5:void_core}、2 塊{item:essentialcraft5:void_plating}和 1 塊{item:essentialcraft5:matter_of_eternity}，配方見下方。",
+            "29 塊{item:essentialcraft5:void_stone}、4 塊{item:essentialcraft5:pale_plating}和 4 塊{item:essentialcraft5:magic_plating}，顏色都不限，虛空石見[[hoanna/void_stone]]，護板見[[alloys/plating]]。",
+            "每鍛一把要 4 個餘燼和 4 個元素焦點。餘燼在海納爾遺蹟的箱子裡很常見，平均每箱約 9 個，見[[hoanna/relics]]。",
+            "難的是焦點，每鍛一把就要整整用掉 4 個，得靠水晶提取精華一點點攢，見[[essence/fuel_and_focus]]。最好先想好要什麼元素再開始攢，各元素的效果見[[void_machines/ember_sword]]。主線的[[demons/demonic_pentacle]]還要 4 個{item:essentialcraft5:fire_focus}，記得先留出來。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ember_forge"
+        },
+        {
+          "type": "h",
+          "text": "擺法"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:ember_forge"
+        },
+        {
+          "type": "p",
+          "text": "先鋪一層 5×5 的虛空石當地基，把鍛爐放在正中那塊上，鍛爐這一層的四個角各放一塊虛空石，前後左右各隔一格放一塊淡青護板。"
+        },
+        {
+          "type": "p",
+          "text": "再往上一層的四個角各放一塊魔力護板，正好疊在那四塊虛空石上。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "往四塊淡青護板頂上各扔一個餘燼，往四塊魔力護板頂上各扔一個焦點。東西落上去以後會被擺正、托住，路過的人和怪都撿不走。",
+            {
+              "if": "cfg:machines.ember_forge.night_required",
+              "text": "等到天黑，八樣材料都到位以後再過 {cfg:machines.ember_forge.ticks_required|sec}，劍就會從鍛爐頂上彈出來。"
+            },
+            {
+              "if": "!cfg:machines.ember_forge.night_required",
+              "text": "八樣材料都到位以後再等 {cfg:machines.ember_forge.ticks_required|sec}，劍就會從鍛爐頂上彈出來。"
+            },
+            "不知道卡在哪時，空手右鍵鍛爐，它會告訴你缺哪一格、還差幾樣、是不是在等天黑，或者現在的進度。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "結構搭對以後，鍛爐一帶會飄起法術粒子，放好的餘燼和鍛爐之間連起一串紅色光點，焦點上方亮起藍點，紫色粒子流進鍛爐。鍛了一陣以後，鍛爐頂上迸出岩漿火星，每隔兩三秒響一聲傳送門的聲音。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "劍彈出來以後落在鍛爐頂上，夜裡會撿東西的怪能把它撿走，所以要把鍛爐一帶照亮，守在旁邊等它出爐。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每鍛一次，每格只用掉 1 個，一整堆餘燼扔在同一塊護板上，也是一次用一個，剩下的留著鍛下一把。焦點不管還剩多少耐久，都會整個用掉。",
+            {
+              "if": "cfg:machines.ember_forge.night_required",
+              "text": "它只在夜裡幹活，白天八樣齊全也不會動，鍛到一半天亮了，就要等天黑後從頭算起。地獄、終界這類看不到天的地方隨時都能鍛，雷暴天的白天也算夜裡。"
+            },
+            "收到紅石訊號時暫停，進度保留著，少了一樣材料或者結構缺了一塊，進度就從頭算起。",
+            "潛行空手右鍵能放開所有託著的東西，之後 10 秒內不再托住，放錯了或者改了主意，就這樣把東西取回來。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書給它的副標題只有一句「好亮……好暖……」。"
+        }
+      ]
+    },
+    {
+      "id": "ember_sword",
+      "title": "{item:essentialcraft5:forged_elemental_sword}",
+      "icon": "essentialcraft5:forged_elemental_sword",
+      "complete": "essentialcraft5:guide/void_machines/ember_sword",
+      "optional": true,
+      "items": [
+        "essentialcraft5:forged_elemental_sword"
+      ],
+      "summary": "焦點決定元素，餘燼配對追加傷害和效果",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：在[[void_machines/ember_forge]]裡鍛出一把餘燼元素劍。它的攻擊力和特殊效果全看鍛造時放進去的焦點和餘燼。"
+        },
+        {
+          "type": "p",
+          "text": "四個焦點決定<hl>主元素</hl>和<hl>副元素</hl>，四個餘燼兩兩配對，決定額外的傷害和命中效果，下面三張表依次講這三樣。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先想好要哪種劍",
+          "text": "四個焦點都放同一種，主元素和副元素就都是它。三個同種加一個別的，主元素是定的，副元素在這兩種裡隨機。餘燼放四種不同的，配出的組合最多。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "劍的物品提示上列著主元素、副元素、餘燼加成，以及它會觸發的每一種效果。"
+        },
+        {
+          "type": "h",
+          "text": "主元素"
+        },
+        {
+          "type": "p",
+          "text": "四個焦點裡，哪種元素比其餘三種都多，它就是主元素，兩兩持平或四種各一時是「複合」。主元素決定基礎攻擊力和命中效果，每次命中扣 <t>50</t> MRU。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "主元素",
+            "攻擊加成",
+            "命中效果"
+          ],
+          "rows": [
+            [
+              "火",
+              "+7",
+              "目標著火 5 秒"
+            ],
+            [
+              "水",
+              "+3",
+              "目標虛弱、緩慢 2 秒"
+            ],
+            [
+              "地",
+              "+8",
+              "目標失明、挖掘疲勞 2 秒"
+            ],
+            [
+              "風",
+              "+8",
+              "自己迅捷、力量 2.5 秒"
+            ],
+            [
+              "複合",
+              "+5",
+              "沒有，也不扣 MRU"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "攻擊加成的演算法和原版劍相同，物品提示上顯示的攻擊傷害還要加上空手的 1 點。對照一下，獄髓劍是 +7。"
+        },
+        {
+          "type": "h",
+          "text": "副元素"
+        },
+        {
+          "type": "p",
+          "text": "副元素從放進去的焦點裡出現過的元素中隨機挑一個，按下右鍵時觸發，扣 <t>50</t> MRU，劍同時舉起來，能像盾牌一樣格擋。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "火",
+              "自己獲得 2.5 秒抗火，身邊 2 格內的敵對生物著火 2 秒，村民、寵物和其他玩家不受波及"
+            ],
+            [
+              "水",
+              "生命恢復 2.5 秒，身上已有生命恢復時不生效，也不扣 MRU"
+            ],
+            [
+              "地",
+              "抗性提升 2 秒"
+            ],
+            [
+              "風",
+              "迅捷、力量 1.5 秒"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "餘燼組合"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:acidic_ember",
+            "essentialcraft5:chaos_ember",
+            "essentialcraft5:common_ember",
+            "essentialcraft5:corrupted_ember",
+            "essentialcraft5:crystal_ember",
+            "essentialcraft5:divine_ember",
+            "essentialcraft5:magical_ember",
+            "essentialcraft5:flame_ember"
+          ],
+          "per_row": 4
+        },
+        {
+          "type": "p",
+          "text": "4 個餘燼按種類兩兩配對，4 個同種時一對也配不出，4 種各一時有 6 對。每一對都去查下表，傷害加成一對一對往上加，合計最多算到 {cfg:general.ember_sword.max_ember_damage|sign}，幾對給出同一個效果時只算一次。"
+        },
+        {
+          "type": "p",
+          "text": "帶命中效果的話，每次命中另扣 <t>50</t> MRU，效果持續 3 秒，只有傷害加成時不扣。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "組合",
+            "效果"
+          ],
+          "widths": [
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "酸蝕 + 混沌",
+              "傷害 +4"
+            ],
+            [
+              "酸蝕 + 陰燃",
+              "傷害 +2"
+            ],
+            [
+              "酸蝕 + 腐化",
+              "目標緩慢"
+            ],
+            [
+              "酸蝕 + 水晶",
+              "傷害 +6"
+            ],
+            [
+              "酸蝕 + 神聖",
+              "目標中毒"
+            ],
+            [
+              "酸蝕 + 魔力",
+              "目標中毒 II"
+            ],
+            [
+              "酸蝕 + 燃燒",
+              "傷害 +8"
+            ],
+            [
+              "混沌 + 陰燃",
+              "傷害 +7，<b>反噬自身</b>"
+            ],
+            [
+              "混沌 + 腐化",
+              "目標緩慢 II"
+            ],
+            [
+              "混沌 + 水晶",
+              "傷害 +5"
+            ],
+            [
+              "混沌 + 神聖",
+              "引雷"
+            ],
+            [
+              "混沌 + 魔力",
+              "傷害 +6"
+            ],
+            [
+              "混沌 + 燃燒",
+              "傷害 +4"
+            ],
+            [
+              "陰燃 + 腐化",
+              "目標虛弱"
+            ],
+            [
+              "陰燃 + 水晶",
+              "傷害 +3"
+            ],
+            [
+              "陰燃 + 神聖",
+              "自己力量"
+            ],
+            [
+              "陰燃 + 魔力",
+              "自己迅捷"
+            ],
+            [
+              "陰燃 + 燃燒",
+              "傷害 +11"
+            ],
+            [
+              "腐化 + 水晶",
+              "吸血，回復 1 點生命"
+            ],
+            [
+              "腐化 + 神聖",
+              "<b>反噬自身</b>，目標飢餓 II"
+            ],
+            [
+              "腐化 + 魔力",
+              "強效吸血，回復 3 點生命"
+            ],
+            [
+              "腐化 + 燃燒",
+              "傷害 +5"
+            ],
+            [
+              "水晶 + 神聖",
+              "傷害 +9"
+            ],
+            [
+              "水晶 + 魔力",
+              "傷害 +7"
+            ],
+            [
+              "水晶 + 燃燒",
+              "自己迅捷 II"
+            ],
+            [
+              "神聖 + 魔力",
+              "驅散，剝掉目標一個有益效果"
+            ],
+            [
+              "神聖 + 燃燒",
+              "目標腐蝕，無法回血"
+            ],
+            [
+              "魔力 + 燃燒",
+              "傷害 +6"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>引雷</em>：一道閃電落在被砍的目標頭上，造成 <t>5</t> 點傷害並讓它著火 8 秒，你自己獲得 3 秒抗火 II。閃電只劈那一個目標，不會點燃方塊，也不會把村民和豬劈成別的生物，每 2 秒最多劈一次。",
+            "<em>反噬自身</em>：每次命中時你自己受到 <t>2</t> 點傷害。",
+            "<em>驅散</em>：剝掉目標身上一個有益的狀態效果，先剝沒有時限的，沒有的話剝剩餘時間最長的，有害效果不動。<em>腐蝕</em>：目標 3 秒內回不了血，自然回復、生命恢復和瞬間治療都不起作用。",
+            {
+              "if": "!cfg:general.ember_sword.max_ember_damage<36",
+              "text": "傷害最高的四種餘燼是酸蝕、混沌、陰燃和燃燒，6 對加起來 +36，代價是會反噬自己。"
+            },
+            {
+              "if": "cfg:general.ember_sword.max_ember_damage<36",
+              "text": "酸蝕、混沌、陰燃、燃燒這四種餘燼的 6 對加起來是 +36，可餘燼加成最多隻算到 {cfg:general.ember_sword.max_ember_damage|sign}，湊夠這個數就行，用不著硬湊這組帶反噬的。"
+            },
+            "不想挨反噬、也不想每次多扣 MRU，就放酸蝕、陰燃、燃燒三種，第四個隨便重複其中一種，3 對加起來 +21，不帶任何命中效果。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "MRU 用光以後所有效果都會停，反噬也一樣，只剩下攻擊力。用得勤的話，身上最好帶一件靈魂儲存物品，劍會先從裡面扣。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.ember_inlay.enabled",
+          "text": "帶命中效果的這些組合也能做成餘燼嵌片，嵌進別的武器裡，見[[void_machines/ember_inlay]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "拿著它打仗會攢同調度，最高同調到 2 階，效果更長、更省 MRU；升到 2 階以後還能升格成{item:essentialcraft5:verdict_blade}，見[[attunement/ember_sword]]。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它不掉耐久，可以附魔，拿來挖東西、格擋也一樣不掉。",
+            "它自己能存 5000 MRU，放進[[storage/charging_chamber]]充能。扣 MRU 時先扣你身上{item:essentialcraft5:soul_shard}這類儲存物品裡的，不夠再扣劍自己的，見[[storage/soul_storage]]。",
+            "格擋和盾牌一樣，捱了斧頭一下會被打掉，冷卻 5 秒。",
+            "同樣的材料鍛兩次，副元素可能不一樣。",
+            "創造模式物品欄裡有兩把餘燼元素劍，一把是空的，一把充滿了 MRU，它們都沒經過鍛造，沒有主副元素，也沒有餘燼加成。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裡這張組合表一直躺在程式碼裡，幾乎從沒生效過，到了這一版才真正用上。"
+        }
+      ]
+    },
+    {
+      "id": "ember_inlay",
+      "title": "{item:essentialcraft5:ember_inlay}",
+      "icon": "essentialcraft5:ember_inlay",
+      "complete": "essentialcraft5:guide/void_machines/ember_inlay",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ember_inlay"
+      ],
+      "summary": "把一對餘燼的效果嵌進任何武器",
+      "if": "cfg:general.ember_inlay.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一片餘燼嵌片，在鐵砧上把它嵌進一把武器。之後拿這把武器每打實一下，就會觸發這一對餘燼在[[void_machines/ember_sword]]上的命中效果，其他模組的劍、斧、弓也都能嵌。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ember_inlay"
+        },
+        {
+          "type": "p",
+          "text": "在工作台裡把兩個<em>不同</em>的餘燼、{item:essentialcraft5:pale_gem}和{item:essentialcraft5:combined_magical_alloys}無序合成，就能得到一片記著這對餘燼的嵌片。只有帶命中效果的 14 對做得出來，只加傷害的那些，以及加傷害又反噬的混沌 + 陰燃，都做不出。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼嵌"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把武器放進{item:minecraft:anvil}的左格，嵌片放進右格。",
+            "取出嵌好的武器，這要花 {cfg:general.ember_inlay.anvil_levels} 級經驗、用掉 1 片嵌片，武器的物品提示上會多出一行「餘燼嵌刻：……」。",
+            "一把武器只能嵌一片，再嵌別的一對會把原來的換掉，舊的那片不退還。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "從鐵砧裡取出第一把嵌好的武器。"
+        },
+        {
+          "type": "h",
+          "text": "哪些武器能嵌"
+        },
+        {
+          "type": "list",
+          "items": [
+            "劍、斧、鎬、鍬、鋤、三叉戟這些武器和工具，以及其他模組裡的同類物品，盾牌和釣魚竿也能嵌，拿在主手打即時觸發；",
+            "弓和弩；",
+            "{item:essentialcraft5:forged_elemental_sword}不能嵌，它本身就帶著餘燼；",
+            "一次只能放一件，疊在一起的無法鑲嵌。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "打實以後"
+        },
+        {
+          "type": "p",
+          "text": "拿嵌好的武器近戰打實一下，或者主手拿著嵌好的弓 / 弩，射出的箭打實一下，就會扣 {cfg:general.ember_inlay.mru_per_hit} MRU，觸發這一對的效果。MRU 先從身上的儲存物品里扣，扣不起時什麼也不會發生。"
+        },
+        {
+          "type": "p",
+          "text": "效果和餘燼元素劍上同一對完全相同，持續 3 秒，引雷照樣每 2 秒最多一次，反噬也照樣有，組合表見[[void_machines/ember_sword]]。嵌片<em>只給效果，不加傷害</em>，嵌好的劍攻擊力和原來一樣。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "攻擊被領地、隊伍或「玩家之間不能互相傷害」擋下，傷害被別的東西取消，或者打在對方受擊後的無敵時間裡沒造成傷害，這些都不算打實，不扣 MRU，也不會觸發。尖刺反彈、法術傷害、{item:essentialcraft5:nu_amulet}的連鎖這類飾品打出的傷害，還有{item:essentialcraft5:spiky_shield}舉滿時扎出的那一圈，都不算武器打的。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "橫掃攻擊掃到的每個生物各算一下，各扣一次 MRU。",
+            "同一瞬間對同一個生物打出的幾段傷害只算一下，也只扣一次，比如其他模組的武器攻擊時附帶的那一下。",
+            "就算這一下被對方的傷害吸收整個吃掉，比如金蘋果給的黃心，也算打實，照樣會觸發，也照樣扣 MRU。",
+            "弓 / 弩看的是箭打中那一刻你主手拿著什麼，射出去以後換成別的，這支箭就不會觸發。",
+            "挖方塊和格擋都不扣 MRU，只有打實生物時才扣。",
+            "14 種嵌片在配方書裡都看得到，嵌片的物品提示上寫著它記的是哪一對、會觸發什麼效果。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裡的餘燼只能鍛進餘燼元素劍，嵌片是後來才加上的。"
+        }
+      ]
+    }
+  ]
+}

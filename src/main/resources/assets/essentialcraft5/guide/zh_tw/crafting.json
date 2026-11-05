@@ -1,0 +1,748 @@
+{
+  "id": "crafting",
+  "order": 30,
+  "group": "main",
+  "title": "第三章 · 輻射與合成",
+  "subtitle": "輻射倉與魔力工作台",
+  "icon": "essentialcraft5:magician_table",
+  "entries": [
+    {
+      "id": "bound_gem",
+      "title": "{item:essentialcraft5:bound_gem}",
+      "icon": "essentialcraft5:bound_gem",
+      "summary": "不拉管道也能送 MRU",
+      "complete": "essentialcraft5:guide/bound_gem",
+      "items": [
+        "essentialcraft5:bound_gem"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "機器幹一刻活，就往外漏一刻 MRU。漏出來的走不遠，聚在近旁，越聚越亮，亮到一定地步，站在旁邊的人就要受傷。",
+          "by": "《源質殘卷·卷三》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做幾顆{item:essentialcraft5:bound_gem}，學會怎樣給機器接上 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "MRU 本是一種輻射，穿得過空氣，先輩的機器之間從不拉線。這個模組裡也沒有管道和電線，用 MRU 的機器都有一個畫著灰色寶石的<em>綁定寶石槽</em>，放進一顆記住了源頭位置的綁定寶石，機器就會隔空把 MRU 拉過來。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：每顆綁定寶石要{item:essentialcraft5:elemental_gem}和{item:minecraft:quartz}各一個，石英要去地獄挖。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:bound_gem"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿寶石右鍵 MRU 的源頭，眼下的源頭就是你的{item:essentialcraft5:matrix_absorber}。成組的寶石一次只綁一顆，綁好的那顆會單獨回到背包裡。",
+            "開啟要用 MRU 的機器，把綁好的寶石放進綁定寶石槽，按住 Shift 點選寶石，它也會自己落進這一格。",
+            "看一眼介面上的連線狀態，顯示「{lang:gui.essentialcraft5.link.working}」就是接通了，此後機器會一直把自己存滿。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "同一維度",
+              "源頭和機器要在同一個維度"
+            ],
+            [
+              "距離",
+              "東西、上下、南北三個方向各自相距不超過 16 格"
+            ],
+            [
+              "載入",
+              "源頭所在的區塊要處於載入狀態"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裡有了一顆綁定寶石，把它綁到矩陣換能器上，下一篇的輻射倉就用得上。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "每台機器都先把<em>自己</em>存滿，兩台機器綁著同一個源頭時，先拉到 MRU 的那台會把它全囤在自己身上。MRU 緊張的時候，把暫時不用的那台機器裡的寶石先取出來。"
+        },
+        {
+          "type": "h",
+          "text": "狀態一覽"
+        },
+        {
+          "type": "table",
+          "header": [
+            "介面上寫著",
+            "意思"
+          ],
+          "widths": [
+            3,
+            5
+          ],
+          "rows": [
+            [
+              "{lang:gui.essentialcraft5.link.working}",
+              "正常，正在拉取 MRU"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.no_mru}",
+              "源頭是空的，要等它產出"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.unloaded}",
+              "源頭所在的區塊沒有載入，走近一些即可"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.out_of_range}",
+              "離源頭超過 16 格"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.wrong_dimension}",
+              "寶石綁的是別的維度的方塊"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.not_magical}",
+              "綁定的方塊不儲存 MRU"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "寶石只綁得上你有權改動的方塊，去綁別人領地裡的機器，快捷欄上方會提示沒有許可權，寶石不會因此損失。",
+            "綁好的寶石要先清除才能改綁，做法見下面的「改綁」。",
+            "離得更遠的機器，可以用{item:essentialcraft5:ray_tower}一段一段地接過去，做法見[[generators/ray_tower]]。",
+            "拉進來的 MRU 會和機器裡原有的混在一起，平衡值按兩邊的數量加權平均，見[[start/mru]]。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "綁定寶石還能用來給[[void_machines/magical_teleporter]]定落點，這樣用時不受距離限制。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "改綁"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "手拿綁好的寶石，潛行對著空氣右鍵，聽到一聲低沉的音符、物品提示裡的座標沒了，寶石就清除乾淨了。",
+            "沒反應就再按一次。要是綁定時你正在潛行，這顆寶石就要按兩次才會清除，免得手滑清掉。",
+            "拿清除過的寶石右鍵新的源頭，照常綁上就好。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "radiating_chamber",
+      "title": "{item:essentialcraft5:radiating_chamber}",
+      "icon": "essentialcraft5:radiating_chamber",
+      "summary": "用 MRU 照射物品",
+      "complete": "essentialcraft5:main/radiating_chamber",
+      "items": [
+        "essentialcraft5:radiating_chamber",
+        "essentialcraft5:diamond_plate",
+        "essentialcraft5:eye_of_absorption"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：造一台{item:essentialcraft5:radiating_chamber}，這是你第一台耗用 MRU 的機器。它拿 MRU 照射上下兩格里的東西，把它們變成新的材料。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：4 塊{item:essentialcraft5:diamond_plate}、2 個{item:essentialcraft5:eye_of_absorption}，再加{item:essentialcraft5:mru_catcher}、{item:essentialcraft5:elemental_core}和{item:essentialcraft5:heating_rod}各一個。鑽石板一共要 8 顆鑽石，吸收之眼每個要 1 顆末影珍珠，鑽石是這一章最大的一筆開銷。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:radiating_chamber"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:diamond_plate",
+            "essentialcraft5:eye_of_absorption"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下輻射倉，把一顆綁著矩陣換能器的{item:essentialcraft5:bound_gem}放進它的寶石槽。",
+            "照配方把材料放進上格和下格，配方圖上畫的上下兩格就是這兩格。",
+            "進度走滿，產物就出現在輸出格里，上下兩格各扣掉一個。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "容量",
+              "{cfg:machines.radiating_chamber.max_mru} MRU"
+            ],
+            [
+              "進度",
+              "每刻 +1，配方要多少刻，介面上的進度就寫多少"
+            ],
+            [
+              "耗能",
+              "每刻 {cfg:machines.radiating_chamber.mru_usage_modifier} × 配方倍率 MRU，這一章的配方倍率都是 1"
+            ],
+            [
+              "平衡值",
+              "有的配方只認某一段平衡值，介面上會寫明「所需平衡值」，這一章的配方都不挑"
+            ],
+            [
+              "紅石訊號",
+              "停機，進度保留"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "輻射倉到手，放下、接上 MRU 以後，介面上的 MRU 往上漲，它就能用了。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:machines.radiating_chamber.generate_corruption",
+          "title": "坑",
+          "text": "輻射倉幹活時會往四周漏 MRU，守在旁邊的人會染上「MRU 腐化」效果。放好原料就走開，詳見下一篇[[crafting/corruption]]。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "做到一半換了原料，或者平衡值跑出了配方的範圍，進度都會從 0 重來。",
+            "輸出格放不下時，進度停在原處等著，取走產物就接著做。進度會存檔，區塊卸載了也不會丟。",
+            "漏斗和管道會照配方把東西送進對應的格子，比如{item:minecraft:iron_ingot}做魔力強化石時進下格，做{item:essentialcraft5:mru_magnet}時進上格。兩格都空著的時候，就照上一次做成的配方擺。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "一格放一顆寫著目標平衡值的{item:essentialcraft5:glitchy_core}、另一格空著，輻射倉就不再找配方，改為解碼這顆核心，詳見[[inquisitorium/decoding]]。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "corruption",
+      "title": "當心 MRU 腐化",
+      "icon": "essentialcraft5:mru_mover",
+      "summary": "機器會漏 MRU",
+      "items": [
+        "essentialcraft5:mru_mover",
+        "essentialcraft5:mrucu_container"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "MRU 聚得越多、趕得越急，就越不安分。下面這些機器工作時，每刻都會往四周漏出一點不穩定的 MRU："
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.radiating_chamber.generate_corruption",
+              "text": "{item:essentialcraft5:radiating_chamber}：每刻 0～{cfg:machines.radiating_chamber.max_corruption_gen} MRU"
+            },
+            {
+              "if": "cfg:machines.magician_table.generate_corruption",
+              "text": "{item:essentialcraft5:magician_table}：每刻 0～{cfg:machines.magician_table.max_corruption_gen} MRU"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "漏出的 MRU 會給守在旁邊的人疊上「MRU 腐化」效果，也會在附近慢慢養出一團越來越大的 <em>MRU 聚集體</em>。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:machines.radiating_chamber.generate_corruption",
+            "!cfg:machines.magician_table.generate_corruption"
+          ],
+          "text": "輻射倉和魔力工作台幹活時不往外漏 MRU，放在哪裡都行。別的機器漏不漏，各自的篇目裡都寫著，漏出的 MRU 有什麼後果見[[start/mrucu]]。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "「MRU 腐化」效果"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "cfg:general.corruption.respect_claims"
+          ],
+          "text": "機器每漏一次，就給水平 6 格、上下 3 格以內<em>這台機器的主人</em>疊一層「{lang:effect.essentialcraft5.mru_corruption}」。只有放下它的人會被疊上，隊友和路過的人都不受牽連，創造模式下也不受影響。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "!cfg:general.corruption.respect_claims"
+          ],
+          "text": "機器每漏一次，就給周圍水平 6 格、上下 3 格以內的玩家疊一層「{lang:effect.essentialcraft5.mru_corruption}」，創造模式下不受影響。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "守在一台機器旁邊，一分半鐘左右會升到 II 級，從這時起偶爾挨一下魔法傷害，每次扣掉最大生命的 {cfg:general.corruption.mru_corruption_health_percent|pct}，三分多鐘升到 III 級以後捱得更勤。旁邊幹活的機器越多，效果漲得越快。走開以後持續時間只減不增，耗盡就消失。它不是藥水效果，喝牛奶沒有用，疊層的細則見[[start/mrucu]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "!cfg:general.corruption.mru_corruption_lethal"
+          ],
+          "text": "它和中毒一樣打不死人，最多把你打到只剩半顆心，可到了那一步，隨便一隻怪都能要你的命，別守著機器掛機。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "MRU 聚集體"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "漏出的 MRU 會流進水平 32 格、上下 16 格以內最近的一團 MRU 聚集體，附近沒有，就在機器旁邊凝出新的一團。聚集體是一團懸在空中、向四面放光的光球，存得越多，個頭越大。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen==1"
+          ],
+          "text": "每次漏得不多，時間長了卻不少。輻射倉做一塊下一章的矩陣投影要花 1 萬刻，這期間旁邊的聚集體會多出 5000 MRU 左右。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "聚集體存到 1 萬 MRU 以後，就開始損傷 12 格內玩家的 MRU 矩陣，這種損傷不會自己消退，規則見[[start/mrucu]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "矩陣損傷攢多了，會凝成<em>腐化效果</em>，見[[corruption/matrix_damage]]。在第十二章開啟第一座搭好的[[pentacle/pentacle]]以前，損傷只會攢著，不會凝成任何效果。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "矩陣損傷攢多了，會凝成永久的<em>腐化效果</em>，見[[corruption/matrix_damage]]，要等到第十二章的[[pentacle/pentacle]]才治得好。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "怎麼辦"
+        },
+        {
+          "type": "list",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "items": [
+            {
+              "if": [
+                "cfg:machines.radiating_chamber.generate_corruption",
+                "cfg:machines.magician_table.generate_corruption"
+              ],
+              "text": "把輻射倉和魔力工作台放在平時不大經過的角落，放好原料就走開，走出 6 格以外就不會再疊腐化。"
+            },
+            {
+              "if": [
+                "cfg:machines.radiating_chamber.generate_corruption",
+                "!cfg:machines.magician_table.generate_corruption"
+              ],
+              "text": "把輻射倉放在平時不大經過的角落，放好原料就走開，走出 6 格以外就不會再疊腐化。"
+            },
+            {
+              "if": [
+                "!cfg:machines.radiating_chamber.generate_corruption",
+                "cfg:machines.magician_table.generate_corruption"
+              ],
+              "text": "把魔力工作台放在平時不大經過的角落，放好原料就走開，走出 6 格以外就不會再疊腐化。"
+            },
+            "放機器的房間用[[crafting/fortified]]裡的{item:essentialcraft5:fortified_stone}和{item:essentialcraft5:fortified_glass}來砌，隔著這兩種方塊，聚集體傷到你的機率要小得多。",
+            "聚集體快長到 1 萬的時候，用下面講的魔杖把它挪到你不常去的角落。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "矩陣一階起，主手或副手拿著綁定你的靈魂石，就看得見附近的聚集體和它存了多少，不用戴單片鏡，見[[mru/rank_1]]。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "挪走聚集體"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_mover"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:mru_mover}用一顆元素晶石和一根木棍就能做。對準前方 20 格內的聚集體<em>按住右鍵</em>，它就往你這邊移，<em>潛行</em>時則往外推，每秒大約挪 2 格。"
+        },
+        {
+          "type": "p",
+          "text": "聚集體所在的格子和要挪去的格子，都得是你有權改動的地方，別人領地裡的聚集體挪不動。聚集體的其他事見[[start/mrucu]]。"
+        },
+        {
+          "type": "h",
+          "text": "整團收走、倒掉"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mrucu_container"
+        },
+        {
+          "type": "p",
+          "text": "挪來挪去，它還是在你的地盤上。想徹底清掉一團，就用{item:essentialcraft5:mrucu_container}，拿空瓶對準前方 6 格內的聚集體<em>按住右鍵</em> 2 秒，把它收進瓶裡，代價是從你身上帶的 MRU 儲存物品里扣掉這團存量 {cfg:general.mrucu_container.capture_cost_percent}% 的 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "拿裝著聚集體的瓶子對著<em>方塊</em>右鍵，就把它放在那裡，那裡同樣得是你能改動的地方。對著<em>空處</em>按住右鍵 3 秒，瓶裡那團就散掉了，MRU 不會退回來，空瓶還能再用。"
+        },
+        {
+          "type": "h",
+          "text": "野外的聚集體"
+        },
+        {
+          "type": "p",
+          "text": "野外也有聚集體，最常見的是上古遺蹟裡那一團，多半埋在地下的石頭裡。戴上{item:essentialcraft5:magic_monocle}，隔著石頭也看得見它在發光，那裡可能守著一隻聚能魔像，見[[bestiary/mru_golem]]。[[gear/ley_detector|地脈探測儀]]切到「聚集體」檔，能指出附近存量大的那一團在哪個方向。"
+        }
+      ]
+    },
+    {
+      "id": "fortified",
+      "title": "強化材料",
+      "icon": "essentialcraft5:fortified_frame",
+      "summary": "通往魔力工作台",
+      "complete": "essentialcraft5:guide/obsidian_plate",
+      "items": [
+        "essentialcraft5:fortified_stone",
+        "essentialcraft5:fortified_glass",
+        "essentialcraft5:fortified_frame",
+        "essentialcraft5:obsidian_plate"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：用輻射倉照出{item:essentialcraft5:fortified_stone}和{item:essentialcraft5:fortified_glass}，再合成{item:essentialcraft5:fortified_frame}和 2 塊{item:essentialcraft5:obsidian_plate}，魔力工作台要用的就是這兩塊黑曜石板。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：石頭、玻璃、鐵錠和 8 塊黑曜石。玻璃換成染色玻璃也行，石頭要普通石頭，圓石代替不了。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "輻射倉的上格放石頭或玻璃，下格放鐵錠。",
+            "每照一次要半秒，合 10 刻，花 10 MRU 出 4 塊，上下兩格各扣一個。",
+            "在工作台裡，4 塊魔力強化玻璃加 4 塊魔力強化石合成 3 個魔力強化框架。",
+            "一個框架四周圍上 4 塊黑曜石，就成了一塊黑曜石板。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fortified_stone",
+            "essentialcraft5:fortified_glass"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fortified_frame",
+            "essentialcraft5:obsidian_plate"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裡同時有 2 塊黑曜石板。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "多照一些",
+          "text": "框架後面用得很多，光一塊{item:essentialcraft5:magical_screen}就要 4 個，做到第五章大約要 16 個。魔力強化玻璃照 6 次、魔力強化石照 8 次左右就夠，每次只花 1 個鐵錠和 10 MRU，幾乎不費 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "魔力強化石和魔力強化玻璃本身也是好建材，能擋住聚集體放出的一部分 MRU，拿來砌放機器的屋子正合適，見[[start/mrucu]]。"
+        }
+      ]
+    },
+    {
+      "id": "magician_table",
+      "title": "{item:essentialcraft5:magician_table}",
+      "icon": "essentialcraft5:magician_table",
+      "summary": "核心合成台",
+      "complete": "essentialcraft5:main/magician_table",
+      "items": [
+        "essentialcraft5:magician_table",
+        "essentialcraft5:emerald_plate"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：造一台{item:essentialcraft5:magician_table}，它是一張用 MRU 驅動的工作台，這個模組的大部分材料都要經它做出來。先輩的方子多是五樣東西配一份 MRU，這張台子就是照著這個造的。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：2 塊{item:essentialcraft5:obsidian_plate}、2 塊{item:essentialcraft5:emerald_plate}、3 個{item:essentialcraft5:iron_support}，再加{item:essentialcraft5:mru_catcher}和{item:essentialcraft5:elemental_core}各一個，綠寶石板一共要 4 顆綠寶石。第一章做的{item:essentialcraft5:iron_support}要是用完了，就再合成一次，一次出 4 個。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magician_table"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:emerald_plate"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下工作台，放進一顆綁著 MRU 源頭的綁定寶石。",
+            "五個原料格是正中一格和四個角，照配方圖上的位置擺，配方里空著的格子也要空著。",
+            "進度走滿出一份產物，五格各扣掉一個。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "容量",
+              "{cfg:machines.magician_table.max_mru} MRU"
+            ],
+            [
+              "進度",
+              "每刻 +1，裝了升級就按升級的倍數加快"
+            ],
+            [
+              "耗能",
+              "每 1 點進度花 {cfg:machines.magician_table.mru_usage_modifier} MRU，配方要多少進度就花多少"
+            ],
+            [
+              "平衡值",
+              "不挑"
+            ],
+            [
+              "紅石訊號",
+              "停機，進度保留"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "魔力工作台到手，放下、接上 MRU 就能開工。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>輸出格放不下時，進度會清零</w>，做一整組時記得及時把產物取走。做到一半換了原料，也會從頭開始。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "提速",
+          "text": "手拿一個{item:essentialcraft5:eye_of_absorption}右鍵工作台，就裝上了 ×3 的升級，花同樣的 MRU，只要三分之一的時間。吸收之眼現在就做得出來，詳見[[storage/upgrades]]。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.magician_table.generate_corruption",
+              "text": "工作台幹活時也會漏 MRU，見[[crafting/corruption]]。"
+            },
+            "漏斗和管道會照配方把原料送進對應的格子，幾格要同一種原料時就輪流補，多原料的配方也能全靠漏斗供料。",
+            "同一件東西在不同配方里位置不同，比如{item:essentialcraft5:mru_shard}做水晶時放中間、做靈魂碎片時放四角，漏斗會照工作台上一次做成的配方擺。想換配方，就先手動擺一份做出來。",
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "同調裝備升階、換裝轉移也在這張台子上做，四角按配方圖上寫的數量扣，見[[attunement/stage_up]]和[[attunement/transfer]]。轉移做完，舊件會留在左上角，記得取回。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magician_crafts",
+      "title": "魔力工作台常用配方",
+      "icon": "essentialcraft5:magic_plate",
+      "summary": "為產能器備料",
+      "complete": "essentialcraft5:guide/generator_parts",
+      "items": [
+        "essentialcraft5:magical_ingot",
+        "essentialcraft5:magical_water",
+        "essentialcraft5:magic_fortified_plating",
+        "essentialcraft5:magic_plate",
+        "essentialcraft5:magical_screen",
+        "essentialcraft5:mru_conversion_matrix",
+        "essentialcraft5:world_interactor"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：給第一台產能器備好{item:essentialcraft5:magic_plate}、{item:essentialcraft5:magical_screen}、{item:essentialcraft5:mru_conversion_matrix}和{item:essentialcraft5:world_interactor}這四樣零件。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "要做的",
+            "在哪做",
+            "原料",
+            "每個 MRU"
+          ],
+          "widths": [
+            4,
+            2,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_ingot} ×14",
+              "魔力工作台",
+              "中間一個鐵錠",
+              "50"
+            ],
+            [
+              "{item:essentialcraft5:magical_water}",
+              "魔力工作台",
+              "中間一個裝了水的玻璃瓶",
+              "250"
+            ],
+            [
+              "{item:essentialcraft5:magic_fortified_plating}",
+              "魔力工作台",
+              "中間一塊魔力強化石",
+              "10"
+            ],
+            [
+              "{item:essentialcraft5:magic_plate}",
+              "魔力工作台",
+              "中間魔力強化板，四角魔力錠",
+              "100"
+            ],
+            [
+              "{item:essentialcraft5:magical_screen}",
+              "工作台",
+              "4 個魔力強化框架 + 魔力水",
+              "—"
+            ],
+            [
+              "{item:essentialcraft5:mru_conversion_matrix}",
+              "工作台",
+              "2 個魔力錠 + 元素核心",
+              "—"
+            ],
+            [
+              "{item:essentialcraft5:world_interactor}",
+              "工作台",
+              "8 個魔力錠 + 吸收之眼",
+              "—"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated==1",
+          "text": "這一步很費 MRU，光 14 個魔力錠就要 700 MRU，整套下來 1060 MRU 左右，摺合 {cfg:machines.matrix_absorber.ubmru_usage|mul:1060} UBMRU。MRU 不夠的話，回去再打一輪怪，或者先做一部分。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated!=1",
+          "text": "這一步很費 MRU，光 14 個魔力錠就要 700 MRU，整套下來 1060 MRU 左右。MRU 不夠的話，回去再打一輪怪，或者先做一部分。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magical_ingot",
+            "essentialcraft5:magical_water"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_fortified_plating",
+            "essentialcraft5:magic_plate"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magical_screen",
+            "essentialcraft5:mru_conversion_matrix"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:world_interactor"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "四樣東西都拿到過手。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "多做幾套",
+          "text": "魔力板、魔力螢幕、MRU 轉換矩陣和世界互動器，後面幾乎每台機器都要用，冷凝器、充能倉、富集倉的零件、水晶成型器、月亮井都少不了它們。產能器轉起來以後，多做兩三套備著，省得每次回頭補。前五章大概要備多少原版材料，見[[start/materials]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "接下來進入第四章，造一台[[generators/heat_generator]]，不想燒燃料的話，換成[[generators/natural_furnace]]也行，兩台任選一台就夠。"
+        }
+      ]
+    }
+  ]
+}

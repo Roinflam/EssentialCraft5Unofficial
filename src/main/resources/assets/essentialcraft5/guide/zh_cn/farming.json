@@ -1,0 +1,640 @@
+{
+  "id": "farming",
+  "order": 84,
+  "group": "side",
+  "title": "支线 · 农牧自动化",
+  "subtitle": "让红石替你喂牲口、剪羊毛",
+  "icon": "essentialcraft5:breeder",
+  "entries": [
+    {
+      "id": "item_shuffler",
+      "title": "{item:essentialcraft5:item_shuffler}",
+      "icon": "essentialcraft5:item_shuffler",
+      "summary": "把地上的东西随手抖散",
+      "complete": "essentialcraft5:guide/farming/item_shuffler",
+      "optional": true,
+      "items": [
+        "essentialcraft5:item_shuffler"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "我做过一台整理机，它从没把什么整理整齐过，只会把地上的东西拨来拨去。我没拆它，羊圈里有它在，喂食和剪毛反倒顺当些。",
+          "by": "《工坊手记》"
+        },
+        {
+          "type": "p",
+          "text": "这一章要搭一座没人看着也能自己运转的牧场，{item:essentialcraft5:breeder}管喂食，{item:essentialcraft5:shearing_station}管剪毛，两台动物分离器把幼崽和成年动物分开，{item:essentialcraft5:item_shuffler}在一旁打下手。"
+        },
+        {
+          "type": "p",
+          "text": "这几台机器都很便宜，主料是{item:essentialcraft5:fortified_stone}，<em>第三章</em>做出强化石就能做，做法见[[crafting/fortified]]。这个模组的机器不会自己挖方块或放方块，所以这一章没有在地里收割、补种庄稼的机器，地里的庄稼还是照原版的办法种和收。想让机器替你种，可以用这一章最后一篇的[[farming/magical_cultivator]]，它把庄稼种在机器里面。"
+        },
+        {
+          "type": "h",
+          "text": "三台红石农牧机器的共同点"
+        },
+        {
+          "type": "p",
+          "text": "洗牌器、繁殖器和剪毛器用法相同，规矩也一样。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>红石信号从无到有的那一刻</em>，它干一次活，信号一直亮着也不会再干，接一个按钮，或者用红石时钟定时通断都行。",
+            "两次干活之间有一段最短间隔，时长写在各自的数值表里，间隔里收到的信号会被记下，间隔一过就补做一次。",
+            "工作范围是以它为中心的 25×25×25 立方体，前后左右上下各伸出 12 格。",
+            "它们不耗 MRU，也没有界面，空手右键，动作栏会显示它的主人，因为主人的缘故停工时，原因也写在那里。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "它们不碰什么"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.protection.require_owner_online",
+              "text": "<em>放下它的人在线时它才干活</em>，离线期间收到的红石信号，事后也不补做。"
+            },
+            {
+              "if": "!cfg:general.protection.require_owner_online",
+              "text": "放下它的人不在线时，它也照常工作。"
+            },
+            "它只处理放下它的人自己能改动的地方，别人领地里的动物和物品一概不碰。",
+            "你自己驯服的宠物照常处理，起了名字或拴着绳的动物、装了鞍的骆驼、村民和别人的宠物，它都不碰。",
+            "地上只有某个玩家能捡的物品，不是给你的，它就不动。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "所有机器共同的规矩见[[automation/rules]]。"
+        },
+        {
+          "type": "h",
+          "text": "洗牌器"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一台{item:essentialcraft5:item_shuffler}，材料是七块{item:essentialcraft5:fortified_stone}、一个{item:minecraft:redstone}和一桶{item:minecraft:water_bucket}，合成后空桶会还给你。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:item_shuffler"
+        },
+        {
+          "type": "p",
+          "text": "给它一次红石信号，范围里地上的每个掉落物都会横着挪一点，东西、南北方向各不到 1 格，高度不变，新位置被方块挡住的就留在原处，不会被塞进墙里。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每次最多挪",
+              "{cfg:machines.item_shuffler.max_per_pulse} 个"
+            ],
+            [
+              "两次之间至少隔",
+              "{cfg:machines.item_shuffler.pulse_interval|sec}"
+            ],
+            [
+              "范围",
+              "25×25×25"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "[[farming/breeder]]只喂得到食物附近的动物，食物堆成一堆时，用它洗一下就散开了，它也能把落在漏斗旁边的东西抖到漏斗上面。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到洗牌器，这一步就打勾了。放下后给它一次红石信号，周围地上的东西都会挪个位置。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "挪的方向是随机的，没法拿它把东西往一个方向赶，想把散落的东西收到一处，可以用[[logistics/magical_hopper]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "它在原作的中文版里叫「魔力物流整理机」，原作的研究书自己也承认，它干的活和名字对不上。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/farmdevices/item_shuffler.json — #@#/#R#/###：魔力强化石 ×7、水桶、#forge:dusts/redstone（水桶的 craftingRemainingItem 是空桶）",
+        "blockentity/FarmDeviceBlockEntity.java:48 RANGE = 12 — 以机器为中心 25×25×25（写死）；:124 mayWork — 主人在线才干；主人不在线时 general.protection.require_owner_online 关掉才干；没有主人不干",
+        "block/FarmDeviceBlock.java、block/PulseMachineBlock.java:79 — 红石上升沿（PulseGate：间隔里来的脉冲等间隔满了补做），空手右键 MachineOwnerStatus.use（block/MachineOwnerStatus.java:43）在动作栏只报主人：主人：xx / 没有主人，不会工作 / 主人不在线，暂停工作（message.essentialcraft5.machine_owner*）",
+        "原作 lang zh_CN tile.essentialcraft.device.itemShuffler.name = 魔力物流整理机；page.itemShuffler_0「这台设备的作用跟它的名字表达的不同」（en_US「works not as it’s name suggests」）",
+        "util/ECEntityRules.java:69 belongsToOther / alwaysSpared — 名字、拴绳、村民（含流浪商人）、装鞍骆驼谁的都不碰；驯服的只认主人就是机器主人的",
+        "blockentity/ItemShufflerBlockEntity.java:46 max_per_pulse 128、:50 pulse_interval 20；:72 eligible — 永远捡不起来的、指定了别人拾取的不碰；:82 偏移 nextDouble() − nextDouble()（各轴 (−1, 1)，y 不变）；:100 有碰撞不挪",
+        "policy §1.1 / batch4 §0.0 — 机器不挖方块、不放方块，补种器已去掉",
+        "data/essentialcraft5/recipes/farmdevices/*.json — 主料强化石（第三章 crafting/fortified）"
+      ]
+    },
+    {
+      "id": "breeder",
+      "title": "{item:essentialcraft5:breeder}",
+      "icon": "essentialcraft5:breeder",
+      "summary": "用地上的食物喂牲口",
+      "complete": "essentialcraft5:guide/farming/breeder",
+      "optional": true,
+      "items": [
+        "essentialcraft5:breeder"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一台{item:essentialcraft5:breeder}。写手记的那位工匠也养着一圈羊，喂食的活后来全交给了它。给它一次红石信号，它就拿地上的食物喂附近的成年动物，让它们像你亲手喂过一样繁殖。"
+        },
+        {
+          "type": "p",
+          "text": "它和洗牌器一样不耗 MRU，也没有界面，收到一次红石信号就干一次活。范围、间隔和不碰哪些东西，是三台红石农牧机器共同的规矩，都写在[[farming/item_shuffler]]的开头。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：七块{item:essentialcraft5:fortified_stone}、一个{item:minecraft:redstone}和一个{item:minecraft:hay_block}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:breeder"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把动物圈在它周围 12 格以内，即以它为中心 25×25×25 的范围。",
+            "把食物扔在动物旁边，动物离食物 3 格半以内就吃得到，前后左右上下都按这个距离算。",
+            "给它一次红石信号，范围里的成年动物各吃掉地上一个食物，头上冒出爱心，两只凑到一起就生下幼崽，经验也照常掉。",
+            "生育过的成年动物要歇 5 分钟才能再繁殖，用红石时钟隔一段时间给一次信号，再定时补些食物就行。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每次最多喂",
+              "{cfg:machines.breeder.max_per_pulse} 只"
+            ],
+            [
+              "同一种到多少只就停",
+              "{cfg:machines.breeder.max_same_type} 只，幼崽也算在内"
+            ],
+            [
+              "两次之间至少隔",
+              "{cfg:machines.breeder.pulse_interval|sec}"
+            ],
+            [
+              "够得着食物的距离",
+              "3.5 格"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每种动物都吃它在原版里爱吃的食物，比如牛和羊吃小麦、猪吃胡萝卜、鸡吃种子。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到繁殖器，这一步就打勾了。给它一次红石信号，牲口头上冒出爱心，地上的食物也少了一些。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "同一种动物连幼崽在内，在它的范围再往外 3 格半以内已经有 {cfg:machines.breeder.max_same_type} 只时，它就不再喂这一种，免得越生越多把游戏拖慢。牧场停下来时把幼崽挪走就好，[[farming/animal_separator]]可以代劳。"
+        },
+        {
+          "type": "h",
+          "text": "它不喂谁"
+        },
+        {
+          "type": "list",
+          "items": [
+            "幼崽、正在求偶的动物，还有同样算动物、见人就打的疣猪兽。",
+            "狼、猫、马、驴、羊驼等驯服后才能繁殖的动物，只喂<em>你自己驯服的</em>。",
+            "马和驴要喂{item:minecraft:golden_carrot}或{item:minecraft:golden_apple}，羊驼要喂{item:minecraft:hay_block}，小麦、苹果只能让它们吃饱，不会让它们发情。",
+            "骆驼吃{item:minecraft:cactus}，它不需要驯服，野生的也会喂。",
+            "骡、骷髅马和僵尸马生不了幼崽，它不去喂，免得白白吃掉金胡萝卜。",
+            "装在桶里的食物，比如美西螈吃的热带鱼桶，它不拿来喂，免得连桶一起被吃掉。",
+            "起了名字或拴着绳的动物、装了鞍的骆驼和别人的宠物都不喂。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "食物和动物都要在它的范围里，食物堆成一堆时只有旁边几只吃得到，可以用[[farming/item_shuffler]]把它洗散。",
+            "动物真的进入发情状态才扣食物，因为别的原因没发情时，食物不会白白浪费。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/farmdevices/breeder.json — #@#/#R#/###：魔力强化石 ×7、干草块、红石",
+        "blockentity/BreederBlockEntity.java:72 FEED_REACH = 3.5（写死）；:169 inReach — 动物碰撞箱碰到以食物为中心 ±3.5 的方框（对称）",
+        "blockentity/BreederBlockEntity.java:84 max_same_type 24、:87 max_per_pulse 16、:91 pulse_interval 20；:187 动物查 scanArea(FEED_REACH)（范围再往外 3.5 格），:198 同种（成年 + 幼崽）不到 max_same_type 才喂",
+        "blockentity/BreederBlockEntity.java:144 canFeed — 成年、没在求偶、不是 Enemy（疣猪兽）、:135 cannotBreed（骡、骷髅马、僵尸马）、belongsToOther、:127 needsTaming（驯服才喂，骆驼除外）",
+        "blockentity/BreederBlockEntity.java:155 isBreedingFood — 羊驼干草块、骆驼 isFood（仙人掌）、马类金胡萝卜 / 金苹果 / 附魔金苹果，其余 isFood",
+        "blockentity/BreederBlockEntity.java:120 usableFood — 不用桶、不用带容器的；:289 没真发情不扣食物、不计数",
+        "net/minecraft/world/entity/animal/Animal — 繁殖后 setAge(6000)（5 分钟）；setInLove 照常掉经验",
+        "farming/item_shuffler 开头「共同点」— 三台红石农牧机器（ECFarmDevices）不用 MRU、没有界面、上升沿干一次活，这里只指过去"
+      ]
+    },
+    {
+      "id": "shearing_station",
+      "title": "{item:essentialcraft5:shearing_station}",
+      "icon": "essentialcraft5:shearing_station",
+      "summary": "给羊群剪毛",
+      "complete": "essentialcraft5:guide/farming/shearing_station",
+      "optional": true,
+      "items": [
+        "essentialcraft5:shearing_station"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一台{item:essentialcraft5:shearing_station}。给它一次红石信号，它就把周围能剪的生物都剪一遍，剪下的东西掉在它们脚下。"
+        },
+        {
+          "type": "p",
+          "text": "它和洗牌器一样不耗 MRU，也没有界面，收到一次红石信号就剪一轮。范围、间隔和不碰哪些东西，是三台红石农牧机器共同的规矩，都写在[[farming/item_shuffler]]的开头。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：七块{item:essentialcraft5:fortified_stone}、一个{item:minecraft:redstone}和一把{item:minecraft:shears}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:shearing_station"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把它放在羊群附近，让羊都在它 12 格以内，即 25×25×25 的范围里。",
+            "给它一次红石信号，范围里能剪的生物都剪一遍，每只羊每次掉 1～3 块羊毛。",
+            "羊吃了草会重新长毛，让羊群站在草地上，定时给一次红石信号，再用{item:minecraft:hopper}或[[logistics/magical_hopper]]收羊毛，就是一座自动羊毛场。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每次最多剪",
+              "{cfg:machines.shearing_station.max_per_pulse} 只"
+            ],
+            [
+              "两次之间至少隔",
+              "{cfg:machines.shearing_station.pulse_interval|sec}"
+            ],
+            [
+              "一只羊掉",
+              "1～3 块羊毛"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它用的是一把看不见的剪刀，不会坏，也不用换，别的模组里能用剪刀剪的生物一般也剪得了。刚剪过的羊和小羊不占每次的名额。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到剪毛器，这一步就打勾了。给它一次红石信号，羊身上的毛剪得干干净净，脚下落了一地羊毛。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "羊毛掉在羊脚下时会往外弹一点，羊圈太大的话羊毛会散得到处都是，漏斗接不住，把羊圈建小一些，或者用魔力漏斗把周围的羊毛都收过来就好。"
+        },
+        {
+          "type": "h",
+          "text": "它不剪谁"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>哞菇</em>，剪了会变成普通的牛。",
+            "<em>雪傀儡</em>，剪了会被摘掉南瓜头。",
+            "起了名字或拴着绳的生物，以及别人驯服的宠物。",
+            "站在放下它的人不能改动的地方的生物。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/farmdevices/shearing_station.json — #@#/#R#/###：魔力强化石 ×7、剪刀、红石",
+        "blockentity/ShearingStationBlockEntity.java:53 max_per_pulse 32、:57 pulse_interval 20；:75 canShear — IForgeShearable、不在 essentialcraft5:shearing_station_blacklist（data/essentialcraft5/tags/entity_types：哞菇、雪傀儡）、belongsToOther",
+        "blockentity/ShearingStationBlockEntity.java:86 / :104 — 没毛可剪的（刚剪过、小羊）先去掉，不计数；:117 onSheared(null, 剪刀, …, 时运 2)，1.20 的羊不看时运，每次 1~3 块；:119-122 掉落从生物高 1 格处生成、带随机速度",
+        "blockentity/FarmDeviceBlockEntity.java:48 RANGE = 12；剪刀是 new ItemStack(Items.SHEARS)，不耗耐久",
+        "guide/zh_cn/logistics.json magical_hopper — 魔力漏斗收周围 3 格内的掉落物"
+      ]
+    },
+    {
+      "id": "animal_separator",
+      "title": "动物分离器",
+      "icon": "essentialcraft5:child_separator",
+      "summary": "把幼崽和成年动物分开",
+      "complete": "essentialcraft5:guide/farming/animal_separator",
+      "optional": true,
+      "items": [
+        "essentialcraft5:child_separator",
+        "essentialcraft5:adult_separator"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：造一台{item:essentialcraft5:child_separator}或{item:essentialcraft5:adult_separator}给牧场分拣。幼年分离器把附近的幼崽挪到自己头顶，成年分离器挪的是成年动物，这样幼崽可以送去围栏里长大，成年的送去屠宰间。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：七块{item:essentialcraft5:fortified_stone}、一个{item:minecraft:redstone}，幼年版再加一个{item:minecraft:golden_apple}，成年版加一个{item:minecraft:apple}。它和别的农牧机器不同，要靠 MRU 干活，所以还要一颗{item:essentialcraft5:bound_gem}，做法见[[crafting/bound_gem]]。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:child_separator",
+            "essentialcraft5:adult_separator"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把绑定宝石绑到[[generators/heat_generator]]这类有 MRU 的产能器上，再放进分离器界面里的格子，它就会自己把 MRU 补满。",
+            "红石信号从无到有的那一刻，它按自己的类型把 {cfg:machines.animal_separator.radius|int} 格内的幼年或成年动物传送到自己顶上，每传一只耗 {cfg:machines.animal_separator.mru_usage} MRU。",
+            "离它 {cfg:machines.animal_separator.ignore_radius|int} 格以内的动物不传，所以刚传上来的不会再被传一遍。",
+            "在顶上给它们留一条离开的路，比如接一条水道，把它们送到该去的围栏。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU 容量",
+              "{cfg:machines.animal_separator.max_mru} MRU"
+            ],
+            [
+              "每传一只",
+              "{cfg:machines.animal_separator.mru_usage} MRU"
+            ],
+            [
+              "范围",
+              "以它为中心 {cfg:machines.animal_separator.radius|mul:2|add:1|int} 格见方的立方体"
+            ],
+            [
+              "不动的范围",
+              "{cfg:machines.animal_separator.ignore_radius|int} 格"
+            ],
+            [
+              "每次最多传",
+              "{cfg:machines.animal_separator.max_per_pulse} 只，离得近的先传"
+            ],
+            [
+              "两次之间至少隔",
+              "{cfg:machines.animal_separator.pulse_interval|sec}"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到任意一台分离器，这一步就打勾了。给它一次红石信号，附近的幼崽或成年动物一下子出现在它顶上，界面里的 MRU 也跟着减少。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "摆两台分离器时最好让范围错开，或者同一时间只给其中一台红石信号，范围重叠的话，动物会被传来传去，每次都照样耗 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "哪些不传"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>只传动物</em>，村民、流浪商人和见人就打的疣猪兽都不传。",
+            "起了名字、拴着绳、正骑着或被骑着的动物不传，装了鞍的骆驼也不传。",
+            "你自己驯服的马、狼、猫照常传送，别人驯服的不传。",
+            "只传放下它的人自己能改动的地方里的动物，它头顶那一格也得是这个人能改动的。",
+            {
+              "if": "cfg:general.protection.require_owner_online",
+              "text": "<em>放下它的人不在线时，它什么都不做</em>，界面上会写明这一点。"
+            },
+            {
+              "if": "!cfg:general.protection.require_owner_online",
+              "text": "放下它的人不在线时，它照常工作。"
+            },
+            "<em>头顶放得下才传</em>，空间按每只动物自己的大小算，顶上紧贴着实心方块时一只都不传，只留一格高时，鸡和小牛照传，成年牛就传不上去了。MRU 只在真的传过去时才扣。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "p",
+          "text": "头顶已经挤了 23 只生物时，这一次它就停手，因为再多两只它们就会互相挤伤，等上面的动物走开，下一次红石信号才接着传。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书倒也坦白，直接写着「即使上方没有空间，它也会把动物传上去」，那时它连村民也一起送走。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/separators/child_separator.json、adult_separator.json — #@#/#R#/###：魔力强化石 ×7、红石、金苹果（幼年）/ 苹果（成年）",
+        "blockentity/AnimalSeparatorBlockEntity.java:80 max_mru（ECConfig.DEVICE_MAX_MRU 5000）、:83 mru_usage 100、:86 radius 24（范围边长 = 2 × 24 + 1 = 49）、:89 ignore_radius 5、:92 max_per_pulse 16、:96 pulse_interval 20",
+        "blockentity/AnimalSeparatorBlockEntity.java:187 destination — 落点机器顶面正中；:253 FitCache 按每只的碰撞箱查落点；:345 真传过去才扣 MRU",
+        "blockentity/AnimalSeparatorBlockEntity.java:368-370 isCandidate — 不是 Enemy、不骑乘也没被骑；belongsToOther（名字、拴绳、装鞍骆驼，驯服的只认机器主人的）；村民不是 Animal 查不到",
+        "blockentity/AnimalSeparatorBlockEntity.java:217 — 主人不在线时 require_owner_online 关掉才干；界面文字 gui.essentialcraft5.animal_separator.owner_*",
+        "blockentity/AnimalSeparatorBlockEntity.java:381 crowdLimit — maxEntityCramming − 1（原版默认 24 → 23），头顶挤到就停，等下一次脉冲",
+        "离得近的先传：candidates 按离机器距离排序（类注释第 2 条）"
+      ]
+    },
+    {
+      "id": "magical_cultivator",
+      "title": "{item:essentialcraft5:magical_cultivator}",
+      "icon": "essentialcraft5:magical_cultivator",
+      "summary": "在机器里种庄稼、种树",
+      "complete": "essentialcraft5:guide/farming/magical_cultivator",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_cultivator"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一台{item:essentialcraft5:magical_cultivator}，放进一叠种子或树苗，接上 MRU 和水，作物就在机器里长熟，收成直接进输出格。"
+        },
+        {
+          "type": "p",
+          "text": "放进去的种子只当样本，不会用掉，一叠有几颗就同时种几株。它不在世界里开地、砍树，周围的方块一格也不动。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：三块{item:essentialcraft5:sun_imbued_glass}、四块{item:essentialcraft5:pale_plate}、一个{item:essentialcraft5:earth_focus}和一份{item:essentialcraft5:magical_water}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_cultivator"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在宝石槽里放一颗绑在 MRU 源上的{item:essentialcraft5:bound_gem}。",
+            "把样本放进左下三格最左边的那一格。每种作物最多同时种几株见下表，超出的那几颗留在格子里不动。",
+            "要水的作物，在左下三格中间那格放一桶{item:minecraft:water_bucket}，或者让机器四个侧面之一或正下方挨着一格水源，水桶和水都不会用掉。",
+            "机器里有 MRU、要水的作物有了水、输出格又放得下这一轮最多能收的量时，它就开工，透过顶上的玻璃能看见作物一点点长高。到时间后每株各收一次，收成进右边的九个输出格，接着开始下一轮。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "大多数作物",
+              "每轮 {cfg:machines.magical_cultivator.time_multiplier|mul:2400|sec}，每株 {cfg:machines.magical_cultivator.mru_multiplier|mul:800|int} MRU，最多 16 株"
+            ],
+            [
+              "树、菌和紫颂花",
+              "每轮 {cfg:machines.magical_cultivator.time_multiplier|mul:6000|sec}，每株 {cfg:machines.magical_cultivator.mru_multiplier|mul:6000|int} MRU，最多 4 株"
+            ],
+            [
+              "用了骨粉的一轮",
+              "一轮的时长乘以 {cfg:machines.magical_cultivator.bonemeal_time_factor}，MRU 总数不变"
+            ],
+            [
+              "MRU 容量",
+              "{cfg:machines.magical_cultivator.max_mru}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "MRU 边长边扣，每刻扣一小份，一轮下来扣的总数正好是株数乘以每株的量。MRU 不够时作物停在原处，等 MRU 到了再接着长，进度不会丢。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到栽培器，这一步就打勾了。放好样本、接上 MRU 和水以后，界面上的状态会变成「{lang:gui.essentialcraft5.magical_cultivator.status.working}」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "开工前，它会按这一轮最多可能收到多少来算输出格放不放得下，种满小麦时就按每株都多出一颗种子来算。放不下时它不开工，状态显示「{lang:gui.essentialcraft5.magical_cultivator.status.output_full}」，所以要用漏斗或管道及时把输出格抽空。"
+        },
+        {
+          "type": "h",
+          "text": "种什么、收什么"
+        },
+        {
+          "type": "p",
+          "text": "原版的庄稼、火把花、瓶子草、甘蔗、仙人掌、竹子、海带、浆果、可可豆、下界疣和蘑菇都能种，各种树苗、杜鹃花丛、绯红菌、诡异菌和紫颂花也行。每种收什么、要不要水、能不能用骨粉，见下表。"
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:cultivator",
+          "compact": true
+        },
+        {
+          "type": "p",
+          "text": "树出原木，大多还带几根木棍，菌出菌柄，偶尔会多出一个苹果、可可豆或菌光体，但都不出树苗和树叶。小麦、甜菜、火把花这类靠种子种的庄稼，每株有 25% 的几率多出一颗种子。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.magical_cultivator.generic_crops",
+          "text": "别的模组加的作物，在上表里没有配方时，只要能种在普通耕地上，也能放进来种。每株按它长熟后被打掉时的掉落来收，扣掉 1 个当作补种，要水，能用骨粉。必须种在特殊土壤或专门底座上的作物，它种不了。"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:machines.magical_cultivator.generic_crops",
+          "rows": [
+            {
+              "if": "cfg:machines.magical_cultivator.time_multiplier==1",
+              "cells": [
+                "别的模组作物每轮",
+                "{cfg:machines.magical_cultivator.generic_ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.magical_cultivator.mru_multiplier==1",
+              "cells": [
+                "每株",
+                "{cfg:machines.magical_cultivator.generic_mru_per_plant} MRU"
+              ]
+            },
+            [
+              "最多",
+              "{cfg:machines.magical_cultivator.generic_max_plants} 株"
+            ],
+            [
+              "每株最多收",
+              "{cfg:machines.magical_cultivator.generic_max_items_per_plant} 件，多出的丢掉"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一轮中途把样本拿走、换成别的，或者拿走几颗，这一轮就作废，已经扣的 MRU 不退。多放几颗不影响这一轮，下一轮才按新的株数算。",
+            "{item:minecraft:bone_meal}放在左下三格最右边那格，每轮开工时用掉 1 份。甘蔗、仙人掌、下界疣和紫颂花不吃骨粉，放了也不会加快。",
+            "仙人掌、下界疣、蘑菇、绯红菌、诡异菌和紫颂花不用水。",
+            "挨着的水得是水源，流动的水不算，泡在水里的台阶、栅栏这类含水方块也算。",
+            "漏斗和管道能往样本格补同一种样本，往中间那格放水桶，往右边那格放骨粉，也能从输出格抽走收成，除此以外放不进，也抽不出。",
+            "收到红石信号时暂停，去掉信号后从停下的地方接着长。",
+            {
+              "if": "cfg:machines.magical_cultivator.generate_corruption",
+              "text": "工作时每秒向周围泄漏 0～{cfg:machines.magical_cultivator.max_corruption_gen} MRU，见[[crafting/corruption]]。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/cultivator/magical_cultivator.json — GGG/PFP/PWP：日光玻璃 ×3、淡青板 ×4、地之焦点、魔力水",
+        "menu/MagicalCultivatorMenu.java:50-60 — 宝石格 (116,5)；左下一排样本 (28,60)、水桶 (46,60)、骨粉 (64,60)；输出 3×3 在右边 (116,27) 起",
+        "blockentity/MagicalCultivatorBlockEntity.java:88-117 Config — max_mru 10000、time_multiplier 1.0、mru_multiplier 1.0、bonemeal_time_factor 0.5、generic_crops true、generic_ticks 2400、generic_mru_per_plant 800、generic_max_plants 16、generic_max_items_per_plant 8、generate_corruption、max_corruption_gen 1",
+        "tools/gen/cultivator_recipes.py — 31 个配方：作物 2400 刻 / 800 MRU / 16 株，树 6000 / 6000 / 4（西瓜、南瓜种子 3000 刻）；小麦、甜菜、火把花、瓶子草每株 25% 多出种子；树只出原木 / 菌柄、木棍、苹果 5% / 可可豆 10% / 菌光体 10%，不出树苗、树叶；不用水：仙人掌、下界疣、两种蘑菇、绯红菌、诡异菌、紫颂花；骨粉无效：甘蔗、仙人掌、下界疣、紫颂花",
+        "blockentity/MagicalCultivatorBlockEntity.java:377 stepCost — 每刻扣 ⌊total·(p+1)/T⌋ − ⌊total·p/T⌋，一轮合计正好 total；:385 roundCost = 每株 × 株数 × mru_multiplier；:390 roundTicks = 配方时长 × time_multiplier，用了骨粉再 × bonemeal_time_factor（总价不变）",
+        "kv 的 mul:2400|sec / mul:800|int / mul:6000 — 配方表默认值乘全局倍率；株数 16 / 4 是配方数据，不受倍率影响",
+        "blockentity/MagicalCultivatorBlockEntity.java:399 waterSourceAround — 四个水平邻格和下方，isSource 且是水（含含水方块）；:422 hasWater 水桶格有水桶也算；两者都不消耗",
+        "blockentity/MagicalCultivatorBlockEntity.java:445 tickRound — 样本换了或少于锁定株数 → 本轮作废、不退 MRU；红石 → PAUSED；MRU 不够 → NO_MRU 停在原处；每 LEAK_INTERVAL = 20 刻泄漏 0～max_corruption_gen",
+        "blockentity/MagicalCultivatorBlockEntity.java:504 startRound — 按 worstCase（每种产物取上限 × 株数，64 一格）塞得进 9 个输出格才开工，否则 OUTPUT_FULL；骨粉在开工时吃 1 份",
+        "recipe/CultivatorRecipe.java:236 genericEligible — CropBlock 子类且 mayPlaceOn(耕地) 为真；:277 rollGenericPlant 成熟状态的掉落表，减 1 个样本，每株最多 generic_max_items_per_plant 件；通用路线要水、可用骨粉",
+        "通用路线的 kv 两行带 time_multiplier==1 / mru_multiplier==1：倍率不是 1 时 generic_ticks / generic_mru_per_plant 不是实际值，直接藏掉",
+        "blockentity/MagicalCultivatorBlockEntity.java:274 canAutomationInsert — 样本格只收能种、且和格内相同的；水桶格只收水桶、骨粉格只收骨粉；:286 isOutputSlot 只有输出格能抽"
+      ]
+    }
+  ]
+}

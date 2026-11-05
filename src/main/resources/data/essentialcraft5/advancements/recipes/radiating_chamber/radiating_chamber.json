@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_diamond_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essentialcraft5:diamond_plate"
+            ]
+          }
+        ]
+      }
+    },
+    "has_eye_of_absorption": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essentialcraft5:eye_of_absorption"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "essentialcraft5:radiating_chamber/radiating_chamber"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_diamond_plate",
+      "has_eye_of_absorption",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "essentialcraft5:radiating_chamber/radiating_chamber"
+    ]
+  },
+  "sends_telemetry_event": false
+}

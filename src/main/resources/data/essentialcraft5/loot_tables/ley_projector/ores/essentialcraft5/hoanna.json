@@ -1,0 +1,189 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 99053
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:raw_copper",
+          "weight": 278,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2.0,
+                "max": 5.0
+              },
+              "add": false
+            },
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:ore_drops"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:raw_iron",
+          "weight": 251,
+          "functions": [
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:ore_drops"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:redstone",
+          "weight": 126,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 4.0,
+                "max": 5.0
+              },
+              "add": false
+            },
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:uniform_bonus_count",
+              "parameters": {
+                "bonusMultiplier": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:raw_gold",
+          "weight": 89,
+          "functions": [
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:ore_drops"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:lapis_lazuli",
+          "weight": 84,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 4.0,
+                "max": 9.0
+              },
+              "add": false
+            },
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:ore_drops"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "weight": 53,
+          "functions": [
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:ore_drops"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "essentialcraft5:elemental_gem",
+          "weight": 26,
+          "functions": [
+            {
+              "function": "essentialcraft5:fortune_scaled_count",
+              "min": 1,
+              "spread": 2
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "essentialcraft5:fire_drops",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "essentialcraft5:fortune_scaled_count",
+              "min": 1,
+              "spread": 2
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "essentialcraft5:water_drops",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "essentialcraft5:fortune_scaled_count",
+              "min": 1,
+              "spread": 2
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "essentialcraft5:earth_drops",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "essentialcraft5:fortune_scaled_count",
+              "min": 1,
+              "spread": 2
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "essentialcraft5:air_drops",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "essentialcraft5:fortune_scaled_count",
+              "min": 1,
+              "spread": 2
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "essentialcraft5:mithriline_dust",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "essentialcraft5:fortune_scaled_count",
+              "min": 3,
+              "spread": 8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

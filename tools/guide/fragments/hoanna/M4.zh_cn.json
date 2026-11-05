@@ -1,0 +1,255 @@
+[
+ {
+  "id": "radiation",
+  "title": "海纳尔辐射",
+  "icon": "essentialcraft5:delta_ring",
+  "summary": "待得越久攒得越多，出来才会慢慢散",
+  "complete": "essentialcraft5:guide/hoanna/radiation",
+  "optional": true,
+  "if": "cfg:general.radiation.enabled",
+  "blocks": [
+   {
+    "type": "p",
+    "text": "在海纳尔待着，身上会慢慢攒起<em>辐射</em>。每秒攒多少看你站在哪个区块：每个区块的强度固定在 <t>0～5</t> 之间，海纳尔沙漠再加 <t>2</t>，恐惧之地再加 <t>6</t>。同时每秒会自己散掉 <t>1</t>，所以大多数地方是在慢慢变多。"
+   },
+   {
+    "type": "kv",
+    "rows": [
+     [
+      "普通区块",
+      "每秒 +0～5，平均约 +1.5（扣掉自己散掉的 1）"
+     ],
+     [
+      "海纳尔沙漠",
+      "再 +2，平均约 +3.5"
+     ],
+     [
+      "恐惧之地",
+      "再 +6，平均约 +7.5"
+     ],
+     [
+      "在海纳尔里自己散掉",
+      "每秒 -1"
+     ],
+     [
+      "离开海纳尔以后",
+      "每秒 -5"
+     ]
+    ]
+   },
+   {
+    "type": "h",
+    "text": "看得出来吗"
+   },
+   {
+    "type": "list",
+    "items": [
+     "一沾上辐射，屏幕右上角就多一个紫色的<t>辐射</t>效果图标。",
+     "打开背包，效果栏里写着现在的剂量和「这里每秒涨多少」：正数是在涨，负数是在散。",
+     "剂量过了 1000，屏幕四周会泛起一圈淡淡的暗紫，越多越浓。"
+    ]
+   },
+   {
+    "type": "h",
+    "text": "有什么后果"
+   },
+   {
+    "type": "p",
+    "text": "剂量每满 <t>1 万</t>，效果就升一级：不到 1 万是不带数字的「辐射」，只挂着图标、什么都不扣；1 万起是辐射 II、2 万起是辐射 III……从辐射 II 开始<b>生命上限会被压低</b>，效果名后面写几级就少几点（辐射 II 少 2 点、辐射 III 少 3 点……），最低留 1 点。等级越高，被压的频率越高。"
+   },
+   {
+    "type": "tip",
+    "style": "warn",
+    "title": "没有解药",
+    "text": "{item:minecraft:milk_bucket}、{item:essentialcraft5:magic_water_bottle}、{item:minecraft:totem_of_undying}都没用：剂量还在，图标就算被清掉，一秒内又会回来。死掉也不会清零。唯一的办法是离开海纳尔，等它自己散。"
+   },
+   {
+    "type": "h",
+    "text": "怎么少吃一点"
+   },
+   {
+    "type": "list",
+    "items": [
+     "穿防护盔甲：盔甲上写的「海纳尔辐射抗性」四件加起来再除以 4 算。一整套魔力防护（{item:essentialcraft5:mhs_helmet}等四件）少吃 10%，一整套风之盔甲少吃一半（[[gear/mhs_armor]]、[[wind_gear/wind_armor]]）。",
+     {
+      "if": "bauble:essentialcraft5:mystical_accessory",
+      "text": "海纳尔遗迹箱子里的{item:essentialcraft5:mystical_accessory}带随机的海纳尔辐射抗性，写多少就直接少吃多少（[[baubles/mystical_accessory]]）。"
+     },
+     "少在沙漠和恐惧之地逗留；找个强度低的区块歇脚，背包里那个每秒的数会告诉你这里好不好。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "还有几件特殊饰品和辐射有关（[[baubles/radiation]]）："
+   },
+   {
+    "type": "list",
+    "items": [
+     {
+      "if": "bauble:essentialcraft5:delta_ring",
+      "text": "{item:essentialcraft5:delta_ring}：辐射压生命上限时只按一半的等级算。"
+     },
+     {
+      "if": "bauble:essentialcraft5:lambda_ring",
+      "text": "{item:essentialcraft5:lambda_ring}：离开海纳尔以后散得快得多（每秒 -65）。"
+     },
+     {
+      "if": "bauble:essentialcraft5:mu_ring",
+      "text": "{item:essentialcraft5:mu_ring}：在海纳尔里每秒多吃 20，换来对日阵、毒雾和强震免疫。"
+     },
+     {
+      "if": "bauble:essentialcraft5:xi_belt",
+      "text": "{item:essentialcraft5:xi_belt}：打人时让对方吃辐射，自己挨打也吃。"
+     }
+    ]
+   },
+   {
+    "type": "tip",
+    "style": "warn",
+    "title": "别和 MRU 辐射搞混",
+    "text": "辐射仓、MRU 聚集体那边说的「MRU 辐射」是另一回事（[[crafting/radiating_chamber]]），和这里的海纳尔辐射互不相干。"
+   },
+   {
+    "type": "tip",
+    "style": "lore",
+    "text": "原作的研究手册说，海纳尔的空气本身就有毒：有的地方几乎是干净的，能停下来喘口气；有的地方吸一口，肺就像着了火。它还说这毒没有药能解，只有时间。"
+   }
+  ],
+  "_src": [
+   "hoanna/Radiation.java:chunkBase — 区块底数 0~5，等价于原作 new Random(Long.parseLong(|cx|×128 + \"\" + |cz|×128)).nextInt(6)，每个区块固定",
+   "hoanna/Radiation.java:biomeBonus — 标签 hoanna_radiation_plus_2（data/essentialcraft5/tags/worldgen/biome/hoanna_radiation_plus_2.json，海纳尔沙漠）+2、hoanna_radiation_plus_6（恐惧之地）+6",
+   "hoanna/Radiation.java:step — 每 20 tick：先加积累，剂量 > 0 时在海纳尔 −1（DECAY_IN_HOANNA）、不在 −5（DECAY_OUTSIDE）；平均 +1.5 / +3.5 / +7.5 = 底数平均 2.5 (+2 / +6) − 1",
+   "hoanna/Radiation.java:gain — (int)((底数 + 加成) × MRUResistance.vulnerability(HOANNA_RADIATION))；api/MRUResistance.java:vulnerability — 1 − 盔甲四件之和 / 4 − 饰品之和",
+   "item/MHSArmorItem.java:67 — 魔力防护每件海纳尔辐射抗性 0.10（全套 0.4 / 4 = 10%）；item/WindArmorItem.java:33 — 风之盔甲每件 0.5（全套 50%）；item/bauble/MysticalAccessoryItem.java:141 — 神秘饰品 car ∈ [0, 0.1)",
+   "hoanna/Radiation.java:updateEffect — 效果放大值 = 剂量 / 10000（PER_LEVEL），无限时长、显示图标；剂量 0 移除",
+   "effect/RadiationEffect.java:applyEffectTick — 每 tick nextInt(16) < 放大值 时把生命压到 (int)最大生命 − (放大值 + 1)，最低 1（healthCap）；放大值 0（不到 1 万）不判中",
+   "effect/RadiationEffect.java:getCurativeItems — 空表（牛奶解不了）；item/MRUConsumableItem.java:123 魔力水瓶 removeAllEffects 清掉后 HoannaHazards 每 20 tick 按剂量重加",
+   "player/PlayerDataEvents.java:clone — 玩家数据（含 radiation）死亡整份复制",
+   "effect/RadiationEffect.java:initializeClient — 背包效果栏第二行：剂量 + Radiation.netPerCycle（此地每秒净变化）",
+   "M3 client/hoanna/RadiationOverlay — 剂量 ≥ 1000 起屏幕边缘暗紫晕影，3 万封顶（batch6a.md §3.4）",
+   "registry/ECBaubles.java — δ halves_radiation、λ purges_radiation、μ hoanna_attuned、ξ irradiates_on_hit；效果见 hoanna/Radiation、effect/RadiationEffect、hoanna/RadiationBaubleEvents",
+   "原作 lang en_US page.radiation_1~3（空气有毒、各处浓度不同、没有解药只有时间），改写不照抄"
+  ]
+ },
+ {
+  "id": "events",
+  "title": "海纳尔的天灾",
+  "icon": "minecraft:clock",
+  "summary": "日阵、毒雾、黑暗和地震",
+  "complete": "essentialcraft5:guide/hoanna/event",
+  "optional": true,
+  "blocks": [
+   {
+    "type": "p",
+    "text": "有人待在海纳尔时，这里平均大约每 6 个游戏日会来一场<em>天灾</em>。开始和结束时聊天栏会用红字、绿字提醒；屏幕顶部还会弹出一条提示条，写着是哪种天灾、还剩多久，10 秒后缩成一个小图标加剩余时间，挪到快捷栏的左上方。"
+   },
+   {
+    "type": "p",
+    "text": "没人在的时候，海纳尔的天灾像是停住了：不会开始新的，进行到一半的也不往下走，等你回来接着来。天灾<em>不会碰任何方块</em>：不放火、不炸东西、不改地形。"
+   },
+   {
+    "type": "h",
+    "if": "cfg:general.hoanna_events.sun_array_enabled",
+    "text": "日阵"
+   },
+   {
+    "type": "p",
+    "if": "cfg:general.hoanna_events.sun_array_enabled",
+    "text": "只在黎明开始，持续一整个白天，天一黑就散（中途没人在、停过一阵的也一样）。天上多出一圈残日，余烬从空中飘落。只要头顶看得见天空，每秒被灼烧 <t>1</t> 点并着火。"
+   },
+   {
+    "type": "list",
+    "if": "cfg:general.hoanna_events.sun_array_enabled",
+    "items": [
+     "躲到<em>不透光</em>的屋顶下：石头、木头、树叶都行，<w>玻璃挡不住</w>。",
+     "喝抗火药水。",
+     {
+      "if": "bauble:essentialcraft5:mu_ring",
+      "text": "或者戴{item:essentialcraft5:mu_ring}。"
+     }
+    ]
+   },
+   {
+    "type": "h",
+    "if": [
+     "cfg:general.hoanna_events.fumes_enabled",
+     "cfg:general.hoanna_events.fumes_max_nearby>0"
+    ],
+    "text": "毒雾"
+   },
+   {
+    "type": "p",
+    "if": [
+     "cfg:general.hoanna_events.fumes_enabled",
+     "cfg:general.hoanna_events.fumes_max_nearby>0"
+    ],
+    "text": "持续约 10 分钟。四处冒出慢慢飘动的黄绿色雾团，走近了周围的雾也会发黄。离一团雾水平 7 格、上下 4 格以内就会<b>中毒 II</b>，每一团还让辐射每秒 <b>+200</b>，这部分<em>不看</em>盔甲和饰品的抗性。"
+   },
+   {
+    "type": "list",
+    "if": [
+     "cfg:general.hoanna_events.fumes_enabled",
+     "cfg:general.hoanna_events.fumes_max_nearby>0"
+    ],
+    "items": [
+     "雾团打不散、推不动，只能绕开；它们会自己飘走，大约 50 秒后散掉，天灾结束后也很快消失。",
+     {
+      "if": "bauble:essentialcraft5:mu_ring",
+      "text": "戴{item:essentialcraft5:mu_ring}完全不受影响。"
+     }
+    ]
+   },
+   {
+    "type": "h",
+    "if": "cfg:general.hoanna_events.darkness_enabled",
+    "text": "黑暗"
+   },
+   {
+    "type": "p",
+    "if": "cfg:general.hoanna_events.darkness_enabled",
+    "text": "持续 1～3 个游戏日。天光几乎消失，天和雾一起暗下去，夜里能听到奇怪的回声。火把和别的光源照常亮，夜视药水也照样有用——带够火把就不怕。"
+   },
+   {
+    "type": "h",
+    "if": "cfg:general.hoanna_events.earthquake_enabled",
+    "text": "地震"
+   },
+   {
+    "type": "list",
+    "if": "cfg:general.hoanna_events.earthquake_enabled",
+    "items": [
+     "持续约 4 分钟，画面会轻轻晃动（准星不动）。",
+     {
+      "if": "cfg:general.hoanna_events.earthquake_push",
+      "text": "站在地上时每秒被推一下；偶尔来一次强震，把人掀起来一点，不会摔伤。站在悬崖边要小心。"
+     },
+     "嫌晃可以把原版辅助功能里的「屏幕扭曲效果」调低，调到 0 就不晃。",
+     {
+      "if": "bauble:essentialcraft5:mu_ring",
+      "text": "戴{item:essentialcraft5:mu_ring}不会遇到强震。"
+     }
+    ]
+   },
+   {
+    "type": "tip",
+    "style": "good",
+    "title": "做成的标志",
+    "text": "在海纳尔亲身遇上一场天灾，这一步就打勾了。"
+   }
+  ],
+  "_src": [
+   "hoanna/event/HoannaEvents.java:tick — 海纳尔里没人（level.players() 为空）时不计时、不掷骰；有人时每 tick 剩余 −1",
+   "hoanna/event/HoannaEvents.java:rollRegular / rollDawn — 每 20 tick nextInt(4) 挑一种再 ≤ 概率；日阵只在黎明（日序号变了）掷；每日约 7.5% + 5.1% + 1.5% + 3.0% ≈ 17%，约 6 天一次（hoanna/event/HoannaEvent.java 类注释）",
+   "hoanna/event/HoannaEvent.java — 时长：日阵 12000（整个白天）、毒雾 12000（10 分钟）、黑暗 24000 × (1~3)、地震 5000（约 4 分 10 秒）",
+   "hoanna/event/HoannaEvents.java:start / finish — 红字开始、绿字结束（tools/lang/keys/echoanna.json），广播 S2CHoannaEventPacket；M3 client/hoanna/HoannaEventHud 顶部提示条，展开 10 秒（HoannaVisuals.HUD_EXPANDED_TICKS 200）后收起到快捷栏左端的左上方（HoannaVisuals.hudCollapsedPos）",
+   "hoanna/HoannaHazards.java:sunArray — 每 20 tick：头顶 +2 格 canSeeSky（按天光：玻璃透光、树叶和不透光方块挡）、非创造 / 旁观、没戴 μ → onFire 1 点，伤害生效才着火 10 秒；不落火",
+   "entity/PoisonFumeEntity.java:affectPlayers — 每 10 tick 一次：范围 ±1 盒子再扩 6/3/6，+100 辐射（DOSE，不乘易伤）= 每团每秒 +200；中毒 II（放大值 1）200 tick；跳过创造、旁观、μ",
+   "entity/PoisonFumeEntity.java — 只有无视无敌的伤害（/kill、掉出世界）能伤它、不可推、不挡准星；LIFETIME 1000 tick（50 秒）；自然生成的每 20 tick 查一次，事件结束就消失",
+   "M3 client/hoanna/FumeHazeRenderer（黄绿雾团、附近雾色往 #6E7A4E 混）、HoannaEventVisuals（日阵余烬、黑暗、地震晃动 ≤ 1.5°、乘屏幕扭曲效果）；batch6a.md §3.4",
+   "M3 光照图：黑暗天光 ×0.22、方块光 ×0.88，夜视和亮度滑块照常；洞穴音 / 远处怪物音 AMBIENT 类别",
+   "hoanna/HoannaHazards.java:earthquake — 站地上、不骑乘、不鞘翅、不飞行：每 20 tick 水平 ≤ 0.15 的小踉跄，15% 强震（水平 0.3~0.6、竖直 0.25~0.35）；戴 μ 不强震；general.hoanna_events.earthquake_push 关掉不推",
+   "hoanna/event/HoannaEvents.java:awardGuideStep — 天灾开始时在海纳尔、或天灾进行中进入海纳尔，授予 guide/hoanna/event（data/essentialcraft5/advancements/guide/hoanna/event.json，impossible）",
+   "hoanna/HoannaHazardsConfig.java — general.hoanna_events.<事件>_enabled 控制会不会自己发生（行级 if）"
+  ]
+ }
+]

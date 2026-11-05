@@ -1,0 +1,962 @@
+{
+  "id": "logistics",
+  "order": 82,
+  "group": "main",
+  "title": "第十五章 · 物流",
+  "subtitle": "让散落的掉落物各归其处",
+  "icon": "essentialcraft5:magical_hopper",
+  "entries": [
+    {
+      "id": "magical_hopper",
+      "title": "{item:essentialcraft5:magical_hopper}",
+      "icon": "essentialcraft5:magical_hopper",
+      "summary": "把散落的东西收到一处",
+      "complete": "essentialcraft5:guide/logistics/magical_hopper",
+      "items": [
+        "essentialcraft5:magical_hopper"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "东西掉在地上，漏斗会自己去捡，用不着管道。它隔着好几格把东西拽过去，是怎么做到的，我到现在也说不清。",
+          "by": "《工坊手记》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做一个{item:essentialcraft5:magical_hopper}，让周围散落的掉落物自己聚到一处，要么收进箱子，要么堆在它面前那一格，它干活也不用 MRU。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "6 块{item:essentialcraft5:fortified_stone}，再加原版的{item:minecraft:hopper}、{item:minecraft:chest}和{item:minecraft:dropper}各一个，强化石的做法见[[crafting/fortified]]"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_hopper"
+        },
+        {
+          "type": "h",
+          "text": "朝向"
+        },
+        {
+          "type": "p",
+          "text": "它总是朝一个固定的方向送东西，<em>放下时点的是哪一面，它就朝哪边</em>，放在地上朝上，贴着墙放朝墙外。朝向那一侧紧挨着它的一格就是它的「前方」，漏斗口也长在这一面。"
+        },
+        {
+          "type": "h",
+          "text": "收进箱子"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "对着地面放下魔力漏斗，它的前方就是正上方那一格。",
+            "潜行右键漏斗的顶面，在它上面放一个箱子，不潜行会打开漏斗的界面。",
+            "等一会儿，漏斗每 {cfg:machines.magical_hopper.interval|sec}收一轮，周围的掉落物就会跳进箱子里。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "地上的掉落物每隔一会儿就会跳进它前方的箱子里。"
+        },
+        {
+          "type": "h",
+          "text": "它收哪些、送到哪"
+        },
+        {
+          "type": "p",
+          "text": "每一轮它查一遍周围 {cfg:machines.magical_hopper.radius} 格以内的掉落物，范围是以它为中心、边长 {cfg:machines.magical_hopper.radius|mul:2|add:1|int} 格的立方体，离得近的先搬，一轮最多搬 {cfg:machines.magical_hopper.max_items_per_cycle} 堆，剩下的等下一轮。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "前方是箱子、熔炉、合成器等容器时，东西直接装进去，装不下的留在原地；",
+            "前方空着时，东西挪到前方那一格，空气、草、花、水等都算空着；",
+            "前方是别的实心方块时，它什么也不做，另一台魔力漏斗也算实心方块。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "已经在前方那一格里的东西不会再被挪，所以它不会把自己堆出来的东西搬来搬去。"
+        },
+        {
+          "type": "h",
+          "text": "红石与过滤器"
+        },
+        {
+          "type": "list",
+          "items": [
+            "给它红石信号它就停下，旁边放拉杆或红石块都行，信号撤掉后马上恢复。",
+            "右键打开它的界面，中间那一格可以放一个物品过滤器，放进去以后它只收过滤器放行的东西，过滤器见下一篇。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "要注意"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.protection.require_owner_online",
+              "text": "<em>放下它的人不在线时，它会停止工作</em>；"
+            },
+            {
+              "if": "!cfg:general.protection.require_owner_online",
+              "text": "放下它的人不在线时，它也照常工作；"
+            },
+            "它只收放下它的人能改动的地方里的掉落物，也只往这些地方送，别人领地里的掉落物它不收，别人的领地它也不往里送；",
+            "指定了只能由别人捡的掉落物，还有永远捡不起来的装饰用掉落物，它都不碰；",
+            "两台魔力漏斗在彼此的范围里时，东西可能被来回搬。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "界面顶部出现红字或金字时，鼠标指上去就能看到它为什么不干活。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书给它的副标题是「量子漏斗！」。原作里前方就算是实心方块，它也照样把东西往里挪，四面都封死的话，东西会一直卡在墙里，直到消失。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/logistics/magical_hopper.json — SHS / SCS / SDS：魔力强化石 ×6、漏斗、#forge:chests/wooden、投掷器",
+        "block/MagicalHopperBlock.java — FacingRule.CLICKED_FACE（点地面朝上）；右键开界面、潜行不开",
+        "blockentity/MagicalHopperBlockEntity.java:72~78 — machines.magical_hopper.radius（3，向六个方向各 3 格 = 7×7×7）、interval（20 刻）、max_items_per_cycle（64，按掉落物实体计）",
+        "blockentity/MagicalHopperBlockEntity.java:127~200 transfer — 有红石就停（电平开关）；前方是物品容器（L205 另一台魔力漏斗当实心）就插入，碰撞箱为空就瞬移，别的实心不搬；前方格里的不动；按距离从近到远；每格按主人身份探测领地（checkAsOwner），主人不在线不放行（util/ECProtection.java:1397，general.protection.require_owner_online 关掉时放行）；neverPickUp / pickableBy",
+        "lang gui.essentialcraft5.magical_hopper.owner_none / owner_offline / redstone_paused — 界面状态提示",
+        "原作 lang en_US.lang L1003 disc.magicalHopper.desc「Quantum Hoppers!」；类注释：原作前方实心照样瞬移，四面封死卡在墙里 5 分钟后消失"
+      ]
+    },
+    {
+      "id": "filters",
+      "title": "物品过滤器",
+      "icon": "essentialcraft5:whitelist_filter",
+      "summary": "决定机器处理哪些物品",
+      "complete": "essentialcraft5:guide/logistics/filters",
+      "items": [
+        "essentialcraft5:whitelist_filter",
+        "essentialcraft5:blacklist_filter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做一个{item:essentialcraft5:whitelist_filter}或{item:essentialcraft5:blacklist_filter}，告诉魔力漏斗该收哪些东西。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "白名单",
+              "4 块{item:essentialcraft5:magic_fortified_plating}和 1 张{item:minecraft:crafting_table}，板在魔力工作台上做，见[[crafting/magician_crafts]]"
+            ],
+            [
+              "黑名单",
+              "4 块{item:essentialcraft5:obsidian_plate}和 1 张工作台，板的做法见[[crafting/fortified]]"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:whitelist_filter",
+            "essentialcraft5:blacklist_filter"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "白名单与黑名单"
+        },
+        {
+          "type": "p",
+          "text": "过滤器上有 3×3 共 9 个样本格。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>白名单</em>只放行和某个样本相同的东西，一个样本都没设时，什么都不放行。",
+            "<em>黑名单</em>放行样本以外的所有东西，一个样本都没设时，什么都放行。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这里的「相同」是指同一种物品，附带的数据也完全一致，附过魔的剑和普通的剑不算相同，耐久不同或改过名字的也不算，数量倒不要紧。"
+        },
+        {
+          "type": "h",
+          "text": "设样本"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿着过滤器对着空气右键就能打开，对着方块时要潜行右键。",
+            "拿着物品左键点样本格，它就成了样本，<em>物品还在你手上，不会用掉。</em>",
+            "右键点样本格可以清空，按住 Shift 点背包里的物品，则会把它复制进第一个空着的样本格。",
+            "关掉界面后右键魔力漏斗，把过滤器放进中间那一格。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每次改动都立刻存进你手上这个过滤器，界面开着时，没法把它拿走或换掉。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "漏斗只收你想要的东西，其余的都留在地上。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "样本格里还能放另一个过滤器，代表它放行的所有东西，比如在白名单里放一个只收圆石的白名单，效果就和放了一块圆石一样。",
+            "这种嵌套只能套一层，装着过滤器的过滤器，不能再放进别的过滤器。",
+            "写满字的书这类数据很多的物品，只记下一个内容指纹，完全一样的才算匹配。一个过滤器装得下的样本数据总量有上限，装满了，新样本就放不进去。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "有了虚空板，可以把它升级成[[logistics/advanced_filters|高级过滤器]]，不看耐久、不看附魔和名字，或者按标签收一整类东西。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作里它叫「魔力仓库节点过滤器」，原本是给魔力仓库做的，那是一套把许多箱子连成一张网的存储系统。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/logistics/whitelist_filter.json — 「 P / PGP / P 」：魔力强化板 ×4、工作台；blacklist_filter.json — 黑曜石板 ×4、工作台",
+        "item/FilterItem.java use — 右键打开样本界面，对着方块时方块自己的界面优先（潜行或对空气）；HeldItemMenu 每改一下写回、物品离手关界面",
+        "api/ItemFilters.java 类注释 — 9 格（SLOTS = 9）；普通样本 isSameItemSameTags（不比数量）；白名单任一匹配收、黑名单任一匹配拒；空白名单什么都不收、空黑名单什么都收；L85 MAX_DEPTH = 2（过滤器里放过滤器只能一层）",
+        "menu/GhostSlots.java:57 MAX_SAMPLE_BYTES = 512（超过只存 id + 内容哈希）、L59 MAX_ITEM_BYTES = 8192（整个过滤器 NBT 上限）；lang gui.essentialcraft5.filter.ghost_hint.1 / .2 左键设样本、右键清空、Shift 点复制",
+        "blockentity/MagicalHopperBlockEntity.java slotRule — 0 号格只放过滤器（tag essentialcraft5:filters）",
+        "原作 ItemFilter 原名「魔力仓库节点过滤器」、格子里放真物品（item/FilterItem.java 类注释 F-1~F-9）；魔力仓库因性能去掉（tools/plan/policy.md）"
+      ]
+    },
+    {
+      "id": "advanced_filters",
+      "title": "高级过滤器",
+      "icon": "essentialcraft5:advanced_whitelist_filter",
+      "summary": "忽略耐久、NBT，或按标签收一整类",
+      "complete": "essentialcraft5:guide/logistics/advanced_filter",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:advanced_whitelist_filter",
+        "essentialcraft5:advanced_blacklist_filter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：把物品过滤器升级成{item:essentialcraft5:advanced_whitelist_filter}或{item:essentialcraft5:advanced_blacklist_filter}。升级后多出三个开关，可以忽略耐久、忽略附魔和名字，或者按标签收一整类东西，比如所有铁矿石、所有颜色的羊毛。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "一个普通的[[logistics/filters|物品过滤器]]，再加 4 块{item:essentialcraft5:void_plating}，做法见[[hoanna/void_plating]]"
+            ],
+            [
+              "摆法",
+              "过滤器放正中，虚空板放上下左右四格，白名单升级成高级白名单，黑名单升级成高级黑名单"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:advanced_whitelist_filter",
+            "essentialcraft5:advanced_blacklist_filter"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "升级时<em>样本原样保留</em>，不用重新设。"
+        },
+        {
+          "type": "h",
+          "text": "三个开关"
+        },
+        {
+          "type": "p",
+          "text": "打开高级过滤器，界面左侧从上到下排着三个按钮，点一下就切换。按钮上的绿勾表示这一项要比较，红叉表示这一项不管，两个「忽略」开关打开后显示的就是红叉。三个开关一开始都关着，所以刚升级完，它收的东西和原来一样。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "开关",
+            "打开以后"
+          ],
+          "rows": [
+            [
+              "<t>忽略耐久</t>",
+              "不管损耗多少都算相同，拿一把用旧的铁剑当样本，新铁剑也收"
+            ],
+            [
+              "<t>忽略 NBT</t>",
+              "只看是哪种物品，附魔、名字和里面装的东西都不管"
+            ],
+            [
+              "<t>按标签</t>",
+              "每个样本按自己选中的标签收一整类东西，见下文"
+            ]
+          ],
+          "widths": [
+            1,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "鼠标指着按钮，就能看到它现在是开是关，物品提示里也会列出开着的开关。"
+        },
+        {
+          "type": "h",
+          "text": "按标签"
+        },
+        {
+          "type": "p",
+          "text": "标签是游戏给物品分的类，比如所有铁矿石、所有原木。打开<t>按标签</t>以后，每个样本格按自己选中的标签比较，物品只要在这个标签里，就和样本算同一种。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放好样本，点第三个按钮打开<t>按标签</t>。",
+            "每个样本会自己选一个「类别/材质」标签，比如铁锭选 <t>forge:ingots/iron</t>，铁矿石选 <t>forge:ores/iron</t>，这样深板岩铁矿石也收，金矿石不收。选了标签的格子，左上角会显示一个青色的 <t>#</t>。",
+            "想换别的标签，就把鼠标指着样本格滚动滚轮，在这件物品的所有标签和「按物品」之间轮着切换，物品提示里会写明现在按哪个标签比较、这个标签里有几种物品。",
+            "原木、羊毛这类没有自动标签的样本，先按物品比较，要收所有原木就滚到 <t>minecraft:logs</t>，要收所有颜色的羊毛，就放一块羊毛当样本，再滚到 <t>minecraft:wool</t>。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "铁矿石样本打开按标签以后，魔力漏斗会把石头里和深板岩里的铁矿石都收走，金矿石留在地上。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "标签不要选得太宽",
+          "text": "滚到 <t>forge:ingots</t>，就是所有的锭都收。自动选中的总是这件物品范围最窄的类别标签，换标签之前，最好先看一眼提示里的物品种数。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "按标签比较时，附魔和名字照样要相同，除非同时打开了<t>忽略 NBT</t>，耐久也一样，看<t>忽略耐久</t>开没开。",
+            "某一格换了样本，这一格原先选的标签就清掉了，按标签开着的话，换上来的样本会自己选一个。",
+            "关掉<t>按标签</t>不会清掉各格选好的标签，重新打开，还是原来那些。",
+            "放在样本格里的过滤器不按标签比较，只按它自己的开关判断。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作里第三个开关叫「忽略矿辞」。矿辞是 1.12 时各模组共用的物品分类，让各家的铜锭都能被认作「铜锭」，到了 1.20，这件事改由标签来做。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/logistics/advanced_whitelist_filter.json、advanced_blacklist_filter.json — essentialcraft5:crafting_shaped_keep_nbt，「 P / PGP / P 」，P = void_plating、G = 对应的普通过滤器，nbt_source = G（整份 tag 复制给产物：样本、开关、各格标签都带过来）；原作 ItemFilter 配方产物不带 NBT",
+        "recipe/KeepNbtRecipes.java — 合成时按格号找第一件符合 nbt_source 的物品，把它的 tag 复制给产物",
+        "registry/ECLogistics.java:71~75 — 两件高级过滤器 FilterItem(…, blacklist, advanced = true)，堆叠 1",
+        "api/ItemFilters.java:107~124 — 三个开关 IGNORE_DAMAGE / IGNORE_NBT / MATCH_TAGS；L489~492 数据里没写 = 关",
+        "api/ItemFilters.java:208~245 — 只有高级过滤器读开关；按标签：样本还在所选标签里时，候选在标签里就算同一种，NBT 照样受忽略耐久 / 忽略 NBT 管（menu/GhostSlots.java:236 nbtMatches：耐久值单独比，新建物品自带的 Damage:0 和没有 NBT 算一样，火焰弹样本选 creeper_igniters 收新打火石，见 gametest/MachineBaseFrameworkTests.filterMatchTagsSpec）；没选标签的格子按物品比；过滤器样本按它自己的规格递归判定",
+        "api/ItemFilters.java:383~398 — defaultTag：forge: / c: 下路径带 / 的标签，去掉 ores_in_ground/、ore_bearing_ground/、ore_rates/、armors/、tools/（L101；L410~422 isMaterialTag），取成员最少的；铁锭 → forge:ingots/iron、铁矿石 → forge:ores/iron、原木 / 羊毛 / 弓 → 无（gametest/AdvancedFilterTests：advancedFilterDefaultTags、advancedFilterTagOres）",
+        "api/ItemFilters.java:499~528 — 打开按标签时还没选过的格子自动选默认标签、明确选了按物品的不动；L292~317 同一格换了样本清掉原选择，开着时自动选；关掉开关不清选择",
+        "api/ItemFilters.java:367~375 — tagChoices：这件样本的全部标签按 id 排序；menu/FilterMenu.java:174~219 — 滚轮在「按物品 + 全部标签」里循环（L210 floorMod），服务端校验格子有样本、开关开着",
+        "client/screen/FilterScreen.java:42~49、76 — 三个按钮在左边 (20, 6 / 30 / 54)；L99~110（L106）选了标签的格子左上角青色 #；L131~152 提示写标签名和物品种数；L154~164 滚轮往下下一个、往上上一个；L187~199（compared() L187~191，L197 按它选图标）绿勾 = 这一项要比（按标签开着），红叉 = 不管",
+        "item/FilterItem.java — 高级过滤器的提示列出开着的开关",
+        "minecraft:wool 只收 16 种颜色的羊毛（原版 VanillaItemTagsProvider 照抄 BlockTags.WOOL，地毯另在 wool_carpets）；Forge 1.20.1 没有羊毛的类别标签（ForgeItemTagsProvider）",
+        "原作 ECUtils.java L650（oreDictionaryCompare || ignoreOreDict）、GuiFilter.java L35~127 — 第三个按钮「忽略矿辞」，默认关 = 按矿辞比"
+      ]
+    },
+    {
+      "id": "magical_chest",
+      "title": "{item:essentialcraft5:magical_chest}",
+      "icon": "essentialcraft5:magical_chest",
+      "summary": "一格大小的大箱子",
+      "complete": "essentialcraft5:guide/logistics/magical_chest",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_chest"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一个{item:essentialcraft5:magical_chest}，它只占一格，却和原版大箱子一样装得下 54 格东西。写手记的那位工匠屋子不大，箱子都换成了这一种。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "8 块{item:essentialcraft5:magic_plating}，在工作台上围成一圈、中间留空，护板的做法见[[alloys/plating]]"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_chest"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "list",
+          "items": [
+            "放下时正面朝着你，右键打开，潜行右键不会打开。",
+            "漏斗和管道从任意一面都能往里放、往外取。",
+            "旁边放一个红石比较器，装得越满信号越强。",
+            "挖掉时里面的东西会全部撒在地上，捡回来的箱子是空的。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "打开后能看到 6 行、每行 9 格。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "还嫌小的话，可以拿海纳尔的虚空石做一个 117 格的[[logistics/void_chest]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/storage/magical_chest.json — 「### / # # / ###」，# = magic_plating",
+        "block/MagicalChestBlock.java:70 Layout.MAGICAL — 6 行 × 9 列 = 54 格；L116 放下时正面朝放置者；L157 潜行右键不开",
+        "blockentity/MagicalChestBlockEntity.java:254~258 — 物品能力不分面；block/MagicalChestBlock.java:203~206 比较器 calcRedstoneFromInventory；L184~192 挖掉撒出全部内容，掉落的箱子不带内容"
+      ]
+    },
+    {
+      "id": "void_chest",
+      "title": "{item:essentialcraft5:void_chest}",
+      "icon": "essentialcraft5:void_chest",
+      "summary": "一格大小、117 格的大箱子",
+      "complete": "essentialcraft5:guide/logistics/void_chest",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:void_chest"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一个{item:essentialcraft5:void_chest}，它和魔力箱一样只占一格，装的东西却是魔力箱的两倍多。海纳尔人末年挖虚空石，是为了砌墙挡住 MRU，这里拿它来做箱子。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "8 块{item:essentialcraft5:void_stone}，在工作台上围成一圈、中间留空，获取方法见[[hoanna/void_stone]]"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:void_chest"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "容量",
+              "<t>117</t> 格，共 9 行、每行 13 格"
+            ],
+            [
+              "漏斗和管道",
+              "从任意一面都能往里放、往外取"
+            ],
+            [
+              "红石比较器",
+              "装得越满信号越强"
+            ],
+            [
+              "挖掉时",
+              "里面的东西会全部撒在地上，捡回来的箱子是空的，挖它要用镐"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "放下时正面朝着你，右键打开，潜行右键不会打开。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "打开后能看到 9 行、每行 13 格。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "界面有点大",
+          "text": "它的界面比原版箱子大一圈，界面尺寸是默认的「自动」或调到最大时，上下边框可能各被裁掉一点，格子倒都完整，介意的话，可以把视频设置里的「界面尺寸」调小一档。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/storage/void_chest.json — 「### / # # / ###」，# = void_stone → 1（原作 BlockChestEC meta 1 配方）",
+        "block/MagicalChestBlock.java:80 — Layout.VOID：9 行 × 13 列 = 117 格，界面 256 × 256（原作 GuiMagicalChest）；魔力箱 54 格",
+        "registry/ECStorage.java:66~85 — VOID_CHEST：machine(COLOR_BLACK, 1F, legacyResistance(1F, 1F, true))，要镐；同一方块类、方块实体类、菜单类，只换 Layout",
+        "blockentity/MagicalChestBlockEntity.java:254~258 — 物品能力不分面；block/MagicalChestBlock.java:203~206 — 比较器 calcRedstoneFromInventory",
+        "block/MagicalChestBlock.java:184~192 + blockentity/MagicalChestBlockEntity.java:186~197 — 挖掉撒出全部内容，掉落的箱子不带内容（gametest/StorageTests.storageVoidChestBreakSpills）",
+        "block/MagicalChestBlock.java:115 — 放下时正面朝放置者；L157 潜行右键不开",
+        "client/screen/MagicalChestScreen.java — 按 Layout 画 256 × 256 的 void_chest.png；原版界面尺寸在视频设置里。界面倍率保证缩放后高度 ≥ 240（原版 Window.calculateScale），格子区 y 8~248 正好 240 高，最坏只裁上下各 8 像素边框（block/MagicalChestBlock.java:77~78 注释）"
+      ]
+    },
+    {
+      "id": "magical_display",
+      "title": "{item:essentialcraft5:magical_display}",
+      "icon": "essentialcraft5:magical_display",
+      "summary": "把一件物品贴在墙上展示",
+      "complete": "essentialcraft5:guide/logistics/magical_display",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_display"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一块{item:essentialcraft5:magical_display}。先辈的仓库里，箱子外头常贴着一块这样的屏。这块屏很薄，能把一件物品贴在墙上、地上或天花板上展示，给箱子当标签、布置商店橱窗都合适。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "1 块{item:essentialcraft5:magical_screen}和 1 个{item:minecraft:item_frame}，放进工作台的任意两格"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_display"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "p",
+          "text": "对着方块的哪一面放，它就贴在哪一面上，正面朝外。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "拿着物品右键，屏上放上 1 个，手上跟着少 1 个，创造模式下不扣。",
+            "屏上已经有东西时，拿着物品右键或者潜行空手右键，屏上的东西都会从正面弹出来。",
+            "空手右键切换显示方式，依次是大图标、小图标加名字、更小的图标加名字和物品说明，再按一次回到大图标。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "屏上显示出你放上去的物品。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "贴在地上和天花板上的屏只显示图标，三种方式只是图标大小不同。离得太远，名字和说明都不显示。",
+            "漏斗和管道从任意一面都能往屏上放东西或把东西取走，不过屏上一次只放得下 1 个。",
+            "挖掉时会掉出显示屏本身和屏上的东西。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作里它的名字带着「[NYI]」，意思是还没做完。它没有配方，挖掉只掉回一块魔力屏幕，生存模式里拿不到。现在它有了配方，挖掉也能掉回它自己了。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/storage/magical_display.json — 无序：魔力屏幕 + 物品展示框",
+        "block/MagicalDisplayBlock.java — 朝向 = 点中的面；use L123~134：屏空时放上 1 个（instabuild 不扣），屏上有东西时弹出；潜行空手取出；空手切换显示方式 0 → 1 → 2；弹出物从正面出来；挖掉掉自己 + 屏上的物品",
+        "blockentity/MagicalDisplayBlockEntity.java:48 MODES = 3（0 大图标、1 小图标 + 名字、2 更小的图标 + 名字 + 说明）；L298 自动化每格最多 1 个",
+        "client/render/MagicalDisplayRenderer.java:96~99 — 贴墙且 mode > 0、离得不远才画文字；贴地 / 天花板只画图标，三种方式只换图标大小（ICON_SIZE）",
+        "原作 lang en_US.lang L711 tile.essentialcraft.magicalDisplay.name「[NYI]Magical Display」；原作挖掉掉魔力屏幕、没有配方"
+      ]
+    },
+    {
+      "id": "magical_mirror",
+      "title": "{item:essentialcraft5:magical_mirror}",
+      "icon": "essentialcraft5:magical_mirror",
+      "summary": "把东西一件一件送进附近的容器",
+      "complete": "essentialcraft5:guide/logistics/magical_mirror",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_mirror",
+        "essentialcraft5:control_rod"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一面{item:essentialcraft5:magical_mirror}和一根{item:essentialcraft5:control_rod}。镜子放在一个容器上面，就会把这个容器里的东西一件一件送进附近的另一个容器。它送得很慢，但很好看，每件东西都从镜子里慢慢升起，再飞进目标容器，全程不耗 MRU。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "镜子",
+              "4 块{item:essentialcraft5:magic_plate}围着 1 块{item:essentialcraft5:magic_purified_glass_alloy}，一次出 3 面，板换成淡青板等更高级的也行，合金见[[alloys/purified_alloys]]"
+            ],
+            [
+              "控制棒",
+              "4 个铁锭、1 个{item:essentialcraft5:elemental_core}之类的魔力核心和 2 瓶{item:essentialcraft5:magical_water}，做法见[[crafting/magician_crafts]]"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magical_mirror",
+            "essentialcraft5:control_rod"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么链接"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把镜子放在箱子、木桶等要送出东西的容器<em>正上方</em>。",
+            "拿着控制棒右键这面镜子，控制棒就记下了它。",
+            "<em>潜行</em>右键要送去的容器，它和镜子的直线距离要在 {cfg:machines.magical_mirror.max_distance} 格以内，也不能是镜子正下方那个。"
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": "minecraft:chest",
+              "label": "送出东西的容器"
+            },
+            "T": {
+              "block": "minecraft:barrel",
+              "label": "目标容器"
+            },
+            "M": "essentialcraft5:magical_mirror"
+          },
+          "anchor": "M",
+          "layers": [
+            {
+              "pattern": [
+                "C   T"
+              ]
+            },
+            {
+              "pattern": [
+                "M    "
+              ]
+            }
+          ],
+          "caption": "镜子放在送出东西的那个容器正上方，目标是附近的另一个容器，图里是一个木桶。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "镜面一闪一闪，东西从镜子里升起，飞进目标容器。"
+        },
+        {
+          "type": "p",
+          "text": "链接好以后控制棒就空出来了，可以接着去链接别的镜子，潜行右键空气，它就忘掉记下的镜子。空手右键镜子，动作栏会显示它链接到了哪里，没在送东西的话，也会写明原因。"
+        },
+        {
+          "type": "h",
+          "text": "怎么送"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每 {cfg:machines.magical_mirror.transfer_ticks|sec}送 1 件，它从下方的容器里挑一件，先看目标放不放得下，放得下才取出来送过去，放不下的留在原处，不会丢。",
+            "机器这类容器按顶面的规则收东西，和从上面往里塞的漏斗一样，熔炉只进原料格，酿造台只收酿造材料。",
+            "取东西也是从下方容器的顶面取，镜子放在熔炉上，只能取走原料格里还没烧的东西，烧好的成品取不到。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "要注意"
+        },
+        {
+          "type": "list",
+          "items": [
+            "目标容器被挖掉，或者镜子挪了地方，链接就断了，要重新链接。",
+            "链接时，镜子、镜子下方的容器和目标容器这三处都得是你能改动的地方，有一处不行就链接不上。",
+            "链接好以后，镜子自己会干活，放下它的人不在线也照常运送，目标那里没有加载时，它就等着。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书把这一节叫作「物品传送」，说镜子放在容器上面，就会把里面的东西一件件送到链接好的地方，不用 MRU。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/mirror/magical_mirror.json — 「 P / PGP / P 」：#essentialcraft5:plates/magic ×4、玻璃合金 → 3；control_rod.json — DII /  CI / I D：#forge:ingots/iron ×4、#essentialcraft5:cores/magic、魔力水 ×2",
+        "blockentity/MagicalMirrorBlockEntity.java:93 max_distance（8）、L96 transfer_ticks（60 刻一件）；类注释：先模拟取出和目标能不能放下，不吞物品；源和目标都按顶面（UP）取物品能力（L460、L486）；目标区块没加载就等；镜子挪了位置（LINK_ORIGIN_KEY）断开；不需要主人在线",
+        "item/ControlRodItem.java:115 tryLink — 同维度、≤ max_distance、不是镜子正下方、目标顶面有物品栏、镜子格 / 源容器格 / 目标格三格都能动；L160 useOn：先右键镜子记下，L196 潜行右键容器链接；链接后清掉控制棒；潜行右键空气清掉",
+        "blockentity/MagicalMirrorBlockEntity.java:523 statusMessage — 空手右键报链接和没在送的原因（message.essentialcraft5.magical_mirror.*）",
+        "原作 lang en_US.lang L387 disc.magicalMirrors.desc「Item Teleportation」；类注释：原作先取再放、拒收就吞，控制棒不查权限",
+        "原作 en_US.lang magicalMirrors.desc=Item Teleportation、page.magicalMirrors_0（镜子放在容器上方抽物品、不要 MRU）"
+      ]
+    },
+    {
+      "id": "rank_5",
+      "title": "五阶 · 越界",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "过海纳尔之门之前",
+      "complete": "essentialcraft5:guide/matrix/rank_5",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal==5"
+          ],
+          "text": "<em>目标</em>：升到矩阵五阶「越界」。下一章要去海纳尔，过门要五阶。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal!=5"
+          ],
+          "text": "<em>目标</em>：升到矩阵五阶「越界」。下一章要去海纳尔。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "<em>目标</em>（可选）：升到矩阵五阶「越界」，矩阵容量和耐受再涨一档。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "一共 21 种，其中下界 4 种；要有[[wind_mage/wind_mages|风法师]]，还要有 1 种远征怪：掠夺者、卫道士、唤魔者、恼鬼、劫掠兽、守卫者、远古守卫者、监守者都算"
+            ],
+            [
+              "站点",
+              "1 档[[pentacle/tier_one|灵魂五芒星]]"
+            ],
+            [
+              "祭品",
+              "1 个{item:essentialcraft5:condensed_matrix}、1 颗{item:essentialcraft5:wind_gem}、1 颗{item:essentialcraft5:air_focus}、4 块{item:essentialcraft5:mithriline_ingot}"
+            ],
+            [
+              "能量",
+              "台子里 4 万 MRU，五芒星的柱子里 4000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 6 只，同时最多 3 只；每只 68 点生命，打你一下 8 点；限时 110 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "站着不动 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:50} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "远征怪最省事的是打一场袭击，或者去一趟海底神殿。",
+            {
+              "if": "cfg:machines.enrichment_chamber.condense.enabled",
+              "text": "再凝一个凝结矩阵，做法和第十二章一样，见[[pentacle/condensed]]。"
+            },
+            "把祭品放进淬炼台的祭品格，台子里的 MRU 用绑定宝石备够。",
+            "站在台子 3 格内，主手拿着绑定你的灵魂石，打开界面，右边全打勾以后点「开始淬炼」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒够数的矩阵回响，别离开台子太远。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁边不动，也别受伤，等引导走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "屏幕正中出现「五阶 · 越界」，灵魂石的物品提示里写着矩阵五阶。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "五阶的回报：海纳尔辐射抗性 +5%，矩阵容量涨到 {cfg:general.matrix_rank.pool_per_rank|mul:4}。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.radiation.enabled"
+          ],
+          "text": "五阶的回报：矩阵容量涨到 {cfg:general.matrix_rank.pool_per_rank|mul:4}，耐受再多一档。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal==5"
+          ],
+          "text": "从这一阶起，海纳尔之门就能送你过去了。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "五阶的回报：矩阵容量涨到 {cfg:general.matrix_rank.pool_per_rank|mul:4}，耐受再多一档。去不了海纳尔的话，矩阵阶就练到这里。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.3 九阶表、§3.1.2 试炼；进度 essentialcraft5:guide/matrix/rank_<n> 由代码在升阶成功时发（同 guide/hoanna/radiation）",
+        "tools/plan/batch13.md §3.1.3 五阶 — 图谱总数 21、下界 ≥ 4、含风法师、远征 ≥ 1（codex_expedition 标签）；1 档五芒星；祭品凝结矩阵 + 风之水晶 + 风之焦点 + 米斯莱锭 ×4；MRU 4 万 + ESPE 4 000；回响 6 / 3 / 68 / 8 / 110 秒；回报海纳尔辐射抗性 +0.05、容量 × 4；门 gates.hoanna_portal 5",
+        "门关着时第十六章起整章藏掉，五阶没有门可过，按条件可选（optional: !portal_enabled），写法照 FORMAT.md §1.2"
+      ]
+    },
+    {
+      "id": "after_main_line",
+      "title": "接下来去哪",
+      "icon": "minecraft:book",
+      "summary": "主线的下一站与各支线的入口",
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "残卷的前四卷到这里差不多翻完了，第五卷只抄着一段海纳尔的传说。这本书的前十五章也读完了，主线的下一站是[[hoanna/legend|海纳尔]]，接着是[[demons/void_crystal_pillar|召唤恶魔、换取阿克罗尼特]]，再往后是[[hologram/neuronic_plating|全息投影]]、审判庭和宅男套装，给套装装上模块（[[terminal/legend|终端与模块]]），最后在海纳尔召出天灾之心，见[[apex/intro]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0"
+          ],
+          "text": "过海纳尔之门要矩阵 {cfg:general.matrix_rank.gates.hoanna_portal} 阶，阶数不够时站进门里也不会传送，见[[matrix/overview]]。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "title": "去海纳尔之前",
+          "text": "你要先把风之好感攒到 {cfg:general.wind.tablet_points}，再备好一块风之石板，做法见[[wind/air_potion]]和[[wind/wind_tablet]]。只靠喝药水的话，一座主世界祭坛要连着攒 6 个小时左右，{item:essentialcraft5:wind_keeper}则要吹响风之号角，召一只大法师来打，见[[wind/archmage]]。最好现在就让祭坛一直挂着，一边攒一边去看支线。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points!=3500||cfg:general.wind_affinity.base_coefficient!=0.1||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1"
+          ],
+          "title": "去海纳尔之前",
+          "text": "你要先把风之好感攒到 {cfg:general.wind.tablet_points}，再备好一块风之石板，做法见[[wind/air_potion]]和[[wind/wind_tablet]]。药水要靠祭坛一瓶一瓶地注出来，{item:essentialcraft5:wind_keeper}则要吹响风之号角，召一只大法师来打，见[[wind/archmage]]。最好现在就让祭坛一直挂着，一边攒一边去看支线。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "下界之星也要尽早积攒",
+          "text": "海纳尔之后的主线还要 7~9 颗下界之星。全息投影台每打一场用掉一台，四种数学核心加上第二十一章模块要的核心，一共要备 5~7 台，每台 1 颗，宅男套装的 2 个永恒物质还要另外 2 颗。凋灵骷髅掉头的几率是 2.5%，带抢夺 III 是 5.5%，3 个头召唤一只凋灵，7~9 只凋灵大约要打八百到一千一百只凋灵骷髅，带抢夺 III 约四五百只。从现在起，每次去下界要塞都顺手攒些头颅，详见[[hologram/holopad]]。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "主线到这里告一段落。"
+        },
+        {
+          "type": "h",
+          "text": "支线"
+        },
+        {
+          "type": "p",
+          "text": "后面几章是支线，用到哪章看哪章，每章都从第一篇读起："
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.ley_projector.enabled||cfg:machines.ley_condenser.enabled",
+              "text": "地脉投影：[[ley]]"
+            },
+            "农牧自动化：[[farming/item_shuffler]]",
+            "装备与防护：[[gear/magic_monocle]]",
+            "魔力器械：[[devices/magical_repairer]]",
+            "矿石加工：[[magmatic/fortified_furnace]]",
+            "腐化效果：[[corruption/matrix_damage]]",
+            "护符与随身物品：[[charms/charms]]",
+            "法杖与武器：[[staffs/golden_orb]]",
+            "风之装备：[[wind_gear/wind_tools]]",
+            "风法师：[[wind_mage/wind_mages]]",
+            "特殊饰品：[[baubles/finding]]",
+            "特斯拉：线圈与反应堆：[[tesla/mru_magnet]]",
+            "魔力枪械：[[guns/weapon_maker]]",
+            "装饰：[[decorations/magical_chisel]]",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "虚空机器：[[void_machines/ultra_heat_generator]]"
+            },
+            "无尽道具：[[creative/creative_items]]"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "概念和数值可以翻首页「入门」里的[[start/glossary|名词速查]]和[[start/numbers|数值速查]]。"
+        }
+      ],
+      "_src": [
+        "tools/guide/FORMAT.md §2 — 主线 hoanna (97) / demons (100) / hologram (101) / computer (102)，支线各章第一条；整章 portal_enabled 的条件照抄到链接行",
+        "item/WindTabletItem.java:129 attuned — general.wind.tablet_points（3500）；药水法 350 瓶 87500 ESPE、一座主世界祭坛约 6 小时（见 wind/air_potion 的 _src）；带「6 个小时」的提示框只在四项都是默认值时显示，否则换成不带数的那一份；loot_tables/entities/wind_mage_archmage.json 受困之风",
+        "client/guide 首页「主线已完成」：门关着时指向本条（FORMAT.md 2026-10-06 变更记录）",
+        "下界之星：hologram/holopad 配方吃 1 个永恒物质（1 颗下界之星），每场一台、4~6 场；computer/force_field_generator 2 次 × 1 个永恒物质；凋灵骷髅掉头 2.5% + 抢夺每级 1%（原版）"
+      ]
+    }
+  ]
+}

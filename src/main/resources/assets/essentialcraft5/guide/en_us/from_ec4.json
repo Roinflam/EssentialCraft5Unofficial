@@ -1,0 +1,3012 @@
+{
+  "id": "from_ec4",
+  "order": 120,
+  "group": "side",
+  "title": "Appendix · Changes from EC4",
+  "subtitle": "For players of the 1.12 original",
+  "icon": "essentialcraft5:magic_monocle",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "Start Here",
+      "icon": "essentialcraft5:magic_monocle",
+      "summary": "Read this first if you played EC4",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "This book was copied out afresh from an older research book, and a good many pages were changed along the way. If you knew the old book, read this first, so your memory of it doesn't send you the wrong way.",
+          "by": "Compiler's note"
+        },
+        {
+          "type": "p",
+          "text": "This chapter is for players who knew the 1.12 original, EssentialCraft 4 Unofficial. It covers where the old things are now, which rules changed and what was removed. If this is your first time with the mod, skip the whole chapter; everything the main line needs is written in its own chapter."
+        },
+        {
+          "type": "h",
+          "text": "The biggest differences"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.ley_projector.enabled",
+              "text": "<em>Machines no longer dig or place blocks in the world</em>. The Magical Quarry, Activators, Breakers and the Replanter are gone. For ores, use the {item:essentialcraft5:ley_projector}, which projects them inside the machine and leaves the ground alone."
+            },
+            {
+              "if": "!cfg:machines.ley_projector.enabled",
+              "text": "<em>Machines no longer dig or place blocks in the world</em>. The Magical Quarry, Activators, Breakers and the Replanter are gone."
+            },
+            "<em>Anything that can hurt or affect other players plays by the rules</em>: before acting, it checks whether players may hurt each other, whether you're on the same team and whether the target stands in someone else's claim. Explosions still happen, but they no longer break blocks.",
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "cfg:machines.mru_coil.trespassers_only"
+              ],
+              "text": "The {item:essentialcraft5:mru_coil} is the exception. It guards your home and still zaps intruders in your claim who aren't on its whitelist, even when players can't hurt each other ([[tesla/mru_coil]])."
+            },
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "!cfg:machines.mru_coil.trespassers_only"
+              ],
+              "text": "The {item:essentialcraft5:mru_coil} is the exception. It guards your home and still zaps any player who isn't on its whitelist ([[tesla/mru_coil]])."
+            },
+            "<em>Baubles go in the Curios slots</em>, and you can wear only one of each kind, so a second copy won't go in ([[from_ec4/how]]).",
+            "<em>The research book is now this guide</em>. There are no upgrades to craft, and every page is open from the start. Hold Ctrl over an item's tooltip to jump to the page about it.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "<em>Late-game armor no longer blocks everything while powered</em>. With power, the Void suit blocks melee and projectiles, and the Computer Guy's suit blocks elemental damage as well. In return, both now have real armor points and extra health ([[from_ec4/changed]])."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to find things"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Search for the old name</em>: just start typing on the home page, for example “Quarry” or “Magical Inventory Manager”, to find the page in this chapter that mentions it.",
+            "<em>Browse by the old book's categories</em>: [[from_ec4/where]] lists renamed and reworked things under the five categories of the original research book.",
+            "Click an item name in the tables to jump to the page that covers it now."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Pages in this chapter"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Page",
+            "What it covers"
+          ],
+          "rows": [
+            [
+              "[[from_ec4/where]]",
+              "What the old things are called now, by the original book's categories"
+            ],
+            [
+              "[[from_ec4/new]]",
+              "Things the original did not have"
+            ],
+            [
+              "[[from_ec4/changed]]",
+              "Same things, new rules"
+            ],
+            [
+              "[[from_ec4/removed]]",
+              "What the original had and this version does not, and what to use instead"
+            ],
+            [
+              "[[from_ec4/fixed]]",
+              "Original bugs that are now fixed, worth a look if you relied on them"
+            ],
+            [
+              "[[from_ec4/how]]",
+              "Bauble slots, item categories, the guide and key bindings"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book had a sixth category, “Knowledges of SHADE”. Under the title it says “The darkness falls...”, and there is not a single page in it."
+        }
+      ]
+    },
+    {
+      "id": "where",
+      "title": "Where Things Went",
+      "icon": "minecraft:compass",
+      "summary": "Find things by the old book's categories",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The tables below follow the five categories of the original research book, roughly in its order, and list only things that were renamed, reworked or now play differently. Anything that kept its name and use is left out. The first column gives the old name, which you can search for. Click the second column to jump to the page that covers it now."
+        },
+        {
+          "type": "h",
+          "text": "Bases of Magic"
+        },
+        {
+          "type": "table",
+          "header": [
+            "In the original",
+            "Now",
+            "What changed"
+          ],
+          "rows": [
+            [
+              "Research Book (“Book Of Knowledge”)",
+              "{item:essentialcraft5:research_book}",
+              "No upgrades to craft, and every page is open from the start, see [[from_ec4/how]]"
+            ],
+            [
+              "Trapped Wind, Bottled Wind",
+              "{item:essentialcraft5:wind_keeper}, {item:essentialcraft5:bottled_wind}",
+              "Renamed in Chinese; English names unchanged"
+            ],
+            [
+              "Elemental Infused Ore (15 blocks, one name)",
+              "{item:essentialcraft5:fire_infused_ore} and 14 more",
+              "Names now say the element and dimension; generation is unchanged"
+            ],
+            [
+              "Diamond Plate, Emerald Plate, Eye Of Absorption, Heat Rod",
+              "{item:essentialcraft5:diamond_plate}, {item:essentialcraft5:emerald_plate}, {item:essentialcraft5:eye_of_absorption}, {item:essentialcraft5:heating_rod}",
+              "Renamed in Chinese, where the old names were mistranslations; English names unchanged"
+            ],
+            [
+              "MRU Linking Device, MRU Collecting Device",
+              "{item:essentialcraft5:matrix_link}, {item:essentialcraft5:mru_catcher}",
+              "Renamed in Chinese; English names unchanged"
+            ],
+            [
+              "MRUCU Moving Wand",
+              "{item:essentialcraft5:mru_mover}",
+              "Reaches about 20 blocks ahead; only moves MRUCUs where you are allowed to build"
+            ],
+            [
+              "Magical Chisel",
+              "{item:essentialcraft5:magical_chisel}",
+              "256 uses; a pattern block drops itself when mined"
+            ],
+            [
+              "Magic Plating Block, Pale Plating, Mithriline Plating",
+              "{item:essentialcraft5:magic_plating}, {item:essentialcraft5:pale_plating}, {item:essentialcraft5:mithriline_plating}",
+              "Magic Plating Block lost the word “Block”; the others are unchanged"
+            ],
+            [
+              "Mimic Block, Crystal Lamp",
+              "{item:essentialcraft5:mimic}, {item:essentialcraft5:fire_crystal_lamp} and others",
+              "Unchanged in English (they now have Chinese names)"
+            ],
+            [
+              "Ancient ruins (“World Changes”)",
+              "Ancient ruins",
+              "Far rarer; the chests are unchanged, see [[baubles/finding]]"
+            ],
+            [
+              "Rings, amulets and belts (32 kinds)",
+              "{item:essentialcraft5:omega_ring} and 31 more",
+              "Worn in Curios slots, one of each kind at most, see [[from_ec4/how]]"
+            ],
+            {
+              "if": [
+                "bauble:essentialcraft5:ring_of_stability",
+                "bauble:essentialcraft5:ring_of_experience",
+                "bauble:essentialcraft5:ring_of_resistance"
+              ],
+              "cells": [
+                "Ring Of Stability, Ring Of Experience, Ring Of Resistance",
+                "{item:essentialcraft5:ring_of_stability}, {item:essentialcraft5:ring_of_experience}, {item:essentialcraft5:ring_of_resistance}",
+                "Renamed in Chinese; English names unchanged"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:wind_mages_talisman",
+                "bauble:essentialcraft5:doctors_belt"
+              ],
+              "cells": [
+                "Wind Mage's Talisman, Doctor's Belt",
+                "{item:essentialcraft5:wind_mages_talisman}, {item:essentialcraft5:doctors_belt}",
+                "Renamed in Chinese; English names unchanged"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:portable_matrix_destructor",
+              "cells": [
+                "Portable Matrix Destructor",
+                "{item:essentialcraft5:portable_matrix_destructor}",
+                "The MRU it stores can now be used, like a battery"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "MRU and Matrix"
+        },
+        {
+          "type": "table",
+          "header": [
+            "In the original",
+            "Now",
+            "What changed"
+          ],
+          "rows": [
+            [
+              "Ender Scale Alloy, Glass Alloy, Redstone Alloy, Blaze Alloy",
+              "{item:essentialcraft5:magic_purified_ender_scale_alloy} and 3 more",
+              "Renamed in Chinese; English names unchanged"
+            ],
+            [
+              "MRU Chunk, Large MRU Chunk",
+              "{item:essentialcraft5:mru_chunk}, {item:essentialcraft5:mru_large_chunk}",
+              "Renamed in Chinese; English names unchanged"
+            ],
+            [
+              "Sun Imbued Glass, Crystal Dust",
+              "{item:essentialcraft5:sun_imbued_glass}, {item:essentialcraft5:crystal_dust}",
+              "Renamed in Chinese; English names unchanged"
+            ],
+            [
+              "Magical Display (the crafting part)",
+              "{item:essentialcraft5:magical_screen}",
+              "Renamed so it is not mixed up with the {item:essentialcraft5:magical_display} block"
+            ],
+            [
+              "Magical Monocle",
+              "{item:essentialcraft5:magic_monocle}",
+              "Can also be worn in the helmet slot; no durability"
+            ],
+            [
+              "MRUCU Moving Wand Tier 2",
+              "{item:essentialcraft5:mru_mover_t2}",
+              "Renamed in Chinese; English name unchanged"
+            ],
+            [
+              "Enrichment Chamber Controller, Redstone Controller",
+              "{item:essentialcraft5:ec_controller}, {item:essentialcraft5:ec_redstone_controller}",
+              "The shell has a size limit; the Redstone Controller no longer needs an MRUCU"
+            ],
+            [
+              "Enrichment Chamber MRU Ejector",
+              "{item:essentialcraft5:ec_ejector}",
+              "Outputs the chamber's real balance, see [[from_ec4/fixed]]"
+            ],
+            [
+              "Natural Furnace",
+              "{item:essentialcraft5:natural_furnace}",
+              "Only burns flowers, grass and saplings put into its slots, see [[from_ec4/changed]]"
+            ],
+            [
+              "Magical Mirror",
+              "{item:essentialcraft5:magical_mirror}",
+              "Items are no longer lost when the target is full"
+            ],
+            [
+              "Corruption Cleaner",
+              "Gone",
+              "Corruption blocks never appeared in the original, see [[from_ec4/removed]]"
+            ],
+            [
+              "Magical Activator (6 kinds)",
+              "Gone",
+              "Machines no longer change blocks for you, see [[from_ec4/removed]]"
+            ],
+            [
+              "Magical Hopper",
+              "{item:essentialcraft5:magical_hopper}",
+              "Only collects where its owner may build, and never pushes items into solid blocks"
+            ],
+            [
+              "Metadata Manager",
+              "{item:essentialcraft5:metadata_manager}",
+              "Reads a block's number, such as crop age, and updates by itself, see [[from_ec4/how]]"
+            ],
+            [
+              "Magical Breaker, Advanced Magical Breaker",
+              "Gone",
+              "Use the hand-held {item:essentialcraft5:magical_digger} instead"
+            ],
+            [
+              "Weapon Bench",
+              "{item:essentialcraft5:pistol_weapon_maker} and 3 more",
+              "One bench per gun type"
+            ],
+            [
+              "Pistol, Assault Rifle, Sniper Rifle, Gatling Gun",
+              "{item:essentialcraft5:pistol} and 3 more",
+              "Damage now counts as the shooter's, see [[from_ec4/changed]]"
+            ],
+            [
+              "Magmatic Furnace (4 tiers, one name)",
+              "{item:essentialcraft5:fortified_magmatic_furnace} and 3 more",
+              "Each tier has its own name"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Magical Chest (2 kinds, one name)",
+                "{item:essentialcraft5:magical_chest}, {item:essentialcraft5:void_chest}",
+                "The bigger one is now the Void Chest"
+              ]
+            },
+            [
+              "Magical Replanter",
+              "Gone",
+              "Machines no longer plant for you, see [[from_ec4/removed]]"
+            ],
+            [
+              "Magical Item Shuffler",
+              "{item:essentialcraft5:item_shuffler}",
+              "Renamed in Chinese to match what it does; English name unchanged"
+            ],
+            [
+              "Magical Crafter",
+              "{item:essentialcraft5:crafter}",
+              "Never crafted anything in survival; now crafts once per redstone pulse"
+            ],
+            [
+              "Magical Breeder, Magical Shearing Station",
+              "{item:essentialcraft5:breeder}, {item:essentialcraft5:shearing_station}",
+              "Act once when the redstone signal turns on; leave other players' pets alone"
+            ],
+            [
+              "Magical Inventory Node Filter (4 kinds, one name)",
+              "{item:essentialcraft5:whitelist_filter} and 3 more",
+              "Now called Item Filters; they can no longer duplicate items"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "MRU Engineering"
+        },
+        {
+          "type": "table",
+          "header": [
+            "In the original",
+            "Now",
+            "What changed"
+          ],
+          "rows": [
+            [
+              "Crystal Former, Crystal Controller, Crystal Extractor",
+              "{item:essentialcraft5:crystal_former}, {item:essentialcraft5:crystal_controller}, {item:essentialcraft5:crystal_extractor}",
+              "The former and extractor keep their progress after reloading"
+            ],
+            [
+              "Fiery Focus and the other foci, Earth Elemental Fuel",
+              "{item:essentialcraft5:fire_focus} and others, {item:essentialcraft5:earth_elemental_fuel}",
+              "Renamed in Chinese; English names unchanged"
+            ],
+            [
+              "MRUMP - Empty, Chaos, Frozen, Magic, The Shade",
+              "{item:essentialcraft5:empty_matrix_projection} and 4 more",
+              "Renamed to “... Matrix Projection”"
+            ],
+            [
+              "Sun Ray Absorber",
+              "{item:essentialcraft5:sun_ray_absorber}",
+              "One beam feeds only one absorber, see [[from_ec4/fixed]]"
+            ],
+            [
+              "Solar Prism",
+              "{item:essentialcraft5:solar_prism}",
+              "The beam no longer sets fires and only burns hostile mobs"
+            ],
+            [
+              "Moon Well",
+              "{item:essentialcraft5:moon_well}",
+              "Produces nothing at height {cfg:machines.moon_well.max_height} and above; the original ran at full rate there"
+            ],
+            {
+              "if": "cfg:machines.reactor.damage_mobs",
+              "cells": [
+                "MRU Tesla Reactor Core",
+                "{item:essentialcraft5:reactor}",
+                "Only zaps hostile mobs, and they drop nothing"
+              ]
+            },
+            {
+              "if": "!cfg:machines.reactor.damage_mobs",
+              "cells": [
+                "MRU Tesla Reactor Core",
+                "{item:essentialcraft5:reactor}",
+                "Zaps no creatures at all"
+              ]
+            },
+            [
+              "Magical Digger",
+              "{item:essentialcraft5:magical_digger}",
+              "Only charges MRU for blocks it actually breaks"
+            ],
+            [
+              "Magnetizing Staff, Staff Of Life, Magmatic Staff",
+              "{item:essentialcraft5:magnetizing_staff}, {item:essentialcraft5:staff_of_life}, {item:essentialcraft5:magmatic_staff}",
+              "The first two follow new rules, see [[from_ec4/changed]]"
+            ],
+            [
+              "Spawner Collector",
+              "Gone",
+              "Made mob farms too easy, see [[from_ec4/removed]]"
+            ],
+            [
+              "Holy Mace, Frozen Mace, Chaos Fork",
+              "{item:essentialcraft5:holy_mace}, {item:essentialcraft5:frozen_mace}, {item:essentialcraft5:chaos_fork}",
+              "The last two stack their effects up to level {cfg:general.staffs.weapon_max_effect_level}"
+            ],
+            [
+              "Emerald Heart",
+              "{item:essentialcraft5:emerald_heart}",
+              "Renamed in Chinese; English name unchanged"
+            ],
+            {
+              "if": "bauble:essentialcraft5:magical_wings",
+              "cells": [
+                "Magical Wings",
+                "{item:essentialcraft5:magical_wings}",
+                "Flying upward while wearing them now costs MRU"
+              ]
+            },
+            [
+              "Magical Shield, Spiky Buckler",
+              "{item:essentialcraft5:magical_shield}, {item:essentialcraft5:spiky_shield}",
+              "The buckler can only be raised with enough MRU"
+            ],
+            [
+              "Biome Wand",
+              "Gone",
+              "Changing biomes ignored claims, see [[from_ec4/removed]]"
+            ],
+            [
+              "MHS Helm, MHS Chestplate and so on",
+              "{item:essentialcraft5:mhs_helmet} and 3 more",
+              "The chestplate and leggings swapped their armor values"
+            ],
+            [
+              "Elemental Charm (10 kinds, one name)",
+              "{item:essentialcraft5:fire_charm} and 9 more",
+              "Each charm has its own name"
+            ],
+            [
+              "Monster Holding Device, Monster Duplicator",
+              "Gone",
+              "Made mob farms too easy, see [[from_ec4/removed]]"
+            ],
+            [
+              "Magmatic Smeltery",
+              "{item:essentialcraft5:magmatic_smeltery}",
+              "Also takes raw ores"
+            ],
+            {
+              "if": "cfg:machines.ley_projector.enabled",
+              "cells": [
+                "Magical Quarry",
+                "{item:essentialcraft5:ley_projector}",
+                "Digs nothing; projects ores inside the machine, see [[ley/ley_projector]]"
+              ]
+            },
+            {
+              "if": "!cfg:machines.ley_projector.enabled",
+              "cells": [
+                "Magical Quarry",
+                "Gone",
+                "It dug through claims, see [[from_ec4/removed]]"
+              ]
+            },
+            [
+              "Potion Spreader",
+              "{item:essentialcraft5:potion_spreader}",
+              "Harmful effects only go to hostile mobs"
+            ],
+            [
+              "Magical Enchantment Table",
+              "{item:essentialcraft5:magical_enchanter}",
+              "Its enchanted books now work in an anvil"
+            ],
+            [
+              "MRU Coil",
+              "{item:essentialcraft5:mru_coil}",
+              "Never zaps its owner or farm animals and won't clear a neighbor's mobs; its range is capped"
+            ],
+            [
+              "Player Whitelist",
+              "{item:essentialcraft5:player_list}",
+              "You can now add other players to it"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Wind Tablet",
+                "{item:essentialcraft5:wind_tablet}",
+                "Only charges MRU once the gate is made; also mends gates in Hoanna"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Wind Tablet",
+                "{item:essentialcraft5:wind_tablet}",
+                "Renamed in Chinese; English name unchanged"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "The World of Hoanna"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "header": [
+            "In the original",
+            "Now",
+            "What changed"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "Radiation (the “First World” page)",
+                "Radiation readout",
+                "Hover the icon by your hotbar, see [[hoanna/radiation]]"
+              ]
+            },
+            [
+              "Acidic Ember and the other embers (8)",
+              "{item:essentialcraft5:acidic_ember} and 7 more",
+              "Renamed in Chinese; English names unchanged"
+            ],
+            [
+              "Void Stone, Void Glass",
+              "{item:essentialcraft5:void_stone}, {item:essentialcraft5:void_glass}",
+              "Their original recipes used a missing material; now they can be made"
+            ],
+            [
+              "Void Armor",
+              "{item:essentialcraft5:void_helmet} and 3 more",
+              "While powered it blocks only physical damage, and its armor and extra health are real"
+            ],
+            [
+              "Magical Teleporter",
+              "{item:essentialcraft5:magical_teleporter}",
+              "Only sends the player standing on it; the landing spot must be safe"
+            ],
+            [
+              "Magical Furnace",
+              "{item:essentialcraft5:magical_furnace}",
+              "Dusts and wet sponges are no longer doubled"
+            ],
+            [
+              "Ember Forge",
+              "{item:essentialcraft5:ember_forge}",
+              "Embers finally take effect; sneak-use with an empty hand to take items back off it"
+            ],
+            [
+              "Elemental Sword",
+              "{item:essentialcraft5:forged_elemental_sword}",
+              "Renamed; its lightning strikes only the target"
+            ],
+            [
+              "Magical Inventory Manager (core, nodes, modules), Inventory Gem",
+              "Gone",
+              "Lagged everyone and let people take items remotely, see [[from_ec4/removed]]"
+            ],
+            [
+              "Darkness O8elisk",
+              "Gone",
+              "Made mob farms too easy"
+            ],
+            [
+              "Ultra Heat Generator",
+              "{item:essentialcraft5:ultra_heat_generator}",
+              "Gives the empty bucket back"
+            ],
+            [
+              "Ultra Natural Furnace",
+              "{item:essentialcraft5:ultra_natural_furnace}",
+              "Only burns what is put into its slots"
+            ],
+            [
+              "Magical Building Wand",
+              "{item:essentialcraft5:magical_builder_fill} and 4 more",
+              "One wand per mode; each selection is capped and takes a few seconds to build"
+            ],
+            [
+              "Holopad",
+              "{item:essentialcraft5:holopad}",
+              "Renamed in Chinese; English name unchanged"
+            ],
+            [
+              "Holographic Projection",
+              "{lang:entity.essentialcraft5.hologram}",
+              "Only the summoner and players who really hit it join the fight, see [[from_ec4/changed]]"
+            ],
+            [
+              "Addition, Subtraction, Multiplication, Division Core",
+              "{item:essentialcraft5:addition_core} and 3 more",
+              "Renamed in Chinese to match the English"
+            ],
+            [
+              "Computer Guy's Suit",
+              "{item:essentialcraft5:computer_helmet} and 3 more",
+              "No longer blocks everything while powered. It blocks physical and elemental damage and has real armor"
+            ],
+            {
+              "if": [
+                "bauble:essentialcraft5:computer_board",
+                "cfg:general.computer_board.fly_speed>0"
+              ],
+              "cells": [
+                "Computer Guy's Antigravitational Board",
+                "{item:essentialcraft5:computer_board}",
+                "Flies at {cfg:general.computer_board.fly_speed|div:0.05} times creative speed; the original was 4 times"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The Legend of the Enderstar"
+        },
+        {
+          "type": "table",
+          "header": [
+            "In the original",
+            "Now",
+            "What changed"
+          ],
+          "rows": [
+            [
+              "Mithriline Dust",
+              "{item:essentialcraft5:mithriline_dust}",
+              "Renamed in Chinese; English name unchanged"
+            ],
+            [
+              "Mithriline Crystal, Pale Crystal (blocks)",
+              "{item:essentialcraft5:mithriline_crystal_pillar}, {item:essentialcraft5:pale_crystal_pillar}",
+              "The blocks are now Crystal Pillars; “Mithriline Crystal” now means only the gem"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Void Crystal, Demonic Crystal (blocks)",
+                "{item:essentialcraft5:void_crystal_pillar}, {item:essentialcraft5:demonic_crystal_pillar}",
+                "Also renamed to Crystal Pillars"
+              ]
+            },
+            [
+              "Wind Infused Hoe",
+              "{item:essentialcraft5:wind_elemental_hoe}",
+              "Renamed in Chinese; English name unchanged"
+            ],
+            [
+              "Wind Rune (imbuing)",
+              "{item:essentialcraft5:wind_rune}",
+              "Refuses players who are already windbound instead of wasting the ESPE"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Demonic Pentacle",
+                "{item:essentialcraft5:demonic_pentacle}",
+                "Its 1.12 recipe was broken; now it can be made"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Demon",
+                "{lang:entity.essentialcraft5.demon}",
+                "Hits no longer chase it off; only the summoner can trade"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Soul Scriber",
+                "{item:essentialcraft5:soul_scriber}",
+                "Only works in a real player's hand"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "MRU Reactor (loot item)",
+                "{item:essentialcraft5:void_mru_reactor}",
+                "Renamed in Chinese so it is not confused with the reactor block"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Not in the original book"
+        },
+        {
+          "type": "p",
+          "text": "The original had these too, but its research book never mentioned them."
+        },
+        {
+          "type": "table",
+          "header": [
+            "In the original",
+            "Now",
+            "What changed"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Remote Orbital Strike",
+                "{item:essentialcraft5:orbital_remote}",
+                "Hurts only creatures and leaves the terrain alone"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Divider's Gun",
+                "{item:essentialcraft5:divider_gun}",
+                "Only halves hostile creatures"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mystical_accessory",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "Mystical Accessory",
+                "{item:essentialcraft5:mystical_accessory}",
+                "Its form and resistances are rolled when the chest is opened, see [[baubles/mystical_accessory]]"
+              ]
+            },
+            [
+              "[NYI]Magical Display",
+              "{item:essentialcraft5:magical_display}",
+              "Now has a recipe and drops itself when mined"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Void Core",
+                "{item:essentialcraft5:void_core}",
+                "Renamed in Chinese, where the old name was a mistranslation; English name unchanged"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "MRU Levitator, MRU Spreader",
+                "{item:essentialcraft5:levitator}, {item:essentialcraft5:spreader}",
+                "Renamed in Chinese; English names unchanged"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Holographic Record",
+                "{item:essentialcraft5:music_disc_ropocalypse}",
+                "Renamed in Chinese; English name unchanged"
+              ]
+            },
+            [
+              "MRU Intersector",
+              "{item:essentialcraft5:intersector}",
+              "Unchanged in English (it now has a Chinese name)"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "new",
+      "title": "New Things",
+      "icon": "essentialcraft5:ley_projector",
+      "summary": "Things the original never had",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Everything below is new in this version and was not in the original. Click a name to jump to the page that covers it."
+        },
+        {
+          "type": "h",
+          "text": "Machines and items"
+        },
+        {
+          "type": "table",
+          "header": [
+            "New",
+            "What it is"
+          ],
+          "rows": [
+            {
+              "if": "cfg:machines.ley_projector.enabled",
+              "cells": [
+                "{item:essentialcraft5:ley_projector}",
+                "Takes the place of the old Magical Quarry. It digs nothing, and instead spends MRU to project the ores of this world's rock layers inside the machine"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.ley_condenser.enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:ley_condenser}",
+                "Can be made once you have beaten the holographic projection. It condenses diamonds, emeralds and other vanilla ores out of MRU, and nether stars if you add ESPE as well"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.mru_converter.enabled",
+                "!mod:botania"
+              ],
+              "cells": [
+                "{item:essentialcraft5:mru_converter}",
+                "Comes in four tiers that turn MRU into energy (FE) and push it into other mods' machines, cables and batteries touching them, plus an infinite tier that needs no MRU. The original didn't work with any other mod"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.mru_converter.enabled",
+                "mod:botania"
+              ],
+              "cells": [
+                "{item:essentialcraft5:mru_converter}",
+                "Comes in four tiers that turn MRU into energy (FE) or Botania mana and push it into machines, cables and mana pools touching them, plus an infinite tier that needs no MRU. The original didn't work with any other mod"
+              ]
+            },
+            [
+              "[[creative/creative_items]]",
+              "The infinite MRU source, the infinite ESPE source and a few others. None has a recipe, but once you have one it works in survival. The original had only two creative sources, and they just waited for machines to draw from them"
+            ],
+            [
+              "{item:essentialcraft5:player_list}",
+              "Right-click another player to add them, sneak-right-click to cross yourself off, and put it alone in a crafting grid to wipe it. The original could only add you"
+            ],
+            [
+              "{item:essentialcraft5:magical_chest}",
+              "Works with a comparator: the fuller it is, the stronger the signal"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ember_forge}",
+                "Sneak-right-click it with an empty hand and it lets go of what it holds, so a mistake can be undone. In the original, whatever you put on stayed there"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[void_machines/magical_builder|Building wands]]",
+                "Sneak-right-click the air while it is working to stop it"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[computer/suit]]",
+                "Whether night vision is on is saved on you, so it survives relogging and death. In the original it lived only on your own client"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Advancement “{lang:advancements.essentialcraft5.hologram_big.title}”",
+                "Beat the holographic projection without wearing any armor. The original only mentioned it in a code comment"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.enabled",
+                "cfg:general.computer_seal.require_recent_combat"
+              ],
+              "cells": [
+                "[[computer/seal_field]]",
+                "Wearing the full Computer Guy's Suit, switch it on in the terminal ({keybind:key.essentialcraft5.computer_terminal}). Players within {cfg:general.computer_seal.radius} blocks who fought you in the last {cfg:general.computer_seal.combat_window_ticks|sec} lose the effects of everything in their Curios slots. One real hit between you counts as fighting, whoever struck first. Players standing where you can't change blocks, such as someone else's claim, are left alone, and it does nothing in some worlds"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.enabled",
+                "!cfg:general.computer_seal.require_recent_combat"
+              ],
+              "cells": [
+                "[[computer/seal_field]]",
+                "Wearing the full Computer Guy's Suit, switch it on in the terminal ({keybind:key.essentialcraft5.computer_terminal}). Other players within {cfg:general.computer_seal.radius} blocks lose the effects of everything in their Curios slots. Teammates, players who may not hurt you and players standing where you can't change blocks, such as someone else's claim, are left alone, and it does nothing in some worlds"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.force_dome.enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:force_dome}",
+                "An optional machine from the Computer Guy's Suit chapter. Fed with MRU, it stops natural monster spawns within {cfg:machines.force_dome.radius} blocks horizontally. It only covers chunks where whoever placed it may build, and spawners and spawn eggs still work"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+              "cells": [
+                "[[guns/lens_effects]]",
+                "Chaos, frozen, magic and shade lenses each add an effect when the ray lands: Corrosion (no healing), freezing, dispelling one beneficial effect, and draining health back to you. The original lenses only changed the color, and the shade projection couldn't be made at all. Now the Radiating Chamber makes it"
+              ]
+            },
+            {
+              "if": "cfg:general.wind.steadfast_points",
+              "cells": [
+                "[[wind_mage/steadfast]]",
+                "Keep raising your wind relation after the true name is revealed. At {cfg:general.wind.steadfast_points} you can't be knocked back while sneaking"
+              ]
+            },
+            {
+              "if": "cfg:general.wind.deflect_points",
+              "cells": [
+                "[[wind_mage/deflect]]",
+                "At {cfg:general.wind.deflect_points} relation, projectiles others shoot or throw at you pass straight through, one every {cfg:general.wind.deflect_cooldown_ticks|sec}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.ancient_scrolls.enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "[[scrolls/scrolls]]",
+                "Seven books the forebears left in ancient ruins, in Hoanna and on the Inquisitorium Sentinel. Each one you read opens a page in the Ancient Scrolls chapter, and reading them all adds a little MRU corruption and Hoanna radiation resistance for good"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.ancient_scrolls.enabled",
+                "!cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "[[scrolls/scrolls]]",
+                "Books the forebears left. Five of them can be found in the Overworld, all in ancient ruin chests. Each one you read opens a page in the Ancient Scrolls chapter, and reading all five adds a little MRU corruption resistance for good"
+              ]
+            },
+            [
+              "{item:essentialcraft5:magical_cultivator}",
+              "Seeds or saplings go in as samples and grow inside the machine on MRU and water. The sample is never used up, and the blocks around it are left alone"
+            ],
+            [
+              "{item:essentialcraft5:elemental_decomposer}",
+              "Breaks junk such as cobblestone, rotten flesh and feathers into element points, and makes an essence whenever one element has enough"
+            ],
+            [
+              "{item:essentialcraft5:ley_detector}",
+              "Scans for ores around you and outlines them on your screen only; sneak-right-click to switch modes, and the MRUCU mode points toward a large MRUCU nearby"
+            ],
+            [
+              "{item:essentialcraft5:essential_pickaxe}",
+              "A pickaxe you can make from Chapter 13 on. It runs on MRU, never breaks, and mines the 3×3 on the face you hit"
+            ],
+            [
+              "{item:essentialcraft5:essential_axe}",
+              "The pickaxe's partner. Chop one log and the whole natural tree comes down"
+            ],
+            [
+              "{item:essentialcraft5:homeward_compass}",
+              "Set a home point, then hold right-click for a few seconds to go back to it"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "[[matrix/overview|Matrix ranks]]",
+                "Your MRU Matrix now has nine ranks. Meet the Codex requirement, gather the offerings and energy, then win a trial at the {item:essentialcraft5:matrix_crucible} to go up one rank. Each rank adds something new, such as storing MRU inside you or the matrix siphon. The main line asks for a breakthrough every few chapters"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:condensed_matrix}",
+                "What an Enrichment Chamber condenses the MRUCU shut inside it into. Breakthroughs from rank 4 on need it. See [[pentacle/condensed]]"
+              ]
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "cells": [
+                "[[attunement/overview|Attunement]]",
+                "Armor earns attunement points as you take hits in it, and weapons as you land hits with them. Once a stage is full, raise it at the Magician Table. Higher stages unlock more"
+              ]
+            },
+            [
+              "Armor charge bar",
+              "While you wear armor that blocks damage with MRU, a bar left of the hotbar shows how much charge it has left. See [[storage/charging_chamber]]"
+            ],
+            [
+              "[[bestiary/overview|Bestiary]]",
+              "A new chapter on the monsters and bosses added in this version: where they show up, how to fight them and what they drop. Elites and per-player diminishing drops are covered on its first page"
+            ],
+            [
+              "[[bestiary/storm_sorcerer]]",
+              "A fourth kind of wind mage that comes out in thunderstorms, shooting gusts and calling lightning"
+            ],
+            [
+              "[[bestiary/mru_golem]]",
+              "A boss guarding newly generated ancient ruins. It blocks damage with MRU from the ruin's MRUCU and drops an Ancient Core"
+            ],
+            [
+              "[[bestiary/matrix_shade]]",
+              "A boss you call on a Soul Pentacle with a Matrix Conduit. Pour your matrix damage into it and beat it, and the damage is gone"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.mru_coil.hurt_players",
+          "text": "New rules for coils that hit players"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_coil.hurt_players",
+          "text": "The original {item:essentialcraft5:mru_coil} zapped everyone not on its list, the player who placed it included. It now holds back in the ways below; see [[tesla/mru_coil]]."
+        },
+        {
+          "type": "list",
+          "if": "cfg:machines.mru_coil.hurt_players",
+          "items": [
+            "Every coil has its own “hit players” switch, and whoever placed it is never zapped.",
+            {
+              "if": "cfg:machines.mru_coil.warning_ticks>0",
+              "text": "Someone who enters its range for the first time gets a warning {cfg:machines.mru_coil.warning_ticks|sec} before it fires."
+            },
+            {
+              "if": "cfg:machines.mru_coil.spawn_safe_radius>0",
+              "text": "Players within {cfg:machines.mru_coil.spawn_safe_radius} blocks of the world spawn are left alone."
+            },
+            {
+              "if": "cfg:machines.mru_coil.respawn_grace_ticks>0",
+              "text": "A player killed by a coil is safe from every coil for {cfg:machines.mru_coil.respawn_grace_ticks|sec} after respawning."
+            },
+            "When a coil kills someone, the death message names its owner."
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Hoanna"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "header": [
+            "New",
+            "What it is"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "[[hoanna/radiation]]",
+                "An icon left of the hotbar shows your dose and how fast it rises where you stand, and at high doses the screen edges turn dark purple. It isn't a potion effect, so milk, totems and cleansing can't remove it. The original only had a potion effect"
+              ]
+            },
+            [
+              "[[hoanna/way_home]]",
+              "In Hoanna, right-click an empty obsidian frame with a {item:essentialcraft5:wind_tablet} to fill it with a Hoanna portal. The original could only convert portals in the Overworld"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.collapse.enabled"
+              ],
+              "cells": [
+                "[[hoanna/collapse]]",
+                "An Enrichment Chamber that shuts in a full MRUCU condenses it into a Void Core or an MRU Reactor, depending on the chamber's balance. In the original, both came only from ruin chests"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.wind_wish.enabled"
+              ],
+              "cells": [
+                "[[wind/wishes]]",
+                "Once you are Windbound, the wind voices one wish after another, such as climbing high, chasing the wind or traveling far, and fulfilling one raises your relation. The Wind Tablet only opens the gate after {cfg:general.wind_wish.required} of them, and once you have that many, the wind asks for no more until its true name is revealed"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[wind/wind_horn]]",
+                "A goat horn imbued with wind. Blown at night, it calls an Archmage and escorts that fight only you, and an Archmage you defeat yourself always drops a Trapped Wind. In the original, getting a Trapped Wind was down to luck"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.ember_inlay.enabled"
+              ],
+              "cells": [
+                "[[void_machines/ember_inlay]]",
+                "Sets a pair of embers' on-hit effect into any weapon, other mods' weapons included. Each hit that lands costs {cfg:general.ember_inlay.mru_per_hit} MRU and adds no damage"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.divider_gun.affect_bosses",
+                "cfg:general.divider_gun.boss_mode_ticks>0"
+              ],
+              "cells": [
+                "[[hologram/divider_gun]]",
+                "No longer useless against bosses. Instead of halving them, it Bisects them for {cfg:general.divider_gun.boss_mode_ticks|sec}, halving the damage they deal and the healing they receive. Bosses immune to status effects, the vanilla Wither among them, don't get it"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.orbital_remote.lock_range>0"
+              ],
+              "cells": [
+                "[[hologram/orbital_remote]]",
+                "Right-click with a creature in your crosshair to lock on: the strike follows it and stops half a second before landing"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[hologram/decoy]]",
+                "A projector you can make after beating the Holographic Projection. It casts a holographic double of you, and nearby hostile mobs that are after you or a teammate turn on it until it fades a few seconds later"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[inquisitorium/legend]]",
+                "Chapter 19, the Inquisitorium, which the original only mentioned as a rumor. Decode the Projection's Glitchy Core in a Radiating Chamber by matching its balance, follow the coordinates to a shadow-corrupted land, and light a beacon to summon the Inquisitorium Sentinel. Its attacks echo and its hits add matrix damage, and it drops Inquisitorium Chips"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[terminal/legend|Terminal and modules]]",
+                "Modules such as Rewind, Phase Anchor and Attraction for the four pieces of the Computer Guy's Suit. Install them at a crafting table, then switch them on and off or take them out in the Computer Terminal"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.matrix_tuner.enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:matrix_tuner}",
+                "Stand on it and pay ESPE and MRU to wear away matrix damage. It never cures effects"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:attraction_module"
+              ],
+              "cells": [
+                "{item:essentialcraft5:attraction_module}",
+                "Goes on the leggings. Pushes nearby drops and orbs to your feet, leaving thrown items alone"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:stride_module"
+              ],
+              "cells": [
+                "{item:essentialcraft5:stride_module}",
+                "Goes on the boots. Lets you step straight up taller ledges"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:steady_hand_module"
+              ],
+              "cells": [
+                "{item:essentialcraft5:steady_hand_module}",
+                "Goes on the leggings or boots. No mining slowdown in midair or with your head underwater"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:veil_module"
+              ],
+              "cells": [
+                "{item:essentialcraft5:veil_module}",
+                "Goes on the helmet. Mobs have to come closer before they notice you"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.attunement.enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:verdict_blade}",
+                "Reforged from an Ember Elemental Sword at its highest attunement stage. Every hit adds damage based on the target's max health, and it can strike a ring of enemies at once"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.demon.standing.enabled"
+              ],
+              "cells": [
+                "[[demons/standing|Demonic Renown]]",
+                "The more trades you complete with demons, the better their terms: two prices to choose from, extra experience per trade, and a Captured Soul to make one reroll its prices"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[hoanna_explore/overview|Hoanna Exploration]]",
+                "A new side chapter on the specialty each kind of land grows, the mana tide and its ley storms, survey maps, abyssal salt, and the camps out in the wilds with nests to clear. In the original, Hoanna had only ruins and chests"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna natives",
+                "Every kind of land, and the catacombs, has monsters of its own, eight in all, and they drop aberrant residue ([[bestiary/overview|Bestiary]]). The original Hoanna only had the monsters of an Overworld plain"
+              ]
+            },
+            [
+              "[[hoanna_explore/sealed_vault]]",
+              "Vaults under the desert and the Dreadlands that open only when four drops are set down in the order on the stele, with an {item:essentialcraft5:elder_remnant} for everyone who opens one"
+            ],
+            [
+              "[[hoanna_explore/sunken_district]]",
+              "Air domes on the floor of the Hoanna Sea, whose altar calls up the [[bestiary/abyss_tyrant|Abyssal Tidelord]]"
+            ],
+            [
+              "[[hoanna_explore/inquisitorium_outpost]]",
+              "Ruined Inquisitorium grounds in the Shadow Corrupted Land, flat and open, a good place to light the beacon"
+            ],
+            [
+              "[[bestiary/town_sentry]]",
+              "A guard at the center of each town ruin, one per town"
+            ],
+            [
+              "[[shade/shade_core|Shade Cores]]",
+              "A third thing an Enrichment Chamber can collapse into, built near the Shadow Corrupted Land with Umbral Crystals inside"
+            ],
+            [
+              "[[shade/oath|Demon's Oath]]",
+              "Sworn to a demon for Umbral Crystals once your Demonic Renown reaches {cfg:general.demon.standing.oath}"
+            ],
+            [
+              "[[apex/intro|Heart of Calamity]]",
+              "The final boss, summoned with a Calamity Beacon; beat it for the Calamity Remnant that takes you to matrix rank 9"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "text": "This guide is new as well. Hold Ctrl over an item's tooltip to open the page about it ([[from_ec4/how]])."
+        }
+      ]
+    },
+    {
+      "id": "changed",
+      "title": "Changed Rules",
+      "icon": "essentialcraft5:mru_coil",
+      "summary": "Same things, different rules",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "All of these were in the original, some under other names ([[from_ec4/where]]), but the rules have changed. This is where old habits are most likely to trip you up."
+        },
+        {
+          "type": "h",
+          "text": "Power and machines"
+        },
+        {
+          "type": "table",
+          "header": [
+            "What",
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            [
+              "UBMRU from kills",
+              "Based on the target's current max health, so mobs buffed by other mods gave more",
+              "Based on the target's base max health"
+            ],
+            [
+              "{item:essentialcraft5:natural_furnace}",
+              "Burned flowers and saplings around it by itself and turned the grass below into dirt",
+              "Burns only the flowers, saplings and grass you put in its slot"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ultra_natural_furnace}",
+                "Burned plants, leaves and logs a dozen blocks around and replanted saplings for you",
+                "Burns only what you put in its slots"
+              ]
+            },
+            {
+              "if": "!cfg:machines.solar_prism.burn_players",
+              "cells": [
+                "{item:essentialcraft5:solar_prism}",
+                "Its beam set nearby blocks on fire and burned people, livestock and mobs alike",
+                "The beam sets nothing alight and only burns hostile mobs; players, animals and villagers are safe"
+              ]
+            },
+            {
+              "if": "cfg:machines.solar_prism.burn_players",
+              "cells": [
+                "{item:essentialcraft5:solar_prism}",
+                "Its beam set nearby blocks on fire and burned people, livestock and mobs alike",
+                "The beam sets nothing alight; it burns hostile mobs and players, but not animals or villagers"
+              ]
+            },
+            [
+              "{item:essentialcraft5:ender_generator}",
+              "Pulled in every Enderman in range, named ones too",
+              "Leaves name-tagged or leashed Endermen alone"
+            ],
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "cells": [
+                "{item:essentialcraft5:mru_coil} vs. mobs",
+                "Zapped cows and sheep too",
+                "Only hostile mobs where you may build, {cfg:machines.mru_coil.monster_damage} per hit, and kills drop nothing"
+              ]
+            },
+            [
+              "{item:essentialcraft5:mru_coil} range",
+              "Grew with every base layer, no cap",
+              "Up to {cfg:machines.mru_coil.max_radius} blocks"
+            ],
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "cfg:machines.mru_coil.trespassers_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:mru_coil} vs. players",
+                "Zapped everyone not on its list, its owner included",
+                "Only intruders on your ground, never its owner; {cfg:machines.mru_coil.player_damage} + {cfg:machines.mru_coil.player_health_percent|pct} of max health per hit"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "!cfg:machines.mru_coil.trespassers_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:mru_coil} vs. players",
+                "Zapped everyone not on its list, its owner included",
+                "Owner never hit; others take {cfg:machines.mru_coil.player_damage} + {cfg:machines.mru_coil.player_health_percent|pct} of their max health"
+              ]
+            },
+            {
+              "if": "!cfg:machines.mru_coil.hurt_players",
+              "cells": [
+                "{item:essentialcraft5:mru_coil} vs. players",
+                "Zapped everyone not on its list, its owner included",
+                "Never hits players"
+              ]
+            },
+            {
+              "if": "cfg:machines.reactor.damage_mobs",
+              "cells": [
+                "{item:essentialcraft5:reactor}",
+                "Zapped everything within 3 blocks, players and livestock too, with normal drops",
+                "Hostile mobs only, and kills drop nothing"
+              ]
+            },
+            {
+              "if": "!cfg:machines.reactor.damage_mobs",
+              "cells": [
+                "{item:essentialcraft5:reactor}",
+                "Zapped everything within 3 blocks, players and livestock too, with normal drops",
+                "Zaps nothing"
+              ]
+            },
+            {
+              "if": "cfg:machines.cold_distillator.damage_entities_around",
+              "cells": [
+                "{item:essentialcraft5:cold_distillator} chill",
+                "Gave a random creature within 3 blocks, anyone at all, three level III debuffs",
+                "Of players, only its owner; pets and villagers are spared"
+              ]
+            },
+            [
+              "{item:essentialcraft5:pale_gem}",
+              "Counted as diamond or emerald in any mod's recipe and could be turned back into real diamonds",
+              "Stands in only in this mod's recipes; no way back to real diamonds"
+            ],
+            [
+              "{item:essentialcraft5:magical_digger}",
+              "Charged MRU for blocks it failed to break; sneaking mined for free",
+              "Charges only for blocks it breaks; sneaking costs MRU too"
+            ],
+            [
+              "{item:essentialcraft5:magical_hopper}",
+              "Pulled everything through walls and pushed items into solid blocks, where they got stuck",
+              "Only collects where its owner may build and never pushes into solid blocks; {cfg:machines.magical_hopper.max_items_per_cycle} stacks per round at most"
+            ],
+            [
+              "[[farming/item_shuffler|Farm machines]]",
+              "Fired on every block update while powered; touched other players' pets and villagers",
+              "Fire once when the signal turns on; leave named, leashed and others' pets and villagers alone"
+            ],
+            [
+              "{item:essentialcraft5:breeder}",
+              "Kept feeding no matter how many animals there were",
+              "Stops once {cfg:machines.breeder.max_same_type} of a kind are nearby"
+            ],
+            [
+              "{item:essentialcraft5:potion_spreader}",
+              "Used only the first effect; harmful ones hit players too",
+              "Uses every effect, gives harmful ones only to hostile mobs, and won't take instant damage potions"
+            ],
+            [
+              "[[enrichment/controller|Enrichment chamber]]",
+              "Any shell size; the redstone controller needed an MRUCU inside",
+              "{cfg:machines.enrichment_chamber.min_size} to {cfg:machines.enrichment_chamber.max_size} per side; no MRUCU needed"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:magical_teleporter}",
+                "Anyone could ride on the owner's MRU; landing spots were never checked",
+                "Only players who may build at its spot can charge it. The landing must be safe and somewhere you may use, and riders aren't carried"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:magical_furnace}",
+                "Anything could double, so wet sponges and powders looped forever; output never stopped",
+                "No doubling for powders and wet sponges; pauses once 8 item stacks pile up"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[void_machines/magical_builder|Building wands]]",
+                "Did the whole area in one tick; ate blocks that held items",
+                "Up to {cfg:general.builder.max_volume} blocks over a few seconds, with drops going to your inventory; skips renamed or filled blocks"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[logistics/advanced_filters]]",
+                "The third switch, “ignore ore dictionary”, started off, so filters matched by ore dictionary",
+                "The third switch is now “match tags” and starts off, so filters match by item"
+              ]
+            },
+            {
+              "if": "cfg:machines.charging_chamber.charge_worn_armor",
+              "cells": [
+                "[[storage/charging_chamber]]",
+                "Charged only its item slot",
+                "Also charges its owner's armor from on top"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Gear and combat"
+        },
+        {
+          "type": "table",
+          "header": [
+            "What",
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[gear/void_armor]]",
+                "Any charge blocked all damage, even when it couldn't pay, so you were never hurt. Its armor was really 0",
+                "With charge it blocks melee and projectiles, each piece its share, with real armor and +{cfg:general.void_armor.max_health} health per piece"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[computer/suit]]",
+                "One charged piece blocked everything, even at 1 MRU; armor was 0",
+                "Blocks physical and elemental damage, each piece its share and only if it can pay, with real armor"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.computer_armor.helmet_saturation"
+              ],
+              "cells": [
+                "{item:essentialcraft5:computer_helmet} and leggings",
+                "Helmet topped up saturation every tick; leggings gave 2.5× speed",
+                "Helmet keeps only hunger full; leggings +{cfg:general.computer_armor.leggings_speed|div:0.1|pct} speed"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_armor.helmet_saturation"
+              ],
+              "cells": [
+                "{item:essentialcraft5:computer_helmet} and leggings",
+                "Helmet topped up saturation every tick; leggings gave 2.5× speed",
+                "Helmet still tops up saturation; leggings +{cfg:general.computer_armor.leggings_speed|div:0.1|pct} speed"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_armor.thorns_ratio>0"
+              ],
+              "cells": [
+                "Computer Guy's Suit thorns",
+                "Ignored charge and whether the attack was blocked",
+                "Only strikes back when the attack is actually allowed"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "bauble:essentialcraft5:computer_board"
+              ],
+              "cells": [
+                "{item:essentialcraft5:computer_board}",
+                "Flew at 4× creative speed",
+                "{cfg:general.computer_board.fly_speed|div:0.05|x} creative speed"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[computer/costs|Computer Guy parts]]",
+                "Suit and board took about 2,100 demonic plates and 360 wind crystals",
+                "Parts come 2 to 4 per craft, so about 330 plates and 55 crystals"
+              ]
+            },
+            [
+              "[[gear/mhs_armor]]",
+              "Leggings 8, chestplate 6",
+              "Chestplate 8, leggings 6; toughness, extra health and a charged shield"
+            ],
+            [
+              "[[wind_gear/wind_armor]]",
+              "Armor value 0",
+              "Helmet 4, chest 10, legs 7, boots 4; toughness, double jump"
+            ],
+            [
+              "{item:essentialcraft5:magic_monocle}",
+              "Hand-held only",
+              "Can also be worn in the helmet slot; no durability"
+            ],
+            [
+              "[[guns/firing|Magical guns]]",
+              "Damage had no owner: it hit players even where they could not hurt each other, and kills were not yours",
+              "Damage counts as yours, with normal drops and XP, and skips your pets and teammates"
+            ],
+            [
+              "Gun rays",
+              "Hit everything on the line, no cap; glass and leaves did not stop it",
+              "At most {cfg:general.guns.max_targets_per_shot} per shot; stopped by solid blocks"
+            ],
+            {
+              "if": "cfg:general.guns.matrix_damage_per_damage>0",
+              "cells": [
+                "Matrix damage from guns",
+                "Added on any hit, even blocked ones or on creative players",
+                "Added when the attack is allowed; not in creative or spectator"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[hologram/summoning|Holographic projection]]",
+                "Dragged in everyone within 24 blocks and passers-by, even across dimensions",
+                "Only the summoner and those who hurt it fight; get {cfg:general.hologram.escape_range} blocks away or change dimension to escape"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.hologram.max_damage_per_hit>0"
+              ],
+              "cells": [
+                "Hitting the projection",
+                "Any amount per hit counted",
+                "At most {cfg:general.hologram.max_damage_per_hit} per hit"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.hologram.orbital_max_damage<512"
+              ],
+              "cells": [
+                "Projection's orbital strikes",
+                "Doubled each time, up to 512",
+                "Stops doubling at {cfg:general.hologram.orbital_max_damage}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "When the projection falls",
+                "Replaced its spot with a chest",
+                "If a player lands the kill, relics, a math core and a Glitchy Core drop on the spot"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:glitchy_core}",
+                "Only a research book icon; unobtainable",
+                "Always dropped by the Projection; decodes into coordinates"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Inquisitorium armor",
+                "Textures and lines, but no recipe or loot",
+                "One Inquisitorium Chip per piece; never wears down"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.orbital_remote.cooldown_ticks>0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:orbital_remote}",
+                "No cooldown; blocks at the target were smelted on the spot",
+                "{cfg:general.orbital_remote.cooldown_ticks|sec} cooldown; hurts mobs only, terrain untouched"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.orbital_remote.cooldown_ticks==0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:orbital_remote}",
+                "No cooldown; blocks at the target were smelted on the spot",
+                "Hurts mobs only, terrain untouched"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.divider_gun.affect_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:divider_gun}",
+                "Halved every living thing in range, the shooter included",
+                "Halves hostile mobs only, not bosses"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.divider_gun.affect_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:divider_gun}",
+                "Halved every living thing in range, the shooter included",
+                "Halves hostile mobs only"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[demons/demon|Demon clearing]]",
+                "Attacked withers and named mobs; its blasts hurt nearby players and pets",
+                "Clears only where its summoner may build and never touches bosses, named or owned mobs. Blasts hurt only its targets"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[demons/trade|Demon trading]]",
+                "Shared slots, whole stacks eaten, payment dropped on the ground",
+                "Only the summoner can trade, it takes just what it asks for, and payment goes to your inventory"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:forged_elemental_sword}",
+                "Lightning struck everything around, you included; the right-click flame lit every mob nearby",
+                "Lightning strikes only the target; the right-click flame lights only hostile mobs"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:soul_scriber}",
+                "Machines could capture souls too; capturing simply deleted the mob",
+                "Players only; capturing is a normal kill that claims can stop"
+              ]
+            },
+            [
+              "{item:essentialcraft5:magnetizing_staff}",
+              "Pulled through walls and water channels, no limit",
+              "Only what it can see where you may build; up to {cfg:general.staffs.magnetizing_max_items} items and {cfg:general.staffs.magnetizing_max_orbs} XP orbs"
+            ],
+            [
+              "{item:essentialcraft5:staff_of_life}",
+              "Grew everything in range, grass and saplings too; curing zombie villagers lost their trades",
+              "Grows crops only; right-click cures zombie villagers and keeps their trades"
+            ],
+            {
+              "if": "bauble:essentialcraft5:magical_wings",
+              "cells": [
+                "{item:essentialcraft5:magical_wings}",
+                "Flying up while worn cost nothing",
+                "Flying up while worn costs 1 MRU a tick too"
+              ]
+            },
+            [
+              "{item:essentialcraft5:spiky_shield}",
+              "Could be raised without MRU",
+              "Needs enough MRU to raise"
+            ],
+            [
+              "{item:essentialcraft5:chaos_fork}, {item:essentialcraft5:frozen_mace}",
+              "Stacked effects had no cap",
+              "Up to level {cfg:general.staffs.weapon_max_effect_level}"
+            ],
+            [
+              "{item:essentialcraft5:weak_elemental_sword} and the other Weakened Elemental tools",
+              "Attack bonus 2.5, so the sword hit for 6.5",
+              "Attack bonus 3, so the sword hits for 7, the same as a diamond sword"
+            ],
+            [
+              "{item:essentialcraft5:chaos_fork}",
+              "Attack 7, attack speed 1.6",
+              "Attack 12, attack speed 2.0"
+            ],
+            {
+              "if": "cfg:general.staffs.holy_mace_undead_bonus>0",
+              "cells": [
+                "{item:essentialcraft5:holy_mace}",
+                "Hit everything the same",
+                "Deals {cfg:general.staffs.holy_mace_undead_bonus|pct} more damage to undead"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Wind, baubles and corruption"
+        },
+        {
+          "type": "table",
+          "header": [
+            "What",
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            [
+              "[[wind/air_potion|Lightness from wind potions]]",
+              "Each drink pushed the level higher, no cap",
+              "Up to level {cfg:general.wind.lightness_max_level} and {cfg:general.wind.lightness_max_minutes} minutes"
+            ],
+            [
+              "[[wind/windbound|Wind imbuing]]",
+              "Imbuing again when already windbound wasted 40,000 ESPE and swapped your soul stone",
+              "Refused outright if you are already windbound; the first imbue takes only {cfg:general.wind.windbound_espe|int} ESPE"
+            ],
+            [
+              "[[mithriline/crystal_pillar|Crystal pillars]]",
+              "All five gathered ESPE equally fast",
+              "Higher tiers are faster: ×{cfg:machines.mithriline_crystal_pillar.tier_multipliers|list}"
+            ],
+            [
+              "[[baubles/finding|Two of the same bauble]]",
+              "Two identical rings stacked their effects",
+              "Only one of each kind works; a second will not go on"
+            ],
+            {
+              "if": "bauble:essentialcraft5:nu_amulet",
+              "cells": [
+                "{item:essentialcraft5:nu_amulet}",
+                "Chained wave after wave in mob farms",
+                "One wave only, at most {cfg:general.bauble_limits.nu_max_targets} mobs"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "!cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:psi_ring}",
+                "Turned mobs against villagers and pets; worked on bosses too",
+                "Turns mobs only against other hostile mobs; bosses ignore it"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:psi_ring}",
+                "Turned mobs against villagers and pets; worked on bosses too",
+                "Turns mobs only against other hostile mobs"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:portable_matrix_destructor",
+              "cells": [
+                "{item:essentialcraft5:portable_matrix_destructor}",
+                "Its stored MRU could not be spent",
+                "Works as MRU storage, converting UBMRU at the Matrix Destructor's rate"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_experience",
+              "cells": [
+                "{item:essentialcraft5:ring_of_experience}",
+                "Every 4 UBMRU taken became 1 experience, about 10 free for a zombie",
+                "Every {cfg:general.bauble_limits.experience_ring_ubmru_per_xp} UBMRU becomes 1 experience"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:pi_belt}",
+                "Any block's experience × 3, and blocks that give none had a 5% chance of 1",
+                "Ores only; experience × {cfg:general.bauble_limits.pi_xp_multiplier}"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "!cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:pi_belt}",
+                "Any block's experience × 3, and blocks that give none had a 5% chance of 1",
+                "Experience × {cfg:general.bauble_limits.pi_xp_multiplier}"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:rho_ring",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:rho_ring}",
+                "Turned the experience from any block into UBMRU",
+                "Ores only"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:chi_ring",
+                "cfg:general.bauble_limits.chi_xp_bonus<1"
+              ],
+              "cells": [
+                "{item:essentialcraft5:chi_ring}",
+                "Doubled the experience from orbs",
+                "{cfg:general.bauble_limits.chi_xp_bonus|pct} extra"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:theta_belt",
+                "cfg:general.bauble_limits.theta_cooldown_ticks>0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:theta_belt}",
+                "Stopped every killing blow while UBMRU lasted: no cooldown, no death",
+                "Rests for {cfg:general.bauble_limits.theta_cooldown_ticks|sec} after each save"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:tau_ring",
+                "!cfg:general.bauble_limits.tau_affects_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:tau_ring}",
+                "Boss loot got extras too, even more nether stars from the Wither",
+                "Boss loot gets no extras"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.body_0}”",
+                "Gave Slowness",
+                "Slows mining and swinging, as a matrix after-effect milk cannot remove"
+              ]
+            },
+            [
+              "Mind Paradox and MRU Corruption",
+              "Status effects, gone with a bucket of milk",
+              "Now matrix after-effects you have to wait out; they also fade on death"
+            ],
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.mind_8}”",
+                "Shuffled your armor slots too",
+                "Shuffles only the hotbar"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "!cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.mind_8}”",
+                "Shuffled your armor slots too",
+                "Shuffles only the main inventory"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.mind_9}”",
+                "Dropped everything you carried",
+                "Puts the stack in your hand away into your inventory"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "!cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.mind_9}”",
+                "Dropped everything you carried",
+                "Drops only the stack in your main hand"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.mind_10}”",
+                "Used the item in your hand for you",
+                "Your hand just twitches: it interrupts eating or drawing a bow, but uses nothing up"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.matrix_13}”",
+                "A real explosion that broke blocks",
+                "Breaks no blocks; takes at most half your current health and spares pets and villagers"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.matrix_13}”",
+                "A real explosion that broke blocks",
+                "Still hurts you, but breaks no blocks"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.matrix_15}”",
+                "Real lightning that set fires",
+                "Only looks like lightning and hurts only you"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.matrix_17}”",
+                "Its condition was wrong, so it never fired",
+                "Fixed; it can now fire"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "!cfg:general.corruption.matrix_effects_enabled||!cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "Matrix corruption effects",
+                "Could be drawn",
+                "Never drawn in this world"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.draw_requires_cure_tier"
+              ],
+              "cells": [
+                "When effects appear",
+                "Any kind once there was enough damage; the cheapest were matrix effects you could only cure late",
+                "Only after you've opened a pentacle, at {cfg:general.corruption.draw_threshold_multiplier} times the cost; dormant until then"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.draw_cooldown_minutes>1"
+              ],
+              "cells": [
+                "Time between effects",
+                "With enough damage, another could land every minute",
+                "At least {cfg:general.corruption.draw_cooldown_minutes} more minutes of play before the next one"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.max_matrix_damage<2147483647",
+              "cells": [
+                "Matrix damage",
+                "No cap; the longer you idled, the more piled up",
+                "Stops at {cfg:general.corruption.max_matrix_damage}"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.respect_claims",
+              "cells": [
+                "MRUCUs",
+                "Hurt anyone nearby, and a neighbor's leaking machines fed the one by your home",
+                "Only hurt players who may build where they float; a neighbor's leaks never feed the one in your claim"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.respect_claims",
+              "cells": [
+                "Who gets the “{lang:effect.essentialcraft5.mru_corruption}” status",
+                "Everyone within 6 blocks of a leaking machine",
+                "Only the machine's owner (for the diamond ritual, whoever threw the diamond)"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.mru_corruption_lethal",
+              "cells": [
+                "The “{lang:effect.essentialcraft5.mru_corruption}” effect",
+                "Could kill you",
+                "Like poison, it never takes your last point of health"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.mru_corruption_health_percent",
+              "cells": [
+                "How hard the “{lang:effect.essentialcraft5.mru_corruption}” effect hits",
+                "5 per hit, which barely matters once you have lots of health",
+                "{cfg:general.corruption.mru_corruption_health_percent|pct} of your max health per hit, so it still hurts with lots of health"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "cells": [
+                "Corruption effect “{lang:corruption_effect.essentialcraft5.body_2}”",
+                "3 per hit",
+                "{cfg:general.corruption.hand_burn_health_percent|pct} of your max health per hit"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "How hard [[corruption/matrix|matrix corruption effects]] hit",
+                "Fixed amounts (1 for suffocation or wither, 43 for the explosion), barely felt with lots of health",
+                "A share of your max health: suffocation {cfg:general.corruption.suffocation_health_percent|pct}, wither {cfg:general.corruption.withering_health_percent|pct}, explosion {cfg:general.corruption.self_blast_health_percent|pct}"
+              ]
+            },
+            [
+              "Ancient ruins in the Overworld",
+              "About one every 27 chunks",
+              "Far fewer, about one every 190 to 260 chunks; chests unchanged"
+            ]
+          ],
+          "widths": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Hoanna"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "header": [
+            "What",
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            [
+              "[[hoanna/crossing|Hoanna portal]]",
+              "Items and mobs went through too, handy for moving things",
+              "Stand in it for {cfg:general.hoanna.portal_wait_ticks|sec}, then a {cfg:general.hoanna.portal_cooldown_ticks|sec} cooldown; players only, and not while riding"
+            ],
+            [
+              "[[hoanna/way_home|Going home]]",
+              "Carved out space and built an obsidian portal in the Overworld",
+              "Only finds a portal, never builds one, and sends you to your bed or world spawn if none is found"
+            ],
+            {
+              "if": "cfg:general.hoanna_events.sun_array_enabled",
+              "cells": [
+                "Sun array",
+                "Rained down blocks that turned into fire all around you",
+                "No falling fire; standing in the open still sets you burning"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "Darkness",
+                "Near-total darkness at once; torches and night vision useless",
+                "Fades in slowly; torches light things up and night vision works"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.earthquake_enabled",
+              "cells": [
+                "Earthquake",
+                "Wrenched your view and sometimes flung you to your death",
+                "A gentle shake and small pushes; no fall damage"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.fumes_enabled",
+              "cells": [
+                "Toxic fumes",
+                "Spawned all over the Overworld, couldn't be killed and blocked your crosshair",
+                "Only in Hoanna during fume events; they can be killed and don't block your aim"
+              ]
+            },
+            [
+              "[[hoanna/lands|Hoanna biomes]]",
+              "Pulled in other mods' forests; spawned herds of cows and sheep",
+              "Only this mod's seven lands; no livestock spawns"
+            ],
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "Radiation dose",
+                "No cap; very high doses overflowed into negatives",
+                "Capped at 1,000,000"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.radiation.enabled",
+                "cfg:general.radiation.cap_loss_percent_per_level"
+              ],
+              "cells": [
+                "How radiation holds your health down",
+                "1 point per level (Radiation II: 2), barely felt with lots of health",
+                "{cfg:general.radiation.cap_loss_percent_per_level|pct} of your max health per level, at most {cfg:general.radiation.max_cap_loss_percent|pct}"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:lambda_ring",
+              "cells": [
+                "{item:essentialcraft5:lambda_ring}",
+                "Tooltip said 3× faster decay; it was really about 13×",
+                "Tooltip tells the truth"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "cfg:general.radiation.enabled",
+                "cfg:general.bauble_limits.xi_dose_ceiling>0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:xi_belt} radiation",
+                "Hitting a player gave 5,000 per point of damage, being hit gave you 1,000 per point, both uncapped",
+                "At most {cfg:general.bauble_limits.xi_dose_per_hit} per hit, and neither hitting nor being hit pushes anyone past {cfg:general.bauble_limits.xi_dose_ceiling}"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "cfg:general.radiation.enabled",
+                "cfg:general.bauble_limits.xi_dose_ceiling==0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:xi_belt} radiation",
+                "Hitting a player gave 5,000 per point of damage, being hit gave you 1,000 per point, both uncapped",
+                "Neither hitting nor being hit adds radiation"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:xi_belt",
+              "cells": [
+                "{item:essentialcraft5:xi_belt} vs. mobs",
+                "Every hit lowered max health for good, down to 0, even on other players' pets and mounts",
+                "Only by the health really taken and never below 1, never on pets or mounts, and restored once the mob unloads and comes back"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:epsilon_belt",
+              "cells": [
+                "{item:essentialcraft5:epsilon_belt}",
+                "Anything you killed, chickens and players included, had a 5% chance to spawn an ember",
+                "Hostile mobs only, {cfg:general.bauble_limits.epsilon_ember_chance|pct} chance, and the ember is part of the loot"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:mystical_accessory",
+              "cells": [
+                "{item:essentialcraft5:mystical_accessory}",
+                "Was blank if worn straight away; needed a right-click first",
+                "Its stats are set when the chest is opened"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[void_machines/ember_sword|Ember Elemental Sword]]",
+                "Divine + Magical and Divine + Burning did nothing",
+                "Dispel and Corrosion"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.wind_wish.enabled",
+                "cfg:general.wind_wish.required>0"
+              ],
+              "cells": [
+                "[[hoanna/wind_name|Wind Tablet's gate]]",
+                "Enough wind relation was all it took",
+                "Also needs {cfg:general.wind_wish.required} wind wishes fulfilled"
+              ]
+            },
+            [
+              "{item:essentialcraft5:shade_crystal_pillar}",
+              "Creative inventory only; not obtainable in Survival",
+              "Made in Chapter 22 from Shade Cores and Umbral Crystals ([[shade/shade_pillar]])"
+            ],
+            [
+              "[[pentacle/pentacle|Soul Pentacle]]",
+              "Tier 3 at most",
+              "A tier 4 on top: 4 shade pillars outside the tier 3 layout ([[shade/tier4]])"
+            ]
+          ],
+          "widths": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Why",
+          "text": "Most of these changes come from three rules: leave other players' claims, pets and machines alone, don't slow the game down, and keep the Overworld from getting crowded. The original rarely thought about these, and that caused trouble once many people played together."
+        }
+      ]
+    },
+    {
+      "id": "removed",
+      "title": "Removed",
+      "icon": "essentialcraft5:world_interactor",
+      "summary": "Quarry, activators, MIM…",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "These are things the original had and this version doesn't. Most of them ignored land claims, slowed the game down or made mob farms too easy. Whatever could be kept in another form was kept."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Removed",
+            "Why",
+            "Use instead"
+          ],
+          "rows": [
+            {
+              "if": "cfg:machines.ley_projector.enabled",
+              "cells": [
+                "Magical Quarry and its 7 upgrades",
+                "Dug through anyone's land, chests and all",
+                "{item:essentialcraft5:ley_projector}"
+              ]
+            },
+            {
+              "if": "!cfg:machines.ley_projector.enabled",
+              "cells": [
+                "Magical Quarry and its 7 upgrades",
+                "Dug through anyone's land, chests and all",
+                "—"
+              ]
+            },
+            [
+              "Magical Activators (6 kinds, including sneaky, extended and advanced)",
+              "Right-clicked for you and changed blocks in the world",
+              "Nothing"
+            ],
+            [
+              "Magical Breaker, Advanced Magical Breaker",
+              "Mined blocks for you",
+              "The hand-held {item:essentialcraft5:magical_digger}"
+            ],
+            [
+              "Magical Replanter",
+              "Planted for you",
+              "Farm the vanilla way"
+            ],
+            [
+              "Magical Inventory Manager (core and 7 modules), Inventory Gem",
+              "The whole network lagged, let anyone pull from any storage, and duplicated or ate items",
+              "Magical chests, hoppers and item filters"
+            ],
+            [
+              "Weather Controller and its 3 catalysts",
+              "One player changed everyone's weather; never craftable in survival anyway",
+              "—"
+            ],
+            [
+              "MRU Chunk Loader",
+              "Kept chunks loaded forever; never craftable in survival anyway",
+              "—"
+            ],
+            [
+              "Biome Wand",
+              "Changed biomes regardless of claims, even moving Nether biomes into the Overworld",
+              "—"
+            ],
+            [
+              "SHADE Corrupted Sword, Cleaver and Daggers",
+              "Never obtainable in survival: no recipe, no loot",
+              "—"
+            ],
+            [
+              "Chaos, Frozen and Magic Corruption and The SHADE (4 corruption blocks), Corruption Cleaner",
+              "The original never switched corruption spreading on, so these never appeared in survival",
+              "—"
+            ],
+            [
+              "Monster Holding Device, Monster Duplicator, Darkness Obelisk, Spawner Collector and the spawners it collected",
+              "Made mob farms far too easy",
+              "—"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "8 of the demons' requests",
+                "Bedrock, dragon eggs, command blocks and the like could never be handed over, or were removed",
+                "45 trades remain"
+              ]
+            },
+            [
+              "3 music discs, the 410 Bus Ticket, 6 secret items",
+              "The discs are other people's copyrighted music; the secret items did nothing",
+              "—"
+            ],
+            [
+              "Integrations: Waila, CraftTweaker, Blood Magic, Thaumcraft, Tinkers' Construct",
+              "None of these",
+              "Every recipe is in this guide, and in JEI when installed, with each enchanting level's price"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Clouds over Hoanna",
+                "Three layers that drifted at frame-rate speed",
+                "No clouds"
+              ]
+            },
+            [
+              "Research book knowledge levels",
+              "You had to craft upgrades to read later sections",
+              "This guide is fully open from the start ([[from_ec4/how]])"
+            ],
+            [
+              "8 spawn eggs for non-creatures",
+              "Beams, rays and other effects make no sense as spawn eggs",
+              "—"
+            ]
+          ],
+          "widths": [
+            4,
+            4,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "None of this holds up the main line. Recipes that used to need these things use other parts now."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "For example, the two activators in the building wand recipe became two {item:essentialcraft5:world_interactor}."
+        }
+      ]
+    },
+    {
+      "id": "fixed",
+      "title": "Fixed Bugs",
+      "icon": "essentialcraft5:magical_repairer",
+      "summary": "Original bugs; mind them if you relied on them",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Some things in the original did not work as described, and players turned a few of them into tricks. This version makes them work the way they were meant to."
+        },
+        {
+          "type": "h",
+          "text": "Loopholes that are gone"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:moon_well} ran at full output above its height limit",
+              "Stops producing at y={cfg:machines.moon_well.max_height}, and the lower it sits, the more it makes"
+            ],
+            [
+              "One sun beam fed a whole row of {item:essentialcraft5:sun_ray_absorber}",
+              "One beam feeds one absorber"
+            ],
+            [
+              "One diamond could be rolled into eight through {item:essentialcraft5:pale_gem}",
+              "Pale gems no longer turn back into diamonds"
+            ],
+            [
+              "MRU from the {item:essentialcraft5:ec_ejector} always had a balance of 1.0, so it could be used to wash balance",
+              "It carries the chamber's real balance"
+            ],
+            [
+              "Item filters could duplicate items; blacklists only checked the first slot",
+              "Sample slots are ghosts that hold nothing; all nine are checked"
+            ],
+            [
+              "Breaking a mithriline pillar's top deleted the block above and doubled the pillar",
+              "Removes just that pillar and drops one"
+            ],
+            [
+              "Two identical rings stacked",
+              "Only one of each kind works"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Void armor blocked without paying and the Computer Guy's Suit blocked everything at 1 MRU, which meant permanent invulnerability",
+                "A piece that cannot pay does not block"
+              ]
+            }
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Things that never worked before"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:crafter} never crafted anything in survival; an empty frame crashed the game",
+              "It works now, crafting once per redstone pulse"
+            ],
+            [
+              "{item:essentialcraft5:magical_display} was marked “[NYI]” and had no recipe",
+              "It has a recipe and drops itself"
+            ],
+            [
+              "Books from the {item:essentialcraft5:magical_enchanter} did not work on an anvil",
+              "They are normal enchanted books"
+            ],
+            [
+              "{item:essentialcraft5:mru_mover} only reached a block or two, far less than its description said",
+              "Reaches about 20 blocks ahead"
+            ],
+            [
+              "Scope zoom was wrong, with the void and demonic scopes both really at 10×, and only the shooter heard the shot",
+              "Zoom matches the description; others hear it too"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_pentacle} had a broken recipe in the 1.12 version",
+                "It can be crafted"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_stone} and {block:essentialcraft5:void_glass} used an ingredient that did not exist",
+                "They use {item:essentialcraft5:titanite} directly"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ember_forge} used up the items before reading them, so every sword came out compound and the embers were wasted",
+                "Elements and ember effects finally take effect"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "7 ember pairings on the {item:essentialcraft5:forged_elemental_sword} never matched and never worked",
+                "All fixed"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Dreadlands were meant to have dead bushes, but none could grow",
+                "They grow now"
+              ]
+            },
+            [
+              "With no MRUCU already nearby, MRU leaking from machines did nothing because of a bug, so bases never grew MRUCUs unless they stood next to an ancient ruin",
+              "It works now, and MRUCUs slowly grow by your machines (see [[start/mrucu]])"
+            ]
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Things that used to bite you"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            [
+              "An elemental crystal whose support vanished dropped as a blank crystal",
+              "It keeps its size and elements"
+            ],
+            [
+              "Progress in the former, extractor and smeltery was lost on reload",
+              "Progress is kept"
+            ],
+            [
+              "Switching recipes mid-way in a radiating chamber still gave the old result",
+              "A new recipe starts from zero"
+            ],
+            [
+              "Hoppers pulled half-repaired tools out of the repairer",
+              "Only finished tools come out"
+            ],
+            [
+              "The magmatic smeltery ate items when full, and buckets too",
+              "It waits when full and takes only lava"
+            ],
+            [
+              "Items vanished when a magical mirror's target was full",
+              "It only sends what fits"
+            ],
+            [
+              "The MRUCU spawn egg made an MRUCU holding 0 MRU",
+              "500 MRU"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:wind_tablet} took 500 MRU before checking, so any right-click cost 500",
+                "Charges {cfg:general.wind.tablet_portal_mru} MRU only on success"
+              ]
+            },
+            [
+              "{item:essentialcraft5:magical_chisel} lasted 257 uses; every patterned block dropped ancient bricks",
+              "256 uses; blocks drop themselves"
+            ],
+            [
+              "A coil next to an MRUCU spent everything on it and hit nothing else",
+              "It now leaves MRUCUs alone and no longer fires at them"
+            ],
+            [
+              "Weapon benches took one item from every slot, used or not",
+              "Only used slots are consumed"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ultra_heat_generator} destroyed the bucket when burning lava",
+                "You get the bucket back"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "A demon vanished from any hit, wasting the summon",
+                "It cannot be chased off; the summoner dismisses it with a hit"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "The projection's subtraction attack crashed the game; divider shots passed through mobs",
+                "Both fixed; shots open where they hit"
+              ]
+            }
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A number of lag sources and loopholes you would never notice in play were fixed too."
+        }
+      ]
+    },
+    {
+      "id": "how",
+      "title": "Done Differently",
+      "icon": "essentialcraft5:omega_ring",
+      "summary": "Curios, tags, the guide and keys",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "This page isn't about rules but about how things are done. The mods and 1.12 mechanics the original relied on don't exist in 1.20.1, so other ways have replaced them."
+        },
+        {
+          "type": "h",
+          "text": "Bauble slots: from Baubles to Curios"
+        },
+        {
+          "type": "p",
+          "text": "In the original, baubles went into the Baubles mod's slots; now they go into Curios slots. Open your inventory and click the curios button next to your character, or just press {keybind:key.curios.open.desc}."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Original slot",
+            "Slot now",
+            "What goes there"
+          ],
+          "rows": [
+            [
+              "Amulet",
+              "Necklace",
+              "The ten charms, amulets and pendants, the Wind Mage's Talisman, the Portable Matrix Destructor"
+            ],
+            [
+              "Ring (two slots)",
+              "Ring (at least two)",
+              "All the rings, plus soul storage (Soul Shard up to Matter Of Eternity)"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "bauble:essentialcraft5:computer_board"
+              ],
+              "cells": [
+                "Belt",
+                "Belt",
+                "Belts, the {item:essentialcraft5:magical_wings}, the {item:essentialcraft5:computer_board}"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled||!bauble:essentialcraft5:computer_board",
+              "cells": [
+                "Belt",
+                "Belt",
+                "Belts and the {item:essentialcraft5:magical_wings}"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mystical_accessory",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "Mystical Accessory: one of three",
+                "One of the same three",
+                "Its form is rolled when the chest is opened and decides the slot"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            2,
+            5
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Baubles also had head, body and charm slots. Nothing from the original went there, and this mod doesn't use them either.",
+            "As in the original, there are at least two ring slots; if another mod or the modpack adds more, you get those too.",
+            "<em>Only one of each kind</em>. Two identical rings stacked in the original, but now the second one won't go in ([[baubles/finding]])."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Ore dictionary became tags"
+        },
+        {
+          "type": "p",
+          "text": "In 1.12 the ore dictionary let the same material from different mods count as one, so every mod's copper ingot was a “copper ingot”. In 1.20 tags do much the same job."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            [
+              "“Any ...” slots in recipes",
+              "Still there: point at a recipe picture and those slots cycle through the choices"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "The advanced filter's “ignore ore dictionary”",
+                "Now “match tags”, and each sample picks its own tag ([[logistics/advanced_filters]])"
+              ]
+            },
+            [
+              "The crafting frame's “use / ignore ore dictionary”",
+              "Now “recipe ingredients / exact” ([[automation/crafting_frame]])"
+            ],
+            [
+              "Pale Gems counted as diamonds in any mod's recipes",
+              "They stand in for diamonds and emeralds only in a few of this mod's recipes ([[gear/pale_gem]])"
+            ]
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The research book became this guide"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.give_research_book_on_first_join",
+              "cells": [
+                "You crafted the research book yourself",
+                "You get one the first time you join; craft another if you lose it"
+              ]
+            },
+            {
+              "if": "!cfg:general.give_research_book_on_first_join",
+              "cells": [
+                "You crafted the research book yourself",
+                "Still crafted from its recipe"
+              ]
+            },
+            [
+              "Upgrades had to be crafted one by one to see the later categories",
+              "Everything is readable from the start; nothing is locked"
+            ],
+            [
+              "Hold the book and press R at something to look it up",
+              "Hold Ctrl over a tooltip, or sneak-use the guide at something"
+            ],
+            [
+              "Descriptions only",
+              "The main line is ticked off step by step, and the home page shows your next step"
+            ]
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "p",
+          "text": "See [[elements/book]] for the details."
+        },
+        {
+          "type": "h",
+          "text": "New things from 1.20"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Raw ores</em> work in ore processing too. The {item:essentialcraft5:magmatic_smeltery} makes one alloy per raw ore, and the magmatic furnaces make one per two ([[magmatic/smeltery]]).",
+            "{item:minecraft:blue_ice} and {block:minecraft:powder_snow} count as cold blocks around the {item:essentialcraft5:cold_distillator} ([[generators/cold_distillator]]).",
+            "Mangrove, cherry, cornflowers and lilies of the valley were added to the {item:essentialcraft5:mithriline_furnace} conversions ([[mithriline/conversions]]).",
+            "The world now goes down to −64, and a {item:essentialcraft5:moon_well} at height 0 or below runs at full rate ([[crystal/moon_well]])."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "From metadata to block states"
+        },
+        {
+          "type": "p",
+          "text": "Blocks have had no metadata since 1.13. The {item:essentialcraft5:metadata_manager} now reads a number from the block in front of it, such as crop age or cake bites, and ripe wheat gives 7. When that block changes, it follows by itself, with no manual block update needed ([[automation/metadata_manager]])."
+        },
+        {
+          "type": "h",
+          "text": "Keys"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To do",
+            "Original",
+            "Now"
+          ],
+          "rows": [
+            [
+              "Open the bauble slots",
+              "The Baubles key",
+              "{keybind:key.curios.open.desc}"
+            ],
+            [
+              "Look something up in the book",
+              "Hold the book, press R",
+              "Hold Ctrl over its tooltip"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Computer Guy's night vision / boost",
+                "X / Z",
+                "{keybind:key.essentialcraft5.computer_armor_night_vision} / {keybind:key.essentialcraft5.computer_armor_boost}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.enabled"
+              ],
+              "cells": [
+                "Open the Computer Terminal, where the seal field is switched on and off",
+                "None",
+                "{keybind:key.essentialcraft5.computer_terminal}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original wouldn't run without two other mods, DummyCore and Baubles. This version needs only Curios."
+        }
+      ]
+    }
+  ]
+}

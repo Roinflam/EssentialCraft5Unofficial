@@ -1,0 +1,848 @@
+{
+  "id": "shade",
+  "order": 109,
+  "group": "main",
+  "title": "第二十二章 · 暗影",
+  "subtitle": "影晶、暗影核心与 4 档五芒星",
+  "icon": "essentialcraft5:shade_core",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "intro",
+      "title": "这一章做什么",
+      "icon": "essentialcraft5:shade_core",
+      "summary": "主线最后两章，从这里开始",
+      "items": [
+        "essentialcraft5:shade_core"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "by": "《被遗忘的死灵之书》",
+          "text": "恶魔从不许诺。偶有人从它们那里得了一句誓言，付出去的是从极暗之处取来的东西。那东西在地狱里也稀罕，恶魔捧着它，像人捧着火。"
+        },
+        {
+          "type": "p",
+          "text": "宅男套装装上模块，第二十一章就做完了。往下还有两章：这一章去暗影腐化之地攒材料、升五芒星，下一章[[apex/intro]]召出天灾之心，打倒它以后主线才算走完。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "篇",
+            "做什么"
+          ],
+          "rows": [
+            [
+              "[[shade/attune]]",
+              "吸收一块暗影矩阵投影，矩阵属性换成暗影"
+            ],
+            [
+              "[[shade/umbral]]",
+              "去暗影腐化之地收影晶"
+            ],
+            [
+              "[[shade/shade_core]]",
+              "富集仓丢进影晶，坍缩出暗影核心"
+            ],
+            [
+              "[[shade/shade_pillar]]",
+              "用暗影核心做暗渎水晶柱"
+            ],
+            [
+              "[[shade/tier4]]",
+              "五芒星外面再立 4 根暗渎柱，升到 4 档"
+            ],
+            [
+              "[[shade/oath]]",
+              "契约之誉攒够，向恶魔立誓换恶魔之誓"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "[[shade/rank_8]]",
+                "在 4 档五芒星上升到矩阵八阶"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            7
+          ]
+        },
+        {
+          "type": "h",
+          "text": "要攒的东西"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.shade.umbral==4",
+                "cfg:general.demon.standing.oath_cost==16"
+              ],
+              "text": "{item:essentialcraft5:umbral_crystal}：两章一共约 72 个。"
+            },
+            {
+              "if": [
+                "!cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.shade.umbral==4",
+                "cfg:general.demon.standing.oath_cost==16"
+              ],
+              "text": "{item:essentialcraft5:umbral_crystal}：两章一共约 52 个。"
+            },
+            {
+              "if": "!cfg:machines.enrichment_chamber.shade.umbral==4||!cfg:general.demon.standing.oath_cost==16",
+              "text": "{item:essentialcraft5:umbral_crystal}：暗影核心、暗渎水晶柱、立誓都要用，数量见各篇。"
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "{item:essentialcraft5:shade_core}：两章一共约 9 个，4 根柱子各 1 个，天灾信标 2 个，八阶 1 个，九阶 2 个。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.enabled",
+              "text": "{item:essentialcraft5:shade_core}：两章一共约 6 个，4 根柱子各 1 个，天灾信标 2 个。"
+            },
+            "4 根{item:essentialcraft5:demonic_crystal_pillar}，做暗渎柱时放在中间、会被用掉。3 档五芒星上已有的那 4 根别拆，另做 4 根。",
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "契约之誉 {cfg:general.demon.standing.oath}，见[[shade/oath]]。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "暗影核心要富集仓坍缩 {cfg:machines.enrichment_chamber.shade.seconds|div:60|round:1} 分钟才出一个，最好先搭两三座仓一起等，等的时候去收影晶、做交易攒契约之誉。",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "p",
+          "text": "在这个世界里，富集仓凝不出暗影核心，这一章往下要用它的几步都做不成。",
+          "if": "!cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作里也能吸收暗影矩阵投影，把矩阵变成暗影，只是暗影属性什么效果都没有，也没有配它的武器。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §2.2 第二十二章必做步骤（attune / umbral / shade_core / shade_pillar / pentacle tier4 / oath / matrix rank_8）、§2.8 shade（main，order 109，整章 if 海纳尔之门）",
+        "tools/plan/batch13.md §3.5 — 主线约 9 个暗影核心（暗渎柱 4、八阶 1、九阶 2、天灾信标 2）；影晶 9 × machines.enrichment_chamber.shade.umbral(4) + 暗渎柱 4 × 3 + 立誓 oath_cost(16) + 八阶 8 = 72，矩阵阶关着时 6 × 4 + 12 + 16 = 52（按默认值算，挂默认值条件）",
+        "暗渎水晶柱配方（13e-C5）：魔力工作台，中心恶魔水晶柱，四角暗影核心 ×1 + 影晶 ×3",
+        "lore：原作吸收暗影矩阵投影只改属性、暗影没有效果也没有配套武器（gear/projection_use 同口径）；「有关暗影的知识」那条已在 computer/epilogue 的 lore 里说过，这里不重复",
+        "machines.enrichment_chamber.shade.enabled = false 时主线停在第二十二章（check_progression KNOWN_BREAKS，13e-P）"
+      ]
+    },
+    {
+      "id": "attune",
+      "title": "暗影属性",
+      "icon": "essentialcraft5:shade_matrix_projection",
+      "summary": "把矩阵属性换成暗影",
+      "complete": "essentialcraft5:guide/shade/attune",
+      "items": [
+        "essentialcraft5:shade_matrix_projection"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：吸收一块{item:essentialcraft5:shade_matrix_projection}，把你的矩阵属性换成暗影。"
+        },
+        {
+          "type": "p",
+          "text": "暗影属性的[[matrix/alignment|相性]]要到矩阵八阶才起作用，一到八阶就是 II，九阶是 III。七阶以下也能先换，属性会一直留着，练到八阶自然就有了。",
+          "if": "cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "矩阵属性平时没有被动效果，换成暗影是这一章的头一步。",
+          "if": "!cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：一块{item:essentialcraft5:empty_matrix_projection}和一块{item:essentialcraft5:dark_soul_matter}，放进辐射仓做出暗影矩阵投影，空白投影放上格，暗黑灵魂物质放下格，平衡值不限。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:shade_matrix_projection"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "右键点一下投影就松手，投影印上你的矩阵，从此只有你用得了。",
+            "找一处没有怪的地方，备好食物，按住右键 10 秒。",
+            "吸收完的那一刻投影消失，聊天栏提示你的矩阵扭曲出了新的色彩，属性就换成了暗影。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "吸收完暗影矩阵投影，矩阵属性变成暗影，这一步打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "吸收要付代价：凋零、虚弱、缓慢、挖掘疲劳、饥饿一起上身，还要失明一阵，见[[gear/projection_use]]。以后再吸收别的投影，属性就跟着换掉，要用回暗影还得再吸收一块。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节",
+          "if": "cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "暗影相性让有攻击者的魔法伤害少受 {cfg:general.matrix_rank.resonance.shade.magic_reduction|at:1|pct}（II）或 {cfg:general.matrix_rank.resonance.shade.magic_reduction|at:2|pct}（III）。腐化效果、MRU 腐化这类没有攻击者的伤害不减。",
+            "带矩阵特性的武器打实一下，这一下伤害的 {cfg:general.guns.lens_drain_percent|pctv}回到你身上，也要八阶起才有，见[[matrix/alignment]]。"
+          ],
+          "if": "cfg:general.matrix_rank.enabled"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §2.2 guide/shade/attune（impossible，13e-C5：用暗影矩阵投影把属性变成暗影时代码发）、§3.2 暗影相性八阶起、直接 II",
+        "data/essentialcraft5/recipes/radiating_chamber/shade_matrix_projection.json — 空白投影 + 暗黑灵魂物质，2 万 MRU，平衡值不限（原作没有，补的）",
+        "general.matrix_rank.resonance.shade.magic_reduction [0, 0.1, 0.15] 按相性级；特性回血 general.guns.lens_drain_percent（同 matrix/alignment）",
+        "吸收流程与代价同 gear/projection_use（按住 10 秒；凋零 I、虚弱 V、缓慢 V、挖掘疲劳 V、饥饿 I）"
+      ]
+    },
+    {
+      "id": "umbral",
+      "title": "攒影晶",
+      "icon": "essentialcraft5:umbral_crystal",
+      "summary": "暗影腐化之地的晶簇，夜里收得多",
+      "complete": "essentialcraft5:guide/shade/umbral",
+      "items": [
+        "essentialcraft5:umbral_crystal"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：攒下 16 个{item:essentialcraft5:umbral_crystal}。这两章要用的影晶远不止这些，先攒够 16 个，这一步就打勾。"
+        },
+        {
+          "type": "p",
+          "text": "影晶长在海纳尔的[[hoanna/lands|暗影腐化之地]]。地上的{item:essentialcraft5:umbral_cluster}长熟了，右键就能收，收完退成一丛暗淡的残簇，留在原地慢慢长回去，见[[hoanna_explore/specialties]]。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "夜里或黑暗天灾中右键",
+                "1~2 个"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "夜里右键",
+                "1~2 个"
+              ]
+            },
+            [
+              "白天右键",
+              "{cfg:general.hoanna_world.umbral.day_chance|pct} 的几率收到 1 个"
+            ],
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "长回去",
+                "只在暗影腐化之地、夜里或黑暗天灾中长，大约一个游戏日"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "长回去",
+                "只在暗影腐化之地的夜里长，大约一个游戏日"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "影晶用在哪"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.enrichment_chamber.shade.enabled",
+              "text": "每个[[shade/shade_core|暗影核心]]吃 {cfg:machines.enrichment_chamber.shade.umbral} 个。"
+            },
+            "每根[[shade/shade_pillar|暗渎水晶柱]]要 3 个，4 档五芒星要 4 根。",
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "[[shade/oath|立誓]]交 {cfg:general.demon.standing.oath_cost} 个。"
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "[[shade/rank_8|八阶]]的祭品要 8 个。"
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "宅男套装和裁决之刃升到同调 5 阶，每件 4 个，见[[apex/ascension]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "背包里一次有 16 个影晶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "白天收得少，夜里去最划算。别拿镐挖成熟的晶簇，挖掉的那一下和右键收得一样多，晶簇却没了，再也长不回来。"
+        },
+        {
+          "type": "p",
+          "text": "黑暗天灾来了的时候，白天去收也按夜里算，残簇白天也长，见[[hoanna_explore/calamity_windows]]。",
+          "if": "cfg:general.hoanna_events.darkness_enabled"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "暗影腐化之地里刷[[bestiary/inquisitorium_patroller]]，亮不亮都刷，白天去也带好武器。",
+            "一片暗影腐化之地里晶簇不多，收过一轮要等一个游戏日。几个人一起玩时各挑一片地方收，免得互相等。",
+            "第十九章的审判庭坐标指着的就是暗影腐化之地，没找到的话照它的方向走，见[[inquisitorium/journey]]。"
+          ]
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §2.2 guide/shade/umbral — inventory_changed 影晶 count ≥ 16（advancements/guide/shade/umbral.json）",
+        "tools/plan/batch13.md §6.1 暗影腐化之地行（13d-H1a）— 成熟晶簇右键：夜里或黑暗天灾中 1~2、白天 general.hoanna_world.umbral.day_chance 几率 1；残簇只在暗影腐化之地、夜里或黑暗天灾中长回，约 1 游戏日；镐挖一次性",
+        "用量：暗影核心 machines.enrichment_chamber.shade.umbral（4）、暗渎柱配方 3、立誓 general.demon.standing.oath_cost（16）、八阶祭品 8（rank_8.json）、宅男 / 裁决之刃 5 阶每件 4（recipes/attunement/computer_5、verdict_5）",
+        "审判庭巡卫在暗影腐化之地不看亮度刷（batch13.md §6.5）；第十九章坐标指暗影腐化之地 / 前哨（13e-S3）"
+      ]
+    },
+    {
+      "id": "shade_core",
+      "title": "{item:essentialcraft5:shade_core}",
+      "icon": "essentialcraft5:shade_core",
+      "summary": "富集仓坍缩的第三种产物",
+      "complete": "essentialcraft5:guide/shade/shade_core",
+      "items": [
+        "essentialcraft5:shade_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：在暗影腐化之地搭一座富集仓，往仓里丢进影晶，坍缩出第一个{item:essentialcraft5:shade_core}。"
+        },
+        {
+          "type": "p",
+          "text": "坍缩是第十六章学的手艺，见[[hoanna/collapse]]。仓搭在暗影腐化之地、里面又丢着影晶时，坍缩出来的就不再是虚空核心或反应核，而是暗影核心。",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "cfg:machines.enrichment_chamber.collapse.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "富集仓搭在暗影腐化之地、里面又丢着影晶时，攒满时间就会坍缩成暗影核心，掉在仓的正中。仓怎么搭见[[enrichment/controller]]。",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "!cfg:machines.enrichment_chamber.collapse.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "在这个世界里，富集仓凝不出暗影核心。",
+          "if": "!cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "h",
+          "text": "要满足的条件",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "在哪",
+              "海纳尔的暗影腐化之地，或者离它 {cfg:machines.enrichment_chamber.shade.site_radius} 格以内。控制器正中，再往东南西北和四个斜角各 {cfg:machines.enrichment_chamber.shade.site_radius} 格，这九处有一处在暗影腐化之地就算"
+            ],
+            [
+              "外壳",
+              "一座成形的富集仓，外壳里的{item:essentialcraft5:void_stone}、{item:essentialcraft5:void_glass}、{item:essentialcraft5:demonic_plating}合计至少 {cfg:machines.enrichment_chamber.shade.casing} 块"
+            ],
+            [
+              "稳定器",
+              "外壳上砌一块{item:essentialcraft5:ec_balancer}，同普通坍缩"
+            ],
+            [
+              "聚集体",
+              "仓里关着一团存满 {cfg:machines.enrichment_chamber.collapse.presence_mru} MRU 的聚集体"
+            ],
+            [
+              "仓里的 MRU",
+              "至少 {cfg:machines.enrichment_chamber.shade.mru}。控制器自己只存 {cfg:machines.enrichment_chamber.max_mru}，每个[[enrichment/holding_chamber|存储方块]]再多存 {cfg:machines.enrichment_chamber.mru_per_storage}，不够就在外壳上多砌几个"
+            ],
+            [
+              "影晶",
+              "{cfg:machines.enrichment_chamber.shade.umbral} 个{item:essentialcraft5:umbral_crystal}，丢在仓里面，坍缩时吃掉"
+            ],
+            [
+              "平衡值",
+              "不看"
+            ]
+          ],
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "p",
+          "text": "条件全部满足时，进度每秒 +1，攒满 {cfg:machines.enrichment_chamber.shade.seconds} 秒就坍缩，合 {cfg:machines.enrichment_chamber.shade.seconds|div:60|round:1} 分钟。",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "p",
+          "text": "海纳尔正逢黑暗[[hoanna/events|天灾]]时，每秒按 {cfg:machines.enrichment_chamber.collapse.event_multiplier} 秒算。别的天灾不让它变快，这一点和第十六章的坍缩不一样。",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "cfg:general.hoanna_events.darkness_enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna_explore/tide|魔力潮汐]]也会让它快一些，满月时每秒按 1.5 秒算。赶上黑暗天灾时按天灾那份算，两样不叠在一起。",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "cfg:general.hoanna_tide.enabled",
+            "cfg:general.hoanna_events.darkness_enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna_explore/tide|魔力潮汐]]也会让它快一些，满月时每秒按 1.5 秒算。",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "cfg:general.hoanna_tide.enabled",
+            "!cfg:general.hoanna_events.darkness_enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "坍缩时聚集体消失，仓里扣掉 {cfg:machines.enrichment_chamber.shade.mru} MRU，吃掉 {cfg:machines.enrichment_chamber.shade.umbral} 个影晶，正中掉出一个暗影核心。它和虚空核心、反应核、凝结矩阵各堆各的，那一堆满 64 个时停在满格。",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "p",
+          "text": "暗影核心排在前面：地点对、影晶够数时，平衡值偏到哪一头都只凝暗影核心，凝结矩阵也让给它。影晶不够或者地点不对，仓就照平衡值坍缩、凝结，和原来一样。",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "h",
+          "text": "怎么做",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "steps",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled",
+          "items": [
+            "在暗影腐化之地边上挑一块地方，最好在旁边的地貌里、离暗影腐化之地不到 {cfg:machines.enrichment_chamber.shade.site_radius} 格。",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "照[[hoanna/collapse]]搭仓，虚空石、虚空玻璃和恶魔护板合计凑够 {cfg:machines.enrichment_chamber.shade.casing} 块，砌上控制器、存储方块和稳定器，最好再加一个[[enrichment/monitoring|状态检测器]]。"
+            },
+            {
+              "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "照[[enrichment/controller]]搭仓，外壳里虚空石、虚空玻璃和恶魔护板合计凑够 {cfg:machines.enrichment_chamber.shade.casing} 块，砌上控制器、存储方块和稳定器，最好再加一个[[enrichment/monitoring|状态检测器]]。"
+            },
+            "关一团聚集体进去养满，再用接收器灌够 {cfg:machines.enrichment_chamber.shade.mru} MRU。",
+            "拆开一块外壳，把 {cfg:machines.enrichment_chamber.shade.umbral} 个影晶丢进仓里，再把外壳补上。",
+            "右键控制器，或者看状态检测器上的坍缩条，确认走的是暗影核心这一路、什么都不缺，然后等着。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到第一个暗影核心。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "暗影腐化之地刷审判庭巡卫，亮不亮都刷。仓搭在旁边的地貌里，离暗影腐化之地不到 {cfg:machines.enrichment_chamber.shade.site_radius} 格照样算数，巡卫平时也刷不到那里；黑暗天灾时巡卫在哪片陆地上都刷，那时还是会摸过来。",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "状态检测器的坍缩条在凝暗影核心时换成紫色，鼠标放上去写着还差什么：地点不对，或者外壳里的影晶还差几个。",
+            "影晶要是掉在外壳外面、被水冲出去，就不算在仓里。",
+            "坍缩用掉那团聚集体，想接着凝，得再推一团进去养满，影晶也要再丢 {cfg:machines.enrichment_chamber.shade.umbral} 个。",
+            "几座仓可以一起凝，互不影响。主线要的暗影核心不少，搭两三座一起等最快。"
+          ],
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.5 暗影核心 — 海纳尔；控制器中心 + 8 个方向各 site_radius（32）采群系，任一点在 #essentialcraft5:shade_core_sites（默认 = #inquisitorium_sites）；虚空级外壳 collapse_casing ≥ casing（8）；稳定器；聚集体条件同坍缩；仓里 ≥ mru（10 万）；外壳里影晶物品实体 ≥ umbral（4），坍缩完成时吃掉；平衡值不限；seconds（1 800）；黑暗天灾 ×3、大潮 ×(1 + 0.5T) 取大",
+        "13e-C5 blockentity/EnrichmentControllerBlockEntity — 暗影条件满足时优先走暗影分支，不再按平衡值走虚空核心 / 反应核，凝结也让位；产物先放后扣、同种堆叠、满 64 停（policy §4.12）；状态检测器显示暗影分支和差什么",
+        "配置 machines.enrichment_chamber.shade.{enabled, mru, seconds, umbral, site_radius, casing}；速度倍数沿用 collapse.event_multiplier，只在黑暗天灾时乘（13e-C5 EnrichmentControllerBlockEntity，别的天灾不加快），和潮汐取大",
+        "guide/shade/shade_core — inventory_changed 暗影核心"
+      ]
+    },
+    {
+      "id": "shade_pillar",
+      "title": "{item:essentialcraft5:shade_crystal_pillar}",
+      "icon": "essentialcraft5:shade_crystal_pillar",
+      "summary": "档位最高的水晶柱，4 档五芒星要它",
+      "complete": "essentialcraft5:guide/shade/shade_pillar",
+      "items": [
+        "essentialcraft5:shade_crystal_pillar"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：在魔力工作台上做出一根{item:essentialcraft5:shade_crystal_pillar}。[[shade/tier4|4 档五芒星]]要 4 根。"
+        },
+        {
+          "type": "p",
+          "text": "暗渎水晶柱是五种水晶柱里档位最高的，攒 ESPE 的速度是米斯莱柱的 {cfg:machines.mithriline_crystal_pillar.tier_multipliers|at:4} 倍，底座给附魔台加 120，见[[mithriline/crystal_pillar]]。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：一根{item:essentialcraft5:demonic_crystal_pillar}放中间，四角放 1 个{item:essentialcraft5:shade_core}和 3 个{item:essentialcraft5:umbral_crystal}，每格一件，魔力工作台里还要备好 MRU，要多少写在配方页上。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:shade_crystal_pillar"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "做出第一根暗渎水晶柱。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "中间那根恶魔水晶柱会被用掉。4 档要在 3 档的基础上搭，五芒星上原有的 4 根恶魔柱一根都不能拆，所以要另做 4 根恶魔柱，一共还得备 24 块阿克罗尼特锭，见[[pentacle/tier_three]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作里暗渎水晶柱没有配方，只在创造模式物品栏里拿得到，生存模式里从没出现过。"
+        }
+      ],
+      "_src": [
+        "13e-C5 暗渎水晶柱生存配方（batch13.md「附：自查」表、§7.6）：魔力工作台普通配方，中心恶魔水晶柱，四角暗影核心 ×1 + 影晶 ×3（每格一件），MRU 由 C5 定；物品从 CreativeOnly.blockItem 改成普通方块物品",
+        "machines.mithriline_crystal_pillar.tier_multipliers 第 5 项（at:4）= 4.0；附魔加成 120（同 mithriline/crystal_pillar 表）",
+        "data/essentialcraft5/recipes/crystal_pillars/demonic_crystal_pillar.json — 恶魔柱要阿克罗尼特锭 ×6、恶魔核心 ×2、虚空水晶柱；4 根另做 = 24 锭",
+        "guide/shade/shade_pillar — inventory_changed 暗渎水晶柱"
+      ]
+    },
+    {
+      "id": "tier4",
+      "title": "4 档五芒星",
+      "icon": "essentialcraft5:shade_crystal_pillar",
+      "summary": "在 3 档外面再立 4 根暗渎柱",
+      "complete": "essentialcraft5:guide/pentacle/tier4",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把第十二章的灵魂五芒星升到 4 档。八阶、九阶都要在 4 档五芒星上升。",
+          "if": "cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把第十二章的灵魂五芒星升到 4 档。",
+          "if": "!cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "4 档治得了的腐化效果和 3 档一样，柱子里的每点 ESPE 也还是按两点算。多出来的 4 根暗渎柱攒得最快，五芒星能用的 ESPE 也就多了。",
+          "if": "cfg:general.corruption.effects_enabled"
+        },
+        {
+          "type": "p",
+          "text": "柱子里的每点 ESPE 在 4 档也还是按两点算。多出来的 4 根暗渎柱攒得最快，五芒星能用的 ESPE 也就多了。",
+          "if": "!cfg:general.corruption.effects_enabled"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "3 档结构",
+              "完整留着，一格都不能少，见[[pentacle/tier_three]]"
+            ],
+            [
+              "暗渎水晶柱",
+              "4 根，见[[shade/shade_pillar]]"
+            ],
+            [
+              "虚空石",
+              "4 块，每根暗渎柱下面垫一块"
+            ],
+            [
+              "占地",
+              "从 5 × 5 扩到 7 × 7，4 根暗渎柱立在四个角上"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "4 档结构"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier4"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "保持 3 档结构完整。",
+            "照上面的立体图，在 3 档外面再立 4 根暗渎水晶柱，每根柱子下面垫一块{item:essentialcraft5:void_stone}。",
+            "右键五芒星中心，打开界面看一眼档位。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "符文转为暗紫色，界面上显示「4 档」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "柱位要和立体图一格不差，放错一格整档都不成形。立体图可以切成平面图一层一层对，见图上方的「立体 / 平面」。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用",
+          "if": "cfg:general.corruption.effects_enabled"
+        },
+        {
+          "type": "p",
+          "text": "4 档从 24 根柱子里抽 ESPE，每点按两点算。治同一个效果，从柱子里抽走的和 3 档一样，只有低档时的一半。",
+          "if": "cfg:general.corruption.effects_enabled"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "text": "哪种腐化效果几档才治得了，4 档和 3 档一样，见[[pentacle/cure]]。"
+            },
+            "在 4 档五芒星上召[[bestiary/matrix_shade|矩阵之影]]，预扣的 ESPE 从全部 24 根柱子里扣，打输了也照样退回这 24 根。",
+            "少了一根暗渎柱，五芒星退回 3 档，补上就回来。"
+          ]
+        }
+      ],
+      "_src": [
+        "13e-C5 registry/ECPentacle — MAX_TIER 3 → 4，PILLAR_OFFSETS 第五份 4 根，TIER_PATTERNS 加 player_pentacle_tier4，PILLAR_RULES 4 档柱子 = 暗渎水晶柱、柱下垫虚空石；柱子位置 C5 定（不出 3 档外框 2 格、对称，写在类注释里），手册立体图直接引用结构 id",
+        "13e-C5 blockentity/PlayerPentacleBlockEntity — maxEffectiveESPE 4 档同 3 档 ×2；TIER_COLORS 第六项暗渎紫；onMenuOpened 档位 ≥ 4 发 guide/pentacle/tier4（impossible，条件名 formed，同 tier1~3）",
+        "13e-C5 corruption/CorruptionGate — cureTier 只算到 3 档、NEVER 写死 4：4 档治的和 3 档一样；MatrixShadeContracts 4 档时多 4 根柱子一起预扣 / 退还",
+        "20 根（3 档）+ 4 根 = 24 根"
+      ]
+    },
+    {
+      "id": "oath",
+      "title": "挚契：向恶魔立誓",
+      "icon": "essentialcraft5:demon_oath",
+      "summary": "交出影晶，换一个恶魔之誓",
+      "complete": "essentialcraft5:guide/shade/oath",
+      "items": [
+        "essentialcraft5:demon_oath"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把契约之誉攒到 {cfg:general.demon.standing.oath}，向恶魔立誓，换一个{item:essentialcraft5:demon_oath}。",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：拿到一个{item:essentialcraft5:demon_oath}。",
+          "if": "!cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "p",
+          "text": "你和恶魔每做成一笔交易，契约之誉就 +1，见[[demons/standing]]。攒到 {cfg:general.demon.standing.oath} 是最后一档，叫<hl>挚契</hl>，这时恶魔肯收下你的影晶，听你立一个誓。为攒阿克罗尼特做过的交易都算在里面，到这一章多半已经差得不远了。",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "p",
+          "text": "在这个世界里，恶魔不看契约之誉，立不了誓，也就拿不到恶魔之誓，下一章的天灾信标做不出来。",
+          "if": "!cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：背包里至少 {cfg:general.demon.standing.oath_cost} 个{item:essentialcraft5:umbral_crystal}，再召出一只恶魔，召法见[[demons/summoning]]。",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "steps",
+          "if": "cfg:general.demon.standing.enabled",
+          "items": [
+            "召出一只恶魔。",
+            "潜行，主手或副手拿着影晶，右键它。",
+            "恶魔收下 {cfg:general.demon.standing.oath_cost} 个影晶，给你一个恶魔之誓，随即离开。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到恶魔之誓。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "只有召出这只恶魔的人能立誓，别人替你右键不算。立誓不算一笔交易，契约之誉不涨，这只恶魔也就走了，还想换阿克罗尼特就再召一只。",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "影晶分在背包好几格里也能凑齐，手上那一堆不够 {cfg:general.demon.standing.oath_cost} 个也没关系。",
+            "契约之誉不到 {cfg:general.demon.standing.oath}，或者影晶不够时，动作栏写着差什么，什么都不扣。",
+            "恶魔之誓只用在下一章的[[apex/beacon|天灾信标]]上，做一个就够。"
+          ],
+          "if": "cfg:general.demon.standing.enabled"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.4 挚契（13e）— general.demon.standing.oath 70：潜行、主手或副手拿影晶、背包 ≥ oath_cost（16）右键恶魔立誓，给 1 个恶魔之誓 demon_oath，这次召唤结束；不算交易、不加声望；只有召唤者能立誓（第七批 D2）；不够时提示、不扣",
+        "13e-C5 demon/DemonStanding（Tier.OATH）、entity/DemonEntity 立誓；影晶分几格也能凑齐（C5 GameTest）",
+        "§3.4 数值理由：第二十二章要声望 70，比第十七章多约 12 笔交易",
+        "guide/shade/oath — inventory_changed 恶魔之誓；恶魔之誓只用在天灾信标配方（13e-C5）"
+      ]
+    },
+    {
+      "id": "rank_8",
+      "title": "八阶 · 暗影",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "暗影相性，打开天灾信标",
+      "complete": "essentialcraft5:guide/matrix/rank_8",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：升到矩阵八阶「暗影」。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "一共 30 种，其中至少 8 种是在海纳尔杀的、1 种是末地的、3 种是源质魔法的生物，见[[matrix/codex]]"
+            ],
+            [
+              "站点",
+              "4 档灵魂五芒星，上一篇刚搭好"
+            ],
+            [
+              "祭品",
+              "3 个{item:essentialcraft5:condensed_matrix}、1 个{item:essentialcraft5:shade_core}、1 块{item:essentialcraft5:matter_of_eternity}、8 个{item:essentialcraft5:umbral_crystal}"
+            ],
+            [
+              "能量",
+              "台子里 10 万 MRU，五芒星的柱子里 12000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 9 只，同时最多 4 只；每只 104 点生命，打你一下 11 点；限时 140 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "站着不动 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:80} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "末地那一种，潜影贝或末影龙都行。源质魔法的生物是这个模组自己的怪，异兽录里写的那些都算，风法师、全息投影这些早先打过的也算，见[[bestiary/overview]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把祭品放进淬炼台的祭品格，台子里的 MRU 用绑定宝石备够。",
+            "站在台子 3 格内，主手拿着绑定你的灵魂石，打开界面，右边全打勾以后点「开始淬炼」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒够数的矩阵回响，别离开台子太远。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁边不动，也别受伤，等引导走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "屏幕正中出现「八阶 · 暗影」，灵魂石的物品提示里写着矩阵八阶。"
+        },
+        {
+          "type": "p",
+          "text": "八阶的回报：你的矩阵是暗影属性的话，[[matrix/alignment|暗影相性]]从这一阶起生效，直接是 II；矩阵容量涨到 {cfg:general.matrix_rank.pool_per_rank|mul:7}。"
+        },
+        {
+          "type": "p",
+          "text": "天灾信标要八阶才用得了，下一章就从它开始，见[[apex/beacon]]。",
+          "if": "cfg:general.matrix_rank.gates.calamity_beacon==8"
+        },
+        {
+          "type": "p",
+          "text": "天灾信标要矩阵 {cfg:general.matrix_rank.gates.calamity_beacon} 阶才用得了，下一章就从它开始，见[[apex/beacon]]。",
+          "if": [
+            "!cfg:general.matrix_rank.gates.calamity_beacon==8",
+            "cfg:general.matrix_rank.gates.calamity_beacon>0"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/matrix_ranks/rank_8.json — codex total 30 / hoanna 8 / end 1 / mod 3；pentacle_tier 4；祭品凝结矩阵 ×3、暗影核心 ×1、永恒物质 ×1、影晶 ×8；能量 MRU 10 万 + ESPE 1.2 万；回响 9 / 4 / 104 / 11 / 140 秒（batch13.md §3.1.3 八阶行）",
+        "图谱组 end = 标签 essentialcraft5:codex_end（潜影贝、末影龙）、mod = 命名空间 essentialcraft5（matrix/MatrixCodex.Group）；和平引导 peaceful_channel_seconds + 10 × 阶",
+        "tools/plan/batch13.md §3.1.4 — 八阶暗影相性可用（直接 II）、矩阵容量 pool_per_rank × 7；§2.5 天灾信标门 gates.calamity_beacon 8",
+        "进度 guide/matrix/rank_8 由升阶代码发（13a 通用），JSON impossible；整篇 if general.matrix_rank.enabled"
+      ]
+    }
+  ]
+}

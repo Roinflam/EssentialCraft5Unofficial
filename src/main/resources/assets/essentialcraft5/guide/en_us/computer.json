@@ -1,0 +1,1342 @@
+{
+  "id": "computer",
+  "order": 104,
+  "group": "main",
+  "title": "Chapter 20 · The Computer Guy's Suit",
+  "subtitle": "The computer, and the final armor",
+  "icon": "essentialcraft5:computer_helmet",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "force_parts",
+      "title": "Basic Force Parts",
+      "icon": "essentialcraft5:force_emitter",
+      "summary": "Five basic parts, 4 per craft",
+      "complete": "essentialcraft5:guide/computer/force_parts",
+      "items": [
+        "essentialcraft5:force_absorber",
+        "essentialcraft5:force_emitter",
+        "essentialcraft5:particle_catcher",
+        "essentialcraft5:particle_emitter",
+        "essentialcraft5:force_field_core"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "The drawings are done. Four pieces of armor and a board. What's missing is a computer that can govern the demonic plates, and I can't build one. Nobody I've asked can either. This is for whoever comes after.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make the five basic force parts. The Computer Guy's Suit follows the drawings in the Workshop Notebook. It is where this chapter ends, and its four armor pieces are built up layer by layer from a dozen kinds of parts, with these five at the bottom."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Do the math first",
+          "text": "The Computer Guy's Suit is the most expensive thing in the mod. The four pieces take 287 Demonic Plates, 48 Wind Crystals, 4 MRU Reactors and 2 Matter Of Eternity in all, and the full list is in [[computer/costs]]. Imbuing is the slowest part, so keep the pentacle and your Wind Rune altars running from now on, and stay nearby."
+        },
+        {
+          "type": "h",
+          "text": "The five basic parts"
+        },
+        {
+          "type": "p",
+          "text": "All five use the same layout, with one material in the four corners, another on the four edges and one in the middle. Each craft makes <t>4</t>."
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "header": [
+            "Part",
+            "Corners",
+            "Edges",
+            "Middle"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:force_absorber}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:mithriline_crystal}",
+              "{item:essentialcraft5:wind_gem}"
+            ],
+            [
+              "{item:essentialcraft5:force_emitter}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:fading_crystal}",
+              "{item:essentialcraft5:wind_gem}"
+            ],
+            [
+              "{item:essentialcraft5:particle_catcher}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:fading_crystal}",
+              "{item:essentialcraft5:force_absorber}"
+            ],
+            [
+              "{item:essentialcraft5:particle_emitter}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:mru_resonating_crystal}",
+              "{item:essentialcraft5:force_emitter}"
+            ],
+            [
+              "{item:essentialcraft5:force_field_core}",
+              "{item:essentialcraft5:pale_plate}",
+              "{item:essentialcraft5:demonic_core}",
+              "{item:essentialcraft5:void_mru_reactor}"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:force_absorber",
+            "essentialcraft5:force_emitter",
+            "essentialcraft5:particle_catcher",
+            "essentialcraft5:particle_emitter",
+            "essentialcraft5:force_field_core"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>Where the ingredients come from</em>: Demonic Plates and Demonic Cores are in [[demons/ackronite]], Wind Crystals in [[wind/wind_gem]], Mithriline Crystals in [[mithriline/mithriline_ingot]], Fading Crystals in [[pentacle/pale_crystal_pillar]], MRU Resonating Crystals in [[alloys/resonating_crystal]] and Pale Plates in [[alloys/pale]]. MRU Reactors only come from Hoanna's ruin chests ([[hoanna/relics]])."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>Where the ingredients come from</em>: Demonic Plates and Demonic Cores are in [[demons/ackronite]], Wind Crystals in [[wind/wind_gem]], Mithriline Crystals in [[mithriline/mithriline_ingot]], Fading Crystals in [[pentacle/pale_crystal_pillar]], MRU Resonating Crystals in [[alloys/resonating_crystal]] and Pale Plates in [[alloys/pale]]. MRU Reactors come from Hoanna's ruin chests ([[hoanna/relics]]). You can also get one by collapsing a chaotic Enrichment Chamber ([[hoanna/collapse]])."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have any one of these five."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Save your reactors",
+          "text": "Each Force Field Core craft eats 1 MRU Reactor. The four suit pieces take 4 Force Field Core crafts, 5 with the board, so don't spend a single reactor on other machines."
+        }
+      ]
+    },
+    {
+      "id": "force_field",
+      "title": "Force Field Generator and Plating",
+      "icon": "essentialcraft5:force_field_generator",
+      "summary": "Two mid-tier parts, 2 per craft",
+      "complete": "essentialcraft5:guide/computer/force_field",
+      "items": [
+        "essentialcraft5:force_field_generator",
+        "essentialcraft5:force_field_plating"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:force_field_generator} and {item:essentialcraft5:force_field_plating} from the basic parts. Every suit piece needs one generator and 2–3 Force Field Platings, and the board needs a generator too."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:force_field_generator",
+            "essentialcraft5:force_field_plating"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:force_field_generator}",
+              "Force Emitters in the corners, Force Field Cores on the edges and a {item:essentialcraft5:matter_of_eternity} in the middle. Makes <t>2</t>"
+            ],
+            [
+              "{item:essentialcraft5:force_field_plating}",
+              "Particle Catchers in the corners, Particle Emitters on the edges and a Force Field Core in the middle. Makes <t>2</t>"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Force Field Generator."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Matter Of Eternity is also an MRU battery, and <w>whatever MRU it holds is lost in the craft</w>, so use a freshly made one that was never charged. The four pieces take 2 generator crafts, which means 2 Matter Of Eternity and 2 Nether Stars ([[storage/soul_storage]])."
+        }
+      ]
+    },
+    {
+      "id": "drives",
+      "title": "Stabilizers, Repulsion and Thrust",
+      "icon": "essentialcraft5:thruster_engine",
+      "summary": "Pressure Stabilizer, Repulsion Generator, Thruster Engine",
+      "complete": "essentialcraft5:guide/computer/drives",
+      "items": [
+        "essentialcraft5:pressure_stabilizer",
+        "essentialcraft5:repulsion_generator",
+        "essentialcraft5:thruster_engine"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:thruster_engine}. It needs {item:essentialcraft5:pressure_stabilizer}s, and you may as well make a {item:essentialcraft5:repulsion_generator} while you're at it. Every suit piece needs stabilizers, and the chestplate, the leggings and the board also need Repulsion Generators and Thruster Engines."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:pressure_stabilizer",
+            "essentialcraft5:repulsion_generator",
+            "essentialcraft5:thruster_engine"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:pressure_stabilizer}",
+              "Force Absorbers in the corners and a cross of five Neuronic Enriched Platings. Makes <t>2</t>"
+            ],
+            [
+              "{item:essentialcraft5:repulsion_generator}",
+              "Particle Emitters in the corners, Force Emitters on the edges and a Neuronic Enriched Plating in the middle. Makes <t>2</t>"
+            ],
+            [
+              "{item:essentialcraft5:thruster_engine}",
+              "4 Force Emitters, a Particle Emitter, 2 Pressure Stabilizers and 2 Neuronic Enriched Platings, laid out as in the recipe above. Makes <t>2</t>"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Thruster Engine."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Stock up on plating",
+          "text": "Each Pressure Stabilizer craft eats 5 Neuronic Enriched Platings, and the four suit pieces need six of those crafts. When you run low, go back to [[hologram/neuronic_plating]] and make more, 4 per craft."
+        }
+      ]
+    },
+    {
+      "id": "senses",
+      "title": "Sound and Vision",
+      "icon": "essentialcraft5:speaker_plate",
+      "summary": "Sound Manager, Speaker Plate, Vision Lens",
+      "complete": "essentialcraft5:guide/computer/senses",
+      "items": [
+        "essentialcraft5:sound_manager",
+        "essentialcraft5:speaker_plate",
+        "essentialcraft5:vision_lens"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make the {item:essentialcraft5:speaker_plate}s and the {item:essentialcraft5:vision_lens} the helmet needs. The notebook's sketch of the helmet shows two ears and one eye. The helmet takes 2 Speaker Plates and 1 Vision Lens, a Speaker Plate needs a {item:essentialcraft5:sound_manager} first, and nothing else uses these three."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:sound_manager",
+            "essentialcraft5:speaker_plate",
+            "essentialcraft5:vision_lens"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:sound_manager}",
+              "4 Demonic Plates, 2 Demonic Cores, 2 Force Absorbers and a Pressure Stabilizer in the middle. Makes <t>1</t>"
+            ],
+            [
+              "{item:essentialcraft5:speaker_plate}",
+              "Force Absorbers in the corners, Neuronic Enriched Platings on the edges and a Sound Manager in the middle. Makes <t>1</t>"
+            ],
+            [
+              "{item:essentialcraft5:vision_lens}",
+              "Neuronic Enriched Platings in the corners, Force Absorbers top and bottom, {item:essentialcraft5:sun_imbued_glass} left and right and {item:essentialcraft5:magic_purified_glass_alloy} in the middle. Makes <t>1</t>"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Speaker Plate."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "You made Sun Imbued Glass back in Chapter 10 ([[solar/sun_imbued_glass]]). Glass Alloy comes from the Magician Table ([[alloys/purified_alloys]])."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book gives the Computer Guy's Suit a one-line subtitle, \"It is from the future!\""
+        }
+      ]
+    },
+    {
+      "id": "computer_engine",
+      "title": "{item:essentialcraft5:computer_engine}",
+      "icon": "essentialcraft5:computer_engine",
+      "summary": "The computer that runs the Demonic Plates",
+      "complete": "essentialcraft5:guide/computer/computer_engine",
+      "items": [
+        "essentialcraft5:computer_engine",
+        "essentialcraft5:logic_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make the {item:essentialcraft5:computer_engine}. The chestplate needs one. It is the computer to control the Demonic Plates that the hologram chapter mentions. The forebear who drew these plans never managed to build it."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: a {item:essentialcraft5:logic_core}, made as shown below, and 4 Neuronic Enriched Platings, plus one each of the four math cores (Addition, Subtraction, Multiplication and Division). The Holographic Projection drops them ([[hologram/math_cores]])."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:computer_engine",
+            "essentialcraft5:logic_core"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:logic_core}",
+              "Demonic Plates in the corners, {item:minecraft:redstone} top and bottom, {item:minecraft:lapis_lazuli} left and right and {item:minecraft:quartz} in the middle. Makes <t>1</t>"
+            ],
+            [
+              "{item:essentialcraft5:computer_engine}",
+              "Neuronic Enriched Platings in the corners, then the Addition Core on top, the Subtraction Core below, the Division Core on the left and the Multiplication Core on the right, with the Logic Core in the middle"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Computer Engine."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Still missing a core?",
+          "text": "You only need one of each, but math cores have no recipe. For a missing one, fight the Holographic Projection again and land the final blow right after that attack ([[hologram/math_cores]])."
+        }
+      ]
+    },
+    {
+      "id": "suit",
+      "title": "Computer Guy's Suit",
+      "icon": "essentialcraft5:computer_helmet",
+      "summary": "The four pieces; the next chapter adds modules",
+      "complete": "essentialcraft5:main/computer_armor",
+      "items": [
+        "essentialcraft5:computer_helmet",
+        "essentialcraft5:computer_chestplate",
+        "essentialcraft5:computer_leggings",
+        "essentialcraft5:computer_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make the {item:essentialcraft5:computer_helmet}, {item:essentialcraft5:computer_chestplate}, {item:essentialcraft5:computer_leggings} and {item:essentialcraft5:computer_boots} and have all four on you at once. Worn pieces count. The main line is finished once the next chapter, [[terminal/legend|Terminal and Modules]], fits the suit with modules."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:computer_helmet",
+            "essentialcraft5:computer_chestplate",
+            "essentialcraft5:computer_leggings",
+            "essentialcraft5:computer_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every piece needs a Force Field Generator, Force Field Plating, Neuronic Enriched Plating and Pressure Stabilizers. On top of that, the helmet takes 2 Speaker Plates and the Vision Lens, the chestplate takes the Computer Engine, a Repulsion Generator and a Thruster Engine, and the leggings take a Repulsion Generator and 2 Thruster Engines."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Craft the four pieces from the recipes above.",
+            "Charge them with MRU in a {item:essentialcraft5:charging_chamber} ([[storage/charging_chamber]]). Each piece holds up to {cfg:general.computer_armor.max_mru}, but you don't need to fill them, since a partial charge already works.",
+            "Put all four on."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have all four pieces on you at once and earn the advancement \"{lang:advancements.essentialcraft5.computer_armor.title}\". The next chapter, [[terminal/legend|Terminal and Modules]], fits the suit with modules, and the main line has two more after that."
+        },
+        {
+          "type": "h",
+          "text": "Stats it always has"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Armor",
+              "Helmet {cfg:general.computer_armor.armor_helmet}, chestplate {cfg:general.computer_armor.armor_chestplate}, leggings {cfg:general.computer_armor.armor_leggings}, boots {cfg:general.computer_armor.armor_boots}"
+            ],
+            [
+              "Armor toughness",
+              "{cfg:general.computer_armor.toughness} each"
+            ],
+            [
+              "Knockback resistance",
+              "{cfg:general.computer_armor.knockback_resistance|pct} each"
+            ],
+            [
+              "Max health",
+              "+{cfg:general.computer_armor.max_health} each on the helmet, leggings and boots and +{cfg:general.computer_armor.chestplate_max_health} on the chestplate, with 2 making one heart"
+            ],
+            [
+              "Durability",
+              "16,384, never lost while worn"
+            ],
+            [
+              "Enchantability",
+              "127 (diamond 10, netherite 15)"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "These stats are there with or without MRU. If the full set's armor or toughness adds up to more than the game's cap of <t>30</t> armor and <t>20</t> toughness, the excess does nothing. Take a piece off and its extra max health goes with it, and your health drops to match."
+        },
+        {
+          "type": "h",
+          "text": "Blocking damage with MRU"
+        },
+        {
+          "type": "p",
+          "text": "Each charged piece blocks its own share of the damage, helmet 3/20, chestplate 8/20, leggings 6/20 and boots 3/20. With all four charged the whole hit is blocked and you lose no health at all, though knockback still happens."
+        },
+        {
+          "type": "p",
+          "text": "The purple line in the tooltip says it blocks physical and elemental damage. The table shows what it does and doesn't block."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Damage",
+            "Blocked by MRU?",
+            "Other protection"
+          ],
+          "rows": [
+            [
+              "Melee, arrows and other projectiles",
+              "yes",
+              "—"
+            ],
+            [
+              "Standing in fire or lava, explosions, lightning",
+              "yes",
+              "—"
+            ],
+            [
+              "Still burning after you step out of the fire",
+              "no",
+              "the leggings give you Fire Resistance while you burn"
+            ],
+            [
+              "Drowning",
+              "no",
+              "the helmet keeps your air from running out"
+            ],
+            [
+              "Powder snow freezing",
+              "no",
+              "none"
+            ],
+            [
+              "Harming potions you drink, poison, wither, starving",
+              "no",
+              "the chestplate makes you immune"
+            ],
+            {
+              "if": "!module:essentialcraft5:matrix_shunt_module||!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Splash Harming potions thrown at you",
+                "no",
+                "none"
+              ]
+            },
+            {
+              "if": [
+                "module:essentialcraft5:matrix_shunt_module",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "Splash Harming potions thrown at you",
+                "no",
+                "a [[terminal/matrix_shunt|Matrix Shunt Module]] on the chestplate turns part of it into matrix damage"
+              ]
+            },
+            [
+              "Orbital strikes",
+              "no",
+              "armor value still reduces it"
+            ],
+            [
+              "Divider fields (halve your health)",
+              "no",
+              "none"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "From attunement stage 2 the shield also blocks magic damage dealt by mobs, such as a witch's Harming potions; from stage 4 it also blocks half of armor-piercing damage ([[attunement/computer_armor]])."
+        },
+        {
+          "type": "p",
+          "text": "Each block costs MRU, {cfg:general.computer_armor.mru_per_damage} MRU per point of that piece's share, rounded down and counting at least 1 point. It comes first from the soul storage you carry, such as a {item:essentialcraft5:soul_shard}, and when that isn't enough, from the piece's own charge."
+        },
+        {
+          "type": "p",
+          "text": "When another player hits you, the shield blocks at most {cfg:general.computer_armor.pvp_shield_max_share|pct} of the hit, and each point costs {cfg:general.computer_armor.pvp_shield_cost_multiplier} times as much MRU."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "From matrix rank 2, when your soul storage runs short the cost comes from your [[matrix/reservoir|Matrix Reservoir]] next, and only then from the piece's own charge."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.enabled",
+          "text": "Storage worn in the accessory bar pays nothing while a [[computer/seal_field|Curio Seal Field]] seals it. Storage anywhere else on you still pays."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Taking 8 damage",
+              "Helmet 1 point + chestplate 3 + leggings 2 + boots 1, {cfg:general.computer_armor.mru_per_damage|mul:7} MRU in all"
+            ],
+            [
+              "Taking a small hit",
+              "Each piece counts 1 point, {cfg:general.computer_armor.mru_per_damage|mul:4} MRU in all"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<w>A piece that can't pay doesn't block that hit</w>, and you take its share as usual. A piece with no charge of its own doesn't block either. Check the charge in the tooltip before a long trip, and carry a few fully charged soul storage items in your bag."
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:infinite_mru_crystal",
+          "text": "While you carry an {item:essentialcraft5:infinite_mru_crystal}, it pays for everything. As long as each piece holds a little charge of its own, the suit keeps blocking for good."
+        },
+        {
+          "type": "h",
+          "text": "What each piece does"
+        },
+        {
+          "type": "table",
+          "widths": [
+            1,
+            4
+          ],
+          "header": [
+            "Piece",
+            "Effect"
+          ],
+          "rows": [
+            {
+              "if": "!cfg:general.computer_armor.helmet_saturation",
+              "cells": [
+                "{item:essentialcraft5:computer_helmet}",
+                "You never run out of air, and your hunger bar stays full, so you heal at the well-fed rate. {keybind:key.essentialcraft5.computer_armor_night_vision} toggles night vision, and you can see MRUCUs through walls"
+              ]
+            },
+            {
+              "if": "cfg:general.computer_armor.helmet_saturation",
+              "cells": [
+                "{item:essentialcraft5:computer_helmet}",
+                "You never run out of air, and both hunger and saturation stay full, so you heal fast. {keybind:key.essentialcraft5.computer_armor_night_vision} toggles night vision, and you can see MRUCUs through walls"
+              ]
+            },
+            [
+              "{item:essentialcraft5:computer_chestplate}",
+              "Immune to magic, wither and starvation damage. Harming potions you drink and poison count as magic, but splash Harming potions thrown by others still hit"
+            ],
+            [
+              "{item:essentialcraft5:computer_leggings}",
+              "You walk {cfg:general.computer_armor.leggings_speed|div:0.1|pct} faster and jump higher, and while you're on fire you get 5 seconds of Fire Resistance every second"
+            ],
+            [
+              "{item:essentialcraft5:computer_boots}",
+              "Immune to fall damage, and you step straight up full blocks"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "With the full set"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.computer_armor.thorns_ratio>0",
+              "text": "When melee, projectile or explosion damage hits you, {cfg:general.computer_armor.thorns_ratio|pct} of it goes back to the attacker as thorns damage, even when the whole hit is blocked."
+            },
+            "Press {keybind:key.essentialcraft5.computer_armor_boost} to boost toward where you're looking. The cooldown is {cfg:general.computer_armor.dash_cooldown|sec}, and it doesn't work while riding or sleeping.",
+            {
+              "if": "cfg:general.computer_armor.dash_mru>0",
+              "text": "Each boost costs {cfg:general.computer_armor.dash_mru} MRU."
+            },
+            {
+              "if": "cfg:general.computer_armor.swim_speed>0",
+              "text": "You swim much faster, at {cfg:general.computer_armor.swim_speed|add:1|x} speed."
+            },
+            "MRUCU matrix damage and damage from the MRU Corruption effect are blocked entirely, a quarter by each piece.",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "You stop gathering radiation in Hoanna, except for the poison fog's share ([[hoanna/radiation]])."
+            },
+            {
+              "if": "cfg:general.computer_seal.enabled",
+              "text": "Press {keybind:key.essentialcraft5.computer_terminal} to open the Computer Terminal, where you can turn on the [[computer/seal_field|Curio Seal Field]]. It switches off the curios of nearby players it can cover."
+            },
+            "Each piece has module slots for the modules of Chapter 21, which add abilities such as Rewind or Phase Anchor ([[terminal/install]])."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Two small circles sit at the top of the screen. The left one is night vision, lit when it's on. The right one is the boost, and the missing part of it is the cooldown still to go."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.enabled",
+          "text": "While the Curio Seal Field is on, a purple circle sits to the left of the night vision one. Lit means running, and dim means standing by or out of power."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "What gets through",
+          "text": "The suit can't stop magic damage, such as splash Harming potions thrown at you. Nor can it stop the Holographic Projection's divider fields, which halve your health directly, or damage that bypasses armor. Orbital strikes count as neither physical nor elemental, so they get through as well."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.computer_armor.thorns_ratio>0",
+              "text": "Thorns under 0.5 damage are dropped, and thorns damage itself never bounces back. Orbital strikes, ray guns and other attacks where nothing actually touches you aren't returned either."
+            },
+            "The night vision setting stays with you, the same after logging back in or dying.",
+            "Worn pieces never lose durability. Blocking damage and Armor Destroyer hits cost MRU instead."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "antigravity_board",
+      "title": "{item:essentialcraft5:computer_board}",
+      "icon": "essentialcraft5:computer_board",
+      "summary": "Wear it on your belt and fly",
+      "complete": "essentialcraft5:guide/computer/antigravity_board",
+      "optional": true,
+      "if": "bauble:essentialcraft5:computer_board",
+      "items": [
+        "essentialcraft5:computer_board"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:computer_board}. Worn in the belt slot of your accessory bar, it lets you fly like in creative mode. It is the board drawn beside the four pieces of armor. The accessory bar is the set of accessory slots on your inventory screen, added by the Curios mod. The board needs neither the suit nor MRU."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:computer_board"
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 2 Pressure Stabilizers, 1 Force Field Generator, 3 Neuronic Enriched Platings, 2 Repulsion Generators and 1 Thruster Engine, all covered on the earlier pages. The board alone takes 68 Demonic Plates and 14 Wind Crystals ([[computer/costs]])."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have an Antigravitational Board."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Flying speed",
+              "{cfg:general.computer_board.fly_speed|div:0.05|x} creative flight"
+            ],
+            [
+              "Worn in",
+              "The belt slot; you can wear only one at a time"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "While you fly, a board appears under your feet, and others can see it. Take it off and you can no longer fly. Flight from anything else is unaffected."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.computer_seal.slow_fall_ticks>0"
+          ],
+          "text": "When a [[computer/seal_field|Curio Seal Field]] seals it, the board stops working and you can't fly. If you're in the air at that moment, you get a few seconds of Slow Falling and come down gently."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.computer_seal.slow_fall_ticks==0"
+          ],
+          "text": "When a [[computer/seal_field|Curio Seal Field]] seals it, the board stops working and you can't fly. If you're in the air, you simply fall."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "You can't fly while fighting the Holographic Projection ([[hologram/summoning]])."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book says it \"gives you unbelievable speed when flying\", and in the original it really did push your flying speed to four times creative flight."
+        }
+      ]
+    },
+    {
+      "id": "seal_field",
+      "title": "Curio Seal Field",
+      "icon": "essentialcraft5:computer_chestplate",
+      "summary": "Turns off the curios of players around you",
+      "complete": "essentialcraft5:guide/computer/seal_field",
+      "optional": true,
+      "if": "cfg:general.computer_seal.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): with the whole Computer Guy's Suit on, press {keybind:key.essentialcraft5.computer_terminal} to open the Computer Terminal and turn on the Curio Seal Field."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You turn the Curio Seal Field on in the terminal for the first time. With no one around it just stands by, and that still counts."
+        },
+        {
+          "type": "h",
+          "text": "What it does"
+        },
+        {
+          "type": "p",
+          "text": "While the field runs, every player it covers within {cfg:general.computer_seal.radius} blocks loses the effect of everything in their accessory bar, as if nothing were worn. Lasting effects stop, added stats go away, and nothing else can find those items. The items stay where they are, and nothing drops or gets pushed out. The accessory bar here means the accessory slots on the inventory screen, added by the Curios mod."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.affects_self",
+          "text": "<w>Your own curios stop working too while the field runs</w>, and your accessory slots show the same sealed icon. It only leaves you alone while it stands by. You get no \"curios sealed\" message for this, since the lit purple circle already tells you it's running."
+        },
+        {
+          "type": "h",
+          "text": "Who it covers"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Players in the same world within {cfg:general.computer_seal.radius} blocks of you, measured in a straight line between your feet. Walls don't block it.",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "Players who fought you in the last {cfg:general.computer_seal.combat_window_ticks|sec}. One attack between you has to have gotten through, either a hit or one that armor or a shield blocked completely, and it doesn't matter who struck first. <em>The field only covers people you are fighting</em>, so passers-by and anyone protected from player damage are left alone."
+            },
+            "Players you can hurt. Player damage has to be allowed, and you can't be on the same team.",
+            {
+              "if": "cfg:general.computer_seal.respect_claims",
+              "text": "Players standing where you could break blocks. Other people's claims and protected spawn areas are out of its reach."
+            },
+            "Players in survival or adventure. Creative and spectator players are never affected."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Someone already covered has to get beyond {cfg:general.computer_seal.radius|add:2} blocks to leave. Once they leave, or once you turn the field off, their curios come back shortly, though they stay sealed for at least {cfg:general.computer_seal.min_hold_ticks|sec}."
+        },
+        {
+          "type": "h",
+          "text": "When it runs and what it costs"
+        },
+        {
+          "type": "p",
+          "text": "The field only runs while at least one player it can cover is in range, and then the purple circle left of the night vision circle at the top of the screen lights up. With no one to cover it stands by. The circle goes dim, it uses no MRU, and it leaves your own curios alone."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Each second while running",
+              "{cfg:general.computer_seal.mru_base} MRU, plus {cfg:general.computer_seal.mru_per_target} MRU for every other player covered"
+            ],
+            {
+              "if": "cfg:general.computer_seal.affects_self",
+              "cells": [
+                "Paid from",
+                "The soul storage you carry first, then the chestplate's own charge. Storage in your accessory bar doesn't count, since it stops working with your other curios while the field runs"
+              ]
+            },
+            {
+              "if": "!cfg:general.computer_seal.affects_self",
+              "cells": [
+                "Paid from",
+                "The soul storage you carry first, then the chestplate's own charge, the same as the boost"
+              ]
+            },
+            [
+              "Short of MRU",
+              "That second it covers no one and takes nothing, and it tells you once that it is out of power"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The Computer Terminal"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Press {keybind:key.essentialcraft5.computer_terminal} to open it. The Computer Guy's helmet alone is enough. Press it again or Esc to close it. The game keeps running while it's open.",
+            "The Curio Seal Field switch and its state, the MRU it uses each second, and how long you can keep it up.",
+            "The night vision switch, which does the same as pressing {keybind:key.essentialcraft5.computer_armor_night_vision}, the boost cooldown, and the charge of each piece.",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "The players in range you can see and their states, such as sealed, also sealed by someone else, no recent fight, can't harm each other, or standing where you have no permission. Invisible players aren't listed, but they are still covered."
+            },
+            {
+              "if": "!cfg:general.computer_seal.require_recent_combat",
+              "text": "The players in range you can see and their states, such as sealed, also sealed by someone else, can't harm each other, or standing where you have no permission. Invisible players aren't listed, but they are still covered."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "On the receiving end"
+        },
+        {
+          "type": "p",
+          "text": "The first time a player is sealed after joining, a chat line tells them whose field it is and how far to go for it to end. After that there's only a short line above the hotbar, and not even that if they were freed only moments ago."
+        },
+        {
+          "type": "p",
+          "text": "In the inventory, the accessory slots are shaded dark purple with a sealed icon, and hovering over an item shows whose field it is. The same small icon sits to the left of the hotbar."
+        },
+        {
+          "type": "h",
+          "text": "Getting out of it"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Get beyond {cfg:general.computer_seal.radius|add:2} blocks, or go to another world.",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "Don't fight them. If neither of you has hit the other in the last {cfg:general.computer_seal.combat_window_ticks|sec}, the field can't cover you, and a hit that armor or a shield blocked completely still counts as a hit."
+            },
+            {
+              "if": "cfg:general.computer_seal.respect_claims",
+              "text": "Stand where they can't break blocks, such as your own claim."
+            },
+            "It only seals curios. Armor, weapons and potions work as usual."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Extra slots granted by curios, such as ring slots from a belt, stay while sealed, so nothing in them gets pushed out.",
+            "Death drops, saving and moving curios around the inventory all work as usual. They just do nothing while worn. You can still put new ones on, and they're sealed the moment you do. Curios that allow only one of a kind still allow only one while sealed.",
+            "Some curios check the accessory bar on their own and may keep working inside the field, fully or in part.",
+            "At the moment you fall, they still count as not worn, so curios that save you from death or keep your items when you die usually do nothing while sealed.",
+            "Curios that add accessory slots, such as belts, gloves and capes, are not sealed. They keep working and the slots they grant stay, but other curios placed in those slots are still sealed.",
+            {
+              "if": "mod:enigmaticlegacy",
+              "text": "Enigmatic Legacy's Ring of the Seven Curses is not sealed. Its curses stay on and its worn time keeps counting."
+            },
+            {
+              "if": "cfg:general.computer_seal.slow_fall_ticks>0",
+              "text": "Anyone in mid-air at the moment of sealing gets {cfg:general.computer_seal.slow_fall_ticks|sec} of Slow Falling, so a flying curio switching off won't kill them. Someone gliding on elytra from their accessory bar gets it when the glide stops."
+            },
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "Two wearers who have fought each other and both have fields on seal each other, and each pays their own way. When several fields cover the same player, each wearer pays only for the players their own field covers."
+            },
+            {
+              "if": "!cfg:general.computer_seal.require_recent_combat",
+              "text": "Two wearers with fields on seal each other, and each pays their own way. When several fields cover the same player, each wearer pays only for the players their own field covers."
+            },
+            "Coming-and-going messages are merged, and someone who left and came straight back isn't announced again.",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "During a Holographic Projection fight, players on another team who have fought you, whoever landed the hit, get covered too, so turn the field off before fighting as a group."
+            },
+            {
+              "if": "!cfg:general.computer_seal.require_recent_combat",
+              "text": "During a Holographic Projection fight, players on another team get covered too, so turn the field off before fighting as a group."
+            },
+            "In some worlds the field does nothing. Switched on there, it doesn't run or use power, the terminal says \"Does nothing in this world\", and it carries on once you leave that world.",
+            {
+              "if": "cfg:general.computer_seal.respect_claims",
+              "text": "When someone stands where you can't change blocks, such as another player's claim, the field asks on your behalf whether you could, so now and then you may get the claim's \"no permission\" message. The same spot is asked about only once every 5 minutes. A player who was just refused is covered at most {cfg:general.protection.probe_cache_ticks|sec} after stepping out of the claim. It doesn't ask while you lack the power."
+            },
+            "In creative mode the field uses no MRU and never seals you.",
+            "The switch stays with you through logging out and dying. Put all four pieces back on and the field carries on."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "force_dome",
+      "title": "{item:essentialcraft5:force_dome}",
+      "icon": "essentialcraft5:force_dome",
+      "summary": "No more monsters spawning around your base",
+      "complete": "essentialcraft5:guide/computer/force_dome",
+      "optional": true,
+      "if": "cfg:machines.force_dome.enabled",
+      "items": [
+        "essentialcraft5:force_dome"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:force_dome}, place it in your base and give it MRU, and monsters stop spawning naturally around it."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:force_dome"
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 1 {item:essentialcraft5:force_field_generator} and 2 {item:essentialcraft5:force_field_plating}, both covered in [[computer/force_field]], plus 2 {item:essentialcraft5:neuronic_enriched_plating} from [[hologram/neuronic_plating]] and 4 {item:essentialcraft5:void_stone} from [[hoanna/void_stone]]."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the dome yourself. It works on behalf of whoever placed it.",
+            "Put a {item:essentialcraft5:bound_gem} that remembers an MRU source into the slot at the top right of its screen, the same way you feed any machine ([[crafting/bound_gem]]).",
+            "Watch the status on the first line. Right after you hook it up it may show \"No MRU!\" or \"Checking claims\", and after a few seconds it turns to \"Working\"."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The status reads \"Working\". The first time the dome starts working counts."
+        },
+        {
+          "type": "h",
+          "text": "What it stops"
+        },
+        {
+          "type": "p",
+          "text": "While it works, no monsters spawn naturally within {cfg:machines.force_dome.radius} blocks horizontally. That means no zombies, skeletons or creepers popping up at night or in caves, no phantoms, no pillager patrols and no zombie reinforcements. The radius is measured horizontally, and the whole column from bedrock to sky counts."
+        },
+        {
+          "type": "list",
+          "items": [
+            "It does not stop spawners, spawn eggs or commands, nor the illagers of a village raid.",
+            "It does not stop animals, villagers, fish and other creatures that aren't monsters.",
+            "It does not stop bosses such as the Wither, the Ender Dragon or the Holographic Projection.",
+            "It only stops spawning: monsters already there don't vanish, and monsters can still walk in from outside."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Only where you may build"
+        },
+        {
+          "type": "p",
+          "text": "The dome works chunk by chunk, 16 × 16 on the ground. For every chunk its range touches, it asks on your behalf whether you may change blocks there, checking the block at the middle of the chunk at the dome's height. Chunks you can't touch, such as someone else's claim or the area around the world spawn, are left alone and spawn monsters as usual."
+        },
+        {
+          "type": "p",
+          "text": "For a chunk where you may build, the answer is kept for {cfg:machines.force_dome.claim_cache_ticks|div:1200} min, and while you're online it asks again shortly before that runs out. For a chunk where you may not, the answer is kept for {cfg:machines.force_dome.claim_cache_ticks|div:12000} h, and it only asks again after that. After you log off it keeps using the answers it got while you were online. If they run out before you're back, those chunks go unprotected until you return and they are checked again."
+        },
+        {
+          "type": "h",
+          "text": "MRU use"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "At full load",
+              "{cfg:machines.force_dome.mru_per_tick|mul:20} MRU per second, when every chunk in range is protected"
+            ],
+            [
+              "Only some chunks protected",
+              "It costs that share: half the chunks, half the price"
+            ],
+            [
+              "Stores",
+              "{cfg:machines.force_dome.capacity} MRU"
+            ],
+            [
+              "Not enough MRU",
+              "Nothing is stopped that second and nothing is taken. Without enough for even one chunk for one second, it doesn't check claims either. It carries on once refilled"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The screen"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The third line counts the chunks in range. <g>ok</g> means you may build there and no monsters spawn, <w>unknown</w> means it hasn't asked yet or the answer ran out, so the chunk isn't protected for now, and <b>denied</b> means you may not build there and monsters spawn as usual.",
+            "The fourth line shows the radius and how much MRU it takes per second right now.",
+            "\"Nothing you can protect\" means you may build in none of the chunks in range, so the dome doesn't work and takes no MRU.",
+            {
+              "if": "cfg:machines.force_dome.max_per_owner>0",
+              "text": "\"Waiting: too many domes\" means one player already has the maximum of {cfg:machines.force_dome.max_per_owner} domes running at once, and the ones placed first go first. Break an earlier one or switch it off with redstone, and this one takes over."
+            },
+            "A redstone signal pauses it."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Monsters that were already nearby when the dome started working don't vanish, so clear them out first. Keep your own mob farm outside its range, or the farm stops spawning too."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "While it asks about claims for you, you may now and then get the claim's \"no permission\" message. A chunk where you may build is asked about once every {cfg:machines.force_dome.claim_cache_ticks|div:1200} min, and a chunk where you may not only once every {cfg:machines.force_dome.claim_cache_ticks|div:12000} h. If a neighbor lets you build later, break the dome and place it again, and it asks right away.",
+            "The dome decides for a whole chunk, from bedrock to sky, by the one block at the middle of the chunk at the dome's height. So where claims are boxes that cover only some layers, or their borders don't line up with chunks, a dome may cover part of a neighbor's claim. Placed in the wild right below or above someone's claim, it covers their whole column, and a claim smaller than a chunk that doesn't contain a chunk's middle is invisible to it.",
+            "A dome that no player placed by hand, such as one placed by a command, shows \"No owner\" and doesn't work.",
+            "When several domes cover the same chunk, any one of them working is enough.",
+            "Breaking it drops only the dome and its bound gem. The stored MRU is lost.",
+            "When the dome is too far from any player to keep running, it stops paying MRU, and soon stops protecting anything too."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "costs",
+      "title": "What the Whole Suit Costs",
+      "icon": "essentialcraft5:demonic_plate",
+      "summary": "Total materials for the suit and board",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Computer Guy's Suit is the most expensive thing in the mod. Below are the totals with every part broken down and everything made together. Spare parts from one craft go into the next piece, so this comes out a little cheaper than adding up the pieces one by one."
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            2
+          ],
+          "header": [
+            "Material",
+            "Four pieces",
+            "Four pieces + board"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:demonic_plate}",
+              "287",
+              "329"
+            ],
+            [
+              "{item:essentialcraft5:wind_gem}",
+              "48",
+              "55"
+            ],
+            [
+              "{item:essentialcraft5:void_mru_reactor}",
+              "4",
+              "5"
+            ],
+            [
+              "{item:essentialcraft5:matter_of_eternity}",
+              "2",
+              "3"
+            ],
+            [
+              "{item:essentialcraft5:elemental_gem} (for Demonic Cores)",
+              "80",
+              "96"
+            ],
+            [
+              "{item:essentialcraft5:mru_resonating_crystal}",
+              "48",
+              "56"
+            ],
+            [
+              "{item:essentialcraft5:fading_crystal}",
+              "48",
+              "56"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_crystal}",
+              "44",
+              "48"
+            ],
+            [
+              "{item:essentialcraft5:pale_plate}",
+              "16",
+              "20"
+            ],
+            [
+              "{item:essentialcraft5:combined_magical_alloys}",
+              "30",
+              "34"
+            ],
+            [
+              "{item:essentialcraft5:sun_imbued_glass}",
+              "2",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_glass_alloy}",
+              "1",
+              "1"
+            ],
+            [
+              "The four math cores",
+              "1 each",
+              "1 each"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Broken down to raw materials, again for everything made together:"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Raw material",
+            "Four pieces",
+            "Four pieces + board",
+            "Goes into"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mithriline_crystal}",
+              "92",
+              "104",
+              "48 / 56 of them become Fading Crystals in the furnace. Crafted instead, each takes 17 Mithriline Dust, or you can swap in Resonating Crystals one for one ([[mithriline/conversions]])"
+            ],
+            [
+              "{item:minecraft:blaze_powder}",
+              "240",
+              "272",
+              "the Blaze Alloys inside the Combined Magical Alloys"
+            ],
+            [
+              "{item:minecraft:ender_pearl}",
+              "240",
+              "272",
+              "the Ender Scale Alloys inside the Combined Magical Alloys. Pale Pearls work too"
+            ],
+            [
+              "{item:minecraft:diamond}, {item:minecraft:emerald}",
+              "48 each",
+              "56 each",
+              "For Resonating Crystals. Pale Gems can stand in for either ([[gear/pale_gem]])"
+            ],
+            [
+              "{item:essentialcraft5:ackronite_ingot}",
+              "288",
+              "332",
+              "Pressed into Demonic Plates. Each trade pays {cfg:general.demon.reward_min}–{cfg:general.demon.reward_max}"
+            ],
+            [
+              "{item:essentialcraft5:fortified_stone}",
+              "238",
+              "273",
+              "Each is pressed into one Magic Fortified Plate. Making them all takes about 60 Iron Ingots"
+            ],
+            [
+              "{item:minecraft:lapis_block}, {item:minecraft:gold_ingot}",
+              "16 each",
+              "20 each",
+              "Pale Ingots from the Radiating Chamber, 4 per craft, then Pale Plates"
+            ],
+            [
+              "{item:minecraft:nether_star}",
+              "2",
+              "3",
+              "For Matter of Eternity. The 5–7 for Holopads come on top ([[hologram/holopad]])"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "At 5–6 ingots per trade on average, the four pieces take about 50 trades, and about 60 with the board.",
+          "if": [
+            "cfg:general.demon.reward_min==3",
+            "cfg:general.demon.reward_max==8"
+          ]
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            2
+          ],
+          "header": [
+            "One piece alone",
+            "Demonic Plates",
+            "Wind Crystals"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:computer_helmet}",
+              "126",
+              "20"
+            ],
+            [
+              "{item:essentialcraft5:computer_chestplate}",
+              "105",
+              "17"
+            ],
+            [
+              "{item:essentialcraft5:computer_leggings}",
+              "96",
+              "15"
+            ],
+            [
+              "{item:essentialcraft5:computer_boots}",
+              "83",
+              "11"
+            ],
+            {
+              "if": "bauble:essentialcraft5:computer_board",
+              "cells": [
+                "{item:essentialcraft5:computer_board}",
+                "68",
+                "14"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The three slowest parts"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Wind Crystals</em>: 48 for the four pieces, {cfg:general.wind.gem_espe|mul:48} ESPE of imbuing in all. An altar's 8 pillars gather {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160} per second in the Overworld and {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160} in the End ([[wind/wind_rune]]).",
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "text": "That works out to about 33 hours of nonstop gathering for one Overworld altar, about 17 for two, and under 3 hours for three altars in the End."
+            },
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "text": "With all 8 pillars swapped for {item:essentialcraft5:pale_crystal_pillar}s, gathering is half again as fast: about 22 hours for one altar, 11 for two and 6 for four."
+            },
+            {
+              "if": "cfg:general.wind.gem_espe!=10000||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1",
+              "text": "Higher-tier pillars such as the {item:essentialcraft5:pale_crystal_pillar} make the altar gather faster ([[mithriline/crystal_pillar]])."
+            },
+            "<em>Ackronite</em>: each pressing turns 4 ingots into 4 plates, so the four pieces' 287 plates take 72 pressings and 288 ingots. Each trade pays {cfg:general.demon.reward_min}–{cfg:general.demon.reward_max} ([[demons/trade]]). Send away demons that ask too much and summon another.",
+            {
+              "if": [
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025"
+              ],
+              "text": "<em>Fading Crystals</em>: all 48 go through the Mithriline Furnace, about 11,500 ESPE in all. With all 13 pillar spots filled, that takes around half an hour in the Overworld ([[mithriline/conversions]])."
+            },
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025",
+              "text": "<em>Fading Crystals</em>: all 48 go through the Mithriline Furnace, about 11,500 ESPE in all. Give the furnace its own set of pillars ([[mithriline/conversions]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Saving time",
+          "text": "Pillars only gather while you're nearby, so build the Wind Rune altars and the Demonic Pentacle in the End and stay there, and both fill at once. With a Demonic Core in the Magician Table it runs at ×16, and thirty Combined Magical Alloys and seventy-odd plate pressings stop being a bottleneck."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.ley_condenser.enabled",
+          "text": "The Nether Stars for {item:essentialcraft5:matter_of_eternity} can also be condensed with a {item:essentialcraft5:ley_condenser} ([[ley/condensing]]), so you don't have to fight the Wither again."
+        }
+      ]
+    },
+    {
+      "id": "epilogue",
+      "title": "After the Suit",
+      "icon": "essentialcraft5:computer_engine",
+      "summary": "Three chapters left: modules, shade, rank nine",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "Three chapters left"
+        },
+        {
+          "type": "p",
+          "text": "The Fragments come almost to an end at Hoanna, and the demons, the Inquisitorium and this suit appear nowhere in them. Since you dug up your first drop and gathered your first MRU, you have built generators and an Enrichment Chamber, made mithriline, imbued wind, walked into Hoanna, traded with demons and brought down the Holographic Projection and the Inquisitorium Sentinel. Now you wear the Computer Guy's Suit."
+        },
+        {
+          "type": "p",
+          "text": "Three chapters of the main line remain. In Chapter 21, [[terminal/legend|Terminal and Modules]], you fit the suit with modules; Chapter 22 takes you to the Shadow Corrupted Land for materials, and Chapter 23 summons the Heart of Calamity. Blank modules need an {item:essentialcraft5:inquisitorium_chip} from the Sentinel of Chapter 19, so if you haven't fought it yet, go back for one."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original research book the Inquisitorium is only a rumor. The Holopad sends it a signal, and what answers is the Holographic Projection. The story from the echo onward was written for this version. The original's highest-tier category, \"Knowledges of SHADE\", was registered but never given a single page."
+        }
+      ]
+    }
+  ]
+}

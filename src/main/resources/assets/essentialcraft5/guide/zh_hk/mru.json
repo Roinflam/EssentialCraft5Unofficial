@@ -1,0 +1,458 @@
+{
+  "id": "mru",
+  "order": 20,
+  "group": "main",
+  "title": "第二章 · 第一份 MRU",
+  "subtitle": "靈魂石、UBMRU 與矩陣換能器",
+  "icon": "essentialcraft5:soul_stone",
+  "entries": [
+    {
+      "id": "soul_stone",
+      "title": "{item:essentialcraft5:soul_stone}",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "用綠寶石換一塊",
+      "complete": "essentialcraft5:main/soul_stone",
+      "items": [
+        "essentialcraft5:soul_stone"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "凡活物身上都罩着一層矩陣，是心神看管着的一小片 MRU。頭一份能拿來驅動機器的 MRU，我們是從自己身上取下來的。",
+          "by": "《源質殘卷·卷二》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：用儀式變出一塊{item:essentialcraft5:soul_stone}，再把它綁定到自己身上。"
+        },
+        {
+          "type": "p",
+          "text": "每個活物身上都籠着一層看不見的 <em>MRU 矩陣</em>，裏面存着的能量叫作 <em>UBMRU</em>。靈魂石是先輩用來看清矩陣的東西，它能記住一個人的矩陣，放進下一篇的矩陣換能器，這個人的 UBMRU 就會被換成機器能用的 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "list",
+          "items": [
+            "1 塊{item:minecraft:emerald_block}；",
+            "4 塊{item:minecraft:soul_sand}，要去地獄的靈魂沙峽谷或地獄要塞附近採集，靈魂土代替不了；",
+            "幾顆{item:minecraft:emerald}，每顆有一半的幾率換出一塊靈魂石。"
+          ]
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:emerald_block",
+            "R": "minecraft:soul_sand"
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:emerald",
+          "result": "essentialcraft5:soul_stone",
+          "chance": 0.5
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "綠寶石塊放在正中，東西南北四格各放一塊靈魂沙，綠寶石塊正上方保持空着。",
+            "站在近旁，把綠寶石丟到綠寶石塊正上方，儀式大約每秒吞下一顆，每吞一顆都有一半的幾率在原地蹦出一塊靈魂石。",
+            "拿到靈魂石後<em>右鍵</em>，它就綁定到了你身上，物品提示裏會寫着你的名字，你自己查看時還能看到身上現有多少 UBMRU。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "要站多近、多久判定一次，這些儀式的通用規則見[[elements/rituals]]。靈魂石儀式不管綠寶石是誰丟的，都照樣生效。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裏有一塊寫着你名字的靈魂石。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "靈魂石蹦出來以後，那一格還是空的，儀式會接着一顆一顆地吞綠寶石。一塊靈魂石平均要 2 顆綠寶石，要幾塊就丟幾塊的量，別把一整組扔下去。<w>整條主線要用 9 塊左右靈魂石</w>，約合 18 顆綠寶石，矩陣換能器用 1 塊，第四、八、十章的空白矩陣投影各用 1 塊，第十二章的五芒星用 5 塊。儀式台不必拆，留着隨用隨做。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "主手拿着潛行右鍵會解除綁定，右鍵別人綁過的靈魂石，它就改綁到你身上。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "矩陣二階起，主手拿着自己的靈魂石潛行右鍵改成開關[[matrix/reservoir|矩陣容量]]的自動換入，不再解綁；四階起對着聚集體按住，是矩陣虹吸。"
+            },
+            "靈魂石不能堆疊，一格只放得下一塊。",
+            "靈魂石還能拿去右鍵風之符文，讓你受到[[wind/windbound|風之眷顧]]。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "矩陣一階起，主手或副手拿着綁定你的靈魂石，就看得見 MRU 聚集體和它存了多少，和戴單片鏡一樣。"
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "你看自己的靈魂石，物品提示裏還寫着矩陣幾階、圖譜幾種，二階起還有矩陣容量和換入開關，別人看不到這幾行。"
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "拿着綁定你的靈魂石潛行右鍵{item:essentialcraft5:matrix_crucible}，身上的 UBMRU 會存進試煉儲備，死了也不丟，見[[matrix/crucible]]。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ubmru",
+      "title": "積攢 UBMRU",
+      "icon": "minecraft:iron_sword",
+      "summary": "擊殺生物，吸收它的矩陣",
+      "complete": "essentialcraft5:guide/first_kill",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：積攢足夠的 UBMRU，留到下一篇換成 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "自己的矩陣之外，先輩也從獵物身上取 MRU。親手殺死一隻生物，你就會吸走它的一部分矩陣，得到的 UBMRU 是它<em>基礎最大生命</em>的 10～30 倍，平均 20 倍。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "生物",
+            "基礎生命",
+            "平均得到"
+          ],
+          "widths": [
+            4,
+            2,
+            2
+          ],
+          "rows": [
+            [
+              "雞",
+              "4",
+              "80"
+            ],
+            [
+              "牛、豬",
+              "10",
+              "200"
+            ],
+            [
+              "喪屍、骷髏、苦力怕",
+              "20",
+              "400"
+            ],
+            [
+              "終界使者",
+              "40",
+              "800"
+            ],
+            [
+              "鐵人",
+              "100",
+              "2000"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "只有<em>你</em>親手殺死的才算，近戰、弓箭、三叉戟都行，寵物或機器代勞的，以及摔死、燒死的都不計。",
+            "按基礎生命算，藥水和裝備加上去的生命上限不算在內。",
+            "有幾件特殊飾品會改變每次擊殺的所得，見[[baubles/kill_ubmru]]。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier>0",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier!=1"
+          ],
+          "text": "每種敵對生物<b>第一次</b>被你親手殺死時，會記進你的[[matrix/codex|矩陣圖譜]]，這一下的 UBMRU 再多給 {cfg:general.matrix_rank.first_kill_ubmru_multiplier|pct}，快捷欄上方提示「矩陣圖譜 +1」。同一種以後再殺照常給。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier==1"
+          ],
+          "text": "每種敵對生物<b>第一次</b>被你親手殺死時，會記進你的[[matrix/codex|矩陣圖譜]]，這一下的 UBMRU <b>翻倍</b>，快捷欄上方提示「矩陣圖譜 +1」。同一種以後再殺照常給。"
+        },
+        {
+          "type": "h",
+          "text": "要積攢多少"
+        },
+        {
+          "type": "p",
+          "text": "從這裏一路做到第一台產能器，大約要花掉 1100 MRU，魔力工作台的配方佔 1060，輻射倉裏做強化材料用掉 70 左右。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated==1",
+          "text": "折算下來要 {cfg:machines.matrix_absorber.ubmru_usage|mul:1100} UBMRU，平均殺 {cfg:machines.matrix_absorber.ubmru_usage|mul:1100|div:400|round:0} 只喪屍就夠。不必一次攢齊，換能器一次只裝得下 {cfg:machines.matrix_absorber.max_mru} MRU，邊做邊打就行。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated!=1",
+          "text": "換能器每刻拿 {cfg:machines.matrix_absorber.ubmru_usage} UBMRU 換 {cfg:machines.matrix_absorber.mru_generated} MRU，一隻喪屍平均提供 400 UBMRU，照這兩個數就能算出要殺多少隻。不必一次攢齊，換能器一次只裝得下 {cfg:machines.matrix_absorber.max_mru} MRU，邊做邊打就行。"
+        },
+        {
+          "type": "p",
+          "text": "接在換能器上的機器都會先把自己存滿，光一台輻射倉就能囤下 {cfg:machines.radiating_chamber.max_mru} MRU。暫時不用的機器最好先取下綁定寶石，換出來的 MRU 才不會全壓在它裏面，詳見[[crafting/bound_gem]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "你親手殺過一隻生物，靈魂石上的數字不再是 0。"
+        },
+        {
+          "type": "tip",
+          "style": "bad",
+          "title": "死亡會清零",
+          "text": "<b>你一死，身上的 UBMRU 就全部清零</b>，要是被別的玩家殺死，這些 UBMRU 會整個歸到對方身上。攢下一些就儘早換成 MRU，存進機器的 MRU 不會因為你死去而消失。"
+        }
+      ]
+    },
+    {
+      "id": "matrix_absorber",
+      "title": "{item:essentialcraft5:matrix_absorber}",
+      "icon": "essentialcraft5:matrix_absorber",
+      "summary": "把你的 UBMRU 換成 MRU",
+      "complete": "essentialcraft5:main/matrix_absorber",
+      "items": [
+        "essentialcraft5:matrix_absorber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：造一台{item:essentialcraft5:matrix_absorber}，把你的 UBMRU 換成第一份 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "矩陣換能器是你造的第一台機器。MRU 相當於這個模組裏的電，機器都靠它運轉，最初的那一份就取自你自己的矩陣，MRU 的來龍去脈見[[start/mru]]。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：第一章做好的[[elements/parts]]，再加一塊綁定了你的{item:essentialcraft5:soul_stone}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_absorber"
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下矩陣換能器，右鍵打開界面。",
+            "把綁定了你的靈魂石放進它唯一的格子。",
+            "只要你在線，它每刻都從你身上抽一些 UBMRU 換成 MRU，一直到存滿。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "換算",
+              "每刻 {cfg:machines.matrix_absorber.ubmru_usage} UBMRU → {cfg:machines.matrix_absorber.mru_generated} MRU"
+            ],
+            [
+              "速度",
+              "每秒 {cfg:machines.matrix_absorber.mru_generated|mul:20} MRU"
+            ],
+            [
+              "容量",
+              "{cfg:machines.matrix_absorber.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.matrix_absorber.balance==1",
+              "cells": [
+                "平衡值",
+                "1.0（{balance:pure}）"
+              ]
+            },
+            {
+              "if": "cfg:machines.matrix_absorber.balance!=1",
+              "cells": [
+                "平衡值",
+                "{cfg:machines.matrix_absorber.balance}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "界面上的 MRU 漲起來了。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "靈魂石綁定了誰，換能器就抽誰的 UBMRU，<w>別把綁着你的靈魂石交給別人</w>。石頭的主人下線，或者換能器收到紅石信號，它都會停機，存滿以後也不再抽取。還沒換掉的 UBMRU 留在你身上，死了照樣清零。"
+        },
+        {
+          "type": "p",
+          "text": "換能器不會自己把 MRU 送出去，要由別的機器用綁定寶石來拉，下一章頭一件事就是做這個。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "攢[[matrix/crucible|試煉儲備]]的時候，先把靈魂石從換能器裏取下來。存儲備要手裏拿着這塊石頭，它留在換能器裏還會一直換走你身上的 UBMRU。"
+        }
+      ]
+    },
+    {
+      "id": "crucible",
+      "title": "{item:essentialcraft5:matrix_crucible}",
+      "icon": "essentialcraft5:matrix_crucible",
+      "summary": "突破矩陣階的台子",
+      "complete": "essentialcraft5:guide/matrix/crucible",
+      "items": [
+        "essentialcraft5:matrix_crucible"
+      ],
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做一台{item:essentialcraft5:matrix_crucible}，放在基地裏。"
+        },
+        {
+          "type": "p",
+          "text": "你身上那層矩陣還能變厚，一層一層地突破，叫<hl>矩陣階</hl>，每一階都給你一樣新本事。突破的地方就是淬鍊台：把這一階要的祭品和能量交進去，在台子邊打一場試煉。矩陣階是怎麼回事，見[[matrix/overview]]。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：用料都是第一、二章手邊的東西，見下面的配方。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_crucible"
+        },
+        {
+          "type": "list",
+          "items": [
+            "台子裏能存 {cfg:machines.matrix_crucible.max_mru} MRU，二階起的試煉要從這裏扣，用[[crafting/bound_gem|綁定寶石]]從產能器拉，下一章就會做。",
+            "祭品格只能親手放東西，漏斗塞不進去。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "台子四周 {cfg:general.matrix_rank.trial.spawn_radius_max} 格內最好留出空地，試煉時迴響要從那裏冒出來。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一台矩陣淬鍊台。"
+        }
+      ]
+    },
+    {
+      "id": "rank_1",
+      "title": "一階 · 覺察",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "第一場試煉",
+      "complete": "essentialcraft5:guide/matrix/rank_1",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在淬鍊台上打贏第一場試煉，升到矩陣一階「覺察」。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "親手殺過 4 種敵對生物，喪屍、骷髏、蜘蛛、苦力怕就夠"
+            ],
+            [
+              "祭品",
+              "{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}、{item:essentialcraft5:air_drops}各 4 顆"
+            ],
+            [
+              "能量",
+              "5000 UBMRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 2 只，同時最多 2 只；每隻 20 點生命，打你一下 4 點；限時 70 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "站着不動 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:10} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "打 4 種不同的敵對生物。每添一種，快捷欄上方都會提示「矩陣圖譜 +1」，規矩見[[matrix/codex]]。",
+            "把{item:essentialcraft5:matrix_absorber}裏的靈魂石取出來，接着打怪攢 UBMRU。",
+            "攢下一些，就拿着靈魂石潛行右鍵淬鍊台，存進你的試煉儲備，存夠 5000。",
+            "祭品放進台子，站在旁邊，主手拿着靈魂石打開界面，點「開始淬鍊」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒冒出來的 2 只矩陣迴響。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁邊不動、別受傷，等引導走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "屏幕正中出現「一階 · 覺察」，靈魂石的物品提示裏寫着矩陣一階。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>攢 UBMRU 時，換能器裏別放着你的靈魂石</em>。換能器沒存滿的時候，每刻都在換走你的 UBMRU，你攢不起來。身上的 UBMRU 死了就清零，攢一點就存一點；存進試煉儲備的死了也不丟。升完階再把石頭放回換能器。"
+        },
+        {
+          "type": "p",
+          "text": "一階的回報是<em>矩陣視覺</em>：主手或副手拿着綁定你的靈魂石時，看得見附近的 MRU 聚集體和它存了多少，不用戴單片鏡。突破的那一下也會給你一點矩陣損傷，見[[matrix/crucible]]。"
+        }
+      ]
+    }
+  ]
+}

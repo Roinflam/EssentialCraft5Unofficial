@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_wind_keeper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essentialcraft5:wind_keeper"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "essentialcraft5:wind/wind_tablet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wind_keeper",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "essentialcraft5:wind/wind_tablet"
+    ]
+  },
+  "sends_telemetry_event": false
+}

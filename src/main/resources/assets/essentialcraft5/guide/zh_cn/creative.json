@@ -1,0 +1,305 @@
+{
+  "id": "creative",
+  "order": 99,
+  "group": "side",
+  "title": "支线 · 无尽道具",
+  "subtitle": "没有合成配方的无尽能源与护符",
+  "icon": "essentialcraft5:infinite_mru_source",
+  "entries": [
+    {
+      "id": "creative_items",
+      "title": "无尽道具",
+      "icon": "essentialcraft5:infinite_mru_source",
+      "summary": "没有合成配方的无尽能源与护佑护符",
+      "items": [
+        "essentialcraft5:infinite_mru_source",
+        "essentialcraft5:infinite_espe_source",
+        "essentialcraft5:infinite_thermal_source",
+        "essentialcraft5:infinite_mru_crystal",
+        "essentialcraft5:creative_ward",
+        "essentialcraft5:balance_setter",
+        "essentialcraft5:creative_mru_storage",
+        {
+          "if": "cfg:machines.mru_converter.enabled",
+          "items": [
+            "essentialcraft5:infinite_mru_converter"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "这几件东西不在任何一卷残卷里，也查不到是谁造的、用什么造的。我见过的几件，都是别人亲手交给我的。",
+          "by": "编者按"
+        },
+        {
+          "type": "p",
+          "text": "这几件道具<em>没有合成配方</em>，生存模式里做不出来，战利品和交易里也不会有，只能由别人从创造模式物品栏里取出来交给你。到了手里，在生存模式下照常能用。"
+        },
+        {
+          "type": "p",
+          "text": "其中的方块用镐挖下来会掉落自身，随时能搬走重新放，苦力怕和 TNT 都炸不坏它们，随身的那几件带在身上就生效。这些道具都不会改动周围的方块，也不会产生腐化。MRU、ESPE 这些名词的解释见[[start/glossary]]。"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:infinite_mru_source",
+            "essentialcraft5:infinite_espe_source",
+            "essentialcraft5:infinite_thermal_source"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "道具",
+            "怎么用",
+            "效果"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:infinite_mru_source}",
+              "放在机器旁边",
+              "每秒给 <t>8</t> 格内消耗 MRU 的机器补满，用绑定宝石连上它，怎么抽都不会少"
+            ],
+            [
+              "{item:essentialcraft5:infinite_espe_source}",
+              "放在米斯莱熔炉、水晶柱旁边",
+              "每秒把 <t>8</t> 格内的 ESPE 补满"
+            ],
+            [
+              "{item:essentialcraft5:infinite_thermal_source}",
+              "空手右键切换冷热",
+              "能当热力产能器最好的热源，也能当冷凝器最好的冷源"
+            ],
+            {
+              "if": [
+                "cfg:machines.mru_converter.enabled",
+                "!mod:botania"
+              ],
+              "cells": [
+                "{item:essentialcraft5:infinite_mru_converter}",
+                "紧贴在接收能量的方块旁边",
+                "不消耗 MRU，往外输送能量（FE），速度和恶魔 MRU 转换器一样"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.mru_converter.enabled",
+                "mod:botania"
+              ],
+              "cells": [
+                "{item:essentialcraft5:infinite_mru_converter}",
+                "紧贴在接收能量或魔力的方块旁边",
+                "不消耗 MRU，往外输送能量（FE）或植物魔法的魔力，速度和恶魔 MRU 转换器一样"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:infinite_mru_crystal",
+              "cells": [
+                "{item:essentialcraft5:infinite_mru_crystal}",
+                "带在身上",
+                "消耗 MRU 的物品都从它这里扣，它自己永远是满的"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:creative_ward",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:creative_ward}",
+                "带在身上",
+                "UBMRU 始终是满的，矩阵损伤和海纳尔辐射保持为 0"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:creative_ward",
+                "!cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:creative_ward}",
+                "带在身上",
+                "UBMRU 始终是满的，矩阵损伤保持为 0"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "两个无尽源"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:infinite_mru_source}每秒补一轮，补的是三个轴向各 <t>8</t> 格以内、靠[[crafting/bound_gem]]取 MRU 的机器，一轮最多补满 <t>32</t> 台，没轮到的留到下一轮。"
+        },
+        {
+          "type": "p",
+          "text": "它不给产能器补，因为灌满以后产能器会停止燃烧，反倒看不出产量。"
+        },
+        {
+          "type": "p",
+          "text": "它也能像普通的源头一样用绑定宝石连接，一次就能抽满。补出去的 MRU 带着它自己的平衡值，可以用{item:essentialcraft5:balance_setter}来改。设定器同样没有配方，只在创造模式下能用，右键在{balance:frozen}、{balance:pure}、{balance:chaos}三档之间切换，再潜行右键这个源，它就设成当前选中的那一档。"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:infinite_espe_source}同样每秒补一轮，范围 <t>8</t> 格，一轮最多 <t>32</t> 个，给[[mithriline/furnace]]和[[mithriline/crystal_pillar]]补满 ESPE，五芒星和风之符文从柱子里抽，就不会再缺。放在熔炉抽 ESPE 的那个位置上也行。"
+        },
+        {
+          "type": "p",
+          "text": "空手右键这两个源，快捷栏上方会显示上一轮补了几个。"
+        },
+        {
+          "type": "h",
+          "text": "无尽 MRU 转换器",
+          "if": "cfg:machines.mru_converter.enabled"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_converter.enabled",
+          "text": "{item:essentialcraft5:infinite_mru_converter}的用法和普通的 MRU 转换器一样，见[[converter/mru_converter]]，在界面上选好一种输出，它就会推给紧贴着它的方块。它没有宝石槽，不消耗 MRU，也不往外漏 MRU，每刻按 {cfg:machines.mru_converter.infinite.max_mru_per_tick} MRU 的量折算输出。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.mru_converter.enabled",
+            "cfg:machines.mru_converter.max_per_owner>0"
+          ],
+          "text": "你所有的转换器里，同时最多只有 {cfg:machines.mru_converter.max_per_owner} 台在工作，它和普通转换器一起算进这个台数。"
+        },
+        {
+          "type": "h",
+          "text": "冷热源"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:infinite_thermal_source}默认是热源，给[[generators/heat_generator]]的系数是 <t>1</t>，一点衰减也没有，岩浆是 0.95。在东南西北四个方向各隔一格放一块，位置和放岩浆时一样，就能满产。"
+        },
+        {
+          "type": "p",
+          "text": "空手右键能换成冷源，一块就能给[[generators/cold_distillator]]提供 <t>171</t> 冷值，相当于在它周围摆满霜冻石。热源不给冷值，冷源也不给热量，放错了一样不会产出。"
+        },
+        {
+          "type": "h",
+          "text": "随身带的道具",
+          "if": "bauble:essentialcraft5:infinite_mru_crystal||bauble:essentialcraft5:creative_ward"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:infinite_mru_crystal"
+          ],
+          "if": "bauble:essentialcraft5:infinite_mru_crystal"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:creative_ward"
+          ],
+          "if": "bauble:essentialcraft5:creative_ward"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:infinite_mru_crystal",
+              "text": "{item:essentialcraft5:infinite_mru_crystal}：放在背包、副手或饰品栏的指环位，法杖、护符、魔力之翼这些消耗 MRU 的物品都从它这里扣，它永远是满的，带着它时，身上别的储存物品一点也不会被扣。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:creative_ward",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "{item:essentialcraft5:creative_ward}：放在背包或饰品栏的项链位，[[mru/ubmru|UBMRU]]会一直是满的，[[corruption/matrix_damage|矩阵损伤]]和海纳尔辐射保持为 0，所以不会再抽到腐化效果。被人击杀时，护符补出来的那部分不会被对方拿走，摘下护符以后，UBMRU 会回到戴上之前的数值。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:creative_ward",
+                "!cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "{item:essentialcraft5:creative_ward}：放在背包或饰品栏的项链位，[[mru/ubmru|UBMRU]]会一直是满的，[[corruption/matrix_damage|矩阵损伤]]保持为 0，所以不会再抽到腐化效果。被人击杀时，护符补出来的那部分不会被对方拿走，摘下护符以后，UBMRU 会回到戴上之前的数值。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "带着{item:essentialcraft5:infinite_mru_crystal}时，[[gear/mhs_armor]]、[[gear/void_armor]]和[[computer/suit]]挡伤害所花的 MRU 也由它付，每件盔甲自己存的 MRU 不再减少。每件自己要先有一点 MRU 才会挡伤害，空的要先充一下。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal",
+            "cfg:general.attunement.enabled"
+          ],
+          "text": "同调以后多挡的几种伤害不算在内：[[attunement/mhs_armor|魔力防护]] 2 阶挡的放电，[[attunement/computer_armor|宅男套装]] 2 阶起挡的魔法和无视护甲的伤害。这几样不从晶体扣，照旧花别的储存物品和盔甲自己存的 MRU。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal"
+          ],
+          "text": "带着{item:essentialcraft5:infinite_mru_crystal}时，[[gear/mhs_armor]]挡伤害所花的 MRU 也由它付，每件盔甲自己存的 MRU 不再减少。每件自己要先有一点 MRU 才会挡伤害，空的要先充一下。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal",
+            "cfg:general.attunement.enabled"
+          ],
+          "text": "[[attunement/mhs_armor|魔力防护]]同调到 2 阶以后多挡的放电不算在内，这部分不从晶体扣，照旧花别的储存物品和盔甲自己存的 MRU。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal||bauble:essentialcraft5:creative_ward"
+          ],
+          "text": "这两件戴在饰品栏里时，被[[computer/seal_field|饰品封禁场]]罩住也会失效，放在背包或副手里的不受影响。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "text": "护佑护符只挡得住新的腐化，身上已有的腐化效果不会因此消失，要单独去治，见[[pentacle/cure]]。",
+          "if": [
+            "bauble:essentialcraft5:creative_ward",
+            "cfg:general.corruption.effects_enabled"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "创造模式物品栏里还有{item:essentialcraft5:creative_mru_storage}和{item:essentialcraft5:creative_espe_storage}，名字和无尽源相近，却是两样不同的东西。它们是原作就有的源头，只等机器来抽，不会主动给周围补。"
+        }
+      ],
+      "_src": [
+        "registry/ECCreative.java INFINITE_MRU_CONVERTER — 无尽 MRU 转换器（2026-10-13）：属性 infiniteBlock（硬度 1、抗爆 1200），方块类 block/MRUConverterBlock 档位 INFINITE；blockentity/MRUConverterBlockEntity.java ConverterTier.INFINITE — 0 格（没有宝石槽）、MRU 容量 0，convert 里不扣 MRU、每刻把缓存补满，按 machines.mru_converter.infinite.max_mru_per_tick（默认 2560，和 demonic.max_mru_per_tick 相同）折算；leak 只在 !tier.infinite() 时；名额 earlierClaimers 不分档位一起数（max_per_owner）；块和行带 cfg:machines.mru_converter.enabled（整个转换器开关），魔力那一行带 mod:botania",
+        "registry/ECCreative.java:23 — 五件都没有配方、不进战利品和交易，只放创造栏（gametest CreativeTests.creativeItemsAreCreativeOnly 查配方表）；item/creative/CreativeOnly.java:22 提示最后一行「没有合成配方」",
+        "registry/ECCreative.java:43 — 三个方块抗爆 BLAST_RESISTANCE 1200（同黑曜石），硬度 1、进 mineable/pickaxe、掉落自己（CreativeTests.infiniteBlocksMineableInSurvival）；整章不带游戏模式条件（CreativeTests.infiniteGuideChapterForEveryone）",
+        "blockentity/creative/InfiniteMRUSourceBlockEntity.java:42 / 44 / 46 — RADIUS 8（三个轴各自）、INTERVAL 20 刻、MAX_FILLED 32；只补靠绑定宝石吃 MRU 的机器（isLinkedConsumer），产能器不补；对外是 InfiniteMRUHandler（取多少给多少）；平衡值按自己的存储补出去（MRUStorage.pullFrom）",
+        "block/creative/InfiniteMRUSourceBlock.java:41 — 空手右键在动作栏报上一轮补了几台；拿着东西时 PASS（绑定宝石照常能点它绑定）",
+        "blockentity/creative/InfiniteESPESourceBlockEntity.java:36~38 — RADIUS 8、INTERVAL 20、MAX_FILLED 32；走 ESPETransfer.pull，目标按自己的按面规则收（米斯莱熔炉只进不出、水晶柱能进能出）",
+        "block/creative/InfiniteThermalSourceBlock.java:37 / 39 / 74 — 空手右键切换；HEAT_MODIFIER 1（对冷凝器 0）；COLD_VALUE 171 = (7 × 7 × 7 − 1) × 霜冻石 0.5（对热力产能器 0）；blockentity/HeatGeneratorBlockEntity.java:178 取东南西北隔一格（relative 2），岩浆 0.95；ColdDistillatorBlockEntity.java:118 scanCold 7 × 7 × 7 求和",
+        "item/creative/InfiniteMRUCrystalItem.java:132 isInfinite；mru/MRUDrain.java:88 见到 isInfinite 就由它全付，别的储存物品不动；被 general.baubles.disabled 列入时整件不生效（InfiniteMRUCrystalItem.java:56 提示写已禁用，MRUDrain.java:129 不算储存物品）；物品标签 curios:ring",
+        "item/creative/CreativeWardItem.java:46 — WARD_UBMRU 10 亿、每 20 刻 settle：生效就补（先记原来的 UBMRU），不生效且有记录就退回 min(当前, 记录)；corruption/CorruptionTicker 里矩阵损伤清零；hoanna/Radiation 剂量保持 0；player/UBMRUEvents.handleDeath 有记录时杀手最多拿走记录的数；已有的腐化效果不动；被禁用时不生效（L69 / L144）；物品标签 curios:necklace",
+        "blockentity/creative/CreativeScan.java:41 — 只看已完全加载的区块（getChunkNow），每轮最多看 512 个范围内的方块实体",
+        "item/armor/MRUShield.java:138 absorb — 虚空套装、宅男套装挡伤害：这件自己没电（L146）就不挡；有电时 MRUDrain.playerUseMRU 先扣身上的储存物品（带着无尽晶体时由它全付）",
+        "corruption/CorruptionTicker.java:85 — 带着护符时矩阵损伤清零；hoanna/Radiation 剂量保持 0（只在海纳尔之门开着时写进正文，表格和列表按 general.hoanna.portal_enabled 分两行）",
+        "item/BalanceSetterItem.java 类注释 — 右键切换模式 0 / 1 / 2（冰冻、纯净、混沌），潜行右键有 MRU 的方块实体设平衡值；设值只在创造模式（或权限 2）生效；没有配方",
+        "item/creative/CreativeWardItem.java protects — 背包 41 格逐格看 + 饰品缓存（被压制的跳过）；mru/MRUDrain.java storages 饰品栏里被封的不收，背包、副手照收"
+      ]
+    }
+  ]
+}

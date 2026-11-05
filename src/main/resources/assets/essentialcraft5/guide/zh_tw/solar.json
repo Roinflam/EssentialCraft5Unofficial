@@ -1,0 +1,484 @@
+{
+  "id": "solar",
+  "order": 74,
+  "group": "main",
+  "title": "第十章 · 日光",
+  "subtitle": "把正午的太陽收進來",
+  "icon": "essentialcraft5:solar_prism",
+  "entries": [
+    {
+      "id": "sun_imbued_glass",
+      "title": "{item:essentialcraft5:sun_imbued_glass}",
+      "icon": "essentialcraft5:sun_imbued_glass",
+      "summary": "聚光的鏡片",
+      "complete": "essentialcraft5:guide/solar/sun_imbued_glass",
+      "items": [
+        "essentialcraft5:sun_imbued_glass"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "拿一面放大鏡，把太陽聚在 MRU 金屬上，照了一整天，得了十來個 MRU。於是我做了一面很大很大的放大鏡，往裡灌滿了 MRU，只等一個晴天的正午。",
+          "by": "《工坊手記》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做一塊{item:essentialcraft5:sun_imbued_glass}。手記裡那面大放大鏡就是太陽稜鏡，鏡片用的正是這種玻璃。這一章的器物都離不開它，日光吸收器要 1 塊，太陽稜鏡要 5 塊，一共要 6 塊。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "這一章要準備什麼",
+          "text": "這是到目前為止最貴的一章，6 塊日光玻璃加 4 塊注魔合金，一共約要 24 顆鑽石、24 顆綠寶石、32 份烈焰粉、33 顆末影珍珠和 130 多塊鐵錠。魔力工作台要走完約 12 萬點進度，摺合 {cfg:machines.magician_table.mru_usage_modifier|mul:120000|int} MRU，裝著注魔合金約需 20 分鐘，不裝要 100 分鐘。鑽石、綠寶石不夠時，可以趁工作台在家裡慢慢做，出門挖礦或找村民交易，也可以用[[gear/pale_gem]]頂替，一顆鑽石能換四顆，鑽石板和綠寶石板都認它。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：1 塊{item:essentialcraft5:magic_purified_glass_alloy}、2 塊{item:essentialcraft5:diamond_plate}和 2 塊{item:essentialcraft5:emerald_plate}。鑽石板、綠寶石板在普通工作台裡做，每塊要 2 顆鑽石或綠寶石、4 塊鐵錠和 1 顆{item:essentialcraft5:elemental_gem}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:sun_imbued_glass"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "魔力工作台正中放玻璃合金。",
+            "四角放兩塊鑽石板和兩塊綠寶石板，同一種的兩塊佔一條對角線，哪種佔哪條都行。",
+            "做一塊耗 {cfg:machines.magician_table.mru_usage_modifier|mul:10000|int} MRU，工作台裝著注魔合金的話約需 1 分 40 秒。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裡有一塊日光玻璃。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "先裝升級",
+          "text": "開工前確認工作台裝著{item:essentialcraft5:combined_magical_alloys}，MRU 源每刻也供得上 {cfg:machines.magician_table.mru_usage_modifier|mul:5} MRU，不然這一章光是等工作台就要一個多小時。注魔合金的做法見[[alloys/combined_magical_alloys]]。"
+        }
+      ]
+    },
+    {
+      "id": "sun_ray_absorber",
+      "title": "{item:essentialcraft5:sun_ray_absorber}",
+      "icon": "essentialcraft5:sun_ray_absorber",
+      "summary": "把光束變成混沌 MRU",
+      "complete": "essentialcraft5:guide/solar/sun_ray_absorber",
+      "items": [
+        "essentialcraft5:sun_ray_absorber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：造一台{item:essentialcraft5:sun_ray_absorber}。日光裡也散著 MRU，只是太稀，要聚成一束才收得起來。吸收器自己不產能，等著頭頂的太陽稜鏡把光束打下來，被照著的每一刻產出 {cfg:machines.sun_ray_absorber.mru_generated} MRU，一道光束持續 1 秒，合計 {cfg:machines.sun_ray_absorber.mru_generated|mul:20} MRU。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：1 塊日光玻璃、1 個{item:essentialcraft5:chaos_matrix_projection}，再加上產能器常用的那套零件，魔力螢幕、MRU 收集器、世界互動器、元素核心、MRU 轉換矩陣各 1 個，以及 2 塊魔力板。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:sun_ray_absorber"
+        },
+        {
+          "type": "h",
+          "text": "混沌矩陣投影從哪來"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在輻射倉裡用平衡值 1.5 以上的 MRU 照射{item:essentialcraft5:empty_matrix_projection}，要 1 萬刻，約 8 分鐘，詳見[[generators/projections]]。",
+            {
+              "if": "cfg:machines.heat_generator.balance<0",
+              "text": "{item:essentialcraft5:heat_generator}放下時平衡值在 0~2 之間隨機，看一眼它的介面，不到 1.5 就拆掉重放，直到碰上 1.5 以上的，每次大約有四分之一的機率。"
+            },
+            "給這台產能器單獨接一台空的輻射倉。輻射倉裡原本存著別的 MRU 的話，兩者會混在一起，平衡值就不夠高了。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "吸收器放在露天處，頭頂留出一整列空氣，下一篇的稜鏡要架在它正上方。",
+            "把用 MRU 的機器綁到它身上，最好綁富集倉的接收器，MRU 一進來就被抽走。它能存 {cfg:machines.sun_ray_absorber.max_mru} MRU，沒有物品格。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一台日光吸收器。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "它的 MRU 是混沌的",
+          "text": "它產出的 MRU 平衡值是 {cfg:machines.sun_ray_absorber.balance}，2.0 就是{balance:chaos}。輻射倉裡有些配方挑平衡值，比如魔力矩陣投影要 0.5~1.5，做這類東西的機器要綁到別的源頭上。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "機器裡存著的平衡值，是從各個源頭拉進來的 MRU 按量混出來的。同一台機器在幾個源頭之間換著綁，也會把它們混在一起，要等存量用光，平衡值才會完全換成新源頭的。",
+            "收到紅石訊號時停機。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solar_prism",
+      "title": "{item:essentialcraft5:solar_prism}",
+      "icon": "essentialcraft5:solar_prism",
+      "summary": "把正午的陽光聚成光束",
+      "complete": "essentialcraft5:guide/solar/solar_prism",
+      "items": [
+        "essentialcraft5:solar_prism"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在吸收器正上方架一台{item:essentialcraft5:solar_prism}。晴天正午，它把陽光聚成一道光束，筆直地打在正下方的吸收器上。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：4 塊注魔合金和 5 塊日光玻璃，這是到目前為止最貴的一件東西，再備 4 個任意方塊當支架。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:solar_prism"
+        },
+        {
+          "type": "h",
+          "text": "稜鏡這一層"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:solar_prism"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在吸收器正上方選一個高度，兩者之間至少隔一格空氣，隔得多些也行。",
+            "先在稜鏡那一層的東南西北各<em>隔一格</em>放一個方塊當支架，用什麼方塊都行，緊挨著稜鏡的 8 格要空著。",
+            "稜鏡懸在半空不好放，可以先在它正下方墊一塊臨時方塊，放好稜鏡再把墊塊拆掉。",
+            "它每秒查一次擺法，擺得不對就自己掉下來，所以一定要先搭好支架再放稜鏡。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "上下關係"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "S": "essentialcraft5:solar_prism",
+            "R": "essentialcraft5:sun_ray_absorber",
+            "B": {
+              "block": "minecraft:stone",
+              "label": "structure.essentialcraft5.rule.any_block"
+            },
+            "A": "air"
+          },
+          "layers": [
+            {
+              "pattern": [
+                "     ",
+                "     ",
+                "  R  ",
+                "     ",
+                "     "
+              ],
+              "label": "吸收器（在正下方，和稜鏡之間至少隔一格空氣）"
+            },
+            {
+              "pattern": [
+                "     ",
+                "     ",
+                "  A  ",
+                "     ",
+                "     "
+              ],
+              "label": "空氣（至少一格，再多幾格也行）"
+            },
+            {
+              "pattern": [
+                "  B  ",
+                " AAA ",
+                "BASAB",
+                " AAA ",
+                "  B  "
+              ],
+              "label": "稜鏡"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "光束落在稜鏡正下方<em>第一個不是空氣</em>的方塊上，所以稜鏡和吸收器之間要全是空氣。稜鏡正下方緊挨著的那格只要有東西，就一道光束也打不出來，所以別把吸收器直接墊在稜鏡底下。"
+        },
+        {
+          "type": "h",
+          "text": "什麼時候出光束"
+        },
+        {
+          "type": "p",
+          "text": "下面幾條同時滿足時，稜鏡每刻有 {cfg:machines.solar_prism.solar_beam_chance|pct} 的機率打下一道光束。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.solar_prism.requires_unobstructed_sky",
+              "text": "稜鏡頭頂看得到天空，普通玻璃不擋，遮光玻璃會擋。"
+            },
+            {
+              "if": "!cfg:machines.solar_prism.ignore_rain",
+              "text": "沒有下雨。"
+            },
+            {
+              "if": "cfg:machines.solar_prism.requires_midday",
+              "text": "時間在正午前後，即遊戲裡 11 點到 13 點、太陽快到頭頂的那一段，對應一天中的第 5000~7000 刻，每天只有約 100 秒。"
+            },
+            {
+              "if": "!cfg:machines.solar_prism.requires_midday",
+              "text": "不挑時間，白天黑夜都行。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每道光束持續 1 秒，也就是 20 刻，吸收器在這 20 刻裡每刻產出 {cfg:machines.sun_ray_absorber.mru_generated} MRU。幾道光束同時照著同一台吸收器時，產量不疊加。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.solar_prism.requires_midday",
+          "text": "算下來，正午那 100 秒裡大約四成時間有光，一個晴天能收到約 40 萬 MRU，吸收器卻只存得下 {cfg:machines.sun_ray_absorber.max_mru}，一定要有機器或富集倉隨時把它抽空。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "晴天正午，一道黃色光柱從天上落下來打在吸收器上，吸收器的 MRU 跟著往上漲。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "光束會燒怪",
+          "text": "光束落下時，落點周圍水平 6 格、往下 6 格到往上 134 格範圍內的<em>敵對生物</em>會著火 5 秒，光束亮著的這 1 秒裡每半秒受 3 點傷害。玩家、動物和村民都不受影響，站在吸收器旁邊看也沒事。",
+          "if": "!cfg:machines.solar_prism.burn_players"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "小心",
+          "text": "光束落下時，落點周圍水平 6 格、往下 6 格到往上 134 格範圍內的敵對生物和玩家會著火 5 秒，光束亮著的這 1 秒裡每半秒受 3 點傷害。動物和村民不受影響，要看的話就站得離吸收器遠一些。",
+          "if": "cfg:machines.solar_prism.burn_players"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一道光束只供一台吸收器。落點就是吸收器時供給它，落在別的方塊上時，供給落點旁邊一格以內、往上最多兩格範圍裡最近的那台。",
+            "想讓一台吸收器更常被照到，可以多架幾台稜鏡，錯開高度，分別架在吸收器正上方和緊挨著的幾列上，讓光束都落在吸收器旁邊。2 台約六成時間有光，3 台約八成，每刻的產量卻不會超過一道光束的量。",
+            "動物、村民、寵物，以及起了名字或拴著繩的怪物都不會被光束燒到，掉落物和盔甲架也不受影響，落點離鄰居的領地再近，也燒不著那邊的牲口。",
+            "光束不會點燃方塊。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書提到，拿一面放大鏡把陽光聚在 MRU 金屬上照一整天，只得到 10 MRU 左右，後來便有了一面「巨大的、灌注了 MRU 的放大鏡」，在沒有一絲雲的正午，它聚出的光束能熔穿金屬。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "想再添一種產能器，可以看下一篇可選的[[solar/ender_generator]]，主線接著進入下一章的[[mithriline/mithriline_ingot]]。"
+        }
+      ]
+    },
+    {
+      "id": "rank_3",
+      "title": "三階 · 定性",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "你的矩陣屬性開始起作用",
+      "complete": "essentialcraft5:guide/matrix/rank_3",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：升到矩陣三階「定性」。這一階起，你的矩陣屬性帶來一項被動，帶矩陣特性的武器也開始起作用。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "一共 13 種，其中地獄 3 種"
+            ],
+            [
+              "矩陣屬性",
+              "不能是中性：先吸收一塊混沌、冰凍、魔力或暗影矩陣投影，見[[gear/projection_use]]"
+            ],
+            [
+              "祭品",
+              "第九章的[[essence/essences|精華]] 4 個，要同一種、疊在同一格里（哪種元素、哪個稀有度都行，不能混著放）、1 塊{item:essentialcraft5:combined_magical_alloys}、1 塊{item:essentialcraft5:sun_imbued_glass}"
+            ],
+            [
+              "能量",
+              "台子裡 1 萬 MRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 4 只，同時最多 3 只；每隻 44 點生命，打你一下 6 點；限時 90 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "站著不動 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:30} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "挑一種矩陣屬性，吸收那種投影。選哪種屬性，就是選哪種打法，四種的區別見[[matrix/alignment]]。",
+            "把祭品放進淬鍊台的祭品格，台子裡的 MRU 用綁定寶石備夠。",
+            "站在台子 3 格內，主手拿著綁定你的靈魂石，開啟介面，右邊全打勾以後點「開始淬鍊」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒夠數的矩陣迴響，別離開台子太遠。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁邊不動，也別受傷，等引導走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "螢幕正中出現「三階 · 定性」，靈魂石的物品提示裡寫著矩陣三階。"
+        },
+        {
+          "type": "p",
+          "text": "三階的回報是[[matrix/alignment|相性]] I：混沌加傷害，冰凍擋近戰、凍住對手，魔力省電，暗影要等八階才有。帶矩陣特性的武器打實以後，還會按你的屬性多出一樣效果。矩陣容量漲到 {cfg:general.matrix_rank.pool_per_rank|mul:2}。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "三階以後再換屬性，就再吸收一塊別的投影，代價照舊，相性的級數不丟。"
+        }
+      ]
+    },
+    {
+      "id": "ender_generator",
+      "title": "{item:essentialcraft5:ender_generator}",
+      "icon": "essentialcraft5:ender_generator",
+      "summary": "拿終界使者產能",
+      "complete": "essentialcraft5:guide/solar/ender_generator",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ender_generator"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:ender_generator}。它把附近的終界使者拉到自己頭頂，一下一下地打，每打中一次產出 {cfg:machines.ender_generator.mru_generated} MRU。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：1 塊{item:essentialcraft5:magic_purified_ender_scale_alloy}、1 個魔力強化框架、2 個 MRU 轉換矩陣，再加魔力螢幕、MRU 收集器、元素核心、世界互動器、魔力板各 1 個。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ender_generator"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把它放在終界這類終界使者多的地方，沒有紅石訊號時它自己就會幹活。",
+            "周圍 {cfg:machines.ender_generator.radius} 格內的終界使者都會被拉到它頭頂，離它 2 格以內的每刻受 1 點魔法傷害，起了名字或拴著繩的終界使者不受影響。",
+            "終界使者挨一下以後有半秒無敵，所以一隻終界使者每秒最多產出兩次。挨打的終界使者多半會瞬移走，落點還在 {cfg:machines.ender_generator.radius} 格內就會被拉回來，跑出去就留不住了。",
+            "把用 MRU 的機器綁到它身上。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每打中一次",
+              "{cfg:machines.ender_generator.mru_generated} MRU"
+            ],
+            [
+              "一隻終界使者打到死",
+              "約 {cfg:machines.ender_generator.mru_generated|mul:40} MRU，按 40 點生命算"
+            ],
+            [
+              "容量",
+              "{cfg:machines.ender_generator.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.ender_generator.balance<0",
+              "cells": [
+                "平衡值",
+                "放下時在 0~2 之間隨機，和熱力產能器一樣"
+              ]
+            },
+            {
+              "if": "cfg:machines.ender_generator.balance>=0",
+              "cells": [
+                "平衡值",
+                "{cfg:machines.ender_generator.balance}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "介面上的 MRU 在漲。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "存滿以後它也不停手，終界使者照樣會被打死。收到紅石訊號時它會停機，不拉也不打。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作給這台機器的理由很乾脆，終界使者總偷你的方塊，也該給它們一點教訓了。"
+        }
+      ]
+    }
+  ]
+}

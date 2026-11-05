@@ -1,0 +1,598 @@
+{
+  "id": "automation",
+  "order": 81,
+  "group": "main",
+  "title": "第十四章 · 自動化",
+  "subtitle": "把重複的活計託付給機器",
+  "icon": "essentialcraft5:crafter",
+  "entries": [
+    {
+      "id": "rules",
+      "title": "機器替你幹活的規矩",
+      "icon": "minecraft:redstone",
+      "summary": "所有機器共同的規矩",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "紅石一下，它就合成一回。我坐在旁邊看了一下午，看它一件一件地做出來，心裏有點過意不去，又有點高興。",
+          "by": "《工坊手記》"
+        },
+        {
+          "type": "p",
+          "text": "工坊手記裏畫得最多的，是這些替人幹活的小機器。從這一章起，合成、搬運、餵動物、剪羊毛這些活都可以交給機器，這一篇先把所有機器共同的規矩講清楚，後面各篇就不再重複。"
+        },
+        {
+          "type": "p",
+          "text": "這一章和下一章的東西都不貴，用的多是魔力強化石、紅石和工作台，也不用等柱子慢慢攢 ESPE，材料備齊了很快就能做完。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "最重要的一條",
+          "text": "這個模組的機器<em>不會替你挖方塊或放方塊</em>，也不會點火，要改動方塊，還得你自己拿工具動手。"
+        },
+        {
+          "type": "h",
+          "text": "紅石"
+        },
+        {
+          "type": "list",
+          "items": [
+            "本章的{item:essentialcraft5:crafter}和支線[[farming/item_shuffler|農牧自動化]]裏的幾台機器，只在紅石信號<em>從沒有到有的那一下</em>幹一次活，按一下按鈕幹一次，信號一直亮着也只算一次，要它連續幹活就接一個紅石時鐘。",
+            "兩次幹活之間有一段最短間隔，時長寫在各自那一篇裏，間隔裏收到的信號會被記下，間隔一滿就補幹一次，來了幾下都只補一次。",
+            "{item:essentialcraft5:magical_hopper}、輻射倉和各種產能器等許多機器正好相反，<em>通着紅石就停工</em>，信號斷開才接着幹。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "誰的機器"
+        },
+        {
+          "type": "p",
+          "text": "機器會記住<em>放下它的玩家</em>，凡是要碰周圍動物或地上物品的機器，都照下面幾條辦事："
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.protection.require_owner_online",
+              "text": "放下它的人不在線時，它會停止工作；"
+            },
+            {
+              "if": "!cfg:general.protection.require_owner_online",
+              "text": "放下它的人不在線時，它也照常工作；"
+            },
+            "它只在放下它的人能改動的地方幹活，別人領地裏的東西一概不碰；",
+            "它幹不了活時，界面上會寫明原因，沒有界面的機器空手右鍵就能看到。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:crafter}這類只在機器內部幹活的，不碰周圍任何東西，不管是誰放的、放的人在不在線，都照常運轉。"
+        },
+        {
+          "type": "h",
+          "text": "動物與掉落物"
+        },
+        {
+          "type": "list",
+          "items": [
+            "起了名字或拴着繩的生物，還有裝了鞍的駱駝、村民、流浪商人、玩家造的傀儡和認了主人的悦靈，機器都不碰；",
+            "馴服的動物裏，你的機器只照料<em>你自己馴服的</em>，別人的寵物不碰；",
+            "地上那些只有某個玩家才撿得起的東西，不是給你的就不碰；",
+            "被機器放出的[[tesla/mru_coil|MRU 電弧]]打死的生物不掉東西，也不給經驗，不過怪物從地上撿走的東西照樣會掉出來，那些多半是玩家的。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crafter",
+      "title": "{item:essentialcraft5:crafter}",
+      "icon": "essentialcraft5:crafter",
+      "summary": "紅石一下，合成一次",
+      "complete": "essentialcraft5:guide/automation/crafter",
+      "items": [
+        "essentialcraft5:crafter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：造一台{item:essentialcraft5:crafter}，讓它替你做工作台上的合成。每給它一下紅石信號，它就照格子裏擺的東西合成一次，再接上漏斗補料，就是一條自動合成線，全程不用 MRU。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "6 塊{item:essentialcraft5:fortified_stone}、1 個{item:minecraft:redstone}和 2 張{item:minecraft:crafting_table}，強化石的做法見[[crafting/fortified]]"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crafter"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下後右鍵打開，界面和工作台一樣，左邊 3×3 擺原料，右邊是產物格，箭頭上方那一格可以放一個{item:essentialcraft5:crafting_frame}，也可以空着，詳見下一篇。",
+            "照工作台的擺法放好原料，每次合成每格只用 1 個，所以每格都能放一整組。",
+            "在它旁邊放一個按鈕或拉桿，紅石信號每從無到有一次，它就合成一次，產物進右邊的產物格。",
+            "要它連續合成，就接一個紅石時鐘，兩次合成之間至少隔 {cfg:machines.crafter.pulse_interval} 刻。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "按一下按鈕，產物格里就多出了東西。"
+        },
+        {
+          "type": "h",
+          "text": "接漏斗"
+        },
+        {
+          "type": "list",
+          "items": [
+            "漏斗和管道能把產物格里的東西抽走。",
+            "<em>沒裝框架時，漏斗只往已經有同種原料的格子裏補</em>，空格子它不塞，所以要先親手擺一份佔好位置，只要格子沒被用空，漏斗就能一直補下去。",
+            "想讓空着的機器也能全自動跑起來，就裝一個合成框架，見下一篇。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "要注意"
+        },
+        {
+          "type": "list",
+          "items": [
+            "產物格滿了，或者裝着別的東西放不下新產物時，它不合成，原料也一個不扣。",
+            "沒裝框架時，格子一旦用空，漏斗就再也補不進那一格，所以每格要多放幾個，或者讓補料快過合成。",
+            "牛奶桶、蜂蜜瓶這類原料用完會剩下容器，空桶、空瓶先放回原來那格，那格還有同種的就疊上去，放不下時，產物格里正好是同一種東西就並進去，再不行才從機器頂上彈出來。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "它在原作的中文版裏叫「魔力合成站」，研究書給它起的副標題有點調侃的意思，叫「Autocrafting for the nubz」，就是給菜鳥用的自動合成。"
+        }
+      ]
+    },
+    {
+      "id": "crafting_frame",
+      "title": "{item:essentialcraft5:crafting_frame}",
+      "icon": "essentialcraft5:crafting_frame",
+      "summary": "給合成器定樣板",
+      "complete": "essentialcraft5:guide/automation/crafting_frame",
+      "optional": true,
+      "items": [
+        "essentialcraft5:crafting_frame"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一個{item:essentialcraft5:crafting_frame}，給合成器定好樣板。裝上以後，合成器每格只收樣板要的原料，漏斗補料不會放錯格子，空着的機器也能從頭全自動跑起來。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "5 塊{item:essentialcraft5:magic_fortified_plating}和 4 張{item:minecraft:crafting_table}，板在魔力工作台上做，見[[crafting/magician_crafts]]"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crafting_frame"
+        },
+        {
+          "type": "h",
+          "text": "設樣板"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿着框架右鍵，打開樣板界面。",
+            "最省事的是拿着想要的<em>產物</em>點右邊那一格，框架會自己找出配方、擺好樣本，同一樣東西有好幾種做法時，再點一次就換成下一種。",
+            "也可以自己擺，拿着東西點左邊的格子，它就記成這一格的樣本，<em>東西不會用掉</em>，空手點或右鍵點會清掉這一格。",
+            "改完直接關掉界面就行，每一步改動都已經存進了框架。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "空手點右邊那一格，整個樣板就清空了。"
+        },
+        {
+          "type": "h",
+          "text": "兩種模式"
+        },
+        {
+          "type": "p",
+          "text": "左上角的按鈕用來切換每格收取什麼："
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>按配方原料</em>是預設模式，每格收配方在這個位置允許的所有東西，比如木棍配方里放木板的兩格，哪種木板都收；",
+            "<em>精確</em>模式下，每格只收和樣本一模一樣的東西，數量不算在內。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "藥水箭、染色皮甲、修復工具、複製成書，還有一些模組自己寫的特殊配方，看不出每樣原料該放在哪一格，這類樣板不管選哪種模式，都按精確模式收。"
+        },
+        {
+          "type": "h",
+          "text": "裝進合成器"
+        },
+        {
+          "type": "p",
+          "text": "框架放進合成器箭頭上方那一格以後："
+        },
+        {
+          "type": "list",
+          "items": [
+            "每格只收樣板要的原料，手放和漏斗送料都一樣，空着的格子裏會淡淡地顯出該放什麼；",
+            "漏斗、管道送來的原料按格子<em>輪流補</em>，哪格最少先補哪格；",
+            "放回原格的空桶、空瓶和樣板對不上，漏斗可以把它們從那一格抽走。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "裝了框架的合成器由漏斗送料，紅石信號一到就出產物。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "框架的樣板無效",
+          "text": "框架裏的配方因為換了數據包之類的原因沒了，或者樣本配不出任何東西時，合成器就不合成，界面上方會顯示「框架的樣板無效」，重新設一次樣板就好。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "搭配",
+          "text": "第十五章的[[logistics/magical_hopper]]能把地上散落的東西收進箱子，再由漏斗送進合成器。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裏這兩個選項叫「用 / 不用礦物詞典」。礦物詞典是 1.12 時各模組共用的物品分類，各家的銅錠都歸在「銅錠」名下，1.20 已經沒有這套東西了。"
+        }
+      ]
+    },
+    {
+      "id": "assembly_line",
+      "title": "產線",
+      "icon": "minecraft:hopper",
+      "summary": "原料全靠漏斗送，連續合成一批",
+      "complete": "essentialcraft5:guide/automation/assembly_line",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：讓一台{item:essentialcraft5:crafter}連續合成 {cfg:machines.crafter.assembly_line_crafts} 次，每次的原料都由漏斗、管道送進去，一件都不用手放。手記裏那位工匠後來在合成器上方擺了一口箱子，就不必再坐在旁邊守着了。後面幾章要壓幾十次惡魔板、做幾百個零件，有了產線就能掛機慢慢做。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一台[[automation/crafter|合成器]]，最好裝上一個設好樣板的{item:essentialcraft5:crafting_frame}，有了框架，漏斗才能往空格子裏送料，見[[automation/crafting_frame]]。",
+            "兩個箱子和兩個{item:minecraft:hopper}，一個箱子裝原料，一個接產物。",
+            "一個紅石時鐘，因為合成器只在紅石信號從無到有的那一下合成。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "原料箱放在合成器上方，中間接一個朝下的漏斗，合成器下面再接一個漏斗通到產物箱。",
+            "給合成器接上紅石時鐘，兩次合成之間至少隔 {cfg:machines.crafter.pulse_interval} 刻，時鐘再快也不會多合成。",
+            "往原料箱裏放夠 {cfg:machines.crafter.assembly_line_crafts} 次的原料，就可以去忙別的了。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "這台合成器連着 {cfg:machines.crafter.assembly_line_crafts} 次都用漏斗送來的原料合成以後，這一篇就會打勾。勾記在放下這台合成器的人名下，他不在線的話，等他上線後的下一次合成再補上。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "手放過原料就從頭計數",
+          "text": "只要有一次合成用到了手放進去的原料，連續次數就清零，等手放的那幾個用完再從 0 數起。從合成器裏往外拿東西不影響次數。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "沒裝框架時",
+          "text": "沒裝框架的合成器，漏斗只往已經有同種原料的格子裏補，所以開頭每格都得先手放一個當引子。引子用完之前的那幾次合成不算，之後照常累計。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "原版漏斗、{item:essentialcraft5:magical_hopper}、{item:essentialcraft5:magical_mirror}，以及能往方塊裏塞東西的管道，凡是自己會往方塊裏送東西的都算送料。只有打開界面放進去的才算手放，Shift 點進去的也算。",
+            "產物格滿了、原料不齊，這類合不出來的情況不計數，也不清零。",
+            "連續次數記在合成器裏，退出遊戲或區塊卸載都不會丟，不過拆掉合成器重新放下，就要從頭數起。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mimic",
+      "title": "{item:essentialcraft5:mimic}",
+      "icon": "essentialcraft5:mimic",
+      "summary": "看着是牆，其實能穿過去",
+      "complete": "essentialcraft5:guide/automation/mimic",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mimic"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做幾塊{item:essentialcraft5:mimic}。一面看着結實的牆，伸手過去卻摸了個空。擬態方塊能變成幾乎任何普通方塊的樣子，卻完全沒有碰撞箱，人可以直接穿過去，拿來做暗門、藏機器和礦道口都很合適。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "4 塊{item:essentialcraft5:fortified_stone}、4 塊{item:essentialcraft5:fortified_glass}和 1 個{item:essentialcraft5:magical_slag}，一次產出 4 塊"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mimic"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下擬態方塊。",
+            "拿着想讓它變成的方塊右鍵它，它就變成那個樣子，手裏的方塊不會少。樓梯、半磚等方塊會照你點的位置和麪朝的方向擺好，和親手放在那裏一樣。",
+            "想換個樣子，就拿別的方塊再右鍵一次，空着雙手潛行右鍵，它就變回原樣。",
+            "想貼着它放方塊，要潛行右鍵。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它能模仿大多數普通方塊，工作台、鐵砧也在內，箱子、熔爐、告示牌、牀、旗幟這類自帶特殊內容的方塊模仿不了，液體和另一塊擬態方塊也不行。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "右鍵以後，它看起來和你手裏的方塊一模一樣。"
+        },
+        {
+          "type": "h",
+          "text": "要注意"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它永遠沒有碰撞箱，拿它鋪的地板看着結實，一踩就掉下去，千萬別鋪在巖漿上方；",
+            "怪物尋路時把它當成牆，不會特意從這裏穿過來，可被推動或擊退時照樣會穿進去，走上擬態地板的怪物也會掉下去；",
+            "不管模仿的是什麼，它都完全擋光，變成玻璃的樣子也不透光；",
+            "它裏面和上面都不刷怪，水和巖漿也流不進它那一格。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "p",
+          "text": "它的每個面都算結實的面，火把、按鈕、拉桿、紅石線和門都能裝在上面，暗門的開關可以直接裝在擬態牆上。放這些東西時記得潛行右鍵，不潛行的話，它只會變成那樣東西的樣子。"
+        },
+        {
+          "type": "p",
+          "text": "想要能站上去的偽裝方塊，可以用花紋擬態，它有碰撞箱，偽裝上面還疊着一層花紋，見[[decorations/fancy_mimic]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書給它的副標題是句玩笑，「Totally my idea」，意思是這完全是我想出來的。"
+        }
+      ]
+    },
+    {
+      "id": "redstone_transmitter",
+      "title": "{item:essentialcraft5:redstone_transmitter}",
+      "icon": "essentialcraft5:redstone_transmitter",
+      "summary": "隔多遠都能傳紅石信號",
+      "complete": "essentialcraft5:guide/automation/redstone_transmitter",
+      "optional": true,
+      "items": [
+        "essentialcraft5:redstone_transmitter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一對{item:essentialcraft5:redstone_transmitter}，不用拉紅石線，也能把紅石信號傳到遠處。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "兩個{item:minecraft:redstone}、1 支{item:minecraft:redstone_torch}和 3 塊{item:essentialcraft5:fortified_stone}，一次產出兩個"
+            ],
+            [
+              "另外",
+              "1 顆{item:essentialcraft5:bound_gem}，做法見[[crafting/bound_gem]]"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:redstone_transmitter"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放好兩個傳遞器，它們像火把一樣貼在方塊上，A 放在信號的源頭，B 放在要用信號的地方，兩個之間要隔開，不能緊挨着。",
+            "拿着綁定寶石<em>潛行</em>右鍵 A，寶石就記下了 A 的位置。",
+            "右鍵 B 打開它的界面，把寶石放進格子裏。",
+            "給 A 通上信號，可以給它貼着的那個方塊供電，比如在那個方塊上裝一個拉桿，也可以用紅石線一直拉到 A 旁邊。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這以後 A 那一格收到多強的信號，B 就從六個面輸出同樣強的信號，每 {cfg:machines.redstone_transmitter.update_interval_ticks} 刻刷新一次。B 能直接驅動緊挨着它的紅石線、紅石燈和活塞，但它的信號不會隔着實心方塊傳過去。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "扳動源頭的拉桿，B 旁邊的紅石燈跟着亮滅，B 的界面上顯示「已連接」。"
+        },
+        {
+          "type": "h",
+          "text": "不工作時"
+        },
+        {
+          "type": "p",
+          "text": "B 的界面上，寶石右邊那一欄寫着連接狀態和現在的輸出強度，滑鼠指上去能看到原因，常見的有下面幾種："
+        },
+        {
+          "type": "list",
+          "items": [
+            "兩個傳遞器要在同一個維度裏；",
+            "A 和它周圍一兩格都在載入範圍內，B 才有輸出，否則 B 輸出 0，它不會替你載入遠處的區塊；",
+            "A 旁邊緊挨着別的傳遞器時 B 輸出 0，所以傳遞器沒法一個挨一個地串起來；",
+            "寶石只能綁定你有權限改動的地方，別人領地裏的傳遞器綁不上。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "挖掉 B 時寶石會掉出來。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書管它叫「無線紅石·模組作者版」，還特地提醒，信號「傳過去要花一點時間」。"
+        }
+      ]
+    },
+    {
+      "id": "metadata_manager",
+      "title": "{item:essentialcraft5:metadata_manager}",
+      "icon": "essentialcraft5:metadata_manager",
+      "summary": "把方塊的「數值」變成紅石信號",
+      "complete": "essentialcraft5:guide/automation/metadata_manager",
+      "optional": true,
+      "items": [
+        "essentialcraft5:metadata_manager"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一個{item:essentialcraft5:metadata_manager}，讓紅石電路知道作物熟沒熟、蛋糕還剩幾口。從前要看莊稼，得親自走到田邊去。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "7 塊{item:essentialcraft5:fortified_stone}、1 個{item:minecraft:redstone}和 1 顆{item:essentialcraft5:bound_gem}，寶石綁沒綁定都行"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:metadata_manager"
+        },
+        {
+          "type": "h",
+          "text": "怎麼放"
+        },
+        {
+          "type": "p",
+          "text": "有圖案的那一面是正面，放下時正面背對你點的那個方塊。想讓它對準一塊麥田，就先在它要放的位置背後墊一塊方塊，再點這塊方塊朝着小麥的那一面，把它放下去。"
+        },
+        {
+          "type": "p",
+          "text": "它讀出正面那個方塊的「數值」，當作紅石信號從另外五個面輸出，正面本身不輸出信號，也不連紅石線。前方的方塊一有變化，它一兩刻之內就會自己跟着更新。"
+        },
+        {
+          "type": "h",
+          "text": "讀出來的數值"
+        },
+        {
+          "type": "table",
+          "header": [
+            "方塊",
+            "讀的是"
+          ],
+          "rows": [
+            [
+              "小麥、胡蘿蔔等作物",
+              "長到了第幾期，小麥成熟時是 7"
+            ],
+            [
+              "蛋糕",
+              "被吃了幾口"
+            ],
+            [
+              "堆肥桶、煉藥鍋",
+              "有多滿"
+            ],
+            [
+              "雪、海龜蛋、海泡菜",
+              "有幾層、幾個"
+            ],
+            [
+              "石頭、泥土等",
+              "沒有數值，輸出 0"
+            ]
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "數值超過 15 的按 15 算。只想在小麥成熟時觸發的話，就從它接出一條 7 格長的紅石線，把要觸發的東西放在線的盡頭，只有強度 7 的信號才傳得到那麼遠。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "對着一塊被吃過一口的蛋糕時，它旁邊的紅石燈會亮。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "它在原作裏叫「元數據管理器」，研究書給的副標題是「Only for nerds!」，意思是隻給技術宅用。那時它輸出的是方塊的元數據，許多方塊的元數據記的其實是朝向或顏色，它自己也不會刷新，小麥長高了，還得手動給它一次方塊更新。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,795 @@
+{
+  "id": "inquisitorium",
+  "order": 103,
+  "group": "main",
+  "title": "第十九章 · 審判庭",
+  "subtitle": "循着回聲找到審判庭",
+  "icon": "essentialcraft5:inquisitorium_chip",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "legend",
+      "title": "審判庭：循着回聲",
+      "icon": "minecraft:echo_shard",
+      "summary": "本章去哪、做什麼、要備什麼",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "本庭即日起不再應答。此後凡有呼喚，一律遣投影迎之。投影若被擊毀，留回聲一段，指明本庭所在。能循聲走到這裏的，再行裁定。",
+          "by": "審判庭殘檔"
+        },
+        {
+          "type": "p",
+          "text": "審判庭裏早已沒有活人。全息投影台朝整個海納爾發出信號，應聲而來的是全息投影，打倒它以後掉下的{item:essentialcraft5:glitchy_core}裏還留着一段<em>回聲</em>，指向審判庭真正的所在。這一章要把這段回聲解讀出來，循着它找到審判庭，打倒守在那裏的<em>審判庭哨兵</em>。"
+        },
+        {
+          "type": "h",
+          "text": "這一章怎麼走"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "打倒一隻全息投影，拿到它掉下的故障核心，見[[inquisitorium/glitchy_core]]。",
+            "把故障核心放進輻射倉，給它接上平衡值對得上的 MRU，解出{item:essentialcraft5:inquisitorium_coordinates}，見[[inquisitorium/decoding]]。",
+            "帶着座標走到海納爾裏它所指的那片暗影腐化之地，見[[inquisitorium/journey]]。",
+            "用座標做一個{item:essentialcraft5:inquisitorium_beacon}，到了那裏把它點亮，召出審判庭哨兵，見[[inquisitorium/beacon]]。",
+            "打倒哨兵，再把五芒星升到 3 檔，這兩步分別見[[inquisitorium/sentinel]]和[[inquisitorium/purify]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "要備什麼"
+        },
+        {
+          "type": "list",
+          "items": [
+            "平衡值調得動的 MRU，至少要有兩路產能器，一路平衡值偏低、一路偏高，再用一台{item:essentialcraft5:intersector}把它們混在一起，見[[enrichment/intersector]]。",
+            "做信標用的 5 個{item:essentialcraft5:twinkling_titanite}、1 個{item:essentialcraft5:void_core}和 2 塊{item:essentialcraft5:neuronic_enriched_plating}。",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "在海納爾走遠路的行頭，食物、牀和船都要帶上，還得防着輻射和天災，見[[hoanna/radiation]]。"
+            },
+            {
+              "if": "!cfg:general.radiation.enabled",
+              "text": "在海納爾走遠路的行頭，食物、牀和船都要帶上，還得防着天災，見[[hoanna/events]]。"
+            },
+            "打哨兵的裝備和打全息投影時一樣，回血的東西要多帶一些，見[[inquisitorium/sentinel]]。",
+            "升 3 檔五芒星用的 4 塊惡魔護板和 4 根惡魔水晶柱，見[[inquisitorium/purify]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書在全息投影台前面記了幾段傳聞，説神秘的「審判」組織就藏在海納爾某處，可誰也找不到它，又説要造出控制惡魔板的電腦，也許得靠它幫忙。審判庭後來怎樣，原作沒有再提。"
+        }
+      ]
+    },
+    {
+      "id": "glitchy_core",
+      "title": "{item:essentialcraft5:glitchy_core}",
+      "icon": "essentialcraft5:glitchy_core",
+      "summary": "全息投影必掉，上面寫着目標平衡值",
+      "complete": "essentialcraft5:guide/inquisitorium/glitchy_core",
+      "items": [
+        "essentialcraft5:glitchy_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：拿到一個故障核心。玩家每打倒一次全息投影，它都會掉一個，和數學核心、遺物一起落在原地，打法見[[hologram/hologram]]。"
+        },
+        {
+          "type": "p",
+          "text": "審判庭什麼都按平衡值記，連回聲也是按平衡值鎖上的。每個故障核心都寫着一個<hl>目標平衡值</hl>，物品提示裏有「目標平衡值：0.73」這樣一行，數值保留兩位小數，在 {cfg:general.inquisitorium.balance_min} 到 {cfg:general.inquisitorium.balance_max} 之間隨機。下一步解碼時，輻射倉裏的平衡值要對準它。"
+        },
+        {
+          "type": "p",
+          "text": "目標越接近代表{balance:pure}的 1 越好調，平衡值固定在 1 的產能器現成就有，靠近兩頭的目標則要專門配一路冰凍或混沌的源。實在調不順手，再打一場全息投影換一個核心就好。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裏有了一個故障核心。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "沒寫目標的核心",
+          "text": "從創造模式物品欄裏拿出來的故障核心沒有目標平衡值，放進背包時會隨機補上一個。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只有被玩家打倒時才會掉，幾個人一起打也只掉一個。",
+            "每個核心的目標都是各自隨機的，只有目標相同的兩個才疊得起來。",
+            "[[inquisitorium/sentinel]]被打倒時也會再掉一個。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decoding",
+      "title": "解碼：對準目標平衡值",
+      "icon": "essentialcraft5:radiating_chamber",
+      "summary": "輻射倉把故障核心解成審判庭座標",
+      "complete": "essentialcraft5:guide/inquisitorium/decoded",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：把故障核心放進{item:essentialcraft5:radiating_chamber}，把倉裏的平衡值調到核心上寫的目標，解出一份{item:essentialcraft5:inquisitorium_coordinates}。輻射倉的用法見[[crafting/radiating_chamber]]。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "放哪",
+              "上、下兩個原料格任選一格，另一格留空"
+            ],
+            [
+              "平衡值",
+              "和目標相差不超過 <t>{cfg:general.inquisitorium.decode_tolerance}</t>"
+            ],
+            [
+              "時間",
+              "{cfg:general.inquisitorium.decode_ticks|sec}，只計平衡值對準的時間"
+            ],
+            [
+              "MRU",
+              "共 {cfg:general.inquisitorium.decode_mru}，平攤到每一刻扣除"
+            ],
+            [
+              "輸出格",
+              "要空着"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把故障核心放進輻射倉的上格或下格，另一格空着。",
+            "把滑鼠停在界面中間那一條上，「所需平衡值」顯示的是這次的窗口，範圍是目標前後各 {cfg:general.inquisitorium.decode_tolerance}。",
+            "照下文的辦法調節倉裏的平衡值，直到界面上的平衡值讀數落進這個窗口。",
+            "條上顯示「解碼中」，百分比一點點往上漲，漲滿以後會顯示一小會兒「定位中」，接着輸出格里出現審判庭座標，故障核心被用掉。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼調平衡值"
+        },
+        {
+          "type": "p",
+          "text": "輻射倉的 MRU 來自綁定寶石連着的那台機器，每拉進來一點，都會按數量和倉裏原有的 MRU 混在一起，所以倉裏的平衡值會慢慢靠向源頭的平衡值。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "目標正好落在某台產能器的平衡值附近時，把寶石直接綁到它身上就行，平衡值固定在 1 的有{item:essentialcraft5:matrix_absorber}和{item:essentialcraft5:moon_well}。",
+            "要 0.73 這樣不整的數時，讓{item:essentialcraft5:intersector}的兩個寶石槽各接一路，一路比目標低，一路比目標高，再把輻射倉綁到匯流器上，匯出來的平衡值會落在兩路之間，按兩邊送來的量混合。",
+            "讀數偏了就微調，給其中一路產能器接一根拉桿，用紅石讓它時停時開，匯流器裏的比例就會跟着變，見[[generators/heat_generator]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "輸出格里出現一份審判庭座標。當時在輻射倉 16 格內的人，以及之後把座標拿進背包的人，這一步都會打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "倉裏已經存着的 MRU 也算進平衡值，輻射倉裏裝滿別的平衡值的 MRU 時，讀數要過好一陣才靠得過來。最快的辦法是用一台剛放下的空輻射倉，第一次拉進來的 MRU 是什麼平衡值，倉裏就是什麼平衡值。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "平衡值跑出窗口時解碼會暫停，進度保留，也不扣 MRU，回到窗口裏就接着解。",
+            "換核心、把核心挪到另一格或者拿走，進度都會清零，用紅石信號讓輻射倉停機則會保留進度。",
+            "解碼時輻射倉和平時一樣，會往周圍漏一點 MRU，見[[crafting/corruption]]。",
+            "漏斗和管道塞不進故障核心，只能手動放進去。",
+            "在同一個地方解出的座標總是指向同一處，用同一台輻射倉解第二個核心，指的還是上次那裏。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journey",
+      "title": "{item:essentialcraft5:inquisitorium_coordinates}",
+      "icon": "essentialcraft5:inquisitorium_coordinates",
+      "summary": "拿着它走到那片暗影腐化之地",
+      "complete": "essentialcraft5:guide/inquisitorium/arrived",
+      "items": [
+        "essentialcraft5:inquisitorium_coordinates"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：帶着審判庭座標，走到它所指地點的 {cfg:general.inquisitorium.arrive_radius} 格以內。"
+        },
+        {
+          "type": "p",
+          "text": "座標指向的是海納爾裏離你解碼那台輻射倉最近的一片<em>暗影腐化之地</em>，那裏草葉灰黑，空中飄着灰燼，見[[hoanna/lands]]。距離按輻射倉的 X、Z 計算，在主世界解的碼，就到海納爾同一個 X、Z 附近去找，確切的座標寫在物品提示上。",
+          "if": "!cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "p",
+          "text": "座標多半指着離你解碼那台輻射倉最近的一座[[hoanna_explore/inquisitorium_outpost|審判庭前哨]]，那是<em>暗影腐化之地</em>裏一片被毀的平地。附近沒有前哨，才指向最近的一片暗影腐化之地，見[[hoanna/lands]]。距離按輻射倉的 X、Z 計算，在主世界解的碼，就到海納爾同一個 X、Z 附近去找，確切的座標寫在物品提示上。",
+          "if": "cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "穿過海納爾之門，見[[hoanna/crossing]]。",
+            "把座標拿在主手或副手裏，快捷欄上方會一直顯示審判庭在哪個方向、還剩多少格。",
+            "跟着提示走，進到 {cfg:general.inquisitorium.arrive_radius} 格以內時，提示會變成「就在這附近」，這一步隨之打勾。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "快捷欄上方顯示「審判庭：就在這附近」。要是你先做好了信標再過來，一路上沒拿着座標，在這裏召出哨兵時這一步也會補上，見[[inquisitorium/beacon]]。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "路可能很遠，要穿過幾百上千格的海納爾荒野和海洋，一路都要提防輻射和天災，見[[hoanna/radiation]]和[[hoanna/events]]。帶上牀和船，路上也可以找個安全的地方睡一覺。",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "路可能很遠，要穿過幾百上千格的海納爾荒野和海洋，一路都要提防天災，見[[hoanna/events]]。帶上牀和船，路上也可以找個安全的地方睡一覺。",
+          "if": "!cfg:general.radiation.enabled"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "座標要拿在手裏才算，放在背包裏既不會打勾，也不顯示方位。",
+            "座標只在海納爾裏指路，在別的維度拿着時，提示顯示的是它指向海納爾的哪個位置。",
+            {
+              "if": "!cfg:general.inquisitorium_outpost.decoder_targets_outpost",
+              "text": "附近 {cfg:general.inquisitorium.search_radius} 格內都沒有暗影腐化之地時，座標會落在 {cfg:general.inquisitorium.fallback_distance} 格外的一處，方向由解碼的位置決定，在同一處解碼，每次得到的都是這一點。"
+            },
+            {
+              "if": "cfg:general.inquisitorium_outpost.decoder_targets_outpost",
+              "text": "附近 {cfg:general.inquisitorium.search_radius} 格內既沒有前哨、也沒有暗影腐化之地時，座標會落在 {cfg:general.inquisitorium.fallback_distance} 格外的一處，方向由解碼的位置決定，在同一處解碼，每次得到的都是這一點。"
+            },
+            "做[[inquisitorium/beacon]]時，這份座標會被用掉。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "beacon",
+      "title": "{item:essentialcraft5:inquisitorium_beacon}",
+      "icon": "essentialcraft5:inquisitorium_beacon",
+      "summary": "在座標處點亮，召出審判庭哨兵",
+      "complete": "essentialcraft5:guide/inquisitorium/beacon",
+      "items": [
+        "essentialcraft5:inquisitorium_beacon"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做一個審判庭信標，帶到座標所指的地方，在夜裏點亮。信標會喚醒沉睡在那裏的回聲，自己隨之消失，現身的就是審判庭哨兵。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:inquisitorium_beacon"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：5 個{item:essentialcraft5:twinkling_titanite}、1 個{item:essentialcraft5:void_core}、2 塊{item:essentialcraft5:neuronic_enriched_plating}，外加上一步解出的審判庭座標，座標放在正中。座標會被做進信標，做出來的信標記着這處座標，物品提示上看得到。"
+        },
+        {
+          "type": "h",
+          "text": "放在哪、什麼時候"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只能在海納爾點亮，還要放在它記着的座標 {cfg:general.inquisitorium.arrive_radius} 格以內。",
+            "信標頭頂要<hl>露天</hl>，正上方一整列都要空着，擋路的方塊和水都算遮擋，哨兵會出現在上方 5 格處，那裏也要留出空間。",
+            "要在<hl>夜裏</hl>點亮，雷雨天的白天也算，海納爾正鬧黑暗天災時也行，見[[hoanna/events]]。",
+            "64 格內要沒有別的全息投影或審判庭哨兵。",
+            "要在你有權改動方塊的地方，以生存或冒險模式右鍵點亮，別人的領地這類沒有權限的地方點不亮，和平難度下也不會有回應。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "信標消失，上方出現審判庭哨兵，屏幕頂端亮起紫色的 Boss 血條。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "條件不滿足時，右鍵什麼也不扣，快捷欄上會寫明缺什麼。條件一旦齊了，哨兵當場就會出現，所以先讀完[[inquisitorium/sentinel]]、備好裝備再點。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "打輸了不丟信標",
+          "text": "所有人都退出戰鬥以後再過 {cfg:general.hologram.abandon_ticks|sec}，哨兵會自己消失，信標掉回原處，照舊記着座標，掉在地上也不會消失，切到和平難度時也是這樣。放好的信標空手就能敲下來，敲下來的照樣記着座標。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "誰算參戰、跑遠了會怎樣，規則都和全息投影相同，見[[hologram/summoning]]。",
+            "召出哨兵時，解碼和到達這兩步要是還沒打勾，也會一起打上，因為信標只能用解出來的座標做，點得亮就説明人已經到了。",
+            "信標會微微發光，夜裏也找得到它放在哪。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sentinel",
+      "title": "{lang:entity.essentialcraft5.inquisitorium_sentinel}",
+      "icon": "essentialcraft5:inquisitorium_sentinel_spawn_egg",
+      "summary": "全息投影的進階型，多了回聲和矩陣損傷",
+      "complete": "essentialcraft5:main/inquisitorium",
+      "items": [
+        "essentialcraft5:inquisitorium_sentinel_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:inquisitorium_sentinel"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：打倒審判庭哨兵。循着回聲找到這裏的人，由它來裁定。它是全息投影的進階型，同樣懸在半空一動不動，輪流放出四種招式，也<hl>只在兩招之間的休息時間打得動</hl>，打法見[[hologram/hologram]]。不同的是它有 <t>{cfg:general.inquisitorium.max_health}</t> 點生命，還多了兩樣本事。"
+        },
+        {
+          "type": "h",
+          "text": "回聲",
+          "if": "cfg:general.inquisitorium.echo_ratio"
+        },
+        {
+          "type": "p",
+          "text": "它每放完一招，到下一招出招時，上一招會以 <t>{cfg:general.inquisitorium.echo_ratio|pct}</t> 的強度跟着再來一遍，你得同時躲開疊在一起的兩招。它頭頂除了這一招的核心，還有一個小一圈的核心繞着轉，那就是回聲的招式。",
+          "if": "cfg:general.inquisitorium.echo_ratio"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.inquisitorium.echo_ratio",
+          "header": [
+            "回聲的招式",
+            "變成什麼樣"
+          ],
+          "widths": [
+            3,
+            7
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:addition_core}加法",
+              "影子按強度減少，至少一隻，在這一招的前半段就會冒出來"
+            ],
+            [
+              "{item:essentialcraft5:subtraction_core}減法",
+              "護甲破壞者按強度射得稀一些"
+            ],
+            [
+              "{item:essentialcraft5:multiplication_core}乘法",
+              "軌道打擊照樣十發，傷害按強度打折，落在本招的兩發之間"
+            ],
+            [
+              "{item:essentialcraft5:division_core}除法",
+              "二分場按強度減少，至少一個，落在本招的兩輪之間"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "下一招和上一招相同時，這一輪沒有回聲。回聲帶來的影子、破壞者和二分場與本招的合在一起算，不會超過全息投影的上限。",
+          "if": "cfg:general.inquisitorium.echo_ratio"
+        },
+        {
+          "type": "h",
+          "text": "矩陣損傷",
+          "if": "cfg:general.inquisitorium.matrix_damage_per_hit"
+        },
+        {
+          "type": "p",
+          "text": "軌道打擊和影子每<em>打中</em>你一下，都會另外記上 <t>{cfg:general.inquisitorium.matrix_damage_per_hit}</t> 點[[corruption/matrix_damage]]。被盾牌或盔甲整下擋掉的不算，二分場和護甲破壞者也不附加損傷。",
+          "if": "cfg:general.inquisitorium.matrix_damage_per_hit"
+        },
+        {
+          "type": "p",
+          "text": "一場打下來攢的損傷，多半夠凝出矩陣類的腐化效果，其中成本 72000 的三種最貴，只有 3 檔五芒星治得了，見[[inquisitorium/purify]]。",
+          "if": [
+            "cfg:general.inquisitorium.matrix_damage_per_hit",
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "帶什麼去"
+        },
+        {
+          "type": "list",
+          "items": [
+            "裝備和打全息投影時一樣，帶上近戰武器、壞了不心疼的盔甲、食物和回血的東西、抗火藥水和一組方塊，見[[hologram/hologram]]。",
+            {
+              "if": "cfg:general.hologram.max_damage_per_hit>0",
+              "text": "還要多些耐心。和全息投影一樣，每次休息一般只打得掉 40 點左右，大約要熬過 {cfg:general.inquisitorium.max_health|div:40|int} 輪招式，全息投影只要 {cfg:general.hologram.max_health|div:40|int} 輪。"
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled"
+              ],
+              "text": "打完要治腐化，得備好五芒星和攢滿 ESPE 的水晶柱，見[[pentacle/cure]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "哨兵熄滅，原地掉下一個{item:essentialcraft5:inquisitorium_chip}、一個{item:essentialcraft5:glitchy_core}、一堆遺物和 50 點經驗，參戰的人都會獲得進度「{lang:advancements.essentialcraft5.inquisitorium.title}」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "[[hologram/divider_gun]]和[[hologram/orbital_remote]]對它都不起作用，箭、槍這類非近戰傷害照樣只算四分之一。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "誰算參戰、怎樣被拉回來、跑遠了怎樣脱戰，規則都和全息投影相同，見[[hologram/summoning]]。",
+            "只有被玩家打倒時才掉東西，幾個人一起打也只掉一份。",
+            {
+              "if": "cfg:general.ancient_scrolls.enabled",
+              "text": "被玩家打倒時，它還必定掉下[[scrolls/scrolls|源質殘卷]]的卷六，幾個人一起打也只掉一卷。"
+            },
+            "遺物和全息投影的出自同一張清單，每次二十份上下，見[[hoanna/relics]]。",
+            "創造模式物品欄裏有{item:essentialcraft5:inquisitorium_sentinel_spawn_egg}，生成蛋放出的哨兵同樣只能出現在海納爾，64 格內只能有一隻，沒人打它就會消失。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "purify",
+      "title": "淨化：3 檔五芒星",
+      "icon": "essentialcraft5:demonic_crystal_pillar",
+      "summary": "升到 3 檔，治最貴的三種矩陣類腐化",
+      "complete": "essentialcraft5:guide/pentacle/tier3",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：把第十二章的靈魂五芒星升到 3 檔，柱子裏的每點 ESPE 都按兩點算，做法見[[pentacle/tier_three]]。再往上的 4 檔在第二十二章，見[[shade/tier4]]。"
+        },
+        {
+          "type": "p",
+          "text": "審判庭哨兵留下的矩陣損傷又多又快，{lang:corruption_effect.essentialcraft5.matrix_12}、{lang:corruption_effect.essentialcraft5.matrix_19}、{lang:corruption_effect.essentialcraft5.matrix_20}三種的成本是 72000，2 檔攢滿了也治不了，要 3 檔才行。",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這三種要積到 {cfg:general.corruption.draw_threshold_multiplier|mul:72000|int} 點損傷才會凝成，一旦凝成，只有 3 檔的五芒星治得了。",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "惡魔護板",
+              "4 塊，顏色隨意，見[[demons/demonic_plating]]"
+            ],
+            [
+              "惡魔水晶柱",
+              "4 根"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "每根惡魔水晶柱要 6 個{item:essentialcraft5:ackronite_ingot}、2 個{item:essentialcraft5:demonic_core}和 1 根{item:essentialcraft5:void_crystal_pillar}，那根虛空柱會被用掉。四根合計要 24 錠阿克羅尼特、8 個惡魔核心和 4 根虛空柱，每個惡魔核心又要 4 塊惡魔板，見[[demons/ackronite]]。"
+        },
+        {
+          "type": "p",
+          "text": "虛空柱要另做 4 根，2 檔上原有的 4 根得留在原處。每根要 1 個虛空核心和 1 個 MRU 反應核，不夠就讓海納爾的富集倉多坍縮幾回，見[[hoanna/collapse]]。",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled"
+        },
+        {
+          "type": "p",
+          "text": "虛空柱要另做 4 根，2 檔上原有的 4 根得留在原處。每根要 1 個虛空核心和 1 個 MRU 反應核，來源見[[hoanna/relics]]。",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier3"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "2 檔的結構保持完整，一格也不能少。",
+            "在五芒星下面一層，正東、正南、正西、正北四個方向各隔一格放一塊惡魔護板。",
+            "同樣在這四個方向隔一格、比五芒星高 3 格的地方，各立一根惡魔水晶柱，底下可以先墊方塊，放好後再拆掉。",
+            "右鍵五芒星打開界面。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "符文變成紅色，界面上顯示「3 檔」。第一次打開 3 檔界面時這一步會打勾，要是在第十二章就升過 3 檔，這一步早就打上了。"
+        },
+        {
+          "type": "p",
+          "text": "3 檔治同一個效果時，從柱子裏抽的只有低檔時的一半，成本 72000 的三種效果每個要抽 10 萬點 ESPE。",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rank_7",
+      "title": "七階 · 審視",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "矩陣穩固",
+      "complete": "essentialcraft5:guide/matrix/rank_7",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：升到矩陣七階「審視」。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "一共 27 種，其中首領至少 2 種：全息投影、審判庭哨兵、凋零怪都算"
+            ],
+            [
+              "站點",
+              "3 檔靈魂五芒星，上一篇剛搭好"
+            ],
+            [
+              "祭品",
+              "2 個{item:essentialcraft5:condensed_matrix}、2 個{item:essentialcraft5:demonic_core}、1 個[[hologram/math_cores|數學核心]]（加、減、乘、除哪一種都行）"
+            ],
+            [
+              "能量",
+              "台子裏 8 萬 MRU，五芒星的柱子裏 8000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 8 只，同時最多 4 只；每隻 92 點生命，打你一下 10 點；限時 130 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "站着不動 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:70} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把祭品放進淬鍊台的祭品格，台子裏的 MRU 用綁定寶石備夠。",
+            "站在台子 3 格內，主手拿着綁定你的靈魂石，打開界面，右邊全打勾以後點「開始淬鍊」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒夠數的矩陣迴響，別離開台子太遠。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁邊不動，也別受傷，等引導走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "屏幕正中出現「七階 · 審視」，靈魂石的物品提示裏寫着矩陣七階。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.stability.matrix_damage_multiplier==0.8",
+          "text": "七階的回報是[[matrix/tolerance|矩陣穩固]]：試煉、虹吸這些矩陣階帶來的矩陣損傷再打八折。矩陣容量漲到 {cfg:general.matrix_rank.pool_per_rank|mul:6}。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.stability.matrix_damage_multiplier!=0.8",
+          "text": "七階的回報是[[matrix/tolerance|矩陣穩固]]：試煉、虹吸這些矩陣階帶來的矩陣損傷再乘 {cfg:general.matrix_rank.stability.matrix_damage_multiplier}。矩陣容量漲到 {cfg:general.matrix_rank.pool_per_rank|mul:6}。"
+        },
+        {
+          "type": "p",
+          "text": "八階要 4 檔五芒星和暗影核心，在第二十二章，見[[shade/rank_8]]。"
+        }
+      ]
+    },
+    {
+      "id": "chip",
+      "title": "{item:essentialcraft5:inquisitorium_chip}",
+      "icon": "essentialcraft5:inquisitorium_chip",
+      "summary": "哨兵掉的芯片，做空白模塊和審判庭套裝",
+      "items": [
+        "essentialcraft5:inquisitorium_chip"
+      ],
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:inquisitorium_chip"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "審判庭芯片是哨兵存放記錄的零件，可審判庭審過誰、記下過什麼，如今已經讀不出來了。玩家每打倒一次審判庭哨兵，它都會掉一個審判庭芯片。芯片是第二十一章製作{item:essentialcraft5:blank_module}的材料，一個芯片能做兩塊空白模塊，正好夠主線要裝的兩塊，見[[terminal/blank_module]]。"
+        },
+        {
+          "type": "p",
+          "text": "[[inquisitorium/armor|審判庭套裝]]的每一件也要一個芯片。想多做幾塊模塊或幾件盔甲，就再打幾場，每場要備一個故障核心、解一次碼、做一個信標，故障核心哨兵自己也會掉一個。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "再打一場",
+          "text": "用同一台輻射倉解出的座標總是指向同一處，下次把信標帶回上次那個地方點亮就行，不用再去找新的地點。"
+        }
+      ]
+    },
+    {
+      "id": "armor",
+      "title": "審判庭套裝",
+      "icon": "essentialcraft5:inquisitorium_helmet",
+      "summary": "不靠 MRU 的重甲，每件一個芯片",
+      "complete": "essentialcraft5:guide/inquisitorium/armor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:inquisitorium_helmet",
+        "essentialcraft5:inquisitorium_chestplate",
+        "essentialcraft5:inquisitorium_leggings",
+        "essentialcraft5:inquisitorium_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：用審判庭芯片做一套審判庭盔甲。這套甲不用 MRU，護甲和韌性都很高，穿在身上也不掉耐久，不想給盔甲充電的話就穿它。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:inquisitorium_helmet",
+            "essentialcraft5:inquisitorium_chestplate",
+            "essentialcraft5:inquisitorium_leggings",
+            "essentialcraft5:inquisitorium_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每件要 1 個芯片，外加{item:essentialcraft5:void_plating}和{item:essentialcraft5:ackronite_ingot}，頭盔、胸甲、護腿還要一塊{item:essentialcraft5:neuronic_enriched_plating}。整套共要 4 個芯片，也就得打 4 場哨兵。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每件護甲",
+              "<t>{cfg:general.inquisitorium_armor.armor}</t>"
+            ],
+            [
+              "每件韌性",
+              "<t>{cfg:general.inquisitorium_armor.toughness}</t>"
+            ],
+            [
+              "每件擊退抗性",
+              "<t>{cfg:general.inquisitorium_armor.knockback_resistance|pct}</t>"
+            ],
+            [
+              "胸甲",
+              "最大生命 +{cfg:general.inquisitorium_armor.chest_health}"
+            ],
+            [
+              "靴子",
+              "移動速度 +{cfg:general.inquisitorium_armor.boots_speed|mul:10|pct}"
+            ],
+            [
+              "MRU 抗性",
+              "四件穿齊後，MRU 腐化、腐化輻射和海納爾輻射都傷不到你，戴着頭盔還能看見 MRU"
+            ],
+            [
+              "耐久",
+              "頭盔 5120、胸甲 15360、護腿 10240、靴子 5120，穿在身上時不掉耐久"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "全套的護甲和韌性已經頂到原版計算的上限，也就是護甲 30、韌性 20，但它沒法像[[gear/void_armor]]、[[computer/suit]]那樣花 MRU 把一下傷害整個擋掉。"
+        },
+        {
+          "type": "h",
+          "text": "全套：審判庭之律"
+        },
+        {
+          "type": "list",
+          "items": [
+            "抗魔：有攻擊者的魔法傷害少受 {cfg:general.inquisitorium_armor.magic_resistance|pct}。腐化、「MRU 腐化」這類沒有攻擊者的傷害不減。",
+            "首領打來的傷害少受 {cfg:general.inquisitorium_armor.boss_resistance|pct}。",
+            "律令：身上的有害效果，持續時間大約只剩 {cfg:general.inquisitorium_armor.edict_reduction|mul:-1|add:1|pct}。",
+            "定罪：打中你的活物被定罪 {cfg:general.inquisitorium_armor.conviction_ticks|sec}，同一時間最多記 {cfg:general.inquisitorium_armor.conviction_max_targets|raw} 個。你親手打被定罪的目標多 {cfg:general.inquisitorium_armor.conviction_bonus|pct} 傷害（反傷、飾品打出的傷害不加），打在玩家身上時多出來的只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "同調升階以後，抗魔和定罪都會變強，3 階起還能削平特別重的一下，見[[attunement/inquisitorium_armor]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出任意一件審判庭盔甲。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裏的審判庭套裝畫好了貼圖，胸甲的説明裏還寫着一句「安靜點，多米尼克！」，卻沒有配方，也不在任何箱子裏，生存模式下一件也拿不到。"
+        }
+      ]
+    }
+  ]
+}

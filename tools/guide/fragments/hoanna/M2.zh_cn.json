@@ -1,0 +1,191 @@
+[
+  {
+    "id": "legend",
+    "title": "海纳尔的传说",
+    "icon": "minecraft:dead_bush",
+    "summary": "第一个被 MRU 毁掉的世界",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "在我们之前，另一个世界先学会了驾驭 MRU。那里的人造出越来越大的机器、抽出越来越多的 MRU，直到大地被烧成荒漠、天上只剩几轮暗淡的残日——那就是<hl>海纳尔</hl>，第一个被 MRU 毁掉的世界。"
+      },
+      {
+        "type": "p",
+        "text": "那里的人早就不在了，只留下城镇的废墟、地下的墓穴和矿井，还有始终不散的辐射和怪天气。废墟里藏着这边找不到的<em>虚空材料</em>，往后的机器都离不开它（[[hoanna/relics]]）。"
+      },
+      {
+        "type": "p",
+        "text": "只有风还记得去那里的路。和风处得够好，你就能用{item:essentialcraft5:wind_tablet}把一扇点燃的下界传送门变成海纳尔之门：先让石板显出风的真名（[[hoanna/wind_name]]），再去开门（[[hoanna/open_gate]]）。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "风之石板上一点点显出来的那串字，就是风的真名：<em>Owethanna Else Hugaida</em>。原作里，风只替叫得出这个名字的人打开去海纳尔的门。"
+      }
+    ],
+    "_src": [
+      "item/WindTabletItem.java:69 — 风之真名 Owethanna Else Hugaida；好感够（attuned，显全 22 个字）石板才换门（useOn L182）",
+      "tools/plan/batch6a.md §0 / §9 第 1 行 — 海纳尔：第一个被 MRU 毁掉的世界、遗迹箱子里有虚空材料（原作 page.hoanna_0~3 的大意，重写）"
+    ]
+  },
+  {
+    "id": "wind_name",
+    "title": "风的真名",
+    "icon": "essentialcraft5:wind_tablet",
+    "summary": "石板上的问号全部消失",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：让{item:essentialcraft5:wind_tablet}上的问号全部变成字。"
+      },
+      {
+        "type": "p",
+        "text": "把鼠标停在石板上，「风之真名：」下面是一串问号。风之好感每涨一截，就有一个问号变成字；好感到 {cfg:general.wind.tablet_points} 时整个名字都显出来，石板才会回应你。石板怎么做见[[wind/wind_tablet]]，好感怎么涨见[[wind/air_potion]]。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "提示里的名字一个问号都不剩。"
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "坑",
+        "text": "名字没显全时，拿石板右键下界传送门只会听到一句「传送门没有回应……」：不花 MRU，门也不变。"
+      }
+    ],
+    "_src": [
+      "item/WindTabletItem.java:100 — revealed：好感 / 门槛 × 22 取整，门槛见 registry/ECWind.java:181 tablet_points",
+      "item/WindTabletItem.java:182 — 好感不够：提示 no_response（「传送门没有回应……」，tools/lang/keys/ecwind.json），返回 FAIL、不改不扣"
+    ]
+  },
+  {
+    "id": "open_gate",
+    "title": "打开海纳尔之门",
+    "icon": "minecraft:flint_and_steel",
+    "summary": "用风之石板把下界传送门变绿",
+    "complete": "essentialcraft5:guide/hoanna/portal",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：在主世界把一扇点燃的下界传送门换成海纳尔之门。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：显出了风之真名的{item:essentialcraft5:wind_tablet}（[[hoanna/wind_name]]）；至少 {cfg:general.wind.tablet_portal_mru} MRU，石板自带的、身上别的 MRU 储存物品里的都算；一扇下界传送门：黑曜石框，内框宽 2~21、高 3~21，大小随意。"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "在<em>主世界</em>搭好下界传送门并点燃。先别进去。",
+          "手拿风之石板，右键门里紫色的那一片。",
+          "整扇门一下子变成绿色，扣掉 {cfg:general.wind.tablet_portal_mru} MRU（先从身上的储存物品扣，不够再从石板扣）。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "门变成绿色，快捷栏上方写着「海纳尔之门打开了」。"
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "坑",
+        "text": "<b>只有主世界的门能换</b>，下界里的不行；门要整扇点燃，缺了几格的不认。在别人的领地里换门会被拒绝：门一格都不变，也<em>不扣</em> MRU。"
+      },
+      {
+        "type": "p",
+        "text": "海纳尔之门拿不到物品。打碎框上一块黑曜石，整扇门就没了（和下界传送门一样），要重新搭框、点燃，再换一次。"
+      }
+    ],
+    "_src": [
+      "item/WindTabletItem.java:125 — classify：只有主世界里整扇点燃的下界门能换（HoannaPortalShape.findNetherPortal，内框 2~21 × 3~21）；下界等维度 wrong_dimension",
+      "item/WindTabletItem.java:196 — MRUDrain.canAfford 先判断；花费 registry/ECWind.java:184 tablet_portal_mru",
+      "item/WindTabletItem.java:203 — 整扇一次 captureGuarded，被拒整片还原、提示 no_permission、不扣；放行后 L216 playerUseMRU（先扣身上储存物品，mru/MRUDrain.java:28）",
+      "block/HoannaPortalBlock.java:83 — updateShape：框缺一块整扇塌成空气；registry/ECHoannaPortal.java:55 没有方块物品、掉落表为空"
+    ]
+  },
+  {
+    "id": "crossing",
+    "title": "穿过去",
+    "icon": "minecraft:obsidian",
+    "summary": "站进门里等一会儿",
+    "complete": "essentialcraft5:guide/hoanna/enter",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：第一次踏上海纳尔。"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "走进海纳尔之门，站着别动。",
+          "等 {cfg:general.hoanna.portal_wait_ticks|sec}（创造模式马上就走）。屏幕四周会慢慢泛起一圈绿色，不转、不晕；嫌它显眼，把「屏幕扭曲效果」调低就行。",
+          "到了海纳尔，你会站在一扇海纳尔之门里：那边 {cfg:general.hoanna.portal_search_radius} 格内有门就落在那扇门里，没有就在你对应的位置附近自动建一扇。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "天色变暗、地平线泛黄，四周是没见过的地貌。"
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "坑",
+        "text": "<b>骑着东西不能过门</b>，先下来。过门以后 {cfg:general.hoanna.portal_cooldown_ticks|sec}内门不会再带你走；站在门里的这段时间不算，得先走出来。那边能落脚的地方全在别人的领地里时，门会拒绝送你过去，过一会儿再试。"
+      },
+      {
+        "type": "p",
+        "text": "只有玩家能过门：丢进去的东西、动物、矿车都会留在原地。"
+      }
+    ],
+    "_src": [
+      "hoanna/portal/HoannaPortalTracker.java:61 — 等待 portal_wait_ticks（registry/ECHoannaPortal.java:132，默认 80 刻），创造 / 无敌 1 刻",
+      "hoanna/portal/HoannaPortalTracker.java:72 — 骑乘不计时；L85 冷却中不计时、站在门里冷却按住不减；冷却 registry/ECHoannaPortal.java:135（默认 300 刻）",
+      "hoanna/portal/HoannaTeleport.java:134 — plan：先找门（半径 portal_search_radius，registry/ECHoannaPortal.java:138），去海纳尔找不到就建（hoanna/portal/HoannaPortalPlacer.java:98），全被领地拒绝取消传送",
+      "block/HoannaPortalBlock.java:94 — 只有真玩家计时；client/hoanna/HoannaPortalOverlay.java:135 绿色暗角 × 屏幕扭曲效果（hoanna/portal/PortalOverlayCurve.java:16 最浓 0.40）"
+    ]
+  },
+  {
+    "id": "way_home",
+    "title": "怎么回家",
+    "icon": "minecraft:red_bed",
+    "summary": "回程的门、床和补门",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "在海纳尔走进海纳尔之门，就回到主世界的同一坐标附近：{cfg:general.hoanna.portal_search_radius} 格内有海纳尔之门（一般就是你来时那扇）就落在那扇门里。"
+      },
+      {
+        "type": "p",
+        "text": "主世界那边附近<em>没有</em>海纳尔之门（被拆了、离得太远）时，门<em>不会</em>在主世界替你建门，而是把你送回重生点：你在主世界睡过的床，没有就是世界出生点。"
+      },
+      {
+        "type": "list",
+        "items": [
+          "海纳尔里能睡床，睡过以后重生点就在海纳尔（睡觉不会跳过夜晚）；重生锚在海纳尔用不了。",
+          "没在海纳尔睡过床就死了，会回到主世界的重生点。",
+          "重生点设在海纳尔的人从海纳尔回来又找不到门时，落在世界出生点。"
+        ]
+      },
+      {
+        "type": "h",
+        "text": "门坏了怎么办"
+      },
+      {
+        "type": "p",
+        "text": "海纳尔里点不燃下界传送门。那边的门被拆了，就重新搭一个空的黑曜石框，拿{item:essentialcraft5:wind_tablet}右键框的<em>内侧</em>（比如框底的上表面）：空框直接变成海纳尔之门。同样要显出风之真名、花 {cfg:general.wind.tablet_portal_mru} MRU，在别人领地里同样会被拒绝、不扣 MRU。"
+      }
+    ],
+    "_src": [
+      "hoanna/portal/HoannaTeleport.java:134 — 回主世界 build = false：只找不建",
+      "hoanna/portal/HoannaTeleport.java:171 — fallbackArrival：重生维度是主世界才用床 / 强制重生点，否则世界出生点地表",
+      "data/essentialcraft5/dimension_type/hoanna.json — bed_works true、respawn_anchor_works false、不固定时间（非主世界 setDayTime 空实现，睡觉不跳夜）",
+      "item/WindTabletItem.java:125 — 海纳尔里点空框内侧 → FILL，同样 captureGuarded、先判断后扣"
+    ]
+  }
+]

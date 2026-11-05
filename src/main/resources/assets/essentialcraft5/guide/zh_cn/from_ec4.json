@@ -1,0 +1,3209 @@
+{
+  "id": "from_ec4",
+  "order": 120,
+  "group": "side",
+  "title": "附录 · 与原作的不同",
+  "subtitle": "玩过 1.12 版的看这里",
+  "icon": "essentialcraft5:magic_monocle",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "先看这里",
+      "icon": "essentialcraft5:magic_monocle",
+      "summary": "原作玩家先读这篇",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "这本手册照着一部更早的研究书重抄而成，抄写时动过不少页。读过那部旧书的人先看这里，免得凭着旧书的记忆走错了路。",
+          "by": "编者按"
+        },
+        {
+          "type": "p",
+          "text": "这一章写给玩过 1.12 版「源质魔法 4 非官方版」的老玩家，讲原作里的东西如今在哪里，哪些规矩变了，哪些已经去掉。第一次玩这个模组的话，整章都可以跳过，主线要知道的事，各章里都写明了。"
+        },
+        {
+          "type": "h",
+          "text": "最大的几处不同"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.ley_projector.enabled",
+              "text": "<em>机器不再挖掘或放置世界里的方块</em>：魔力采石场、执行器、方块破坏器和补种器都已去掉。要矿就用{item:essentialcraft5:ley_projector}，它在机器里把矿投影出来，地面一格也不动。"
+            },
+            {
+              "if": "!cfg:machines.ley_projector.enabled",
+              "text": "<em>机器不再挖掘或放置世界里的方块</em>：魔力采石场、执行器、方块破坏器和补种器都已去掉。"
+            },
+            "<em>会伤到或作用于别的玩家的东西都守规矩</em>：生效之前，它们会先看玩家之间能不能互相伤害、双方是不是同一队、对方是不是站在别人的领地里。爆炸照样有，只是不再炸坏方块。",
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "cfg:machines.mru_coil.trespassers_only"
+              ],
+              "text": "看家用的{item:essentialcraft5:mru_coil}是个例外，白名单以外的人闯进你的领地，就算玩家之间不能互相伤害，它也照样会打，见[[tesla/mru_coil]]。"
+            },
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "!cfg:machines.mru_coil.trespassers_only"
+              ],
+              "text": "看家用的{item:essentialcraft5:mru_coil}是个例外，白名单以外的玩家它照样会打，见[[tesla/mru_coil]]。"
+            },
+            "<em>饰品戴在 Curios 的饰品栏里</em>，同一种只能戴一件，第二件戴不上，见[[from_ec4/how]]。",
+            "<em>研究书换成了这本手册</em>，不用合成升级，一开始就能全部翻阅。在物品提示上按住 Ctrl，就会翻到介绍那件物品的那一篇。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "<em>后期护甲不再「有电就什么都挡」</em>：虚空套装有电时挡近战和弹射物，宅男套装还能挡元素伤害，作为交换，两套都有了实打实的护甲值和额外生命，见[[from_ec4/changed]]。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么找"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>搜原作的名字</em>：在首页直接输入，比如「魔力合成站」「采石场」，就能搜到本章里提到它的那一篇。",
+            "<em>照原作研究书的分类找</em>：[[from_ec4/where]]按原作研究书的五个分类，列出了改了名、换了做法的东西。",
+            "点一下表里的物品名，就会翻到现在介绍它的那一篇。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "这一章的几篇"
+        },
+        {
+          "type": "table",
+          "header": [
+            "篇",
+            "讲什么"
+          ],
+          "rows": [
+            [
+              "[[from_ec4/where]]",
+              "照原作研究书的分类，找原作的东西现在叫什么"
+            ],
+            [
+              "[[from_ec4/new]]",
+              "原作里没有的东西"
+            ],
+            [
+              "[[from_ec4/changed]]",
+              "东西还在，规矩变了"
+            ],
+            [
+              "[[from_ec4/removed]]",
+              "原作有、这一版没有的东西，以及如今改用什么"
+            ],
+            [
+              "[[from_ec4/fixed]]",
+              "修好的原作 bug，以前靠这些 bug 的要留意"
+            ],
+            [
+              "[[from_ec4/how]]",
+              "饰品栏、物品分类、手册和按键等换了做法的地方"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书其实还有第六类「有关暗影的知识」，标题下只写着一句「黑暗降临……」，里面一页也没有。"
+        }
+      ],
+      "_src": [
+        "tools/plan/policy.md §3.1 — 执行器 ×6、方块破坏器 ×2、魔力采石场与 7 种升级、补种器按「机器不自动挖、放方块」去掉；采石场由地脉投影仪补回（registry/ECLeyProjector.java 类注释，machines.ley_projector.enabled）",
+        "util/ECProtection.java:1195 safeExplode — 爆炸不破坏方块；对别的玩家起作用的效果过玩家之间能否互相伤害、队伍、领地（policy.md §2.3a、batch10.md §1.4）",
+        "blockentity/MRUCoilBlockEntity.java:98 类注释 — 线圈打人（machines.mru_coil.hurt_players）关了互相伤害也打；trespassers_only 开着时只打闯进主人地盘的人，关掉时打白名单以外的玩家",
+        "compat/CuriosCompat.java onlyOneEquipped — 同一种第二件戴不上；META-INF/mods.toml curios mandatory",
+        "client/guide/GuideLookup.java:48 — 物品提示上按住 Ctrl 查阅；手册不锁条目（FORMAT.md §3）；原作分类分等级要升级书（原作 common/registry/ResearchRegistry.java L2343~2347 setTier）",
+        "item/armor/MRUShield.java、item/VoidArmorEvents.java:42 类注释 — 虚空套装有电挡物理（近战、弹射物），宅男套装挡物理和元素；属性一直在（gear/void_armor、computer/suit 两篇）",
+        "原作 common/registry/ResearchRegistry.java L2312~2347 — 六个分类，shade 分类从不 apendDiscovery；原作 lang ec3book.category_essentialcraft.shade.name「有关暗影的知识」/ .desc「黑暗降临...」（tools/legacy_lang/zh_cn.json，en「Knowledges of SHADE」「The darkness falls...」）",
+        "搜索：client/guide/GuideSearch 搜正文；「魔力合成站」「采石场」见本章 where 篇，「Magical Inventory Manager」「Quarry」见 en where 篇",
+        "blockentity/MRUCoilBlockEntity.java mayStrikePlayer — trespassers_only 时只打闯入者：站在主人能动、自己却没有权限的地方的玩家（policy §4.11 A1）"
+      ]
+    },
+    {
+      "id": "where",
+      "title": "原作的东西在哪",
+      "icon": "minecraft:compass",
+      "summary": "照原作研究书的分类找",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "下面几张表按原作研究书的五个分类排列，每类里大致沿用原书的顺序，只列改了名、换了做法或玩法有变的东西，名字和用法都没变的不再列出。第一列是原作里的叫法，可以直接拿来搜索，点一下第二列，就会翻到现在介绍它的那一篇。"
+        },
+        {
+          "type": "h",
+          "text": "魔法基础"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作里叫",
+            "现在",
+            "变了什么"
+          ],
+          "rows": [
+            [
+              "研究手册（书里叫「知识之书」）",
+              "{item:essentialcraft5:research_book}",
+              "不用合成升级，一开始就能全部翻阅，见[[from_ec4/how]]"
+            ],
+            [
+              "困牢之风、瓶装之风",
+              "{item:essentialcraft5:wind_keeper}、{item:essentialcraft5:bottled_wind}",
+              "改了中文名"
+            ],
+            [
+              "元素蕴魔矿（15 种同名）",
+              "{item:essentialcraft5:fire_infused_ore}等 15 种",
+              "名字写明了元素和所在维度，分布照旧"
+            ],
+            [
+              "菱形板、翡翠板、聚集之眼、导热棒",
+              "{item:essentialcraft5:diamond_plate}、{item:essentialcraft5:emerald_plate}、{item:essentialcraft5:eye_of_absorption}、{item:essentialcraft5:heating_rod}",
+              "改了中文名，原来的是误译"
+            ],
+            [
+              "MRU 连动装置、MRU 收集装置",
+              "{item:essentialcraft5:matrix_link}、{item:essentialcraft5:mru_catcher}",
+              "改了中文名"
+            ],
+            [
+              "MRUCU 移动魔杖",
+              "{item:essentialcraft5:mru_mover}",
+              "前方约 20 格内都抓得到，只移动你有权建造的地方里的聚集体"
+            ],
+            [
+              "魔力凿子",
+              "{item:essentialcraft5:magical_chisel}",
+              "能用 256 次，花纹方块挖下来掉的是它自己"
+            ],
+            [
+              "魔力板块、淡青板块、米斯莱板块",
+              "{item:essentialcraft5:magic_plating}、{item:essentialcraft5:pale_plating}、{item:essentialcraft5:mithriline_plating}",
+              "统一改叫「护板」"
+            ],
+            [
+              "Mimic Block、Crystal Lamp",
+              "{item:essentialcraft5:mimic}、{item:essentialcraft5:fire_crystal_lamp}等",
+              "原作没有中文名，现在有了"
+            ],
+            [
+              "「沧海桑田」里的上古遗迹",
+              "上古遗迹",
+              "数量少了很多，箱子照旧，见[[baubles/finding]]"
+            ],
+            [
+              "32 件戒指、护身符、腰带",
+              "{item:essentialcraft5:omega_ring}等 32 件",
+              "戴进 Curios 饰品栏，同一种只能戴一件，见[[from_ec4/how]]"
+            ],
+            {
+              "if": [
+                "bauble:essentialcraft5:ring_of_stability",
+                "bauble:essentialcraft5:ring_of_experience",
+                "bauble:essentialcraft5:ring_of_resistance"
+              ],
+              "cells": [
+                "稳定之戒、经验之戒、抗拒之戒",
+                "{item:essentialcraft5:ring_of_stability}、{item:essentialcraft5:ring_of_experience}、{item:essentialcraft5:ring_of_resistance}",
+                "改叫「指环」"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:wind_mages_talisman",
+                "bauble:essentialcraft5:doctors_belt"
+              ],
+              "cells": [
+                "风之法师护符、学者腰带",
+                "{item:essentialcraft5:wind_mages_talisman}、{item:essentialcraft5:doctors_belt}",
+                "改了中文名"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:portable_matrix_destructor",
+              "cells": [
+                "便携式矩阵换能器",
+                "{item:essentialcraft5:portable_matrix_destructor}",
+                "存下的 MRU 能当随身电池用了"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "MRU 与矩阵"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作里叫",
+            "现在",
+            "变了什么"
+          ],
+          "rows": [
+            [
+              "末影合金板、玻璃合金板、红石合金板、烈焰粉合金板",
+              "{item:essentialcraft5:magic_purified_ender_scale_alloy}等 4 种",
+              "改叫「某某合金」"
+            ],
+            [
+              "MRU 块、大型 MRU 块",
+              "{item:essentialcraft5:mru_chunk}、{item:essentialcraft5:mru_large_chunk}",
+              "改叫「晶块」"
+            ],
+            [
+              "聚光镜、水晶粉末",
+              "{item:essentialcraft5:sun_imbued_glass}、{item:essentialcraft5:crystal_dust}",
+              "改了中文名"
+            ],
+            [
+              "魔力屏板",
+              "{item:essentialcraft5:magical_screen}",
+              "英文原名和{item:essentialcraft5:magical_display}相同，为了区分改了名"
+            ],
+            [
+              "魔法眼镜",
+              "{item:essentialcraft5:magic_monocle}",
+              "也能戴在头盔格，没有耐久"
+            ],
+            [
+              "二级 MRUCU 移动法杖",
+              "{item:essentialcraft5:mru_mover_t2}",
+              "改了中文名"
+            ],
+            [
+              "富集仓控制器、富集仓红石控制器",
+              "{item:essentialcraft5:ec_controller}、{item:essentialcraft5:ec_redstone_controller}",
+              "外壳有了大小上限，红石控制器不再需要聚集体"
+            ],
+            [
+              "富集仓 MRU 输出器",
+              "{item:essentialcraft5:ec_ejector}",
+              "输出仓里真实的平衡值，见[[from_ec4/fixed]]"
+            ],
+            [
+              "自然熔炉",
+              "{item:essentialcraft5:natural_furnace}",
+              "只烧放进它格子里的花、草、树苗，见[[from_ec4/changed]]"
+            ],
+            [
+              "魔力镜子",
+              "{item:essentialcraft5:magical_mirror}",
+              "改了中文名，对面放不下时不再吞东西"
+            ],
+            [
+              "污染清理器",
+              "没有了",
+              "原作里污染方块从不出现，见[[from_ec4/removed]]"
+            ],
+            [
+              "魔力执行器（6 种）",
+              "没有了",
+              "机器不再替人改方块，见[[from_ec4/removed]]"
+            ],
+            [
+              "魔力漏斗",
+              "{item:essentialcraft5:magical_hopper}",
+              "只从放下它的人有权建造的地方收东西，前方是实心方块时不往里塞"
+            ],
+            [
+              "元数据管理器",
+              "{item:essentialcraft5:metadata_manager}",
+              "改为读取方块的数值，比如作物阶段，会自动更新，见[[from_ec4/how]]"
+            ],
+            [
+              "魔力方块破坏器、高级魔力方块破坏器",
+              "没有了",
+              "挖石头改用手持的{item:essentialcraft5:magical_digger}"
+            ],
+            [
+              "武器台桌",
+              "{item:essentialcraft5:pistol_weapon_maker}等 4 台",
+              "每种枪各用一台"
+            ],
+            [
+              "手枪、突击步枪、狙击步枪、转管炮",
+              "{item:essentialcraft5:pistol}等 4 种",
+              "伤害算在开枪的人头上，转管炮改叫加特林机枪，见[[from_ec4/changed]]"
+            ],
+            [
+              "岩浆炉（4 种同名）",
+              "{item:essentialcraft5:fortified_magmatic_furnace}等 4 种",
+              "每一档有了自己的名字"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "魔力箱子（2 种同名）",
+                "{item:essentialcraft5:magical_chest}、{item:essentialcraft5:void_chest}",
+                "大的那种改叫虚空箱"
+              ]
+            },
+            [
+              "魔力种植站",
+              "没有了",
+              "机器不再替人种地，见[[from_ec4/removed]]"
+            ],
+            [
+              "魔力物流整理机",
+              "{item:essentialcraft5:item_shuffler}",
+              "改了中文名，它做的是把地上的东西抖散，算不上整理"
+            ],
+            [
+              "魔力合成站",
+              "{item:essentialcraft5:crafter}",
+              "原作在生存模式里合不出东西，现在每给一次红石信号合成一次"
+            ],
+            [
+              "魔力饲育站、魔力剪毛站",
+              "{item:essentialcraft5:breeder}、{item:essentialcraft5:shearing_station}",
+              "红石信号亮起的那一刻才工作一次，不碰别人的宠物"
+            ],
+            [
+              "魔力仓库节点过滤器（4 种同名）",
+              "{item:essentialcraft5:whitelist_filter}等 4 种",
+              "改叫物品过滤器，不能再刷物品"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "MRU 工程学"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作里叫",
+            "现在",
+            "变了什么"
+          ],
+          "rows": [
+            [
+              "水晶模版、水晶生长控制器、水晶元素提取器",
+              "{item:essentialcraft5:crystal_former}、{item:essentialcraft5:crystal_controller}、{item:essentialcraft5:crystal_extractor}",
+              "改了中文名，成型器和提取器重进存档后不会丢进度"
+            ],
+            [
+              "火灵之焦等四种焦点、土元素燃料",
+              "{item:essentialcraft5:fire_focus}等、{item:essentialcraft5:earth_elemental_fuel}",
+              "改了中文名"
+            ],
+            [
+              "MRUMP - 空、混沌、冻结、魔法、暗影",
+              "{item:essentialcraft5:empty_matrix_projection}等 5 种",
+              "改叫「某某矩阵投影」"
+            ],
+            [
+              "太阳光吸收器",
+              "{item:essentialcraft5:sun_ray_absorber}",
+              "一道光柱只供给一台，见[[from_ec4/fixed]]"
+            ],
+            [
+              "太阳棱镜",
+              "{item:essentialcraft5:solar_prism}",
+              "光柱不再点火，只烧敌对生物"
+            ],
+            [
+              "月亮井",
+              "{item:essentialcraft5:moon_well}",
+              "放在高度 {cfg:machines.moon_well.max_height} 以上就不再产出，原作在那么高反而满产"
+            ],
+            {
+              "if": "cfg:machines.reactor.damage_mobs",
+              "cells": [
+                "MRU 特斯拉反应堆核心",
+                "{item:essentialcraft5:reactor}",
+                "只电敌对生物，电死的不掉东西"
+              ]
+            },
+            {
+              "if": "!cfg:machines.reactor.damage_mobs",
+              "cells": [
+                "MRU 特斯拉反应堆核心",
+                "{item:essentialcraft5:reactor}",
+                "不电任何生物"
+              ]
+            },
+            [
+              "魔法挖掘机",
+              "{item:essentialcraft5:magical_digger}",
+              "改了中文名，挖成了才扣 MRU"
+            ],
+            [
+              "磁化权杖、生命权杖、岩浆权杖",
+              "{item:essentialcraft5:magnetizing_staff}、{item:essentialcraft5:staff_of_life}、{item:essentialcraft5:magmatic_staff}",
+              "改叫「法杖」，前两把的规矩变了，见[[from_ec4/changed]]"
+            ],
+            [
+              "刷怪笼采集者",
+              "没有了",
+              "太容易造刷怪塔，见[[from_ec4/removed]]"
+            ],
+            [
+              "神圣手杖、霜冻手杖、混沌之叉",
+              "{item:essentialcraft5:holy_mace}、{item:essentialcraft5:frozen_mace}、{item:essentialcraft5:chaos_fork}",
+              "手杖改叫「重锤」，后两把叠加的效果最多 {cfg:general.staffs.weapon_max_effect_level} 级"
+            ],
+            [
+              "翡翠心",
+              "{item:essentialcraft5:emerald_heart}",
+              "改了中文名"
+            ],
+            {
+              "if": "bauble:essentialcraft5:magical_wings",
+              "cells": [
+                "神奇翅膀",
+                "{item:essentialcraft5:magical_wings}",
+                "戴着往上飞也要扣 MRU"
+              ]
+            },
+            [
+              "魔法盾、尖刺盾牌",
+              "{item:essentialcraft5:magical_shield}、{item:essentialcraft5:spiky_shield}",
+              "改了中文名，圆盾要有足够的 MRU 才举得起来"
+            ],
+            [
+              "生态魔杖",
+              "没有了",
+              "改群系时顾不到领地，见[[from_ec4/removed]]"
+            ],
+            [
+              "MHS 头盔、MHS 胸甲等",
+              "{item:essentialcraft5:mhs_helmet}等 4 件",
+              "改叫「魔力防护」，胸甲和护腿的护甲值对调了"
+            ],
+            [
+              "元素魔力（10 种同名）",
+              "{item:essentialcraft5:fire_charm}等 10 种",
+              "每一种有了自己的名字"
+            ],
+            [
+              "怪物约束装置、怪物复制器",
+              "没有了",
+              "太容易造刷怪塔，见[[from_ec4/removed]]"
+            ],
+            [
+              "岩浆冶炼厂",
+              "{item:essentialcraft5:magmatic_smeltery}",
+              "改了中文名，也能加工粗矿"
+            ],
+            {
+              "if": "cfg:machines.ley_projector.enabled",
+              "cells": [
+                "魔力采石场",
+                "{item:essentialcraft5:ley_projector}",
+                "不挖地，在机器里投影出矿，见[[ley/ley_projector]]"
+              ]
+            },
+            {
+              "if": "!cfg:machines.ley_projector.enabled",
+              "cells": [
+                "魔力采石场",
+                "没有了",
+                "会无视领地把地挖穿，见[[from_ec4/removed]]"
+              ]
+            },
+            [
+              "药水扩散器",
+              "{item:essentialcraft5:potion_spreader}",
+              "有害效果只给敌对生物"
+            ],
+            [
+              "魔力附魔台",
+              "{item:essentialcraft5:magical_enchanter}",
+              "产出的附魔书能在铁砧上使用了"
+            ],
+            [
+              "MRU 特斯拉线圈",
+              "{item:essentialcraft5:mru_coil}",
+              "从不电主人和牲畜，也不去清邻居家的怪，射程有上限"
+            ],
+            [
+              "玩家白名单",
+              "{item:essentialcraft5:player_list}",
+              "能把别的玩家写上去了"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "读风板",
+                "{item:essentialcraft5:wind_tablet}",
+                "换成了门才扣 MRU，在海纳尔也能补门"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "读风板",
+                "{item:essentialcraft5:wind_tablet}",
+                "改了中文名"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "海纳尔的世界（原作写作「海尔纳的世界」）"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "header": [
+            "原作里叫",
+            "现在",
+            "变了什么"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "「开元世界」一页讲的辐射",
+                "快捷栏旁的辐射图标",
+                "鼠标停上去看剂量，见[[hoanna/radiation]]"
+              ]
+            },
+            [
+              "酸性灰烬等 8 种灰烬",
+              "{item:essentialcraft5:acidic_ember}等 8 种",
+              "统一改叫「余烬」"
+            ],
+            [
+              "虚空石、虚空玻璃",
+              "{item:essentialcraft5:void_stone}、{item:essentialcraft5:void_glass}",
+              "原作配方用了不存在的材料，现在做得出来"
+            ],
+            [
+              "虚空装甲",
+              "{item:essentialcraft5:void_helmet}等 4 件",
+              "有电时只挡物理伤害，护甲和生命加成都是实打实的"
+            ],
+            [
+              "魔力传送器",
+              "{item:essentialcraft5:magical_teleporter}",
+              "只传送站上去的玩家，落点必须安全"
+            ],
+            [
+              "魔力熔炉",
+              "{item:essentialcraft5:magical_furnace}",
+              "粉类、湿海绵不再翻倍"
+            ],
+            [
+              "灰烬熔炉",
+              "{item:essentialcraft5:ember_forge}",
+              "余烬头一回真正起了作用，潜行时空手右键能把东西取回"
+            ],
+            [
+              "元素之剑",
+              "{item:essentialcraft5:forged_elemental_sword}",
+              "改叫余烬元素剑，引雷只劈目标"
+            ],
+            [
+              "魔力仓库管理核心与各种模块、容器宝石",
+              "没有了",
+              "整套会让所有人一起卡顿，还能远程拿走东西，见[[from_ec4/removed]]"
+            ],
+            [
+              "黑暗方尖碑",
+              "没有了",
+              "太容易造刷怪塔"
+            ],
+            [
+              "终极热力产能器",
+              "{item:essentialcraft5:ultra_heat_generator}",
+              "烧岩浆桶会还你空桶"
+            ],
+            [
+              "终极自然熔炉",
+              "{item:essentialcraft5:ultra_natural_furnace}",
+              "只烧放进格子里的东西，不碰周围"
+            ],
+            [
+              "魔力建筑之杖",
+              "{item:essentialcraft5:magical_builder_fill}等 5 根",
+              "按模式分成五根，每次能选的格数有上限，要花几秒才搭完"
+            ],
+            [
+              "全息板",
+              "{item:essentialcraft5:holopad}",
+              "改了中文名"
+            ],
+            [
+              "全息投影",
+              "{lang:entity.essentialcraft5.hologram}",
+              "只有召唤者和真正打过它的人参战，见[[from_ec4/changed]]"
+            ],
+            [
+              "附加核心、基础核心、增值核心、分裂核心",
+              "{item:essentialcraft5:addition_core}等 4 种",
+              "改叫加法、减法、乘法、除法核心"
+            ],
+            [
+              "宅男套装（宅男之靴等）",
+              "{item:essentialcraft5:computer_helmet}等 4 件",
+              "不再有电就全挡，改为抵挡物理和元素伤害，护甲值是实打实的"
+            ],
+            {
+              "if": [
+                "bauble:essentialcraft5:computer_board",
+                "cfg:general.computer_board.fly_speed>0"
+              ],
+              "cells": [
+                "宅男反重力板",
+                "{item:essentialcraft5:computer_board}",
+                "飞行速度是创造模式的 {cfg:general.computer_board.fly_speed|div:0.05} 倍，原作是 4 倍"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "末地之星的传说"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作里叫",
+            "现在",
+            "变了什么"
+          ],
+          "rows": [
+            [
+              "米斯莱粉末",
+              "{item:essentialcraft5:mithriline_dust}",
+              "改了中文名"
+            ],
+            [
+              "米斯莱水晶、淡青水晶（方块）",
+              "{item:essentialcraft5:mithriline_crystal_pillar}、{item:essentialcraft5:pale_crystal_pillar}",
+              "方块改叫「水晶柱」，「米斯莱水晶」现在只指宝石"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "虚空水晶、恶魔水晶（方块）",
+                "{item:essentialcraft5:void_crystal_pillar}、{item:essentialcraft5:demonic_crystal_pillar}",
+                "同样改叫「水晶柱」"
+              ]
+            },
+            [
+              "风之谷锄",
+              "{item:essentialcraft5:wind_elemental_hoe}",
+              "改了中文名"
+            ],
+            [
+              "风之符文（注风）",
+              "{item:essentialcraft5:wind_rune}",
+              "已受眷顾的人再注风会被拒绝，不白扣 ESPE"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "恶魔五芒星",
+                "{item:essentialcraft5:demonic_pentacle}",
+                "1.12 版配方写错了，做不出来，现在能做了"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "恶魔",
+                "{lang:entity.essentialcraft5.demon}",
+                "不会被打跑，只有召唤者能交易"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "灵魂划刀",
+                "{item:essentialcraft5:soul_scriber}",
+                "改叫灵魂刻刀，只认真正的玩家拿着它攻击"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "MRU 反应堆（遗迹里的材料）",
+                "{item:essentialcraft5:void_mru_reactor}",
+                "改叫「反应核」，免得和反应堆方块混淆"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "原作研究书里没写的"
+        },
+        {
+          "type": "p",
+          "text": "下面这些原作里也有，研究书里却一页也没有写到。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作里叫",
+            "现在",
+            "变了什么"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "远程轨道打击",
+                "{item:essentialcraft5:orbital_remote}",
+                "改叫遥控器，只伤生物，不动地形"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "分频枪",
+                "{item:essentialcraft5:divider_gun}",
+                "改叫二分枪，只让敌对生物减半"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mystical_accessory",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "神秘挂件",
+                "{item:essentialcraft5:mystical_accessory}",
+                "开箱时就定好形态和抗性，见[[baubles/mystical_accessory]]"
+              ]
+            },
+            [
+              "[NYI]魔力显示屏",
+              "{item:essentialcraft5:magical_display}",
+              "有了配方，挖下来掉的是它自己"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "无效的核心",
+                "{item:essentialcraft5:void_core}",
+                "改叫虚空核心，原来的是误译"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "MRU 提升器、MRU 发送器",
+                "{item:essentialcraft5:levitator}、{item:essentialcraft5:spreader}",
+                "改叫悬浮器、散射器"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "全息记录仪",
+                "{item:essentialcraft5:music_disc_ropocalypse}",
+                "改叫全息唱片"
+              ]
+            },
+            [
+              "MRU Intersector（原作没有中文名）",
+              "{item:essentialcraft5:intersector}",
+              "有了中文名"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        }
+      ],
+      "_src": [
+        "tools/guide/ec4_where_candidates.py — 按原作 common/registry/ResearchRegistry.java 的五个分类（L29 魔法基础 / L460 MRU 与矩阵 / L1046 MRU 工程学 / L1505 海纳尔的世界 / L1872 末地之星的传说；书里的顺序 L2334~2339：基础、MRU、工程、海纳尔、暗影、末地之星）导出候选，再人工挑；原作名取 tools/legacy_lang/、现名取命名表 tools/id_map_*.json",
+        "原作分类名：ec3book.category_essentialcraft.{basic,mru,eng,hoanna,ender}.name（zh「魔法基础 / MRU与矩阵 / MRU工程学 / 海尔纳的世界 / 末地之星的传说...」，en「Bases of Magic / MRU and Matrix / MRU Engineering / The world of Hoanna / The legend of the Enderstar...」）",
+        "全息投影、宅男套装在原作海纳尔分类里有条目（原作 ResearchRegistry L1767「hologram」、L1776「redSuit」），所以放在海纳尔表；轨道打击遥控器、二分枪、神秘挂件、魔力显示屏、虚空核心、悬浮器 / 散射器、全息唱片、MRU 汇流器在研究书里一处都没提到（脚本末段「研究书里没写」）",
+        "改名对照：tools/id_map_items.json / id_map_blocks.json 的 zh_legacy（原作 zh_CN.lang）与 zh；英文原名 tools/legacy_lang/en_us.json",
+        "玩法变化（逐条见 tools/plan/batch10.md 附录 A）：MRUCU 移动魔杖 20 段 item/MRUMoverItem.java:31~37（原作扫描循环无条件 break，F23）；魔力凿 F26；遗迹 rarity 16 data/essentialcraft5/worldgen/placed_feature/elder_mrucu.json（C46）；同种饰品 compat/CuriosCompat.java onlyOneEquipped（C40）；便携矩阵换能器 C42",
+        "MRU 与矩阵表：单片镜 item/MagicMonocleItem.java:38 头盔格（C26）；富集仓外壳 machines.enrichment_chamber.min_size / max_size、红石控制器（C14）；输出器平衡值（F5）；自然熔炉（C2，原作 common/tile/TileFlowerBurner.java L86~100）；魔力镜（F13）；污染清理器（R10，原作 utils/cfg/Config.java L54）；执行器、破坏器、补种器（R2~R4）；漏斗（C10）；方块状态检测器 block/MetadataManagerBlock.java:63（E5）；武器工作台 4 台、枪伤害算射手（C27）；魔力箱子 meta 1 → void_chest；物品洗牌器（C11 / 农牧篇）；合成器（F11）；繁殖器 / 剪毛器（C11）；过滤器（F12）",
+        "MRU 工程学表：成型器 / 提取器进度存盘（F4）；日光吸收器（F2，原作 common/tile/TileSunRayAbsorber.java L24~27）；太阳棱镜（C4）；月亮井 blockentity/MoonWellBlockEntity.java:77（F1，原作 common/tile/TileMoonWell.java L31~37 高度超过上限时 heightFactor 不乘）；反应堆 machines.reactor.damage_mobs（C6）；挖掘器（C9）；法杖（C35 / C36）；混沌之叉 / 冰冻重锤 general.staffs.weapon_max_effect_level（C38）；魔力之翼（C37）；尖刺圆盾（C37）；魔力防护胸甲 8 护腿 6（C24，原作 common/item/ItemsCore.java L466 {3, 8, 6, 3}）；采石场 machines.ley_projector.enabled（R1 / N1）；药水扩散器（C13）；附魔台（F7）；线圈（C5）；白名单（N7）；风之石板（F25 / N5）",
+        "海纳尔表：辐射读数（N4，general.radiation.enabled）；余烬改名（命名表 ember:*）；虚空石 / 玻璃配方（F18）；虚空套装（C20）；传送器（C15）；魔力熔炉（C16）；余烬锻炉（F15 / N8）；余烬元素剑（C33）；魔力仓库（R5）；黑暗方尖碑（R11）；终极热力产能器（F30）；终极自然熔炉（C3）；建筑魔杖（C17）；全息投影（C29）；四种核心改名（命名表 genitem:70~73）；宅男套装（C21）；反重力板 general.computer_board.fly_speed（C22，原作 utils/common/PlayerTickHandler.java L462 飞行速度 0.2，原版创造 0.05，原作常量 4 倍）",
+        "末地之星表：水晶方块改叫水晶柱（命名表 mithrilinecrystal:* → *_crystal_pillar，宝石 genitem:48 = mithriline_crystal）；注风（C45）；恶魔五芒星配方（F17）；恶魔（C32）；灵魂刻刀（C34）；MRU 反应核（genitem → void_mru_reactor，原作 zh 与反应堆同名「MRU反应堆」）",
+        "研究书里没写的：轨道遥控器（C30）、二分枪（C31）、神秘饰品开箱即定（C55，item/bauble/MysticalAccessoryItem.java 类注释）、魔力显示屏有配方（F14）、无效的核心 → 虚空核心（命名表 genitem:36 注释「误译」）、全息唱片只从全息投影掉（data/essentialcraft5/loot_tables/entities/hologram_*.json）",
+        "字面数：「20 格」是 item/MRUMoverItem.java:52 SEGMENTS 常量；「256 次」是魔力凿耐久常量；「4 倍」是原作常量；「15 种 / 32 件 / 10 种」等是数量，不是配置值",
+        "魔力漏斗：blockentity/MagicalHopperBlockEntity.java 类注释——范围内不看视线（隔墙照吸），只搬主人能动的格子里的掉落物、前方实心又不是容器就不搬（C10）；灵魂刻刀：item/SoulScriberItem.java hurtEnemy——只认真玩家，打死或打到 2 点生命以下才收魂（C34）"
+      ]
+    },
+    {
+      "id": "new",
+      "title": "新增的",
+      "icon": "essentialcraft5:ley_projector",
+      "summary": "原作里没有的东西",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "下面这些是原作里没有、这一版才加进来的东西，名字能点的，点一下就会翻到介绍它的那一篇。"
+        },
+        {
+          "type": "h",
+          "text": "机器与道具"
+        },
+        {
+          "type": "table",
+          "header": [
+            "新东西",
+            "是什么"
+          ],
+          "rows": [
+            {
+              "if": "cfg:machines.ley_projector.enabled",
+              "cells": [
+                "{item:essentialcraft5:ley_projector}",
+                "顶替原作的魔力采石场，在机器里用 MRU 投影出这个世界岩层中的矿，地面一格也不挖"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.ley_condenser.enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:ley_condenser}",
+                "打倒全息投影以后可以做，用 MRU 凝聚出钻石、绿宝石等原版矿物，凝聚下界之星还要另加 ESPE"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.mru_converter.enabled",
+                "!mod:botania"
+              ],
+              "cells": [
+                "{item:essentialcraft5:mru_converter}",
+                "分四档，把 MRU 换成能量（FE），送进紧挨着它的其他模组的机器、电缆和电池，另外还有一台不耗 MRU 的无尽档。原作不和任何别的模组联动"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.mru_converter.enabled",
+                "mod:botania"
+              ],
+              "cells": [
+                "{item:essentialcraft5:mru_converter}",
+                "分四档，把 MRU 换成能量（FE）或植物魔法的魔力，送进紧挨着它的机器、电缆和魔力池，另外还有一台不耗 MRU 的无尽档。原作不和任何别的模组联动"
+              ]
+            },
+            [
+              "[[creative/creative_items]]",
+              "无尽 MRU 源、无尽 ESPE 源等几件道具，都没有配方，到手以后在生存模式里照样能用。原作只有两种创造模式的源头，只能干等机器来抽"
+            ],
+            [
+              "{item:essentialcraft5:player_list}",
+              "对着别的玩家右键就把他写上去，潜行右键把自己划掉，单独放进工作台就能清空。原作只能写上自己"
+            ],
+            [
+              "{item:essentialcraft5:magical_chest}",
+              "能接红石比较器，装得越满，信号越强"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ember_forge}",
+                "潜行时空手右键，它就会放开托着的东西，放错了也能取回来。原作放上去就拿不下来"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[void_machines/magical_builder|建筑魔杖]]",
+                "正在施工时，潜行对着空气右键就能叫它停下"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[computer/suit]]",
+                "夜视开没开记在你身上，重新登录、死亡以后都还在。原作的夜视开关只存在你自己的客户端上"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "进度「{lang:advancements.essentialcraft5.hologram_big.title}」",
+                "不穿任何盔甲打倒全息投影。原作只在代码注释里写了它"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.enabled",
+                "cfg:general.computer_seal.require_recent_combat"
+              ],
+              "cells": [
+                "[[computer/seal_field]]",
+                "穿齐宅男套装后，按{keybind:key.essentialcraft5.computer_terminal}打开宅男终端，在里面开启。{cfg:general.computer_seal.radius} 格内最近 {cfg:general.computer_seal.combat_window_ticks|sec}内和你交过手的玩家，饰品栏里的东西全部失效，你们之间只要有一下真正打中就算交过手，不管谁先动的手。对方站在别人的领地这类你改不了方块的地方时罩不到他，有些世界里它也不起作用"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.enabled",
+                "!cfg:general.computer_seal.require_recent_combat"
+              ],
+              "cells": [
+                "[[computer/seal_field]]",
+                "穿齐宅男套装后，按{keybind:key.essentialcraft5.computer_terminal}打开宅男终端，在里面开启。{cfg:general.computer_seal.radius} 格内其他玩家饰品栏里的东西全部失效，同队的和不能与你互相伤害的人罩不到，对方站在别人的领地这类你改不了方块的地方时也罩不到，有些世界里它不起作用"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.force_dome.enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:force_dome}",
+                "宅男套装一章里的可选机器，供上 MRU 以后，水平 {cfg:machines.force_dome.radius} 格内不再自然刷怪。它只罩住放下它的人能改动方块的区块，刷怪笼和刷怪蛋照常管用"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+              "cells": [
+                "[[guns/lens_effects]]",
+                "混沌、冰冻、魔力、暗影四种透镜打中时各带一个效果，依次是让目标回不了血的腐蚀、冻住目标、剥掉一个有益效果的驱散，以及替你回血的吸取。原作的透镜只改颜色，暗影投影在原作里做不出来，现在辐射仓就能做"
+              ]
+            },
+            {
+              "if": "cfg:general.wind.steadfast_points",
+              "cells": [
+                "[[wind_mage/steadfast]]",
+                "风之真名显全以后接着积攒风之好感，攒到 {cfg:general.wind.steadfast_points} 点，潜行时就不会被击退"
+              ]
+            },
+            {
+              "if": "cfg:general.wind.deflect_points",
+              "cells": [
+                "[[wind_mage/deflect]]",
+                "好感攒到 {cfg:general.wind.deflect_points} 点以后，别人射来、扔来的弹射物会从你身上穿过去，每 {cfg:general.wind.deflect_cooldown_ticks|sec}放过一个"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.ancient_scrolls.enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "[[scrolls/scrolls]]",
+                "先辈留下的七卷书，散在上古遗迹、海纳尔和审判庭哨兵身上，读过一卷，「古卷」一章就打开一篇，全部读完永久加一点 MRU 腐化抗性和海纳尔辐射抗性"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.ancient_scrolls.enabled",
+                "!cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "[[scrolls/scrolls]]",
+                "先辈留下的书，主世界能找到五卷，都压在上古遗迹的箱子里，读过一卷，「古卷」一章就打开一篇，全部读完永久加一点 MRU 腐化抗性"
+              ]
+            },
+            [
+              "{item:essentialcraft5:magical_cultivator}",
+              "放进种子或树苗当样本，靠 MRU 和水在机器里种出来，样本不会用掉，周围的方块一格不动"
+            ],
+            [
+              "{item:essentialcraft5:elemental_decomposer}",
+              "把圆石、腐肉、羽毛这类杂物拆成元素点数，一种元素攒够了就出一颗精华"
+            ],
+            [
+              "{item:essentialcraft5:ley_detector}",
+              "右键扫一遍周围的矿，轮廓只画在你自己的屏幕上；潜行右键换档，「聚集体」档指出附近大团聚集体的方向"
+            ],
+            [
+              "{item:essentialcraft5:essential_pickaxe}",
+              "第十三章以后才做得出的镐，靠 MRU 干活、不会坏，一下挖掉你挖的那一面上的 3×3"
+            ],
+            [
+              "{item:essentialcraft5:essential_axe}",
+              "和上一行的镐是一对，砍一根原木就放倒整棵天然的树"
+            ],
+            [
+              "{item:essentialcraft5:homeward_compass}",
+              "记一个归途点，按住右键引导几秒传回去"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "[[matrix/overview|矩阵阶]]",
+                "你的 MRU 矩阵分九阶。凑齐图谱、祭品和能量，在{item:essentialcraft5:matrix_crucible}上打赢一场试炼就升一阶，每阶多一样本事，比如体内存 MRU、矩阵虹吸。主线每隔几章要你突破一次"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:condensed_matrix}",
+                "富集仓把关在里面的聚集体凝成的一块，四阶起突破矩阵阶要用，见[[pentacle/condensed]]"
+              ]
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "cells": [
+                "[[attunement/overview|同调]]",
+                "盔甲穿着挨打、武器拿着打实会攒同调度，攒满一阶就在魔力工作台上升一阶，阶越高本事越多"
+              ]
+            },
+            [
+              "护甲电量条",
+              "穿着靠 MRU 挡伤害的盔甲时，快捷栏左边显示这几件一共还剩多少电，见[[storage/charging_chamber]]"
+            ],
+            [
+              "[[bestiary/overview|异兽录]]",
+              "新加的一章，写这一版新加的野怪和首领：在哪儿出没、怎么打、打倒以后掉什么。精英、按人递减的掉落都在开篇讲"
+            ],
+            [
+              "[[bestiary/storm_sorcerer]]",
+              "风法师的第四种，雷雨天出来，放疾风弹、招雷"
+            ],
+            [
+              "[[bestiary/mru_golem]]",
+              "守着新生成的上古遗迹的首领，借那团聚集体的 MRU 挡伤害，打倒掉上古晶核"
+            ],
+            [
+              "[[bestiary/matrix_shade]]",
+              "用矩阵导流符在灵魂五芒星上召出的首领，把身上的矩阵损伤转给它再打倒，损伤就清掉了"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.mru_coil.hurt_players",
+          "text": "线圈打人的新规矩"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_coil.hurt_players",
+          "text": "原作的{item:essentialcraft5:mru_coil}对名单以外的人一律放电，放下它的人自己也躲不掉。现在它多了下面这些约束，详见[[tesla/mru_coil]]。"
+        },
+        {
+          "type": "list",
+          "if": "cfg:machines.mru_coil.hurt_players",
+          "items": [
+            "每台线圈都有自己的「打玩家」开关，放下它的人永远不会挨电。",
+            {
+              "if": "cfg:machines.mru_coil.warning_ticks>0",
+              "text": "有人头一回走进射程，它会先警告 {cfg:machines.mru_coil.warning_ticks|sec}再放电。"
+            },
+            {
+              "if": "cfg:machines.mru_coil.spawn_safe_radius>0",
+              "text": "离主世界出生点 {cfg:machines.mru_coil.spawn_safe_radius} 格以内的人不会挨电。"
+            },
+            {
+              "if": "cfg:machines.mru_coil.respawn_grace_ticks>0",
+              "text": "被线圈电死的人重生后 {cfg:machines.mru_coil.respawn_grace_ticks|sec}内，所有线圈都不会打他。"
+            },
+            "线圈电死了人，死亡消息里会写明是谁的线圈。"
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "海纳尔"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "header": [
+            "新东西",
+            "是什么"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "[[hoanna/radiation]]",
+                "快捷栏左边多了一个辐射图标，鼠标停上去能看到你的剂量和此地每秒涨多少，剂量高了，屏幕四周会泛起暗紫色。它不是药水效果，牛奶、图腾和净化都去不掉。原作只有一个药水效果"
+              ]
+            },
+            [
+              "[[hoanna/way_home]]",
+              "在海纳尔拿{item:essentialcraft5:wind_tablet}右键空的黑曜石框，就能直接补出一扇海纳尔之门。原作只能在主世界换门"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.collapse.enabled"
+              ],
+              "cells": [
+                "[[hoanna/collapse]]",
+                "富集仓困住一团存满的聚集体后，会按仓内的平衡值凝出虚空核心或 MRU 反应核。原作这两样只在遗迹的箱子里有"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.wind_wish.enabled"
+              ],
+              "cells": [
+                "[[wind/wishes]]",
+                "受到风之眷顾以后，风会一个接一个地说出心愿，比如登高、追风、远行，替它办到就能涨好感。风之石板要攒够 {cfg:general.wind_wish.required} 个心愿才会开门，攒够以后，直到风之真名显全，风都不再托付新的心愿"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[wind/wind_horn]]",
+                "拿山羊角注风做成，夜里吹响能召来大法师和它的随从，它们只攻击你，亲手打倒大法师必掉受困之风。原作的受困之风全凭运气"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.ember_inlay.enabled"
+              ],
+              "cells": [
+                "[[void_machines/ember_inlay]]",
+                "把一对余烬的命中效果嵌进任何一把武器，别的模组的武器也行，每次打中扣 {cfg:general.ember_inlay.mru_per_hit} MRU，不加伤害"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.divider_gun.affect_bosses",
+                "cfg:general.divider_gun.boss_mode_ticks>0"
+              ],
+              "cells": [
+                "[[hologram/divider_gun]]",
+                "打 Boss 不再没用，Boss 不会被减半，却会挂上 {cfg:general.divider_gun.boss_mode_ticks|sec}的二分，造成的伤害和受到的治疗都减半。对状态效果免疫的 Boss 挂不上，原版凋灵就是一个"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.orbital_remote.lock_range>0"
+              ],
+              "cells": [
+                "[[hologram/orbital_remote]]",
+                "准星对着生物右键就能锁定它，打击点会跟着它移动，落下前半秒定住"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[hologram/decoy]]",
+                "打倒全息投影以后能做的投影仪，能投出一个你的全息分身，附近盯上你或你队友的敌对生物会转去打它，几秒后分身消失"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[inquisitorium/legend]]",
+                "第十九章「审判庭」，原作里只有一句传闻。把全息投影掉的故障核心放进辐射仓，对准平衡值解码，再循着坐标走到暗影腐化之地，点亮信标召出审判庭哨兵。哨兵的招式带回声，打中你会加矩阵损伤，它会掉审判庭芯片"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[terminal/legend|终端与模块]]",
+                "宅男套装的四件都能装回溯、相位锚、吸附这类模块，在工作台里装上，到宅男终端里开关或拆下"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.matrix_tuner.enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:matrix_tuner}",
+                "站上去，花 ESPE 和 MRU 抹掉矩阵损伤，腐化效果它不治"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:attraction_module"
+              ],
+              "cells": [
+                "{item:essentialcraft5:attraction_module}",
+                "装在护腿上，把身边没人扔的掉落物和经验球推到你脚边"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:stride_module"
+              ],
+              "cells": [
+                "{item:essentialcraft5:stride_module}",
+                "装在靴子上，一步能迈上更高的坎"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:steady_hand_module"
+              ],
+              "cells": [
+                "{item:essentialcraft5:steady_hand_module}",
+                "装在护腿或靴子上，悬空、头在水里时挖东西不再变慢"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:veil_module"
+              ],
+              "cells": [
+                "{item:essentialcraft5:veil_module}",
+                "装在头盔上，怪物要离你更近才发现你"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.attunement.enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:verdict_blade}",
+                "余烬元素剑同调升满以后升格而成，每一下按目标的最大生命补伤害，还能一下砍中身边一圈敌人"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.demon.standing.enabled"
+              ],
+              "cells": [
+                "[[demons/standing|契约之誉]]",
+                "和恶魔做成的交易越多，恶魔越好说话：会同时开两样要价、每笔另给经验，还能交一个被俘灵魂让它重开要价"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[hoanna_explore/overview|海纳尔探索]]",
+                "新加的支线一章，写七种地貌各长的特产、魔力潮汐和大潮夜的地脉风暴、勘测图、渊盐，还有荒野里守着巢穴的营地。原作的海纳尔只有遗迹和箱子"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔本地的怪",
+                "每种地貌和墓穴里都有本地的怪，一共八种，掉异变残质，见[[bestiary/overview|异兽录]]。原作的海纳尔只刷主世界平原上那些怪"
+              ]
+            },
+            [
+              "[[hoanna_explore/sealed_vault]]",
+              "沙漠和恐惧之地地下的宝库，照碑文的次序放下四种魔晶才打得开，每个解开的人领一个{item:essentialcraft5:elder_remnant}"
+            ],
+            [
+              "[[hoanna_explore/sunken_district]]",
+              "海纳尔之海海底的空气穹顶，祭坛召得出[[bestiary/abyss_tyrant]]"
+            ],
+            [
+              "[[hoanna_explore/inquisitorium_outpost]]",
+              "暗影腐化之地里被毁的审判庭场地，平整露天，适合点信标打哨兵"
+            ],
+            [
+              "[[bestiary/town_sentry]]",
+              "城镇废墟中心的守卫，每座城一只"
+            ],
+            [
+              "[[shade/shade_core|暗影核心]]",
+              "富集仓坍缩的第三种产物，要搭在暗影腐化之地附近、仓里丢着影晶"
+            ],
+            [
+              "[[shade/oath|恶魔之誓]]",
+              "契约之誉到 {cfg:general.demon.standing.oath} 以后，交出影晶向恶魔立誓得到"
+            ],
+            [
+              "[[apex/intro|天灾之心]]",
+              "用天灾信标召出的终局首领，打倒它拿天灾残核，升矩阵九阶"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这本手册本身也是新加的，在物品提示上按住 Ctrl，就会翻到介绍这件物品的那一篇，见[[from_ec4/how]]。"
+        }
+      ],
+      "_src": [
+        "blockentity/LeyProjectorBlockEntity.java 类注释 — 世界一格不动、每格时间与 MRU = 原作不装升级的采石场；policy §4.8；原作 common/tile/TileMagicalQuarry.java（已去掉）",
+        "blockentity/LeyCondenserBlockEntity.java 类注释 — 打倒全息投影后可做，下界之星另抽 ESPE；policy §4.9；batch9.md；原作没有",
+        "registry/ECConverters.java 类注释 — MRU 转换器四档（mru_converter / pale_ / mithriline_ / demonic_mru_converter）+ registry/ECCreative.java 无尽档；blockentity/MRUConverterBlockEntity.java 类注释 — MRU → FE / 植物魔法魔力，只推给贴着的六个面，能量能被抽；policy §0「联动」、§4.14；tools/plan/mru_converter.md；原作没有任何联动（ec4_diff N31）；魔力那一行带 mod:botania",
+        "registry/ECCreative.java — 五件无尽道具只放创造栏、没有配方；原作只有 creative_mru_storage / creative_espe_storage（原作 common/tile/TileCreativeMRUSource、TileCreativeESPESource）",
+        "item/PlayerListItem.java:190 use（右键加自己、潜行删自己）、:215 interactLivingEntity（对玩家右键加他）、清空配方 data/essentialcraft5/recipes/tesla/player_list_clear.json；原作 common/item/ItemPlayerList.java 只能加自己（batch4 §7）",
+        "block/MagicalChestBlock.java:203~206 比较器 calcRedstoneFromInventory；原作 BlockMagicalChest 没有 hasComparatorInputOverride（batch4 §7）",
+        "blockentity/EmberForgeBlockEntity.java — 潜行空手右键放开托着的东西、10 秒不再托住；原作 common/tile/TileEmberForge.java 没有取回（batch7 §6）",
+        "item/MagicalBuilderItem.java / item/BuilderJobs.java — 有任务时潜行对空气右键停止；原作 ItemMagicalBuilder 一刻做完、没有停止（batch6b §6）",
+        "client/ComputerClient.java KEY_BOOST / KEY_NIGHT_VISION 两个按键 key.essentialcraft5.computer_armor_night_vision / _boost，C2SComputerArmorPacket；夜视开关存玩家数据；原作 ItemComputerArmor 夜视是客户端本地效果（batch8 §7）；两个按键原作也有（原作 proxy/ClientProxy.java L536~539 ComputerArmorBoost Z、ComputerArmorNightVision X），这一行只算夜视开关跟着人存",
+        "data/essentialcraft5/advancements/hologram_big.json — 兰博；原作 EntityHologram 里只有注释（batch8 §7）",
+        "blockentity/MRUCoilBlockEntity.java 类注释 — warning_ticks 40、spawn_safe_radius 48、respawn_grace_ticks 600、每台「打玩家」开关、主人永远不打、死亡消息写主人名字；原作 common/tile/TileMRUCoil.java L174~205 名单以外一律打（含主人）",
+        "hoanna/Radiation.java + client 背包效果栏显示剂量与此地速率、晕影 client/hoanna（batch6a §8）；原作只有药水效果",
+        "hoanna/portal/HoannaPortalPlacer.java + item/WindTabletItem — 海纳尔里右键空黑曜石框补门（policy §4.2、§7 裁定 11）；原作 ItemWindTablet 只换主世界的下界门",
+        "client/guide/GuideLookup.java — 物品提示上按住 Ctrl 查阅（见 from_ec4/how）",
+        "item/ComputerSealField.java:249 — 逐人评估：canHarmPlayer → require_recent_combat 时 util/ECCombatTags.landedEither（两人之间最近 combat_window_ticks 刻内有过一下被放行的伤害，谁打谁都算）→ respect_claims 时领地探测；compat/curio/CurioSealConfig.java:174 radius 32、combat_window_ticks 200；原作没有（batch10 §5.1、§9.1）",
+        "player/WindWishes.java、item/WindHornItem.java、entity/WindMageSummons.java — 风之心愿、风之号角与召来的大法师（batch10 §5.5）；原作没有，受困之风只有自然刷出的大法师掉",
+        "gun/LensEffects.java — 透镜打实以后的效果（batch10 §5.7.1）；原作 ItemGun 的透镜只决定颜色，暗影透镜的伤害方法是空的",
+        "item/EmberInlayItem.java、item/ember/InlayEvents.java — 余烬嵌刻（batch10 §5.7.2）；原作没有",
+        "item/DividerGunItem.java isBossModeTarget、entity/DividerFieldEntity.java — 二分枪对 Boss 挂二分（batch10 §5.7.3）；item/OrbitalRemoteItem.java lockTargetFor、entity/OrbitalStrikeEntity.java follow — 轨道锁定（§5.7.4）；原作都没有",
+        "item/HoloDecoyProjectorItem.java、entity/HoloDecoyEntity.java — 全息诱饵（batch10 §5.8.2）：只改敌对生物的目标，每人一个、不存盘；原作没有",
+        "player/WindPact.java — 风之契约（batch10 §5.8.1）：general.wind.steadfast_points 7000、deflect_points 12000、deflect_cooldown_ticks 60，都要风之真名显全（WindTabletItem.attuned）；原作没有",
+        "blockentity/ForceDomeBlockEntity.java:467 probe — 以主人身份逐区块问领地；util/ForceDomeIndex.java:217 handles — 只拦怪物的自然 / 生成区块 / 巡逻 / 增援刷怪",
+        "registry/ECInquisitorium.java、blockentity/GlitchyCoreDecoder.java — 第十九章审判庭（batch10.md §5.10）；registry/ECModules.java、item/module/* — 第二十一章终端与模块（§4.3、§5.11、§5.12）",
+        "registry/ECScrolls.java、lore/ScrollVolumes.java — 源质残卷序 + 卷一～卷六共 7 卷（门关着时序 + 卷一～卷四 5 卷），集齐加 MRU 腐化、海纳尔辐射抗性（第十二批 batch12.md §4.1）；原作没有",
+        "registry/ECCultivator.java、blockentity/MagicalCultivatorBlockEntity.java — 魔力栽培器：样本不消耗、世界一格不动（batch12.md §4.2）；原作没有",
+        "registry/ECDecomposer.java、blockentity/ElementalDecomposerBlockEntity.java — 元素分解器：四个物品标签、32 点出一颗精华（batch12.md §4.8）；原作没有",
+        "registry/ECLeyDetector.java、ley/LeyScan.java — 地脉探测仪：扫描在客户端、轮廓只画给本人（batch12.md §4.3）；原作没有",
+        "registry/ECEssentialTools.java、item/EssentialToolEvents.java — 源质镐 3×3 连带、源质斧砍整棵天然树（batch12.md §4.4）；原作没有",
+        "registry/ECHomewardCompass.java、teleport/HomewardChannels.java — 归途罗盘：归途点、引导（batch12.md §4.5）；原作没有",
+        "registry/ECMatrixTuner.java — 矩阵调律器：只减矩阵损伤、不治效果（batch12.md §4.6）；原作没有",
+        "registry/ECUtilityModules.java — 吸附（护腿）、攀行（靴子）、稳手（护腿或靴子）、隐匿（头盔）四块模块（batch12.md §4.7）；原作没有",
+        "同调一行挪到「机器与道具」表（魔力防护、风之护甲门关着也能同调）；海纳尔表那一行换成裁决之刃（tools/plan/batch13.md §4.4）；护甲电量条 §4.7",
+        "第十三批 13c — 异兽录一章（bestiary/*，tools/plan/batch13.md §5）：风暴术士（风法师 Type 3）、聚能魔像、矩阵之影都是原作没有的；地脉探测仪第三档「聚集体」（item/LeyDetectorItem，13c-M2）",
+        "第十三批 13d — 支线 hoanna_explore、异兽录海纳尔一区（batch13.md §5.2、§6）：特产、魔力潮汐、地脉风暴、勘测图、渊盐、中景观与巢穴、八种本地怪都是原作没有的",
+        "第十三批 13e — 海纳尔三座结构（封印宝库、沉没城区、审判庭前哨）、废城守望者、渊潮领主、天灾之心、暗影核心、恶魔之誓都是原作没有的（batch13.md §3.4、§3.5、§5.3、§6.4）"
+      ]
+    },
+    {
+      "id": "changed",
+      "title": "玩法变了的",
+      "icon": "essentialcraft5:mru_coil",
+      "summary": "同样的东西，规矩变了",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "这些东西原作里也有，只是规矩变了，有的还改了名，新旧名字对照见[[from_ec4/where]]。凭原作的经验来玩，最容易在这几处踩空。"
+        },
+        {
+          "type": "h",
+          "text": "能源与机器"
+        },
+        {
+          "type": "table",
+          "header": [
+            "东西",
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            [
+              "击杀得到的 UBMRU",
+              "按目标当前的最大生命计算，被别的模组加过血的怪给得更多",
+              "按目标的基础最大生命计算"
+            ],
+            [
+              "{item:essentialcraft5:natural_furnace}",
+              "自己寻找周围的花草和树苗来烧，烧完把草方块变成泥土",
+              "只烧放进它格子里的花、树苗和草，不碰周围"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ultra_natural_furnace}",
+                "烧周围十几格内的花草、树叶和原木，还会替你种树苗",
+                "只烧放进格子里的这几类"
+              ]
+            },
+            {
+              "if": "!cfg:machines.solar_prism.burn_players",
+              "cells": [
+                "{item:essentialcraft5:solar_prism}",
+                "光束会点燃周围的方块，落点附近的人、牲畜和怪会一起被烧",
+                "光束不点燃方块，只烧敌对生物，玩家、动物和村民都不会被烧"
+              ]
+            },
+            {
+              "if": "cfg:machines.solar_prism.burn_players",
+              "cells": [
+                "{item:essentialcraft5:solar_prism}",
+                "光束会点燃周围的方块，落点附近的人、牲畜和怪会一起被烧",
+                "光束不点燃方块，会烧敌对生物和玩家，动物和村民不会被烧"
+              ]
+            },
+            [
+              "{item:essentialcraft5:ender_generator}",
+              "把范围里的末影人都拉来打，起了名字的也不例外",
+              "起了名字、拴着绳的末影人不碰"
+            ],
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "cells": [
+                "{item:essentialcraft5:mru_coil}打怪",
+                "牛羊也电",
+                "只电你能动方块之处的敌对生物，每下 {cfg:machines.mru_coil.monster_damage} 点，电死的不掉东西"
+              ]
+            },
+            [
+              "{item:essentialcraft5:mru_coil}射程",
+              "随基座一直增加，没有上限",
+              "至多 {cfg:machines.mru_coil.max_radius} 格"
+            ],
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "cfg:machines.mru_coil.trespassers_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:mru_coil}打人",
+                "名单以外的人都电，放下它的人自己也会挨电",
+                "只电闯进你地盘的人，主人不会挨电，每下 {cfg:machines.mru_coil.player_damage} 点 + 最大生命 {cfg:machines.mru_coil.player_health_percent|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "!cfg:machines.mru_coil.trespassers_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:mru_coil}打人",
+                "名单以外的人都电，放下它的人自己也会挨电",
+                "主人永远不会挨电，别人挨 {cfg:machines.mru_coil.player_damage} 点 + 最大生命的 {cfg:machines.mru_coil.player_health_percent|pct}"
+              ]
+            },
+            {
+              "if": "!cfg:machines.mru_coil.hurt_players",
+              "cells": [
+                "{item:essentialcraft5:mru_coil}打人",
+                "名单以外的人都电，放下它的人自己也会挨电",
+                "不打任何玩家"
+              ]
+            },
+            {
+              "if": "cfg:machines.reactor.damage_mobs",
+              "cells": [
+                "{item:essentialcraft5:reactor}",
+                "电 3 格内的所有生物，玩家和牲畜都不放过，电死照常掉落",
+                "只电敌对生物，电死的不掉东西"
+              ]
+            },
+            {
+              "if": "!cfg:machines.reactor.damage_mobs",
+              "cells": [
+                "{item:essentialcraft5:reactor}",
+                "电 3 格内的所有生物，玩家和牲畜都不放过，电死照常掉落",
+                "不电任何生物"
+              ]
+            },
+            {
+              "if": "cfg:machines.cold_distillator.damage_entities_around",
+              "cells": [
+                "{item:essentialcraft5:cold_distillator}的寒气",
+                "随机挑选 3 格内的任意一个生物，给它上三个 III 级负面效果",
+                "玩家中只冻得到放下它的人，宠物和村民不受影响"
+              ]
+            },
+            [
+              "{item:essentialcraft5:pale_gem}",
+              "在任何模组的配方里都算钻石、绿宝石，还能变回真钻石",
+              "只在本模组的配方里顶替钻石、绿宝石，换不回真钻石"
+            ],
+            [
+              "{item:essentialcraft5:magical_digger}",
+              "挖不动的格子也扣 MRU，潜行挖一格不扣",
+              "挖成了才扣，潜行也扣"
+            ],
+            [
+              "{item:essentialcraft5:magical_hopper}",
+              "隔着墙也什么都吸，前方是实心方块也照样往里塞，东西会卡进墙里",
+              "只收主人能动方块的地方，前方实心就不搬，一轮最多 {cfg:machines.magical_hopper.max_items_per_cycle} 堆"
+            ],
+            [
+              "[[farming/item_shuffler|农牧机器]]",
+              "有红石信号时，每次方块更新都会触发，也会动别人的宠物和村民",
+              "红石亮起那一下触发一次，不碰起名、拴绳的和别人的宠物、村民"
+            ],
+            [
+              "{item:essentialcraft5:breeder}",
+              "动物再多也照喂",
+              "附近同种动物达到 {cfg:machines.breeder.max_same_type} 只就不再喂"
+            ],
+            [
+              "{item:essentialcraft5:potion_spreader}",
+              "只用药水的第一个效果，有害效果也加给玩家",
+              "全部效果都会用上，有害效果只给敌对生物，瞬间伤害药水放不进去"
+            ],
+            [
+              "[[enrichment/controller|富集仓]]",
+              "外壳多大都行，红石控制器要仓里有聚集体才工作",
+              "每边 {cfg:machines.enrichment_chamber.min_size}～{cfg:machines.enrichment_chamber.max_size} 格，红石控制器不需要聚集体"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:magical_teleporter}",
+                "谁站上去都花主人的 MRU，落点不检查领地和安全",
+                "能动传送器那一格的人才能蓄能，落点要安全、你能动，只传你本人"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:magical_furnace}",
+                "什么都可能翻倍，湿海绵和粉类能循环刷，产物不停往外吐",
+                "粉类和湿海绵不翻倍，出口堆了 8 个掉落物就暂停"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[void_machines/magical_builder|建筑魔杖]]",
+                "整个选区一刻做完，会吃掉装了东西的方块",
+                "最多 {cfg:general.builder.max_volume} 格，几秒做完，掉落进背包，不用改过名、装了东西的方块"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[logistics/advanced_filters]]",
+                "第三个开关「忽略矿辞」默认关闭，所以按矿辞比较",
+                "第三个开关改成「按标签」，默认关闭，所以按物品比较"
+              ]
+            },
+            {
+              "if": "cfg:machines.charging_chamber.charge_worn_armor",
+              "cells": [
+                "[[storage/charging_chamber]]",
+                "只给物品格里的东西充",
+                "主人站在正上方时，也给他身上的盔甲充"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "装备与战斗"
+        },
+        {
+          "type": "table",
+          "header": [
+            "东西",
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[gear/void_armor]]",
+                "有电就挡一切，扣不起电也照挡，等于永久无敌，护甲值其实是 0",
+                "有电只挡近战和弹射物，每件挡一份，护甲实打实，每件 +{cfg:general.void_armor.max_health} 生命"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[computer/suit]]",
+                "任意一件有电就全挡，只剩 1 MRU 也照挡，护甲值是 0",
+                "挡物理和元素伤害，每件挡自己那份，扣不起电就不挡，护甲实打实"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.computer_armor.helmet_saturation"
+              ],
+              "cells": [
+                "{item:essentialcraft5:computer_helmet}与护腿",
+                "头盔每刻补满饱和度，护腿给 2.5 倍速",
+                "头盔只保持饥饿值全满，护腿让走路快 {cfg:general.computer_armor.leggings_speed|div:0.1|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_armor.helmet_saturation"
+              ],
+              "cells": [
+                "{item:essentialcraft5:computer_helmet}与护腿",
+                "头盔每刻补满饱和度，护腿给 2.5 倍速",
+                "头盔照旧补满饱和度，护腿让走路快 {cfg:general.computer_armor.leggings_speed|div:0.1|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_armor.thorns_ratio>0"
+              ],
+              "cells": [
+                "宅男套装的反伤",
+                "不看电，也不看攻击有没有被拦下",
+                "攻击真正被放行了才会反伤"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "bauble:essentialcraft5:computer_board"
+              ],
+              "cells": [
+                "{item:essentialcraft5:computer_board}",
+                "飞行速度是创造模式的 4 倍",
+                "创造模式的 {cfg:general.computer_board.fly_speed|div:0.05|x}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[computer/costs|宅男零件]]",
+                "全套加上飞板约需 2100 块恶魔板、360 颗风之水晶",
+                "零件一次出 2～4 个，约需 330 块、55 颗"
+              ]
+            },
+            [
+              "[[gear/mhs_armor]]",
+              "护腿 8、胸甲 6",
+              "胸甲 8、护腿 6，多了韧性和生命上限，有电时还挡一部分伤害"
+            ],
+            [
+              "[[wind_gear/wind_armor]]",
+              "护甲值是 0",
+              "头 4、胸 10、腿 7、靴 4，有韧性，全套能空中再跳"
+            ],
+            [
+              "{item:essentialcraft5:magic_monocle}",
+              "只能拿在手上",
+              "也能戴在头盔格，没有耐久"
+            ],
+            [
+              "[[guns/firing|魔力枪械]]",
+              "伤害不记在谁名下，玩家之间不能互相伤害时也打人，怪不算你杀的",
+              "算在开枪的人头上，照常掉落和给经验，会跳过自己的宠物和队友"
+            ],
+            [
+              "魔力枪械的射线",
+              "一条线上的全打，不封顶，玻璃和树叶挡不住",
+              "每发最多打 {cfg:general.guns.max_targets_per_shot} 个，会被有碰撞箱的方块挡住"
+            ],
+            {
+              "if": "cfg:general.guns.matrix_damage_per_damage>0",
+              "cells": [
+                "枪打中玩家的矩阵损伤",
+                "打中就加，伤害被拦下或对方处于创造模式也照加",
+                "攻击被放行就加，创造和旁观模式不加"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[hologram/summoning|全息投影]]",
+                "24 格内的人和路过的人都会被拉进战斗，换了维度也会被拽回来",
+                "只有召唤者和真正打过它的人参战，跑出 {cfg:general.hologram.escape_range} 格或换维度就会脱战"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.hologram.max_damage_per_hit>0"
+              ],
+              "cells": [
+                "全息投影挨打",
+                "一下打多少都算",
+                "一下最多掉 {cfg:general.hologram.max_damage_per_hit} 点"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.hologram.orbital_max_damage<512"
+              ],
+              "cells": [
+                "全息投影的轨道打击",
+                "一发比一发翻倍，最后一发 512 点",
+                "翻到 {cfg:general.hologram.orbital_max_damage} 点就不再涨"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "全息投影倒下时",
+                "把所在的格子换成一个箱子",
+                "由玩家亲手打倒时，遗物、数学核心和故障核心在原地掉出"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:glitchy_core}",
+                "只是研究书的图标，拿不到也没用",
+                "全息投影必掉，能解码出审判庭坐标"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "审判庭套装",
+                "有贴图也有台词，但没有配方，也不出现在箱子里",
+                "每件用一个审判庭芯片就能做，穿着不掉耐久"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.orbital_remote.cooldown_ticks>0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:orbital_remote}",
+                "没有冷却，落点的方块会被就地烧成产物",
+                "冷却 {cfg:general.orbital_remote.cooldown_ticks|sec}，只伤生物，不动地形"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.orbital_remote.cooldown_ticks==0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:orbital_remote}",
+                "没有冷却，落点的方块会被就地烧成产物",
+                "只伤生物，不动地形"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.divider_gun.affect_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:divider_gun}",
+                "范围里的活物一律减半，连开枪的人自己也不例外",
+                "只让敌对生物减半，Boss 不受影响"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.divider_gun.affect_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:divider_gun}",
+                "范围里的活物一律减半，连开枪的人自己也不例外",
+                "只让敌对生物减半"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[demons/demon|恶魔清怪]]",
+                "连凋灵和起了名的也打，爆炸会溅伤旁边的玩家和宠物",
+                "只清召唤者能动之处，不打 Boss、起名的和有主的，爆炸只伤目标"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[demons/trade|恶魔交易]]",
+                "格子大家共用，整组吃掉，报酬掉在地上",
+                "只有召唤者能交易，只收需要的数量，报酬直接进背包"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:forged_elemental_sword}",
+                "引雷劈一圈，连自己也劈，右键的火焰会点燃身边所有生物",
+                "引雷只劈目标，右键的火焰只点燃敌对生物"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:soul_scriber}",
+                "机器替你砍也能收魂，收魂会直接把生物删除",
+                "只认玩家亲手攻击，收魂算一次正常击杀，会被领地保护拦下"
+              ]
+            },
+            [
+              "{item:essentialcraft5:magnetizing_staff}",
+              "隔着墙、隔着水道也拉，个数不限",
+              "只拉看得见、你能动的地方的，一次最多 {cfg:general.staffs.magnetizing_max_items} 个物品、{cfg:general.staffs.magnetizing_max_orbs} 个经验球"
+            ],
+            [
+              "{item:essentialcraft5:staff_of_life}",
+              "范围里什么都催，草方块和树苗也催，左键治疗僵尸村民会丢掉交易",
+              "范围催生只对作物起作用，右键治疗僵尸村民，交易会保留"
+            ],
+            {
+              "if": "bauble:essentialcraft5:magical_wings",
+              "cells": [
+                "{item:essentialcraft5:magical_wings}",
+                "戴着往上飞不扣 MRU",
+                "戴着往上飞也是每刻 1 MRU"
+              ]
+            },
+            [
+              "{item:essentialcraft5:spiky_shield}",
+              "没 MRU 也能举",
+              "MRU 够才举得起来"
+            ],
+            [
+              "{item:essentialcraft5:chaos_fork}、{item:essentialcraft5:frozen_mace}",
+              "叠加的效果没有上限",
+              "最多 {cfg:general.staffs.weapon_max_effect_level} 级"
+            ],
+            [
+              "{item:essentialcraft5:weak_elemental_sword}等弱化元素工具",
+              "攻击加成 2.5，剑的攻击 6.5",
+              "攻击加成 3，剑的攻击 7，和钻石剑一样"
+            ],
+            [
+              "{item:essentialcraft5:chaos_fork}",
+              "攻击 7，攻速 1.6",
+              "攻击 12，攻速 2.0"
+            ],
+            {
+              "if": "cfg:general.staffs.holy_mace_undead_bonus>0",
+              "cells": [
+                "{item:essentialcraft5:holy_mace}",
+                "打什么都一样",
+                "打亡灵多 {cfg:general.staffs.holy_mace_undead_bonus|pct} 伤害"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "风、饰品与腐化"
+        },
+        {
+          "type": "table",
+          "header": [
+            "东西",
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            [
+              "[[wind/air_potion|风之药水的轻盈]]",
+              "越喝等级越高，没有上限",
+              "最多 {cfg:general.wind.lightness_max_level} 级、{cfg:general.wind.lightness_max_minutes} 分钟"
+            ],
+            [
+              "[[wind/windbound|注风]]",
+              "已经受眷顾还能再注风，白白扣掉 4 万 ESPE，还会换掉灵魂石",
+              "已经受眷顾的直接拒绝，不扣 ESPE，第一次注风只要 {cfg:general.wind.windbound_espe|int} ESPE"
+            ],
+            [
+              "[[mithriline/crystal_pillar|水晶柱]]",
+              "五种积攒 ESPE 的速度一样",
+              "档位越高越快，分别是 ×{cfg:machines.mithriline_crystal_pillar.tier_multipliers|list}"
+            ],
+            [
+              "[[baubles/finding|同一种特殊饰品]]",
+              "两枚同种戒指效果叠加",
+              "同一种只生效一件，第二件戴不上"
+            ],
+            {
+              "if": "bauble:essentialcraft5:nu_amulet",
+              "cells": [
+                "{item:essentialcraft5:nu_amulet}",
+                "在刷怪塔里一圈接一圈地连锁",
+                "只连锁一层，每次最多 {cfg:general.bauble_limits.nu_max_targets} 只"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "!cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:psi_ring}",
+                "让怪去打村民和宠物，首领也会被引开",
+                "只把怪引向别的敌对生物，首领不受它影响"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:psi_ring}",
+                "让怪去打村民和宠物，首领也会被引开",
+                "只把怪引向别的敌对生物"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:portable_matrix_destructor",
+              "cells": [
+                "{item:essentialcraft5:portable_matrix_destructor}",
+                "存的 MRU 用不了",
+                "能当储存物品用，按矩阵换能器的比例把 UBMRU 换成 MRU"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_experience",
+              "cells": [
+                "{item:essentialcraft5:ring_of_experience}",
+                "拿走的 UBMRU 每 4 点换 1 点经验，一只僵尸就白送约 10 点",
+                "每 {cfg:general.bauble_limits.experience_ring_ubmru_per_xp} 点换 1 点经验"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:pi_belt}",
+                "挖任何方块的经验都乘 3，不掉经验的方块也有 5% 的几率给 1 点",
+                "只算矿石，经验乘 {cfg:general.bauble_limits.pi_xp_multiplier}"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "!cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:pi_belt}",
+                "挖任何方块的经验都乘 3，不掉经验的方块也有 5% 的几率给 1 点",
+                "经验乘 {cfg:general.bauble_limits.pi_xp_multiplier}"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:rho_ring",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "cells": [
+                "{item:essentialcraft5:rho_ring}",
+                "挖任何方块的经验都换成 UBMRU",
+                "只算矿石"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:chi_ring",
+                "cfg:general.bauble_limits.chi_xp_bonus<1"
+              ],
+              "cells": [
+                "{item:essentialcraft5:chi_ring}",
+                "捡经验球得到的经验翻倍",
+                "另多给 {cfg:general.bauble_limits.chi_xp_bonus|pct}"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:theta_belt",
+                "cfg:general.bauble_limits.theta_cooldown_ticks>0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:theta_belt}",
+                "只要 UBMRU 够，每一下致命伤都能抵掉，等于不死",
+                "抵掉一次以后，{cfg:general.bauble_limits.theta_cooldown_ticks|sec}内不再生效"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:tau_ring",
+                "!cfg:general.bauble_limits.tau_affects_bosses"
+              ],
+              "cells": [
+                "{item:essentialcraft5:tau_ring}",
+                "首领的掉落也多给，凋灵能多掉下界之星",
+                "首领的掉落不多给"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.body_0}」",
+                "给予缓慢",
+                "挖得慢、挥得慢，改成了牛奶去不掉的矩阵后遗症"
+              ]
+            },
+            [
+              "心智悖论、「MRU 腐化」",
+              "药水效果，喝牛奶就没了",
+              "成了矩阵后遗症，只能等它过去，死亡时也会消散"
+            ],
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.mind_8}」",
+                "连盔甲栏一起打乱",
+                "只打乱快捷栏"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "!cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.mind_8}」",
+                "连盔甲栏一起打乱",
+                "只打乱主物品栏"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.mind_9}」",
+                "丢光身上所有东西",
+                "把手里那一组收进背包，不会扔出"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "!cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.mind_9}」",
+                "丢光身上所有东西",
+                "只丢主手那一组"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.mind_10}」",
+                "替你把手里的东西右键用一下",
+                "只是手抽一下，打断正在吃东西、拉弓之类的动作，不会用掉东西"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.matrix_13}」",
+                "真爆炸，会炸坏方块",
+                "不破坏方块，你自己最多掉当前生命的一半，不伤宠物和村民"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.corruption.gentle_effects"
+              ],
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.matrix_13}」",
+                "真爆炸，会炸坏方块",
+                "照样炸人，但不破坏方块"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.matrix_15}」",
+                "真闪电，会点火",
+                "只有闪电的样子，只伤你自己"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.matrix_17}」",
+                "条件写错，从来不会发作",
+                "修好了，会发作"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "!cfg:general.corruption.matrix_effects_enabled||!cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "矩阵类腐化效果",
+                "可能抽到",
+                "这个世界里抽不到"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.draw_requires_cure_tier"
+              ],
+              "cells": [
+                "什么时候凝成腐化效果",
+                "损伤够了就抽，哪一类都可能，最便宜的是后期才治得了的矩阵类",
+                "打开过五芒星才抽，门槛是成本的 {cfg:general.corruption.draw_threshold_multiplier} 倍，没打开过就先潜伏着"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.draw_cooldown_minutes>1"
+              ],
+              "cells": [
+                "两次中招的间隔",
+                "损伤多的时候，每分钟都可能再中一个",
+                "中了一个以后，至少再玩 {cfg:general.corruption.draw_cooldown_minutes} 分钟才会中下一个"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.max_matrix_damage<2147483647",
+              "cells": [
+                "矩阵损伤",
+                "没有上限，挂机越久攒得越多",
+                "最多攒到 {cfg:general.corruption.max_matrix_damage}"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.respect_claims",
+              "cells": [
+                "MRU 聚集体",
+                "谁靠近都伤，邻居机器漏出的 MRU 也会往你家旁边那团里汇聚",
+                "只伤能动它那一格的人，邻居漏出的 MRU 汇不进你领地里的那团"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.respect_claims",
+              "cells": [
+                "「{lang:effect.essentialcraft5.mru_corruption}」状态叠给谁",
+                "漏 MRU 的机器 6 格内的人都会叠上",
+                "只叠给机器的主人，钻石仪式则叠给丢钻石的人"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.mru_corruption_lethal",
+              "cells": [
+                "「{lang:effect.essentialcraft5.mru_corruption}」状态",
+                "能把人活活打死",
+                "像中毒一样，最多打到剩 1 点生命"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.mru_corruption_health_percent",
+              "cells": [
+                "「{lang:effect.essentialcraft5.mru_corruption}」状态掉的血",
+                "每下 5 点，血多了几乎不疼",
+                "每下扣最大生命的 {cfg:general.corruption.mru_corruption_health_percent|pct}，血再多也照样疼"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "cells": [
+                "腐化效果「{lang:corruption_effect.essentialcraft5.body_2}」",
+                "每下 3 点",
+                "每下扣最大生命的 {cfg:general.corruption.hand_burn_health_percent|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "[[corruption/matrix|矩阵类腐化效果]]掉的血",
+                "固定点数，窒息和凋零每下 1 点，自爆 43 点，血多了就不疼",
+                "按最大生命扣，窒息 {cfg:general.corruption.suffocation_health_percent|pct}、凋零 {cfg:general.corruption.withering_health_percent|pct}、自爆 {cfg:general.corruption.self_blast_health_percent|pct}"
+              ]
+            },
+            [
+              "主世界的上古遗迹",
+              "大约每 27 个区块一座",
+              "少了很多，大约每 190～260 个区块一座，箱子照旧"
+            ]
+          ],
+          "widths": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "海纳尔"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "header": [
+            "东西",
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            [
+              "[[hoanna/crossing|海纳尔之门]]",
+              "掉落物和生物也能过门，可以拿来搬东西",
+              "站满 {cfg:general.hoanna.portal_wait_ticks|sec}才会传送，过门后冷却 {cfg:general.hoanna.portal_cooldown_ticks|sec}，只传送玩家，骑乘时不能过门"
+            ],
+            [
+              "[[hoanna/way_home|回主世界]]",
+              "在主世界自动削出空间，铺上黑曜石建一扇门",
+              "只找门不建门，找不到就回到你的床或世界出生点"
+            ],
+            {
+              "if": "cfg:general.hoanna_events.sun_array_enabled",
+              "cells": [
+                "日阵",
+                "在人周围大范围落下会变成火的方块",
+                "不再落火，但站在露天照样会被晒着火"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "黑暗",
+                "一下子几乎全黑，火把没用，夜视无效",
+                "慢慢暗下来，火把照得亮，夜视有效"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.earthquake_enabled",
+              "cells": [
+                "地震",
+                "镜头猛甩，偶尔把人抛飞摔死",
+                "画面轻晃，只小幅推人，摔不伤"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.fumes_enabled",
+              "cells": [
+                "毒雾",
+                "挂在整个主世界的刷怪表里，杀不掉，还挡准星",
+                "只在海纳尔的毒雾事件里出现，杀得掉，也不挡准星"
+              ]
+            },
+            [
+              "[[hoanna/lands|海纳尔的群系]]",
+              "把别的模组的森林也拉进来，生成时刷一批牛羊",
+              "只有本模组的 7 种地，不刷牛羊这类动物"
+            ],
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "辐射剂量",
+                "没有上限，太高会溢出成负数",
+                "最多 100 万"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.radiation.enabled",
+                "cfg:general.radiation.cap_loss_percent_per_level"
+              ],
+              "cells": [
+                "辐射压生命",
+                "每级 1 点，辐射 II 少 2 点，血多了几乎没有影响",
+                "每级压低最大生命的 {cfg:general.radiation.cap_loss_percent_per_level|pct}，最多压低 {cfg:general.radiation.max_cap_loss_percent|pct}"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:lambda_ring",
+              "cells": [
+                "{item:essentialcraft5:lambda_ring}",
+                "提示写辐射散得快 3 倍，实际快约 13 倍",
+                "提示照实写"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "cfg:general.radiation.enabled",
+                "cfg:general.bauble_limits.xi_dose_ceiling>0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:xi_belt}的辐射",
+                "打人每点伤害给 5000 辐射，自己挨打每点 1000，都不封顶",
+                "打人一下最多给 {cfg:general.bauble_limits.xi_dose_per_hit}，打人、挨打都只加到 {cfg:general.bauble_limits.xi_dose_ceiling} 为止"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "cfg:general.radiation.enabled",
+                "cfg:general.bauble_limits.xi_dose_ceiling==0"
+              ],
+              "cells": [
+                "{item:essentialcraft5:xi_belt}的辐射",
+                "打人每点伤害给 5000 辐射，自己挨打每点 1000，都不封顶",
+                "打人、挨打都不再加辐射"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:xi_belt",
+              "cells": [
+                "{item:essentialcraft5:xi_belt}打怪",
+                "每一下永久压低最大生命，能压到 0，别人的宠物、坐骑也压",
+                "只压真打掉的那部分，最少留 1，宠物和坐骑不压，走远再回来恢复"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:epsilon_belt",
+              "cells": [
+                "{item:essentialcraft5:epsilon_belt}",
+                "你打死的任何生物都有 5% 的几率直接冒出余烬，鸡和玩家也算在内",
+                "只算敌对生物，几率 {cfg:general.bauble_limits.epsilon_ember_chance|pct}，余烬算进掉落"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:mystical_accessory",
+              "cells": [
+                "{item:essentialcraft5:mystical_accessory}",
+                "直接戴上是空的，要先右键一次",
+                "开箱时就定好属性"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[void_machines/ember_sword|余烬元素剑]]",
+                "神圣 + 魔力、神圣 + 燃烧没有效果",
+                "分别是驱散、腐蚀"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.wind_wish.enabled",
+                "cfg:general.wind_wish.required>0"
+              ],
+              "cells": [
+                "[[hoanna/wind_name|风之石板开门]]",
+                "风之好感够了就肯开门",
+                "还要完成 {cfg:general.wind_wish.required} 个风之心愿"
+              ]
+            },
+            [
+              "{item:essentialcraft5:shade_crystal_pillar}",
+              "只在创造模式物品栏里有，生存模式拿不到",
+              "第二十二章用暗影核心和影晶做，见[[shade/shade_pillar]]"
+            ],
+            [
+              "[[pentacle/pentacle|灵魂五芒星]]",
+              "最高 3 档",
+              "多了 4 档：在 3 档外面再立 4 根暗渎水晶柱，见[[shade/tier4]]"
+            ]
+          ],
+          "widths": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "为什么",
+          "text": "这些改动大多出于三条规矩：不碰别人的领地、宠物和机器，不拖慢游戏，不让主世界太挤。原作很少顾及这些，一起玩的人多了就容易出事。"
+        }
+      ],
+      "_src": [
+        "player/UBMRUEvents.java:92 — 击杀 UBMRU 按目标 getAttributeBaseValue(MAX_HEALTH)；原作 utils/common/ECEventHandler.java L1074~1079 用 getMaxHealth",
+        "blockentity/NaturalFurnaceBlockEntity.java — 只烧格子里的植物；原作 common/tile/TileFlowerBurner.java L86~100 找周围植物、草方块变泥土",
+        "blockentity/UltraNaturalFurnaceBlockEntity.java — 只烧格子里的花、树叶、草、原木；原作 TileUltraFlowerBurner L62~161 烧 ±16 格、每 80 刻种树苗（policy §4.4）",
+        "blockentity/SolarPrismBlockEntity.java mayBurn — 光束不点方块、只烧敌对生物，玩家看 burn_players（policy §3.3、§4.1、§4.11 A2）；原作 TileSolarPrism 光束放火、伤所有生物",
+        "blockentity/MRUCoilBlockEntity.java 类注释 — 只打敌对生物 monster_damage、玩家 player_damage + player_health_percent、射程 3 + 2 × 基座封顶 max_radius、主人不打、打死不掉落；原作 common/tile/TileMRUCoil.java L130~132（射程 3 + 层数、立方体）、L174~205（名单以外都打）、L217（18 点，原作常量）",
+        "blockentity/ReactorBlockEntity.java — damage_mobs 只电敌对生物、打死不掉落；原作 common/tile/TileMRUReactor.java L149~152 电 3 格内所有 EntityLivingBase（3 是原作常量，现在也是常量）",
+        "blockentity/ColdDistillatorBlockEntity.java — 玩家只影响主人、跳过宠物村民等（policy §4.1）；原作 common/tile/TileColdDistillator.java L47~59 每次产出从 3 格内随机挑一个生物（创造模式玩家除外）上 3 个 III 级效果（原作常量）",
+        "recipe 标签 essentialcraft5:pale_gem 只进原作用矿辞的几条本模组配方；原作 common/registry/OreDictionaryRegistry.java L152~153 AllowPaleItemsInOtherRecipes 默认 true",
+        "item/MagicalDiggerItem.java — 挖成才扣、潜行也扣（batch4 §7）；原作 ItemMagicalDigger",
+        "blockentity/MagicalHopperBlockEntity.java — 只搬主人能动的格子、前方实心不搬、max_items_per_cycle（batch4 §7）；原作 TileMagicalHopper",
+        "block/PulseMachineBlock.java — 红石上升沿 + pulse_interval；BreederBlockEntity max_same_type；不碰起名 / 拴绳 / 别人宠物 / 村民（batch4 §7）；原作 BlockRightClicker 系列每次方块更新都触发",
+        "blockentity/PotionSpreaderBlockEntity.java mayReceiveHarmful — 全部效果、有害效果只给敌对生物（policy §4.11 A3）、瞬间伤害放不进；原作 TilePotionSpreader 只用第一个效果",
+        "enrichment/CuboidShellScanner.java + config machines.enrichment_chamber.min_size / max_size；红石控制器不要求聚集体（batch2 D10）；原作 TileMRUCUECController 无上限、TileMRUCUECRedstoneController 要求聚集体",
+        "blockentity/MagicalTeleporterBlockEntity.java — canEdit 才蓄能、落点安全与权限、只传玩家（batch6b §6）；原作 TileMagicalTeleporter",
+        "blockentity/MagicalFurnaceBlockEntity.java — 排除标签不翻倍、出口 1 格内 8 个掉落物暂停（batch6b §6）；原作 TileMagicalFurnace",
+        "item/MagicalBuilderItem.java、item/BuilderJobs.java — max_volume、分帧、掉落进背包、只用没有 NBT 的方块（batch6b §6）；原作 ItemMagicalBuilder L376~478",
+        "item/FilterItem.java:79 + api/ItemFilters.Flag.MATCH_TAGS — 高级过滤器第三个开关「按标签」默认关（batch6b §6）；原作 utils/common/ECUtils.java L650「忽略矿辞」默认关",
+        "item/VoidArmorItem.java、item/VoidArmorEvents.java + config general.void_armor — 有电只挡物理、每件一份、真护甲、每件 max_health；原作 common/item/ItemArmorEC.java L193~222（扣不起照挡、护甲 0、胸甲 +20）",
+        "item/ComputerArmorItem.java、item/ComputerArmorEvents.java + config general.computer_armor — 挡物理与元素、每件一份、真护甲；helmet_saturation、leggings_speed、thorns_ratio；原作 common/item/ItemComputerArmor.java L160~188（剩 1 MRU 全挡、头盔每刻顶满饱和度、护腿 2.5 倍速，原作常量）",
+        "item/ComputerBoardItem.java:69 / :89 fly_speed；原作 utils/common/PlayerTickHandler.java L462 飞行速度 0.2（= 创造 0.05 × 4，原作常量）",
+        "tools/plan/batch8.md §6.4、§7 产量；手册 computer/costs 四件 + 反重力板 329 块恶魔板、55 颗风之水晶；原作约 2 100 / 360（原作常量）",
+        "item/MHSArmorItem.java — 胸甲 8、护腿 6（batch2 §6）；原作 ItemArmorMRUProtection 护腿 8、胸甲 6",
+        "item/WindArmorItem.java — 4 / 10 / 7 / 4（batch3 E4）；原作 ItemWindArmor 护甲值 0",
+        "item/MagicMonocleItem.java — 可戴头盔格、无耐久（batch2 D12）；原作 ItemMagicMonocle 只能手持、耐久 16",
+        "gun/RayShot.java、gun/RayHitGate.java — 伤害算射手、max_targets_per_shot、被有碰撞的方块挡住、跳过自己的宠物和队友（batch5 §7、policy §4.6）；原作 ItemGun 匿名伤害、穿透不封顶",
+        "gun/RayHitGate.java — 攻击被允许就加矩阵损伤（GUNS-4）、创造 / 旁观不加；原作 ItemGun 打中就加",
+        "entity/HologramEntity.java — 只有召唤者和打掉血的人参战、escape_range 脱战、max_damage_per_hit、orbital_max_damage、原地掉落要玩家击杀（batch8 §7）；原作 common/entity/EntityHologram.java 24 格拉人（原作常量）、轨道翻倍到 512（原作常量）、死后放箱子",
+        "item/OrbitalRemoteItem.java 注释 L54 — cooldown_ticks、只伤生物不动地形；原作 ItemOrbitalRemote 无冷却、EntityOrbitalStrike 落点熔炼方块",
+        "entity/DividerFieldEntity.java — 只打敌对生物、affect_bosses；原作 EntityDivider 范围内活物一律减半（含射手）",
+        "entity/DemonEntity.java — 清怪不打 Boss / 有名字 / 有主、爆炸只伤目标那类；交易只有召唤者、只收需要数量、报酬进背包（batch7 §6）；原作 common/entity/EntityDemon.java",
+        "item/ForgedElementalSwordItem.java / item/ember/* — 引雷只打目标、火只点敌对生物（batch7 §6）；原作 ItemElementalSword L110~117、L451",
+        "item/SoulScriberItem.java — 只认真玩家、收魂是正常死亡（batch7 §6）；原作 ItemSoulScriber setDead",
+        "item/MagnetizingStaffItem.java — 视线检查、magnetizing_max_items / magnetizing_max_orbs（batch3 §6）；mayPullFrom：物品和经验球都要玩家能动它所在那一格（policy §4.11 A4）；原作 ItemMagnetizingStaff",
+        "item/StaffOfLifeItem.java — 只催作物、右键治僵尸村民（batch3 §6）；原作 ItemLifeStaff",
+        "item/MagicalWingsItem.java — 戴着往上飞每刻 1 MRU；原作 common/item/ItemMagicalWings.java L69~70 戴着只要求 MRU ≥ 1、不扣（L34、L45、L64 才扣）；proxy/ClientProxy.java L727~740 的包没有服务端分支",
+        "item/SpikyShieldItem.java — 够 MRU 才举（batch3 §6）；原作 ItemSpikyShield",
+        "config general.staffs.weapon_max_effect_level；原作 ItemChaosFork / ItemFrozenMace 叠加不封顶",
+        "item/AirPotionItem.java、effect/ParanormalLightnessEffect.java — lightness_max_level / lightness_max_minutes；原作 utils/common/ECUtils.java L371~383 等级 = 剩余时长 ÷ 8 分钟",
+        "recipe/WindImbueRecipe.java — 已受眷顾直接拒绝（batch3 §6）；原作 TileWindRune 白扣 40000 ESPE（原作常量）并换掉灵魂石",
+        "compat/CuriosCompat.java onlyOneEquipped；原作 ECEventHandler.java L1082~1088 逐格乘倍率",
+        "item/bauble/BaubleEffects.java — ν nu_max_targets 一层、ψ 只引向敌对生物；item/bauble/BaubleCombatEvents.java（ψ 换目标处）psi_affects_bosses 关着时首领不受 ψ 影响；原作 ItemBaublesSpecial（batch3 §6）、utils/common/ECEventHandler.java L196~225（ψ 不看首领）",
+        "item/bauble/PortableMatrixDestructorItem — 按 machines.matrix_absorber 比例换 MRU（batch3 E6）；原作存的 MRU 用不了",
+        "item/bauble/BaubleEffects.java:184 经验指环 experience_ring_ubmru_per_xp（默认 20）；原作 common/item/ItemBaublesSpecial.java L236~246 拿走十分之一、floor(÷ 4) 变经验（4 是原作常量；击杀 UBMRU 平均 20 × 基础最大生命，僵尸约 400 → 10 点）",
+        "item/bauble/BaubleHarvestEvents.java:102 countsForMiningXp（mining_xp_ores_only 开着只认 #forge:ores）、π pi_xp_multiplier、ρ rho_ubmru_per_xp；原作 utils/common/ECEventHandler.java L343~372 π ×3、不掉经验的方块 5% 给 1 点、ρ 每点 1000（原作常量）",
+        "item/bauble/BaubleHarvestEvents.java:229 χ 拾取时另给 chi_xp_bonus（1 = 和原作一样多给一份）；原作 ECEventHandler xpEvent L232~246 xpValue × 2",
+        "item/bauble/BaubleCombatEvents.java θ 段（THETA_BELT 的物品冷却） 抵掉后物品冷却 theta_cooldown_ticks（0 = 原作）；原作 ECEventHandler damageEvent L465~503 没有冷却",
+        "item/bauble/BaubleEffects.java:436 τ tau_affects_bosses 关着时首领（#forge:bosses）不加；原作 ECEventHandler L314~337 对全部掉落",
+        "api/CorruptionEffects.java:155 body_0 改挖掘疲劳、:163 mind_8、:164 mind_9、:165 mind_10、:168 matrix_13、:170 matrix_15 视觉闪电只伤本人、:172 matrix_17 原作条件写错（E8 修）、:311 matrixEffectsEnabled（矩阵类受 matrix_effects_enabled 与海纳尔之门开关控制，batch7 7-F、policy §4.5）；gentle_effects 开着时 #8 只打乱快捷栏（corruption/CorruptionBehaviors.java shuffleHotbar）、#9 收进背包（stowMainHand）、#10 手抽一下（twitch）、#13 本人最多掉当前生命一半且不伤驯服动物和村民（corruption/CappedHurt），关掉时 #8 只打乱主物品栏、#9 只丢主手、#13 safeExplode 不破坏方块；原作 CorruptionEffectECNBTBased.onPlayerTick L152~363（L225~249：#8 打乱整个物品栏、#9 dropAllItems、#10 useItemRightClick 主手）",
+        "entity/MRUPresenceEntity.java:379 mayAffect、mru/ECCorruption.java:233 chooseTarget、:317 stackRecipients — respect_claims；原作 EntityMRUPresence 对周围玩家一律加、utils/common/ECUtils.java L329~350 泄漏喂 32 格内最近的聚集体；corruption/MRUCorruption.java mru_corruption_lethal 关着时最多打到剩 1 点（1 是代码常量）；原作 common/potion/PotionMRUCorruption.java 5 点魔法伤害、能致死",
+        "corruption/CorruptionGate.java:60 drawable — draw_requires_cure_tier：打开过成形的五芒星才抽，没打开过的潜伏（active 同一判断），门槛 = 成本 × draw_threshold_multiplier；corruption/CorruptionTicker.java:108 cooldownSlots — draw_cooldown_minutes（0、1 = 不跳，所以条件写 >1）；api/CorruptionEffects.java:267 max_matrix_damage（2147483647 = 不封顶；原作 addMatrixDamage 没有上限）",
+        "data/essentialcraft5/worldgen/placed_feature/elder_mrucu.json rarity_filter 16；policy §6.1 实测每 190~260 区块；原作约每 27 区块（policy §0）",
+        "hoanna/portal — portal_wait_ticks、portal_cooldown_ticks、只传玩家、骑乘不能过（policy §4.2）；原作 common/block/BlockHoannaPortal.java L38~40 onEntityCollision 对任何实体调 DummyPortalHandler（等待时间在 DummyCore 里，没有核实，不写）",
+        "hoanna/portal/HoannaTeleport.java 类注释、HoannaPortalPlacer.java 类注释 — 回主世界只找不建、找不到回床 / 世界出生点（policy §3.3）；原作 PortalGeneratorHoanna L263~290 建门",
+        "hoanna/event/* — 日阵不落火、黑暗慢慢变暗且火把夜视有效、地震只晃画面小幅推人、毒雾只在海纳尔事件期间（batch6a §8）；原作 HoannaEvent* 系列",
+        "worldgen：7 个群系由 tools/gen/hoanna_biomes.py 生成、不刷被动生物（batch6a §8、policy §4.4）；原作 BiomeRegistry 把 FOREST / DENSE 群系拉进海纳尔",
+        "hoanna/Radiation.java:48 MAX = 1_000_000（常量）；λ / ξ / ε / 神秘饰品见 item/bauble 与 batch6a §8；原作 ξ 每下随机 UUID 修饰符、ε 死亡事件里直接生成余烬、λ 提示写 1/3（原作常量，实际快约 13 倍）",
+        "hoanna/RadiationBaubleEvents.java:183 targetDose（每下 xi_dose_per_hit）、:190 ceilingAdd（打人、挨打都只推到 xi_dose_ceiling，0 = 不加）、:255 玩家和有主人的生物不压上限、:280 addTransientModifier（不存盘）；general.radiation.enabled 关掉时不加辐射、打怪照旧（类注释）；原作 utils/common/ECEventHandler.java L450~457 打人每点 5000、打怪每下一个永久修饰符（宠物也压）、L479 / L504~506 自己挨打每点 1000（原作常量）",
+        "registry/ECVoid.java:292 isEmberVictim 只认敌对生物、几率 epsilon_ember_chance；原作 ECEventHandler.onKillEntity L1061~1110 真玩家打死的任何生物（含玩家）5% 直接生成余烬（原作常量）",
+        "字面数说明（validate 的「等于配置默认值」警告）：反应堆 / 冷凝器的 3 格是代码常量（原作也是 3）；魔力熔炉出口 8 个掉落物是 MagicalFurnaceBlockEntity 常量；宅男护腿 2.5 倍、反重力板 4 倍、轨道打击 512、全息投影 24 格、注风 4 万 ESPE、遗迹每 27 区块都是原作常量；辐射上限 100 万是 Radiation.MAX 常量；λ「3 倍」是原作提示、「约 13 倍」是 batch6a §8 按代码算的——都不是配置值",
+        "原作常量（validate 的「等于配置默认值」警告）：经验指环每 4 点、僵尸约 10 点；π 乘 3、5%；ρ 每点 1000；ξ 每点 5000 / 1000；ε 5%；「MRU 腐化」剩 1 点是代码常量",
+        "扣血按最大生命的比例（2026-10-13 起）：api/CorruptionEffects.java HealthCost（general.corruption.*_health_percent：hand_burn 0.15、suffocation 0.075、self_blast 0.6、burning 0.075、lightning 0.375、moonlight 0.375、mru_failure 0.3、withering 0.075、acid_water 0.225、mru_corruption 0.25）、corruption/CorruptionBehaviors.java damageOf / selfBlastDamage / burn / lightning、corruption/MRUCorruption.java damage；effect/RadiationEffect.java healthCap（general.radiation.cap_loss_percent_per_level 0.05、max_cap_loss_percent 0.5）。原作常量（validate 的「等于配置默认值」警告）：MRU 腐化 5 点、#2 仙人掌 3 点、窒息 / 凋零 1 点、月光最多 5 点、#13 贴脸 43 点（common/potion/PotionMRUCorruption.java、CorruptionEffectECNBTBased.onPlayerTick）；辐射每级 1 点（common/potion/PotionRadiation.java L25~48，(int) 最大生命 − (放大值 + 1)）",
+        "blockentity/MRUCoilBlockEntity.java mayStrikePlayer / mobPermission — 只打闯入者（站在主人能动、自己不能动的格子里的人；主人离线只认他在线时记下能动的格子）、只清主人能动的格子里的怪（policy §4.11 A1、A6；machines.mru_coil.trespassers_only）；射程单独一行，max_radius 范围 3~32、不会不封顶",
+        "item/MagnetizingStaffItem.java mayPullFrom — 先探测掉落物所在那格（policy §4.11 A4）",
+        "entity/DemonEntity.java clearPermission — 只清召唤者能动的格子里的怪（policy §4.11 A6）",
+        "blockentity/EnderGeneratorBlockEntity.java isValid — 跳过 ECEntityRules.isSpared（起名、拴绳；policy §4.11 A7）；原作 TileEnderGenerator 范围里的末影人都拉",
+        "item/ember/EmberEffect.java — 神圣 + 魔力 = DISPEL、神圣 + 燃烧 = CORROSION（batch10 D18）；原作 ItemElementalSword.getEmberEffects L344~431 这两对没有分支",
+        "item/WindTabletItem.java attuned — 好感够而且心愿数 ≥ general.wind_wish.required（batch10 §5.5.4）；原作 ItemWindTablet 只看好感",
+        "item/GlitchyCoreItem.java、loot/RandomTargetBalance.java — 故障核心生存可得；data/essentialcraft5/recipes/inquisitorium/ — 审判庭套装每件一个审判庭芯片（第十批 10c，D22）",
+        "tools/plan/batch13.md §4.3 — 魔力防护韧性 2 / 件、矩阵缓冲；风之护甲韧性 2.5 / 件、全套御风（空中再跳）；审判庭套装穿着不掉耐久；§4.7 充能仓给站在正上方的主人充盔甲（原作只充物品格）",
+        "第十三批 13e — 暗渎水晶柱有了生存配方、五芒星多一档 4 档（batch13.md §7.5、§7.6）；表里的「3 档」「4 档」是五芒星档位（ECPentacle.MAX_TIER，代码常量），不是配置"
+      ]
+    },
+    {
+      "id": "removed",
+      "title": "去掉的",
+      "icon": "essentialcraft5:world_interactor",
+      "summary": "采石场、执行器、魔力仓库……",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "下面是原作有、这一版没有的东西。它们被去掉，多半是因为会无视领地乱改世界、拖慢游戏，或者让刷怪塔太容易造。能换个做法留下来的，都已经留下了。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "去掉的",
+            "为什么",
+            "现在用什么"
+          ],
+          "rows": [
+            {
+              "if": "cfg:machines.ley_projector.enabled",
+              "cells": [
+                "魔力采石场与 7 种升级",
+                "无视领地把地挖穿，连箱子带里面的东西一起搬走",
+                "{item:essentialcraft5:ley_projector}"
+              ]
+            },
+            {
+              "if": "!cfg:machines.ley_projector.enabled",
+              "cells": [
+                "魔力采石场与 7 种升级",
+                "无视领地把地挖穿，连箱子带里面的东西一起搬走",
+                "—"
+              ]
+            },
+            [
+              "魔力执行器（6 种，含潜行、扩展、高级）",
+              "替人右键，改动世界里的方块",
+              "没有替代"
+            ],
+            [
+              "魔力方块破坏器、高级魔力方块破坏器",
+              "替人挖方块",
+              "刷石头改用手持的{item:essentialcraft5:magical_digger}"
+            ],
+            [
+              "魔力种植站（补种器）",
+              "替人种地",
+              "庄稼照原版的办法种"
+            ],
+            [
+              "魔力仓库管理器（核心与 7 种模块）、容器宝石",
+              "整套一起卡顿，能远程拿走任何仓库里的东西，还会复制和吞掉物品",
+              "魔力箱、魔力漏斗、物品过滤器"
+            ],
+            [
+              "天气控制器与 3 种催化剂",
+              "一个人就能改变所有人的天气，原作生存里本来就做不出来",
+              "—"
+            ],
+            [
+              "MRU 区块加载器",
+              "让区块一直保持加载，原作生存里本来就做不出来",
+              "—"
+            ],
+            [
+              "生态魔杖（群系魔杖）",
+              "改群系时不看领地，还能把下界群系搬进主世界",
+              "—"
+            ],
+            [
+              "暗渎剑、暗渎劈刀、暗渎匕首",
+              "原作在生存模式里本来就拿不到，没有配方，箱子里也没有",
+              "—"
+            ],
+            [
+              "混沌污染、霜冻污染、魔法污染、暗影四种方块，污染清理器",
+              "原作的污染扩散从未开启，生存模式里本来就见不到这些方块",
+              "—"
+            ],
+            [
+              "怪物约束装置、怪物复制器、黑暗方尖碑、刷怪笼采集者及其刷怪笼",
+              "太容易造刷怪塔",
+              "—"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "恶魔索要的 8 种东西",
+                "基岩、龙蛋、命令方块这类东西要么交不出来，要么已经去掉",
+                "交易池还剩 45 条"
+              ]
+            },
+            [
+              "3 张唱片、410 公交票、6 件秘密物品",
+              "唱片用的是别人有版权的音乐，秘密物品在原作里就没有用处",
+              "—"
+            ],
+            [
+              "联动：Waila、CraftTweaker、血魔法、神秘时代、匠魂",
+              "这几个都不联动",
+              "配方都在手册里，装了 JEI 也能查，附魔台每级的价格也查得到"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔的云",
+                "三层云，飘动速度随帧数变化",
+                "不再绘制云层"
+              ]
+            },
+            [
+              "研究书的知识等级",
+              "要合成升级才能看后面的分类",
+              "这本手册一开始就能全部翻阅，见[[from_ec4/how]]"
+            ],
+            [
+              "8 种非生物的刷怪蛋",
+              "光束、射线这类特效做成刷怪蛋没有意义",
+              "—"
+            ]
+          ],
+          "widths": [
+            4,
+            4,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "去掉这些不会卡住主线，原本要用到它们的配方都换了材料。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "比如建筑魔杖的配方里，原来的两个执行器换成了两个{item:essentialcraft5:world_interactor}。"
+        }
+      ],
+      "_src": [
+        "tools/id_map_blocks.json、tools/id_map_items.json 里 status = removed 的行（reason 写原则编号）；policy §3.1、§3.2",
+        "R1 魔力采石场 + 7 种升级：2026-09-28 机器不挖不放方块（policy §3.1）；替代 blockentity/LeyProjectorBlockEntity（policy §4.8）",
+        "R2 执行器 ×6、R3 方块破坏器 ×2、R4 魔力补种器：policy §3.1；建筑魔杖配方 data/essentialcraft5/recipes/builder/magical_builder.json 里执行器换世界交互器 ×2（removed_redesign §3.1）",
+        "R5 MIM 8 个方块 + 容器宝石：policy §3.1（每 tick 重建约 3.8 万格、取物品包信任客户端坐标、复制与吞物品）",
+        "R6 天气控制器 + 3 种催化剂、R7 MRU 区块加载器、R9 暗渎三件：原作没有配方、不在战利品表（policy §3.1、§1.4 第 3 条）",
+        "R8 群系魔杖：policy §3.1、§7 裁定 1",
+        "R10 腐化方块 ×4、腐化清除器：原作 utils/cfg/Config.java L54 isCorruptionAllowed 只声明从不赋值，只在 common/entity/EntityMRUPresence.java L159 读（policy §3.2、D15）；表里写原作叫法 tile.essentialcraft.corruption.{chaos,frozen,magic,shade}.name「混沌污染 / 霜冻污染 / 魔法污染 / 暗影」、tile.essentialcraft.corruptionCleaner.name「污染清理器」（tools/legacy_lang/），搜得到",
+        "R11 防刷怪塔 5 项：id_map reason；恶魔交易池 53 条删 8 条剩 45（removed_redesign §3.6、data/essentialcraft5/demon_trades）",
+        "R12 唱片 ×3、410 公交票、秘密物品 ×6：id_map reason；CREDITS.md「Third-party assets not included」",
+        "R13 联动：README；id_map soulstone:1（血魔法）removed",
+        "R14 海纳尔的云：batch6a §8 D5",
+        "R15 研究书知识等级：原作 common/item/ItemKnowledgeBook.java L42~54；现在 player/ResearchBookGift + client/guide 全部可读",
+        "R16 非活物刷怪蛋 ×8：id_map entityegg:1/2/5/6/10/11/12/13 removed"
+      ]
+    },
+    {
+      "id": "fixed",
+      "title": "修好的原作问题",
+      "icon": "essentialcraft5:magical_repairer",
+      "summary": "原作的 bug，以前靠它的要注意",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "原作里有些东西并不照说明工作，有的还被玩家当成了窍门，这一版都按它们本来该有的样子修好了。"
+        },
+        {
+          "type": "h",
+          "text": "以前能钻的空子"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:moon_well}放到最大高度以上反而满产",
+              "到 y={cfg:machines.moon_well.max_height} 就不再产出，放得越低产得越多"
+            ],
+            [
+              "一道太阳光束能同时喂一排{item:essentialcraft5:sun_ray_absorber}",
+              "一道光束只给一台"
+            ],
+            [
+              "一颗钻石能用{item:essentialcraft5:pale_gem}滚出八颗",
+              "淡青宝石换不回真钻石"
+            ],
+            [
+              "{item:essentialcraft5:ec_ejector}出来的 MRU 平衡值总是 1.0，能拿来洗平衡值",
+              "是仓里真实的平衡值"
+            ],
+            [
+              "物品过滤器能刷物品，黑名单只看第一格",
+              "样本格只是个影子，不会吃掉东西，九格都会检查"
+            ],
+            [
+              "敲米斯莱水晶柱的顶会删掉上面的方块，一根变两根",
+              "只拆这一根，只掉一份"
+            ],
+            [
+              "两枚同种戒指效果叠加",
+              "同一种只生效一件"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "虚空套装扣不起电照样挡，宅男套装剩 1 MRU 也全挡，等于永久无敌",
+                "扣不起电的那件就不挡"
+              ]
+            }
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "h",
+          "text": "以前做不出来、不起作用的"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:crafter}在生存模式里一次都合不出来，空框架还会让游戏崩溃",
+              "能用了，每给一次红石信号合成一次"
+            ],
+            [
+              "{item:essentialcraft5:magical_display}名字带着「[NYI]」，没有配方",
+              "有了配方，挖下来掉的是它自己"
+            ],
+            [
+              "{item:essentialcraft5:magical_enchanter}做出的附魔书在铁砧上用不了",
+              "是正常的附魔书"
+            ],
+            [
+              "{item:essentialcraft5:mru_mover}只够得着眼前一两格，说明写的却远得多",
+              "前方约 20 格都够得着"
+            ],
+            [
+              "狙击镜倍率不对，虚空镜和恶魔镜实际都是 10 倍，开火声也只有自己听得到",
+              "倍率与说明一致，周围的人也听得到开火声"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_pentacle}配方写错，1.12 版做不出来",
+                "能做了"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_stone}、{block:essentialcraft5:void_glass}的配方用了不存在的材料，做不出来",
+                "改为直接用{item:essentialcraft5:titanite}，做得出来了"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ember_forge}先扣物品再读名字，剑永远出成复合属性，余烬白放",
+                "属性和余烬效果头一回真正起了作用"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:forged_elemental_sword}有 7 种余烬组合对不上名字，从不生效",
+                "全部修好"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "恐惧之地设了枯灌木，却一株也长不出来",
+                "长得出来了"
+              ]
+            },
+            [
+              "附近原本没有聚集体时，机器漏出的 MRU 因为程序错误不起作用，所以除了挨着上古遗迹的地方，基地里都长不出聚集体",
+              "照常起作用，机器旁会慢慢长出聚集体，见[[start/mrucu]]"
+            ]
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "h",
+          "text": "以前会坑你的"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            [
+              "元素水晶的支撑方块没了，掉出来是空水晶",
+              "保留大小和元素"
+            ],
+            [
+              "成型器、提取器、冶炼炉的进度，退出再进来就没了",
+              "进度照常保存"
+            ],
+            [
+              "辐射仓做到一半换了配方，最后还出旧配方的东西",
+              "换配方就从头算"
+            ],
+            [
+              "漏斗会把修复器里还没修好的工具抽走",
+              "修好了才抽得走"
+            ],
+            [
+              "岩浆冶炼炉放不下时吞物品，桶也会被吞掉",
+              "放不下就不做，只收岩浆"
+            ],
+            [
+              "魔力镜送过去放不下时，东西直接消失",
+              "放得下才送"
+            ],
+            [
+              "聚集体刷怪蛋放出来的聚集体是 0 MRU",
+              "500 MRU"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:wind_tablet}先扣 500 MRU 再判断，拿着右键任何方块都掉 500",
+                "换成了才扣 {cfg:general.wind.tablet_portal_mru} MRU"
+              ]
+            },
+            [
+              "{item:essentialcraft5:magical_chisel}能用 257 次，挖任何花纹方块都掉远古砖",
+              "256 次，挖什么掉什么"
+            ],
+            [
+              "线圈旁边有聚集体时，电全花在它身上，别的都打不到",
+              "会避开聚集体，不再朝它放电"
+            ],
+            [
+              "武器工作台组装时，没用上的格子也各扣一个",
+              "只扣用到的格子"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ultra_heat_generator}烧岩浆桶时空桶直接没了",
+                "还你空桶"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "恶魔挨任何一下就消失，召唤白费",
+                "不会被打跑，召唤者打它一下才离开"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "全息投影的减法攻击会让游戏崩溃，二分枪的弹丸打中生物会直接穿过去",
+                "都修好了，弹丸打中生物会就地张开"
+              ]
+            }
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "p",
+          "text": "还有一批玩的时候察觉不到的卡顿和漏洞，也一并修了。"
+        }
+      ],
+      "_src": [
+        "blockentity/MoonWellBlockEntity.java L76~78 — 到 max_height 不产、越低越多；原作 common/tile/TileMoonWell.java L31~37 高度系数算了没乘",
+        "blockentity/SunRayAbsorberBlockEntity.java — 每道光束只给一台；原作 common/tile/TileSunRayAbsorber.java L24~27 光束实体 ±1 格内都产",
+        "淡青宝石：原作 OreDictionaryRegistry.java L152~153 + 米斯莱熔炉换钻石（见 gear/pale_gem 的 tip lore）",
+        "blockentity/EnrichmentEjectorBlockEntity — 输出真实平衡值（batch2 §6）；原作 TileMRUCUECEjector 平衡值恒 1.0",
+        "item/FilterItem.java、menu/FilterMenu.java 幽灵格 — 不消耗样本、看全部 9 格（batch4 §7）；原作 ItemFilter 黑名单只看第 1 格",
+        "block/TripleTallBlock.java — 敲顶只清这一根、只掉一份（batch2 §6）；原作 BlockMithrilineCrystal",
+        "compat/CuriosCompat.java onlyOneEquipped；原作 ECEventHandler.java L1082~1088",
+        "虚空 / 宅男套装：原作 ItemArmorEC.java L215~222（damageArmor 扣失败什么都不做）、ItemComputerArmor.java L183~187",
+        "blockentity/CrafterBlockEntity.java — 红石一下合一次（batch4 §7）；原作 TileCrafter 生存合不出来、空框架崩溃",
+        "data/essentialcraft5/recipes 有魔力显示屏配方、掉自己；原作 recipes 目录没有 magicaldisplay，名字带 [NYI]",
+        "blockentity/MagicalEnchanterBlockEntity.java — 正常附魔书（batch2 §6）；原作 TileMagicalEnchanter",
+        "item/MRUMoverItem.java — 前方约 20 格（手册 gear/mru_mover_t2）；原作 ItemMRUMover 循环末尾 break（batch1 §5 第 8 条）",
+        "gun/GunStats.java — 狙击镜 12× / 16× 真倍率、开火声广播（batch5 §7）；原作 ItemGun 实际都是 10×、客户端本地播",
+        "data/essentialcraft5/recipes/…demonic_pentacle.json 用虚空核心；原作 recipes/demonic_pentacle.json 写 core_void，OreDictionaryRegistry 没有登记",
+        "虚空石 / 虚空玻璃配方直接引用榍石（batch6a §8 M7）；原作矿辞 genTitanite 没人登记",
+        "blockentity/EmberForgeBlockEntity.java — 先记后扣；原作 common/tile/TileEmberForge.java L124~160 先扣后读名字",
+        "item/ember/* — 7 个组合、「伤害 +11」、同伤害两对都修（batch7 §6）；原作 ItemElementalSword L172~176、L355、L375、L402",
+        "registry/ECHoannaNature.java 恐惧泥土进 #dirt、枯灌木能长（batch6a §8）；原作恐惧泥土不是泥土",
+        "blockentity/ElementalCrystalBlockEntity — 支撑没了保留大小和元素（batch2 §6）",
+        "成型器 / 提取器 / 冶炼炉进度存盘（batch2 §6）",
+        "blockentity/RadiatingChamberBlockEntity.java — 换配方清零（batch1 §5 第 7 条）",
+        "blockentity/MagicalRepairerBlockEntity.java — 修好才能抽（batch2 §6）",
+        "blockentity/MagmaticSmelteryBlockEntity.java — 放不下不做、只收岩浆（batch2 §6）",
+        "blockentity/MagicalMirrorBlockEntity.java — 先模拟、放得下才取（batch4 §7）",
+        "item/MRUPresenceSpawnEggItem.java — 聚集体刷怪蛋 500 MRU（batch2 §6）；原作 0 MRU",
+        "item/WindTabletItem.java — 换成了才扣 tablet_portal_mru（batch6a §8）；原作 ItemWindTablet 先扣 500 MRU（原作常量）",
+        "item/MagicalChiselItem.java — 256 次、挖什么掉什么（batch5 §7）；原作 257 次、花纹方块都掉远古砖（原作常量）",
+        "blockentity/MRUCoilBlockEntity.java 类注释「和原作不同」— 聚集体不是生物、伤害生效才扣；原作查错 capability + 聚集体恒不受伤 + break",
+        "gun/GunAssembly.java — 只扣用到的格（batch5 §7）；原作 TileWeaponMaker 1~18 号格各扣 1",
+        "blockentity/UltraHeatGeneratorBlockEntity.java — 还空桶（batch6b §6）；原作 TileUltraHeatGenerator L121~124",
+        "entity/DemonEntity.java — 免疫伤害、召唤者或创造模式打一下打发走；原作 common/entity/EntityDemon.java L76~86 任何伤害都消失",
+        "entity/HologramEntity.java — 减法攻击只对在线同维度活着的参战者；entity/DividerProjectileEntity 打中生物就地展开（batch8 §7）；原作 EntityHologram L220 faceEntity(null)、EntityDividerProjectile 只认方块",
+        "mru/ECCorruption.java 泄漏照常生效（附近没有聚集体就在机器处新凝一团）；原作 api/ApiCore.java L202~204 getClosestMRUCU 在 32 格内没有聚集体时对 null 调 getCapability，空指针被 utils/common/ECUtils.java L329~350 increaseCorruptionAt 的 catch 吞掉，新建聚集体、叠 MRU 腐化两段都走不到",
+        "性能与漏洞修正汇总见 tools/plan/batch10.md 附录 A.7（不进手册）",
+        "字面数说明：聚集体刷怪蛋 500 MRU 是 MRUPresenceSpawnEggItem 常量；风之石板「先扣 500」是原作常量（现在写 {cfg:general.wind.tablet_portal_mru}）；魔力凿 256 / 257、狙击镜 10 倍、移动魔杖约 20 格都是代码或原作常量，不是配置值"
+      ]
+    },
+    {
+      "id": "how",
+      "title": "换了做法的",
+      "icon": "essentialcraft5:omega_ring",
+      "summary": "Curios、标签、手册与按键",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "这一篇不讲玩法，只讲做法上的变化。原作依赖的前置模组和 1.12 的老机制，到了 1.20.1 都已经没有了，换成了别的办法。"
+        },
+        {
+          "type": "h",
+          "text": "饰品栏：Baubles 换成了 Curios"
+        },
+        {
+          "type": "p",
+          "text": "原作的饰品戴在 Baubles 模组的饰品栏里，现在改戴在 Curios 模组的饰品栏里。打开背包，点人物旁边的饰品按钮，或者直接按{keybind:key.curios.open.desc}，就能打开饰品栏。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作的槽",
+            "现在的槽",
+            "戴什么"
+          ],
+          "rows": [
+            [
+              "护身符",
+              "项链",
+              "十种护符、各种护身符和挂坠、风法师护符、便携矩阵换能器"
+            ],
+            [
+              "戒指（两格）",
+              "戒指（至少两格）",
+              "各种指环，以及从灵魂碎片到永恒物质的各种灵魂储存"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "bauble:essentialcraft5:computer_board"
+              ],
+              "cells": [
+                "腰带",
+                "腰带",
+                "各种腰带、{item:essentialcraft5:magical_wings}、{item:essentialcraft5:computer_board}"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled||!bauble:essentialcraft5:computer_board",
+              "cells": [
+                "腰带",
+                "腰带",
+                "各种腰带、{item:essentialcraft5:magical_wings}"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mystical_accessory",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "神秘挂件，三种随机",
+                "同样三种之一",
+                "形态开箱时就定好，只能戴进对应的那种槽"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            2,
+            5
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Baubles 另有头、身体、挂饰三种槽，原作没有东西戴在那里，这个模组也不用这三种槽。",
+            "戒指槽和原作一样至少有两格，别的模组或整合包加了更多格的话，以它们为准。",
+            "<em>同一种只能戴一件</em>：原作两枚同样的指环效果会叠加，现在第二枚戴不上，见[[baubles/finding]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "矿物词典换成了标签"
+        },
+        {
+          "type": "p",
+          "text": "1.12 的「矿物词典」让各个模组的同种材料可以通用，比如各家的铜锭都算「铜锭」。到了 1.20，它换成了作用大致相同的「标签」。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            [
+              "配方里的「任意某某」",
+              "照样有，鼠标指着配方图时，那一格会轮换显示候选物品"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "高级过滤器的「忽略矿辞」",
+                "改成「按标签」，每个样本各自选一个标签，见[[logistics/advanced_filters]]"
+              ]
+            },
+            [
+              "合成框架的「用 / 不用矿物词典」",
+              "改成「按配方原料 / 精确」，见[[automation/crafting_frame]]"
+            ],
+            [
+              "淡青宝石在别的模组的配方里也算钻石",
+              "只在本模组的几条配方里顶替钻石、绿宝石，见[[gear/pale_gem]]"
+            ]
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "h",
+          "text": "研究书换成了这本手册"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.give_research_book_on_first_join",
+              "cells": [
+                "要自己合成研究书",
+                "第一次进入世界就送一本，弄丢了可以照配方再合成"
+              ]
+            },
+            {
+              "if": "!cfg:general.give_research_book_on_first_join",
+              "cells": [
+                "要自己合成研究书",
+                "也是照配方合成一本"
+              ]
+            },
+            [
+              "要一次次合成升级，才看得到后面的分类",
+              "一开始就能全部翻阅，什么都不锁"
+            ],
+            [
+              "手持研究书对着东西按 R 查阅",
+              "物品提示上按住 Ctrl，或者手持手册潜行右键"
+            ],
+            [
+              "只有介绍",
+              "主线一步步打勾，首页会写出下一步"
+            ]
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "p",
+          "text": "详细用法见[[elements/book]]。"
+        },
+        {
+          "type": "h",
+          "text": "1.20 的新东西"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>粗矿</em>也能拿去加工，{item:essentialcraft5:magmatic_smeltery}一个粗矿出一份合金，岩浆熔炉要两个才出一份，见[[magmatic/smeltery]]。",
+            "{item:minecraft:blue_ice}和{block:minecraft:powder_snow}也算作{item:essentialcraft5:cold_distillator}周围的寒冷方块，见[[generators/cold_distillator]]。",
+            "红树林、樱花木、矢车菊和铃兰补进了{item:essentialcraft5:mithriline_furnace}的转化表，见[[mithriline/conversions]]。",
+            "世界向下延伸到了 −64，{item:essentialcraft5:moon_well}放在高度 0 及以下都按满产计算，见[[crystal/moon_well]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "元数据管理器换成了方块状态检测器"
+        },
+        {
+          "type": "p",
+          "text": "从 1.13 起方块不再有「元数据」，{item:essentialcraft5:metadata_manager}改为读取正面那个方块的数值，比如作物长到了第几期、蛋糕被吃了几口，小麦成熟时输出 7。前面的方块一变，它就自己跟着变，用不着再手动给它方块更新，见[[automation/metadata_manager]]。"
+        },
+        {
+          "type": "h",
+          "text": "按键"
+        },
+        {
+          "type": "table",
+          "header": [
+            "做什么",
+            "原作",
+            "现在"
+          ],
+          "rows": [
+            [
+              "打开饰品栏",
+              "Baubles 自己的键",
+              "{keybind:key.curios.open.desc}"
+            ],
+            [
+              "查一样东西在书里的哪一篇",
+              "手持研究书按 R",
+              "物品提示上按住 Ctrl"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "宅男套装的夜视 / 喷射推进",
+                "X / Z",
+                "{keybind:key.essentialcraft5.computer_armor_night_vision} / {keybind:key.essentialcraft5.computer_armor_boost}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.enabled"
+              ],
+              "cells": [
+                "打开宅男终端，饰品封禁场的开关就在这里",
+                "没有",
+                "{keybind:key.essentialcraft5.computer_terminal}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作得先装好 DummyCore 和 Baubles 两个前置模组才跑得起来，这一版只要一个 Curios。"
+        }
+      ],
+      "_src": [
+        "饰品槽：data/curios/tags/items/{necklace,ring,belt}.json（datagen）、data/essentialcraft5/curios/entities/essentialcraft5.json 只开 ring / necklace / belt；data/essentialcraft5/curios/slots/ring.json size 2（Curios SlotType.Builder.size：不是 replace 时取较大值，别的数据包给得更多时照它们的；Curios 自带的 ring.json 不写 size，默认 1 格）；便携矩阵换能器在 necklace 标签里（原作 ItemBaublesSpecial btALST[0] = AMULET）",
+        "原作槽位：原作 common/item/ItemBaublesSpecial.java L90~124 btALST 只有 AMULET / RING / BELT；ItemCharm.java L175 AMULET；ItemMRUStorageEC.java L82 RING；ItemMagicalWings.java L56 BELT；ItemComputerBoard.java L15 BELT；ItemBaublesResistance.java L41 nextInt(3) 只抽 AMULET / BELT / RING（L70~76 的 TRINKET / HEAD / BODY / CHARM 抽不到）；1.12 Baubles 是 1 护身符 + 2 戒指 + 1 腰带 + 头 / 身体 / 挂饰",
+        "同种只戴一件 compat/CuriosCompat.java onlyOneEquipped（原作 utils/common/ECEventHandler.java L1082~1088 逐格乘倍率，C40）；神秘饰品 item/bauble/MysticalAccessoryItem.java canEquip 只认形态对应的槽",
+        "标签：client/guide/GuideFrame cycling（鼠标指着配方图时轮换候选）；高级过滤器第三个开关「按标签」（logistics/advanced_filters 篇，原作「忽略矿辞」C18）；合成框架「按配方原料 / 精确」（automation/crafting_frame 篇，原作「用 / 不用矿物词典」）；淡青宝石（原作 common/registry/OreDictionaryRegistry.java L152~153，C8）",
+        "研究书：data/essentialcraft5/recipes/guide/research_book.json；player/ResearchBookGift.java:47 general.give_research_book_on_first_join；client/guide/GuideLookup.java:48；item/ResearchBookItem.java:41 潜行右键；原作 recipes research_book_0/1/3.json 与 common/registry/RecipesCore.java L91~95（tier 1 → 2 在魔力工作台），各分类 setTier 0~4、海纳尔要 tier 3（原作 ResearchRegistry L2343~2347）；原作 utils/common/PlayerTickHandler.java L130~134 手持研究书按 R（写死 Keyboard.KEY_R）",
+        "粗矿：recipe/OreSmeltingRecipe.java:61 SMELTERY_MULTIPLIER 2、:63 FURNACE_MULTIPLIER 1、yieldOf（粗矿减半）；冷凝器 blockentity/ColdDistillatorBlockEntity.java:138~145 蓝冰 0.4、细雪 0.2；米斯莱熔炉 data/essentialcraft5/recipes/mithriline/furnace/ 里的 mangrove / cherry / cornflower_to_lily_of_the_valley；月亮井 blockentity/MoonWellBlockEntity.java:77 Math.min(1, 1 − y / max)",
+        "方块状态检测器：block/MetadataManagerBlock.java:63 valueOf 取第一个整数属性；L45 UPDATE_DELAY 2 刻自己重算；原作 lang「it will not cause a block update」",
+        "按键：client/ComputerClient.java KEY_BOOST / KEY_NIGHT_VISION 默认 Z（推进）/ X（夜视）；原作 proxy/ClientProxy.java L536~539 同样是 Z / X；key.curios.open.desc 是 Curios 的按键；宅男终端 client/ComputerClient.java KEY_TERMINAL（key.essentialcraft5.computer_terminal，第十批新加，原作没有）",
+        "前置：原作 common/mod/EssentialCraftCore.java L58 dependencies「required-after:dummycore…;required-after:baubles」；META-INF/mods.toml 只有 curios（mandatory）"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,884 @@
+[
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "elemental_wisp",
+  "status": "done",
+  "en": "Elemental Wisp",
+  "zh": "元素游灵",
+  "lane": "13c-M1",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：主世界地下 y ≤ 40 的小怪，四元素）。已建（13c-M1，entity/mob/ElementalWispEntity）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "matrix_wraith",
+  "status": "done",
+  "en": "Matrix Wraith",
+  "zh": "矩阵游魂",
+  "lane": "13c-M1",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：大团 MRU 聚集体附近追加）。已建（13c-M1，entity/mob/MatrixWraithEntity）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "mru_golem",
+  "status": "done",
+  "en": "MRU Golem",
+  "zh": "聚能魔像",
+  "lane": "13c-M2",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.1：上古遗迹的小首领）。已建（13c-M2，entity/mob/MRUGolemEntity）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "nether_imp",
+  "status": "done",
+  "en": "Nether Imp",
+  "zh": "炼狱小鬼",
+  "lane": "13c-M3",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：下界荒地、灵魂沙峡谷）。已建（13c-M3，entity/mob/NetherImpEntity）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "void_stalker",
+  "status": "done",
+  "en": "Void Stalker",
+  "zh": "虚空潜行者",
+  "lane": "13c-M3",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：末地外岛，独立生成器）。已建（13c-M3，entity/mob/VoidStalkerEntity + VoidStalkerSpawner）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "matrix_shade",
+  "status": "done",
+  "en": "Matrix Specter",
+  "zh": "矩阵之影",
+  "lane": "13c-M4",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.2：矩阵导流符召出的首领；英文名不用 Shade（glossary 第十二节））。已建（13c-M4，entity/boss/MatrixShadeEntity）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "shade_mirror",
+  "status": "done",
+  "en": "Mirror Image",
+  "zh": "镜影",
+  "lane": "13c-M4",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.2：心相的分身，进 growth_excluded）。已建（13c-M4，entity/boss/MatrixShadeMirror）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "mind_spike",
+  "status": "done",
+  "en": "Mind Spike",
+  "zh": "心智钉",
+  "lane": "13c-M4",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.2：心相钉在地上的东西，能打掉，进 growth_excluded）。已建（13c-M4，entity/boss/MatrixShadeSpike）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "disorder_pillar",
+  "status": "done",
+  "en": "Disorder Pillar",
+  "zh": "失序之柱",
+  "lane": "13c-M4",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.2：矩阵相大招，伤害走 matrixRend(矩阵之影本体)，进 growth_excluded）。已建（13c-M4，entity/boss/MatrixShadePillar）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "imp_ember_bolt",
+  "status": "done",
+  "en": "Imp Ember Bolt",
+  "zh": "余火弹",
+  "lane": "13c-M3",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2）：炼狱小鬼吐的余火弹，伤害类型 mob_bolt，落地不放火、不碰方块（13c-M3，entity/mob/NetherImpEmberBoltEntity）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "wisp_bolt",
+  "status": "done",
+  "en": "Wisp Bolt",
+  "zh": "元素聚灵弹",
+  "lane": "13c-M1",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：元素聚灵（精英）四元素轮射的弹射物；做成实体时用这个名字）。已建（13c-M1，entity/mob/WispBoltEntity，不存盘）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "storm_gust",
+  "status": "done",
+  "en": "Storm Gust",
+  "zh": "疾风弹",
+  "lane": "13c-M1",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：风暴术士的疾风弹；风法师现有的弹射物不够用、要另做实体时用这个名字）。已建（13c-M1，entity/StormGustEntity，不存盘）"
+ },
+ {
+  "registry": "minecraft:loot_condition_type",
+  "new_id": "fair_kill",
+  "status": "done",
+  "en": "Fair kill",
+  "zh": "公平击杀",
+  "lane": "13c-Fa",
+  "notes": "EC5 新增（第十三批 batch13.md §5.4：真玩家亲手杀、来源公平、玩家伤害占比 ≥ 0.5）。已建（13c-Fa，loot/FairKillCondition）"
+ },
+ {
+  "registry": "minecraft:loot_condition_type",
+  "new_id": "kill_fatigue",
+  "status": "done",
+  "en": "Kill fatigue",
+  "zh": "按人递减",
+  "lane": "13c-Fa",
+  "notes": "EC5 新增（第十三批 batch13.md §5.4：几率 × min(1, F / n)，台账 mob_ledger）。已建（13c-Fa，loot/KillFatigueCondition）"
+ },
+ {
+  "registry": "forge:biome_modifier_serializers",
+  "new_id": "add_spawn_costs",
+  "status": "done",
+  "en": "Add spawn costs",
+  "zh": "加刷怪花费",
+  "lane": "13c-Fa",
+  "notes": "EC5 新增（第十三批 batch13.md §5.1：Forge 47.4.16 没有自带的 spawn_costs 修改器）。已建（13c-Fa，worldgen/AddSpawnCostsBiomeModifier）"
+ },
+ {
+  "registry": "minecraft:damage_type",
+  "new_id": "mob_bolt",
+  "status": "done",
+  "en": "Mob bolt",
+  "zh": "怪物弹射",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §5.1：is_projectile；弹射物、光束）"
+ },
+ {
+  "registry": "minecraft:damage_type",
+  "new_id": "aberrant_strike",
+  "status": "done",
+  "en": "Aberrant strike",
+  "zh": "怪物大招",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §5.1：bypasses_armor、undodgeable；有预警的大招）"
+ },
+ {
+  "registry": "minecraft:damage_type",
+  "new_id": "matrix_rend",
+  "status": "done",
+  "en": "Matrix rend",
+  "zh": "矩阵撕裂",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §5.1：bypasses_armor、forge:is_magic、undodgeable；矩阵之影矩阵相）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/bestiary/mru_golem",
+  "status": "done",
+  "en": "MRU Golem (Bestiary)",
+  "zh": "异兽录：聚能魔像",
+  "lane": "13c-G",
+  "notes": "EC5 新增（第十三批 batch13.md §5.5：可选步骤，打倒时发给参战者（触发在 M2））。已建（13c-G；BossLoot.recordVictory 发给分到掉落的参战者）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/bestiary/matrix_shade",
+  "status": "done",
+  "en": "Matrix Specter (Bestiary)",
+  "zh": "异兽录：矩阵之影",
+  "lane": "13c-G",
+  "notes": "EC5 新增（第十三批 batch13.md §5.5：可选步骤，打倒时发给参战者（触发在 M4））。已建（13c-G；BossLoot.recordVictory 发给分到掉落的参战者）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "frostbitten",
+  "status": "done",
+  "en": "Frostbitten",
+  "zh": "霜蚀者",
+  "lane": "13d-N1",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：冰冻腐化之地的人形怪，近战冻结、冰息）。预备注册空壳（entity/mob/hoanna/FrostbittenEntity，registry/ECHoannaNativesA），行为 13d-N1"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "mana_prism",
+  "status": "done",
+  "en": "Mana Prism",
+  "zh": "浮游棱晶",
+  "lane": "13d-N1",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：魔力腐化之地的悬浮晶体，锁定后射光束；地脉风暴时全陆地）。预备注册空壳（entity/mob/hoanna/ManaPrismEntity，registry/ECHoannaNativesA），行为 13d-N1"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "hoanna_scavenger",
+  "status": "done",
+  "en": "Remnant Scavenger",
+  "zh": "遗民拾荒者",
+  "lane": "13d-N1",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：恐惧之地、沙漠的拾荒人，白天也刷，命中加辐射；进 soul_capturable）。预备注册空壳（entity/mob/hoanna/HoannaScavengerEntity，registry/ECHoannaNativesA），行为 13d-N1"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "chaos_aberrant",
+  "status": "done",
+  "en": "Chaos Aberration",
+  "zh": "混沌畸变体",
+  "lane": "13d-N2",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：混沌腐化之地的四足怪，蓄力冲撞，死时裂两只幼体）。预备注册空壳（entity/mob/hoanna/ChaosAberrantEntity，registry/ECHoannaNativesB），行为 13d-N2"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "chaos_larva",
+  "status": "done",
+  "en": "Aberrant Larva",
+  "zh": "畸变幼体",
+  "lane": "13d-N2",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：畸变体裂出来的技能实体，不存盘、没有蛋、进 growth_excluded、不进 hoanna_natives）。预备注册空壳（entity/mob/hoanna/ChaosLarvaEntity，registry/ECHoannaNativesB），行为 13d-N2"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "ember_spirit",
+  "status": "done",
+  "en": "Ember Spirit",
+  "zh": "余烬灵",
+  "lane": "13d-N2",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：恐惧之地、沙漠的余烬团，八种余烬八种效果；日阵白天也刷）。预备注册空壳（entity/mob/hoanna/EmberSpiritEntity，registry/ECHoannaNativesB），行为 13d-N2"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "ember_spirit_bolt",
+  "status": "done",
+  "en": "Ember Bolt",
+  "zh": "余烬弹",
+  "lane": "13d-N2",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2）：余烬灵吐的余烬弹（entity/mob/hoanna/EmberSpiritBoltEntity，WildMobBolt），带射手那种余烬的效果；不存盘，客户端不画模型只撒粒子"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "abyssal_eel",
+  "status": "done",
+  "en": "Abyssal Eel",
+  "zh": "渊鳗",
+  "lane": "13d-N2",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：海纳尔之海的长鳗，MONSTER 类别水中放置，咬 + 下拽）。预备注册空壳（entity/mob/hoanna/AbyssalEelEntity，registry/ECHoannaNativesB），行为 13d-N2"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "inquisitorium_patroller",
+  "status": "done",
+  "en": "Inquisitorium Patroller",
+  "zh": "审判庭巡卫",
+  "lane": "13d-N3",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：暗影腐化之地的半尺寸全息人形，复用护甲破坏者、小型轨道打击；黑暗天灾全陆地）。预备注册空壳（entity/mob/hoanna/InquisitoriumPatrollerEntity，registry/ECHoannaNativesC），行为 13d-N3"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "catacomb_revenant",
+  "status": "done",
+  "en": "Catacomb Revenant",
+  "zh": "墓穴守灵",
+  "lane": "13d-N3",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2：古代墓穴结构里的骷髅骑士，弹射物 30% 穿过）。预备注册空壳（entity/mob/hoanna/CatacombRevenantEntity，registry/ECHoannaNativesC），行为 13d-N3"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "patroller_destroyer",
+  "status": "done",
+  "en": "Patroller Armor Destroyer",
+  "zh": "巡卫护甲破坏者",
+  "lane": "13d-N3",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2）：审判庭巡卫射的护甲破坏者（entity/mob/hoanna/PatrollerDestroyerEntity；全息投影那一发只认全息投影本体，巡卫另做一个，效果转调 ArmorDestroyerEntity.wear）。MISC、不存盘、不能召唤"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "revenant_blade",
+  "status": "done",
+  "en": "Spirit Blade",
+  "zh": "灵刃",
+  "lane": "13d-N3",
+  "notes": "EC5 新增（第十三批 batch13.md §5.2）：墓穴守灵长召出的追踪灵刃（entity/mob/hoanna/RevenantBladeEntity）。MISC、不存盘、不能召唤，客户端只画粒子"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "ley_starfall",
+  "status": "done",
+  "en": "Ley Starfall",
+  "zh": "地脉落晶",
+  "lane": "13d-H2",
+  "notes": "EC5 新增（第十三批 batch13.md §6.2：地脉风暴里落下的晶体，extends Entity、不存盘、每人名下 ≤ 8，碰到就收地脉结晶）。已注册（13d-H2：entity/LeyStarfallEntity，registry/ECHoannaStorm）"
+ },
+ {
+  "registry": "minecraft:loot_condition_type",
+  "new_id": "hoanna_event",
+  "status": "done",
+  "en": "Hoanna event",
+  "zh": "海纳尔天灾",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §6.1、§6.4：{event}：掷表的世界是海纳尔且当前天灾是它，或 any）。已建（13d 预备，loot/condition/HoannaLootConditions）"
+ },
+ {
+  "registry": "minecraft:loot_condition_type",
+  "new_id": "sky_visible",
+  "status": "done",
+  "en": "Sky visible",
+  "zh": "看得见天",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §6.1、§6.4：原点上方一格 canSeeSky）。已建（13d 预备，loot/condition/HoannaLootConditions）"
+ },
+ {
+  "registry": "minecraft:loot_condition_type",
+  "new_id": "night_or_darkness",
+  "status": "done",
+  "en": "Night or darkness",
+  "zh": "夜里或黑暗",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §6.1、§6.4：日内刻 [13 000, 23 000) 或黑暗天灾中）。已建（13d 预备，loot/condition/HoannaLootConditions）"
+ },
+ {
+  "registry": "minecraft:loot_condition_type",
+  "new_id": "hoanna_tide",
+  "status": "done",
+  "en": "Hoanna tide",
+  "zh": "潮位",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §6.1、§6.4：{min}：HoannaTide.value ≥ min）。已建（13d 预备，loot/condition/HoannaLootConditions）"
+ },
+ {
+  "registry": "minecraft:loot_condition_type",
+  "new_id": "from_nest",
+  "status": "done",
+  "en": "From nest",
+  "zh": "巢穴来源",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §6.1、§6.4：THIS_ENTITY 的来源是 SpawnOrigin NEST）。已建（13d 预备，loot/condition/HoannaLootConditions）"
+ },
+ {
+  "registry": "minecraft:loot_condition_type",
+  "new_id": "calamity_main",
+  "status": "done",
+  "en": "Calamity main",
+  "zh": "主灾奖励",
+  "lane": "13e-B",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3：天灾之心按召唤时定下的主灾多给一池）。已建（13e-B，loot/condition/CalamityMainCondition）"
+ },
+ {
+  "registry": "minecraft:worldgen/placement_modifier_type",
+  "new_id": "cell_spread",
+  "status": "done",
+  "en": "Cell spread",
+  "zh": "格子散布",
+  "lane": "13d-HF",
+  "notes": "EC5 新增（第十三批 batch13.md §6.1：{spacing, separation, salt}，和原版 RandomSpreadStructurePlacement 同一套哈希，每格挑一个区块；中景观 14 / 7、里程碑 24 / 12）。已建（13d-HF，worldgen/hoanna/placement/CellSpread）"
+ },
+ {
+  "registry": "minecraft:worldgen/placement_modifier_type",
+  "new_id": "radiation_hotspot",
+  "status": "done",
+  "en": "Radiation hotspot",
+  "zh": "辐射热点",
+  "lane": "13d-HF",
+  "notes": "EC5 新增（第十三批 batch13.md §6.1：{min_base}，Radiation.chunkBase ≥ min_base 才放）。已建（13d-HF，worldgen/hoanna/placement/RadiationHotspot）"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_placement",
+  "new_id": "spread_excluding",
+  "status": "done",
+  "en": "Spread excluding",
+  "zh": "多集排除",
+  "lane": "13d-HF",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：继承 random_spread，多一个 exclusion_zones 列表；13e 的宝库、前哨用）。已建（13d-HF，worldgen/hoanna/placement/SpreadExcludingPlacement）"
+ },
+ {
+  "registry": "minecraft:block_entity_type",
+  "new_id": "nest_core",
+  "status": "done",
+  "en": "Nest Core",
+  "zh": "巢穴核心",
+  "lane": "13d-HF",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：存类型 id、状态、这一波的 UUID、出过力的人、到期刻（按主世界 gameTime））。已建（13d-HF，blockentity/NestCoreBlockEntity）"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_type",
+  "new_id": "sealed_vault",
+  "status": "done",
+  "en": "Sealed Vault",
+  "zh": "封印宝库",
+  "lane": "13e-S1",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4）。13e 预备注册（worldgen/hoanna/vault/VaultStructures，结构类空壳只判群系、还不生成），布局和拼件 13e-S1；上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_type",
+  "new_id": "sunken_district",
+  "status": "done",
+  "en": "Sunken District",
+  "zh": "沉没城区",
+  "lane": "13e-S2",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4）。13e 预备注册（worldgen/hoanna/sunken/SunkenStructures，结构类空壳只判群系、还不生成），布局和拼件 13e-S2；上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_type",
+  "new_id": "inquisitorium_outpost",
+  "status": "done",
+  "en": "Inquisitorium Outpost",
+  "zh": "审判庭前哨",
+  "lane": "13e-S3",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4）。13e 预备注册（worldgen/hoanna/outpost/OutpostStructures，结构类空壳只判群系、还不生成），布局和拼件 13e-S3；上线后不能改名"
+ },
+ {
+  "registry": "essentialcraft5:player_data",
+  "new_id": "abyssal_salt_cd",
+  "status": "done",
+  "en": "Abyssal salt cooldown",
+  "zh": "渊盐冷却",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §6.3）：渊盐冷却到期时的主世界 gameTime（long，0 = 没在冷却），只在服务端、不进同步包、死亡保留。已建（IPlayerData.getAbyssalSaltCooldownEnd）"
+ },
+ {
+  "registry": "essentialcraft5:player_data",
+  "new_id": "boss_daily",
+  "status": "done",
+  "en": "Boss daily rewards",
+  "zh": "首领每日领奖",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.4、§9.4）：首领实体 id → 最后一次领奖的游戏日序号（BossDaily.dayIndex），13e 渊潮领主用；只在服务端、不进同步包。已建（IPlayerData.getBossDaily）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/hoanna_explore/specialty",
+  "status": "done",
+  "en": "Hoanna Exploration: Specialty",
+  "zh": "海纳尔探索：特产",
+  "lane": "13d-G",
+  "notes": "EC5 新增（第十三批 batch13.md §9.4，手册支线 hoanna_explore 的可选步骤，没有 display）：inventory_changed（物品标签 hoanna_specialties），原版发；代码里发一律走 ECAdvancements.awardIfPresent。已建（13d-G，advancements/guide/hoanna_explore/specialty.json）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/hoanna_explore/survey_map",
+  "status": "done",
+  "en": "Hoanna Exploration: Survey Map",
+  "zh": "海纳尔探索：勘测图",
+  "lane": "13d-G",
+  "notes": "EC5 新增（第十三批 batch13.md §9.4，手册支线 hoanna_explore 的可选步骤，没有 display）：inventory_changed（hoanna_survey_map），原版发；代码里发一律走 ECAdvancements.awardIfPresent。已建（13d-G，advancements/guide/hoanna_explore/survey_map.json）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/hoanna_explore/survey_arrive",
+  "status": "done",
+  "en": "Hoanna Exploration: Arrival",
+  "zh": "海纳尔探索：到点",
+  "lane": "13d-G",
+  "notes": "EC5 新增（第十三批 batch13.md §9.4，手册支线 hoanna_explore 的可选步骤，没有 display）：impossible，13d-H3 到点时发；代码里发一律走 ECAdvancements.awardIfPresent。已建（13d-G，advancements/guide/hoanna_explore/survey_arrive.json；发放点 item/HoannaSurveyMapItem.checkArrival）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/hoanna_explore/starfall",
+  "status": "done",
+  "en": "Hoanna Exploration: Starfall",
+  "zh": "海纳尔探索：落晶",
+  "lane": "13d-G",
+  "notes": "EC5 新增（第十三批 batch13.md §9.4，手册支线 hoanna_explore 的可选步骤，没有 display）：impossible，13d-H2 捡到落晶时发；代码里发一律走 ECAdvancements.awardIfPresent。已建（13d-G，advancements/guide/hoanna_explore/starfall.json；发放点 hoanna/event/LeyStorm.collect）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/hoanna_explore/nest",
+  "status": "done",
+  "en": "Hoanna Exploration: Nest",
+  "zh": "海纳尔探索：巢穴",
+  "lane": "13d-G",
+  "notes": "EC5 新增（第十三批 batch13.md §9.4，手册支线 hoanna_explore 的可选步骤，没有 display）：impossible，13d-HF 清掉巢穴、分到奖励的人；代码里发一律走 ECAdvancements.awardIfPresent。已建（13d-G，advancements/guide/hoanna_explore/nest.json；发放点 hoanna/nest/HoannaNests.giveReward）"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "town_sentry",
+  "status": "done",
+  "en": "Ruin Watcher",
+  "zh": "废城守望者",
+  "lane": "13e-T",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.3：海纳尔城镇废墟的小 Boss，第一次有人走近城镇起点时醒）。预备注册空壳（entity/boss/TownSentryEntity，registry/ECTownSentry），行为 13e-T"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "sentry_turret",
+  "status": "done",
+  "en": "Sentry Turret",
+  "zh": "哨戒炮台",
+  "lane": "13e-T",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.3：守望者放出的炮台，30 血、每 30 刻打一发；growth_excluded）。预备注册空壳（entity/boss/SentryTurretEntity），行为 13e-T"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "abyss_tyrant",
+  "status": "done",
+  "en": "Abyssal Tidelord",
+  "zh": "渊潮领主",
+  "lane": "13e-S2",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.4：沉城祭坛召唤的首领，每人每游戏日领一份）。预备注册空壳（entity/boss/AbyssTyrantEntity，registry/ECSunkenDistrict），行为 13e-S2"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "calamity_heart",
+  "status": "done",
+  "en": "Heart of Calamity",
+  "zh": "天灾之心",
+  "lane": "13e-B",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.5：主线第二十三章的终局首领，天灾信标召唤）。预备注册空壳（entity/boss/CalamityHeartEntity，registry/ECCalamityHeart），行为 13e-B"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "calamity_pillar",
+  "status": "done",
+  "en": "Calamity Pillar",
+  "zh": "灾柱",
+  "lane": "13e-B",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.5：天灾之心护盾期的四根柱子，MISC、不存盘，剩余血量记在首领 NBT；growth_excluded）。预备注册空壳（entity/boss/CalamityPillarEntity），行为 13e-B"
+ },
+ {
+  "registry": "minecraft:entity_type",
+  "new_id": "calamity_rubble",
+  "status": "done",
+  "en": "Falling Rubble",
+  "zh": "落石",
+  "lane": "13e-B",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.5：地震相的落石，落地即消失、不放方块，MISC、不存盘；growth_excluded）。预备注册空壳（entity/boss/CalamityRubbleEntity），行为 13e-B"
+ },
+ {
+  "registry": "minecraft:damage_type",
+  "new_id": "calamity",
+  "status": "done",
+  "en": "Calamity",
+  "zh": "天灾",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §5.1、§5.3.5：bypasses_armor、undodgeable；天灾之心有预警的招，口径同 aberrant_strike）"
+ },
+ {
+  "registry": "minecraft:damage_type",
+  "new_id": "calamity_solar",
+  "status": "done",
+  "en": "Solar calamity",
+  "zh": "天灾·烈日",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §5.1、§5.3.5：bypasses_armor、undodgeable、is_fire；日阵相的招，口径同 calamity）"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_set",
+  "new_id": "sealed_vault",
+  "status": "done",
+  "en": "Sealed Vault",
+  "zh": "封印宝库",
+  "lane": "13e-S1",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4、§7.1：spread_excluding 32 / 16、salt 202610265，排除城镇、前哨各 8 区块；海纳尔沙漠、恐惧之地）。13e 预备写好（worldgen/structure_set/sealed_vault.json）"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "vault_stele",
+  "status": "done",
+  "en": "Vault Stele Platform",
+  "zh": "宝库碑台",
+  "lane": "13e-S1",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：封印宝库的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S1；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "vault_shaft",
+  "status": "done",
+  "en": "Vault Shaft",
+  "zh": "宝库螺旋井",
+  "lane": "13e-S1",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：封印宝库的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S1；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "vault_antechamber",
+  "status": "done",
+  "en": "Vault Antechamber",
+  "zh": "宝库前厅",
+  "lane": "13e-S1",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：封印宝库的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S1；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "vault_chamber",
+  "status": "done",
+  "en": "Vault Chamber",
+  "zh": "宝库室",
+  "lane": "13e-S1",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：封印宝库的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S1；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_set",
+  "new_id": "sunken_district",
+  "status": "done",
+  "en": "Sunken District",
+  "zh": "沉没城区",
+  "lane": "13e-S2",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4、§7.1：random_spread 40 / 20、salt 202610266；海纳尔之海）。13e 预备写好（worldgen/structure_set/sunken_district.json）"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "sunken_dome",
+  "status": "done",
+  "en": "Sunken Dome",
+  "zh": "沉城穹顶",
+  "lane": "13e-S2",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：沉没城区的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S2；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "sunken_house",
+  "status": "done",
+  "en": "Sunken House",
+  "zh": "沉房",
+  "lane": "13e-S2",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：沉没城区的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S2；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "sunken_tower",
+  "status": "done",
+  "en": "Sunken Tower",
+  "zh": "沉城塔身",
+  "lane": "13e-S2",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：沉没城区的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S2；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_set",
+  "new_id": "inquisitorium_outpost",
+  "status": "done",
+  "en": "Inquisitorium Outpost",
+  "zh": "审判庭前哨",
+  "lane": "13e-S3",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4、§7.1：spread_excluding 24 / 14、salt 202610267，排除城镇、宝库各 8 区块；#inquisitorium_sites（暗影腐化之地））。13e 预备写好（worldgen/structure_set/inquisitorium_outpost.json）"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "outpost_arena",
+  "status": "done",
+  "en": "Outpost Arena",
+  "zh": "前哨场地",
+  "lane": "13e-S3",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：审判庭前哨的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S3；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "outpost_pylon",
+  "status": "done",
+  "en": "Outpost Pylon",
+  "zh": "前哨石柱",
+  "lane": "13e-S3",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：审判庭前哨的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S3；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "outpost_dais",
+  "status": "done",
+  "en": "Outpost Dais",
+  "zh": "前哨高台",
+  "lane": "13e-S3",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：审判庭前哨的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S3；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:worldgen/structure_piece",
+  "new_id": "outpost_camp",
+  "status": "done",
+  "en": "Outpost Camp",
+  "zh": "前哨营地",
+  "lane": "13e-S3",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：审判庭前哨的拼件，名字照 ECHoannaStructures.PLANNED_*）。13e 预备注册空壳，内容 13e-S3；拼件类型写进区块存档，上线后不能改名"
+ },
+ {
+  "registry": "minecraft:block_entity_type",
+  "new_id": "vault_core",
+  "status": "done",
+  "en": "Vault Core",
+  "zh": "宝库核心",
+  "lane": "13e-S1",
+  "notes": "EC5 新增（第十三批 batch13.md §6.4：谜题、解开名单、已领名单）。13e 预备注册空壳（blockentity/VaultCoreBlockEntity），字段 13e-S1"
+ },
+ {
+  "registry": "minecraft:block_entity_type",
+  "new_id": "sunken_altar",
+  "status": "done",
+  "en": "Sunken Altar",
+  "zh": "沉城祭坛",
+  "lane": "13e-S2",
+  "notes": "EC5 新增（第十三批 batch13.md §5.3.4：上次召唤的游戏日序号）。13e 预备注册空壳（blockentity/SunkenAltarBlockEntity），字段 13e-S2"
+ },
+ {
+  "registry": "minecraft:tags/worldgen/biome",
+  "new_id": "has_structure/sealed_vault",
+  "status": "done",
+  "en": "has_structure/sealed_vault",
+  "zh": "能生成封印宝库的群系",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §3.5 / §6.4：海纳尔沙漠、恐惧之地）。13e 预备写好，数据包可改"
+ },
+ {
+  "registry": "minecraft:tags/worldgen/biome",
+  "new_id": "has_structure/sunken_district",
+  "status": "done",
+  "en": "has_structure/sunken_district",
+  "zh": "能生成沉没城区的群系",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §3.5 / §6.4：海纳尔之海）。13e 预备写好，数据包可改"
+ },
+ {
+  "registry": "minecraft:tags/worldgen/biome",
+  "new_id": "has_structure/inquisitorium_outpost",
+  "status": "done",
+  "en": "has_structure/inquisitorium_outpost",
+  "zh": "能生成审判庭前哨的群系",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §3.5 / §6.4：= #essentialcraft5:inquisitorium_sites（默认暗影腐化之地））。13e 预备写好，数据包可改"
+ },
+ {
+  "registry": "minecraft:tags/worldgen/biome",
+  "new_id": "shade_core_sites",
+  "status": "done",
+  "en": "shade_core_sites",
+  "zh": "暗影核心的地点",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §3.5 / §6.4：= #essentialcraft5:inquisitorium_sites；富集仓暗影分支采群系用（13e-C5））。13e 预备写好，数据包可改"
+ },
+ {
+  "registry": "minecraft:tags/worldgen/structure",
+  "new_id": "blocks_midscape",
+  "status": "done",
+  "en": "blocks_midscape",
+  "zh": "挡中景观的结构",
+  "lane": "预备",
+  "notes": "EC5 新增（第十三批 batch13.md §7.2 第 3 条：中景观和里程碑不进这些结构的引用区块）。13d 只有城镇，13e 预备加了宝库、前哨、沉城"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/shade/attune",
+  "status": "done",
+  "en": "Attune",
+  "zh": "第二十二章：暗影属性",
+  "lane": "13e-C5",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：impossible，用暗影矩阵投影把属性变成暗影时代码发。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/shade/umbral",
+  "status": "done",
+  "en": "Umbral",
+  "zh": "第二十二章：影晶",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：inventory_changed：影晶 ≥ 16，原版发。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/shade/shade_core",
+  "status": "done",
+  "en": "Shade Core",
+  "zh": "第二十二章：暗影核心",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：inventory_changed：暗影核心，原版发。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/shade/shade_pillar",
+  "status": "done",
+  "en": "Shade Pillar",
+  "zh": "第二十二章：暗渎水晶柱",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：inventory_changed：暗渎水晶柱，原版发。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/shade/oath",
+  "status": "done",
+  "en": "Oath",
+  "zh": "第二十二章：恶魔之誓",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：inventory_changed：恶魔之誓，原版发。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/pentacle/tier4",
+  "status": "done",
+  "en": "Tier4",
+  "zh": "五芒星 4 档",
+  "lane": "13e-C5",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：五芒星成形触发器带档位 4（同 tier1~3 的写法），4 档成形时代码发。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/matrix/rank_8",
+  "status": "done",
+  "en": "Rank 8",
+  "zh": "矩阵八阶",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：impossible，升阶代码发（13a 通用）。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/matrix/rank_9",
+  "status": "done",
+  "en": "Rank 9",
+  "zh": "矩阵九阶",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：impossible，升阶代码发（13a 通用）；主线终点。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/apex/beacon",
+  "status": "done",
+  "en": "Beacon",
+  "zh": "第二十三章：天灾信标",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：inventory_changed：天灾信标，原版发。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "main/calamity_heart",
+  "status": "done",
+  "en": "Calamity Heart",
+  "zh": "天灾之心",
+  "lane": "13e-B",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5：第二十三章打倒天灾之心）。有 display（图标 calamity_remnant，标题 / 描述键 advancements.essentialcraft5.calamity_heart.{title, desc}，frame challenge，不隐藏，父进度 main/computer_armor），impossible，代码发给每名分到掉落的人（CalamityHeartEntity.MAIN_ADVANCEMENT）。已建（13e-B / 13e-G）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/hoanna_explore/sealed_vault",
+  "status": "removed",
+  "en": "Sealed Vault",
+  "zh": "海纳尔探索：封印宝库",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：impossible，勘测图到点时按目标种类发（13d-H3 的到点代码）。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。13e 没建：勘测图到点只发 survey_arrive、不分目标种类，三篇写成说明条目（没有 complete）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/hoanna_explore/sunken_district",
+  "status": "removed",
+  "en": "Sunken District",
+  "zh": "海纳尔探索：沉没城区",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：impossible，勘测图到点时按目标种类发。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。13e 没建：勘测图到点只发 survey_arrive、不分目标种类，三篇写成说明条目（没有 complete）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/hoanna_explore/inquisitorium_outpost",
+  "status": "removed",
+  "en": "Inquisitorium Outpost",
+  "zh": "海纳尔探索：审判庭前哨",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：impossible，勘测图到点时按目标种类发。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。13e 没建：勘测图到点只发 survey_arrive、不分目标种类，三篇写成说明条目（没有 complete）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/bestiary/town_sentry",
+  "status": "done",
+  "en": "Town Sentry",
+  "zh": "异兽录：废城守望者",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：impossible，BossLoot.recordVictory 发给分到掉落的参战者（13e-T）。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/bestiary/abyss_tyrant",
+  "status": "done",
+  "en": "Abyss Tyrant",
+  "zh": "异兽录：渊潮领主",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：impossible，BossLoot.recordVictory 发给真分到掉落的人（13e-S2）。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ },
+ {
+  "registry": "minecraft:advancement",
+  "new_id": "guide/bestiary/calamity_heart",
+  "status": "done",
+  "en": "Calamity Heart",
+  "zh": "异兽录：天灾之心",
+  "lane": "13e-G",
+  "notes": "EC5 新增（第十三批 batch13.md §2.2 / §5.5 / §6.3，手册 13e 的步骤，没有 display）：impossible，BossLoot.recordVictory 发给分到掉落的参战者（13e-B）。进度 JSON 由 13e-G 建；代码里发一律走 ECAdvancements.awardIfPresent。已建（13e）"
+ }
+]

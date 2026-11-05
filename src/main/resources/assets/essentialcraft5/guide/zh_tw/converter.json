@@ -1,0 +1,438 @@
+{
+  "id": "converter",
+  "order": 106,
+  "group": "side",
+  "title": "支線 · MRU 轉換器",
+  "subtitle": "把 MRU 換成其他模組使用的能量",
+  "icon": "essentialcraft5:mru_converter",
+  "if": "cfg:machines.mru_converter.enabled",
+  "entries": [
+    {
+      "id": "mru_converter",
+      "title": "{item:essentialcraft5:mru_converter}",
+      "icon": "essentialcraft5:mru_converter",
+      "summary": "把 MRU 換成其他模組使用的能量",
+      "complete": "essentialcraft5:guide/converter/mru_converter",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mru_converter",
+        "essentialcraft5:pale_mru_converter",
+        "essentialcraft5:mithriline_mru_converter",
+        {
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:demonic_mru_converter"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "殘卷裡沒有這台機器。世上不只一門學問，別家的機器認不得 MRU，就得先替它換一副樣子。",
+          "by": "編者按"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+          "text": "<em>目標</em>（可選）：做一台{item:essentialcraft5:mru_converter}，把 MRU 換成能量（FE）。許多其他模組的機器、電池和電纜都接收這種能量，有的模組也管它叫 RF。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "mod:botania",
+            "cfg:machines.mru_converter.mana_per_1000_mru>0"
+          ],
+          "text": "裝了植物魔法的話，它還能把 MRU 換成植物魔法的魔力，直接灌進魔力池。"
+        },
+        {
+          "type": "p",
+          "text": "這個模組的機器都只用 MRU，用不上它轉換出來的東西，這台機器是給整合包裡別的模組準備的，好讓它們也接得上你的 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "list",
+          "items": [
+            "四塊{item:essentialcraft5:magic_plate}和一塊{item:essentialcraft5:mru_conversion_matrix}，都在魔力工作台上做，見[[crafting/magician_crafts]]。",
+            "兩塊{item:essentialcraft5:fortified_frame}，做法見[[crafting/fortified]]。",
+            "兩塊紅石塊。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_converter"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下轉換器，它沒有朝向，六個面都一樣。",
+            "在寶石槽裡放一顆綁定到 MRU 源頭的{item:essentialcraft5:bound_gem}，做法見[[crafting/bound_gem]]。",
+            {
+              "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+              "text": "需要能量時，點介面右側的「{lang:gui.essentialcraft5.mru_converter.mode.energy}」。"
+            },
+            {
+              "if": [
+                "mod:botania",
+                "cfg:machines.mru_converter.mana_per_1000_mru>0"
+              ],
+              "text": "需要植物魔法的魔力時，點「{lang:gui.essentialcraft5.mru_converter.mode.mana}」。"
+            },
+            {
+              "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+              "text": "把接收能量的方塊緊貼在它旁邊，其他模組的機器、電池、電纜都可以，它每刻主動往貼著的方塊裡輸送能量，電纜也能從它這裡抽取。"
+            },
+            {
+              "if": [
+                "mod:botania",
+                "cfg:machines.mru_converter.mana_per_1000_mru>0"
+              ],
+              "text": "需要魔力時，把魔力池或魔力發射器貼在它旁邊，詳見[[converter/mana]]。"
+            }
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU 容量",
+              "{cfg:machines.mru_converter.basic.max_mru} MRU"
+            ],
+            [
+              "每刻最多轉換",
+              "{cfg:machines.mru_converter.basic.max_mru_per_tick} MRU"
+            ],
+            {
+              "if": [
+                "cfg:machines.mru_converter.fe_per_1000_mru>0",
+                "cfg:machines.mru_converter.fe_per_1000_mru==500"
+              ],
+              "cells": [
+                "每刻最多輸出能量",
+                "{cfg:machines.mru_converter.basic.max_mru_per_tick|div:2} FE"
+              ]
+            },
+            {
+              "if": [
+                "mod:botania",
+                "cfg:machines.mru_converter.mana_per_1000_mru>0",
+                "cfg:machines.mru_converter.mana_per_1000_mru==25"
+              ],
+              "cells": [
+                "每刻最多輸出魔力",
+                "{cfg:machines.mru_converter.basic.max_mru_per_tick|div:40} 魔力"
+              ]
+            },
+            {
+              "if": "cfg:machines.mru_converter.max_per_owner>0",
+              "cells": [
+                "每人同時工作的台數",
+                "{cfg:machines.mru_converter.max_per_owner}"
+              ]
+            },
+            {
+              "if": "cfg:machines.mru_converter.generate_corruption",
+              "cells": [
+                "每工作 1 秒洩漏",
+                "0～{cfg:machines.mru_converter.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到任意一檔轉換器，這一步就打勾了。接好以後，狀態條顯示「{lang:gui.essentialcraft5.mru_converter.status.working}」，側面中間的輸出口跟著亮起來、流動起來。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>它只向緊貼的六個面輸送。</w>隔著一格的方塊收不到，想送到遠處，就用別的模組的電纜、能量管道或魔力發射器接力。"
+        },
+        {
+          "type": "h",
+          "text": "要注意的"
+        },
+        {
+          "type": "list",
+          "items": [
+            "旁邊沒有還能接收的方塊時，它攢滿 1 秒的量就停下，不再消耗 MRU，狀態條顯示「{lang:gui.essentialcraft5.mru_converter.status.no_receiver}」。",
+            "有紅石訊號時它就暫停。",
+            "切換模式會清掉快取裡還沒送出去的那一點，最多 1 秒的量。",
+            {
+              "if": "cfg:machines.mru_converter.max_per_owner>0",
+              "text": "你名下的轉換器同時最多隻有 {cfg:machines.mru_converter.max_per_owner} 台在工作，各檔合起來算，只算區塊已經載入的那些。多出來的轉換器會顯示「{lang:gui.essentialcraft5.mru_converter.status.owner_limit}」，拆掉一台，幾秒內就輪到它。"
+            },
+            "它不會自己載入區塊，所在區塊卸載了就停下，放它的人不線上時照常工作。",
+            {
+              "if": "cfg:machines.mru_converter.generate_corruption",
+              "text": "工作時每秒往周圍漏 0～{cfg:machines.mru_converter.max_corruption_gen} MRU，見[[crafting/corruption]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "四檔的換算比例一樣，差別只在每刻能換多少 MRU，見[[converter/upgrades]]。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "狀態條顯示「{lang:gui.essentialcraft5.owner.none}」時，把它拆下來親手重新放一次就好。",
+            "旁邊一直沒有方塊接收時，它改成每秒才試一次，貼上新的方塊就立刻恢復。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裡沒有這台機器，原作本身也從不和別的模組打交道。這台轉換器的名字，是從第三章那塊 MRU 轉換矩陣借來的。"
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "title": "能量（FE）",
+      "icon": "essentialcraft5:mru_converter",
+      "summary": "能量的換算比例、輸送與抽取",
+      "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "能量（FE，Forge Energy）是許多模組共用的一種能量，也叫 RF，接收這種能量的機器、電池和電纜，都認轉換器送出去的能量。"
+        },
+        {
+          "type": "formula",
+          "text": "每 1 000 MRU → {cfg:machines.mru_converter.fe_per_1000_mru} FE"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_converter.fe_per_1000_mru==500",
+          "text": "即每 2 MRU 換 1 FE。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它每刻把快取裡的能量推給緊貼的方塊，每刻從不同的一面開始推，所以不會有哪個方塊一直分不到。",
+            "電纜和能量管道也能從它這裡抽取能量，推出去的和被抽走的加起來，不會超過這一檔每刻的上限，各檔上限見[[converter/upgrades]]。",
+            "它本身不接收能量，別的發電機的能量送不進來，兩台轉換器貼在一起也不會互相輸送。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mana",
+      "title": "魔力（植物魔法）",
+      "icon": "essentialcraft5:mru_converter",
+      "summary": "換成植物魔法的魔力",
+      "if": [
+        "mod:botania",
+        "cfg:machines.mru_converter.mana_per_1000_mru>0"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "這裡說的魔力是植物魔法的魔力，和這個模組魔力板、魔力工作台裡的「魔力」只是同一個詞。裝了植物魔法，介面上的「{lang:gui.essentialcraft5.mru_converter.mode.mana}」按鈕才能點選。"
+        },
+        {
+          "type": "formula",
+          "text": "每 1 000 MRU → {cfg:machines.mru_converter.mana_per_1000_mru} 魔力"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_converter.mana_per_1000_mru==25",
+          "text": "即每 40 MRU 換 1 魔力。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "緊貼魔力池時輸送最快，池子滿了它就停下，不會浪費。",
+            "魔力發射器也能接收，轉換器會像產魔花那樣直接把魔力灌進去，借發射器往遠處送時，速度要看發射器發得多快。",
+            "它只給正在接收魔力的方塊輸送，符文祭壇、泰拉凝聚板要擺上配方才會接收，沒擺配方時它不會推送。",
+            "魔力分配器、魔力銷燬器這類自己不存魔力的方塊，轉換器看不出它們收了多少，推過一次就不再往那一面推。想分給幾個池子，就把池子直接貼在轉換器的幾個面上，它會輪流輸送。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+          "text": "想要能量，直接用[[converter/energy|能量模式]]就好，比先換成魔力、再經植物魔法的魔力通量場轉一道划算。"
+        }
+      ]
+    },
+    {
+      "id": "upgrades",
+      "title": "四檔",
+      "icon": "essentialcraft5:demonic_mru_converter",
+      "summary": "四檔對照與升級配方",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "四檔的換算比例一樣，差別只在每刻能換多少 MRU，升級就是變快。做高一檔的轉換器，要把上一檔放進配方。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "轉換器",
+            "每刻最多轉換",
+            "MRU 容量",
+            "什麼時候能做"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mru_converter}",
+              "{cfg:machines.mru_converter.basic.max_mru_per_tick} MRU",
+              "{cfg:machines.mru_converter.basic.max_mru}",
+              "第三章，到第四章有了產能器才用得上"
+            ],
+            [
+              "{item:essentialcraft5:pale_mru_converter}",
+              "{cfg:machines.mru_converter.pale.max_mru_per_tick} MRU",
+              "{cfg:machines.mru_converter.pale.max_mru}",
+              "第六章（淡青）"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_mru_converter}",
+              "{cfg:machines.mru_converter.mithriline.max_mru_per_tick} MRU",
+              "{cfg:machines.mru_converter.mithriline.max_mru}",
+              "第十一章（米斯萊）"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_mru_converter}",
+                "{cfg:machines.mru_converter.demonic.max_mru_per_tick} MRU",
+                "{cfg:machines.mru_converter.demonic.max_mru}",
+                "第十七章（惡魔）"
+              ]
+            }
+          ],
+          "widths": [
+            4,
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "table",
+          "if": [
+            "cfg:machines.mru_converter.fe_per_1000_mru>0",
+            "cfg:machines.mru_converter.fe_per_1000_mru==500"
+          ],
+          "header": [
+            "轉換器",
+            "每刻最多輸出能量"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mru_converter}",
+              "{cfg:machines.mru_converter.basic.max_mru_per_tick|div:2} FE"
+            ],
+            [
+              "{item:essentialcraft5:pale_mru_converter}",
+              "{cfg:machines.mru_converter.pale.max_mru_per_tick|div:2} FE"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_mru_converter}",
+              "{cfg:machines.mru_converter.mithriline.max_mru_per_tick|div:2} FE"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_mru_converter}",
+                "{cfg:machines.mru_converter.demonic.max_mru_per_tick|div:2} FE"
+              ]
+            }
+          ],
+          "widths": [
+            4,
+            4
+          ]
+        },
+        {
+          "type": "table",
+          "if": [
+            "mod:botania",
+            "cfg:machines.mru_converter.mana_per_1000_mru>0",
+            "cfg:machines.mru_converter.mana_per_1000_mru==25"
+          ],
+          "header": [
+            "轉換器",
+            "每刻最多輸出魔力"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mru_converter}",
+              "{cfg:machines.mru_converter.basic.max_mru_per_tick|div:40} 魔力"
+            ],
+            [
+              "{item:essentialcraft5:pale_mru_converter}",
+              "{cfg:machines.mru_converter.pale.max_mru_per_tick|div:40} 魔力"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_mru_converter}",
+              "{cfg:machines.mru_converter.mithriline.max_mru_per_tick|div:40} 魔力"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_mru_converter}",
+                "{cfg:machines.mru_converter.demonic.max_mru_per_tick|div:40} 魔力"
+              ]
+            }
+          ],
+          "widths": [
+            4,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.mru_converter.fe_per_1000_mru>0",
+            "!cfg:machines.mru_converter.fe_per_1000_mru==500"
+          ],
+          "text": "每刻輸出的能量 = 每刻轉換的 MRU × {cfg:machines.mru_converter.fe_per_1000_mru} ÷ 1 000。"
+        },
+        {
+          "type": "h",
+          "text": "升級配方"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pale_mru_converter"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_mru_converter"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_mru_converter",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "text": "升級時，轉換器裡存著的 MRU 不會帶到新機器裡，最好先用完，再拆下來放進配方。"
+        },
+        {
+          "type": "p",
+          "text": "另有一台不耗 MRU 的{item:essentialcraft5:infinite_mru_converter}，它沒有合成配方，見[[creative/creative_items]]。"
+        }
+      ]
+    }
+  ]
+}

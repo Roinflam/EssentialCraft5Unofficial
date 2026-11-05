@@ -1,0 +1,118 @@
+{
+ "tooltip.essentialcraft5.force_dome": {
+  "en": "No monsters spawn naturally within %s blocks horizontally while it runs on MRU",
+  "zh": "接上 MRU 后，水平 %s 格内不再自然刷出怪物"
+ },
+ "tooltip.essentialcraft5.force_dome.claims": {
+  "en": "Only covers chunks where its owner can build; spawners and spawn eggs still work",
+  "zh": "只罩住放下它的人能动方块的区块；刷怪笼、刷怪蛋照常"
+ },
+ "gui.essentialcraft5.force_dome.status.working": {
+  "en": "Working",
+  "zh": "工作中"
+ },
+ "gui.essentialcraft5.force_dome.status.working.hint": {
+  "en": "Stopping natural monster spawns in %s chunk(s), %s MRU per second",
+  "zh": "正在拦 %s 块区块里的自然刷怪，每秒 %s MRU"
+ },
+ "gui.essentialcraft5.force_dome.status.disabled": {
+  "en": "Disabled",
+  "zh": "已停用"
+ },
+ "gui.essentialcraft5.force_dome.status.no_owner.hint": {
+  "en": "Nobody placed this dome by hand, so it won't work. Break it and place it again yourself",
+  "zh": "这台穹顶不是玩家亲手放下的，不会工作；拆下来自己重新放一次"
+ },
+ "gui.essentialcraft5.force_dome.status.owner_limit": {
+  "en": "Waiting: too many domes",
+  "zh": "排队：穹顶太多"
+ },
+ "gui.essentialcraft5.force_dome.status.owner_limit_count": {
+  "en": "One player can run at most %s domes at the same time; the ones placed first go first",
+  "zh": "同一个人同时最多 %s 台穹顶在工作，先放下的优先"
+ },
+ "gui.essentialcraft5.force_dome.status.owner_limit.hint": {
+  "en": "Break an earlier one or switch it off with redstone, and this one takes over",
+  "zh": "拆掉一台更早的、或者用红石信号关掉它，这台就接上"
+ },
+ "gui.essentialcraft5.force_dome.status.powered.hint": {
+  "en": "Paused while it gets a redstone signal; a paused dome doesn't count towards your limit",
+  "zh": "有红石信号时暂停；暂停的穹顶不占名额"
+ },
+ "gui.essentialcraft5.force_dome.status.no_claim": {
+  "en": "Nothing you can protect",
+  "zh": "没有你能罩的区块"
+ },
+ "gui.essentialcraft5.force_dome.status.no_claim.hint": {
+  "en": "You can't build in any chunk in range (someone else's claim, spawn protection), so monsters spawn there as usual",
+  "zh": "范围内的区块你都动不了方块（别人的领地、出生点附近），那里照常刷怪"
+ },
+ "gui.essentialcraft5.force_dome.status.unconfirmed": {
+  "en": "Checking claims",
+  "zh": "正在确认领地"
+ },
+ "gui.essentialcraft5.force_dome.status.unconfirmed.online": {
+  "en": "Checking whether you can build in the chunks in range (a few per second, only loaded chunks)",
+  "zh": "正在确认范围内的区块你能不能动方块（每秒问几块，区块要加载着）"
+ },
+ "gui.essentialcraft5.force_dome.status.unconfirmed.offline": {
+  "en": "The owner is offline and the earlier checks have expired; they are redone when the owner comes back",
+  "zh": "主人不在线，之前确认的结果已经过期；主人上线后重新确认"
+ },
+ "gui.essentialcraft5.force_dome.status.no_mru.hint": {
+  "en": "The next second needs %s MRU. Put a bound gem in the slot to feed it MRU",
+  "zh": "下一秒要 %s MRU，存着的不够；在格子里放一颗绑定宝石接上 MRU"
+ },
+ "gui.essentialcraft5.force_dome.status.no_mru.no_probe": {
+  "en": "Until it can pay for at least one chunk, it doesn't check claims either",
+  "zh": "连一块区块一秒的钱都没有时，也不替你问领地"
+ },
+ "gui.essentialcraft5.force_dome.status.owner_offline": {
+  "en": "The owner is offline: the dome keeps using the claim checks made while they were online, until those expire",
+  "zh": "主人不在线：接着用主人在线时确认过的结果，过期的区块不再拦"
+ },
+ "gui.essentialcraft5.force_dome.coverage": {
+  "en": "Chunks: %s ok · %s unknown · %s denied",
+  "zh": "区块：可拦 %s · 未确认 %s · 不可拦 %s"
+ },
+ "gui.essentialcraft5.force_dome.coverage.chunks": {
+  "en": "%s chunk(s) (16 × 16) touch the dome's range",
+  "zh": "范围碰到 %s 块区块（地上 16 × 16 一块）"
+ },
+ "gui.essentialcraft5.force_dome.coverage.blockable": {
+  "en": "OK: you can build there, so natural monster spawns are stopped",
+  "zh": "可拦：你能动方块的区块，这里不再自然刷出怪物"
+ },
+ "gui.essentialcraft5.force_dome.coverage.unconfirmed": {
+  "en": "Unknown: not checked yet or the check expired (only loaded chunks can be checked); not stopped for now",
+  "zh": "未确认：还没问过、或者结果过期了（区块要加载着才问得到），先不拦"
+ },
+ "gui.essentialcraft5.force_dome.coverage.denied": {
+  "en": "Denied: someone else's claim, spawn protection; monsters spawn there as usual",
+  "zh": "不可拦：别人的领地、出生点附近这些你动不了方块的区块，照常刷怪"
+ },
+ "gui.essentialcraft5.force_dome.coverage.cache": {
+  "en": "OK chunks: each result is kept for %s min",
+  "zh": "你能动的区块：结果记 %s 分钟"
+ },
+ "gui.essentialcraft5.force_dome.coverage.cache_denied": {
+  "en": "Denied chunks: each result is kept for %s h and only asked again after that",
+  "zh": "你动不了的区块：结果记 %s 小时，到期才再问"
+ },
+ "gui.essentialcraft5.force_dome.range": {
+  "en": "Radius %s · %s MRU/s",
+  "zh": "半径 %s 格 · 每秒 %s MRU"
+ },
+ "gui.essentialcraft5.force_dome.range.full": {
+  "en": "At full load: %s MRU per second (%s per hour)",
+  "zh": "满负荷每秒 %s MRU（每小时 %s）"
+ },
+ "gui.essentialcraft5.force_dome.range.partial": {
+  "en": "When only some chunks are OK, it costs that share of the full price",
+  "zh": "只有一部分区块可拦时，按比例少扣"
+ },
+ "gui.essentialcraft5.force_dome.range.column": {
+  "en": "The radius is measured horizontally; the whole column from bedrock to sky counts",
+  "zh": "半径按水平距离算，从天到地整根柱子都算"
+ }
+}

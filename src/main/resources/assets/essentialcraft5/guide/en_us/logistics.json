@@ -1,0 +1,892 @@
+{
+  "id": "logistics",
+  "order": 82,
+  "group": "main",
+  "title": "Chapter 15 · Logistics",
+  "subtitle": "Let dropped items find their own way",
+  "icon": "essentialcraft5:magical_hopper",
+  "entries": [
+    {
+      "id": "magical_hopper",
+      "title": "{item:essentialcraft5:magical_hopper}",
+      "icon": "essentialcraft5:magical_hopper",
+      "summary": "Gather scattered items in one place",
+      "complete": "essentialcraft5:guide/logistics/magical_hopper",
+      "items": [
+        "essentialcraft5:magical_hopper"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Drop something on the floor and the hopper fetches it by itself. No pipes. How it drags things over from several blocks away, I still couldn't tell you.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:magical_hopper} so that items lying around it gather in one place by themselves, either in a chest or in a pile in the block in front of it. It needs no MRU."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "6 {item:essentialcraft5:fortified_stone} ([[crafting/fortified]]), plus one vanilla {item:minecraft:hopper}, {item:minecraft:chest} and {item:minecraft:dropper}"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_hopper"
+        },
+        {
+          "type": "h",
+          "text": "Facing"
+        },
+        {
+          "type": "p",
+          "text": "It always sends items in one fixed direction: <em>it faces the side of the block you clicked to place it</em>. On the floor it faces up, and against a wall it faces out from the wall. The block next to it on that side is its \"front\", and the hopper mouth is on that face too."
+        },
+        {
+          "type": "h",
+          "text": "Into a chest"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the Magical Hopper by clicking the floor, so its front is the block straight above it.",
+            "Sneak-right-click the top of the hopper to set a chest on it. Without sneaking, you open the hopper's window instead.",
+            "Wait a moment. Every {cfg:machines.magical_hopper.interval|sec} the hopper makes a round, and the items lying around jump into the chest."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Items on the ground keep jumping into the chest in front of it."
+        },
+        {
+          "type": "h",
+          "text": "What it takes and where it goes"
+        },
+        {
+          "type": "p",
+          "text": "Each round it looks for dropped items within {cfg:machines.magical_hopper.radius} blocks, a cube {cfg:machines.magical_hopper.radius|mul:2|add:1|int} blocks across centered on it. It moves the closest ones first, at most {cfg:machines.magical_hopper.max_items_per_cycle} piles a round, and the rest wait for the next round."
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the front is a container such as a chest, furnace or crafter, the items go straight in, and whatever doesn't fit stays where it is;",
+            "If the front is free, the items are moved into that block. Air, grass, flowers and water all count as free;",
+            "If the front is any other solid block, another Magical Hopper included, it does nothing."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Items already in the front block are left alone, so it never shuffles its own pile around."
+        },
+        {
+          "type": "h",
+          "text": "Redstone and filters"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A redstone signal from a lever or a redstone block next to it stops it, and it starts again as soon as the signal is gone.",
+            "Right-click to open its window. The middle slot takes an item filter, and with one there it only collects what the filter lets through. Filters are on the next page."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Watch out"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.protection.require_owner_online",
+              "text": "<em>While the player who placed it is offline, it stops</em>;"
+            },
+            {
+              "if": "!cfg:general.protection.require_owner_online",
+              "text": "It keeps working while the player who placed it is offline;"
+            },
+            "It only collects from places that player could change and only sends to such places. It never takes items from someone else's claim, nor drops any into one;",
+            "Items meant for another player to pick up, and decorative items nobody can ever pick up, are left alone;",
+            "Two Magical Hoppers within each other's range may pass items back and forth."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If red or gold text appears at the top of its window, hover over it to see why it isn't working."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book's subtitle for it was \"Quantum Hoppers!\". In the original it pushed items into the front block even when that block was solid, so with every side walled off the items stayed stuck in the wall until they vanished."
+        }
+      ]
+    },
+    {
+      "id": "filters",
+      "title": "Item Filters",
+      "icon": "essentialcraft5:whitelist_filter",
+      "summary": "Choose which items a machine handles",
+      "complete": "essentialcraft5:guide/logistics/filters",
+      "items": [
+        "essentialcraft5:whitelist_filter",
+        "essentialcraft5:blacklist_filter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make an {item:essentialcraft5:whitelist_filter} or a {item:essentialcraft5:blacklist_filter} to tell the Magical Hopper which items to collect."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Whitelist",
+              "4 {item:essentialcraft5:magic_fortified_plating}s (made on the Magician Table, [[crafting/magician_crafts]]), 1 {item:minecraft:crafting_table}"
+            ],
+            [
+              "Blacklist",
+              "4 {item:essentialcraft5:obsidian_plate}s ([[crafting/fortified]]), 1 crafting table"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:whitelist_filter",
+            "essentialcraft5:blacklist_filter"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Whitelist and blacklist"
+        },
+        {
+          "type": "p",
+          "text": "A filter has 9 sample slots in a 3×3 grid."
+        },
+        {
+          "type": "list",
+          "items": [
+            "A <em>whitelist</em> lets through only what matches one of its samples, and with no samples at all, nothing gets through.",
+            "A <em>blacklist</em> lets through everything except its samples, and with no samples at all, everything gets through."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "\"Matches\" means the same item carrying exactly the same data. An enchanted sword doesn't match a plain one, and neither does one with different durability or a new name. The count doesn't matter."
+        },
+        {
+          "type": "h",
+          "text": "Setting samples"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Right-click into the air with the filter to open it, or sneak-right-click if you are facing a block.",
+            "Left-click a sample slot while holding an item to make it a sample. <em>You keep the item, and samples aren't used up.</em>",
+            "Right-click a sample slot to clear it. Shift-clicking an item in your inventory copies it into the first empty sample slot.",
+            "Close the window, right-click the Magical Hopper and put the filter in its middle slot."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every change is saved to the filter in your hand right away, and while the window is open that filter can't be taken out of your hand or swapped."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The hopper collects only what you want and leaves the rest on the ground."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A sample slot can also hold another filter, standing for everything that filter lets through. A whitelist holding a cobblestone-only whitelist works as if it held a piece of cobblestone.",
+            "Nesting only goes one level deep. A filter that already holds a filter can't go into another filter.",
+            "Items with a lot of data, such as a fully written book, are stored as a content fingerprint and only match exact copies. A filter's samples have a limit on total data, and once it is full no new samples go in."
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Once you have Void Plates you can upgrade it to an [[logistics/advanced_filters|advanced filter]], which can ignore durability, ignore enchantments and names, or collect a whole family of items by tag."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original it was the \"Magical Inventory Storage Node Filter\", made for the magical inventory storage, a system that linked many chests into one network."
+        }
+      ]
+    },
+    {
+      "id": "advanced_filters",
+      "title": "Advanced Filters",
+      "icon": "essentialcraft5:advanced_whitelist_filter",
+      "summary": "Ignore durability or NBT, or sort by tag",
+      "complete": "essentialcraft5:guide/logistics/advanced_filter",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:advanced_whitelist_filter",
+        "essentialcraft5:advanced_blacklist_filter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): upgrade an item filter into an {item:essentialcraft5:advanced_whitelist_filter} or {item:essentialcraft5:advanced_blacklist_filter}. It gains three switches, letting it ignore durability, ignore enchantments and names, or collect a whole family of items by tag, such as every iron ore or wool of every color."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "an ordinary item filter ([[logistics/filters]]) and 4 {item:essentialcraft5:void_plating}s ([[hoanna/void_plating]])"
+            ],
+            [
+              "Layout",
+              "the filter in the middle, Void Plates above, below, left and right; a whitelist becomes an advanced whitelist, a blacklist an advanced blacklist"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:advanced_whitelist_filter",
+            "essentialcraft5:advanced_blacklist_filter"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Your samples carry over</em> when you upgrade, so there's no need to set them again."
+        },
+        {
+          "type": "h",
+          "text": "Three switches"
+        },
+        {
+          "type": "p",
+          "text": "Open an advanced filter and you'll see three buttons down the left side; click one to toggle it. A green check means \"compare this\" and a red cross means \"ignore this\", which is why the two \"ignore\" switches show a red cross when they are on. All three start off, so a freshly upgraded filter accepts exactly what it did before."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Switch",
+            "When on"
+          ],
+          "rows": [
+            [
+              "<t>Ignore durability</t>",
+              "Worn and fresh count as the same: with a worn iron sword as the sample, new iron swords are collected too"
+            ],
+            [
+              "<t>Ignore NBT</t>",
+              "Only the kind of item matters: enchantments, names and contents are ignored"
+            ],
+            [
+              "<t>Match by tag</t>",
+              "Each sample collects the whole family in the tag chosen for it (see below)"
+            ]
+          ],
+          "widths": [
+            1,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Hover over a button to see whether it is on or off. The item tooltip also lists the switches that are on."
+        },
+        {
+          "type": "h",
+          "text": "Match by tag"
+        },
+        {
+          "type": "p",
+          "text": "Tags are the game's way of grouping items, such as all iron ores or all logs. With <t>Match by tag</t> on, each sample slot compares by the tag chosen for it, and any item in that tag counts as the same as the sample."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Set your samples, then click the third button to turn on <t>Match by tag</t>.",
+            "Each sample picks a \"category/material\" tag by itself. An iron ingot picks <t>forge:ingots/iron</t> and iron ore picks <t>forge:ores/iron</t>, so deepslate iron ore is collected too and gold ore is not. A slot with a chosen tag shows a cyan <t>#</t> in its top-left corner.",
+            "To pick another tag, hover over the sample slot and scroll. You cycle through all of that item's tags and \"match this exact item\", and the tooltip shows which tag is in use and how many items it holds.",
+            "Samples with no automatic tag, like logs and wool, start out matching the exact item. To collect every kind of log, scroll to <t>minecraft:logs</t>. To collect wool of every color, use a piece of wool as the sample and scroll to <t>minecraft:wool</t>."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "With an iron ore sample and Match by tag on, the Magical Hopper collects both stone and deepslate iron ore and leaves gold ore on the ground."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Do not pick too wide a tag",
+          "text": "Scroll to <t>forge:ingots</t> and the filter takes every ingot there is. The automatic choice is always the item's narrowest category tag, so check the item count in the tooltip before you switch."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Matching by tag still compares enchantments and names unless <t>Ignore NBT</t> is on as well. Durability works the same way, depending on <t>Ignore durability</t>.",
+            "Changing the sample in a slot clears the tag chosen for it. While Match by tag is on, the new sample picks one by itself.",
+            "Turning <t>Match by tag</t> off keeps every slot's chosen tag; turn it back on and they are all still there.",
+            "A filter used as a sample isn't matched by tag. It follows its own switches."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original, the third switch was \"Ignore Ore Dictionary\". The Ore Dictionary was the item catalogue mods shared in 1.12, so that every mod's copper ingot counted as \"copper ingot\". In 1.20, tags do that job."
+        }
+      ]
+    },
+    {
+      "id": "magical_chest",
+      "title": "{item:essentialcraft5:magical_chest}",
+      "icon": "essentialcraft5:magical_chest",
+      "summary": "A double chest in a single block",
+      "complete": "essentialcraft5:guide/logistics/magical_chest",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_chest"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:magical_chest}. It takes up a single block yet holds 54 slots, as much as a vanilla double chest. The craftsman who kept the Workshop Notebook lived in a small house, and every chest in it was this kind."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "8 {item:essentialcraft5:magic_plating} ([[alloys/plating]]) in a ring on the crafting table, the middle left empty"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_chest"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It faces you when placed. Right-click to open it; sneak-right-clicking does not open it.",
+            "Hoppers and pipes can put items in and take them out from any side.",
+            "A redstone comparator next to it gives a stronger signal the fuller it is.",
+            "Breaking it spills everything inside onto the ground, and the chest you pick up is empty."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "It opens with 6 rows of 9 slots."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "If that's still too small, Void Stone from Hoanna makes a 117-slot [[logistics/void_chest]]."
+        }
+      ]
+    },
+    {
+      "id": "void_chest",
+      "title": "{item:essentialcraft5:void_chest}",
+      "icon": "essentialcraft5:void_chest",
+      "summary": "117 slots in a single block",
+      "complete": "essentialcraft5:guide/logistics/void_chest",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:void_chest"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:void_chest}. Like the Magical Chest it takes up a single block, but it holds more than twice as much. The people of Hoanna dug void stone in their last years to build walls against MRU, and here it goes into a chest."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "8 {item:essentialcraft5:void_stone} ([[hoanna/void_stone]]) in a ring on the crafting table, the middle left empty"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:void_chest"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Capacity",
+              "<t>117</t> slots (9 rows of 13)"
+            ],
+            [
+              "Hoppers and pipes",
+              "can put items in and take them out from any side"
+            ],
+            [
+              "Redstone comparator",
+              "the fuller it is, the stronger the signal"
+            ],
+            [
+              "When broken",
+              "everything inside spills onto the ground and the chest you pick up is empty; needs a pickaxe"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "It faces you when placed. Right-click to open it; sneak-right-clicking does not open it."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "It opens with 9 rows of 13 slots."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "A large window",
+          "text": "Its window is a size larger than a vanilla chest's. With GUI Scale on the default \"Auto\" or at its largest, a little of the top and bottom border may be cut off, though every slot still shows. If that bothers you, set GUI Scale in Video Settings one step smaller."
+        }
+      ]
+    },
+    {
+      "id": "magical_display",
+      "title": "{item:essentialcraft5:magical_display}",
+      "icon": "essentialcraft5:magical_display",
+      "summary": "Show off one item on a wall",
+      "complete": "essentialcraft5:guide/logistics/magical_display",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_display"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:magical_display}. In the forebears' storerooms, a screen like this often hung on the front of a chest. It is very thin and shows one item on a wall, floor or ceiling, good for labeling chests or dressing a shop window."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "1 {item:essentialcraft5:magical_screen} and 1 {item:minecraft:item_frame}, in any two slots of a crafting table"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_display"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "p",
+          "text": "It sticks to whichever face of a block you place it on, front facing out."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Right-click while holding an item to put 1 of it on the screen. It comes out of your hand, except in Creative.",
+            "If the screen already shows something, right-clicking with an item or sneak-right-clicking with an empty hand pops it out of the front.",
+            "Right-click with an empty hand to change the display style, from a big icon to a small icon with its name, then an even smaller icon with its name and description, then back to the big icon."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The item you put on it shows on the screen."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Screens on floors and ceilings only show the icon, and the three styles just change its size. From too far away, the name and description aren't shown.",
+            "Hoppers and pipes can put an item on the screen and take it off from any side, but the screen only ever holds 1 item.",
+            "Breaking it drops the display and the item on it."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original its name carried \"[NYI]\", for \"not yet implemented\". It had no recipe, and breaking it only gave back a Magical Screen, so it couldn't be had in Survival. Now it has a recipe and drops itself."
+        }
+      ]
+    },
+    {
+      "id": "magical_mirror",
+      "title": "{item:essentialcraft5:magical_mirror}",
+      "icon": "essentialcraft5:magical_mirror",
+      "summary": "Sends items one by one to a nearby container",
+      "complete": "essentialcraft5:guide/logistics/magical_mirror",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_mirror",
+        "essentialcraft5:control_rod"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:magical_mirror} and a {item:essentialcraft5:control_rod}. A mirror set on top of a container sends that container's items, one at a time, into another container nearby. It is slow but nice to watch, with each item rising out of the mirror and flying into the target. It uses no MRU."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Mirror",
+              "4 {item:essentialcraft5:magic_plate}s (higher plates like pale ones work too) around 1 {item:essentialcraft5:magic_purified_glass_alloy} ([[alloys/purified_alloys]]); makes 3"
+            ],
+            [
+              "Control Rod",
+              "4 iron ingots, 1 magic core (an {item:essentialcraft5:elemental_core} or similar), 2 {item:essentialcraft5:magical_water} ([[crafting/magician_crafts]])"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magical_mirror",
+            "essentialcraft5:control_rod"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Linking"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the mirror <em>right on top of</em> the container that should send items (a chest, barrel and the like).",
+            "Right-click the mirror with the Control Rod; the rod remembers it.",
+            "<em>Sneak</em>-right-click the container to send to. It must be within {cfg:machines.magical_mirror.max_distance} blocks of the mirror in a straight line, and it can't be the one right under the mirror."
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": "minecraft:chest",
+              "label": "Container to send from"
+            },
+            "T": {
+              "block": "minecraft:barrel",
+              "label": "Target container"
+            },
+            "M": "essentialcraft5:magical_mirror"
+          },
+          "anchor": "M",
+          "layers": [
+            {
+              "pattern": [
+                "C   T"
+              ]
+            },
+            {
+              "pattern": [
+                "M    "
+              ]
+            }
+          ],
+          "caption": "The mirror sits right on top of the container it sends from; the target is another container nearby, a barrel here."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The mirror flickers, and items rise out of it and fly into the target container."
+        },
+        {
+          "type": "p",
+          "text": "Once a link is made the rod is free again for the next mirror; sneak-right-click into the air to make it forget a remembered mirror. Right-click a mirror with an empty hand and the action bar tells you where it is linked, and why, if it isn't sending."
+        },
+        {
+          "type": "h",
+          "text": "Sending"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Every {cfg:machines.magical_mirror.transfer_ticks|sec} it sends 1 item. It picks one from the container below, checks that the target has room, and only then takes it out and sends it, so anything that doesn't fit stays put and is never lost.",
+            "Machines accept items by the rules of their top face, just as they would from a hopper above, so a furnace only takes items into its input slot and a brewing stand only takes brewing ingredients.",
+            "It also takes from the top face of the container below. A mirror on a furnace can only take unsmelted items from the input slot, never the finished ones."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Watch out"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the target container is broken or the mirror is moved, the link breaks and must be made again.",
+            "When you link, the mirror, the container below it and the target must all be in places you are allowed to change. If any one isn't, the link fails.",
+            "Once linked, the mirror works on its own, even while the player who placed it is offline. If the target's area isn't loaded, it waits."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book called this section \"Item Teleportation\": set a mirror above a container and it sends the contents, one by one, wherever it is linked, without needing any MRU."
+        }
+      ]
+    },
+    {
+      "id": "rank_5",
+      "title": "Rank 5 · Crossing",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "Before the Gate to Hoanna",
+      "complete": "essentialcraft5:guide/matrix/rank_5",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal==5"
+          ],
+          "text": "<em>Goal</em>: reach matrix rank 5, Crossing. Next chapter you go to Hoanna, and the gate needs rank 5."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal!=5"
+          ],
+          "text": "<em>Goal</em>: reach matrix rank 5, Crossing. Next chapter you go to Hoanna."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "<em>Goal</em> (optional): reach matrix rank 5, Crossing, for a bigger reservoir and more tolerance."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "21 kinds in all, 4 from the Nether, including a [[wind_mage/wind_mages|wind mage]] and 1 expedition mob: a pillager, vindicator, evoker, vex, ravager, guardian, elder guardian or warden"
+            ],
+            [
+              "Site",
+              "A tier 1 [[pentacle/tier_one|Soul Pentacle]]"
+            ],
+            [
+              "Offerings",
+              "1 {item:essentialcraft5:condensed_matrix}, 1 {item:essentialcraft5:wind_gem}, 1 {item:essentialcraft5:air_focus}, 4 {item:essentialcraft5:mithriline_ingot}"
+            ],
+            [
+              "Energy",
+              "40,000 MRU in the Crucible and 4,000 ESPE in the pentacle's pillars"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "6 in all, up to 3 at once; 68 health each, 8 damage a hit; 110 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "Stand still for {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:50} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "The easiest expedition kills come from a raid or a trip to an ocean monument.",
+            {
+              "if": "cfg:machines.enrichment_chamber.condense.enabled",
+              "text": "Condense another Condensed Matrix as in Chapter 12 ([[pentacle/condensed]])."
+            },
+            "Place the offerings in the Crucible's offering slots and fill it with enough MRU through a Bound Gem.",
+            "Stand within 3 blocks with your bound Soul Stone in your main hand, open the screen, and once everything on the right is ticked, start the trial.",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Defeat enough Matrix Echoes, and don't stray far from the Crucible."
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Stay next to the Crucible without moving or getting hurt until the channel finishes."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "\"Rank 5 · Crossing\" appears in the middle of the screen, and your Soul Stone's tooltip shows matrix rank 5."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "Rank 5 gives you +5% Hoanna Radiation resistance and a reservoir of {cfg:general.matrix_rank.pool_per_rank|mul:4}."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.radiation.enabled"
+          ],
+          "text": "Rank 5 grows your reservoir to {cfg:general.matrix_rank.pool_per_rank|mul:4} and adds another step of tolerance."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal==5"
+          ],
+          "text": "From this rank on, the Gate to Hoanna will take you across."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "Rank 5 grows your reservoir to {cfg:general.matrix_rank.pool_per_rank|mul:4} and adds another step of tolerance. Without Hoanna, this is as far as ranks go."
+        }
+      ]
+    },
+    {
+      "id": "after_main_line",
+      "title": "Where Next",
+      "icon": "minecraft:book",
+      "summary": "The next main stop and where side chapters start",
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "The first four books of the Fragments run out about here, and the fifth holds only the legend of Hoanna. This book's first fifteen chapters are done as well. The main line goes on to [[hoanna/legend|Hoanna]], then to [[demons/void_crystal_pillar|summoning demons and trading for Ackronite]], then to the [[hologram/neuronic_plating|Holographic Projection]], the Inquisitorium and the Computer Guy's Suit, fitting the suit with modules ([[terminal/legend|Terminal and Modules]]), and finally to summoning the Heart of Calamity in Hoanna ([[apex/intro]])."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0"
+          ],
+          "text": "Crossing the Gate to Hoanna takes matrix rank {cfg:general.matrix_rank.gates.hoanna_portal}; below that, standing in the gate won't take you across ([[matrix/overview]])."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "title": "Before Hoanna",
+          "text": "You first need {cfg:general.wind.tablet_points} wind relation and a Wind Tablet ([[wind/air_potion]], [[wind/wind_tablet]]). On potions alone, one Overworld altar takes about 6 hours of steady gathering, and for the {item:essentialcraft5:wind_keeper} you blow a Wind Horn, call up an Archmage and defeat it ([[wind/archmage]]). It's best to keep your altar running from now on and read the side chapters while it fills."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points!=3500||cfg:general.wind_affinity.base_coefficient!=0.1||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1"
+          ],
+          "title": "Before Hoanna",
+          "text": "You first need {cfg:general.wind.tablet_points} wind relation and a Wind Tablet ([[wind/air_potion]], [[wind/wind_tablet]]). Every potion has to be imbued on an altar, one bottle at a time, and for the {item:essentialcraft5:wind_keeper} you blow a Wind Horn, call up an Archmage and defeat it ([[wind/archmage]]). It's best to keep your altar running from now on and read the side chapters while it fills."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Start on Nether Stars too",
+          "text": "The chapters after Hoanna need 7–9 Nether Stars. Each Holopad is used up by one fight, and between the four math cores and the cores for the modules of Chapter 21 you will want 5–7 Holopads, one star each, plus 2 more stars for the two Matters of Eternity in the Computer Guy's Suit. Wither Skeletons drop a skull 2.5% of the time, or 5.5% with Looting III, and 3 skulls summon one Wither, so 7–9 Withers mean roughly 800–1,100 Wither Skeletons, or about 400–500 with Looting III. From now on, collect skulls whenever you pass through a Nether Fortress ([[hologram/holopad]]).",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "That is the end of the main line."
+        },
+        {
+          "type": "h",
+          "text": "Side chapters"
+        },
+        {
+          "type": "p",
+          "text": "The chapters after this are side chapters, to read when you need them. Start any of them from its first page:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.ley_projector.enabled||cfg:machines.ley_condenser.enabled",
+              "text": "Ley Projection: [[ley]]"
+            },
+            "Farm Automation: [[farming/item_shuffler]]",
+            "Gear and Protection: [[gear/magic_monocle]]",
+            "Magical Devices: [[devices/magical_repairer]]",
+            "Ore Processing: [[magmatic/fortified_furnace]]",
+            "Corruption Effects: [[corruption/matrix_damage]]",
+            "Charms and Trinkets: [[charms/charms]]",
+            "Staffs and Weapons: [[staffs/golden_orb]]",
+            "Wind Gear: [[wind_gear/wind_tools]]",
+            "Wind Mages: [[wind_mage/wind_mages]]",
+            "Special Baubles: [[baubles/finding]]",
+            "Tesla, Coils and Reactors: [[tesla/mru_magnet]]",
+            "MRU Guns: [[guns/weapon_maker]]",
+            "Decorations: [[decorations/magical_chisel]]",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "Void Machines: [[void_machines/ultra_heat_generator]]"
+            },
+            "Infinite Items: [[creative/creative_items]]"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For terms and numbers, see the [[start/glossary|glossary]] and the [[start/numbers|numbers at a glance]] under Getting Started on the home page."
+        }
+      ]
+    }
+  ]
+}

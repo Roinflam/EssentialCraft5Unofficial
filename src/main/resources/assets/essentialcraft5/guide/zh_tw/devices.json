@@ -1,0 +1,777 @@
+{
+  "id": "devices",
+  "order": 86,
+  "group": "side",
+  "title": "支線 · 魔力器械",
+  "subtitle": "用 MRU 代替經驗和苦力活",
+  "icon": "essentialcraft5:magical_repairer",
+  "entries": [
+    {
+      "id": "magical_repairer",
+      "title": "{item:essentialcraft5:magical_repairer}",
+      "icon": "essentialcraft5:magical_repairer",
+      "summary": "用 MRU 修工具",
+      "complete": "essentialcraft5:guide/devices/magical_repairer",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_repairer"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "為了修一把鎬，得先出門打怪攢經驗，再去上鐵砧，我一直覺得不對勁。現在修東西只要 MRU，附魔也用不著經驗了。鐵砧還擺在牆角，落了一層灰。",
+          "by": "《工坊手記》"
+        },
+        {
+          "type": "p",
+          "text": "這一章的前四台機器拿 MRU 抵掉原版要花的經驗、青金石和工夫。它們的零件大同小異，備齊[[crafting/magician_crafts]]裡那些零件就能做，第三章以後隨時可以來，只有唱片機另要兩塊第六章的{item:essentialcraft5:magic_purified_redstone_alloy}。"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:magical_repairer}，用 MRU 修好工具、武器和盔甲，不花經驗，也用不著鐵砧。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：{item:essentialcraft5:fortified_frame}、{item:essentialcraft5:magical_screen}、{item:essentialcraft5:mru_catcher}、{item:essentialcraft5:elemental_core}、{item:essentialcraft5:magic_plate}、{item:essentialcraft5:matrix_link}、{item:essentialcraft5:world_interactor}各一個，外加兩個{item:essentialcraft5:mru_conversion_matrix}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_repairer"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "寶石槽裡放一顆綁在產能器或別的 MRU 源上的{item:essentialcraft5:bound_gem}，用法見[[crafting/bound_gem]]。",
+            "把要修的東西放進右邊那個格子。",
+            "它每刻修 1 點耐久，每點花 {cfg:machines.magical_repairer.mru_usage} MRU，一直修到滿。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU 容量",
+              "{cfg:machines.magical_repairer.max_mru} MRU"
+            ],
+            [
+              "每修 1 點",
+              "{cfg:machines.magical_repairer.mru_usage} MRU"
+            ],
+            [
+              "速度",
+              "每刻最多 1 點"
+            ],
+            [
+              "接一台四面岩漿、每刻 16 MRU 的熱力產能器",
+              "約 {cfg:machines.magical_repairer.mru_usage|div:320|round:1} 秒修 1 點，鑽石鎬修滿約 {cfg:machines.magical_repairer.mru_usage|mul:1561|div:19200|int} 分鐘"
+            ],
+            [
+              "鑽石鎬從 0 修滿 1561 點",
+              "{cfg:machines.magical_repairer.mru_usage|mul:1561} MRU"
+            ],
+            {
+              "if": "cfg:machines.magical_repairer.generate_corruption",
+              "cells": [
+                "工作時每刻洩漏",
+                "0～{cfg:machines.magical_repairer.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "工具、武器、盔甲、釣竿、鞘翅這類會磨損、也允許修理的東西都能修，放進修不了的東西，介面上會顯示「{lang:gui.essentialcraft5.repairer.cannot}」。魔力防護套裝、風之護甲這幾套能同調的盔甲在工作台和砂輪上合不了，這裡照樣能修。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到修復器時這一步打勾。放進去的東西耐久條一點點往上漲，機器裡冒出紫色的火花。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>它非常費 MRU</w>，滿速修理每刻要 {cfg:machines.magical_repairer.mru_usage} MRU，一台熱力產能器的產量遠遠跟不上，只接一台時修得很慢。修鑽石鎬這種大件，最好接在[[enrichment/controller|富集倉]]上，附了經驗修補的裝備其實用不著它。"
+        },
+        {
+          "type": "h",
+          "text": "自動修理線"
+        },
+        {
+          "type": "p",
+          "text": "漏斗和管道只往裡送有磨損的東西，也只抽走已經修好或根本修不了的東西，修到一半的不會被抽走。上面接一個漏斗送工具，下面接一個漏斗收工具，就是一條自動修理線。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "收到紅石訊號時停機。",
+            {
+              "if": "cfg:machines.magical_repairer.generate_corruption",
+              "text": "工作時會往周圍漏 MRU，附近的聚集體會慢慢長大，詳見[[crafting/corruption]]。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magical_enchanter",
+      "title": "{item:essentialcraft5:magical_enchanter}",
+      "icon": "essentialcraft5:magical_enchanter",
+      "summary": "只要書架和 MRU，不要經驗",
+      "complete": "essentialcraft5:guide/devices/magical_enchanter",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_enchanter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:magical_enchanter}。它只要 MRU 和周圍的書架，經驗和青金石都用不著，附出來的書是<em>正常的附魔書</em>，可以拿到鐵砧上用。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：一台原版{item:minecraft:enchanting_table}、一本附著任意魔咒的{item:minecraft:enchanted_book}，{item:essentialcraft5:magical_screen}、{item:essentialcraft5:mru_catcher}、{item:essentialcraft5:world_interactor}、{item:essentialcraft5:mru_conversion_matrix}、{item:essentialcraft5:elemental_core}各一個，外加兩塊{item:essentialcraft5:magic_plate}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_enchanter"
+        },
+        {
+          "type": "h",
+          "text": "等級從哪來"
+        },
+        {
+          "type": "p",
+          "text": "等級就是附魔台周圍 5×5、從它這一層往上共 3 層範圍裡的書架數，這片範圍除去它自己共 74 格，等級最高 {cfg:machines.magical_enchanter.max_enchant_level} 級。書架可以緊貼著它放，和附魔台之間隔著東西也沒關係。"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "B": "minecraft:bookshelf",
+            "E": "essentialcraft5:magical_enchanter"
+          },
+          "anchor": "E",
+          "layers": [
+            {
+              "pattern": [
+                "BBBBB",
+                "B   B",
+                "B E B",
+                "B   B",
+                "BBBBB"
+              ]
+            },
+            {
+              "pattern": [
+                "BBBBB",
+                "B   B",
+                "B   B",
+                "B   B",
+                "BBBBB"
+              ]
+            }
+          ],
+          "caption": "例子：最外一圈擺兩層，共 32 個書架，就是 32 級。這片 5×5、往上 3 層的範圍裡，書架放在哪一格都算。"
+        },
+        {
+          "type": "p",
+          "text": "介面狀態條右端的數字就是當前等級，每秒更新一次。別的模組裡能提高附魔等級的方塊，按它們各自的數值算。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼附魔"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "寶石槽裡放一顆綁在 MRU 源上的{item:essentialcraft5:bound_gem}。",
+            "放進要附魔的東西，書也行，輸出槽空著。",
+            "它先按<em>當時的等級</em>抽一次附魔，抽法和原版附魔台一樣，寶藏附魔抽不到。之後每刻花 {cfg:machines.magical_enchanter.mru_usage} MRU，一共要等級 × 10 刻。",
+            "附好的東西進入輸出槽，用手拿走或用漏斗抽走以後，它才接著附下一件。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "等級上限",
+              "{cfg:machines.magical_enchanter.max_enchant_level}"
+            ],
+            [
+              "每刻 MRU",
+              "{cfg:machines.magical_enchanter.mru_usage}"
+            ],
+            [
+              "用時",
+              "等級 × 10 刻，滿級時 {cfg:machines.magical_enchanter.max_enchant_level|mul:10|sec}"
+            ],
+            [
+              "附一件一共",
+              "等級 × {cfg:machines.magical_enchanter.mru_usage|mul:10} MRU"
+            ],
+            {
+              "if": "cfg:machines.magical_enchanter.generate_corruption",
+              "cells": [
+                "工作時每刻洩漏",
+                "0～{cfg:machines.magical_enchanter.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "書會變成附魔書，抽到的附魔<em>全都保留</em>，原版附魔台附書時會隨機去掉一條。書可以整疊放進去，它一次附一本。已經附過魔的東西不能再附。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到附魔台時這一步打勾。輸出槽裡會出現附魔書或附好魔的東西。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "等級不是越高越好。原版規定每一級附魔只在一定的等級範圍裡出現，保護、火焰保護、爆炸保護、彈射物保護和摔落保護這些護甲附魔過了 40 級就越來越少見，45 級以上幾乎抽不到。給護甲附魔時拿掉一些書架，把等級壓在 30 級左右最穩妥，這也是原版附魔台的最高等級。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "MRU 不夠、收到紅石訊號或者輸出槽沒清空時，它只是<em>暫停</em>，進度和抽到的附魔都留著，換了要附魔的東西才從頭開始。",
+            "漏斗只往裡送能附魔的東西，也只從輸出槽往外抽。",
+            {
+              "if": "cfg:machines.magical_enchanter.generate_corruption",
+              "text": "工作時會往周圍漏 MRU，詳見[[crafting/corruption]]。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "potion_spreader",
+      "title": "{item:essentialcraft5:potion_spreader}",
+      "icon": "essentialcraft5:potion_spreader",
+      "summary": "讓藥水效果罩住一片",
+      "complete": "essentialcraft5:guide/devices/potion_spreader",
+      "optional": true,
+      "items": [
+        "essentialcraft5:potion_spreader"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:potion_spreader}，讓周圍的生物一直帶著藥水效果，比如讓基地裡常駐夜視和速度。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：兩個{item:essentialcraft5:world_interactor}、兩塊{item:essentialcraft5:magic_plate}，{item:essentialcraft5:fortified_frame}、{item:essentialcraft5:mru_catcher}、{item:essentialcraft5:elemental_core}、{item:essentialcraft5:magical_screen}、{item:essentialcraft5:mru_conversion_matrix}各一個。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:potion_spreader"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "寶石槽裡放一顆綁在 MRU 源上的{item:essentialcraft5:bound_gem}。",
+            "左邊 8 個格子放藥水，普通、噴濺和滯留藥水都能用。",
+            "它每次取一瓶裝上，瓶子也一起用掉，這瓶藥水的<em>全部</em>效果都會用上。",
+            "周圍 8 格內還沒有這種效果的生物都會被加上，時長和等級與藥水本身相同，每給一個生物加一種效果花 {cfg:machines.potion_spreader.mru_usage} MRU。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "範圍",
+              "以它為中心 17×17×17"
+            ],
+            [
+              "每加一種效果",
+              "{cfg:machines.potion_spreader.mru_usage} MRU"
+            ],
+            [
+              "一瓶能用",
+              "{cfg:machines.potion_spreader.max_spread_amount} 次"
+            ],
+            [
+              "多久查一次",
+              "上次加上了效果時 10 刻，沒加上時 20 刻"
+            ],
+            [
+              "MRU 容量",
+              "{cfg:machines.potion_spreader.max_mru} MRU"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每檢查一次，只要給哪個生物加上了效果，這瓶就算「用一次」，次數用完會自動換下一瓶。介面中間的藥水瓶顯示這瓶還剩多少，滑鼠指著它能看到裝著哪些效果。"
+        },
+        {
+          "type": "p",
+          "text": "效果到期了才補，所以一瓶能撐很久，比如一瓶 8 分鐘的長效夜視，{cfg:machines.potion_spreader.max_spread_amount} 次夠你一個人用 {cfg:machines.potion_spreader.max_spread_amount|mul:8} 分鐘。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到擴散器時這一步打勾。周圍生物身上冒出藥水粒子，介面裡的藥水瓶慢慢變空。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "只想給自己用的話，就把它放在動物和怪物進不來的屋子裡。範圍裡的每一隻生物都會被加上效果，動物和怪物也一樣，它們的效果到期時同樣要耗掉這瓶的次數和 MRU，怪物還會白得力量、速度這類增益。"
+        },
+        {
+          "type": "h",
+          "text": "限制"
+        },
+        {
+          "type": "list",
+          "items": [
+            "緩慢、中毒、虛弱等有害效果<em>只加給敵對生物</em>，玩家、動物、村民、寵物，還有起了名字或拴著繩的怪物都不會被加上，擴散器放在鄰居旁邊，也不會給他的牲口和寵物添負面效果。",
+            "帶瞬間傷害的藥水放不進來。",
+            {
+              "if": "cfg:machines.potion_spreader.forbidden_effects",
+              "text": "帶凋零效果的藥水也放不進來。"
+            },
+            "瞬間治療對亡靈生物是傷害，所以不會加給它們。別的生物也要至少掉了一次治療量的血才會被治療，瞬間治療是 4 點，瞬間治療 II 是 8 點。",
+            "收到紅石訊號時停機。",
+            {
+              "if": "cfg:machines.potion_spreader.generate_corruption",
+              "text": "每加上一次效果，會往周圍漏 0～{cfg:machines.potion_spreader.max_corruption_gen} MRU，詳見[[crafting/corruption]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的擴散器連玩家也不放過，有害效果照樣加上去，放進一瓶傷害藥水，它就成了一台傷人的機器。"
+        }
+      ]
+    },
+    {
+      "id": "magical_jukebox",
+      "title": "{item:essentialcraft5:magical_jukebox}",
+      "icon": "essentialcraft5:magical_jukebox",
+      "summary": "用 MRU 放音樂",
+      "complete": "essentialcraft5:guide/devices/magical_jukebox",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_jukebox"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:magical_jukebox}，這是一台靠 MRU 驅動的唱片機，能用紅石重放，接上漏斗還能當自動點歌機。工坊手記的主人幹活時愛放點音樂，這台唱片機多半是他給自己做的。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：一台原版{item:minecraft:jukebox}、兩塊{item:essentialcraft5:magic_purified_redstone_alloy}、兩顆{item:essentialcraft5:elemental_gem}，還有{item:essentialcraft5:magic_plate}、{item:essentialcraft5:mru_catcher}、{item:essentialcraft5:world_interactor}、{item:essentialcraft5:magical_screen}各一個，紅石合金的做法見[[alloys/purified_alloys]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_jukebox"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "寶石槽裡放一顆綁在 MRU 源上的{item:essentialcraft5:bound_gem}。",
+            "把音樂唱片放進左上的格子，機器裡攢夠 {cfg:machines.magical_jukebox.mru_usage} MRU 就會播放一遍，每放一遍花這麼多，放完不會自己重放。",
+            "紅石訊號從無到有的那一刻，它會從頭再放一遍，同樣花 {cfg:machines.magical_jukebox.mru_usage} MRU。兩次開始之間至少隔 5 秒，訊號一直亮著也不會反覆重放。",
+            "拿走唱片，音樂就停。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU 容量",
+              "{cfg:machines.magical_jukebox.max_mru} MRU"
+            ],
+            [
+              "每放一遍",
+              "{cfg:machines.magical_jukebox.mru_usage} MRU"
+            ],
+            [
+              "兩次開始至少隔",
+              "5 秒"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "自動點歌"
+        },
+        {
+          "type": "p",
+          "text": "唱片放完以後，漏斗和管道才抽得走它，還沒放過的唱片會留在裡面等著，比如 MRU 不夠的時候。往裡也只能送音樂唱片。上面接一個裝滿唱片的漏斗、下面接一個空漏斗，它就會一張接一張放下去。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到唱片機時這一步打勾。放進唱片，樂聲響起，機器上方飄出音符。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "鸚鵡只認原版唱片機，不會跟著它跳舞，悅靈也跳不順，只會一下一下地閃動，幽匿感測體完全聽不到它。"
+        }
+      ]
+    },
+    {
+      "id": "enchant_amplifier",
+      "title": "{item:essentialcraft5:enchant_amplifier}",
+      "icon": "essentialcraft5:enchant_amplifier",
+      "summary": "把附魔書從 1 級推到 25 級",
+      "complete": "essentialcraft5:guide/devices/enchant_amplifier",
+      "optional": true,
+      "items": [
+        "essentialcraft5:enchant_amplifier"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:enchant_amplifier}。它把一本附魔書上的<em>那一條附魔</em>一級一級往上推，最高推到 25 級，每一級都要 MRU 和材料，級數高了還要 ESPE。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：一台{item:essentialcraft5:magical_enchanter}，合成時會把它整台用掉，外加四塊{item:essentialcraft5:pale_plate}、兩個{item:essentialcraft5:elemental_core}、一個{item:minecraft:lapis_block}和一個{item:essentialcraft5:mru_resonating_crystal}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:enchant_amplifier"
+        },
+        {
+          "type": "h",
+          "text": "它收什麼書"
+        },
+        {
+          "type": "p",
+          "text": "它只收<em>剛好帶一條附魔</em>的附魔書，原版附魔台、魔力附魔台附出來的，戰利品裡的單附魔書都行。帶好幾條附魔的書，機器沒法決定升哪一條，所以不收。"
+        },
+        {
+          "type": "p",
+          "text": "這條附魔本身要有不止一級，也不能是詛咒。冰霜行者、迅捷潛行、激流預設不收，幸運和掠奪最高只升到 10 級，因為它們升到幾十級，要麼會改動整片世界，要麼會讓掉落翻幾十倍。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼升"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "寶石槽裡放一顆綁在 MRU 源上的{item:essentialcraft5:bound_gem}。",
+            "左邊第一格放附魔書，旁邊兩格放下一級要的材料，滑鼠指著狀態條，能看到這一級要付的全部東西。",
+            "機器先一次扣掉這一步的材料，再隨著進度邊走邊扣 MRU 和 ESPE。進度走滿，書就升一級，仍舊留在第一格，接著升下一級。",
+            "升到目標等級才送進輸出槽。目標等級用右上角的 −5、−1、+1、+5 四個按鈕調，預設 25。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "每一級要付什麼"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU",
+              "{cfg:machines.enchant_amplifier.mru_multiplier|mul:2000} × 等級²"
+            ],
+            [
+              "ESPE",
+              "{cfg:machines.enchant_amplifier.espe_multiplier|mul:50} ×（等級 − 8），8 級以內不要"
+            ],
+            [
+              "用時",
+              "{cfg:machines.enchant_amplifier.time_multiplier|mul:300} + {cfg:machines.enchant_amplifier.time_multiplier|mul:60} × 等級 刻"
+            ],
+            [
+              "例：升到 25 級",
+              "{cfg:machines.enchant_amplifier.mru_multiplier|mul:1250000} MRU，{cfg:machines.enchant_amplifier.espe_multiplier|mul:850} ESPE，{cfg:machines.enchant_amplifier.time_multiplier|mul:1800|sec}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "升到",
+            "材料一",
+            "材料二"
+          ],
+          "rows": [
+            [
+              "2～5 級",
+              "{item:minecraft:lapis_lazuli} ×8",
+              "普通精華 ×2"
+            ],
+            [
+              "6～10 級",
+              "{item:minecraft:lapis_block} ×2",
+              "罕見精華 ×3"
+            ],
+            [
+              "11～15 級",
+              "{item:minecraft:diamond} ×2",
+              "稀有精華 ×3"
+            ],
+            [
+              "16～20 級",
+              "{item:essentialcraft5:mithriline_ingot} ×3",
+              "卓越精華 ×3"
+            ],
+            [
+              "21～25 級",
+              "{item:essentialcraft5:mithriline_ingot} ×5",
+              "卓越精華 ×6"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "精華的火、水、土、風四種元素任選一種，同一格里放同一種就行。"
+        },
+        {
+          "type": "p",
+          "text": "從 1 級一路升到 25 級共 24 步，用時加起來預設要 {cfg:machines.enchant_amplifier.time_multiplier|mul:26640|sec}。"
+        },
+        {
+          "type": "h",
+          "text": "ESPE 從哪來"
+        },
+        {
+          "type": "p",
+          "text": "ESPE 從機器周圍抽，不用接線。在和機器同一高度、隔一格的那一圈上，前後左右和四個斜角共八個位置，各立一根{item:essentialcraft5:mithriline_crystal_pillar}，底座和機器一樣高。從 9 級起，沒有水晶柱的話，機器會一直停在「缺 ESPE」。"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": [
+                "essentialcraft5:mithriline_crystal_pillar",
+                "essentialcraft5:pale_crystal_pillar",
+                "essentialcraft5:void_crystal_pillar",
+                "essentialcraft5:demonic_crystal_pillar"
+              ],
+              "label": "任意一種水晶柱"
+            },
+            "R": "essentialcraft5:enchant_amplifier"
+          },
+          "anchor": "R",
+          "pattern": [
+            "C C C",
+            "     ",
+            "C R C",
+            "     ",
+            "C C C"
+          ],
+          "caption": "和機器同一高度，隔一格擺一圈 8 根水晶柱，種類不限。"
+        },
+        {
+          "type": "h",
+          "text": "做好的書怎麼用"
+        },
+        {
+          "type": "p",
+          "text": "原版鐵砧會把附魔砍回原版的上限，這兩台機器做出的書放上去也一樣。想按完整等級附到裝備上，得用別的能附超上限附魔的模組。"
+        },
+        {
+          "type": "p",
+          "text": "也別在鐵砧上拿高等級的書互相合並，一樣會被砍回上限。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到增幅台時這一步打勾。放進一本 1 級的單附魔書和材料，書會一級一級往上走，最後出現在輸出槽裡。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "做到一半把書拿走或換掉，這一步付的材料不退，進度從頭來。",
+            "缺 MRU、缺 ESPE、輸出槽沒清空或者收到紅石訊號時，它只是暫停，進度會存檔。",
+            "漏斗和管道只往對應的格子送，書進第一格，材料進兩個材料格，往外也只從輸出槽抽。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "升到 25 級的書可以接著交給{item:essentialcraft5:enchant_ascender}，再往上推。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enchant_ascender",
+      "title": "{item:essentialcraft5:enchant_ascender}",
+      "icon": "essentialcraft5:enchant_ascender",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "summary": "把 25 級的附魔書推到 50 級",
+      "complete": "essentialcraft5:guide/devices/enchant_ascender",
+      "optional": true,
+      "items": [
+        "essentialcraft5:enchant_ascender"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:enchant_ascender}。這台機器殘卷裡沒有，用料裡的惡魔板和數學核心，都是殘卷寫完以後才找到的東西。它接著{item:essentialcraft5:enchant_amplifier}往上推，把已經有 25 級的附魔書推到 <em>50 級</em>。這是整個模組裡最費事的一台機器，材料稀有，耗時很長，每一步還要機器主人拿矩陣去換。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：一台{item:essentialcraft5:enchant_amplifier}，合成時整台用掉，外加一顆{item:minecraft:nether_star}、四塊{item:essentialcraft5:demonic_plate}、一個{item:essentialcraft5:void_core}、一塊{item:essentialcraft5:matter_of_eternity}和一個數學核心，加法、減法、乘法、除法核心任選一個。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:enchant_ascender"
+        },
+        {
+          "type": "h",
+          "text": "和增幅台的區別"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只收已經有 25 級的書，不到 25 級的先拿去增幅台。",
+            "每一步都要<em>機器主人</em>線上，並且開啟過至少 {cfg:machines.enchant_ascender.required_pentacle_tier} 檔的靈魂五芒星，那一檔治得了矩陣類效果。放下時沒記下主人的昇華台不工作。",
+            "每一步走滿的那一刻，會把一筆矩陣損傷記到主人身上，升 26 級那一步是 {cfg:machines.enchant_ascender.matrix_damage_base}，之後每高一級多 {cfg:machines.enchant_ascender.matrix_damage_per_level}。",
+            "矩陣損傷離上限放不下這一步時，機器就停著等。損傷攢得高了會抽到[[corruption/matrix_damage|腐化效果]]，每抽中一個，損傷就扣掉一截，騰出餘量，抽到的效果要去[[pentacle/pentacle|靈魂五芒星]]治。",
+            {
+              "if": "cfg:machines.matrix_tuner.enabled",
+              "text": "昇華攢下的矩陣損傷，也可以站到[[corruption/matrix_tuner|矩陣調律器]]上慢慢抹掉。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "每一級要付什麼"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU",
+              "{cfg:machines.enchant_ascender.mru_multiplier|mul:4500} × 等級²"
+            ],
+            [
+              "ESPE",
+              "{cfg:machines.enchant_ascender.espe_multiplier|mul:300} ×（等級 − 20）"
+            ],
+            [
+              "用時",
+              "{cfg:machines.enchant_ascender.time_multiplier|mul:900} + {cfg:machines.enchant_ascender.time_multiplier|mul:180} ×（等級 − 25）刻"
+            ],
+            [
+              "例：升到 50 級",
+              "{cfg:machines.enchant_ascender.mru_multiplier|mul:11250000} MRU，{cfg:machines.enchant_ascender.espe_multiplier|mul:9000} ESPE，{cfg:machines.enchant_ascender.time_multiplier|mul:5400|sec}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "升到",
+            "材料一",
+            "材料二"
+          ],
+          "rows": [
+            [
+              "26～30 級",
+              "{item:essentialcraft5:demonic_core} ×2",
+              "卓越精華 ×12"
+            ],
+            [
+              "31～40 級",
+              "{item:essentialcraft5:matter_of_eternity} ×1",
+              "{item:essentialcraft5:demonic_plate} ×8"
+            ],
+            [
+              "41～50 級",
+              "{item:minecraft:nether_star} ×4",
+              "{item:essentialcraft5:matter_of_eternity} ×1"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "ESPE 的取法和增幅台一樣，從周圍八個水晶柱位置抽。這台要得多，柱子的檔位越高，攢得越快。永恆物質一格只放得下一個，每一步正好用掉這一個，裡面存的 MRU 會跟著沒掉，放空的就行。"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": [
+                "essentialcraft5:mithriline_crystal_pillar",
+                "essentialcraft5:pale_crystal_pillar",
+                "essentialcraft5:void_crystal_pillar",
+                "essentialcraft5:demonic_crystal_pillar"
+              ],
+              "label": "任意一種水晶柱"
+            },
+            "R": "essentialcraft5:enchant_ascender"
+          },
+          "anchor": "R",
+          "pattern": [
+            "C C C",
+            "     ",
+            "C R C",
+            "     ",
+            "C C C"
+          ],
+          "caption": "和增幅台一樣：同一高度隔一格擺一圈 8 根水晶柱，檔位越高攢得越快。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "有再多的能量也繞不開",
+          "text": "25 步要用的材料得一件件湊，用時預設要 {cfg:machines.enchant_ascender.time_multiplier|mul:81000|sec}。矩陣損傷預設全程加起來有 80 萬點，將近上限的三倍，機器中間至少要停下來等兩回，抽到的腐化效果也得去治，沒法一口氣升完。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到昇華台時這一步打勾。放進一本 25 級的單附魔書，備齊材料，主人線上，書就會一步步升到 50 級。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "做好的書怎麼附到裝備上，和增幅台一樣，原版鐵砧會把它砍回上限。",
+            "做到一半把書拿走或換掉，這一步的材料不退。缺材料、缺 MRU 或 ESPE、矩陣放不下，都只是暫停，進度會存檔。",
+            "幸運、掠奪最高只升到 10 級，冰霜行者、迅捷潛行、激流不收，這些都和增幅台一樣。"
+          ]
+        }
+      ]
+    }
+  ]
+}

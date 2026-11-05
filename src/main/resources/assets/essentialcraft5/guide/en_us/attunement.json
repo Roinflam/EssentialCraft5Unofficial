@@ -1,0 +1,1522 @@
+{
+  "id": "attunement",
+  "order": 108,
+  "group": "side",
+  "title": "Side Chapter · Attunement",
+  "subtitle": "Gear that grows with you",
+  "icon": "essentialcraft5:mhs_chestplate",
+  "if": "cfg:general.attunement.enabled",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "What attunement is",
+      "icon": "essentialcraft5:mhs_chestplate",
+      "summary": "Gear that grows closer to you with use",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "None of this is in the Fragments. I wore that suit longer than anything else, and the more blows it took, the better it fit and the more neatly it turned them. What follows is what I worked out, one thing at a time.",
+          "by": "Compiler's note"
+        },
+        {
+          "type": "p",
+          "text": "Some gear grows closer to you the more you fight in it. This is <hl>attunement</hl>. Each piece keeps its own count of <em>attunement points</em>, and once it has enough for its stage you can raise it a stage at the [[crafting/magician_table|Magician Table]] with a few materials. Each stage gives the set new abilities."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "Attunement stages are not the same as your own [[matrix/overview|matrix rank]]. Your rank belongs to you; a stage belongs to one piece of gear. How far a piece can be raised does depend on the rank of whoever wears it, though ([[attunement/stage_up]])."
+        },
+        {
+          "type": "h",
+          "text": "What can be attuned"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Gear",
+            "Highest stage",
+            "See"
+          ],
+          "rows": [
+            [
+              "The four MHS Armor pieces",
+              "2",
+              "[[attunement/mhs_armor]]"
+            ],
+            [
+              "The four Wind Armor pieces",
+              "3",
+              "[[attunement/wind_armor]]"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "The four Void Armor pieces",
+                "4",
+                "[[attunement/void_armor]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "The four Inquisitorium Armor pieces",
+                "4",
+                "[[attunement/inquisitorium_armor]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "The four Computer Guy's Suit pieces",
+                "5",
+                "[[attunement/computer_armor]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:forged_elemental_sword}",
+                "2",
+                "[[attunement/ember_sword]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:verdict_blade}",
+                "5",
+                "[[attunement/verdict_blade]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every piece builds attunement points as you fight with it on or in hand. Once a stage is full you raise it, and what each stage adds is on that set's page in the table above. When you move up to a better armor set, half of what the old set saved up can go across through [[attunement/transfer]]."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Once an {item:essentialcraft5:forged_elemental_sword} reaches attunement stage 2, it can be reforged into a {item:essentialcraft5:verdict_blade} at the Magician Table ([[attunement/verdict_blade]])."
+        },
+        {
+          "type": "h",
+          "text": "What every stage gives"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each stage adds {cfg:general.attunement.health_per_stage} max health to that armor piece (2 is one heart).",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "Four Computer Guy's Suit pieces at stage 5 add {cfg:general.attunement.health_per_stage|mul:20} in all."
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "Each stage adds {cfg:general.attunement.damage_per_stage|pct} to a weapon's attack damage, {cfg:general.attunement.damage_per_stage|mul:5|pct} at stage 5."
+            },
+            "Raising a stage loses nothing. Enchantments, dye, installed modules and stored MRU all stay.",
+            "From stage 3 the item shimmers like an enchanted one."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Armor abilities come in two kinds. The shield share and cost, what the shield blocks, how much MRU a piece holds and its module slots belong to one piece and follow that piece's own stage. Where a page says \"with the full set on\" or \"with all four at stage n\", the ability needs all four pieces on and goes by the lowest stage among them. With a piece missing you don't get it."
+        },
+        {
+          "type": "p",
+          "text": "Against other players, the durations and bonus damage these abilities give are only {cfg:general.attunement.pvp_effect_scale|pct} of normal; each page says which ones."
+        },
+        {
+          "type": "h",
+          "text": "Reading a piece's attunement"
+        },
+        {
+          "type": "p",
+          "text": "The tooltip shows two lines such as \"Attunement ◆◆◇◇◇ (2 / 5)\" and \"Attunement points 650 / 1,600\": the stage it is at out of the highest, then the points it has toward the next stage and how many it needs. Effects you already have are in white, the rest in grey. Hold Shift to see the materials and matrix rank the next stage needs."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Armor that can be attuned won't combine in a crafting grid or grindstone. That kind of repair makes a brand-new piece, and the attunement and stored MRU would be lost. Mend worn pieces in the [[devices/magical_repairer]], or combine two at an anvil (the right-hand one is used up)."
+        }
+      ]
+    },
+    {
+      "id": "points",
+      "title": "Where attunement points come from",
+      "icon": "essentialcraft5:mhs_helmet",
+      "summary": "Fight in it for real",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Armor gains attunement points by <em>taking hits while you wear it</em>. Each time a hostile mob hits you, every piece you wear that can still gain points gets {cfg:general.attunement.points_hit}, or {cfg:general.attunement.points_boss_hit} if a boss hit you."
+        },
+        {
+          "type": "h",
+          "text": "What counts as a hit"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The damage has to actually reach you. A hit fully stopped by this mod's shields, dodges or deflections also counts.",
+            "The attacker has to be a hostile mob or a boss. Mobs from spawners or spawn eggs don't count.",
+            "You must have landed a hit on that mob yourself within the last 10 seconds; damage your armor or Thorns reflects back doesn't count. Standing there taking hits without fighting back earns nothing.",
+            "Several hits from the same mob within half a second count as one.",
+            {
+              "if": "cfg:general.attunement.points_pvp==0",
+              "text": "Hits from players earn nothing."
+            },
+            {
+              "if": "cfg:general.attunement.points_pvp>0",
+              "text": "A hit from a player gives each piece {cfg:general.attunement.points_pvp}."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "How weapons gain points"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "A weapon gains points <em>in your main hand, from your own blows</em>. Each solid hit on a hostile mob gives {cfg:general.attunement.points_hit}, killing it gives another {cfg:general.attunement.points_kill}, and killing a boss gives {cfg:general.attunement.points_boss_kill}."
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            "It has to be a swing of yours that lands. Projectiles, accessories and armor that strikes back for you don't count.",
+            "The target has to be a hostile mob or a boss. Mobs from spawners or spawn eggs don't count, and nor do mobs that can't move.",
+            "The mob has to be chasing you or have hit you within the last 10 seconds. Bosses are exempt.",
+            "Several hits in the same instant, such as a sweep, count as one.",
+            {
+              "if": "cfg:general.attunement.points_pvp==0",
+              "text": "Hitting players earns nothing."
+            },
+            {
+              "if": "cfg:general.attunement.points_pvp>0",
+              "text": "A hit on a player, or killing one, gives {cfg:general.attunement.points_pvp}."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Two rules against farming"
+        },
+        {
+          "type": "list",
+          "items": [
+            "One mob gives your armor at most 5 points over its whole life. Bosses are exempt, except small bosses like the MRU Golem.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "Weapon hits on one mob give at most 3 points; the kill is counted separately. Bosses are usually exempt, but small bosses like the MRU Golem are not, and a boss from vanilla or another mod is only exempt if it has hit you within the last 10 seconds. Hacking at a trapped one gives just those 3 points."
+            },
+            "The first 30 mobs of the same kind in each hour you are online count in full; after that, half. A mob that hits you, is hit by you or dies to you still counts as one."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "So trapping a zombie and letting it hit you forever gets you 5 points at most. Mobs from a mob farm also have to be ones you hit and that then hit you back, and each kind drops to half after 30 mobs in an hour. Wandering about and fighting different mobs is the fastest way."
+        },
+        {
+          "type": "p",
+          "text": "Elite mobs give {cfg:general.mobs.elite_attunement_multiplier} times the attunement points, and the cap per mob grows just as much."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A piece that has filled its stage stops gaining until you raise it; the others keep going.",
+            "Points are written into the gear every 2 seconds, and also when you log out, die or change dimension. Take a piece off mid-fight and you lose at most the last 2 seconds' worth.",
+            "How fast points come in is also capped by your [[attunement/budget|attunement budget]]."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "budget",
+      "title": "The attunement budget",
+      "icon": "minecraft:clock",
+      "summary": "The speed limit on attunement",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Attunement points can't come in as fast as you like. While you are online, your armor's <hl>attunement budget</hl> grows by {cfg:general.attunement.budget_per_hour} points an hour, up to {cfg:general.attunement.budget_cap} banked. Each hit that earns points takes that many points from the budget, only once even when all four pieces gain from it. When the budget runs dry, wait for it to grow back."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Weapons have a budget of their own that grows and fills the same way. The two are spent separately, so your armor and your weapon don't compete."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.budget_per_hour==360",
+            "cfg:general.attunement.budget_cap==720"
+          ],
+          "text": "The budget only grows while you are online and stops when full. In effect, it saves up at most two hours' worth for times you can't fight."
+        },
+        {
+          "type": "p",
+          "text": "The budget is there to stop mob farms. However fast you farm, an hour only ever gives this much; fighting normally, the budget is usually enough. The armor's tooltip shows how many more points it can gain right now and how long online until the budget is full."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.budget_per_hour==360",
+            "cfg:general.attunement.budget_cap==720"
+          ],
+          "text": "At this rate, going from nothing to stage 2 takes about 3 hours of budget, and stage 5 about 30; a full bank covers the first two hours. You won't fight that steadily, so it usually takes longer."
+        }
+      ]
+    },
+    {
+      "id": "stage_up",
+      "title": "Raising a stage",
+      "icon": "essentialcraft5:magician_table",
+      "summary": "One stage at a time at the Magician Table",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "When a piece has all the points its stage needs, the line in its tooltip is full and it stops gaining until you raise it."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the full piece in the middle of the [[crafting/magician_table|Magician Table]].",
+            "Put this stage's materials in the corners. Some corners take several items; hold Shift over the piece to see them.",
+            "Have enough MRU in the table and let it work, as with any other recipe."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A few stages call for boss drops. The {item:essentialcraft5:ancient_core} comes from the [[bestiary/mru_golem|MRU Golem]] and the {item:essentialcraft5:matrix_crystal} from the [[bestiary/matrix_shade|Matrix Specter]]."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Points per stage",
+              "Stages 1 to 5: {cfg:general.attunement.thresholds}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "Matrix rank per stage",
+                "Stages 1 to 5: {cfg:general.attunement.rank_gate}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "The matrix rank requirement"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.attunement.rank_gate"
+          ],
+          "text": "Attunement stage 1 needs matrix rank {cfg:general.attunement.rank_gate|at:0}, stage 2 needs rank {cfg:general.attunement.rank_gate|at:1} and stage 3 needs rank {cfg:general.attunement.rank_gate|at:2}. The table above lists the rest."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "A piece remembers the highest matrix rank of whoever wore it. While you wear it, it notes your rank every 2 seconds, and that note only ever goes up. The table reads this note, not who put the piece there. So right after a breakthrough, wear the piece for a few seconds before raising it."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "Attunement stage 5 needs matrix rank 9, which comes in Chapter 23 ([[apex/rank_9]])."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.matrix_rank.enabled",
+          "text": "Raising a stage only needs the points and materials; your matrix rank doesn't matter."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Stages you have reached never drop on their own. But a piece only goes up one stage at a time, and while it sits full, further fighting earns it nothing."
+        }
+      ]
+    },
+    {
+      "id": "transfer",
+      "title": "Attunement transfer",
+      "icon": "essentialcraft5:crystal_dust",
+      "summary": "Take half with you to a new set",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "When you move up to a better set, you don't have to throw away everything the old one earned. One <hl>attunement transfer</hl> at the [[crafting/magician_table|Magician Table]] gives the new piece half of the old piece's total points."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the new piece in the middle. It has to be at stage 0, with that stage not yet full.",
+            "Put the old piece in the top-left corner. It must be the same kind of piece: helmet for helmet, boots for boots.",
+            "Put 2 {item:essentialcraft5:crystal_dust} in the top-right corner and 1 {item:essentialcraft5:combined_magical_alloys} in the bottom-left, leaving the bottom-right empty.",
+            "Afterwards the old piece is still in the top-left corner with its points cleared and its stage kept. Take it back yourself."
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/transfer_armor"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The points only fill the new piece's stage 0, up to full; they never skip it past a stage.",
+            "Transfers only go from a lower set to a higher one, in this order: MHS armor, Wind armor, Void or Inquisitorium armor, then the Computer Guy's Suit.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "Crafting Void Armor uses up the MHS piece whole, and its stage and points don't carry over. To keep them, craft the void piece from a fresh MHS piece, then transfer from the attuned one to the new void piece."
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "When an {item:essentialcraft5:forged_elemental_sword} is reforged into a {item:essentialcraft5:verdict_blade}, half comes along by itself, with no transfer needed ([[attunement/verdict_blade]])."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mhs_armor",
+      "title": "Attuning MHS Armor",
+      "icon": "essentialcraft5:mhs_chestplate",
+      "summary": "A bigger shield share and more charge",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[gear/mhs_armor|MHS Armor]] goes up to attunement stage 2. At stage 0 it already has its Matrix Buffer, with each charged piece blocking a share of the hit, and each stage makes the share bigger and the battery larger."
+        },
+        {
+          "type": "h",
+          "text": "What each stage does"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Shield share (head / chest / legs / feet, out of 20)",
+            "Charge per piece",
+            "Also"
+          ],
+          "widths": [
+            1,
+            4,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "0",
+              "{cfg:general.mhs_armor.shares_helmet|at:0} / {cfg:general.mhs_armor.shares_chestplate|at:0} / {cfg:general.mhs_armor.shares_leggings|at:0} / {cfg:general.mhs_armor.shares_boots|at:0}",
+              "{cfg:general.mhs_armor.max_mru|at:0} MRU",
+              "Blocks physical and elemental damage, {cfg:general.mhs_armor.mru_per_damage} MRU per point"
+            ],
+            [
+              "1",
+              "{cfg:general.mhs_armor.shares_helmet|at:1} / {cfg:general.mhs_armor.shares_chestplate|at:1} / {cfg:general.mhs_armor.shares_leggings|at:1} / {cfg:general.mhs_armor.shares_boots|at:1}",
+              "{cfg:general.mhs_armor.max_mru|at:1} MRU",
+              "Afterflow"
+            ],
+            [
+              "2",
+              "{cfg:general.mhs_armor.shares_helmet|at:2} / {cfg:general.mhs_armor.shares_chestplate|at:2} / {cfg:general.mhs_armor.shares_leggings|at:2} / {cfg:general.mhs_armor.shares_boots|at:2}",
+              "{cfg:general.mhs_armor.max_mru|at:2} MRU",
+              "50% MRU Corruption resistance per piece; also blocks MRU discharges from monsters"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Afterflow (stage 1)",
+          "if": "cfg:general.mhs_armor.afterflow_ticks>0"
+        },
+        {
+          "type": "p",
+          "text": "With all four pieces at stage 1, each time the shield takes its share of a hit you get Haste I for {cfg:general.mhs_armor.afterflow_ticks|sec}, at most once every {cfg:general.mhs_armor.afterflow_cooldown|sec}. If a player dealt the hit, the Haste lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long.",
+          "if": "cfg:general.mhs_armor.afterflow_ticks>0"
+        },
+        {
+          "type": "h",
+          "text": "MRU discharges (stage 2)"
+        },
+        {
+          "type": "p",
+          "text": "From stage 2 the shield also blocks MRU discharges that a monster aims at you. Discharges with no attacker, such as those from machines or MRUCUs, still get through."
+        },
+        {
+          "type": "p",
+          "text": "A stage 2 piece has 50% MRU Corruption resistance instead of 25%. With all four at stage 2, each MRU Corruption hit drops from {cfg:general.corruption.mru_corruption_health_percent|mul:0.75|pct} to {cfg:general.corruption.mru_corruption_health_percent|mul:0.5|pct} of your max health."
+        },
+        {
+          "type": "h",
+          "text": "Stage-up materials"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To",
+            "Corners",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1",
+              "1 {item:essentialcraft5:pale_gem}, 2 {item:essentialcraft5:magic_plate}, 1 {item:essentialcraft5:crystal_dust}",
+              "10,000"
+            ],
+            [
+              "2",
+              "1 {item:essentialcraft5:elemental_core}, 2 {item:essentialcraft5:mithriline_plate}, 1 {item:essentialcraft5:ancient_core}",
+              "20,000"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/mhs_1"
+        },
+        {
+          "type": "p",
+          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]."
+        }
+      ]
+    },
+    {
+      "id": "wind_armor",
+      "title": "Attuning Wind Armor",
+      "icon": "essentialcraft5:wind_chestplate",
+      "summary": "More deflections, another jump in midair",
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:2>0"
+          ],
+          "text": "[[wind_gear/wind_armor|Wind Armor]] goes up to attunement stage 3. The full set has Windwalk from the start, and stages shorten the gap between deflections and add another midair jump. Each row in the table below needs all four pieces at that stage."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_armor.air_jump_velocity>0 || !cfg:general.wind_armor.air_jumps|stage:2>0",
+          "text": "[[wind_gear/wind_armor|Wind Armor]] goes up to attunement stage 3. The full set has Windwalk from the start, and stages shorten the gap between deflections. Each row in the table below needs all four pieces at that stage."
+        },
+        {
+          "type": "h",
+          "text": "What each stage does"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Effect"
+          ],
+          "widths": [
+            1,
+            7
+          ],
+          "rows": [
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0>0"
+              ],
+              "cells": [
+                "0",
+                "Windwalk: one incoming projectile turned aside every {cfg:general.wind_armor.deflect_cooldown_ticks|stage:0|sec}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0==0"
+              ],
+              "cells": [
+                "0",
+                "Windwalk: every incoming projectile passes through you"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.air_jump_velocity>0",
+                "cfg:general.wind_armor.air_jumps|stage:0>0"
+              ],
+              "cells": [
+                "0",
+                "Windwalk: {cfg:general.wind_armor.air_jumps|stage:0} extra jump(s) in midair"
+              ]
+            },
+            {
+              "if": "cfg:general.wind_armor.fall_damage_multiplier<1",
+              "cells": [
+                "0",
+                "Windwalk: fall damage cut to {cfg:general.wind_armor.fall_damage_multiplier|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:1>0"
+              ],
+              "cells": [
+                "1",
+                "A deflection every {cfg:general.wind_armor.deflect_cooldown_ticks|stage:1|sec}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:1==0"
+              ],
+              "cells": [
+                "1",
+                "Every incoming projectile is turned aside"
+              ]
+            },
+            [
+              "1",
+              "No knockback while sneaking"
+            ],
+            {
+              "if": [
+                "cfg:general.wind_armor.air_jump_velocity>0",
+                "cfg:general.wind_armor.air_jumps|stage:2>0"
+              ],
+              "cells": [
+                "2",
+                "{cfg:general.wind_armor.air_jumps|stage:2} extra jumps in midair"
+              ]
+            },
+            {
+              "if": "cfg:general.wind_armor.sprint_speed_bonus>0",
+              "cells": [
+                "2",
+                "{cfg:general.wind_armor.sprint_speed_bonus|pct} faster while sprinting"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:3>0"
+              ],
+              "cells": [
+                "3",
+                "A deflection every {cfg:general.wind_armor.deflect_cooldown_ticks|stage:3|sec}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:3==0"
+              ],
+              "cells": [
+                "3",
+                "Every incoming projectile is turned aside"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.tailwind_ticks>0"
+              ],
+              "cells": [
+                "3",
+                "A Tailwind for {cfg:general.wind_armor.tailwind_ticks|sec} after deflecting a projectile from an enemy, with +{cfg:general.wind_armor.tailwind_speed_bonus|pct} movement speed and +{cfg:general.wind_armor.tailwind_attack_speed_bonus|pct} attack speed"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Deflection",
+          "if": "cfg:general.wind_armor.deflect"
+        },
+        {
+          "type": "p",
+          "text": "A deflected projectile passes straight through you. Arrows, tridents, fireballs and anything else someone else shoots or throws count; your own don't. A fireball that passes through still explodes behind you.",
+          "if": "cfg:general.wind_armor.deflect"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_armor.deflect",
+            "cfg:general.wind_armor.tailwind_ticks>0"
+          ],
+          "text": "The stage 3 Tailwind only comes from projectiles shot by enemies, meaning hostile mobs, bosses and players who can hurt you. Projectiles from dispensers or teammates don't count."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind.deflect_points",
+            "cfg:general.wind_armor.deflect"
+          ],
+          "text": "If you also have the [[wind_mage/deflect|Wind Deflection]] pact, the shorter of the two cooldowns applies, halved."
+        },
+        {
+          "type": "h",
+          "text": "Midair jumps",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:0>0 || cfg:general.wind_armor.air_jumps|stage:1>0 || cfg:general.wind_armor.air_jumps|stage:2>0 || cfg:general.wind_armor.air_jumps|stage:3>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Press jump again while in the air to jump once more. Your jumps come back when you land.",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:0>0 || cfg:general.wind_armor.air_jumps|stage:1>0 || cfg:general.wind_armor.air_jumps|stage:2>0 || cfg:general.wind_armor.air_jumps|stage:3>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Stage-up materials"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To",
+            "Corners",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1",
+              "1 {item:essentialcraft5:wind_keeper}, 2 {item:essentialcraft5:pale_plate}, 1 {item:minecraft:feather}",
+              "20,000"
+            ],
+            [
+              "2",
+              "1 {item:essentialcraft5:wind_gem}, 2 {item:essentialcraft5:mithriline_plate}, 1 {item:essentialcraft5:matrix_crystal}",
+              "30,000"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "3",
+                "4 {item:essentialcraft5:ley_crystal}, 1 {item:essentialcraft5:void_plating}, 1 {item:essentialcraft5:twinkling_titanite}",
+                "40,000"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "3",
+                "Not available yet",
+                "40,000"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/wind_1"
+        },
+        {
+          "type": "p",
+          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]."
+        }
+      ]
+    },
+    {
+      "id": "void_armor",
+      "title": "Attuning Void Armor",
+      "icon": "essentialcraft5:void_chestplate",
+      "summary": "More dodges, elemental cover from stage 3",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[gear/void_armor|Void Armor]] goes up to attunement stage 4. With the full set on, stage 0 already gives Void Riposte and halves Hoanna's calamity effects. Higher stages raise the dodge chance and the charge, and from stage 3 the shield blocks elemental damage too."
+        },
+        {
+          "type": "h",
+          "text": "What each stage does"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Effect"
+          ],
+          "widths": [
+            1,
+            7
+          ],
+          "rows": [
+            [
+              "0",
+              "{cfg:general.void_armor.max_mru} MRU per piece, {cfg:general.void_armor.mru_per_damage} MRU per point blocked; chestplate dodges 20%; with the full set, Void Riposte +50% and calamities halved"
+            ],
+            [
+              "1",
+              "Chestplate dodges 25% of enemy attacks and inflicts Mire when it does; {cfg:general.void_armor.max_mru|mul:2} MRU per piece"
+            ],
+            [
+              "2",
+              "Full set: Void Riposte +75%, calamities cut to a quarter, Hoanna Radiation builds up half as fast again; the boots stop all fall damage"
+            ],
+            [
+              "3",
+              "The shield also blocks fire, explosion and lightning damage at twice the cost per point; the cost per point drops to {cfg:general.void_armor.mru_per_damage|mul:0.875|int} MRU"
+            ],
+            [
+              "4",
+              "Chestplate dodges 30% of enemy attacks; full set: Phase Shift after a dodge, and calamities no longer affect you"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The extra dodge chance from stages 1 and 4 only counts for attacks from enemies. Falls, burning, corruption and other damage with no attacker stay at 20%. Of the elemental damage the shield blocks from stage 3, the damage you keep taking while on fire and freezing in powder snow ignore armor, so they still get through."
+        },
+        {
+          "type": "h",
+          "text": "Void Riposte"
+        },
+        {
+          "type": "p",
+          "text": "With the full set on, for 3 seconds after the chestplate dodges a hit from a creature, your next solid melee hit deals 50% more damage, or 75% once all four are at stage 2. Against a player only {cfg:general.attunement.pvp_effect_scale|pct} of that bonus counts."
+        },
+        {
+          "type": "h",
+          "text": "Mire (stage 1)"
+        },
+        {
+          "type": "p",
+          "text": "Once the chestplate is at stage 1, whenever it dodges a hit from a creature, the attacker gets Slowness II for 1 second. Only the chestplate's stage matters here. If the attacker is a player it lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long."
+        },
+        {
+          "type": "h",
+          "text": "Phase Shift (stage 4)"
+        },
+        {
+          "type": "p",
+          "text": "With all four at stage 4, after the chestplate dodges a hit from a creature you take no damage at all for half a second, except from things like /kill or falling out of the world. If a player made the attack, Phase Shift lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long. Right after you take a hit, a hit of the same strength or weaker can't land for a short moment anyway, so Phase Shift mostly stops a heavier blow, or rapid-fire bullets and spells that ignore that window."
+        },
+        {
+          "type": "h",
+          "text": "Hoanna's calamities"
+        },
+        {
+          "type": "p",
+          "text": "With the full set on, the Sun Array's burning, an earthquake's push and the poison from Poison Fumes in Hoanna's [[hoanna/events|calamities]] are halved. With all four at stage 2 they are cut to a quarter, and at stage 4 they no longer affect you. For about 11 seconds after the Sun Array burns you, all burning damage is cut this way, no matter what set you on fire."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.radiation.enabled",
+          "text": "With all four at stage 2, [[hoanna/radiation|Hoanna Radiation]] builds up in you at half the rate again. That half comes off after armor, baubles and every other resistance are counted, so on its own it never cuts radiation to nothing."
+        },
+        {
+          "type": "h",
+          "text": "Stage-up materials"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To",
+            "Corners",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1",
+              "1 {item:essentialcraft5:void_core}, 2 {item:essentialcraft5:twinkling_titanite}, 1 {item:essentialcraft5:void_plating}",
+              "40,000"
+            ],
+            [
+              "2",
+              "1 {item:essentialcraft5:void_mru_reactor}, 4 {item:essentialcraft5:radiant_crystal}, 1 {item:essentialcraft5:demonic_plate}",
+              "60,000"
+            ],
+            [
+              "3",
+              "1 {item:essentialcraft5:aberrant_heart}, 8 {item:essentialcraft5:aberrant_residue}, 1 {item:essentialcraft5:demonic_core}, 1 {item:essentialcraft5:titanite}",
+              "80,000"
+            ],
+            [
+              "4",
+              "1 {item:essentialcraft5:ancient_core}, 1 {item:essentialcraft5:matter_of_eternity}, 1 {item:essentialcraft5:void_core}, 1 {item:essentialcraft5:demonic_core}",
+              "100,000"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/void_1"
+        },
+        {
+          "type": "p",
+          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]."
+        }
+      ]
+    },
+    {
+      "id": "inquisitorium_armor",
+      "title": "Attuning Inquisitorium Armor",
+      "icon": "essentialcraft5:inquisitorium_chestplate",
+      "summary": "More magic resistance, a Bulwark from stage 3",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[inquisitorium/armor|Inquisitorium Armor]] goes up to attunement stage 4. It needs no charge, and with the full set on it has Inquisitorium Law from stage 0; the higher it goes, the better it stands up to bosses and spells. Apart from never losing durability, which each piece has on its own, everything in the table below needs the full set and goes by its lowest stage."
+        },
+        {
+          "type": "h",
+          "text": "What each stage does"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Effect"
+          ],
+          "widths": [
+            1,
+            7
+          ],
+          "rows": [
+            [
+              "0",
+              "Inquisitorium Law: {cfg:general.inquisitorium_armor.magic_resistance|pct} magic resistance, {cfg:general.inquisitorium_armor.boss_resistance|pct} less damage from bosses, Edict, Conviction +{cfg:general.inquisitorium_armor.conviction_bonus|pct}; no durability loss while worn"
+            ],
+            [
+              "1",
+              "{cfg:general.inquisitorium_armor.magic_resistance_stage_1|pct} magic resistance; Absolution"
+            ],
+            [
+              "2",
+              "Conviction +{cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct}, and another {cfg:general.inquisitorium_armor.conviction_boss_bonus_stage_2|pct} against bosses"
+            ],
+            [
+              "3",
+              "Inquisitorium Bulwark: for a hit with an attacker, only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct} of the part above {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} of your max health after armor gets through"
+            ],
+            [
+              "4",
+              "{cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct} less armor-piercing damage (other than magic) that has an attacker; the Bulwark starts at {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct} and lets only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct} of the rest through"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Inquisitorium Law"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Magic resistance: magic damage that has an attacker is cut by {cfg:general.inquisitorium_armor.magic_resistance|pct}, or {cfg:general.inquisitorium_armor.magic_resistance_stage_1|pct} from stage 1. Damage with no attacker, such as corruption or MRU Corruption, isn't reduced.",
+            "Damage from bosses is cut by {cfg:general.inquisitorium_armor.boss_resistance|pct}.",
+            "Edict: harmful effects on you last only about {cfg:general.inquisitorium_armor.edict_reduction|mul:-1|add:1|pct} as long.",
+            "Conviction: any creature that hits you is convicted for {cfg:general.inquisitorium_armor.conviction_ticks|sec}, up to {cfg:general.inquisitorium_armor.conviction_max_targets|raw} at a time, with a puff of particles when it happens. Your own hits on a convicted target deal {cfg:general.inquisitorium_armor.conviction_bonus|pct} more damage, or {cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct} from stage 2. Reflected damage, damage dealt by baubles and the Verdict Blade's Verdict get no bonus.",
+            "Against players, only {cfg:general.attunement.pvp_effect_scale|pct} of the Conviction bonus counts."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Absolution (stage 1)"
+        },
+        {
+          "type": "p",
+          "text": "With all four at stage 1, killing a convicted target with your own hand clears one harmful effect from you, at most once every {cfg:general.inquisitorium_armor.absolution_cooldown|sec}."
+        },
+        {
+          "type": "h",
+          "text": "Bulwark (stage 3)"
+        },
+        {
+          "type": "p",
+          "text": "With all four at stage 3, when a hit with an attacker gets past your armor, only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct} of the part above {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} of your max health gets through. From stage 4 it starts at {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct}, and only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct} of the excess gets through."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "100 max health, a 60-point hit after armor",
+              "45 at stage 3, 39 at stage 4"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The Bulwark only takes the edge off heavy hits. A blow worth several times your health will still kill you."
+        },
+        {
+          "type": "h",
+          "text": "Stage-up materials"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To",
+            "Corners",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1",
+              "1 {item:essentialcraft5:demonic_core}, 2 {item:essentialcraft5:ackronite_ingot}, 1 {item:essentialcraft5:twinkling_titanite}",
+              "40,000"
+            ],
+            [
+              "2",
+              "Any 1 math core, 1 {item:essentialcraft5:demonic_plating}, 2 {item:essentialcraft5:ackronite_ingot}, 4 {item:essentialcraft5:frost_marrow}",
+              "60,000"
+            ],
+            [
+              "3",
+              "1 {item:essentialcraft5:aberrant_heart}, 8 {item:essentialcraft5:aberrant_residue}, 1 {item:essentialcraft5:neuronic_enriched_plating}, 1 {item:essentialcraft5:demonic_core}",
+              "80,000"
+            ],
+            [
+              "4",
+              "1 {item:essentialcraft5:inquisitorium_chip}, 1 {item:essentialcraft5:matrix_crystal}, 1 {item:essentialcraft5:matter_of_eternity}, 1 {item:essentialcraft5:demonic_core}",
+              "100,000"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/inquisitorium_1"
+        },
+        {
+          "type": "p",
+          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Math cores drop from the Holographic Projection ([[hologram/math_cores]])."
+        }
+      ]
+    },
+    {
+      "id": "computer_armor",
+      "title": "Attuning the Computer Guy's Suit",
+      "icon": "essentialcraft5:computer_chestplate",
+      "summary": "More module slots, a wider shield",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The [[computer/suit|Computer Guy's Suit]] goes up to attunement stage 5. Stage 0 is the suit as you know it, and every stage adds something. Chapter 21 of the main line asks you to raise all four pieces to stage 2 ([[terminal/attuned]])."
+        },
+        {
+          "type": "h",
+          "text": "What each stage does"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Effect"
+          ],
+          "rows": [
+            [
+              "1",
+              "Chestplate module slots go up to {cfg:general.computer_modules.slots_chestplate|add:1|min:4}; the shield's cost per point blocked drops to {cfg:general.computer_armor.stage_price_multipliers|at:1|pct} of {cfg:general.computer_armor.mru_per_damage} MRU"
+            ],
+            [
+              "2",
+              "The shield also blocks magic damage from monsters, at {cfg:general.computer_armor.magic_price_multiplier} times the cost per point"
+            ],
+            [
+              "3",
+              "Helmet module slots go up to {cfg:general.computer_modules.slots_helmet|add:1|min:4} and leggings to {cfg:general.computer_modules.slots_leggings|add:1|min:4}; Matrix Repair"
+            ],
+            [
+              "4",
+              "The cost drops to {cfg:general.computer_armor.stage_price_multipliers|at:4|pct} of {cfg:general.computer_armor.mru_per_damage} MRU; {cfg:general.computer_armor.piercing_share|pct} of armor-piercing damage from monsters (other than magic) is blocked, at {cfg:general.computer_armor.piercing_price_multiplier} times the cost per point"
+            ],
+            [
+              "5",
+              "Boot module slots go up to {cfg:general.computer_modules.slots_boots|add:1|min:4}; Overload Barrier"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "A wider shield (stages 2 and 4)"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The magic damage blocked from stage 2 has to come from a mob aimed at you, such as a witch's Harming potion, an evoker's fangs or a warden's sonic boom. Damage with no attacker, such as corruption effects, MRU Corruption or poison, still isn't blocked, and neither is damage from players (see Against players below).",
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "text": "With a [[terminal/matrix_shunt|Matrix Shunt Module]] on the chestplate, the shunt takes its half first and the shield blocks what is left."
+            },
+            "From stage 4 the shield also takes part of armor-piercing damage that isn't magic, when a monster deals it. Vanilla has almost none of this; it mostly comes from other mods' skills.",
+            "For these two new kinds of damage, no MRU is taken from an {item:essentialcraft5:infinite_mru_crystal}; only your other soul storage, your reservoir and the armor's own charge pay, and if they can't, the damage isn't blocked.",
+            {
+              "if": "bauble:essentialcraft5:eta_amulet",
+              "text": "While you wear an {item:essentialcraft5:eta_amulet}, at any stage, the extra half of damage it makes you take isn't blocked by the shield and goes straight to your health."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Matrix Repair (stage 3)"
+        },
+        {
+          "type": "p",
+          "text": "With all four at stage 3, after {cfg:general.computer_armor.repair_delay|sec} without taking damage you heal {cfg:general.computer_armor.repair_percent|pct} of your max health every second, at {cfg:general.computer_armor.repair_mru_per_health} MRU per point healed. It doesn't work while you are corroded, and if your healing is halved it heals half as much and you only pay for what actually comes back."
+        },
+        {
+          "type": "h",
+          "text": "Overload Barrier (stage 5)"
+        },
+        {
+          "type": "p",
+          "text": "With all four at stage 5, when the shield blocks a single hit of at least {cfg:general.computer_armor.overload_threshold|pct} of your max health, you take no damage at all for the next {cfg:general.computer_armor.overload_duration|sec} (except from things like /kill or falling out of the world). It then needs {cfg:general.computer_armor.overload_cooldown|sec} before it can trigger again, even if you log out and back in."
+        },
+        {
+          "type": "h",
+          "text": "Against players"
+        },
+        {
+          "type": "p",
+          "text": "When a player hits you, the shield blocks at most {cfg:general.computer_armor.pvp_shield_max_share|pct} of that hit, at {cfg:general.computer_armor.pvp_shield_cost_multiplier} times the cost per point, and the two kinds of damage added at stages 2 and 4 aren't blocked against players at all. If a player's hit sets off the Overload Barrier, it lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long."
+        },
+        {
+          "type": "h",
+          "text": "Stage-up materials"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To",
+            "Corners",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1",
+              "2 {item:essentialcraft5:demonic_plate}, 1 {item:essentialcraft5:logic_core}, 1 {item:essentialcraft5:force_field_plating}",
+              "50,000"
+            ],
+            [
+              "2",
+              "Any math core for the chestplate, a {item:essentialcraft5:logic_core} for the other three; 2 {item:essentialcraft5:tide_crystal}, 1 {item:essentialcraft5:demonic_core}",
+              "70,000"
+            ],
+            [
+              "3",
+              "1 {item:essentialcraft5:aberrant_heart}, 1 {item:essentialcraft5:elder_remnant}, 1 {item:essentialcraft5:matter_of_eternity}, 1 {item:essentialcraft5:neuronic_enriched_plating}",
+              "90,000"
+            ],
+            [
+              "4",
+              "1 {item:essentialcraft5:ancient_core}, 2 {item:essentialcraft5:wind_gem}, 1 {item:essentialcraft5:void_mru_reactor}",
+              "120,000"
+            ],
+            {
+              "if": "cfg:machines.enrichment_chamber.shade.enabled",
+              "cells": [
+                "5",
+                "1 {item:essentialcraft5:calamity_remnant}, 4 {item:essentialcraft5:umbral_crystal}, 1 {item:essentialcraft5:demonic_core}, 1 {item:minecraft:nether_star}",
+                "150,000"
+              ]
+            },
+            {
+              "if": "!cfg:machines.enrichment_chamber.shade.enabled",
+              "cells": [
+                "5",
+                "Not available yet",
+                "150,000"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/computer_1"
+        },
+        {
+          "type": "p",
+          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Math cores drop from the Holographic Projection ([[hologram/math_cores]])."
+        }
+      ]
+    },
+    {
+      "id": "ember_sword",
+      "title": "Attuning the Ember Elemental Sword",
+      "icon": "essentialcraft5:forged_elemental_sword",
+      "summary": "Longer effects, then a reforging",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The [[void_machines/ember_sword|Ember Elemental Sword]] goes up to attunement stage 2, gaining points as you fight with it in your main hand ([[attunement/points]]). Once it reaches stage 2, it can be reforged into a {item:essentialcraft5:verdict_blade}."
+        },
+        {
+          "type": "h",
+          "text": "What each stage does"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Effect"
+          ],
+          "widths": [
+            1,
+            7
+          ],
+          "rows": [
+            [
+              "1",
+              "The primary element's on-hit effect and the right-click effect last {cfg:general.ember_sword.stage1_duration_multiplier} times as long"
+            ],
+            [
+              "2",
+              "Ember pair on-hit effects cost only {cfg:general.ember_sword.stage2_ember_cost_multiplier|mul:50} MRU per hit and last {cfg:general.ember_sword.stage2_ember_duration_multiplier} times as long"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "On other players, only {cfg:general.attunement.pvp_effect_scale|pct} of the extra duration from these stages counts."
+        },
+        {
+          "type": "p",
+          "text": "Each stage also adds {cfg:general.attunement.damage_per_stage|pct} attack damage, {cfg:general.attunement.damage_per_stage|mul:2|pct} at stage 2."
+        },
+        {
+          "type": "h",
+          "text": "Stage-up materials"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To",
+            "Corners",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1",
+              "Any 2 embers, 1 {item:essentialcraft5:void_plating}, 1 {item:essentialcraft5:demonic_plate}",
+              "40,000"
+            ],
+            [
+              "2",
+              "Any 2 embers, 1 {item:essentialcraft5:demonic_core}, 1 {item:essentialcraft5:void_mru_reactor}",
+              "60,000"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/ember_sword_1"
+        },
+        {
+          "type": "p",
+          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Once it reaches stage 2, read on in [[attunement/verdict_blade]]."
+        }
+      ]
+    },
+    {
+      "id": "verdict_blade",
+      "title": "{item:essentialcraft5:verdict_blade}",
+      "icon": "essentialcraft5:verdict_blade",
+      "summary": "Reforged ember sword; big foes take more",
+      "complete": "essentialcraft5:guide/attunement/verdict_blade",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:verdict_blade"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): reforge an {item:essentialcraft5:forged_elemental_sword} at attunement stage 2 into a {item:essentialcraft5:verdict_blade}. Every fully charged hit that lands adds damage based on the target's max health, and from stage 2 it can strike a whole ring of enemies around you at once."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: an Ember Elemental Sword at attunement stage 2, 1 {item:essentialcraft5:inquisitorium_chip}, 1 {item:essentialcraft5:demonic_core}, 1 {item:essentialcraft5:matter_of_eternity} and 2 {item:essentialcraft5:matrix_crystal}s, plus 200,000 MRU in the Magician Table."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.attunement.rank_gate"
+          ],
+          "text": "The table also checks the Matrix Rank recorded on the sword, which has to be at least {cfg:general.attunement.rank_gate|at:2}. Hold the Ember Elemental Sword in your main hand for a few seconds and it records your current Matrix Rank ([[attunement/stage_up]])."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the Ember Elemental Sword in the middle of the [[crafting/magician_table|Magician Table]] and the materials in the corners.",
+            "When the table is done, take out your {item:essentialcraft5:verdict_blade}."
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:magician_table",
+          "items": [
+            "essentialcraft5:verdict_blade"
+          ],
+          "optional": true
+        },
+        {
+          "type": "list",
+          "items": [
+            "The elements and ember pairs set at the forge, the enchantments and the stored MRU all carry over.",
+            "Attunement starts again at stage 0, with half of the sword's total points brought across, up to a full stage 0.",
+            "On-hit and right-click element and ember effects work as before, with the durations and costs of a stage 2 Ember Elemental Sword."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a {item:essentialcraft5:verdict_blade}."
+        },
+        {
+          "type": "h",
+          "text": "Stats"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Attack damage",
+              "6 more than the Ember Elemental Sword it came from, about 51 with the best embers"
+            ],
+            [
+              "Attack speed",
+              "1.6"
+            ],
+            [
+              "Durability",
+              "Never lost"
+            ],
+            [
+              "MRU",
+              "Holds 50,000 MRU; costs come from the storage items you carry first"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "[[matrix/alignment|Matrix Trait]]",
+                "{cfg:general.verdict_blade.trait_multiplier} times as strong as on ordinary weapons with Traits"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Verdict",
+          "if": "cfg:general.verdict_blade.verdict.cap>0"
+        },
+        {
+          "type": "p",
+          "text": "Each time a fully charged hit lands on a target that isn't a player, sweeps and Judgment included, a second strike follows right after. At stage 0 it deals {cfg:general.verdict_blade.verdict.percent|pctv} of the target's max health, capped at {cfg:general.verdict_blade.verdict.cap} a strike, and higher stages deal more. It ignores armor and costs {cfg:general.verdict_blade.verdict.mru} MRU each time; without the MRU it doesn't happen.",
+          "if": "cfg:general.verdict_blade.verdict.cap>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.verdict.cap>0",
+          "text": "A swing made before the attack indicator fills up gets no second strike."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.verdict_blade.verdict.cap>0",
+            "cfg:general.verdict_blade.verdict.pvp_percent>0"
+          ],
+          "text": "It strikes players too, for {cfg:general.verdict_blade.verdict.pvp_percent|pctv} of their max health, capped at {cfg:general.verdict_blade.verdict.cap} a strike; neither number grows with the stage."
+        },
+        {
+          "type": "p",
+          "text": "Against a 20-health zombie that is only {cfg:general.verdict_blade.verdict.percent|mul:0.2} at stage 0; the more health the target has, the more it adds.",
+          "if": "cfg:general.verdict_blade.verdict.cap>0"
+        },
+        {
+          "type": "p",
+          "text": "Bosses never get the second strike.",
+          "if": "cfg:general.verdict_blade.verdict.cap>0"
+        },
+        {
+          "type": "h",
+          "text": "Judgment (stage 2)"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "From stage 2, hold right-click for at least {cfg:general.verdict_blade.judgment.charge_ticks|sec} and let go. Up to {cfg:general.verdict_blade.judgment.max_targets} hostile mobs within {cfg:general.verdict_blade.judgment.radius} blocks each take a hit worth {cfg:general.verdict_blade.judgment.damage_multiplier|pct} of your current attack damage, which also sets off Verdict. Each use costs {cfg:general.verdict_blade.judgment.mru} MRU, with a {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec} cooldown at stage 2 that drops by {cfg:general.verdict_blade.judgment.cooldown_per_stage|sec} per stage after that."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "Judgment only strikes hostile mobs and bosses. Villagers, pets and players are never caught in it, and neither are hostile mobs with a name or on a lead. If it hits nothing, it costs no MRU and starts no cooldown. From stage 2, right-click no longer blocks; it charges Judgment instead."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier<=0",
+          "text": "Judgment is turned off. From stage 2, right-click still no longer blocks."
+        },
+        {
+          "type": "p",
+          "text": "From stage 5, bosses caught by Judgment are {lang:effect.essentialcraft5.bisected} for {cfg:general.verdict_blade.judgment.bisect_ticks|sec}, dealing half damage and receiving half healing.",
+          "if": [
+            "cfg:general.verdict_blade.judgment.bisect_ticks>0",
+            "cfg:general.verdict_blade.judgment.damage_multiplier>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What each stage does"
+        },
+        {
+          "type": "table",
+          "if": [
+            "cfg:general.verdict_blade.verdict.cap>0",
+            "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+            "cfg:general.verdict_blade.judgment.bisect_ticks>0"
+          ],
+          "header": [
+            "Stage",
+            "Verdict (max health / cap per strike)",
+            "Also"
+          ],
+          "widths": [
+            1,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "0",
+              "{cfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap}",
+              "Nothing"
+            ],
+            [
+              "1",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:1|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:1|addcfg:general.verdict_blade.verdict.cap}",
+              "Nothing"
+            ],
+            [
+              "2",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:2|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:2|addcfg:general.verdict_blade.verdict.cap}",
+              "Judgment, {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec} cooldown"
+            ],
+            [
+              "3",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:3|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:3|addcfg:general.verdict_blade.verdict.cap}",
+              "Judgment cooldown {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-3|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+            ],
+            [
+              "4",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:4|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:4|addcfg:general.verdict_blade.verdict.cap}",
+              "Judgment cooldown {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-4|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+            ],
+            [
+              "5",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:5|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:5|addcfg:general.verdict_blade.verdict.cap}",
+              "Judgment cooldown {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-5|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}; bosses become {lang:effect.essentialcraft5.bisected}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.verdict_blade.verdict.cap>0",
+            "cfg:general.verdict_blade.judgment.damage_multiplier<=0||cfg:general.verdict_blade.judgment.bisect_ticks<=0"
+          ],
+          "text": "Each stage adds {cfg:general.verdict_blade.verdict.percent_per_stage|pctv} of max health to Verdict and {cfg:general.verdict_blade.verdict.cap_per_stage} to its cap."
+        },
+        {
+          "type": "p",
+          "text": "Each stage also adds {cfg:general.attunement.damage_per_stage|pct} attack damage, {cfg:general.attunement.damage_per_stage|mul:5|pct} at stage 5."
+        },
+        {
+          "type": "h",
+          "text": "Stage-up materials"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To",
+            "Corners",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1",
+              "1 {item:essentialcraft5:demonic_core}, any 2 embers, 1 {item:essentialcraft5:ackronite_ingot}",
+              "60,000"
+            ],
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "cells": [
+                "2",
+                "Any 1 math core, 8 {item:essentialcraft5:aberrant_residue}, 1 {item:essentialcraft5:matter_of_eternity}, 1 {item:essentialcraft5:condensed_matrix}",
+                "80,000"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.enabled||!cfg:machines.enrichment_chamber.condense.enabled",
+              "cells": [
+                "2",
+                "Not available yet",
+                "80,000"
+              ]
+            },
+            [
+              "3",
+              "1 {item:essentialcraft5:aberrant_heart}, 1 {item:essentialcraft5:elder_remnant}, 1 {item:essentialcraft5:glitchy_core}, any 1 ember",
+              "100,000"
+            ],
+            [
+              "4",
+              "1 {item:essentialcraft5:ancient_core}, 2 {item:essentialcraft5:demonic_core}, 1 {item:essentialcraft5:wind_gem}",
+              "120,000"
+            ],
+            {
+              "if": "cfg:machines.enrichment_chamber.shade.enabled",
+              "cells": [
+                "5",
+                "1 {item:essentialcraft5:calamity_remnant}, 4 {item:essentialcraft5:umbral_crystal}, 1 {item:essentialcraft5:demonic_core}, 1 {item:minecraft:nether_star}",
+                "150,000"
+              ]
+            },
+            {
+              "if": "!cfg:machines.enrichment_chamber.shade.enabled",
+              "cells": [
+                "5",
+                "Not available yet",
+                "150,000"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/verdict_1"
+        },
+        {
+          "type": "p",
+          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Math cores drop from the Holographic Projection ([[hologram/math_cores]])."
+        }
+      ]
+    }
+  ]
+}

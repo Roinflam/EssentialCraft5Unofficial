@@ -1,0 +1,214 @@
+[
+  {
+    "id": "void_crystal_pillar",
+    "title": "{item:essentialcraft5:void_crystal_pillar}",
+    "icon": "essentialcraft5:void_crystal_pillar",
+    "summary": "第三档的 ESPE 水晶柱",
+    "complete": "essentialcraft5:guide/demons/void_crystal_pillar",
+    "items": [
+      "essentialcraft5:void_crystal_pillar"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：做一根{item:essentialcraft5:void_crystal_pillar}。召唤恶魔的五芒星要 4 根，这是这一章的第一步。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：6 块{item:essentialcraft5:void_plating}、1 个{item:essentialcraft5:void_core}、1 个{item:essentialcraft5:void_mru_reactor}，围住一根{item:essentialcraft5:pale_crystal_pillar}（见[[pentacle/pale_crystal_pillar]]），那根淡青柱会被吃掉。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:void_crystal_pillar"
+      },
+      {
+        "type": "p",
+        "text": "它和米斯莱水晶柱一样攒 ESPE（[[mithriline/crystal_pillar]]）：头顶露天时每刻 {cfg:machines.mithriline_crystal_pillar.espe_generated}（末地 {cfg:machines.mithriline_crystal_pillar.espe_generated_end}），最多存 {cfg:machines.mithriline_crystal_pillar.max_espe}；三格高，拆哪一格都整根拆掉。不同的是档位：五种水晶柱里它排第三（米斯莱、淡青之后），要求「虚空以上」的柱位只认它和更高档的。"
+      },
+      {
+        "type": "list",
+        "items": [
+          "用在恶魔五芒星上：荧石上面那 4 个柱位要它（[[demons/demonic_pentacle]]）；",
+          "灵魂五芒星 2 档要 4 根（[[pentacle/tier_two]]）；",
+          "恶魔水晶柱的原料（[[pentacle/tier_three]]）；",
+          "底座的附魔加成是 <t>30</t>，两根就能让魔力附魔台到 60 级（[[devices/magical_enchanter]]）。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "省着用",
+        "text": "虚空核心和 MRU 反应核只出遗迹箱子。走到召唤恶魔这一步，连五芒星带 4 根虚空柱就要大约 5 个核心、4 个反应核，别全拿去做机器。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到一根虚空水晶柱。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/crystal_pillars/void_crystal_pillar.json — IGI / ICI / IPI：虚空板 ×6、虚空核心、淡青水晶柱、MRU 反应核",
+      "block/MithrilineCrystalPillarBlock.java Tier.VOID — 档位 2、附魔加成 30（只在底座）；产能、上限共用 machines.mithriline_crystal_pillar",
+      "blockentity/MagicalEnchanterBlockEntity.java scanPower — 周围 5×3×5 附魔加成之和，上限 max_enchant_level（默认 60）",
+      "tools/plan/batch7.md §2.2 — 召唤恶魔：虚空板 28、虚空核心 5、MRU 反应核 4（五芒星 + 4 根虚空柱）"
+    ]
+  },
+  {
+    "id": "soul_scriber",
+    "title": "灵魂刻刀与被俘灵魂",
+    "icon": "essentialcraft5:soul_scriber",
+    "summary": "收村民、末影人、风法师的灵魂",
+    "complete": "essentialcraft5:guide/demons/soul",
+    "optional": true,
+    "items": [
+      "essentialcraft5:soul_scriber",
+      "essentialcraft5:captured_soul"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：用{item:essentialcraft5:soul_scriber}收一个{item:essentialcraft5:captured_soul}。恶魔有时要的不是东西，而是某种生物的灵魂，只有这把刀收得到。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：1 块下界岩、1 颗下界石英、1 根木棍，竖着摆一列。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:soul_scriber"
+      },
+      {
+        "type": "h",
+        "text": "怎么收"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "拿着刻刀亲手去打村民、末影人或风法师（[[wind_mage/wind_mages]]）。",
+          "打完这一下它剩下的血不到 1.5 颗心时，刻刀把它的灵魂收走：它当场倒下，什么都不掉，脚下多一个被俘灵魂。",
+          "这一下直接把它打死也行：照常掉东西，另外多掉一个灵魂。"
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "灵魂按生物种类分，同一种的能叠到 64 个；物品名后面的括号里写着是谁的灵魂。",
+          "刻刀打中生物不掉耐久，攻击力只有 2（木剑是 4）。",
+          "只有玩家亲手打才算；机器、横扫打到的都不收。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "收魂也是杀",
+        "text": "收走灵魂的那一下就是把它杀了：村民会放开床和工作站，附近的铁傀儡、其他村民都记着这笔账。在别人的领地里收不了。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到一个被俘灵魂。"
+      }
+    ],
+    "_src": [
+      "item/SoulScriberItem.java:58 hurtEnemy — 真玩家、目标在 #essentialcraft5:soul_capturable；已死：多掉 1 个灵魂；⌊生命⌋ ≤ 2：soul_capture 伤害打死后掉灵魂",
+      "data/essentialcraft5/tags/entity_types/soul_capturable.json — 村民、末影人、风法师",
+      "data/essentialcraft5/damage_type/soul_capture.json + tags/damage_type/no_death_loot.json — 收魂的死亡不掉东西、不给经验",
+      "item/SoulScriberItem.java — SwordItem(Tiers.WOOD, 1, -2.4) 耐久 32，hurtEnemy 不调父类（命中不掉耐久）",
+      "item/CapturedSoulItem.java — 一组 64，NBT entity，显示名「被俘灵魂（实体名）」",
+      "data/essentialcraft5/recipes/demonic/soul_scriber.json — 下界岩 / 石英 / 木棍"
+    ]
+  },
+  {
+    "id": "ackronite",
+    "title": "阿克罗尼特",
+    "icon": "essentialcraft5:ackronite_ingot",
+    "summary": "锭 → 恶魔板 → 恶魔核心",
+    "complete": "essentialcraft5:guide/demons/ackronite",
+    "items": [
+      "essentialcraft5:ackronite_ingot",
+      "essentialcraft5:demonic_plate",
+      "essentialcraft5:demonic_core"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：把恶魔给的{item:essentialcraft5:ackronite_ingot}做成{item:essentialcraft5:demonic_plate}。阿克罗尼特只能从恶魔交易里来，后面的东西几乎都要它。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：{item:essentialcraft5:magician_table}里中间放 1 块{item:essentialcraft5:magic_fortified_plating}、四周放 4 块阿克罗尼特锭，花 2000 MRU 出 4 块恶魔板（见[[crafting/magician_table]]）。再用 4 块恶魔板、4 颗{item:essentialcraft5:elemental_gem}围住 1 颗{item:essentialcraft5:mru_resonating_crystal}，做出{item:essentialcraft5:demonic_core}。"
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:demonic_plate",
+          "essentialcraft5:demonic_core"
+        ]
+      },
+      {
+        "type": "h",
+        "text": "用在哪"
+      },
+      {
+        "type": "list",
+        "items": [
+          "恶魔核心装在魔力工作台上当升级，速度 <t>×16</t>（[[storage/upgrades]]）。",
+          "凡是收「魔力板」一类的配方都能用恶魔板代替，收「魔力核心」一类的都能用恶魔核心代替；武器工作台的核心格也认恶魔核心。",
+          "4 块恶魔板做 16 块{item:essentialcraft5:demonic_plating}（[[demons/demonic_plating]]）。",
+          "6 块锭、2 个恶魔核心加一根虚空柱做恶魔水晶柱，灵魂五芒星升 3 档要用（[[pentacle/tier_three]]）。",
+          "阿克罗尼特锭当枪的材料：伤害 26、弹量 20，后坐 0，当狙击镜放大 16 倍（[[guns/parts]]）。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到一块恶魔板。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/demonic/demonic_plate.json — 魔术师台：魔力强化板 + 阿克罗尼特锭 ×4 → 4 个，2000 MRU",
+      "data/essentialcraft5/recipes/demonic/demonic_core.json — ISI / SES / ISI：恶魔板、元素晶石、MRU 共鸣水晶",
+      "api/MagicianTableUpgrades.java:48 — demonic_core 16",
+      "tools/tags/ecdemonic.json — 恶魔核心进 cores/magic、恶魔板进 plates/magic；registry/ECWeaponMaker.java:41 MAGIC_CORES = cores/magic",
+      "gun/GunMaterials.java:61 — demonic：耐久 3000、伤害 26、装填 2、后坐 0、散布 1、间隔 1、弹量 20；:73 狙击镜 16 倍"
+    ]
+  },
+  {
+    "id": "demonic_plating",
+    "title": "{item:essentialcraft5:demonic_plating}",
+    "icon": "essentialcraft5:demonic_plating",
+    "summary": "16 色护板，也能当外壳",
+    "items": [
+      "essentialcraft5:demonic_plating"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：用 4 块{item:essentialcraft5:demonic_plate}做 16 块{item:essentialcraft5:demonic_plating}（无序）。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:demonic_plating"
+      },
+      {
+        "type": "list",
+        "items": [
+          "和别的护板一样能染色：拿着染料右键改颜色，潜行右键染一片（[[alloys/plating]]），挖下来总是白色。",
+          "硬度 3、抗爆 60，要镐。",
+          "算富集仓的外壳方块（[[enrichment/controller]]），也能铺特斯拉线圈的底座（[[tesla/mru_coil]]）。",
+          "灵魂五芒星 3 档要 4 块（[[pentacle/tier_three]]）。",
+          "能用魔力凿凿出 16 种花纹（[[decorations/magical_chisel]]）。"
+        ]
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/demonic/demonic_plating.json — 恶魔板 ×4 → 16（无序）",
+      "registry/ECDemonic.java DEMONIC_PLATING — DyeableBlock，硬度 3、legacyResistance(3, 100) → 60，要镐",
+      "tools/tags/ecdemonic.json — mrucuec_casing、mru_coil_base",
+      "block/FancyMaterial.java DEMONIC_PLATING — 16 种花纹（花纹硬度 3、抗爆 60）"
+    ]
+  }
+]

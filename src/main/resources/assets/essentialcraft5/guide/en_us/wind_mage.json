@@ -1,0 +1,555 @@
+{
+  "id": "wind_mage",
+  "order": 92,
+  "group": "side",
+  "title": "Side Chapter · Wind Mages",
+  "subtitle": "Ranged night hunters carrying the wind",
+  "icon": "essentialcraft5:wind_mage_spawn_egg",
+  "entries": [
+    {
+      "id": "wind_mages",
+      "title": "Wind Mages",
+      "icon": "essentialcraft5:wind_mage_spawn_egg",
+      "summary": "Three ranks, all shooting MRU arrows",
+      "complete": "essentialcraft5:guide/wind_mage/wind_mages",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_mage_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Those men split me into little bottles and carry me in their coats through the night. Break a bottle and I come back. When I do, I remember who let me out.",
+          "by": "Sayings of the Wind"
+        },
+        {
+          "type": "image",
+          "texture": "essentialcraft5:textures/special/bookicons/windmages.png",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): get to know Wind Mages and defeat one. They carry the wind around with them, shut up in bottles. Break a bottle they drop to raise your [[wind/air_potion|wind relation]], and the kind Archmages drop also goes into the {item:essentialcraft5:wind_tablet}."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "text": "Wind Mages are hostile Overworld mobs that spawn <em>at night or in dark places</em> like zombies and skeletons, everywhere except Mushroom Fields and the Deep Dark. Sunlight doesn't burn them, so they stay around after dawn, and you can run into them from your very first night."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "They spawn in Hoanna too."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_mage.max_nearby>0",
+          "text": "In this world Wind Mages never spawn on their own, and only a spawn egg brings one out."
+        },
+        {
+          "type": "h",
+          "text": "Three ranks"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Rank",
+            "Robe",
+            "Damage per arrow (Normal)",
+            "Drops"
+          ],
+          "rows": [
+            [
+              "Apprentice",
+              "green",
+              "about 5",
+              "{item:essentialcraft5:bottled_wind}"
+            ],
+            [
+              "Mage",
+              "blue",
+              "about 10",
+              "{item:essentialcraft5:imprisoned_wind}"
+            ],
+            [
+              "Archmage",
+              "red",
+              "about 15",
+              "{item:essentialcraft5:wind_keeper}, and now and then a piece of the [[wind_mage/wind_mage_armor|Wind Mage set]]"
+            ]
+          ],
+          "widths": [
+            2,
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "All three ranks are equally common and have 20 health, or 10 hearts. They only shoot <em>MRU arrows</em> and never fight up close. Once they spot you they come within 15 blocks, stop, and shoot one arrow every 1 to 3 seconds, faster the closer you are. Arrows hurt less on Easy and ×1.5 on Hard."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Archmages hit hard",
+          "text": "An Archmage's arrow deals 15 damage. Two of them drop a player with no armor, and on Hard a single one does. Bring a shield and armor, or use cover to close in."
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.mobs.storm_sorcerer.thunder_chance>0"
+          ],
+          "text": "A fourth kind: the Storm Sorcerer"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.mobs.storm_sorcerer.thunder_chance>0"
+          ],
+          "text": "During a thunderstorm, {cfg:general.mobs.storm_sorcerer.thunder_chance|pct} of the wind mages that spawn are <em>Storm Sorcerers</em>. One has {cfg:general.mobs.storm_sorcerer.max_health} health, knocks you back with gust bolts and calls lightning down on a ring of sparks under your feet, and sometimes drops a {item:essentialcraft5:wind_keeper} when it falls ([[bestiary/storm_sorcerer]])."
+        },
+        {
+          "type": "h",
+          "text": "MRU arrows"
+        },
+        {
+          "type": "p",
+          "text": "An MRU arrow trails a wisp of smoke, fades after 3 seconds and can't be picked up. It only hits living creatures and passes straight through item frames, paintings, armor stands, minecarts and boats. When it touches a block it vanishes without sticking in or setting off buttons, pressure plates, tripwires or targets."
+        },
+        {
+          "type": "p",
+          "text": "The damage counts as the Wind Mage's own, so a mob it hits by mistake turns on it."
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "style": "info",
+          "title": "Archmages are rare",
+          "text": "Wind Mages make up under 0.5% of the Overworld's hostile mobs, split evenly between the three ranks, so on average only one hostile mob in some eight hundred is an Archmage. Once {cfg:general.wind_mage.max_nearby} Wind Mages are within {cfg:general.wind_mage.nearby_radius} blocks, no more spawn there, so mob farms can't pile them up. With average luck you clear some eight hundred mobs before you meet one, with bad luck over a thousand, which is many nights of hunting. If you need a {item:essentialcraft5:wind_keeper}, spend your nights outside and look out for red robes."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "title": "Call an Archmage yourself",
+          "text": "Once you are Windbound you can make a {item:essentialcraft5:wind_horn} and blow it at night to call an Archmage. Defeat it yourself and it always drops a Trapped Wind (see [[wind/wind_horn]] and [[wind/archmage]])."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "bauble:essentialcraft5:wind_catcher"
+          ],
+          "text": "A steadier way is the {item:essentialcraft5:wind_catcher}. If you find one in a dungeon, wear it while drinking Air Potions and you'll catch a Trapped Wind every six or seven bottles on average ([[wind_mage/bottled_winds]])."
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:wind_mage_spawn_egg} only exists in Creative. Using it on a monster spawner just releases one mage beside it and leaves the spawner as it was."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have defeated a Wind Mage."
+        }
+      ]
+    },
+    {
+      "id": "bottled_winds",
+      "title": "Winds from Wind Mages",
+      "icon": "essentialcraft5:wind_keeper",
+      "summary": "Break them to please the wind",
+      "complete": "essentialcraft5:guide/wind_mage/bottled_winds",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:bottled_wind",
+            "essentialcraft5:imprisoned_wind",
+            "essentialcraft5:wind_keeper"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): collect the winds Wind Mages carry. Right-click one to break it and let the wind out, and your <em>wind relation</em>, the measure of how well the wind knows you, goes up ([[wind/air_potion]])."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Wind",
+            "Dropped by",
+            "Raw relation",
+            "You get with no bonus"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:bottled_wind}",
+              "Apprentice",
+              "10",
+              "1"
+            ],
+            [
+              "{item:essentialcraft5:imprisoned_wind}",
+              "Mage",
+              "25",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:wind_keeper}",
+              "Archmage",
+              "100",
+              "10"
+            ]
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Apprentices, Mages and Archmages always drop exactly one, Looting or not. What you get is the raw value times your wind relation multiplier, rounded down. The multiplier is only {cfg:general.wind_affinity.base_coefficient} to begin with, and the [[wind_mage/wind_mage_armor|Wind Mage set]] raises it a lot."
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "style": "warn",
+          "title": "Keep your first Trapped Wind",
+          "text": "The [[wind/wind_tablet]] takes 1 {item:essentialcraft5:wind_keeper}, and Archmages drop one every time. Keep the first one for the tablet instead of breaking it."
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "style": "info",
+          "title": "Storm Residue",
+          "text": "The [[bestiary/storm_sorcerer|Storm Sorcerers]] of a thunderstorm sometimes drop a {item:essentialcraft5:wind_keeper} too. Theirs carries Storm Residue, so it can't be poured into your wind relation and only works as a material. That makes it just right for the tablet."
+        },
+        {
+          "type": "tip",
+          "if": [
+            "!cfg:general.wind_mage.max_nearby>0",
+            "bauble:essentialcraft5:wind_catcher"
+          ],
+          "style": "warn",
+          "title": "Keep your first Trapped Wind",
+          "text": "The [[wind/wind_tablet]] takes 1 {item:essentialcraft5:wind_keeper}. Wind Mages never appear on their own, so the Wind Catcher below is the only way to get one. Keep the first for the tablet."
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:wind_catcher",
+          "style": "info",
+          "title": "Another way",
+          "text": "With a {item:essentialcraft5:wind_catcher} from a dungeon chest on, every Air Potion you drink and every bottled wind you break has a 15% chance of catching a Trapped Wind, about one in every six or seven potions. It lowers your wind relation multiplier by 0.1, so take it off once you have enough ([[baubles/wind_corruption]])."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one of them."
+        }
+      ]
+    },
+    {
+      "id": "wind_mage_armor",
+      "title": "Wind Mage Set",
+      "icon": "essentialcraft5:wind_mage_robe",
+      "summary": "Ten times the wind's favor",
+      "complete": "essentialcraft5:guide/wind_mage/wind_mage_armor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_mage_hood",
+        "essentialcraft5:wind_mage_robe",
+        "essentialcraft5:wind_mage_leggings",
+        "essentialcraft5:wind_mage_boots"
+      ],
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:wind_mage_hood",
+            "essentialcraft5:wind_mage_robe",
+            "essentialcraft5:wind_mage_leggings",
+            "essentialcraft5:wind_mage_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): collect the Wind Mage set. It is poor armor, but each piece makes your wind relation grow faster, which can save you hours while you build it up."
+        },
+        {
+          "type": "p",
+          "text": "<em>Source</em>: only <em>Archmages</em> drop it, with a 10% chance of one piece per kill plus 2.5% per level of Looting, which makes 17.5% with Looting III. All four pieces are equally likely, and there is no recipe."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Armor",
+              "Same as leather, with hood 1, robe 3, leggings 2 and boots 1"
+            ],
+            [
+              "Durability",
+              "128 / 384 / 256 / 128, repaired with leather"
+            ],
+            [
+              "Wind relation multiplier",
+              "+0.23 per piece worn"
+            ],
+            [
+              "Hood",
+              "Lets you see MRUCUs through walls, like the {item:essentialcraft5:magic_monocle}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What it saves"
+        },
+        {
+          "type": "p",
+          "text": "The Wind Tablet needs {cfg:general.wind.tablet_points} wind relation, usually earned by drinking one {item:essentialcraft5:air_potion} after another, at 250 ESPE and 100 raw relation each. Your multiplier makes a big difference to how many you need."
+        },
+        {
+          "type": "table",
+          "header": [
+            "You wear",
+            "Multiplier",
+            "Per potion",
+            "Potions needed"
+          ],
+          "rows": [
+            [
+              "Nothing",
+              "{cfg:general.wind_affinity.base_coefficient}",
+              "{cfg:general.wind_affinity.base_coefficient|mul:100|int}",
+              "about {cfg:general.wind.tablet_points|div:10|int}"
+            ],
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "cells": [
+                "{item:essentialcraft5:wind_mages_talisman}",
+                "{cfg:general.wind_affinity.base_coefficient|add:0.3}",
+                "{cfg:general.wind_affinity.base_coefficient|add:0.3|mul:100|int}",
+                "about {cfg:general.wind.tablet_points|div:40|int}"
+              ]
+            },
+            [
+              "2 pieces of the set",
+              "{cfg:general.wind_affinity.base_coefficient|add:0.46}",
+              "{cfg:general.wind_affinity.base_coefficient|add:0.46|mul:100|int}",
+              "about {cfg:general.wind.tablet_points|div:56|int}"
+            ],
+            [
+              "The full set",
+              "{cfg:general.wind_affinity.base_coefficient|add:0.92}",
+              "{cfg:general.wind_affinity.base_coefficient|add:0.92|mul:100|int}",
+              "about {cfg:general.wind.tablet_points|div:102|int}"
+            ],
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "cells": [
+                "Full set + talisman",
+                "{cfg:general.wind_affinity.base_coefficient|add:1.22}",
+                "{cfg:general.wind_affinity.base_coefficient|add:1.22|mul:100|int}",
+                "about {cfg:general.wind.tablet_points|div:132|int}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:wind_mages_talisman",
+          "text": "The Wind Mage's Talisman is a special bauble from dungeon chests ([[baubles/wind_corruption]])."
+        },
+        {
+          "type": "p",
+          "text": "With nothing on, the ESPE for all those potions keeps one Overworld Wind Rune altar busy for six hours. With the full set, about forty minutes' worth is enough. Each piece counts on its own, so you don't need the whole set."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Don't wait for the full set",
+          "text": "Only Archmages drop the set, and four different pieces take a lot of them. Wear whatever pieces you have before you start drinking rather than waiting for all four."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one piece."
+        }
+      ]
+    },
+    {
+      "id": "steadfast",
+      "title": "Wind Pact · Steadfast",
+      "icon": "essentialcraft5:wind_mage_boots",
+      "summary": "Past the true name, no knockback while sneaking",
+      "complete": "essentialcraft5:guide/wind_mage/steadfast",
+      "optional": true,
+      "if": "cfg:general.wind.steadfast_points",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): once the wind's true name is fully revealed, keep raising your wind relation. At <t>{cfg:general.wind.steadfast_points}</t> the wind makes its first pact with you, and from then on <hl>you can't be knocked back while sneaking</hl>."
+        },
+        {
+          "type": "p",
+          "text": "The wind only makes pacts with someone who can say its name. \"True name fully revealed\" means the moment your {item:essentialcraft5:wind_tablet} starts answering you, when the wind's name shows in full and everything else it asks for is done too ([[wind/wind_tablet]]). Relation gathered before that doesn't count."
+        },
+        {
+          "type": "h",
+          "text": "How to raise it"
+        },
+        {
+          "type": "list",
+          "items": [
+            "[[wind/air_potion|Air Potions]] still work, at 100 raw relation per bottle times your relation multiplier.",
+            {
+              "if": "cfg:general.wind_wish.enabled",
+              "text": "You can still ask for [[wind/wishes|the wind's wishes]] after the true name, and each one fulfilled gives {cfg:general.wind_wish.points} raw relation."
+            },
+            "Once you are [[wind/windbound|Windbound]], spend time running around outdoors, and now and then the wind comes to you on its own for 1,000 raw relation.",
+            "Your multiplier matters most here. With nothing on, a potion gives only {cfg:general.wind_affinity.base_coefficient|mul:100|int}, and in the full [[wind_mage/wind_mage_armor|Wind Mage set]] it gives {cfg:general.wind_affinity.base_coefficient|add:0.92|mul:100|int}.",
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "text": "Add the Wind Mage's Talisman and each bottle gives {cfg:general.wind_affinity.base_coefficient|add:1.22|mul:100|int}."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hold sneak.",
+            "While you do, hits no longer knock you back. The knockback from a melee blow, from the arrow itself or from a mob hitting you can't push you at all.",
+            "Let go of sneak and knockback works on you as usual."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Once your relation reaches the threshold with the true name revealed, the wind tells you in chat that it has settled around your feet."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Not every push is knockback",
+          "text": "Explosion blasts, the extra push from a Punch arrow, a hoglin or zoglin tossing you, a ravager's roar, a warden's sonic boom and an iron golem flinging you upward don't count as knockback. They still move you while you sneak."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It costs no relation and has no limit on uses.",
+            "It only covers you, so a mount you ride is still knocked back.",
+            {
+              "if": "cfg:general.wind.deflect_points",
+              "text": "It doesn't interfere with [[wind_mage/deflect]], and you can have both at once."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deflect",
+      "title": "Wind Pact · Wind Deflection",
+      "icon": "minecraft:arrow",
+      "summary": "Raise it further and projectiles pass through you",
+      "complete": "essentialcraft5:guide/wind_mage/deflect",
+      "optional": true,
+      "if": "cfg:general.wind.deflect_points",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): once the wind's true name is revealed, raise your relation to <t>{cfg:general.wind.deflect_points}</t> and the wind starts turning things aside for you, so that <hl>projectiles others shoot or throw at you pass straight through you</hl>."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind.steadfast_points",
+          "text": "You raise it the same way as for [[wind_mage/steadfast]], only further. Drinking potions in the full Wind Mage set is ten times faster than with nothing on."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind.steadfast_points",
+          "text": "You raise it the usual way, with Air Potions and the times the wind comes to you on its own, and it goes ten times faster in the full [[wind_mage/wind_mage_armor|Wind Mage set]]."
+        },
+        {
+          "type": "h",
+          "text": "A fixed rhythm"
+        },
+        {
+          "type": "p",
+          "text": "No luck is involved. After the wind turns one aside, anything new that arrives in the next <t>{cfg:general.wind.deflect_cooldown_ticks|sec}</t> hits you as usual, and once that time is up the next one is turned aside again. The one it turned aside never comes back to hit you."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Turned aside",
+            "Not turned aside"
+          ],
+          "rows": [
+            [
+              "Arrows, tridents, snowballs, eggs, fireballs, wither skulls, thrown potions, shulker bullets, llama spit…",
+              "Melee, magic, the rays of MRU guns and other damage that is not a projectile"
+            ],
+            [
+              "Projectiles nobody fired count too (arrows from a dispenser, for example)",
+              "Anything you shoot or throw yourself"
+            ]
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Once your relation reaches the threshold with the true name revealed, the wind tells you in chat that it has started turning things aside for you. A little puff of white mist appears around you whenever it does."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Passing through is not the same as safe",
+          "text": "Fireballs and wither skulls explode behind you after passing through, and potions shatter where they land, so if you stand close you still get blasted or splashed. Step away once something has gone through."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It costs no relation and has no limit on uses. It runs on a fixed rhythm, with no chance involved.",
+            "It only covers you, so someone standing behind you is still hit by the arrow that went through.",
+            "Bullets from other mods that do not fly by the rules of vanilla projectiles cannot be turned aside."
+          ]
+        }
+      ]
+    }
+  ]
+}

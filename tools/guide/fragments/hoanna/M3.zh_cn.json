@@ -1,0 +1,47 @@
+[
+  {
+    "id": "sky",
+    "title": "这里的天空",
+    "icon": "minecraft:spyglass",
+    "summary": "三个太阳、两个月亮和夜里的光幕",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "海纳尔的天比主世界暗得多：白天天顶是发暗的石板蓝紫，越往地平线越偏暖、发黄——那是空气里悬着的尘。地面照得和主世界一样亮，暗的只是天。"
+      },
+      {
+        "type": "p",
+        "text": "天上有<em>三个太阳</em>：一个主日，旁边两个淡淡的残日，跟着主日一起东升西落。夜里有<em>两个月亮</em>：大的那个和主世界的月相一样，小的伴月总是差半个周期。"
+      },
+      {
+        "type": "p",
+        "text": "夜里能看到淡紫色的星空，天上还横着一道 <t>MRU</t> 光幕：靠地平线的一边偏蓝紫，往上渐渐变成品红，跟着星空慢慢转动。偶尔远处的地平线上会闪过一道无声的电弧，至少隔十几秒才有下一道。"
+      },
+      {
+        "type": "list",
+        "items": [
+          "昼夜和天气跟着主世界走：主世界天亮，这里也天亮；主世界下雨，腐化之地和海纳尔之海也下雨（恐惧之地和沙漠不下）。",
+          "这里没有云。",
+          "觉得电弧晃眼，可以在原版的辅助功能里打开「隐藏天空闪烁效果」：电弧会暗很多、也少一半。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作的研究手册先把海纳尔写成「梦幻大陆」「充满无限可能的世界」，翻到讲辐射的那一页才改口：这里其实是一片核荒漠，至于发生过什么，没人知道。"
+      }
+    ],
+    "_src": [
+      "hoanna/HoannaVisuals.java:213 — 天体表 BODIES：一主日（半边长 24）、两个残日（11 / 8）、主月（18）、伴月（9，月相偏移 4 = 差半个周期，L218），速度倍数全为 1（跟主日同一个转动）",
+      "client/hoanna/HoannaSkyRenderer.java — 天体挂在原版太阳的同一个转动 YP(−90°)·XP(timeOfDay × 360°) 上：东升西落、同速",
+      "hoanna/HoannaVisuals.java:242 — 星星 900 颗、淡紫白 #D8D0F0、不闪烁；starAlpha（L255）：雨里看不见",
+      "hoanna/HoannaVisuals.java:260 — MRU 光幕：大圆倾斜 35°、取 220° 一段、宽 ±9°；颜色 AURORA_COLORS（L266）下沿 MRU 蓝、中线紫罗兰、上沿品红；和星星同一姿态，随夜空转",
+      "hoanna/HoannaVisuals.java:316 — 电弧只在夜里（夜晚系数 > 0.5）或黑暗事件时出；ArcLimiter.MIN_INTERVAL（L327）至少隔 240 tick（12 秒）；无声",
+      "hoanna/HoannaVisuals.java:290 — 打开「隐藏天空闪烁效果」：电弧峰值 0.35 → 0.12、间隔翻倍（ArcLimiter.interval）",
+      "hoanna/HoannaVisuals.java:45 — 云高 NaN：不画云",
+      "data/essentialcraft5/worldgen/biome/dreadlands.json — effects.sky_color / fog_color（tools/gen/hoanna_biomes.py 的 PALETTE）：天顶暗石板蓝紫、雾是暖尘色，雾比天亮",
+      "data/essentialcraft5/dimension_type/hoanna.json — 没有 fixed_time：昼夜、天气跟主世界",
+      "tools/gen/hoanna_biomes.py — WET / DRY：四个腐化之地和海纳尔之海 has_precipitation true，恐惧之地、沙漠 false"
+    ]
+  }
+]

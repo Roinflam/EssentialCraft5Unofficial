@@ -1,0 +1,226 @@
+[
+ {
+  "id": "radiation",
+  "title": "Hoanna Radiation",
+  "icon": "essentialcraft5:delta_ring",
+  "summary": "Builds up the longer you stay; fades only once you leave",
+  "complete": "essentialcraft5:guide/hoanna/radiation",
+  "optional": true,
+  "if": "cfg:general.radiation.enabled",
+  "blocks": [
+   {
+    "type": "p",
+    "text": "While you are in Hoanna, <em>radiation</em> slowly builds up in your body. How fast depends on the chunk you are standing in: each chunk has a fixed strength of <t>0–5</t> per second, the Hoanna Desert adds <t>2</t> and the Dreadlands add <t>6</t>. At the same time <t>1</t> fades away every second, so in most places it keeps creeping up."
+   },
+   {
+    "type": "kv",
+    "rows": [
+     [
+      "Ordinary chunk",
+      "+0–5 per second, about +1.5 on average (after the 1 that fades)"
+     ],
+     [
+      "Hoanna Desert",
+      "another +2, about +3.5 on average"
+     ],
+     [
+      "Dreadlands",
+      "another +6, about +7.5 on average"
+     ],
+     [
+      "Fading while in Hoanna",
+      "-1 per second"
+     ],
+     [
+      "Fading after you leave Hoanna",
+      "-5 per second"
+     ]
+    ]
+   },
+   {
+    "type": "h",
+    "text": "How to tell"
+   },
+   {
+    "type": "list",
+    "items": [
+     "As soon as you catch any, a purple <t>Radiation</t> effect icon appears in the top right corner.",
+     "Open your inventory: the effect panel shows your current dose and how much it changes per second here. A positive number means it is rising, a negative one means it is fading.",
+     "Past a dose of 1,000 a faint dark purple haze creeps in from the edges of the screen, getting stronger as the dose grows."
+    ]
+   },
+   {
+    "type": "h",
+    "text": "What it does"
+   },
+   {
+    "type": "p",
+    "text": "Every <t>10,000</t> dose raises the effect by one level: below 10,000 it is plain \"Radiation\" with no numeral, just an icon that costs you nothing; from 10,000 it is Radiation II, from 20,000 Radiation III, and so on. From Radiation II on it <b>lowers your maximum health</b> by as many points as the numeral on the effect (Radiation II: 2, Radiation III: 3, …), never below 1. The higher the level, the more often it squeezes your health down."
+   },
+   {
+    "type": "tip",
+    "style": "warn",
+    "title": "No cure",
+    "text": "{item:minecraft:milk_bucket}, {item:essentialcraft5:magic_water_bottle} and the {item:minecraft:totem_of_undying} do not help: the dose is still there, and even if the icon gets cleared it comes back within a second. Dying does not reset it either. The only way out is to leave Hoanna and wait for it to fade."
+   },
+   {
+    "type": "h",
+    "text": "Taking less of it"
+   },
+   {
+    "type": "list",
+    "items": [
+     "Wear protective armor: the \"Hoanna radiation resistance\" written on armor pieces is added up and divided by 4. A full set of MHS armor ({item:essentialcraft5:mhs_helmet} and the other three) takes 10% less, a full set of wind armor takes half ([[gear/mhs_armor]], [[wind_gear/wind_armor]]).",
+     {
+      "if": "bauble:essentialcraft5:mystical_accessory",
+      "text": "The {item:essentialcraft5:mystical_accessory} found in Hoanna's ruins comes with a random Hoanna radiation resistance that counts in full ([[baubles/mystical_accessory]])."
+     },
+     "Do not linger in the desert or the Dreadlands; rest in a weak chunk. The per-second number in your inventory tells you how good a spot is."
+    ]
+   },
+   {
+    "type": "p",
+    "text": "A few special baubles also deal with radiation ([[baubles/radiation]]):"
+   },
+   {
+    "type": "list",
+    "items": [
+     {
+      "if": "bauble:essentialcraft5:delta_ring",
+      "text": "{item:essentialcraft5:delta_ring}: radiation lowers your maximum health as if its level were halved."
+     },
+     {
+      "if": "bauble:essentialcraft5:lambda_ring",
+      "text": "{item:essentialcraft5:lambda_ring}: once you leave Hoanna it fades much faster (-65 per second)."
+     },
+     {
+      "if": "bauble:essentialcraft5:mu_ring",
+      "text": "{item:essentialcraft5:mu_ring}: 20 more per second while in Hoanna, in exchange for immunity to the sun array, poison fumes and strong quakes."
+     },
+     {
+      "if": "bauble:essentialcraft5:xi_belt",
+      "text": "{item:essentialcraft5:xi_belt}: your hits irradiate others, and every hit you take irradiates you."
+     }
+    ]
+   },
+   {
+    "type": "tip",
+    "style": "warn",
+    "title": "Not MRU radiation",
+    "text": "The \"MRU radiation\" of the Radiating Chamber and MRU concentrations is something else ([[crafting/radiating_chamber]]); it has nothing to do with Hoanna's radiation."
+   },
+   {
+    "type": "tip",
+    "style": "lore",
+    "text": "The original research book says the very air of Hoanna is poisoned: some places are nearly clean and let you catch your breath, while in others a single breath sets your lungs on fire. It also says no remedy works on it. Only time does."
+   }
+  ]
+ },
+ {
+  "id": "events",
+  "title": "Hoanna's Calamities",
+  "icon": "minecraft:clock",
+  "summary": "Sun array, poison fumes, darkness and earthquakes",
+  "complete": "essentialcraft5:guide/hoanna/event",
+  "optional": true,
+  "blocks": [
+   {
+    "type": "p",
+    "text": "While someone is in Hoanna, a <em>calamity</em> strikes about once every 6 in-game days on average. The chat tells you in red when it starts and in green when it ends, and a bar pops up at the top of the screen showing which one it is and how long it has left; after 10 seconds it shrinks to a small icon with the time left and moves to the upper left of your hotbar."
+   },
+   {
+    "type": "p",
+    "text": "When nobody is there, Hoanna's calamities seem to stand still: no new one starts and one already under way waits for you to come back. Calamities <em>never touch any blocks</em>: no fire, no explosions, no changes to the terrain."
+   },
+   {
+    "type": "h",
+    "if": "cfg:general.hoanna_events.sun_array_enabled",
+    "text": "Sun Array"
+   },
+   {
+    "type": "p",
+    "if": "cfg:general.hoanna_events.sun_array_enabled",
+    "text": "Starts only at dawn and lasts the whole day; it fades at nightfall, even if it was paused for a while with nobody around. A ring of extra suns appears in the sky and embers drift down. Whenever the sky is visible above your head you burn for <t>1</t> point every second and catch fire."
+   },
+   {
+    "type": "list",
+    "if": "cfg:general.hoanna_events.sun_array_enabled",
+    "items": [
+     "Hide under an <em>opaque</em> roof: stone, wood and leaves all work, <w>glass does not</w>.",
+     "Drink a potion of fire resistance.",
+     {
+      "if": "bauble:essentialcraft5:mu_ring",
+      "text": "Or wear the {item:essentialcraft5:mu_ring}."
+     }
+    ]
+   },
+   {
+    "type": "h",
+    "if": [
+     "cfg:general.hoanna_events.fumes_enabled",
+     "cfg:general.hoanna_events.fumes_max_nearby>0"
+    ],
+    "text": "Poison Fumes"
+   },
+   {
+    "type": "p",
+    "if": [
+     "cfg:general.hoanna_events.fumes_enabled",
+     "cfg:general.hoanna_events.fumes_max_nearby>0"
+    ],
+    "text": "Lasts about 10 minutes. Slowly drifting yellow-green clouds of fumes appear all around, and the fog turns yellowish near them. Within 7 blocks sideways and 4 blocks up or down of a cloud you get <b>Poison II</b>, and every cloud adds <b>+200</b> radiation per second, which armor and bauble resistances do <em>not</em> reduce."
+   },
+   {
+    "type": "list",
+    "if": [
+     "cfg:general.hoanna_events.fumes_enabled",
+     "cfg:general.hoanna_events.fumes_max_nearby>0"
+    ],
+    "items": [
+     "The clouds cannot be hit or pushed; walk around them. They drift away and dissolve after about 50 seconds, and vanish soon after the calamity ends.",
+     {
+      "if": "bauble:essentialcraft5:mu_ring",
+      "text": "The {item:essentialcraft5:mu_ring} makes you completely immune."
+     }
+    ]
+   },
+   {
+    "type": "h",
+    "if": "cfg:general.hoanna_events.darkness_enabled",
+    "text": "Darkness"
+   },
+   {
+    "type": "p",
+    "if": "cfg:general.hoanna_events.darkness_enabled",
+    "text": "Lasts 1–3 in-game days. Skylight almost disappears, the sky and fog darken, and strange echoes can be heard. Torches and other lights still work and night vision still helps, so bring enough torches and you will be fine."
+   },
+   {
+    "type": "h",
+    "if": "cfg:general.hoanna_events.earthquake_enabled",
+    "text": "Earthquake"
+   },
+   {
+    "type": "list",
+    "if": "cfg:general.hoanna_events.earthquake_enabled",
+    "items": [
+     "Lasts about 4 minutes. The view shakes gently (your crosshair does not move).",
+     {
+      "if": "cfg:general.hoanna_events.earthquake_push",
+      "text": "While you stand on the ground you get nudged every second, and now and then a strong jolt lifts you a little. It never causes fall damage, but mind the cliff edges."
+     },
+     "If the shaking bothers you, turn down vanilla's \"Screen Effect Scale\" accessibility option; at 0 the view does not shake at all.",
+     {
+      "if": "bauble:essentialcraft5:mu_ring",
+      "text": "With the {item:essentialcraft5:mu_ring} you never get strong jolts."
+     }
+    ]
+   },
+   {
+    "type": "tip",
+    "style": "good",
+    "title": "Done when",
+    "text": "You have lived through a calamity in Hoanna yourself."
+   }
+  ]
+ }
+]

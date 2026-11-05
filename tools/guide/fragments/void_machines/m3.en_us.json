@@ -1,0 +1,321 @@
+[
+  {
+    "id": "ultra_heat_generator",
+    "title": "{item:essentialcraft5:ultra_heat_generator}",
+    "icon": "essentialcraft5:ultra_heat_generator",
+    "summary": "The longer it burns, the hotter and stronger",
+    "complete": "essentialcraft5:guide/void_machines/ultra_heat_generator",
+    "optional": true,
+    "items": [
+      "essentialcraft5:ultra_heat_generator"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em> (optional): use the void materials from Hoanna to upgrade the Heat Generator into an {item:essentialcraft5:ultra_heat_generator}. It still burns fuel, but it also has a <hl>heat</hl> that only ever goes up: the longer it burns, the hotter it gets, and the hotter it is, the more it makes."
+      },
+      {
+        "type": "p",
+        "text": "<em>Prepare</em>: 4 {item:essentialcraft5:void_plating}, 2 {item:essentialcraft5:void_mru_reactor} and 2 {item:essentialcraft5:void_core} (see [[hoanna/relics]] and [[hoanna/void_plating]]), with a [[generators/heat_generator|Heat Generator]] in the middle. Also bring 4 buckets of lava and a big pile of fuel."
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:ultra_heat_generator"
+      },
+      {
+        "type": "h",
+        "text": "Layout"
+      },
+      {
+        "type": "structure",
+        "key": {
+          "H": "essentialcraft5:ultra_heat_generator",
+          "L": {
+            "block": "minecraft:lava",
+            "label": "Flowing counts too"
+          }
+        },
+        "pattern": [
+          "  L  ",
+          "     ",
+          "L H L",
+          "     ",
+          "  L  "
+        ]
+      },
+      {
+        "type": "p",
+        "text": "The heat sources work exactly as for the Heat Generator (the four blocks two steps away to the north, south, east and west; see [[generators/heat_generator]]), but here they <em>only set how fast it heats up</em> and do not count toward the output: lava on all four sides heats it fastest, netherrack much more slowly, and one side of air stops the heating completely."
+      },
+      {
+        "type": "h",
+        "text": "Heat and Output"
+      },
+      {
+        "type": "table",
+        "header": [
+          "Heat",
+          "MRU per tick",
+          "Burn time used per tick"
+        ],
+        "rows": [
+          [
+            "Below 1,000°C",
+            "heat ÷ 100 (nothing below 1)",
+            "<w>25–49 ticks</w>, more as it gets hotter"
+          ],
+          [
+            "1,000–10,000°C",
+            "2 + heat × 0.008 (10–82)",
+            "1 tick, like a furnace"
+          ],
+          [
+            "Above 10,000°C",
+            "72 + heat ÷ 1,000",
+            "1 tick"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Each tick it burns, the heat rises by \"product of the four factors × heating rate\": below 1,000°C the rate climbs slowly from 0.1 to 1, between 1,000 and 10,000°C it is 1, and above that it keeps shrinking (9,990 ÷ heat), so the heat rises more and more slowly."
+      },
+      {
+        "type": "p",
+        "text": "Output depends <em>only on the heat</em>. Once it is hot, it keeps producing at its current heat even if you take the lava away; it just stops heating up."
+      },
+      {
+        "type": "h",
+        "text": "Lava on All Four Sides, Burning Coal"
+      },
+      {
+        "type": "table",
+        "header": [
+          "Burning for",
+          "Heat",
+          "MRU per tick"
+        ],
+        "rows": [
+          [
+            "About 44 seconds",
+            "100°C",
+            "First 1 MRU"
+          ],
+          [
+            "About 2.6 minutes (65 coal)",
+            "1,000°C",
+            "10 MRU"
+          ],
+          [
+            "About 12 minutes (72 coal)",
+            "10,000°C",
+            "82 MRU"
+          ],
+          [
+            "1 hour (about 108 coal)",
+            "About 32,000°C",
+            "104 MRU"
+          ],
+          [
+            "10 hours (about 513 coal)",
+            "About 108,000°C",
+            "180 MRU"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Above 1,000°C one piece of coal lasts the full 80 seconds, far longer than during the warm-up. Poorer heat sources take much longer to warm up: about 167 coal to reach 1,000°C with netherrack on all four sides, and about 841 with plain stone."
+      },
+      {
+        "type": "h",
+        "text": "How"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Place the lava as in the picture above and put fuel in the left slot (it only takes things that burn).",
+          "Each fuel item burnt adds a piece of {item:essentialcraft5:magical_slag} to the right slot; a lava bucket leaves an empty bucket behind. Hoppers can pull out both the slag and the empty buckets.",
+          "Bind your MRU-using machines' gems to it so its MRU always has somewhere to go and it keeps burning."
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "Capacity",
+            "{cfg:machines.ultra_heat_generator.max_mru} MRU"
+          ],
+          {
+            "if": "cfg:machines.ultra_heat_generator.max_heat==0",
+            "cells": [
+              "Heat limit",
+              "None: it keeps heating up as long as it burns"
+            ]
+          },
+          {
+            "if": "cfg:machines.ultra_heat_generator.max_heat>0",
+            "cells": [
+              "Heat limit",
+              "{cfg:machines.ultra_heat_generator.max_heat}°C, then it stops heating up"
+            ]
+          },
+          {
+            "if": "cfg:machines.ultra_heat_generator.balance<0",
+            "cells": [
+              "Balance",
+              "A random number between 0 and 2, rolled once when placed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "The heat is <b>lost when you break it</b>: moving it means warming up from scratch, so pick its spot first. When its MRU is full it stops lighting new fuel and stops heating up once the current piece is gone (the heat does not drop, and it carries on once machines draw from it again). A redstone signal stops it completely, keeping both the heat and the burn progress."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "The original research book made a point of it: \"There is no heat limit too!\" It also promised that the hotter it gets, the less fuel it burns."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "The number on the \"Heat\" line in its screen keeps going up."
+      }
+    ]
+  },
+  {
+    "id": "ultra_natural_furnace",
+    "title": "{item:essentialcraft5:ultra_natural_furnace}",
+    "icon": "essentialcraft5:ultra_natural_furnace",
+    "summary": "Burns flowers, leaves, grass and logs",
+    "complete": "essentialcraft5:guide/void_machines/ultra_natural_furnace",
+    "optional": true,
+    "items": [
+      "essentialcraft5:ultra_natural_furnace"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em> (optional): upgrade the Natural Furnace into an {item:essentialcraft5:ultra_natural_furnace}. It no longer burns saplings; instead it burns flowers, leaves, grass and logs, and logs are the best deal. Small flowers and grass give more here than in the regular one, but tall flowers count as grass here and give less."
+      },
+      {
+        "type": "p",
+        "text": "<em>Prepare</em>: the same 4 {item:essentialcraft5:void_plating}, 2 {item:essentialcraft5:void_mru_reactor} and 2 {item:essentialcraft5:void_core} as the Ultra Heat Generator, with a [[generators/natural_furnace|Natural Furnace]] in the middle instead."
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:ultra_natural_furnace"
+      },
+      {
+        "type": "h",
+        "text": "What It Burns"
+      },
+      {
+        "type": "table",
+        "header": [
+          "Kind",
+          "Burns for",
+          "MRU per tick"
+        ],
+        "rows": [
+          {
+            "if": [
+              "cfg:machines.ultra_natural_furnace.ticks_flower",
+              "cfg:machines.ultra_natural_furnace.mru_flower"
+            ],
+            "cells": [
+              "Small flowers (poppies, dandelions, tulips…)",
+              "{cfg:machines.ultra_natural_furnace.ticks_flower|sec}",
+              "{cfg:machines.ultra_natural_furnace.mru_flower} MRU"
+            ]
+          },
+          {
+            "if": [
+              "cfg:machines.ultra_natural_furnace.ticks_leaves",
+              "cfg:machines.ultra_natural_furnace.mru_leaves"
+            ],
+            "cells": [
+              "Leaves",
+              "{cfg:machines.ultra_natural_furnace.ticks_leaves|sec}",
+              "{cfg:machines.ultra_natural_furnace.mru_leaves} MRU"
+            ]
+          },
+          {
+            "if": [
+              "cfg:machines.ultra_natural_furnace.ticks_grass",
+              "cfg:machines.ultra_natural_furnace.mru_grass"
+            ],
+            "cells": [
+              "Grass, ferns (tall ones too) and tall flowers",
+              "{cfg:machines.ultra_natural_furnace.ticks_grass|sec}",
+              "{cfg:machines.ultra_natural_furnace.mru_grass} MRU"
+            ]
+          },
+          {
+            "if": [
+              "cfg:machines.ultra_natural_furnace.ticks_log",
+              "cfg:machines.ultra_natural_furnace.mru_log"
+            ],
+            "cells": [
+              "Logs (stripped logs and wood blocks too)",
+              "{cfg:machines.ultra_natural_furnace.ticks_log|sec}",
+              "{cfg:machines.ultra_natural_furnace.mru_log} MRU"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "formula",
+        "text": "Total per item = ticks it burns × MRU per tick"
+      },
+      {
+        "if": [
+          "cfg:machines.ultra_natural_furnace.ticks_log",
+          "cfg:machines.ultra_natural_furnace.mru_log"
+        ],
+        "type": "p",
+        "text": "A log burns for {cfg:machines.ultra_natural_furnace.ticks_log} ticks at {cfg:machines.ultra_natural_furnace.mru_log} MRU per tick, so one log is worth far more than anything else."
+      },
+      {
+        "type": "p",
+        "text": "Sunflowers, lilacs, rose bushes and peonies—the <em>tall flowers count as grass</em>, not as small flowers. Saplings, Nether stems, bamboo and dead bushes do not go in at all."
+      },
+      {
+        "type": "h",
+        "text": "Using It"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The slot holds a full stack (64). It lights one item at a time, and nothing is left once it has burnt.",
+          "A {item:minecraft:hopper} or pipe can feed it from any side (only the kinds above), but nothing can be pulled out.",
+          "Once full ({cfg:machines.ultra_natural_furnace.max_mru} MRU) it stops lighting new items; the one already burning finishes. A redstone signal stops it and keeps the burn progress.",
+          {
+            "if": "cfg:machines.ultra_natural_furnace.balance<0",
+            "text": "When placed it gets a random balance between 0 and 2, shown in its screen; if you do not like the number, break it and place it again."
+          }
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "It only holds {cfg:machines.ultra_natural_furnace.max_mru} MRU and fills up quickly on logs. Once full, <b>the rest of the item being burnt is wasted</b>, so bind your MRU-using machines to it before you load it with logs."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "In the original mod it found flowers, grass, leaves and logs around it by itself and set them alight, and even replanted the saplings that fell nearby. Now it only burns what you put in its slot and leaves the woods around it alone."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "After you put a log in, the flame lights up and its screen shows {cfg:machines.ultra_natural_furnace.mru_log} MRU per tick."
+      }
+    ]
+  }
+]

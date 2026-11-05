@@ -1,0 +1,1376 @@
+{
+  "id": "terminal",
+  "order": 105,
+  "group": "main",
+  "title": "Chapter 21 · Terminal and Modules",
+  "subtitle": "New abilities for the suit",
+  "icon": "essentialcraft5:blank_module",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "legend",
+      "title": "What this chapter is about",
+      "icon": "essentialcraft5:blank_module",
+      "summary": "What modules are and what the main line needs",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "If anyone ever finishes all of this and is still alive at the end, good. I don't expect to be around to see it.",
+          "by": "Workshop Notebook, last page"
+        },
+        {
+          "type": "p",
+          "text": "In the Workshop Notebook's drawings, each of the four pieces has a few empty sockets. On the Computer Guy's Suit these are <hl>module slots</hl>, and every <em>module</em> you install in one gives the suit a new ability. A module stays with the piece it is installed on. Wear the helmet and press {keybind:key.essentialcraft5.computer_terminal} to open the Computer Terminal, where the Modules page switches modules on and off and takes them out."
+        },
+        {
+          "type": "h",
+          "if": "!cfg:general.attunement.enabled",
+          "text": "The two steps of this chapter"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.attunement.enabled",
+          "text": "The three steps of this chapter"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Use an {item:essentialcraft5:inquisitorium_chip} to make {item:essentialcraft5:blank_module}s ([[terminal/blank_module]]).",
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "Choose two modules, make them and install them so both work at once ([[terminal/modules]]). That completes the main line."
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "Choose two modules, make them and install them so both work at once ([[terminal/modules]])."
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "Fight in the suit until all four pieces reach attunement stage 2 ([[terminal/attuned]]). That completes the main line."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The modules"
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            5
+          ],
+          "header": [
+            "Module",
+            "Fits",
+            "What it does"
+          ],
+          "rows": [
+            {
+              "if": "module:essentialcraft5:rewind_module",
+              "cells": [
+                "{item:essentialcraft5:rewind_module}",
+                "Helmet",
+                "A fatal hit sends you back to where you stood a few seconds ago"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "cells": [
+                "{item:essentialcraft5:matrix_filter_module}",
+                "Helmet",
+                "Harmful effects can't be put on you and become matrix damage instead"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "cells": [
+                "{item:essentialcraft5:matrix_shunt_module}",
+                "Chestplate",
+                "Half of all magic damage becomes matrix damage instead"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "cells": [
+                "{item:essentialcraft5:accumulator_module}",
+                "Chestplate",
+                "Banks damage lost to invulnerability frames and adds it to your next landed hit"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:shred_module",
+              "cells": [
+                "{item:essentialcraft5:shred_module}",
+                "Chestplate",
+                "Each landed hit stacks Armor Shred on the target"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "cells": [
+                "{item:essentialcraft5:phase_anchor_module}",
+                "Leggings or boots",
+                "Hostile mobs around you cannot teleport"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:attraction_module",
+              "cells": [
+                "{item:essentialcraft5:attraction_module}",
+                "Leggings",
+                "Pushes nearby drops and orbs to your feet, leaving thrown items alone"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:stride_module",
+              "cells": [
+                "{item:essentialcraft5:stride_module}",
+                "Boots",
+                "Lets you step straight up taller ledges"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:steady_hand_module",
+              "cells": [
+                "{item:essentialcraft5:steady_hand_module}",
+                "Leggings or boots",
+                "No mining slowdown in midair or with your head underwater"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:veil_module",
+              "cells": [
+                "{item:essentialcraft5:veil_module}",
+                "Helmet",
+                "Mobs have to come closer before they notice you"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each piece has only a few slots, and not every module fits, so you have to choose. The slots per piece are listed below."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Helmet",
+              "{cfg:general.computer_modules.slots_helmet}"
+            ],
+            [
+              "Chestplate",
+              "{cfg:general.computer_modules.slots_chestplate}"
+            ],
+            [
+              "Leggings",
+              "{cfg:general.computer_modules.slots_leggings}"
+            ],
+            [
+              "Boots",
+              "{cfg:general.computer_modules.slots_boots}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "Raising the suit's attunement stage adds more slots ([[attunement/computer_armor]])."
+        },
+        {
+          "type": "p",
+          "text": "Every module recipe takes one {item:essentialcraft5:blank_module}. The other ingredients are listed on each module's page."
+        }
+      ]
+    },
+    {
+      "id": "blank_module",
+      "title": "{item:essentialcraft5:blank_module}",
+      "icon": "essentialcraft5:blank_module",
+      "summary": "The base for every module, made with a chip",
+      "complete": "essentialcraft5:guide/terminal/blank_module",
+      "items": [
+        "essentialcraft5:blank_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:blank_module}."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:blank_module"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:inquisitorium_chip} drops from a defeated Inquisitorium Sentinel. One craft makes <t>2</t> blank modules, exactly enough for the two modules the main line needs, and for more you have to fight the Sentinel again."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "A blank module is in your inventory."
+        },
+        {
+          "type": "p",
+          "text": "A blank module does nothing on its own and can't be installed. It is only used to make modules."
+        }
+      ]
+    },
+    {
+      "id": "install",
+      "title": "Installing, removing, switching",
+      "icon": "essentialcraft5:computer_chestplate",
+      "summary": "Install at a crafting table, manage in the terminal",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "Installing"
+        },
+        {
+          "type": "p",
+          "text": "Put one piece of the suit and one module into a crafting grid, in any two slots, with the rest left empty. The result is that piece with the module installed, keeping its MRU, durability, enchantments and name. <w>This recipe doesn't show up in the recipe book</w>, so just lay them out this way."
+        },
+        {
+          "type": "p",
+          "text": "It won't install, and the grid shows no result, when:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "the piece has no free module slot;",
+            "the module does not fit that piece (its tooltip says which pieces it fits);",
+            "the piece already has a module of the same kind;",
+            "it is not a piece of the Computer Guy's Suit, since other armor, the void armor included, has no module slots;",
+            "the module is disabled in this world, which its tooltip marks with a red line (one already installed can still be removed in the terminal)."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Module slots per piece:"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Helmet",
+              "{cfg:general.computer_modules.slots_helmet}"
+            ],
+            [
+              "Chestplate",
+              "{cfg:general.computer_modules.slots_chestplate}"
+            ],
+            [
+              "Leggings",
+              "{cfg:general.computer_modules.slots_leggings}"
+            ],
+            [
+              "Boots",
+              "{cfg:general.computer_modules.slots_boots}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "When modules work"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.computer_modules.require_full_set",
+              "text": "Modules only work while <em>all four pieces</em> are worn. Take one off and none of them work."
+            },
+            {
+              "if": "!cfg:general.computer_modules.require_full_set",
+              "text": "The modules on each piece you wear work on their own, and you don't need the full suit."
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "text": "Only one module of each kind counts, so a {item:essentialcraft5:phase_anchor_module} on both the leggings and the boots works as one."
+            },
+            {
+              "if": "!module:essentialcraft5:phase_anchor_module",
+              "text": "Only one module of each kind counts, so the same module on two pieces works as one."
+            },
+            "A module switched off in the terminal does nothing.",
+            "Modules with an upkeep, the ones whose tooltip has a \"per second while on\" line, are paid once a second, first from MRU storages you carry such as a {item:essentialcraft5:soul_shard}, then from the chestplate's own MRU. In a second that can't be paid, the module does nothing and the terminal shows No power. Recharge, and it works again the next second.",
+            "Modules with a cost per use, whose tooltip has an \"each time it triggers\" line, pay when they trigger and don't trigger if you can't pay."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The Modules page of the terminal"
+        },
+        {
+          "type": "p",
+          "text": "Wear the helmet, press {keybind:key.essentialcraft5.computer_terminal} to open the Computer Terminal and click the Modules tab above the panel. Each piece has its own section, and every slot shows the module and its state, such as Working, Off, No power, Cooldown, Incomplete or Duplicate. Hover over a slot for details. On the right are a switch and a small cross for removing the module."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The switch turns a module off, and a module that is off does nothing and costs nothing.",
+            "The small cross removes the module. It goes back to your inventory, or drops at your feet if the inventory is full, and the modules after it move up to fill the slot.",
+            "Only pieces you are wearing can be changed, so put a piece on before taking its modules out.",
+            "Clicks need a short gap of about a quarter of a second, and a click that comes too soon is ignored.",
+            "A click made before the list refreshes does nothing if that slot now holds a different module, as happens right after you remove the one before it, so you never take out the wrong one."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<w>Modules stay with the armor</w>. Give a piece to someone else and its modules go with it, so take them out first if you want to keep them."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A module with an upkeep that was just switched on or installed starts working at the next payment, at most a second later. Until then the terminal shows Waiting for power.",
+            "A module on cooldown still counts as installed and on. The terminal shows the seconds left, and logging out doesn't reset it.",
+            "Creative mode pays nothing."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "title": "Install two modules",
+      "icon": "essentialcraft5:blank_module",
+      "summary": "Get two different modules working",
+      "complete": "essentialcraft5:guide/terminal/modules",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make two different modules, install them on the suit and have both working at once."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Look over the table below and each module's page, think about what usually gets you killed, and pick two.",
+            "Each one takes a {item:essentialcraft5:blank_module} and a few other ingredients, listed on its page.",
+            "Install them as described in [[terminal/install]], then wear the full suit, switch them on in the terminal and carry some MRU."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Two kinds of module are working at the same time, and the step ticks within a second. Both show Working on the terminal's Modules page."
+        },
+        {
+          "type": "h",
+          "text": "How to choose"
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            5
+          ],
+          "header": [
+            "Module",
+            "Fits",
+            "Good when"
+          ],
+          "rows": [
+            {
+              "if": "module:essentialcraft5:rewind_module",
+              "cells": [
+                "{item:essentialcraft5:rewind_module}",
+                "Helmet",
+                "you get one-shot or fall into the void"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "cells": [
+                "{item:essentialcraft5:matrix_filter_module}",
+                "Helmet",
+                "weakness, slowness, mining fatigue, blindness and the like keep holding you back"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "cells": [
+                "{item:essentialcraft5:matrix_shunt_module}",
+                "Chestplate",
+                "your enemies mostly deal magic damage"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "cells": [
+                "{item:essentialcraft5:accumulator_module}",
+                "Chestplate",
+                "you use rapid-fire weapons such as the gatling"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:shred_module",
+              "cells": [
+                "{item:essentialcraft5:shred_module}",
+                "Chestplate",
+                "you fight heavily armored mobs"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "cells": [
+                "{item:essentialcraft5:phase_anchor_module}",
+                "Leggings or boots",
+                "endermen, shulkers and other teleporters bother you"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:attraction_module",
+              "cells": [
+                "{item:essentialcraft5:attraction_module}",
+                "Leggings",
+                "you're tired of picking up drops after mining and fights"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:stride_module",
+              "cells": [
+                "{item:essentialcraft5:stride_module}",
+                "Boots",
+                "you travel through hills and up stairs a lot"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:steady_hand_module",
+              "cells": [
+                "{item:essentialcraft5:steady_hand_module}",
+                "Leggings or boots",
+                "you often build in midair or mine underwater"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:veil_module",
+              "cells": [
+                "{item:essentialcraft5:veil_module}",
+                "Helmet",
+                "you want to slip past groups of mobs"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_modules.slots_chestplate<3",
+          "text": "The helmet has {cfg:general.computer_modules.slots_helmet} slots and the chestplate {cfg:general.computer_modules.slots_chestplate}, so the three chestplate modules don't all fit and you have to choose."
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.corruption.effects_enabled",
+          "style": "info",
+          "text": "Matrix Filter and Matrix Shunt trade damage for matrix damage. Enough of it condenses into corruption effects, which you can cure at home with a Soul Pentacle ([[pentacle/cure]])."
+        }
+      ]
+    },
+    {
+      "id": "rewind",
+      "title": "{item:essentialcraft5:rewind_module}",
+      "icon": "essentialcraft5:rewind_module",
+      "summary": "A fatal blow sends you back a few seconds",
+      "if": "module:essentialcraft5:rewind_module",
+      "items": [
+        "essentialcraft5:rewind_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>What it does</em>: goes on the Computer Guy's helmet. When a blow would kill you, you are sent back instead to where you stood about {cfg:general.computer_modules.rewind.seconds_back} seconds ago, with the health you had then. The Inquisitorium's chip was made to keep records, and in this module what it keeps is where you stood a few seconds back."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:rewind_module"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The {item:essentialcraft5:matter_of_eternity} is also a battery that holds MRU, and <w>whatever it holds is lost in crafting</w>, so use a freshly made one that has never been charged."
+        },
+        {
+          "type": "h",
+          "text": "What a rewind costs"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU",
+              "{cfg:general.computer_modules.rewind.mru_cost}, taken first from the MRU storages you carry, then from the chestplate's own MRU"
+            ],
+            {
+              "if": "cfg:general.computer_modules.rewind.matrix_damage>0",
+              "cells": [
+                "Matrix damage",
+                "+{cfg:general.computer_modules.rewind.matrix_damage}"
+              ]
+            },
+            [
+              "Cooldown",
+              "{cfg:general.computer_modules.rewind.cooldown_ticks|div:1200|round:1} minutes"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "While it is cooling down, or if you can't pay for a rewind, nothing happens and nothing is spent. Logging out and dying don't reset the cooldown."
+        },
+        {
+          "type": "h",
+          "text": "When it saves you"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A {item:minecraft:totem_of_undying} and other death-saving items get the first chance, and the rewind only steps in if none of them saves you.",
+            {
+              "if": "cfg:general.computer_modules.rewind.rescue_void",
+              "text": "Falling out of the world is rescued too, as long as you were standing on solid ground a few seconds earlier."
+            },
+            {
+              "if": "!cfg:general.computer_modules.rewind.rescue_void",
+              "text": "Falling out of the world is not rescued."
+            },
+            "Being killed with /kill is never rescued."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Where it sends you"
+        },
+        {
+          "type": "p",
+          "text": "The rewind notes where you stand once a second and keeps the last {cfg:general.computer_modules.rewind.seconds_back|mul:2} seconds. It tries the spot from about {cfg:general.computer_modules.rewind.seconds_back} seconds ago first, then earlier ones, and if none of those works, the ones between {cfg:general.computer_modules.rewind.min_age_ticks|sec} and {cfg:general.computer_modules.rewind.seconds_back} seconds ago. A spot only counts if all of these hold:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "it is in the dimension you are in now;",
+            "you had your feet on the ground then (spots noted mid-jump or while swimming don't count);",
+            "there is room to stand and nothing harmful there, such as lava, fire, cactus or powder snow;",
+            "it is somewhere you are allowed to build, so you are never sent into someone else's claim or the protected area around the world spawn."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If no spot qualifies, or the teleport is stopped by something else, you are not saved and nothing is spent."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The action bar says “Rewind: back to n seconds ago”, a teleport sound plays at both ends, and you stand where you were a few seconds earlier."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<w>For the first few seconds after you change dimensions, put on the full suit or switch the module on, there is nothing to go back to</w>, and a fatal blow then can't be rewound. After a Nether portal or the Gate to Hoanna, stand still for a few seconds first."
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.corruption.effects_enabled",
+          "style": "info",
+          "text": "Each rewind adds matrix damage, and enough of it can turn into corruption effects ([[corruption/matrix_damage]])."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "After a rewind your fire goes out and your fall distance is cleared. If you still have Absorption, your absorption is restored to what it was, though never above what the effect itself gives.",
+            "After a rewind the spots noted before it are dropped, and noting starts again from there.",
+            "Permission to build is only checked for the first two spots that pass the other tests. If neither will do, you are not saved and no other spots are tried.",
+            "It only ever affects you. Where players can hurt each other, it amounts to an extra life every {cfg:general.computer_modules.rewind.cooldown_ticks|div:1200|round:1} minutes.",
+            "No spots are noted while the suit isn't working, for example when not all four pieces are worn or the module is switched off."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matrix_filter",
+      "title": "{item:essentialcraft5:matrix_filter_module}",
+      "icon": "essentialcraft5:matrix_filter_module",
+      "summary": "Harmful effects become matrix damage",
+      "if": "module:essentialcraft5:matrix_filter_module",
+      "items": [
+        "essentialcraft5:matrix_filter_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>What it does</em>: goes on the Computer Guy's helmet. Harmful status effects such as Weakness, Slowness, Mining Fatigue and Blindness can't be put on you, and each one it blocks is added as matrix damage instead. What the Inquisitorium kept on record was people's matrices, and a module made from its chip writes its debts to the matrix as well."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:matrix_filter_module"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:magic_water_bottle} in the recipe comes from the charms side chapter ([[charms/consumables]])."
+        },
+        {
+          "type": "h",
+          "text": "What blocking one costs"
+        },
+        {
+          "type": "formula",
+          "text": "Matrix damage = seconds of duration × level × {cfg:general.computer_modules.matrix_filter.matrix_per_effect_second}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The level is the numeral in the effect's name, so level I counts as 1 and level II as 2.",
+            "Instant effects that other mods apply as a status effect count as 1 second. Thrown or drunk Harming potions deal their damage directly and aren't this module's business.",
+            "Each newly blocked effect also costs {cfg:general.computer_modules.matrix_filter.mru_per_effect} MRU, taken first from the MRU storages you carry, then from the chestplate's own MRU."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For example, a witch's Weakness potion that lands right on you gives 90 seconds at level I, so it adds {cfg:general.computer_modules.matrix_filter.matrix_per_effect_second|mul:90} matrix damage and costs {cfg:general.computer_modules.matrix_filter.mru_per_effect} MRU."
+        },
+        {
+          "type": "h",
+          "text": "The same effect again and again"
+        },
+        {
+          "type": "p",
+          "text": "Once an effect is blocked, the same effect arriving again within the time it would have lasted is blocked for free, as long as it is no stronger and doesn't end later. If it would end later, only the extra seconds are added as matrix damage and no MRU is spent. If it is a higher level, it counts as a new one. So standing in a lingering potion cloud, or anywhere that keeps putting an effect on you, costs about as much as carrying that effect the whole time, not a full charge per hit."
+        },
+        {
+          "type": "p",
+          "text": "If you already carry the same effect, say one you caught before switching the module on, at a level no lower and with no less time left than the new one, the new one would change nothing anyway, so the module neither blocks it nor charges you. If the new one lasts longer, it is blocked and only the extra seconds are added as matrix damage, with no MRU spent."
+        },
+        {
+          "type": "h",
+          "text": "When it doesn't block"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Beneficial and neutral effects such as Regeneration, Night Vision and Glowing are not blocked.",
+            "Effects the suit already shrugs off are not blocked and cost nothing. The Computer Guy's chestplate takes no damage from Poison, Wither or Instant Damage, and the helmet keeps you fed, so those three are left alone while you wear the chestplate, and Hunger while you wear the helmet.",
+            "Anchored is not blocked. It goes hand in hand with matrix damage, and blocking it would only pile that up.",
+            "Hoanna Radiation isn't a status effect, and neither are matrix after-effects such as MRU Corruption, Mind Paradox or the Slow Hands left by corruption effects, so the filter never sees them.",
+            "When your matrix damage is nearly full and can't take the whole cost of an effect, that effect lands as usual and no MRU is spent.",
+            "When you can't pay the MRU for one block.",
+            "Permanent effects (duration shown as ∞) are not blocked."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<w>Effects already on you are not removed</w>. The module only stops new ones, and anything you caught before switching it on still has to wear off."
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.corruption.effects_enabled",
+          "style": "info",
+          "text": "It can stop any harmful effect. The price is the matrix damage you run up, which can turn into corruption effects, and you cure those at home with a Soul Pentacle ([[pentacle/cure]])."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It is most useful against Weakness, Slowness, Mining Fatigue and Blindness, which the suit can't help with. The suit already handles Poison, Wither and Hunger, so the module leaves those alone (see When it doesn't block above).",
+            "Harmful effects from other mods are blocked too, as long as they are put on you the normal way.",
+            "Once your matrix damage reaches its cap, it can't block anything ([[corruption/matrix_damage]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matrix_shunt",
+      "title": "{item:essentialcraft5:matrix_shunt_module}",
+      "icon": "essentialcraft5:matrix_shunt_module",
+      "summary": "Part of magic damage becomes matrix damage",
+      "if": "module:essentialcraft5:matrix_shunt_module",
+      "items": [
+        "essentialcraft5:matrix_shunt_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>What it does</em>: goes on the Computer Guy's chestplate. When magic damage hits you, {cfg:general.computer_modules.matrix_shunt.ratio|pct} of it doesn't come off your health and is added as matrix damage instead, at {cfg:general.computer_modules.matrix_shunt.matrix_per_max_health|div:100} for every 1% of your max health shunted. With the vanilla 20 health, that is {cfg:general.computer_modules.matrix_shunt.matrix_per_max_health|div:20} per point. The more health you have, the less the same hit adds."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:matrix_shunt_module"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The {item:essentialcraft5:dark_soul_matter} stores MRU, and <w>whatever it holds is lost in crafting</w>, so use up its MRU before you put it in."
+        },
+        {
+          "type": "h",
+          "text": "What counts as magic damage"
+        },
+        {
+          "type": "p",
+          "text": "The Computer Guy's chestplate already shrugs off magic damage such as Harming potions you drink yourself and Poison. The shunt handles what the chestplate can't stop:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "splash and lingering Harming potions thrown at you (a witch's included);",
+            "evoker fangs, guardian beams and the warden's sonic boom;",
+            "Thorns;",
+            "spell damage from the common spell mods."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Physical, fire, explosion and fall damage don't count and go through the suit's own protection as usual."
+        },
+        {
+          "type": "h",
+          "text": "When it doesn't shunt"
+        },
+        {
+          "type": "list",
+          "items": [
+            "When your matrix damage is nearly full, only the part that still fits is shunted. Once it is full, the whole hit comes off your health.",
+            "If the hit is fully blocked by a shield or stopped by something else and never actually lands, nothing is recorded."
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.corruption.effects_enabled",
+          "style": "info",
+          "text": "Shunted damage doesn't vanish. It becomes matrix damage, which can turn into corruption effects, and you cure those at home with a Soul Pentacle ([[pentacle/cure]]). If you fight spellcasters a lot, check the damage bar in the pentacle's screen now and then."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The split is taken from the damage as it arrives, and the part left over is still reduced by Protection, Resistance and the like.",
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "text": "With the {item:essentialcraft5:matrix_filter_module} on as well, each does its own job, one with effects and the other with damage."
+            },
+            "It costs no MRU."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accumulator",
+      "title": "{item:essentialcraft5:accumulator_module}",
+      "icon": "essentialcraft5:accumulator_module",
+      "summary": "Damage eaten by hurt cooldown joins your next hit",
+      "if": "module:essentialcraft5:accumulator_module",
+      "items": [
+        "essentialcraft5:accumulator_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "For about half a second after a creature is hit, it is <hl>invulnerable</hl>. Any hit in that window that is no stronger than the last one is <w>swallowed whole</w> and does nothing. A gatling fires every tick, so most of its shots at a single target are wasted. The {item:essentialcraft5:accumulator_module} goes on the chestplate and <em>keeps a tally</em> of that swallowed damage, then adds it to your next hit that really lands."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:accumulator_module"
+        },
+        {
+          "type": "h",
+          "text": "How it works"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "When one of your attacks hits a target during its invulnerability and is swallowed whole, its damage goes on your tally for that target.",
+            "Your next attack that lands outside the invulnerability gets the tally added, up to {cfg:general.computer_modules.accumulator.max_ratio|mul:100|round:0|pctv} of that hit's own damage.",
+            "Then the tally is cleared and anything over the limit is lost. A tally that nothing is added to for {cfg:general.computer_modules.accumulator.forget_ticks|sec} is lost as well."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Only two kinds of attack count: <em>melee</em>, whether with a sword, an axe or bare hands, and <em>beams from the magical guns</em>. Arrows, tridents, and other mods' bullets and spells are neither tallied nor boosted."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Who it's for",
+          "text": "Fast-firing weapons such as the gatling and the assault rifle gain the most. Without the module only one shot per half second counts against a target, and with it the rest are saved up for the next shot, raising your effective damage against one target to as much as {cfg:general.computer_modules.accumulator.max_ratio|add:1|mul:100|round:0|pctv}."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The added damage still obeys the target's damage cap. Bosses such as the Holographic Projection and the Inquisitorium Sentinel lose at most that much per hit, however much is added. While resting, these bosses count each hit's own damage toward striking back early, and the added part isn't counted."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A hit during invulnerability that is stronger than the last one only deals the difference in vanilla, and such hits are neither tallied nor boosted.",
+            "An attack stopped by a claim, by teams or because players can't hurt each other gets nothing added, and neither does a hit fully blocked by a shield. In both cases the tally is kept.",
+            "The added damage is part of the hit, so armor, Bisected and the Computer Guy's Suit's damage blocking all work on the boosted amount, and the hit can still crit and sweep as usual.",
+            {
+              "if": "bauble:essentialcraft5:zeta_amulet",
+              "text": "The {item:essentialcraft5:zeta_amulet} spends UBMRU to clear the target's invulnerability on every hit, so nothing gets swallowed while you wear it and the Accumulator has nothing to do."
+            },
+            "Tallies are kept for at most {cfg:general.computer_modules.accumulator.max_entries} targets at once; beyond that the one added to longest ago is dropped.",
+            "Costs no MRU."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shred",
+      "title": "{item:essentialcraft5:shred_module}",
+      "icon": "essentialcraft5:shred_module",
+      "summary": "Each landed hit stacks Armor Shred",
+      "if": "module:essentialcraft5:shred_module",
+      "items": [
+        "essentialcraft5:shred_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:shred_module} goes on the chestplate. Every hit you <em>land</em>, meaning one that really hurts the target, adds a level of <hl>Armor Shred</hl> to it. The more levels, the thinner its armor, and every later hit hurts more."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:shred_module"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Per level",
+              "Armor −{cfg:general.computer_modules.shred.armor_per_level}, armor toughness −{cfg:general.computer_modules.shred.toughness_per_level}"
+            ],
+            [
+              "Up to",
+              "{cfg:general.computer_modules.shred.max_level} levels"
+            ],
+            [
+              "Lasts",
+              "{cfg:general.computer_modules.shred.duration_ticks|sec}, restarted by every landed hit, and all levels go at once when it runs out"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Any attack counts, including melee, arrows, magical gun beams and spells, as long as the damage is credited to you. Armor can't drop below 0. Armor Shred is a visible status effect with an icon and a timer on the target, and milk clears it."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Who it's for",
+          "text": "It works best against heavily armored mobs and opponents. Stack a few levels first, and every later hit loses less to armor."
+        },
+        {
+          "type": "h",
+          "text": "When a hit doesn't land"
+        },
+        {
+          "type": "list",
+          "items": [
+            "An attack stopped by a claim, by teams or because players can't hurt each other, or one whose damage is cancelled by something else, adds no level.",
+            "A hit that does no damage because the target is still invulnerable adds no level, and neither does one fully blocked by a shield.",
+            "A hit fully soaked up by extra yellow hearts like a golden apple's <em>does</em> land and stacks.",
+            "Damage that hits back automatically when someone hits you, such as the Thorns enchantment or the Computer Guy's Suit's reflected damage, adds no level. The other side struck first, so it isn't a hit you landed.",
+            {
+              "if": "bauble:essentialcraft5:sigma_ring",
+              "text": "Damage the {item:essentialcraft5:sigma_ring} sends back doesn't stack either."
+            },
+            "Bosses immune to status effects, the Wither for one, don't take Armor Shred."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "At most one level is added per target per tick, so a weapon from another mod that deals damage in several parts in one attack still counts once.",
+            "Costs no MRU."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase_anchor",
+      "title": "{item:essentialcraft5:phase_anchor_module}",
+      "icon": "essentialcraft5:phase_anchor_module",
+      "summary": "Hostile mobs nearby can't teleport",
+      "if": "module:essentialcraft5:phase_anchor_module",
+      "items": [
+        "essentialcraft5:phase_anchor_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:phase_anchor_module} goes on the leggings or boots and uses {cfg:general.computer_modules.phase_anchor.mru_per_second} MRU per second while on. Hostile mobs in a cube {cfg:general.computer_modules.phase_anchor.radius|mul:2|add:1|int} blocks wide around you are <hl>Anchored</hl>, and endermen and shulkers can no longer teleport away."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:phase_anchor_module"
+        },
+        {
+          "type": "h",
+          "text": "What Anchored stops"
+        },
+        {
+          "type": "list",
+          "items": [
+            "An enderman's random teleports when it is hit, dodges an arrow or touches water, and a shulker moving itself.",
+            "Ender pearls land without teleporting and are still used up.",
+            "Chorus fruit: eaten without teleporting.",
+            "It doesn't stop walking or pull anyone in. Portals, teleport commands and teleports like the {item:essentialcraft5:magical_teleporter} are untouched.",
+            {
+              "if": "module:essentialcraft5:rewind_module",
+              "text": "The {item:essentialcraft5:rewind_module} still takes you back, too."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.computer_modules.phase_anchor.affect_players",
+          "text": "Other players"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_modules.phase_anchor.affect_players",
+          "text": "Only players you have traded blows with are anchored. Within {cfg:general.computer_modules.phase_anchor.combat_ticks|sec}, you must have attacked them <em>and</em> they must have attacked you, with neither attack stopped by claims, teams or the setting that keeps players from hurting each other. A hit counts, and so does one fully blocked by a shield or armor. Such players in range can't escape with ender pearls or chorus fruit."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_modules.phase_anchor.affect_players",
+          "text": "Nobody is anchored if only one side has attacked, while players can't hurt each other, or if they are teammates you can't hurt. Once the exchange is older than the time limit, they are free again. Thorns and other damage that hits back automatically, and attacks like snowballs that deal no damage, don't count as the other side attacking."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "If the MRU on you can't pay for the current second, nothing is anchored that second. Anchored is renewed once a second and lasts {cfg:general.computer_modules.phase_anchor.effect_ticks|sec} each time, so after you leave the range or the module stops, it can linger that long."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Named and leashed creatures are not anchored.",
+            "An anchored shulker hit by a shulker bullet won't split either, so turn the module off near shulker farms or name the shulkers you keep for breeding.",
+            "Anchored is a visible status effect with an icon. Milk clears it, but it comes back the next second.",
+            "Bosses immune to status effects don't take Anchored.",
+            "Some mods' mobs teleport in their own way, without going through these teleports, and can't be anchored.",
+            "One on the leggings and one on the boots still count as one."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "attraction",
+      "title": "{item:essentialcraft5:attraction_module}",
+      "icon": "essentialcraft5:attraction_module",
+      "summary": "Nudges loose drops toward you",
+      "if": "module:essentialcraft5:attraction_module",
+      "items": [
+        "essentialcraft5:attraction_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "After a fight there are always a few drops and a heap of experience orbs lying about. The {item:essentialcraft5:attraction_module} goes on the leggings and uses {cfg:general.computer_modules.attraction.mru_per_second} MRU per second while on. It keeps nudging nearby drops and orbs toward you, and once they reach your feet you pick them up as usual."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:attraction_module"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Range",
+              "{cfg:general.computer_modules.attraction.radius} blocks sideways; up and down it reaches as far as the {item:essentialcraft5:magnetizing_staff}"
+            ],
+            [
+              "How often",
+              "Every {cfg:general.computer_modules.attraction.interval_ticks|sec}"
+            ],
+            [
+              "Per push",
+              "Up to {cfg:general.staffs.magnetizing_max_items} drops and {cfg:general.staffs.magnetizing_max_orbs} orbs, nearest first"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What it leaves alone"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Anything someone threw</em>. Items you drop with {keybind:key.drop} or toss out of your inventory, and items other players throw, stay put, so what you throw away doesn't come back. Things a piglin hands over in trade, or that an allay or a villager brings you, count as thrown too.",
+            "Items meant for someone else to pick up.",
+            "Things you can't see. If a block is in the way between your eyes and the item, it isn't pushed, so nothing gets pulled out of a water channel behind a wall.",
+            "Drops and orbs inside someone else's claim or the spawn protection area.",
+            "Everything, while you sneak, so you can crouch to sort your inventory without things crowding onto you."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "When the MRU on you can't pay for the current second, nothing is pushed that second. It only pushes and never picks up, so with a full inventory things pile up at your feet."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each push is as strong as one from the {item:essentialcraft5:magnetizing_staff}, so far-off things take several pushes to arrive.",
+            "To pause it without crouching the whole time, switch it off in the terminal. It uses no MRU while off.",
+            {
+              "if": [
+                "cfg:general.computer_modules.attraction.radius>8",
+                "cfg:general.computer_modules.attraction.interval_ticks<10"
+              ],
+              "text": "With a reach of more than 8 blocks it actually pushes only every half second, less often than the table says."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stride",
+      "title": "{item:essentialcraft5:stride_module}",
+      "icon": "essentialcraft5:stride_module",
+      "summary": "Walk straight up taller ledges",
+      "if": "module:essentialcraft5:stride_module",
+      "items": [
+        "essentialcraft5:stride_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:stride_module} goes on the boots and uses {cfg:general.computer_modules.stride.mru_per_second} MRU per second while on. {item:essentialcraft5:computer_boots} already let you walk straight up a full block, and with Stride on, the height you can step up grows by another {cfg:general.computer_modules.stride.step_bonus} blocks."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_modules.stride.step_bonus>=0.3",
+          "text": "A full block with a bottom slab on top is a ledge you can walk up without jumping."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:stride_module"
+        },
+        {
+          "type": "h",
+          "text": "How high one step goes"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Normally",
+              "0.6 blocks"
+            ],
+            [
+              "Wearing {item:essentialcraft5:computer_boots}",
+              "1.2 blocks"
+            ],
+            [
+              "Stride on",
+              "{cfg:general.computer_modules.stride.step_bonus|add:1.2} blocks"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "When the MRU on you can't pay for the current second, you drop back to 1.2 blocks for that second and may suddenly fail to step up a stair."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "On a horse or in a boat, the mount's own step height counts, so Stride does nothing there.",
+            "Right after respawning or coming back from the End, it waits for the next MRU payment, at most 1 second."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steady_hand",
+      "title": "{item:essentialcraft5:steady_hand_module}",
+      "icon": "essentialcraft5:steady_hand_module",
+      "summary": "No mining slowdown in midair or underwater",
+      "if": "module:essentialcraft5:steady_hand_module",
+      "items": [
+        "essentialcraft5:steady_hand_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "On a ladder or on the seabed, the same stone takes several times longer to mine. The {item:essentialcraft5:steady_hand_module} goes on the leggings or boots, uses no MRU and removes both slowdowns."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:steady_hand_module"
+        },
+        {
+          "type": "table",
+          "widths": [
+            5,
+            2,
+            3
+          ],
+          "header": [
+            "When",
+            "Normally",
+            "With Steady Hand"
+          ],
+          "rows": [
+            [
+              "Your feet aren't on the ground, such as in midair, on a ladder or floating in water",
+              "1/5 speed",
+              "Same as standing"
+            ],
+            [
+              "Your head is underwater and your helmet doesn't have {lang:enchantment.minecraft.aqua_affinity}",
+              "Another 1/5",
+              "No slowdown"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Floating in water, both slowdowns stack and you mine at 1/25 of your speed on the ground. With Steady Hand on you mine as fast as standing on solid ground."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "It needs no MRU and works even with an empty chestplate."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Efficiency, Haste and Mining Fatigue still count. Steady Hand only cancels the two slowdowns above.",
+            "One on the leggings and one on the boots still count as one."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veil",
+      "title": "{item:essentialcraft5:veil_module}",
+      "icon": "essentialcraft5:veil_module",
+      "summary": "Mobs must come closer to notice you",
+      "if": "module:essentialcraft5:veil_module",
+      "items": [
+        "essentialcraft5:veil_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:veil_module} goes on the helmet and uses {cfg:general.computer_modules.veil.mru_per_second} MRU per second while on. Mobs have to come closer before they notice you, and closer still while you sneak."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:veil_module"
+        },
+        {
+          "type": "h",
+          "text": "How close mobs notice you"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Normally",
+              "{cfg:general.computer_modules.veil.multiplier|pct} of the usual distance"
+            ],
+            [
+              "Sneaking",
+              "{cfg:general.computer_modules.veil.sneak_multiplier|mul:0.8|pct} of the usual distance, sneaking's own reduction included"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A skeleton normally spots you within 16 blocks. With Veil on it only notices you within {cfg:general.computer_modules.veil.multiplier|mul:16} blocks, or {cfg:general.computer_modules.veil.sneak_multiplier|mul:12.8} blocks while you sneak."
+        },
+        {
+          "type": "h",
+          "text": "What Veil can't do"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Other players see you as usual. It has no effect on players.",
+            "A mob that has already locked onto you doesn't let go because of it. Get beyond its usual tracking distance and it loses you.",
+            "However small the distance gets, within 2 blocks you are always noticed.",
+            "A few mobs ignore all of this when they look for you. Sneaking and Invisibility don't fool them, and neither does Veil."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "When the MRU on you can't pay for the current second, it does nothing that second."
+        }
+      ]
+    },
+    {
+      "id": "attuned",
+      "title": "Suit at attunement stage 2",
+      "icon": "essentialcraft5:computer_chestplate",
+      "summary": "All four pieces to stage 2",
+      "complete": "essentialcraft5:guide/terminal/attuned",
+      "if": "cfg:general.attunement.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: raise all four pieces of the Computer Guy's Suit to attunement stage 2."
+        },
+        {
+          "type": "p",
+          "text": "Attunement is gear getting stronger, stage by stage, through real fights; [[attunement/overview]] explains how points build and stages go up. At stage 2 the suit's chestplate gains a module slot, its shield costs less, and it also blocks magic damage that has an attacker ([[attunement/computer_armor]])."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.attunement.rank_gate"
+              ],
+              "cells": [
+                "Matrix rank",
+                "Rank 3, which you have had since Chapter 10"
+              ]
+            },
+            [
+              "Materials",
+              "One set per piece per stage; see the table in [[attunement/computer_armor]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Wear all four pieces and go fight. Each hit from a hostile mob gives every piece {cfg:general.attunement.points_hit}, as long as you have hit that mob within the last 10 seconds.",
+            "When a piece fills stage 0, raise it to stage 1 at the [[crafting/magician_table|Magician Table]]; keep wearing it and raise it to stage 2 when it fills again.",
+            "Once all four are at stage 2, wear them together and this step is done."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You are wearing all four pieces at attunement stage 2."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Points are capped by your [[attunement/budget|budget]] at {cfg:general.attunement.budget_per_hour} an hour, and four pieces gaining together only count once. Taking hits without fighting back doesn't count, and neither do mobs from spawners. Getting from nothing to stage 2 takes far more points than an hour of budget, so work on side chapters while you build it up."
+        }
+      ]
+    },
+    {
+      "id": "epilogue",
+      "title": "Chapter 21 ends here",
+      "icon": "essentialcraft5:computer_engine",
+      "summary": "Two chapters left: shade and the Heart of Calamity",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "The suit is ready"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.attunement.enabled",
+          "text": "You started out digging up your first drop and gathering your first MRU. Since then you have built generators and an Enrichment Chamber, made mithriline, imbued wind, walked into Hoanna, traded with demons, brought down the Holographic Projection, followed the echo to the Inquisitorium, put on the Computer Guy's Suit and, last of all, fitted it with modules."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "You started out digging up your first drop and gathering your first MRU. Since then you have built generators and an Enrichment Chamber, made mithriline, imbued wind, walked into Hoanna, traded with demons, brought down the Holographic Projection, followed the echo to the Inquisitorium, put on the Computer Guy's Suit, fitted it with modules and fought in it until all four pieces reached attunement stage 2."
+        },
+        {
+          "type": "p",
+          "text": "Two chapters of the main line remain. In [[shade/intro|Chapter 22]] you gather Umbral Crystals, collapse Shade Cores and raise your pentacle to tier 4; in [[apex/intro|Chapter 23]] you summon the Heart of Calamity and bring it down."
+        },
+        {
+          "type": "p",
+          "text": "You don't need every module. Slots are limited, so swap them around to match whatever keeps hurting you ([[terminal/modules]]). The side chapters you haven't read are still there, among them guns, void machines, ley projection and special accessories. If you want a detour first, pick one from [[logistics/after_main_line]]."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "The suit can keep going to higher attunement stages, with more module slots and a wider shield ([[attunement/computer_armor]])."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "An {item:essentialcraft5:forged_elemental_sword} raised to attunement stage 2 can be reforged into a {item:essentialcraft5:verdict_blade} ([[attunement/verdict_blade]])."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original's language file still holds one line from the suit's page that the book never displayed: \"Are you still alive after all those crafts? Good. 'Cause I wasn't.\""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "mystical_accessory",
+    "title": "{item:essentialcraft5:mystical_accessory}",
+    "icon": "essentialcraft5:mystical_accessory",
+    "summary": "随机形态、三项随机抗性的饰品",
+    "if": "bauble:essentialcraft5:mystical_accessory",
+    "items": [
+      "essentialcraft5:mystical_accessory"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "海纳尔遗迹的箱子里偶尔开出{item:essentialcraft5:mystical_accessory}（大约每 2 个箱子 1 件，见[[hoanna/relics]]）。每一件都是随机的：可能是项链、腰带或戒指，外观也各不相同，从箱子里拿出来的时候就已经定好了。"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "戴在哪",
+            "看它是什么形态：项链只能戴项链槽，腰带、戒指同理（物品提示里写着）"
+          ],
+          [
+            "MRU 腐化抗性",
+            "0%~10%，挡 MRU 腐化效果的伤害和聚集体的矩阵损伤"
+          ],
+          [
+            "腐化辐射抗性",
+            "0%~10%，暂时没有用处"
+          ],
+          [
+            "海纳尔辐射抗性",
+            "0%~10%，在海纳尔少积累辐射（见[[baubles/radiation]]）"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "几件神秘饰品的抗性可以叠加，但每一项合起来最多算 <t>40%</t>（正好是一条项链、一条腰带、两枚戒指都满值的量），饰品栏再多也不会更高。和盔甲的抗性也能叠加（盔甲四件合起来才算一件饰品的量）。"
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "text": "创造模式里拿到的神秘饰品还没定形态，放进背包的下一刻就会定下来。"
+      }
+    ],
+    "_src": [
+      "item/bauble/MysticalAccessoryItem.java — roll：形态 nextInt(3)（0 项链 1 腰带 2 戒指）、底 / 面 nextInt(6)、三项抗性 nextFloat() / 10；canEquip 只认形态对应的槽；inventoryTick 补抽；getSlotsTooltip 只写那一种槽",
+      "loot/RandomizeAccessoryFunction.java — 开箱时就抽；chests/*.json 神秘饰品权重 15 / 343、每箱约 0.50",
+      "api/MRUResistance.java:vulnerability — 1 − 盔甲之和 / 4 − 其它饰品之和 − min(神秘饰品之和, 0.4)；Type 三项：MRU_CORRUPTION、CORRUPTION_RADIATION（腐化方块没移植，没有用处）、HOANNA_RADIATION",
+      "item/bauble/MysticalAccessoryItem.java 类注释 — 不受「同种只生效一件」限制（照原作）；Curios 默认 1 项链 + 1 腰带 + 2 戒指 → 最多约 +40%；每项合计夹到 MAX_TOTAL 0.4（原作 4 格），槽位再多也不超过"
+    ]
+  }
+]

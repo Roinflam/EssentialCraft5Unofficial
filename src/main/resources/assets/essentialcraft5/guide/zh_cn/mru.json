@@ -1,0 +1,492 @@
+{
+  "id": "mru",
+  "order": 20,
+  "group": "main",
+  "title": "第二章 · 第一份 MRU",
+  "subtitle": "灵魂石、UBMRU 与矩阵换能器",
+  "icon": "essentialcraft5:soul_stone",
+  "entries": [
+    {
+      "id": "soul_stone",
+      "title": "{item:essentialcraft5:soul_stone}",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "用绿宝石换一块",
+      "complete": "essentialcraft5:main/soul_stone",
+      "items": [
+        "essentialcraft5:soul_stone"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "凡活物身上都罩着一层矩阵，是心神看管着的一小片 MRU。头一份能拿来驱动机器的 MRU，我们是从自己身上取下来的。",
+          "by": "《源质残卷·卷二》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：用仪式变出一块{item:essentialcraft5:soul_stone}，再把它绑定到自己身上。"
+        },
+        {
+          "type": "p",
+          "text": "每个活物身上都笼着一层看不见的 <em>MRU 矩阵</em>，里面存着的能量叫作 <em>UBMRU</em>。灵魂石是先辈用来看清矩阵的东西，它能记住一个人的矩阵，放进下一篇的矩阵换能器，这个人的 UBMRU 就会被换成机器能用的 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "list",
+          "items": [
+            "1 块{item:minecraft:emerald_block}；",
+            "4 块{item:minecraft:soul_sand}，要去下界的灵魂沙峡谷或下界要塞附近采集，灵魂土代替不了；",
+            "几颗{item:minecraft:emerald}，每颗有一半的几率换出一块灵魂石。"
+          ]
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:emerald_block",
+            "R": "minecraft:soul_sand"
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:emerald",
+          "result": "essentialcraft5:soul_stone",
+          "chance": 0.5
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "绿宝石块放在正中，东西南北四格各放一块灵魂沙，绿宝石块正上方保持空着。",
+            "站在近旁，把绿宝石丢到绿宝石块正上方，仪式大约每秒吞下一颗，每吞一颗都有一半的几率在原地蹦出一块灵魂石。",
+            "拿到灵魂石后<em>右键</em>，它就绑定到了你身上，物品提示里会写着你的名字，你自己查看时还能看到身上现有多少 UBMRU。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "要站多近、多久判定一次，这些仪式的通用规则见[[elements/rituals]]。灵魂石仪式不管绿宝石是谁丢的，都照样生效。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有一块写着你名字的灵魂石。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "灵魂石蹦出来以后，那一格还是空的，仪式会接着一颗一颗地吞绿宝石。一块灵魂石平均要 2 颗绿宝石，要几块就丢几块的量，别把一整组扔下去。<w>整条主线要用 9 块左右灵魂石</w>，约合 18 颗绿宝石，矩阵换能器用 1 块，第四、八、十章的空白矩阵投影各用 1 块，第十二章的五芒星用 5 块。仪式台不必拆，留着随用随做。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "主手拿着潜行右键会解除绑定，右键别人绑过的灵魂石，它就改绑到你身上。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "矩阵二阶起，主手拿着自己的灵魂石潜行右键改成开关[[matrix/reservoir|矩阵容量]]的自动换入，不再解绑；四阶起对着聚集体按住，是矩阵虹吸。"
+            },
+            "灵魂石不能堆叠，一格只放得下一块。",
+            "灵魂石还能拿去右键风之符文，让你受到[[wind/windbound|风之眷顾]]。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "矩阵一阶起，主手或副手拿着绑定你的灵魂石，就看得见 MRU 聚集体和它存了多少，和戴单片镜一样。"
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "你看自己的灵魂石，物品提示里还写着矩阵几阶、图谱几种，二阶起还有矩阵容量和换入开关，别人看不到这几行。"
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "拿着绑定你的灵魂石潜行右键{item:essentialcraft5:matrix_crucible}，身上的 UBMRU 会存进试炼储备，死了也不丢，见[[matrix/crucible]]。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "ritual/GroundRituals.java:114 — 绿宝石块 + 四面灵魂沙，丢绿宝石，0.5 几率在原地掉出一块灵魂石；不改方块，所以那一格一直空着、会一颗接一颗地吃",
+        "ritual/GroundRituals.java:76 — 灵魂土不算",
+        "item/SoulStoneItem.java:81 — 右键绑定（已绑别人的也改绑），潜行右键解绑；L105 提示写绑定者名字；L112 UBMRU 只有本人看得到",
+        "registry/ECBootstrap.java:27 — 灵魂石 stacksTo(1)",
+        "data/essentialcraft5/recipes/radiating_chamber/empty_matrix_projection.json — 空白矩阵投影吃一块灵魂石",
+        "灵魂石去向：bootstrap/matrix_absorber 配方 1；radiating_chamber/empty_matrix_projection 每块 1（冷凝器的冰冻、月亮井的魔力、日光吸收器的混沌各要 1 块投影）；pentacle/player_pentacle 1 + 4 块空白投影 = 5"
+      ]
+    },
+    {
+      "id": "ubmru",
+      "title": "积攒 UBMRU",
+      "icon": "minecraft:iron_sword",
+      "summary": "击杀生物，吸收它的矩阵",
+      "complete": "essentialcraft5:guide/first_kill",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：积攒足够的 UBMRU，留到下一篇换成 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "自己的矩阵之外，先辈也从猎物身上取 MRU。亲手杀死一只生物，你就会吸走它的一部分矩阵，得到的 UBMRU 是它<em>基础最大生命</em>的 10～30 倍，平均 20 倍。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "生物",
+            "基础生命",
+            "平均得到"
+          ],
+          "widths": [
+            4,
+            2,
+            2
+          ],
+          "rows": [
+            [
+              "鸡",
+              "4",
+              "80"
+            ],
+            [
+              "牛、猪",
+              "10",
+              "200"
+            ],
+            [
+              "僵尸、骷髅、苦力怕",
+              "20",
+              "400"
+            ],
+            [
+              "末影人",
+              "40",
+              "800"
+            ],
+            [
+              "铁傀儡",
+              "100",
+              "2000"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "只有<em>你</em>亲手杀死的才算，近战、弓箭、三叉戟都行，宠物或机器代劳的，以及摔死、烧死的都不计。",
+            "按基础生命算，药水和装备加上去的生命上限不算在内。",
+            "有几件特殊饰品会改变每次击杀的所得，见[[baubles/kill_ubmru]]。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier>0",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier!=1"
+          ],
+          "text": "每种敌对生物<b>第一次</b>被你亲手杀死时，会记进你的[[matrix/codex|矩阵图谱]]，这一下的 UBMRU 再多给 {cfg:general.matrix_rank.first_kill_ubmru_multiplier|pct}，快捷栏上方提示「矩阵图谱 +1」。同一种以后再杀照常给。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier==1"
+          ],
+          "text": "每种敌对生物<b>第一次</b>被你亲手杀死时，会记进你的[[matrix/codex|矩阵图谱]]，这一下的 UBMRU <b>翻倍</b>，快捷栏上方提示「矩阵图谱 +1」。同一种以后再杀照常给。"
+        },
+        {
+          "type": "h",
+          "text": "要积攒多少"
+        },
+        {
+          "type": "p",
+          "text": "从这里一路做到第一台产能器，大约要花掉 1100 MRU，魔力工作台的配方占 1060，辐射仓里做强化材料用掉 70 左右。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated==1",
+          "text": "折算下来要 {cfg:machines.matrix_absorber.ubmru_usage|mul:1100} UBMRU，平均杀 {cfg:machines.matrix_absorber.ubmru_usage|mul:1100|div:400|round:0} 只僵尸就够。不必一次攒齐，换能器一次只装得下 {cfg:machines.matrix_absorber.max_mru} MRU，边做边打就行。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated!=1",
+          "text": "换能器每刻拿 {cfg:machines.matrix_absorber.ubmru_usage} UBMRU 换 {cfg:machines.matrix_absorber.mru_generated} MRU，一只僵尸平均提供 400 UBMRU，照这两个数就能算出要杀多少只。不必一次攒齐，换能器一次只装得下 {cfg:machines.matrix_absorber.max_mru} MRU，边做边打就行。"
+        },
+        {
+          "type": "p",
+          "text": "接在换能器上的机器都会先把自己存满，光一台辐射仓就能囤下 {cfg:machines.radiating_chamber.max_mru} MRU。暂时不用的机器最好先取下绑定宝石，换出来的 MRU 才不会全压在它里面，详见[[crafting/bound_gem]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "你亲手杀过一只生物，灵魂石上的数字不再是 0。"
+        },
+        {
+          "type": "tip",
+          "style": "bad",
+          "title": "死亡会清零",
+          "text": "<b>你一死，身上的 UBMRU 就全部清零</b>，要是被别的玩家杀死，这些 UBMRU 会整个归到对方身上。攒下一些就尽早换成 MRU，存进机器的 MRU 不会因为你死去而消失。"
+        }
+      ],
+      "_src": [
+        "player/UBMRUEvents.java:91 — killReward = (20 + r×10) × 基础最大生命（getAttributeBaseValue），r ∈ (−1, 1)，即 10~30 倍、平均 20",
+        "player/UBMRUEvents.java:60 — source.getEntity() 是真玩家才给（投射物算射手；宠物、机器、环境伤害不算）",
+        "player/UBMRUEvents.java:64 — 击杀真玩家拿走对方全部 UBMRU；L81 玩家死亡清零",
+        "player/UBMRUEvents.java:72 — 击杀非玩家时饰品依次修正（IUBMRUGainModifyHandler）",
+        "原版基础生命：鸡 4、牛 / 猪 10、僵尸 / 骷髅 / 苦力怕 20、末影人 40、铁傀儡 100",
+        "用量（按配方算）：魔力工作台 魔力锭 14×50 + 魔力水 250 + 魔力强化板 10 + 魔力板 100 = 1060；辐射仓 强化石 4 次 + 强化玻璃 3 次 ×10 = 70",
+        "blockentity/MatrixAbsorberBlockEntity.java:58 — ubmru_usage 默认 10；L51 max_mru 默认 1000",
+        "blockentity/MatrixAbsorberBlockEntity.java:55 — mru_generated 默认 1；要的 UBMRU = 1100 × ubmru_usage ÷ mru_generated，所以按 ubmru_usage 算的那段只在 mru_generated = 1 时显示，否则换成按比例折算的说法",
+        "mru/MRUStorage.java:117 — 接上的机器每刻把自己拉满；blockentity/RadiatingChamberBlockEntity.java:76 — 辐射仓 max_mru 默认 5000"
+      ]
+    },
+    {
+      "id": "matrix_absorber",
+      "title": "{item:essentialcraft5:matrix_absorber}",
+      "icon": "essentialcraft5:matrix_absorber",
+      "summary": "把你的 UBMRU 换成 MRU",
+      "complete": "essentialcraft5:main/matrix_absorber",
+      "items": [
+        "essentialcraft5:matrix_absorber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：造一台{item:essentialcraft5:matrix_absorber}，把你的 UBMRU 换成第一份 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "矩阵换能器是你造的第一台机器。MRU 相当于这个模组里的电，机器都靠它运转，最初的那一份就取自你自己的矩阵，MRU 的来龙去脉见[[start/mru]]。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：第一章做好的[[elements/parts]]，再加一块绑定了你的{item:essentialcraft5:soul_stone}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_absorber"
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下矩阵换能器，右键打开界面。",
+            "把绑定了你的灵魂石放进它唯一的格子。",
+            "只要你在线，它每刻都从你身上抽一些 UBMRU 换成 MRU，一直到存满。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "换算",
+              "每刻 {cfg:machines.matrix_absorber.ubmru_usage} UBMRU → {cfg:machines.matrix_absorber.mru_generated} MRU"
+            ],
+            [
+              "速度",
+              "每秒 {cfg:machines.matrix_absorber.mru_generated|mul:20} MRU"
+            ],
+            [
+              "容量",
+              "{cfg:machines.matrix_absorber.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.matrix_absorber.balance==1",
+              "cells": [
+                "平衡值",
+                "1.0（{balance:pure}）"
+              ]
+            },
+            {
+              "if": "cfg:machines.matrix_absorber.balance!=1",
+              "cells": [
+                "平衡值",
+                "{cfg:machines.matrix_absorber.balance}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "界面上的 MRU 涨起来了。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "灵魂石绑定了谁，换能器就抽谁的 UBMRU，<w>别把绑着你的灵魂石交给别人</w>。石头的主人下线，或者换能器收到红石信号，它都会停机，存满以后也不再抽取。还没换掉的 UBMRU 留在你身上，死了照样清零。"
+        },
+        {
+          "type": "p",
+          "text": "换能器不会自己把 MRU 送出去，要由别的机器用绑定宝石来拉，下一章头一件事就是做这个。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "攒[[matrix/crucible|试炼储备]]的时候，先把灵魂石从换能器里取下来。存储备要手里拿着这块石头，它留在换能器里还会一直换走你身上的 UBMRU。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/bootstrap/matrix_absorber.json — 铁框架 ×4、收集器、连接器、#cores/magic、加热棒 ×2",
+        "blockentity/MatrixAbsorberBlockEntity.java:105 — 主人在线（不限维度）才换；L97 有红石信号停机；L121 满了不换、L127 UBMRU 不够一次不换",
+        "blockentity/MatrixAbsorberBlockEntity.java:51 — max_mru、balance、mru_generated、ubmru_usage 四项配置；L96 平衡值按配置设",
+        "blockentity/MatrixAbsorberBlockEntity.java:75 — 只收灵魂石；L80 没有绑定宝石槽、不主动送出"
+      ]
+    },
+    {
+      "id": "crucible",
+      "title": "{item:essentialcraft5:matrix_crucible}",
+      "icon": "essentialcraft5:matrix_crucible",
+      "summary": "突破矩阵阶的台子",
+      "complete": "essentialcraft5:guide/matrix/crucible",
+      "items": [
+        "essentialcraft5:matrix_crucible"
+      ],
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做一台{item:essentialcraft5:matrix_crucible}，放在基地里。"
+        },
+        {
+          "type": "p",
+          "text": "你身上那层矩阵还能变厚，一层一层地突破，叫<hl>矩阵阶</hl>，每一阶都给你一样新本事。突破的地方就是淬炼台：把这一阶要的祭品和能量交进去，在台子边打一场试炼。矩阵阶是怎么回事，见[[matrix/overview]]。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：用料都是第一、二章手边的东西，见下面的配方。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_crucible"
+        },
+        {
+          "type": "list",
+          "items": [
+            "台子里能存 {cfg:machines.matrix_crucible.max_mru} MRU，二阶起的试炼要从这里扣，用[[crafting/bound_gem|绑定宝石]]从产能器拉，下一章就会做。",
+            "祭品格只能亲手放东西，漏斗塞不进去。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "台子四周 {cfg:general.matrix_rank.trial.spawn_radius_max} 格内最好留出空地，试炼时回响要从那里冒出来。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一台矩阵淬炼台。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.2 — 淬炼台第二章合成（元素晶石 ×4 + 黑曜石 ×2 + 灵魂沙 ×2 + 中心件，排法实现时定，这里只放配方块）；MRU 上限 10 万（绑定宝石进）；祭品格 slotRule 拒绝自动化插入；回响在 trial.spawn_radius_min~max（4~8）格出现",
+        "tools/plan/batch13.md §2.2 — 进度 essentialcraft5:guide/matrix/crucible（inventory_changed 拿到过）"
+      ]
+    },
+    {
+      "id": "rank_1",
+      "title": "一阶 · 觉察",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "第一场试炼",
+      "complete": "essentialcraft5:guide/matrix/rank_1",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：在淬炼台上打赢第一场试炼，升到矩阵一阶「觉察」。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "亲手杀过 4 种敌对生物，僵尸、骷髅、蜘蛛、苦力怕就够"
+            ],
+            [
+              "祭品",
+              "{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}、{item:essentialcraft5:air_drops}各 4 颗"
+            ],
+            [
+              "能量",
+              "5000 UBMRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 2 只，同时最多 2 只；每只 20 点生命，打你一下 4 点；限时 70 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "站着不动 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:10} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "打 4 种不同的敌对生物。每添一种，快捷栏上方都会提示「矩阵图谱 +1」，规矩见[[matrix/codex]]。",
+            "把{item:essentialcraft5:matrix_absorber}里的灵魂石取出来，接着打怪攒 UBMRU。",
+            "攒下一些，就拿着灵魂石潜行右键淬炼台，存进你的试炼储备，存够 5000。",
+            "祭品放进台子，站在旁边，主手拿着灵魂石打开界面，点「开始淬炼」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒冒出来的 2 只矩阵回响。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁边不动、别受伤，等引导走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "屏幕正中出现「一阶 · 觉察」，灵魂石的物品提示里写着矩阵一阶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>攒 UBMRU 时，换能器里别放着你的灵魂石</em>。换能器没存满的时候，每刻都在换走你的 UBMRU，你攒不起来。身上的 UBMRU 死了就清零，攒一点就存一点；存进试炼储备的死了也不丢。升完阶再把石头放回换能器。"
+        },
+        {
+          "type": "p",
+          "text": "一阶的回报是<em>矩阵视觉</em>：主手或副手拿着绑定你的灵魂石时，看得见附近的 MRU 聚集体和它存了多少，不用戴单片镜。突破的那一下也会给你一点矩阵损伤，见[[matrix/crucible]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.3 九阶表、§3.1.2 试炼；进度 essentialcraft5:guide/matrix/rank_<n> 由代码在升阶成功时发（同 guide/hoanna/radiation）",
+        "data/essentialcraft5/matrix_ranks/rank_1.json— 图谱总数 4；只要淬炼台；祭品四种魔晶各 4（淬炼台 4 格，元素晶石淬炼台配方已经用过，batch13.md §3.1.3）；UBMRU 5 000；回响 2 / 2 / 20 / 4 / 70 秒；回报矩阵视觉（主手或副手绑定自己的灵魂石，同单片镜）",
+        "tools/plan/batch13.md §3.1.2 — 换能器每刻扣主人 10 UBMRU，手册第二章写清存之前先取下灵魂石；试炼储备死了不丢；成功矩阵损伤 1 000 × 1，按耐受打折"
+      ]
+    }
+  ]
+}

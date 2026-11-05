@@ -1,0 +1,1044 @@
+{
+  "id": "demons",
+  "order": 100,
+  "group": "main",
+  "title": "第十七章 · 恶魔",
+  "subtitle": "召来恶魔，换取阿克罗尼特",
+  "icon": "essentialcraft5:demonic_pentacle",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "void_crystal_pillar",
+      "title": "{item:essentialcraft5:void_crystal_pillar}",
+      "icon": "essentialcraft5:void_crystal_pillar",
+      "summary": "比淡青柱高一档的水晶柱",
+      "complete": "essentialcraft5:guide/demons/void_crystal_pillar",
+      "items": [
+        "essentialcraft5:void_crystal_pillar"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "阿克罗尼特只生在地狱，唯有恶魔看得见、挖得到。想要它，就得把恶魔请上来做买卖。它们要的东西稀奇古怪，给了，就一定换得回来，换多少却全凭它们高兴。",
+          "by": "《被遗忘的死灵之书》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做出第一根{item:essentialcraft5:void_crystal_pillar}。这一章要搭一座恶魔五芒星，把恶魔召到阵上，再和它交易换取{item:essentialcraft5:ackronite_ingot}，后面两章几乎处处离不开阿克罗尼特。"
+        },
+        {
+          "type": "p",
+          "text": "先辈对恶魔所知不多，只在一部他们自己也不全信的旧书里读到过它们。五芒星上要立 4 根虚空水晶柱，这是本章最难凑的材料，所以先从它做起。"
+        },
+        {
+          "type": "h",
+          "text": "整章的备料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "材料",
+            "需要多少",
+            "来源"
+          ],
+          "widths": [
+            4,
+            2,
+            5
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:void_core}",
+              "<t>5</t>",
+              "从海纳尔遗迹的箱子里开出，见[[hoanna/relics]]"
+            ],
+            [
+              "{item:essentialcraft5:void_mru_reactor}",
+              "<t>4</t>",
+              "同上"
+            ],
+            [
+              "{item:essentialcraft5:void_plating}",
+              "<t>28</t>",
+              "在魔力工作台里用一块虚空石压出一块，见[[hoanna/void_plating]]"
+            ],
+            [
+              "{item:essentialcraft5:void_stone}",
+              "<t>41</t>",
+              "13 块铺地，28 块用来压虚空板，一次合成可得 16 块，见[[hoanna/void_stone]]"
+            ],
+            [
+              "{item:essentialcraft5:fire_focus}",
+              "<t>4</t>",
+              "[[essence/fuel_and_focus]]"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_crystal_pillar}",
+              "<t>16</t>",
+              "其中 12 根要升级成淡青柱，见[[pentacle/pale_crystal_pillar]]"
+            ],
+            [
+              "{item:essentialcraft5:pale_plating}",
+              "<t>20</t>",
+              "[[alloys/plating]]"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_plating}",
+              "<t>4</t>",
+              "[[mithriline/furnace]]"
+            ],
+            [
+              "{item:minecraft:glowstone}",
+              "<t>4</t>",
+              "下界"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_crystal}",
+              "<t>49</t>",
+              "33 颗转成黯淡水晶，16 颗做柱子。全用工作台合成约需 830 份米斯莱粉，改在熔炉里做锭约需 250 份，也可以拿共鸣水晶一换一，见[[mithriline/conversions]]"
+            ],
+            [
+              "{item:minecraft:ender_eye}、{item:minecraft:ender_pearl}",
+              "各 <t>16</t>",
+              "用来做 16 根米斯莱柱，柱子本身另需 96 份米斯莱粉"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "风之祭坛和灵魂五芒星上的柱子以后还要接着攒风之水晶、治腐化，最好原样留着，这 16 根另做一批。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+          "title": "最难凑的是核心",
+          "text": "虚空核心和 MRU 反应核只能从遗迹箱子里开出来，大约每 5 个箱子才各出 1 个。凑齐 5 个核心要翻二十五个左右的箱子，差不多是两座城镇的量，4 个反应核顺路就够了。翻遗迹时把它们留着，已经当升级装在工作台上的，做柱子之前要先取下来，见[[storage/upgrades]]。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "title": "最难凑的是核心",
+          "text": "虚空核心和 MRU 反应核来得最慢，遗迹箱子大约每 5 个才各开出 1 个，富集仓里的聚集体[[hoanna/collapse|坍缩]]一次要 {cfg:machines.enrichment_chamber.collapse.seconds|div:60|round:1} 分钟，也只出 1 个。要凑齐 5 个核心和 4 个反应核，最好两头一起来，翻遗迹时把它们留着，在海纳尔也开一两座富集仓坍缩。已经当升级装在工作台上的，做柱子之前要先取下来，见[[storage/upgrades]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "淡青柱也要早点准备",
+          "text": "12 根淡青柱要用 33 颗{item:essentialcraft5:fading_crystal}，24 颗直接用，剩下 9 颗放进熔炉变成 72 份{item:essentialcraft5:fading_dust}。米斯莱熔炉前后一共要抽约 1.2 万 ESPE，见[[mithriline/conversions]]，所以出发去翻遗迹之前，就先让熔炉开工。"
+        },
+        {
+          "type": "h",
+          "text": "制作虚空水晶柱"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:void_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "用 6 块{item:essentialcraft5:void_plating}、1 个{item:essentialcraft5:void_core}和 1 个{item:essentialcraft5:void_mru_reactor}围住一根{item:essentialcraft5:pale_crystal_pillar}，当原料的这根淡青柱会被用掉。"
+        },
+        {
+          "type": "p",
+          "text": "它和别的水晶柱一样有三格高，会积攒 ESPE，拆掉任意一格都会整根掉下来，详见[[mithriline/crystal_pillar]]。档位越高攒得越快，米斯莱、淡青、虚空、恶魔一档比一档快，倍率也在那一篇里。结构里要求「虚空以上」的柱位，只认虚空柱和恶魔柱。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一根虚空水晶柱。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "灵魂五芒星升到 2 档需要 4 根虚空柱，见[[pentacle/tier_two]]。",
+            "虚空柱加上阿克罗尼特锭和恶魔核心，可以升级成恶魔水晶柱，灵魂五芒星升 3 档时要用，见[[pentacle/tier_three]]。",
+            "放在{item:essentialcraft5:magical_enchanter}旁边时，一根柱子抵得上 <t>30</t> 个书架，只算底座那一格，魔力附魔台最高能到 {cfg:machines.magical_enchanter.max_enchant_level} 级，见[[devices/magical_enchanter]]。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/crystal_pillars/void_crystal_pillar.json — IGI / ICI / IPI：虚空板 ×6、虚空核心、淡青水晶柱、MRU 反应核",
+        "data/essentialcraft5/recipes/demon/demonic_pentacle.json — 五芒星：火之焦点 ×4、虚空板 ×4、虚空核心；加 4 根虚空柱合计虚空板 28、虚空核心 5、反应核 4",
+        "registry/ECDemon.java:121 PILLAR_OFFSETS、:130 VOID_STONE_OFFSETS（13）、:135 GLOWSTONE_OFFSETS（4）、:138 MITHRILINE_PLATING_OFFSETS（4）、:141 PALE_PLATING_OFFSETS（20）；柱子 4 任意 + 8 淡青以上 + 4 虚空以上",
+        "data/essentialcraft5/recipes/pentacle/pale_crystal_pillar.json — 淡青柱 = 米斯莱柱 + 黯淡水晶 ×2 + 黯淡水晶粉 ×6；虚空柱吃一根淡青柱，所以 16 根米斯莱柱里 12 根要升淡青",
+        "data/essentialcraft5/loot_tables/chests/town_tower.json（tools/gen/hoanna_loot.py）— 虚空核心、反应核每箱约 0.2 个（hoanna/relics 同口径）；5 / 0.2 = 25 箱（反应核 4 / 0.2 = 20 箱，同一批箱子里顺路拿到），城镇约 12.9 箱一座（tools/plan/progression.md 第 17 章）",
+        "data/essentialcraft5/recipes/void/void_plating.json — 魔术师台 1 块虚空石 → 1 块虚空板，1000 MRU；void_stone.json — 榍石 ×4、黑曜石板 ×4、闪耀榍石 → 16 块；虚空石合计 13（结构）+ 28（压板）= 41",
+        "data/essentialcraft5/recipes/mithriline/mithriline_plating.json — 米斯莱护板的配方，手册里在 mithriline/furnace 介绍（条目 items）",
+        "block/MithrilineCrystalPillarBlock.java:78 Tier.VOID — 档位 2、附魔加成 30，:183 getEnchantPowerBonus 只在底座；产能、上限五种共用 machines.mithriline_crystal_pillar",
+        "blockentity/MagicalEnchanterBlockEntity.java:75 — max_enchant_level（默认 60）；scanPower 周围 5×3×5 附魔加成之和",
+        "data/essentialcraft5/recipes/mithriline/furnace/mithriline_crystal_to_fading_crystal.json（240 ESPE）、fading_crystal_to_fading_dust.json（1 → 8，480 ESPE）；淡青柱每根黯淡水晶 ×2 + 粉 ×6，12 根 = 24 + 9 颗、24 × 240 + 9 × 240 + 9 × 480 = 12 240 ESPE",
+        "米斯莱水晶：黯淡水晶 33 颗各 1（mithriline/furnace/mithriline_crystal_to_fading_crystal.json）+ 柱子 16 根各 1；工作台每颗 17 粉，熔炉做锭每颗 4 × 1 + 1 = 5 粉"
+      ]
+    },
+    {
+      "id": "demonic_pentacle",
+      "title": "{item:essentialcraft5:demonic_pentacle}",
+      "icon": "essentialcraft5:demonic_pentacle",
+      "summary": "7×7、五层高的阵，16 根水晶柱",
+      "complete": "essentialcraft5:guide/demons/pentacle",
+      "items": [
+        "essentialcraft5:demonic_pentacle"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：搭起一座恶魔五芒星。恶魔和 MRU 毫无瓜葛。阵上的 16 根水晶柱会替你积攒 ESPE，攒够了就能召唤一只恶魔，ESPE 是水晶柱朝着天空积攒的能量，详见[[start/glossary]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_pentacle"
+        },
+        {
+          "type": "p",
+          "text": "五芒星本身是用 4 个{item:essentialcraft5:fire_focus}和 4 块{item:essentialcraft5:void_plating}围住 1 个{item:essentialcraft5:void_core}做成的。"
+        },
+        {
+          "type": "h",
+          "text": "摆法"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:demonic_pentacle"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "选一块你平时常待的平地，头顶要无遮挡，柱子才能积攒 ESPE，玻璃等透光方块不会影响积攒。为什么要选常待的地方，见下面的「坑」。"
+            },
+            {
+              "if": "!cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "选一块你平时常待的平地，原因见下面的「坑」。"
+            },
+            "最下面一层铺 13 块{item:essentialcraft5:void_stone}和 20 块{item:essentialcraft5:pale_plating}，颜色不限。",
+            "把五芒星放在正中那块虚空石上，再在同一层四个正方向上隔两格各放一块{item:minecraft:glowstone}，四个斜角方向上隔一格各放一块{item:essentialcraft5:mithriline_plating}。",
+            "按下表立起 16 根水晶柱，底座放在图中标出的格子上。",
+            "五芒星所在的这一格和它上面一格要空着，恶魔会站在那里。"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "柱位",
+            "数量",
+            "最低档位"
+          ],
+          "widths": [
+            5,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "米斯莱护板上",
+              "<t>4</t>",
+              "任意水晶柱"
+            ],
+            [
+              "外圈的淡青护板上",
+              "<t>8</t>",
+              "淡青水晶柱"
+            ],
+            [
+              "荧石上",
+              "<t>4</t>",
+              "虚空水晶柱"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "地上的符文由暗灰转为暗红，明暗起伏着缓缓旋转，柱子周围有红色光点上下飘动。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "柱子要有人在附近才会积攒 ESPE，详见[[mithriline/crystal_pillar]]。你去海纳尔翻遗迹的时候，阵也就停了，所以最好建在家门口，或者你常待的地方附近。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:general.demon.clear_radius>0",
+          "title": "别建在刷怪塔旁边",
+          "text": "召出来的恶魔会打死 {cfg:general.demon.clear_radius} 格内的敌对生物，被它打死的怪什么也不掉，见[[demons/demon]]。"
+        },
+        {
+          "type": "h",
+          "text": "积攒速度"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "一根每秒",
+              "主世界 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:20}，末地 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:20}"
+            ],
+            [
+              "16 根每秒",
+              "主世界 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:320}，末地 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:320}"
+            ],
+            [
+              "一根最多存",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe}"
+            ],
+            [
+              "召唤一次",
+              "{cfg:general.demon.summon_espe} ESPE"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.demon.summon_espe==666",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "柱子从空攒到够召唤一次，主世界要一分半钟左右，末地只要二十来秒。你在附近忙别的时，柱子照样在攒，每根都存得下很多，攒久了能一口气连召好几次。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "想快一点",
+          "text": "上表里末地攒得快得多。后面两章要和恶魔做很多笔交易，玩得久的人常把五芒星连同风之祭坛一起搬到末地，人就在那边挂机。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书给恶魔五芒星的副标题没头没尾，只有一句「它们在寻找灵魂，还有国王……很平常。」"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/demon/demonic_pentacle.json — FVF / VCV / FVF：火之焦点 ×4、虚空板 ×4、虚空核心（原作 recipes/demonic_pentacle.json 矿辞写成 core_void，没人登记）",
+        "registry/ECDemon.java:121 — 16 个柱位照原作 TileDemonicPentacle.coords，前 4 根任意档、中间 8 根 ≥ 1 档（淡青）、最后 4 根 ≥ 2 档（虚空），PILLAR_RULES :157",
+        "registry/ECDemon.java:130 — 下面一层 13 块虚空石、:141 20 块淡青护板；本层 :135 4 块荧石（±3,0,0）、:138 4 块米斯莱护板（±2,0,±2）；Rule.block 不看颜色",
+        "blockentity/DemonicPentacleBlockEntity.java:215 blocked — 恶魔站在五芒星这一格（y + 0.1）、高 1.8，碰撞箱里不能有方块；block/DemonicPentacleBlock.java 五芒星本身没有碰撞",
+        "blockentity/MithrilineCrystalPillarBlockEntity.java:61 / :63 / :67 — espe_generated 0.025、espe_generated_end 0.1（每刻）、max_espe 10000；:143 seesSky 柱顶往上不能有挡天空光的方块（玻璃不挡，blocksSkyLight），只在 machines.mithriline_crystal_pillar.requires_unobstructed_sky 开着时查（:115）；方块实体只在区块 tick 时攒",
+        "registry/ECDemon.java:228 — summon_espe 默认 666；16 × 0.025 × 20 = 8 /秒 → 约 83 秒，末地 32 /秒 → 约 21 秒",
+        "registry/ECDemon.java:235 — clear_radius 默认 12；entity/DemonEntity.java:286 clearOnce、data/essentialcraft5/tags/damage_type/no_death_loot.json（essentialcraft5:demon）",
+        "client/render/DemonicPentacleRenderer.java — 成形：每 tick 转 1°、红色亮度以 60 tick 为周期起伏；没成形：不转的暗灰",
+        "blockentity/DemonicPentacleBlockEntity.java:260 clientTick — 成形时柱子底座和 +2 处每 2 刻冒红色粒子（:288）",
+        "data/essentialcraft5/advancements/guide/demons/pentacle.json — structure_formed，结构 essentialcraft5:demonic_pentacle",
+        "tools/plan/batch7.md §0 第 1 条 — 原作 1.12 的配方 JSON 写的矿辞是 core_void，登记的是 coreVoid（b62e0f5）；1.10.2 及更早代码配方用 voidCore",
+        "原作 en_US.lang ec3book.discovery_demonicPentacle.desc=They seek souls and the king... Casual."
+      ]
+    },
+    {
+      "id": "summoning",
+      "title": "召唤",
+      "icon": "minecraft:soul_lantern",
+      "summary": "花费 ESPE，把恶魔召到阵上",
+      "complete": "essentialcraft5:guide/demons/summon",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：右键搭好的五芒星，从柱子里抽出 {cfg:general.demon.summon_espe} ESPE，召来一只恶魔。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "text": "等 16 根柱子合计攒够 {cfg:general.demon.summon_espe} ESPE。这里按柱子里的原始数值扣，不像灵魂五芒星那样打折，灵魂五芒星的算法见[[pentacle/cure]]。"
+            },
+            {
+              "if": "!cfg:general.corruption.effects_enabled",
+              "text": "等 16 根柱子合计攒够 {cfg:general.demon.summon_espe} ESPE，这里按柱子里的原始数值扣，不打折。"
+            },
+            "确认五芒星所在的这一格和上方一格都是空的。",
+            "亲手右键五芒星。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "一声低吼过后，符文中央站起一个生着翅膀、双眼发光的身影，面朝着你，阵边飘着一缕缕黑烟。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "召唤不成时",
+          "text": "快捷栏上方会显示原因，可能是结构哪一格不对、头顶被挡住、阵上已经有一只恶魔，或者柱子里的 ESPE 不够，这时还会写明现有多少、要多少。召唤失败不扣任何 ESPE。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "一座五芒星上同时只能站一只恶魔，它想要什么，召出来才知道。不想给的话，上前打它一下，它就会离开，再召一只新的，见[[demons/demon]]。打发走的那只花掉的 ESPE 不会退还。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "ESPE 按固定顺序一根一根地抽，先抽米斯莱护板上的 4 根，再抽外圈的 8 根，最后才轮到荧石上的 4 根。",
+            "必须由玩家亲手右键，机器和其他模组的自动化工具去点它都没有反应。",
+            "恶魔会一直站在阵上不动，等你来[[demons/trade|交易]]。"
+          ]
+        }
+      ],
+      "_src": [
+        "blockentity/DemonicPentacleBlockEntity.java:145 summon — 当场重判结构 → 交易池不空 → 周围一格往上两格没有恶魔（occupiedArea :210）→ 碰撞箱里没有方块（blocked :215）→ 原始 ESPE 合计 ≥ summon_espe；都满足才生成（面朝召唤者），再按 PILLAR_OFFSETS 顺序抽（drain :246）；失败只发快捷栏消息、不扣",
+        "registry/ECDemon.java:228 — general.demon.summon_espe 默认 666，原作 consumeEnderstarEnergy(666) 不折算",
+        "block/DemonicPentacleBlock.java use — 只认真玩家（ECProtection.isRealPlayer）",
+        "blockentity/DemonicPentacleBlockEntity.java:260 — 客户端每 20 刻查一次阵上有没有恶魔，有就冒烟",
+        "data/essentialcraft5/advancements/guide/demons/summon.json — minecraft:summoned_entity，实体类型 essentialcraft5:demon",
+        "tools/lang/keys/ecdemon.json — message.essentialcraft5.demonic_pentacle.blocked / no_espe（「%s / %s」= 现有 / 要）/ occupied / not_formed"
+      ]
+    },
+    {
+      "id": "demon",
+      "title": "恶魔",
+      "icon": "essentialcraft5:demon_spawn_egg",
+      "summary": "守在阵上替你清怪，等你前来交易",
+      "items": [
+        "essentialcraft5:demon_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:demon"
+        },
+        {
+          "type": "p",
+          "text": "恶魔从地狱上来，为的是做买卖，至少看上去是这样。它立在召唤它的五芒星上一步也不挪，只会转过头盯着身边的人。它不怕火，不受药水影响，推不动、拴不住，也不会自己消失，只要你不打发它走，它就一直等着交易。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.demon.clear_radius>0",
+          "text": "它会清怪"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.demon.clear_radius>0",
+          "text": "每隔 {cfg:general.demon.clear_interval|sec}，它会挑一只周围 {cfg:general.demon.clear_radius} 格内的敌对生物，一击打掉对方最大生命 1.6 倍的血量，几乎没有活得下来的。<b>被它打死的怪不掉东西，也不给经验</b>。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.demon.clear_radius>0",
+            "cfg:general.demon.explosion_power>0"
+          ],
+          "text": "出手时它还会在那只怪脚下引发一次爆炸，只伤得到它会攻击的那类怪，玩家、宠物、村民、动物和地上的掉落物都不受影响，方块也炸不坏。"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.demon.clear_radius>0",
+          "items": [
+            "凋灵、末影龙等 Boss 它不会碰。",
+            "起了名字、被驯服、拴着绳或捡过东西的怪，它也不会碰。",
+            "它只清召唤者有权改动的地方的怪，范围伸进别人的领地时，那边的怪它不碰。召唤者不在线时，它只清召唤者在线时确认过的地方，这份记录最多留一小时。世界重新打开，或者这一片没人、区块卸载以后，要等召唤者上线重新确认。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎样让它离开"
+        },
+        {
+          "type": "list",
+          "items": [
+            "召唤者或创造模式的玩家上前打它一下，它就会离开，别人打它、射它、炸它都没有用。",
+            "五芒星的结构被破坏后，它几秒内就会离开。",
+            "做成一笔[[demons/trade|交易]]后，它拿了东西就走。",
+            "不管它怎么离开，召唤时花的 ESPE 都不退还。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "创造模式物品栏里有{item:essentialcraft5:demon_spawn_egg}。用蛋放出来的恶魔没有召唤者，谁都能和它交易，可在多人游戏里它不清怪，因为没法判断该按谁有权改动的地方来算。它没站在五芒星上的话，2 秒内就会离开。"
+        }
+      ],
+      "_src": [
+        "entity/DemonEntity.java — 只有一个只转头的 LookAtPlayerGoal；canBeAffected :469 为假、isPushable :454 为假、canBeLeashed :449 为假、ignoreExplosion :464 为真、removeWhenFarAway :479 / requiresCustomPersistence :484 不自然消失；不怕火是 registry/ECDemon.java 里 DEMON 注册时的 fireImmune",
+        "entity/DemonEntity.java:286 clearOnce — 25³ 内随机挑一只，最大生命 × 1.6（CLEAR_DAMAGE_FACTOR :113），再在它脚下 safeExplode，过滤同一个判定；general.demon.clear_interval 默认 20、clear_radius 默认 12、explosion_power 默认 2（registry/ECDemon.java:235 / 238 / 241）",
+        "entity/DemonEntity.java:363 isClearTarget — Enemy、活着、不在 #forge:bosses、不是 ECEntityRules.isSpared（名字、驯服、拴绳）、不持久（捡过东西）、不在 essentialcraft5:demon_immune",
+        "entity/DemonEntity.java:332 clearPermission → util/OwnerCellMemory.java:78 — 挑目标、爆炸波及的都要召唤者能动那格（:341 mayClear 先看记录、已知不能动的不探测，一次清怪新探测最多 PROBES_PER_CLEAR 4 格；在线探测；离线只认在线时探测成能动、记 1 小时的格子；没有召唤者在专用服里一律不清，单人按房主算）（第十批 A6）",
+        "data/essentialcraft5/tags/damage_type/no_death_loot.json — essentialcraft5:demon 在里面，被它打死的不掉物品和经验（util/DeathLootEvents）",
+        "entity/DemonEntity.java:407 — hurt 一律无效，只有 bypasses_invulnerability 照常；:424 skipAttackInteraction：召唤者或创造模式玩家近战的主目标是它时离开",
+        "entity/DemonEntity.java:109 GUARD_INTERVAL 40 刻看一次脚下的阵（guardHolds :261），五芒星结构没标脏时也是 40 刻复查一次（blockentity/DemonicPentacleBlockEntity.java:64 RECHECK_INTERVAL），两者不同步，结构坏了最长约 4 秒才走；刷怪蛋出来的不在阵上，第 40 刻就走；DemonEntity.java:209 canTrade：summoner 为 null 时谁都行；depart / completeTrade 都不退 ESPE"
+      ]
+    },
+    {
+      "id": "trade",
+      "title": "交易",
+      "icon": "essentialcraft5:ackronite_ingot",
+      "summary": "交出它想要的东西，换取阿克罗尼特锭",
+      "complete": "essentialcraft5:guide/demons/trade",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：和恶魔做成一笔交易，拿到第一批{item:essentialcraft5:ackronite_ingot}。阿克罗尼特只能这样换来，后面两章要用掉好几百个。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "右键恶魔打开交易界面，左边写着它要什么、要几个，下面写着报酬。只有召唤者和创造模式的玩家能和它交易。",
+            "把东西放进右边的格子，这一格只收它要的东西，也只收到它要的数量为止，多出来的留在你手上。",
+            "数量一放够就成交，东西被收走，{cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 个阿克罗尼特锭直接进背包，背包满了就掉在脚下，恶魔随后离开。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "背包里多出了阿克罗尼特锭，并取得进度「{lang:advancements.essentialcraft5.demon_trade.title}」。"
+        },
+        {
+          "type": "h",
+          "text": "它会要什么"
+        },
+        {
+          "type": "p",
+          "text": "每只恶魔被召出来时，都会随机定下自己想要的一样东西，有便宜的，也有贵的。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.demon.standing.enabled",
+          "text": "你的契约之誉到了熟客以后，它会同时开两样，交哪样都行，见[[demons/standing]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "类别",
+            "它会要的"
+          ],
+          "widths": [
+            2,
+            7
+          ],
+          "rows": [
+            [
+              "灵魂",
+              "村民、末影人或风法师的{item:essentialcraft5:captured_soul} <t>1~7</t> 个，或者炼狱小鬼、遗民拾荒者的 <t>2</t> 个，见[[demons/soul_scriber]]"
+            ],
+            [
+              "原版材料",
+              "{item:minecraft:iron_block} ×8、{item:minecraft:diamond_block} ×2、{item:minecraft:ender_eye} ×32、{item:minecraft:bookshelf} ×64、{item:minecraft:tnt} ×64、{item:minecraft:enchanting_table} ×16"
+            ],
+            [
+              "原版稀有物",
+              "{item:minecraft:beacon}、{item:minecraft:enchanted_golden_apple}、{item:minecraft:nether_star}、{item:minecraft:filled_map}、{item:minecraft:player_head}、{item:minecraft:music_disc_11}，各 1"
+            ],
+            [
+              "本模组机器",
+              "{item:essentialcraft5:heat_generator} ×3、{item:essentialcraft5:magical_teleporter} ×2，以及{item:essentialcraft5:magical_enchanter}、{item:essentialcraft5:magical_repairer}、{item:essentialcraft5:mru_coil}、{item:essentialcraft5:ultra_heat_generator}各 1"
+            ],
+            [
+              "水晶柱与方块",
+              "{item:essentialcraft5:mithriline_crystal_pillar} ×12、{item:essentialcraft5:pale_crystal_pillar} ×6、{item:essentialcraft5:void_crystal_pillar} ×3、{item:essentialcraft5:elemental_drops_block} ×32"
+            ],
+            [
+              "装备与道具",
+              "风之工具 5 种、风之护甲 4 件、四种枪，以及{item:essentialcraft5:magical_shield}、{item:essentialcraft5:spiky_shield}、{item:essentialcraft5:emerald_heart}、{item:essentialcraft5:magic_water_bottle}、{item:essentialcraft5:magical_porkchop}、{item:essentialcraft5:chaos_fork}、{item:essentialcraft5:research_book}，每样各 1 件，风之装备见[[wind_gear/wind_tools]]，枪见[[guns/weapon_maker]]"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "挑着收",
+          "text": "几个灵魂、8 个铁块、3 台热力产能器、一本研究手册这类便宜的要求，直接给它就好。要是一开口就要 64 个书架、16 个附魔台或 12 根米斯莱柱，打发走再召一只往往更划算，召唤一次只要 {cfg:general.demon.summon_espe} ESPE。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "工具、盔甲、盾牌这类有耐久的东西必须是满耐久，界面上会注明，枪不看耐久。改过名或带附魔的物品照样收。",
+            "放到一半想反悔，关掉界面东西就会退回来，恶魔中途离开时也会退回。",
+            "离恶魔超过 8 格时，交易界面会自动关闭，格子里的东西也会退回。",
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "每做成一笔交易，[[demons/standing|契约之誉]] +1，攒多了恶魔会给你更好的条件。"
+            },
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "交易界面标题右边写着你现在的契约之誉，鼠标移上去能看到各档给什么。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书说，翻遍了别的书都找不到答案，只有一本《被遗忘的死灵之书》讲到阿克罗尼特，说它是只存在于地狱的金属，只有恶魔看得见，也只有恶魔挖得到。研究书接着提醒，恶魔只顾自己，总想着骗你。"
+        }
+      ],
+      "_src": [
+        "menu/DemonTradeMenu.java:110 settle — 投放格放够要的数量时先扣再成交；OfferSlot.mayPlace（:183）只收 DemonWant.matches，上限 = 要的数量（getMaxStackSize :189）",
+        "entity/DemonEntity.java:453 completeTrade — 报酬 reward_min~reward_max（registry/ECDemon.java:230 / 232，默认 3 / 8，原作 3 + nextInt(6)）个阿克罗尼特锭，ECItemEntities.giveOrDrop 给交易的人，然后消失",
+        "entity/DemonEntity.java:218 canTrade — 召唤者、创造模式玩家，没有召唤者时谁都行；只认真玩家",
+        "data/essentialcraft5/demon_trades/default.json — 45 条：灵魂 3 条（1~7 个，demon/DemonTrades.java DEFAULT_SOUL_MIN / MAX）、原版 12 条、本模组 30 条，四种枪 any_damage；召唤时 DemonTrades.roll 等权抽一条",
+        "data/essentialcraft5/recipes/guide/research_book.json — 书 ×3 + 四色染料 + 羽毛（交易池里最便宜的一条）",
+        "demon/DemonWant.java:51 matches — 会损坏的物品要满耐久（any_damage 例外），不比 NBT；灵魂只比 entity；needsFullDurability（:62）给界面注明",
+        "menu/DemonTradeMenu.java:140 removed — 关界面退回格子里剩下的；stillValid（:130）恶魔离开或超过 TRADE_RANGE 8 格（entity/DemonEntity.java:111）后变假，界面关掉东西退回",
+        "原作 en_US.lang L1102~1104（page.demonicPentacle_0~2）— 阿克罗尼特只存在于地狱、只有恶魔看得见挖得到，出自 Forgotten Necronomicon；别给恶魔地图（大意，重写）",
+        "data/essentialcraft5/advancements/guide/demons/trade.json — inventory_changed 阿克罗尼特锭；main/demon_trade 同条件",
+        "tools/plan/batch13.md §5.2 nether_imp — 恶魔交易池的灵魂加炼狱小鬼一条（固定 2 个，data/essentialcraft5/demon_trades/default.json，13c-M3）",
+        "data/essentialcraft5/demon_trades/default.json — 13d 加遗民灵魂一条，固定 2 个（batch13.md §3.4，13d-N1）"
+      ]
+    },
+    {
+      "id": "standing",
+      "title": "契约之誉",
+      "icon": "essentialcraft5:ackronite_ingot",
+      "summary": "交易做得越多，恶魔越好说话",
+      "if": "cfg:general.demon.standing.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "你和恶魔每做成一笔交易，<hl>契约之誉</hl>就 +1。打发走的不扣也不加，死了、换维度都不掉。交易界面上写着你现在的契约之誉，比如「契约之誉 23（契主）」。"
+        },
+        {
+          "type": "p",
+          "text": "攒到一定数，恶魔就给你更好的条件，后面的档包含前面的："
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "熟客 · {cfg:general.demon.standing.regular}",
+              "召出来的恶魔同时开两样要价，交哪样都算。第二样贵一些，数量是平时的 {cfg:general.demon.standing.premium_multiplier|x}，挑的都是乘完还放得进一个投放格的东西（{item:minecraft:filled_map}、{item:minecraft:player_head} 这类每件都不一样、叠不到一起的，永远只要 1 件，不会当第二样）；一样都挑不出来时，改要 2 个同一种生物的{item:essentialcraft5:captured_soul}"
+            ],
+            [
+              "契主 · {cfg:general.demon.standing.patron}",
+              "每做成一笔，另给 {cfg:general.demon.standing.patron_xp} 点经验"
+            ],
+            [
+              "血契 · {cfg:general.demon.standing.blood}",
+              "每只召出来的恶魔能用一回，潜行时手持一个被俘灵魂右键它，交出这个灵魂，两样要价重新抽"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "挚契 · {cfg:general.demon.standing.oath}",
+                "潜行时手持{item:essentialcraft5:umbral_crystal}右键你自己召出来的恶魔，交出 {cfg:general.demon.standing.oath_cost} 个影晶，向它立誓，换一个{item:essentialcraft5:demon_oath}，见[[shade/oath]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "被俘灵魂怎么来，见[[demons/soul_scriber]]。契约之誉不多给阿克罗尼特，只让你少召几次、少白跑几趟。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.4 — 做成一笔（恶魔收下要价、给出阿克罗尼特）+1，打发走不变；死亡 / 换维度保留；展示「契约之誉 23（契主）」",
+        "tools/plan/batch13.md §3.4、D19 A — 熟客 regular 8：两样要价，交哪样都算；契主 patron 20：每笔 + patron_xp 30 经验，不多给锭；血契 blood 40；挚契 oath 70 在 13e",
+        "demon/DemonTrades.rollFor / premiumFits、demon/DemonWant.deliverLimit、demon/DemonStanding— 第二样 = 原池里乘完放得进一组的另一条（demon_unstackable 标签按一组 1 个算）（灵魂条目总算）× premium_multiplier（向上取整），整池都乘不下才改要 2 个任意被俘灵魂；交易界面只有一个投放格，不同实体的灵魂叠不到一起，实际要 2 个同种；血契：每只恶魔一次，潜行、手持被俘灵魂右键，交一个灵魂重抽；交易界面写「契约之誉 %s（档名）」",
+        "general.demon.standing.enabled 关掉时照样记数、各档不起作用，所以整篇带这个条件",
+        "tools/plan/batch13.md §3.4 — 挚契 general.demon.standing.oath 70：潜行拿影晶右键恶魔立誓，交 oath_cost（16）得恶魔之誓（13e-C5）；第二十二章 shade/oath 是步骤"
+      ]
+    },
+    {
+      "id": "soul_scriber",
+      "title": "灵魂刻刀与被俘灵魂",
+      "icon": "essentialcraft5:soul_scriber",
+      "summary": "收取村民、末影人、风法师和炼狱小鬼的灵魂",
+      "complete": "essentialcraft5:guide/demons/soul",
+      "optional": true,
+      "items": [
+        "essentialcraft5:soul_scriber",
+        "essentialcraft5:captured_soul"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：用{item:essentialcraft5:soul_scriber}收取一个{item:essentialcraft5:captured_soul}。恶魔有时想要的是某种生物的灵魂，只有这把刻刀才收得到。它们拿灵魂去做什么，那部旧书里也没写。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:soul_scriber"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：把 1 块下界岩、1 颗下界石英和 1 根木棍从上到下竖着摆成一列。"
+        },
+        {
+          "type": "h",
+          "text": "怎样收取"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿着刻刀亲手攻击村民、末影人、[[wind_mage/wind_mages|风法师]]、[[bestiary/nether_imp|炼狱小鬼]]或[[bestiary/hoanna_scavenger|遗民拾荒者]]。",
+            "这一击过后它剩下的生命要是不到 1.5 颗心，刻刀就会收走它的灵魂，它当场倒下，什么也不掉，只在原地留下一个被俘灵魂。",
+            "这一击直接把它打死也行，它会照常掉东西，还会多掉一个灵魂。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一个被俘灵魂。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "收魂也是杀",
+          "text": "收走灵魂的那一击就等于杀了它，村民的床和工作站会空出来，附近的铁傀儡和其他村民也都会记下这笔账。在别人的领地这类你打不了它的地方，也收不了它的灵魂。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "灵魂按生物种类区分，同一种可以堆叠到 64 个，物品名后面的括号里写着这是谁的灵魂。",
+            "刻刀打中生物不耗耐久，攻击力只有 2，比木剑的 4 还低，正好拿来慢慢磨血。",
+            "只有玩家亲手攻击才算数，机器或横扫攻击打到的都不会收取，僵尸村民和流浪商人也不算村民。",
+            "末影人在末地最多。恶魔要灵魂时一次要 1~7 个，炼狱小鬼和遗民拾荒者的只要 2 个，可以先攒几个备着。",
+            "炼狱小鬼只在下界荒地和灵魂沙峡谷里有。它的精英小鬼头目收不了灵魂。",
+            "遗民拾荒者在恐惧之地和海纳尔沙漠里，白天也有。它的精英遗民队长，还有队长叫来的拾荒者，都收不了灵魂。"
+          ]
+        }
+      ],
+      "_src": [
+        "item/SoulScriberItem.java:58 hurtEnemy — 真玩家、目标在 #essentialcraft5:soul_capturable（按实体类型精确匹配）；已死：多掉 1 个灵魂；⌊生命⌋ ≤ CAPTURE_HEALTH（:50，2，即不到 3 点 = 1.5 颗心）：soul_capture 伤害打死后掉灵魂；横扫不经过 hurtEnemy",
+        "data/essentialcraft5/tags/entity_types/soul_capturable.json — 村民、末影人、风法师、炼狱小鬼（13c）",
+        "data/essentialcraft5/damage_type/soul_capture.json + tags/damage_type/no_death_loot.json — 收魂的死亡不掉东西、不给经验；正常 die（村民放开床、工作站）",
+        "item/SoulScriberItem.java:53 — SwordItem(Tiers.WOOD, 1, -2.4) 耐久 32（:48），hurtEnemy 不调父类（命中不掉耐久）；木剑 SwordItem(WOOD, 3, …) 显示 4",
+        "item/CapturedSoulItem.java — 一组 64，NBT entity，显示名「被俘灵魂（实体名）」",
+        "data/essentialcraft5/recipes/demonic/soul_scriber.json — 下界岩 / 石英 / 木棍（标签）",
+        "data/essentialcraft5/demon_trades/default.json — 灵魂条目 1~7 个，炼狱小鬼固定 2 个（13c-M3）",
+        "data/essentialcraft5/tags/entity_types/soul_capturable.json — 13c 起含 essentialcraft5:nether_imp；batch13.md §0.4 第 20 条：精英不能收魂",
+        "data/essentialcraft5/tags/entity_types/soul_capturable.json — 13d 加 hoanna_scavenger；精英和遗民队长叫来的不收（13d-N1，照 13c 的 NetherImpSummonedSoulRefused 写法）"
+      ]
+    },
+    {
+      "id": "ackronite",
+      "title": "阿克罗尼特",
+      "icon": "essentialcraft5:ackronite_ingot",
+      "summary": "锭 → 恶魔板 → 恶魔核心",
+      "complete": "essentialcraft5:guide/demons/ackronite",
+      "items": [
+        "essentialcraft5:ackronite_ingot",
+        "essentialcraft5:demonic_plate",
+        "essentialcraft5:demonic_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把恶魔给的{item:essentialcraft5:ackronite_ingot}压成{item:essentialcraft5:demonic_plate}，后面两章的材料几乎都从恶魔板开始。工坊手记里画的那套甲始终没造出来，图上用的就是恶魔板。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:demonic_plate",
+            "essentialcraft5:demonic_core"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在{item:essentialcraft5:magician_table}中间放 1 块{item:essentialcraft5:magic_fortified_plating}，四个角放 4 个阿克罗尼特锭，花 2000 MRU 得到 4 块恶魔板，见[[crafting/magician_table]]。",
+            "再用 4 块恶魔板和 4 颗{item:essentialcraft5:elemental_gem}围住 1 颗{item:essentialcraft5:mru_resonating_crystal}，做出{item:essentialcraft5:demonic_core}。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一块恶魔板。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "第一个恶魔核心装进工作台",
+          "text": "拿着恶魔核心右键魔力工作台，就能把它装上，速度提升到 <t>×16</t>，见[[storage/upgrades]]，要拿它去合成时再取下来。后面要压七十多次恶魔板、做三十份注魔合金，先做一个装上，能省下好几个小时。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "要积攒很多",
+          "text": "宅男套装四件一共要 287 块恶魔板，得压 72 次、用掉 288 个锭，而每笔交易只给 {cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 个。从现在起就让五芒星一直攒着 ESPE，有空就召一只，详细用量见[[computer/costs]]。"
+        },
+        {
+          "type": "h",
+          "text": "用途"
+        },
+        {
+          "type": "list",
+          "items": [
+            "凡是收「魔力板」一类材料的配方，都能用恶魔板代替，收「魔力核心」一类的都能用恶魔核心代替，[[guns/weapon_maker|武器工作台]]的核心格也认恶魔核心。",
+            "它是富神经元护板和宅男零件的主料，见[[hologram/neuronic_plating]]和[[computer/force_parts]]。",
+            "4 块恶魔板能做出 16 块{item:essentialcraft5:demonic_plating}，见[[demons/demonic_plating]]。",
+            "6 个锭、2 个恶魔核心加上一根虚空柱能做出恶魔水晶柱，灵魂五芒星升到 3 档时要用，见[[pentacle/tier_three]]。",
+            "阿克罗尼特锭当枪械材料时，伤害 26，弹量 20，没有后坐力，做成狙击镜能放大 16 倍，见[[guns/parts]]。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/demonic/demonic_plate.json — 魔术师台：魔力强化板 + 阿克罗尼特锭 ×4 → 4 个，2000 MRU",
+        "data/essentialcraft5/recipes/demonic/demonic_core.json — ISI / SES / ISI：恶魔板 ×4、元素晶石 ×4、MRU 共鸣水晶",
+        "api/MagicianTableUpgrades.java:48 — demonic_core 16（虚空核心 7.5、反应核 10）",
+        "tools/gen/computer_bom.py — 四件 287 块恶魔板（72 次压板 × 4 锭 = 288 锭）、注魔合金 30 份；全套 + 反重力板 329",
+        "tools/tags/ecdemonic.json — 恶魔核心进 cores/magic、恶魔板进 plates/magic；registry/ECWeaponMaker.java:41 MAGIC_CORES = cores/magic",
+        "data/essentialcraft5/recipes/crystal_pillars/demonic_crystal_pillar.json — 阿克罗尼特锭 ×6、恶魔核心 ×2、虚空水晶柱",
+        "gun/GunMaterials.java:61 — demonic：耐久 3000、伤害 26、装填 2、后坐 0、散布 1、间隔 1、弹量 20；:73 狙击镜 16 倍"
+      ]
+    },
+    {
+      "id": "purge",
+      "title": "净化：2 档五芒星",
+      "icon": "essentialcraft5:void_crystal_pillar",
+      "summary": "升到 2 档，治矩阵类腐化",
+      "complete": "essentialcraft5:guide/pentacle/tier2",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把第十二章的灵魂五芒星升到 2 档，见[[pentacle/tier_two]]。这一章本来就在做虚空石和虚空水晶柱，材料都是现成的。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "从这里往后，矩阵损伤会攒得很快，身边养着一团存满的聚集体时每秒加 80 点，被别人的魔力枪打中也会加，见[[corruption/matrix_damage]]。2 档能治 14 种[[corruption/matrix|矩阵类效果]]里的 11 种，矩阵损伤凝出来的毛病总算有地方治了。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "打开过任何一座搭好的五芒星以后，矩阵损伤就可能凝成矩阵类效果，2 档起才治得了，其中成本 72000 的三种要到 3 档。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "虚空石",
+              "8 块，颜色不限，见[[hoanna/void_stone]]"
+            ],
+            [
+              "虚空水晶柱",
+              "4 根，恶魔水晶柱也可以，见[[demons/void_crystal_pillar]]"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这 4 根柱子要另做，把恶魔五芒星上那 4 根挪过来的话，恶魔五芒星就不成形了。每根要用 6 块虚空板、1 根淡青水晶柱、1 个虚空核心和 1 个 MRU 反应核。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "核心和反应核不够时，就让海纳尔的富集仓多[[hoanna/collapse|坍缩]]几次。"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier2"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "1 档的结构要保持完整，每一格都要在原位。",
+            "从五芒星所在的这一层起，在外圈的四个角上各叠两块虚空石，正好叠在护板菱形缺掉的那四个角的正上方。",
+            "在每摞虚空石上立一根虚空水晶柱，然后右键五芒星打开界面。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "符文变成紫色，界面上显示「2 档」。第一次打开 2 档界面时这一步会打勾，要是第十二章就已经升过 2 档，这一步早就勾上了。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "2 档从 16 根柱子抽 ESPE，全部存满时能用 {cfg:machines.mithriline_crystal_pillar.max_espe|mul:5.76|int}，14 种矩阵类效果里有 11 种的成本在这个范围内。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "title": "2 档治不了的",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_12}、{lang:corruption_effect.essentialcraft5.matrix_19}和{lang:corruption_effect.essentialcraft5.matrix_20}这三种的成本是 72000，2 档的柱子全部存满也不够，要到 3 档才治得了，见[[pentacle/tier_three]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.effects_enabled||!cfg:general.corruption.matrix_effects_enabled",
+          "text": "2 档多了 4 根柱子，能用的 ESPE 更多，3 档也要在它的基础上搭，见[[pentacle/tier_three]]。"
+        }
+      ],
+      "_src": [
+        "blockentity/PlayerPentacleBlockEntity.java:318 onMenuOpened — 档位 ≥ 2 时给 guide/pentacle/tier2 打勾（本篇复用这个进度，第十二章升过 2 档的早就打上了）",
+        "registry/ECPentacle.java:207 VOID_STONE_OFFSETS（(±2, 0, ±2)、(±2, 1, ±2) 两层 8 块）、L195 PILLAR_OFFSETS 第 2 段 (±2, 2, ±2)；L225 pillarRule(2, …) 认档位 ≥ 2 的柱子（恶魔柱也算）；L219 laterBlock 按注册名 void_stone 判，颜色是方块状态",
+        "blockentity/PlayerPentacleBlockEntity.java effectiveESPE — 16 根 × 上限 × 0.36 = 5.76 × 上限；TIER_COLORS 第 4 项紫色",
+        "api/CorruptionEffects.java:166~179 — 矩阵类 14 种，matrix_12 / 19 / 20 成本 72000，其余 ≤ 36000；Category.MATRIX minPentacleTier 2",
+        "corruption/CorruptionGate.java:60 drawable — 打开过成形的五芒星才抽（draw_requires_cure_tier），不再按档位筛",
+        "entity/MRUPresenceEntity.java:398 matrixDamage — 存满时每秒 80；gun/RayShot.java:372 魔力枪打中玩家加矩阵损伤",
+        "registry/ECDemon.java:120~128 PILLAR_MIN_TIER — 恶魔五芒星有 4 根要虚空以上的柱子",
+        "data/essentialcraft5/recipes/crystal_pillars/void_crystal_pillar.json — 虚空板 ×6、虚空核心、淡青水晶柱、MRU 反应核"
+      ]
+    },
+    {
+      "id": "rank_6",
+      "title": "六阶 · 契约",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "相性 II",
+      "complete": "essentialcraft5:guide/matrix/rank_6",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.gates.holopad==6",
+          "text": "<em>目标</em>：升到矩阵六阶「契约」。下一章的全息投影台要六阶才召得出全息投影。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.gates.holopad!=6",
+          "text": "<em>目标</em>：升到矩阵六阶「契约」，相性升到 II。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "一共 24 种，其中至少 4 种是在海纳尔杀的、2 种是海纳尔的本地怪"
+            ],
+            [
+              "站点",
+              "2 档灵魂五芒星，上一篇刚搭好"
+            ],
+            [
+              "祭品",
+              "2 个{item:essentialcraft5:condensed_matrix}、1 个{item:essentialcraft5:void_mru_reactor}、4 块{item:essentialcraft5:ackronite_ingot}、4 个同一种[[hoanna_explore/specialties|海纳尔特产]]"
+            ],
+            [
+              "能量",
+              "台子里 6 万 MRU，五芒星的柱子里 6000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 7 只，同时最多 3 只；每只 80 点生命，打你一下 9 点；限时 120 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "站着不动 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:60} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "海纳尔的怪单独记一份，主世界杀过的种类到海纳尔再杀一次也算。",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "MRU 反应核可以从海纳尔的遗迹里开，也可以让富集仓坍缩出来，见[[hoanna/collapse]]。"
+            },
+            "把祭品放进淬炼台的祭品格，台子里的 MRU 用绑定宝石备够。",
+            "站在台子 3 格内，主手拿着绑定你的灵魂石，打开界面，右边全打勾以后点「开始淬炼」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒够数的矩阵回响，别离开台子太远。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁边不动，也别受伤，等引导走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "屏幕正中出现「六阶 · 契约」，灵魂石的物品提示里写着矩阵六阶。"
+        },
+        {
+          "type": "p",
+          "text": "六阶的回报是相性 II，效果比 I 强一截，带矩阵特性的武器也跟着变强，见[[matrix/alignment]]。矩阵容量涨到 {cfg:general.matrix_rank.pool_per_rank|mul:5}。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.3 九阶表、§3.1.2 试炼；进度 essentialcraft5:guide/matrix/rank_<n> 由代码在升阶成功时发（同 guide/hoanna/radiation）",
+        "data/essentialcraft5/matrix_ranks/rank_6.json— 图谱总数 24、海纳尔 ≥ 4 种（hoanna_natives 2，13d 起标签里有八种怪）；2 档五芒星；祭品凝结矩阵 ×2 + MRU 反应核 + 阿克罗尼特锭 ×4 + 海纳尔特产 ×4（hoanna_specialties，13d 起六样、不含榍石；淬炼台 4 格，不另要虚空核心，MRU 反应核本身用它做，batch13.md §3.1.3）；MRU 6 万 + ESPE 6 000；回响 7 / 3 / 80 / 9 / 120 秒；回报相性 II、容量 × 5；门 gates.holopad 6",
+        "放在 demons/purge（2 档五芒星）之后"
+      ]
+    },
+    {
+      "id": "demonic_plating",
+      "title": "{item:essentialcraft5:demonic_plating}",
+      "icon": "essentialcraft5:demonic_plating",
+      "summary": "阻挡 MRU 效果最好的护板，共 16 色",
+      "items": [
+        "essentialcraft5:demonic_plating"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "用 4 块{item:essentialcraft5:demonic_plate}无序合成 16 块{item:essentialcraft5:demonic_plating}，这是挡 MRU 挡得最好的一种护板。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_plating"
+        },
+        {
+          "type": "list",
+          "items": [
+            "隔着它时，聚集体造成的矩阵损伤 36 次里只有 1 次落到你身上，淡青护板是 10 次里 1 次，见[[alloys/plating]]。",
+            "它可以用作[[enrichment/controller|富集仓]]的外壳方块，也能铺成[[tesla/mru_coil|MRU 特斯拉线圈]]的底座。",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "海纳尔的富集仓[[hoanna/collapse|坍缩]]聚集体时，它和虚空石、虚空玻璃一样，都算在需要凑齐的那几块外壳里。"
+            },
+            "灵魂五芒星升到 3 档需要 4 块，见[[pentacle/tier_three]]。",
+            "它和别的护板一样能染色，拿着染料右键换颜色，潜行右键能染一片，挖下来以后总是白色。",
+            "用[[decorations/magical_chisel|魔力凿]]能在它上面凿出 16 种花纹。",
+            "硬度 3，爆炸抗性 60，需要用镐开采。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/demonic/demonic_plating.json — 恶魔板 ×4 → 16（无序）",
+        "entity/MRUResistances.java:43 — 默认表 demonic_plating=36（淡青护板 10）；entity/MRUPresenceEntity.java:358 连线上最大抗性 r，1/⌊r⌋ 的几率受影响（machines.mru_presence.block_resistances 是列表，没法用 {cfg}）",
+        "tools/tags/ecdemonic.json — mrucuec_casing、mru_coil_base",
+        "registry/ECPentacle.java:220 DEMONIC_RULE — 3 档结构的恶魔护板格",
+        "block/DyeableBlock.java — 染料右键改色，潜行染周围 ±2（AREA_RADIUS）；挖下来总是白色",
+        "registry/ECDemonic.java:61 DEMONIC_PLATING — 硬度 3、legacyResistance(3, 100) → 60，要镐",
+        "block/FancyMaterial.java:41 DEMONIC_PLATING — 16 种花纹"
+      ]
+    }
+  ]
+}

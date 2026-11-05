@@ -1,0 +1,1080 @@
+{
+  "id": "pentacle",
+  "order": 79,
+  "group": "main",
+  "title": "Chapter 12 · Corruption and the Soul Pentacle",
+  "subtitle": "Mend what MRU did to you",
+  "icon": "essentialcraft5:player_pentacle",
+  "entries": [
+    {
+      "id": "pentacle",
+      "title": "{item:essentialcraft5:player_pentacle}",
+      "icon": "essentialcraft5:player_pentacle",
+      "summary": "Spend ESPE to cure corruption effects",
+      "complete": "essentialcraft5:guide/pentacle/player_pentacle",
+      "items": [
+        "essentialcraft5:player_pentacle"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Treat the ills a wounded matrix leaves behind with MRU and you only make them worse. What mends them is the pulse of the Green Sun, the same pulse that keeps every living thing alive.",
+          "by": "Fragments of Essence, Book IV"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:player_pentacle} and build its tier 0 structure. Book IV of the Fragments draws it as a rune ringed by eight pillars. It spends ESPE to cure <em>corruption effects</em>, the lasting ailments that matrix damage sets into once enough of it piles up."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.effects_enabled",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:player_pentacle} and build its tier 0 structure. Book IV of the Fragments draws it as a rune ringed by eight pillars. The Pale Blocks and Pale Crystal Pillars you make in this chapter will be used again in later chapters."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "What corruption effects are"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "Working near an MRUCU that holds over 10,000 MRU slowly builds up <em>matrix damage</em> in you ([[start/mrucu]]). It never fades on its own, and once a minute it has a chance to set into a corruption effect, such as slow hands or weak legs."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "The more damage you carry, the likelier that gets, and at around 36,000 it happens every minute. Each time, the effect's threshold is taken off your damage; the threshold is the effect's cost times {cfg:general.corruption.draw_threshold_multiplier}. Corruption effects stay with you through death, and only the Soul Pentacle cures them. What each one does is covered from [[corruption/matrix_damage]] on."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "<em>The pentacle knows you</em>: the first time you open a finished pentacle, even a tier 0 one, it sees your matrix, and chat tells you so. From then on your damage can form <em>any kind</em> of effect, whatever tier you opened. Before that, damage only builds up and forms nothing, and effects you already carry lie dormant. Once you have opened one, effects your tier can't cure yet act all the same, and curing them takes a higher-tier pentacle."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier",
+            "cfg:general.corruption.respect_claims"
+          ],
+          "text": "Only <em>your own</em> pentacles know you, along with any standing where you could build, such as on your land, in places where you are trusted, or in the wilds. A pentacle in someone else's claim still opens and cures, but it doesn't count as one you've opened. Otherwise someone could walk you up to a pentacle in their claim and then lock you out, and your damage would start forming effects you have no way to cure yet."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "Matrix effects are included. The three that cost 72,000 have the highest threshold and don't appear until you carry {cfg:general.corruption.draw_threshold_multiplier|mul:72000|int} damage."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Pentacle",
+              "4 {item:essentialcraft5:mithriline_dust}, 4 {item:essentialcraft5:empty_matrix_projection}s, 1 {item:essentialcraft5:soul_stone}"
+            ],
+            [
+              "Tier 0 structure",
+              "13 {item:essentialcraft5:mithriline_plating} and 8 crystal pillars of any kind"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:player_pentacle"
+        },
+        {
+          "type": "p",
+          "text": "Mithriline Dust goes in the corners, Empty Matrix Projections on the sides and the Soul Stone in the middle. Each empty projection is itself a Soul Stone irradiated in a Radiating Chamber, so one pentacle takes <t>5</t> Soul Stones in all ([[mru/soul_stone]], [[generators/projections]])."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Pillars first",
+          "text": "The 8 crystal pillars are the most expensive part of this step ([[mithriline/crystal_pillar]]). A pillar starts gathering ESPE as soon as it is placed, so lay the plating and raise the pillars first. By the time you have the Soul Stones for the pentacle, they will have saved up a good amount."
+        },
+        {
+          "type": "h",
+          "text": "Tier 0 structure"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "Pick a spot open to the sky so the pillars can gather ESPE. Glass and other see-through blocks overhead don't get in the way."
+            },
+            {
+              "if": "!cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "Pick a free spot."
+            },
+            "Lay the bottom layer first, 13 Mithriline Plating in a diamond, with a cross of 5 in the middle and a ring of 8 around it. Any color works, dyed ones included.",
+            "Stand a crystal pillar on each of the 8 outer platings, two to a side. Any kind of pillar will do, as long as the block right above the plating is the pillar's <em>base</em>.",
+            "Finally, put the pentacle on the middle plating."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The rune on the ground turns green and starts to spin, and green sparks rise along the pillars. If anything is missing, the rune stays gray and still. The structure is checked every 2 seconds, and again whenever you open the pentacle."
+        },
+        {
+          "type": "h",
+          "text": "The window"
+        },
+        {
+          "type": "p",
+          "text": "Right-click the pentacle without sneaking to open it. You stand in the middle of the window, and the red bar at your feet is your matrix damage; a full bar means you've hit the cap. Below it are the ESPE you can spend and the pentacle's tier, and your corruption effects are laid out around the rune."
+        },
+        {
+          "type": "h",
+          "text": "Watch out"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Crystal pillars only gather while you are nearby ([[mithriline/crystal_pillar]]), so build the pentacle close to home.",
+            "Break a crystal pillar and put it back, and the ESPE it had saved is gone.",
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "text": "Curing an effect doesn't lower your matrix damage. If you stay next to an MRUCU, the damage will form a new effect before long. Move the MRUCU away with the {item:essentialcraft5:mru_mover} first, or put on [[gear/mhs_armor|MHS armor]], then come back to cure."
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "From Matrix Rank 4, a trial needs one of your own Soul Pentacles within 8 blocks of the crucible, and starting it takes ESPE from that pentacle's pillars ([[pentacle/rank_4]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book subtitled the pentacle \"Cleanse the soul!\" and remarked that, oddly, the structure comes in several tiers. The book counted tiers from 1, so its tier 4 is tier 3 here."
+        }
+      ]
+    },
+    {
+      "id": "cure",
+      "title": "Cure a Corruption Effect",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "How the pentacle counts ESPE",
+      "complete": "essentialcraft5:guide/pentacle/cure",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): cure one corruption effect at the pentacle. Tier 0 already cures the body effects, the ones that affect your hands and legs ([[corruption/body]])."
+        },
+        {
+          "type": "h",
+          "text": "How to cure"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Right-click the pentacle and hover over an effect's icon to see its name, category and ESPE cost.",
+            "If the cost is green, click it and the effect is gone, with a soft chime.",
+            "If it is red, the lines below say whether you lack the tier or the ESPE. Effects the current tier can't cure show their names as scrambled text.",
+            {
+              "if": "cfg:general.corruption.draw_requires_cure_tier",
+              "text": "An effect marked \"Dormant\" does nothing for now. It wakes once you open a finished pentacle."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "\"Cured: ...\" appears above your hotbar."
+        },
+        {
+          "type": "h",
+          "text": "What it costs"
+        },
+        {
+          "type": "p",
+          "text": "The pentacle stores no ESPE of its own. When you cure something it draws straight from the crystal pillars in its structure, at a loss, so each point in a pillar is worth only <t>0.36</t>. The number in the window is already discounted."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Category",
+            "Cost",
+            "From pillars (half at tier 3)",
+            "Lowest tier"
+          ],
+          "rows": [
+            [
+              "Body",
+              "6,000",
+              "16,666",
+              "Tier 0"
+            ],
+            [
+              "Mind",
+              "8,000 to 36,000",
+              "22,222 to 100,000",
+              "Tier 1"
+            ],
+            {
+              "if": [
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "Matrix",
+                "2,000 to 72,000",
+                "5,555 to 200,000",
+                "Tier 2; the three 72,000 ones need tier 3"
+              ]
+            }
+          ],
+          "widths": [
+            1,
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Tier",
+            "Pillars drawn from",
+            "Usable when all are full"
+          ],
+          "rows": [
+            [
+              "Tier 0",
+              "8",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:2.88|int}"
+            ],
+            [
+              "Tier 1",
+              "12",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:4.32|int}"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Tier 2",
+                "16",
+                "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:5.76|int}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Tier 3",
+                "20, every point counts twice",
+                "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:14.4|int}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How long it takes"
+        },
+        {
+          "type": "p",
+          "text": "Pillars fill slowly. Under the open sky each one makes {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:20} ESPE a second, and in the End {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:20} a second."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "One body effect draws 16,666 from the pillars. Starting from empty, eight pillars gather that in about <t>69</t> minutes in the Overworld, or about <t>17</t> minutes in the End."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Once the structure is up, go and do something else while the pillars fill, then come back to cure. Stay nearby, though ([[mithriline/crystal_pillar]]).",
+            "Built in the End, the pillars fill several times faster, but only while you are there too.",
+            "Tier 1 and up add more pillars, so you store more and gather faster."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Pillars are drained one at a time. If together they don't hold enough, nothing is taken at all.",
+            "The pentacle rechecks its structure the moment you click, so with a pillar removed the cure fails right away.",
+            "In Creative mode, hold Shift and click to cure any effect for free.",
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.matrix_tuner.enabled"
+              ],
+              "text": "The pentacle only cures effects and never lowers matrix damage. The damage itself can be worn away on a [[corruption/matrix_tuner|Matrix Tuner]]."
+            },
+            "To clear a big chunk of damage at once, summon the [[bestiary/matrix_shade|Matrix Specter]], pour up to {cfg:general.mobs.matrix_shade.max_absorbed|int} damage into it and defeat it.",
+            "Calling a Matrix Specter draws ESPE from the pillars with the same discount, halved again at tier 3; see [[bestiary/matrix_shade]].",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "Matrix ranks don't make corruption any milder. [[matrix/tolerance|Tolerance]] only offsets the newer sources such as trials, siphons and Matrix Wraiths, so corruption effects still need curing here."
+            }
+          ]
+        }
+      ],
+      "if": "cfg:general.corruption.effects_enabled"
+    },
+    {
+      "id": "pale_block",
+      "title": "{item:essentialcraft5:pale_block}",
+      "icon": "essentialcraft5:pale_block",
+      "summary": "The corner stones of tier 1",
+      "complete": "essentialcraft5:guide/pentacle/pale_block",
+      "items": [
+        "essentialcraft5:pale_block"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make {item:essentialcraft5:pale_block}s. Their only use is raising the pentacle to tier 1, and tier 1 is optional, as is everything from the next page on. The rest of the main line never needs them again. If you don't plan to upgrade, one block to check off this step is enough; make all 4 when you do."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "Tier 1 cures mind effects, such as a shuffled inventory or the stack in your hand falling out ([[corruption/mind]])."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Each",
+              "4 {item:essentialcraft5:pale_ingot}s, 1 {item:essentialcraft5:pale_pearl}, 4 {item:minecraft:lapis_block}s"
+            ],
+            [
+              "All four",
+              "20 lapis blocks, 4 lapis lazuli, 4 gold ingots, 4 glowstone dust; about {cfg:machines.radiating_chamber.mru_usage_modifier|mul:52000|int} MRU in the Radiating Chamber"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pale_block"
+        },
+        {
+          "type": "p",
+          "text": "Put the Pale Pearl in the middle, Pale Ingots in the corners and lapis blocks on the sides. Both the ingots and the pearl come out of the Radiating Chamber ([[alloys/pale]])."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Mine lapis first",
+          "text": "Lapis is what runs short here. Four Pale Blocks take 20 lapis blocks, and each lapis block is 9 lapis lazuli, so work out how much you need before you head down."
+        },
+        {
+          "type": "p",
+          "text": "On its own a Pale Block is just a sturdy building block, though [[gear/pale_gem]] uses it too."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold a Pale Block."
+        }
+      ]
+    },
+    {
+      "id": "pale_crystal_pillar",
+      "title": "Fading Crystals and Pale Pillars",
+      "icon": "essentialcraft5:pale_crystal_pillar",
+      "summary": "The tier 1 crystal pillar",
+      "complete": "essentialcraft5:guide/pentacle/pale_crystal_pillar",
+      "items": [
+        "essentialcraft5:pale_crystal_pillar",
+        "essentialcraft5:fading_crystal",
+        "essentialcraft5:fading_dust"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make 4 {item:essentialcraft5:pale_crystal_pillar}s. The Demonic Pentacle in Chapter 17 needs 12 more, so make extras while the furnace is idle. The 4 new pillars of the tier 1 structure must be pale ones. Void and demonic pillars, being higher tiers, count too, but mithriline pillars don't.",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make 4 {item:essentialcraft5:pale_crystal_pillar}s. The 4 new pillars of the tier 1 structure must be pale ones. Void and demonic pillars, being higher tiers, count too, but mithriline pillars don't.",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Each",
+              "1 {item:essentialcraft5:mithriline_crystal_pillar}, 2 {item:essentialcraft5:fading_crystal}s, 6 {item:essentialcraft5:fading_dust}"
+            ],
+            [
+              "All four",
+              "4 Mithriline Crystal Pillars, 11 {item:essentialcraft5:mithriline_crystal}s; about 4,080 ESPE in the Mithriline Furnace"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pale_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "Put the Mithriline Crystal Pillar in the middle with a Fading Crystal directly above and below it, and Fading Dust in the other six slots."
+        },
+        {
+          "type": "h",
+          "text": "Two steps in the Mithriline Furnace"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fading_crystal",
+            "essentialcraft5:fading_dust"
+          ],
+          "recipe_type": "essentialcraft5:mithriline_furnace"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a Mithriline Crystal into the {item:essentialcraft5:mithriline_furnace}, and 240 ESPE turns it into 1 Fading Crystal. The furnace itself is covered in [[mithriline/furnace]].",
+            "Put in 1 Fading Crystal, and 480 ESPE grinds it into 8 Fading Dust.",
+            "Four pillars take 8 Fading Crystals and 24 dust. The dust takes 3 more crystals ground up, so 11 Mithriline Crystals in all."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "title": "You will need more",
+          "text": "The Demonic Pentacle in Chapter 17 takes 8 pale pillars, and the 4 Void Crystal Pillars it also needs are made from pale ones. Whenever the furnace is idle, let it turn out more Fading Crystals, so there is far less waiting later."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Later on, Fading Crystals also go into Force Emitters and Particle Catchers ([[computer/force_parts]])."
+        },
+        {
+          "type": "p",
+          "text": "A pale pillar fills faster than a mithriline one ([[mithriline/crystal_pillar]] gives the factors) but holds the same amount, {cfg:machines.mithriline_crystal_pillar.max_espe|int}. With its base in a bookshelf spot beside an enchanting table, one pillar counts as 15 bookshelves. The crystal floating inside it is pale blue."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold a Pale Crystal Pillar."
+        }
+      ]
+    },
+    {
+      "id": "tier_one",
+      "title": "Tier 1 Pentacle",
+      "icon": "essentialcraft5:pale_crystal_pillar",
+      "summary": "Four more pillars; cures mind effects",
+      "complete": "essentialcraft5:guide/pentacle/tier1",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: raise the pentacle to tier 1."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "Tier 1 cures mind effects ([[corruption/mind]]) and has more ESPE to spend."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Once you have opened any finished pentacle, matrix damage can form mind effects, and tier 1 is the lowest that cures them."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Pale Blocks",
+              "4 ([[pentacle/pale_block]])"
+            ],
+            [
+              "Pale Crystal Pillars",
+              "4 ([[pentacle/pale_crystal_pillar]])"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Tier 1 structure"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier1"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Leave the tier 0 structure whole, with not a single block missing.",
+            "On the pentacle's own layer, put a Pale Block on each of the four diagonal spots right next to it.",
+            "Stand a Pale Crystal Pillar on each Pale Block, its base right on top of the block."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The rune turns blue, blue sparks rise along the 4 new pillars, and the window reads \"Tier 1\". This step is checked off the first time you open a tier 1 pentacle."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "How long it takes"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "Tier 1 draws from 12 pillars, with {cfg:machines.mithriline_crystal_pillar.max_espe|mul:4.32|int} to spend when all of them are full. The two dearest mind effects cost 36,000 each, which means 100,000 drawn from the pillars."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "Starting from empty, 12 pillars need about 4.2 hours to gather that in the Overworld, or about an hour in the End."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Above it are [[pentacle/tier_two]] and [[pentacle/tier_three]], built from materials found in Hoanna and traded from demons. You can skip them for now; tier 2 comes up as a step in Chapter 17 ([[demons/purge]])."
+        },
+        {
+          "type": "h",
+          "text": "The Matrix Specter"
+        },
+        {
+          "type": "p",
+          "text": "From tier 1 the pentacle can also summon the <em>Matrix Specter</em>. Once you carry {cfg:general.mobs.matrix_shade.min_matrix_damage|int} matrix damage or more, right-click the pentacle's center block with a {item:essentialcraft5:matrix_conduit}. Your damage pours into the Specter, and when you defeat it that damage is gone, with {item:essentialcraft5:matrix_crystal}s on top. The summoning reserves ESPE from the pillars ([[bestiary/matrix_shade]])."
+        }
+      ]
+    },
+    {
+      "id": "tier_two",
+      "title": "Tier 2 Pentacle",
+      "icon": "essentialcraft5:void_crystal_pillar",
+      "summary": "Void Stone and Void Crystal Pillars",
+      "complete": "essentialcraft5:guide/pentacle/tier2",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): raise the pentacle to tier 2."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "In their last years the people of Hoanna dug Void Stone, meaning to wall the whole city against MRU. Here it props up the pillars. Tier 2 cures matrix effects ([[corruption/matrix]])."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Once you have opened any finished pentacle, matrix damage can form matrix effects. Tier 2 is the lowest that cures them, and the three that cost 72,000 need tier 3."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.effects_enabled||!cfg:general.corruption.matrix_effects_enabled",
+          "text": "In their last years the people of Hoanna dug Void Stone, meaning to wall the whole city against MRU. Here it props up the pillars. Tier 2 adds 4 more pillars and so has more ESPE to spend, and tier 3 is built on top of it."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Void Stone",
+              "8 ([[hoanna/void_stone]]), any color"
+            ],
+            [
+              "Void Crystal Pillars",
+              "4 ([[demons/void_crystal_pillar]]); Demonic Crystal Pillars count too"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Tier 2 structure"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier2"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Leave the tier 1 structure whole, with not a single block missing.",
+            "Starting on the pentacle's own layer, stack two Void Stones on each of the four outer corners, right above the corners the plating diamond leaves out.",
+            "Then stand a Void Crystal Pillar on top of each stack."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The rune turns purple and the window reads \"Tier 2\"."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "Tier 2 draws from 16 pillars, with {cfg:machines.mithriline_crystal_pillar.max_espe|mul:5.76|int} to spend when all are full. That covers 11 of the 14 matrix effects."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "title": "Beyond Tier 2",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_12}, {lang:corruption_effect.essentialcraft5.matrix_19} and {lang:corruption_effect.essentialcraft5.matrix_20} cost 72,000 each. Even a full tier 2 doesn't have enough, so they need tier 3 ([[pentacle/tier_three]])."
+        }
+      ]
+    },
+    {
+      "id": "tier_three",
+      "title": "Tier 3 Pentacle",
+      "icon": "essentialcraft5:demonic_crystal_pillar",
+      "summary": "Every ESPE counts twice",
+      "complete": "essentialcraft5:guide/pentacle/tier3",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:demonic_crystal_pillar"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional here; Chapter 19 makes it a required step, see [[inquisitorium/purify]]): raise the pentacle to tier 3, where every point of ESPE in the pillars counts as two. Its demonic pillars need ackronite, a metal from Hell that you can only get by trading with demons. Tier 4, the one above it, comes in Chapter 22 ([[shade/tier4]])."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "Tier 3 cures every corruption effect, including the three that tier 2 can't reach."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "The three matrix effects that cost 72,000 have the highest threshold and only form once you carry {cfg:general.corruption.draw_threshold_multiplier|mul:72000|int} damage. After that, only tier 3 can cure them."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Demonic Plating",
+              "4 ([[demons/demonic_plating]]), any color"
+            ],
+            [
+              "Demonic Crystal Pillars",
+              "4"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "For a Demonic Crystal Pillar, surround a {item:essentialcraft5:void_crystal_pillar} with 6 {item:essentialcraft5:ackronite_ingot}s and 2 {item:essentialcraft5:demonic_core}s; the void pillar is used up. How to get Ackronite is in [[demons/ackronite]]."
+        },
+        {
+          "type": "h",
+          "text": "Tier 3 structure"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier3"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Leave the tier 2 structure whole, with not a single block missing.",
+            "On the layer below the pentacle, the Mithriline Plating layer, put one Demonic Plating two blocks away due east, south, west and north.",
+            "In the same four directions, two blocks out and 3 blocks higher than the pentacle, stand a Demonic Crystal Pillar in each spot."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Pillars in mid-air",
+          "text": "There is nothing under a demonic pillar's base, so you can't place it directly. Stack a few blocks underneath, place the pillar, then break them away."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The rune turns red, the window reads \"Tier 3\", and you get the advancement \"Soul Cleansing\"."
+        },
+        {
+          "type": "h",
+          "text": "Using it"
+        },
+        {
+          "type": "p",
+          "text": "Tier 3 draws from 20 pillars and counts every point twice, giving {cfg:machines.mithriline_crystal_pillar.max_espe|mul:14.4|int} to spend when all are full. Curing the same effect takes only half as much from the pillars as it would at a lower tier."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "Each of the three 72,000 matrix effects draws 100,000 from the pillars."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "Starting from empty, 20 pillars gather that in about 1.6 hours in the Overworld, or about 25 minutes in the End."
+        }
+      ]
+    },
+    {
+      "id": "ec_balancer",
+      "title": "{item:essentialcraft5:ec_balancer}",
+      "icon": "essentialcraft5:ec_balancer",
+      "summary": "Keeps the MRUCU in the chamber harmless",
+      "complete": "essentialcraft5:guide/pentacle/ec_balancer",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ec_balancer"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): fit an {item:essentialcraft5:ec_balancer} to your Enrichment Chamber so the MRUCU inside stops adding to your matrix damage. [[enrichment/controller]] shows how to build the chamber."
+        },
+        {
+          "type": "p",
+          "text": "The Enrichment Chamber was first built as a cage for MRUCUs. The MRU it stores sits in the controller and hurts no one. An MRUCU floating inside the shell is different. Once it holds more than 10,000 it still adds matrix damage to anyone within 12 blocks, whether a leaky machine locked in there grew it or you moved it in. The shell only blocks part of that, and the stabilizer suppresses it completely."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "4 {item:essentialcraft5:magic_plate}s or higher plates such as pale or mithriline ones, 1 {item:essentialcraft5:combined_magical_alloys}, 2 {item:essentialcraft5:mru_conversion_matrix}es, 1 {item:essentialcraft5:elemental_core} or any other magic core, and 1 {item:essentialcraft5:mru_catcher}"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ec_balancer"
+        },
+        {
+          "type": "p",
+          "text": "The top row is the alloy with a plate on each side, the middle row is the core between the two conversion matrices, and the bottom row is the collecting device between two more plates."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Treat it as a shell block. Set it anywhere in the chamber's shell in place of a Magical Fortified Stone or plating, and the shell still counts as complete.",
+            "Within a second or two of placing it, the controller rescans the shell and the stabilizer takes effect."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "From then on, every second it gives each MRUCU inside the shell another 2 seconds of calm, and while calm they add no matrix damage to anyone."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold an Enrichment Chamber Stabilizer."
+        },
+        {
+          "type": "h",
+          "text": "Watch out"
+        },
+        {
+          "type": "list",
+          "items": [
+            "One is enough; more of them add nothing.",
+            "Remove the stabilizer or break the shell, and 2 seconds later things are back to normal.",
+            "It only calms the MRUCUs inside the chamber. Out in the open, move them away with the {item:essentialcraft5:mru_mover} or wear [[gear/mhs_armor|MHS armor]].",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "text": "With an MRUCU shut inside and the stabilizer working, the chamber can also condense it into a {item:essentialcraft5:condensed_matrix}, which this chapter asks for at the end ([[pentacle/condensed]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.enrichment_chamber.collapse.enabled"
+          ],
+          "title": "Needed again in Chapter 16",
+          "text": "Collapsing an MRUCU in Hoanna needs a Stabilizer in the shell ([[hoanna/collapse]]), so the one you make now will come in handy."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book gave this stabilizer a one-line subtitle, \"Balance the Magic!\""
+        }
+      ]
+    },
+    {
+      "id": "condensed",
+      "title": "{item:essentialcraft5:condensed_matrix}",
+      "icon": "essentialcraft5:condensed_matrix",
+      "summary": "A chamber condenses an MRUCU into one piece",
+      "complete": "essentialcraft5:guide/pentacle/condensed",
+      "items": [
+        "essentialcraft5:condensed_matrix"
+      ],
+      "if": [
+        "cfg:general.matrix_rank.enabled",
+        "cfg:machines.enrichment_chamber.condense.enabled"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: have an Enrichment Chamber condense the MRUCU shut inside it into a {item:essentialcraft5:condensed_matrix}. Every rank from 4 on takes some as offerings, 6 in all by rank 7."
+        },
+        {
+          "type": "h",
+          "text": "Conditions"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Shell",
+              "A finished [[enrichment/controller|Enrichment Chamber]] with at least {cfg:machines.enrichment_chamber.condense.casing} {item:essentialcraft5:magic_plating} and {item:essentialcraft5:pale_plating} between them in its shell"
+            ],
+            [
+              "Stabilizer",
+              "A working {item:essentialcraft5:ec_balancer} in the shell ([[pentacle/ec_balancer]])"
+            ],
+            [
+              "MRUCU",
+              "An MRUCU of at least {cfg:machines.enrichment_chamber.condense.presence_mru} shut inside"
+            ],
+            [
+              "Stored MRU",
+              "At least {cfg:machines.enrichment_chamber.condense.mru} MRU in the chamber. The controller alone holds {cfg:machines.enrichment_chamber.max_mru}; if that isn't enough, build [[enrichment/holding_chamber|storage blocks]] into the shell"
+            ],
+            [
+              "Balance",
+              "Between {cfg:machines.enrichment_chamber.condense.balance_min} and {cfg:machines.enrichment_chamber.condense.balance_max}, around {balance:pure}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "With every condition met, condensing progresses by 1 each second. At {cfg:machines.enrichment_chamber.condense.seconds} seconds ({cfg:machines.enrichment_chamber.condense.seconds|div:60|round:1} minutes) it is done: the MRUCU vanishes, {cfg:machines.enrichment_chamber.condense.mru} MRU is taken from the chamber, and a Condensed Matrix drops in the middle of the chamber. Any dimension works."
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Build at least {cfg:machines.enrichment_chamber.condense.casing} Magic or Pale Plating blocks into the chamber's shell, the rest as usual, and set a stabilizer into it.",
+            "Shut an MRUCU inside: build the shell around one, or push one in through fortified glass with the {item:essentialcraft5:mru_mover}. The {item:essentialcraft5:mrucu_container} can bring one back from the wild to start with.",
+            "Run a few leaky machines next to the chamber until it grows to {cfg:machines.enrichment_chamber.condense.presence_mru}.",
+            "Feed the chamber from two kinds of generator so its balance sits in the middle: one leaning frozen and one leaning chaotic, or only pure ones.",
+            "Wait {cfg:machines.enrichment_chamber.condense.seconds|div:60|round:1} minutes, open a shell block to take the Condensed Matrix out, then close it again."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have your first Condensed Matrix."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<em>Protect yourself while the MRUCU grows.</em> Once it passes 10,000 it gives [[corruption/matrix_damage|matrix damage]] to anyone within 12 blocks. Set the stabilizer first and then push the MRUCU in, or wear a full set of [[gear/mhs_armor]]."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If a condition breaks partway, progress pauses rather than resetting.",
+            "What it makes never despawns. It stacks in one pile and stops at 64 until you take some.",
+            "The chamber's balance is weighted by amount, including MRU already stored, so after changing generators it takes a while to swing over.",
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.collapse.enabled"
+              ],
+              "text": "In Hoanna, the same chamber still collapses when its balance is at either extreme, and condenses when it is in the middle ([[hoanna/collapse]])."
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.condense.event_multiplier==1"
+              ],
+              "text": "Hoanna's calamities don't speed up condensing."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rank_4",
+      "title": "Rank 4 · Refining",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "The first rank that needs a pentacle",
+      "complete": "essentialcraft5:guide/matrix/rank_4",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: reach matrix rank 4, Refining. From this rank on, the Crucible needs a Soul Pentacle nearby."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "17 kinds in all, 4 from the Nether"
+            ],
+            [
+              "Site",
+              "A finished [[pentacle/pentacle|Soul Pentacle]] within 8 blocks of the Crucible; tier 0 is enough"
+            ],
+            [
+              "Offerings",
+              "1 {item:essentialcraft5:condensed_matrix}, 4 {item:essentialcraft5:mithriline_ingot}, 2 {item:essentialcraft5:pale_block}"
+            ],
+            [
+              "Energy",
+              "20,000 MRU in the Crucible and 2,000 ESPE in the pentacle's pillars"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "5 in all, up to 3 at once; 56 health each, 7 damage a hit; 100 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "Stand still for {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:40} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Move the Crucible next to your pentacle, or build another pentacle beside it.",
+            "Place the offerings in the Crucible's offering slots and fill it with enough MRU through a Bound Gem.",
+            "Stand within 3 blocks with your bound Soul Stone in your main hand, open the screen, and once everything on the right is ticked, start the trial.",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Defeat enough Matrix Echoes, and don't stray far from the Crucible."
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Stay next to the Crucible without moving or getting hurt until the channel finishes."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "\"Rank 4 · Refining\" appears in the middle of the screen, and your Soul Stone's tooltip shows matrix rank 4."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "ESPE is discounted the same way as when the pentacle cures you; the screen shows the discounted amount. The pentacle must be your own, not someone else's."
+        },
+        {
+          "type": "p",
+          "text": "Rank 4 gives you the [[matrix/reservoir|Matrix Siphon]]: sneak and hold right-click on a nearby MRUCU with your Soul Stone in your main hand to draw its MRU into your reservoir. Your reservoir grows to {cfg:general.matrix_rank.pool_per_rank|mul:3}."
+        }
+      ]
+    }
+  ]
+}

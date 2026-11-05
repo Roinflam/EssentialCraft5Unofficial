@@ -1,0 +1,1627 @@
+{
+  "id": "attunement",
+  "order": 108,
+  "group": "side",
+  "title": "支线 · 同调",
+  "subtitle": "让装备随你成长",
+  "icon": "essentialcraft5:mhs_chestplate",
+  "if": "cfg:general.attunement.enabled",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "同调是什么",
+      "icon": "essentialcraft5:mhs_chestplate",
+      "summary": "装备穿久了，跟你越来越合",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "残卷里没有这一节。那身甲我穿得最久，挨的打越多，它越合身，挡得也越巧。下面记的，是我一样一样试出来的。",
+          "by": "编者按"
+        },
+        {
+          "type": "p",
+          "text": "有些装备会在实战里跟你越来越合，这叫<hl>同调</hl>。每件装备自己记着攒了多少<em>同调度</em>，攒满这一阶，就能拿到[[crafting/magician_table|魔力工作台]]上用材料升一阶。阶越高，这套装备的本事越多。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "同调阶和你自己的[[matrix/overview|矩阵阶]]不是一回事：矩阵阶是你这个人的，同调阶是这件装备的。不过装备升到第几阶，要看穿它的人有几阶矩阵，见[[attunement/stage_up]]。"
+        },
+        {
+          "type": "h",
+          "text": "能同调的装备"
+        },
+        {
+          "type": "table",
+          "header": [
+            "装备",
+            "最高",
+            "详见"
+          ],
+          "rows": [
+            [
+              "魔力防护套装四件",
+              "2 阶",
+              "[[attunement/mhs_armor]]"
+            ],
+            [
+              "风之护甲四件",
+              "3 阶",
+              "[[attunement/wind_armor]]"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "虚空套装四件",
+                "4 阶",
+                "[[attunement/void_armor]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "审判庭套装四件",
+                "4 阶",
+                "[[attunement/inquisitorium_armor]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "宅男套装四件",
+                "5 阶",
+                "[[attunement/computer_armor]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:forged_elemental_sword}",
+                "2 阶",
+                "[[attunement/ember_sword]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:verdict_blade}",
+                "5 阶",
+                "[[attunement/verdict_blade]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每套装备都是穿着、拿着打仗来攒同调度，攒满一阶就拿去升阶，每一阶多什么本事写在上表各自那一篇。换成更好的一套盔甲时，旧的那套攒下的可以用[[attunement/transfer]]转一半过去。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "{item:essentialcraft5:forged_elemental_sword}升到同调 2 阶以后，还能在魔力工作台上升格成{item:essentialcraft5:verdict_blade}，见[[attunement/verdict_blade]]。"
+        },
+        {
+          "type": "h",
+          "text": "每一阶都有的"
+        },
+        {
+          "type": "list",
+          "items": [
+            "盔甲每升一阶，这一件多 {cfg:general.attunement.health_per_stage} 点最大生命（2 点是一颗心）。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "宅男套装四件都升满五阶，一共多 {cfg:general.attunement.health_per_stage|mul:20} 点。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "武器每升一阶，攻击力多 {cfg:general.attunement.damage_per_stage|pct}，升满五阶多 {cfg:general.attunement.damage_per_stage|mul:5|pct}。"
+            },
+            "升阶不会丢掉任何东西：附魔、染色、装好的模块、存着的 MRU 都原样留着。",
+            "3 阶起，物品上会泛起附魔那样的光泽。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "盔甲的本事分两种。护盾份额和电费、护盾挡哪些伤害、能存多少 MRU、模块槽，这些长在某一件上，按那一件自己的阶算。各篇写着「四件穿齐」「四件都到几阶」的是全套的本事，要四件都穿着，按四件里最低的那一阶算，少穿一件就没有。"
+        },
+        {
+          "type": "p",
+          "text": "对上别的玩家时，这些本事给的持续时间和多出来的伤害只有平时的 {cfg:general.attunement.pvp_effect_scale|pct}，各篇会写明是哪几样。"
+        },
+        {
+          "type": "h",
+          "text": "看一件装备的同调"
+        },
+        {
+          "type": "p",
+          "text": "物品提示里写着「同调 ◆◆◇◇◇（2 / 5 阶）」和「同调度 650 / 1600」这样两行：前一行是现在几阶、最高几阶，后一行是这一阶攒了多少、要攒多少。已经有的阶效果是白字，还没到的是灰字。按住 Shift，能看到升下一阶要的材料和矩阵阶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "能同调的盔甲不能放进工作台或砂轮两件并一件修，那样修出来的是新的一件，同调和存着的 MRU 全没了。磨损了的放进[[devices/magical_repairer]]修，或者在铁砧上两件合修（右边那件会被吃掉）。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.3（同调框架）、§4.4（宅男各阶）、§4.5（升阶材料）；代码 item/attunement/*、item/ComputerAttunement、player/AttunementBudget",
+        "tools/plan/batch13.md §3.3.1 — 家族表：mhs_armor 2、wind_armor 3、void_armor 4、inquisitorium_armor 4、computer_armor 5、ember_sword 2、verdict_blade 5（tools/tags/attunement.json）；表里虚空、审判庭、宅男、两把剑的行带海纳尔之门条件",
+        "tools/plan/batch13.md §3.3.5 — 每阶通用：盔甲每阶每件 + health_per_stage 最大生命（宅男 5 阶四件共 +20）；升阶保留附魔、染色、模块、MRU 等全部 NBT；提示框「同调 ◆◆◇◇◇（2 / 5 阶）」「同调度 650 / 1 600」、白字已解锁 / 灰字未解锁、Shift 看下一阶材料与矩阵阶；3 阶起附魔光泽",
+        "分类只带 general.attunement.enabled：魔力防护、风之护甲门关着也做得出来；虚空、审判庭、宅男、两把剑那几篇和指向它们的行、句子带 general.hoanna.portal_enabled",
+        "item/attunement/AttunementBonuses.java — 武器每阶攻击 ×(1 + damage_per_stage × 阶)；item/attunement/Attunement.fullSetStage — 全套效果取四件最低的阶，没穿齐不算；份额、存电、单价按每件自己的阶（batch13.md §4.4）",
+        "item/attunement/AttunementConfig.java — pvp_effect_scale 0.5：时长、增伤打在玩家身上时乘它（batch13.md §3.3.5）"
+      ]
+    },
+    {
+      "id": "points",
+      "title": "同调度从哪来",
+      "icon": "essentialcraft5:mhs_helmet",
+      "summary": "穿着它真刀真枪地打",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "盔甲的同调度靠<em>穿着挨打</em>来攒：穿着它挨敌对生物一下，身上每件还能长的盔甲各得 {cfg:general.attunement.points_hit} 点，首领打的一下各得 {cfg:general.attunement.points_boss_hit} 点。"
+        },
+        {
+          "type": "h",
+          "text": "什么样的一下才算"
+        },
+        {
+          "type": "list",
+          "items": [
+            "伤害真的落到你身上才算。被本模组的护盾、闪避或偏转整下挡掉的，也算。",
+            "打你的要是敌对生物或首领。刷怪笼和刷怪蛋弄出来的怪不算。",
+            "这只怪在 10 秒内被你亲手打实过，盔甲反伤、荆棘替你打回去的不算。站着挨打不还手，一点都不攒。",
+            "同一只怪半秒内连着打你几下，只算一下。",
+            {
+              "if": "cfg:general.attunement.points_pvp==0",
+              "text": "玩家打你不攒。"
+            },
+            {
+              "if": "cfg:general.attunement.points_pvp>0",
+              "text": "玩家打你一下，每件得 {cfg:general.attunement.points_pvp} 点。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "武器怎么攒"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "武器的同调度靠<em>拿在主手里亲手打</em>：用它打实敌对生物一下得 {cfg:general.attunement.points_hit} 点，打死一只再得 {cfg:general.attunement.points_kill} 点，打死首领得 {cfg:general.attunement.points_boss_kill} 点。"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            "得是你挥剑砍中的。射出去的东西、饰品、盔甲反伤替你打的都不算。",
+            "目标要是敌对生物或首领，刷怪笼、刷怪蛋弄出来的不算，不会动的怪也不算。",
+            "这只怪得正追着你，或者 10 秒内打中过你，首领不看这条。",
+            "同一刻砍中好几下，比如横扫，只算一下。",
+            {
+              "if": "cfg:general.attunement.points_pvp==0",
+              "text": "打玩家不攒。"
+            },
+            {
+              "if": "cfg:general.attunement.points_pvp>0",
+              "text": "打实玩家一下，或者打死一名玩家，各得 {cfg:general.attunement.points_pvp} 点。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "防挂机的两条"
+        },
+        {
+          "type": "list",
+          "items": [
+            "同一只怪从生到死，最多给你的盔甲 5 点。首领不受这条限制，聚能魔像这类小首领除外。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "武器打实同一只怪最多拿 3 点，击杀给的另算。首领一般不受这条限制，聚能魔像这类小首领照算；原版和别的模组的首领要 10 秒内打中过你才不限，困住它干砍只有这 3 点。"
+            },
+            "同一种怪你每在线一小时前 30 只给全额，再往后减半。一只怪打你、被你砍、被你打死，都只算一只。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "所以困住一只僵尸让它一直打你，最多拿 5 点。刷怪塔里的怪也得是你打过、又回头打中你的才算，同一种一小时里过了 30 只就只给一半。到处走走、打不同的怪，攒得最快。"
+        },
+        {
+          "type": "p",
+          "text": "精英怪给的同调点是普通的 {cfg:general.mobs.elite_attunement_multiplier} 倍，每只的上限也跟着乘上这个数。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "攒满这一阶的那件就不再长了，等你升阶，别的件照样长。",
+            "同调度每 2 秒记进装备一次，下线、死亡、换维度时也会记。打着打着把一件脱下来，最多丢掉最后 2 秒攒的。",
+            "攒得多快还受[[attunement/budget|同调预算]]管着。"
+          ]
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.3.2 — 盔甲：挨一下 points_hit（首领 points_boss_hit）；伤害生效（LivingDamageEvent LOWEST、未取消、> 0）或被本模组护盾 / 闪避 / 偏转整下吃掉；攻击者是 Enemy 或 #forge:bosses、不是刷怪笼 / 刷怪蛋来的（SpawnOrigin）、不在 growth_excluded；攻击者 200 刻内被本人打实过（反伤不算本人打实：AttunementGains.notOwnHit）；同一攻击者 10 刻一次；PvP points_pvp",
+        "tools/plan/batch13.md §3.3.2 — 同一事件给身上所有符合的件、预算只扣一次；攒满本阶的件不拿点、不扣预算；防挂机：同一只生物一生每人 ≤ 5 点盔甲点（首领不限，本模组小 Boss 档照普通怪，AttunementGains.uncappedBoss；累计存在生物持久数据 essentialcraft5:attunement_given，item/attunement/AttunementGains），同一种实体每小时前 30 只全额、之后减半，按只计（一只挨打、被砍、被杀只算一只），12 个 6 000 刻小桶滚动、按玩家 UUID 记；同种计数存在玩家数据的击杀台账里，按在线时间滚动（player/MobKillLedger），精英 ×general.mobs.elite_attunement_multiplier（registry/ECMobFramework）",
+        "tools/plan/batch13.md §3.3.5 — 写盘节流：每 40 刻、下线、死亡、换维度写回槽位上的物品；离开装备槽时不追着写，最多丢 40 刻",
+        "tools/plan/batch13.md §3.3.2 — 武器：主手打实 points_hit、击杀 points_kill（首领 points_boss_kill）；直接实体是本人（弹射物不算）、不是 notOwnHit（反伤、饰品伤害、尖刺圆盾）；目标是 Enemy 或首领、来源公平、isNoAi 为假，在追你或 200 刻内打中过你（首领免）；同一刻只算一下；PvP 打实、击杀都给 points_pvp（item/attunement/AttunementGains.weaponHit / weaponKill）",
+        "item/attunement/AttunementGains.java WEAPON_HIT_CAP_PER_CREATURE — 同一只每人武器打实 ≤ 3 点，击杀不受这条管；首领不限，但本模组小 Boss 档照算、非本模组首领要 200 刻内打中过你（uncappedBoss）"
+      ]
+    },
+    {
+      "id": "budget",
+      "title": "同调预算",
+      "icon": "minecraft:clock",
+      "summary": "同调度的限速",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "同调度不是想攒多快就多快。你在线时，盔甲的<hl>同调预算</hl>每小时涨 {cfg:general.attunement.budget_per_hour} 点，最多存 {cfg:general.attunement.budget_cap} 点。每攒一下同调度，就从预算里扣掉这一下的点数，四件同时长也只扣一次；预算用光了，就等它慢慢涨回来。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "武器另有一份预算，涨法、上限都和盔甲的一样，两份各扣各的，穿着甲练剑不会互相抢。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.budget_per_hour==360",
+            "cfg:general.attunement.budget_cap==720"
+          ],
+          "text": "预算只在线时涨，存满就不再涨。相当于没空打仗的那阵子，最多替你攒下两小时的份。"
+        },
+        {
+          "type": "p",
+          "text": "预算是防刷怪塔用的。刷得再快，一小时也只长这么多；正常打怪，预算多半够用。盔甲的物品提示里写着现在还能长多少点、在线多久存满。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.budget_per_hour==360",
+            "cfg:general.attunement.budget_cap==720"
+          ],
+          "text": "照这个速度，从零攒到 2 阶要大约 3 小时的预算，攒到 5 阶要大约 30 小时的；预算存满时能先顶掉两小时。实际打不了这么满，多半要再久一些。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.3.3 — 预算：盔甲、武器各一份，在线每秒 +0.1（budget_per_hour 360），上限 budget_cap 720；只限速不限来源；存满不涨（相当于最多补两小时）；提示框写「今天还能长 N 点、存满约 2 小时」",
+        "tools/plan/batch13.md §3.3.4 — 节奏下限：1 阶 300 点 0.8 小时、2 阶 1 100 点 3.1 小时、5 阶 10 700 点 29.7 小时（只看预算）；普通玩家按战斗利用率 50~70% 折",
+        "tools/plan/batch13.md §3.3.3 — 盔甲、武器各一份预算，规则相同（player/AttunementBudget）"
+      ]
+    },
+    {
+      "id": "stage_up",
+      "title": "升阶",
+      "icon": "essentialcraft5:magician_table",
+      "summary": "在魔力工作台上升一阶",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "一件装备这一阶的同调度攒满，提示框里那一行就满了，这件不再长，等着你拿去升阶。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把攒满的装备放在[[crafting/magician_table|魔力工作台]]正中。",
+            "四角放这一阶的材料，有的格子要放好几个，按住 Shift 看提示框里写的放。",
+            "工作台里备够 MRU，和普通配方一样等它做完。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "有几阶的材料要去打首领才有：{item:essentialcraft5:ancient_core}是[[bestiary/mru_golem|聚能魔像]]掉的，{item:essentialcraft5:matrix_crystal}是[[bestiary/matrix_shade|矩阵之影]]掉的。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每阶要攒的同调度",
+              "1～5 阶依次是 {cfg:general.attunement.thresholds}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "每阶要的矩阵阶",
+                "1～5 阶依次是 {cfg:general.attunement.rank_gate}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩阵阶的要求"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.attunement.rank_gate"
+          ],
+          "text": "同调 1 阶要矩阵 {cfg:general.attunement.rank_gate|at:0} 阶，同调 2 阶要矩阵 {cfg:general.attunement.rank_gate|at:1} 阶，同调 3 阶要矩阵 {cfg:general.attunement.rank_gate|at:2} 阶，再往上见上表。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "装备会记着穿它的人到过几阶矩阵：穿在身上时每 2 秒记一次，只升不降。工作台看的是装备上记的这个阶，不看是谁把它放上去的。所以刚突破了矩阵阶的话，先把它穿上几秒，再拿去升。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "同调 5 阶要矩阵九阶，九阶在第二十三章，见[[apex/rank_9]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.matrix_rank.enabled",
+          "text": "升阶只看同调度和材料，不看矩阵阶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "已经升上去的阶不会自己掉。不过一件装备只能一阶一阶地升，攒满了不升，多打的那些就白打了。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.3.5 — 升阶：魔力工作台同一个配方类型、新序列化器 attunement_ascension；中心是家族物品、阶 = from_stage、本阶点数满、阶戳 ≥ 要求；四角每格可带 count；保留全部 NBT",
+        "tools/plan/batch13.md §2.5 / §3.3.5 — 阶门槛 rank_gate [1, 3, 5, 7, 9]；工作台查配方时没有玩家，只读戳；matrix_rank.enabled = false 时不看矩阵阶",
+        "item/attunement/AttunementGains.java flush — 每 40 刻把身上同调装备的阶戳抬到穿戴者现在的矩阵阶（只升不降），攒没攒点都抬；提示框缺阶时写「穿上或拿在手里几秒，让它记下你现在的阶」",
+        "九阶在 13e；13a 时矩阵最高七阶，同调最高四阶",
+        "升阶配方 essentialcraft5:attunement/computer_1~5（各家族的升阶配方放在各套装那一篇），配方视图（中心格「n 阶·满」角标）在 client/guide/GuideRecipeViews",
+        "原版 RepairItemRecipe.assemble 新建一件、只留诅咒附魔（同调数据全丢）；砂轮 GrindstoneMenu.mergeEnchants 复制上面那件；铁砧 AnvilMenu 合两件时复制左边那件。四套同调盔甲 isRepairable 为假，工作台和砂轮不收；宅男盔甲本来就不可修理；余烬元素剑、裁决之刃没有耐久（canBeDepleted 为假），修理配方不收（gametest/MHSArmorTests.mhsRepairKeepsStageOnlyOnAnvil、AttunedArmorRepairTests）",
+        "tools/plan/batch13.md §9.6 — 13c 起：上古晶核（聚能魔像必掉）、矩阵结晶（矩阵之影 1~4）进升阶配方",
+        "tools/plan/batch13.md §3.1.3 — 九阶在 13e（apex/rank_9）；rank_gate 第 5 项 9"
+      ]
+    },
+    {
+      "id": "transfer",
+      "title": "同调转移",
+      "icon": "essentialcraft5:crystal_dust",
+      "summary": "换一套时带走一半",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "换成更好的一套时，旧装备上攒的同调度不必全扔掉。在[[crafting/magician_table|魔力工作台]]上做一次<hl>同调转移</hl>，新的那件能拿到旧件累计同调度的一半。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "正中放新的那件，它得还在 0 阶，这一阶也还没攒满。",
+            "左上角放旧的那件，要和新件是同一个部位，头盔对头盔、靴子对靴子。",
+            "右上角放 2 份{item:essentialcraft5:crystal_dust}，左下角放 1 块{item:essentialcraft5:combined_magical_alloys}，右下角空着。",
+            "做完以后，旧件还留在左上角，只是同调度清空了，阶照留，自己取回来。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/transfer_armor"
+        },
+        {
+          "type": "list",
+          "items": [
+            "转过来的点只往新件的 0 阶里填，最多填满，不会直接跨阶。",
+            "只能从档次低的一套转到档次高的一套，依次是魔力防护套装、风之护甲、虚空套装或审判庭套装、宅男套装。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "用魔力防护合成虚空套装时，那件魔力防护整件用掉，它的同调阶和同调度都带不过去。想留着，就另做一件魔力防护拿去合成，再把攒了点数的那件转给新做出来的虚空套装。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "{item:essentialcraft5:forged_elemental_sword}升格成{item:essentialcraft5:verdict_blade}时自带一半，不用另做转移，见[[attunement/verdict_blade]]。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.3.5、§8.1 D10 C — 转移：中心新件（0 阶），四角旧件 + 水晶粉 ×2 + 注魔合金 → 新件得旧件 total 的一半（只进 points、不跨阶、不超过新件 1 阶门槛 × 2），旧件留在角格、只清空同调 total 和 points；只能低档转高档（魔力防护 → 风 → 虚空 / 审判庭 → 宅男）",
+        "recipe/AttunementTransferRecipe.java、data/essentialcraft5/recipes/attunement/transfer_armor.json — 中心新件（0 阶、本阶未满），左上同一部位的旧件，ingredients 依次是右上（水晶粉 ×2）、左下（注魔合金）、右下（空）；旧件留在左上、只清同调度和累计、阶照留；10 000 MRU",
+        "item/attunement/Attunement.transferAmount — min(累计 / 2, 2 × 1 阶门槛, 本阶剩下的空)，实际封顶是 0 阶攒满",
+        "item/attunement/Attunement.promoted — 升格时 NBT 照抄、同调从 0 阶起、带 transferAmount（旧件累计的一半，封顶是 0 阶攒满）；data/essentialcraft5/recipes/void_armor/*.json 整件吃掉同部位的魔力防护，不保留 NBT"
+      ]
+    },
+    {
+      "id": "mhs_armor",
+      "title": "魔力防护套装的同调",
+      "icon": "essentialcraft5:mhs_chestplate",
+      "summary": "护盾份额变大，存电变多",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[gear/mhs_armor|魔力防护套装]]最高同调到 2 阶。它 0 阶就带着矩阵缓冲，存着 MRU 时每件替你挡一份伤害，往上每阶份额更大、能存的电更多。"
+        },
+        {
+          "type": "h",
+          "text": "各阶效果"
+        },
+        {
+          "type": "table",
+          "header": [
+            "阶",
+            "护盾份额（头 / 胸 / 腿 / 靴，共 20 份）",
+            "每件存电",
+            "另外"
+          ],
+          "widths": [
+            1,
+            4,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "0",
+              "{cfg:general.mhs_armor.shares_helmet|at:0} / {cfg:general.mhs_armor.shares_chestplate|at:0} / {cfg:general.mhs_armor.shares_leggings|at:0} / {cfg:general.mhs_armor.shares_boots|at:0}",
+              "{cfg:general.mhs_armor.max_mru|at:0} MRU",
+              "挡物理和元素伤害，每挡 1 点要 {cfg:general.mhs_armor.mru_per_damage} MRU"
+            ],
+            [
+              "1",
+              "{cfg:general.mhs_armor.shares_helmet|at:1} / {cfg:general.mhs_armor.shares_chestplate|at:1} / {cfg:general.mhs_armor.shares_leggings|at:1} / {cfg:general.mhs_armor.shares_boots|at:1}",
+              "{cfg:general.mhs_armor.max_mru|at:1} MRU",
+              "余流"
+            ],
+            [
+              "2",
+              "{cfg:general.mhs_armor.shares_helmet|at:2} / {cfg:general.mhs_armor.shares_chestplate|at:2} / {cfg:general.mhs_armor.shares_leggings|at:2} / {cfg:general.mhs_armor.shares_boots|at:2}",
+              "{cfg:general.mhs_armor.max_mru|at:2} MRU",
+              "MRU 腐化抗性每件 50%；也挡怪物放的 MRU 放电"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "余流（1 阶）",
+          "if": "cfg:general.mhs_armor.afterflow_ticks>0"
+        },
+        {
+          "type": "p",
+          "text": "四件都到 1 阶以后，护盾每替你分担一下伤害，你就得到{cfg:general.mhs_armor.afterflow_ticks|sec}急迫 I，{cfg:general.mhs_armor.afterflow_cooldown|sec}里最多一次。打你的是玩家时，急迫的时长只有平时的 {cfg:general.attunement.pvp_effect_scale|pct}。",
+          "if": "cfg:general.mhs_armor.afterflow_ticks>0"
+        },
+        {
+          "type": "h",
+          "text": "挡 MRU 放电（2 阶）"
+        },
+        {
+          "type": "p",
+          "text": "2 阶起，护盾也挡怪物冲你放的 MRU 放电。机器、聚集体这类没有攻击者的放电照样不挡。"
+        },
+        {
+          "type": "p",
+          "text": "2 阶的那件，MRU 腐化抗性从 25% 升到 50%。四件都到 2 阶时，「MRU 腐化」每次的伤害从最大生命的 {cfg:general.corruption.mru_corruption_health_percent|mul:0.75|pct} 降到 {cfg:general.corruption.mru_corruption_health_percent|mul:0.5|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "升阶材料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升到",
+            "四角",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1 阶",
+              "1 颗{item:essentialcraft5:pale_gem}、2 块{item:essentialcraft5:magic_plate}、1 份{item:essentialcraft5:crystal_dust}",
+              "1 万"
+            ],
+            [
+              "2 阶",
+              "1 个{item:essentialcraft5:elemental_core}、2 块{item:essentialcraft5:mithriline_plate}、1 个{item:essentialcraft5:ancient_core}",
+              "2 万"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/mhs_1"
+        },
+        {
+          "type": "p",
+          "text": "每一阶要的矩阵阶见[[attunement/stage_up]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §4.3 魔力防护 — 0 阶：每件自带 2 000 MRU（不是储存物品），份额头 1 / 胸 2 / 腿 1 / 靴 1（25%），每点 100 MRU，挡物理 + 元素（item/MHSArmorItem 实现 IMRUShieldArmor，general.mhs_armor.*）",
+        "tools/plan/batch13.md §4.4 魔力防护 — 1 阶份额 2/3/1/1（35%）、每件 4 000、余流：护盾挡下一下后 40 刻急迫 I，每 200 刻一次（§8.1 D35 A）；2 阶份额 2/4/2/1（45%）、每件 8 000、MRU 腐化抗性 0.25 → 0.5 / 件、挡带攻击者的 mru_discharge（机器、聚集体放电没有攻击者）",
+        "tools/plan/batch13.md §4.5 — 0→1 淡青宝石、魔力板 ×2、水晶粉，1 万；1→2 元素核心、米斯莱板 ×2、上古晶核（13c 换掉兜底的 MRU 共鸣水晶，§9.6），2 万",
+        "升阶配方 data/essentialcraft5/recipes/attunement/mhs_*.json",
+        "corruption/MRUCorruption.java damage — 最大生命 × mru_corruption_health_percent × 易伤；四件 0.25 时易伤 0.75，四件 0.5 时 0.5",
+        "item/MHSArmorEvents.java — 余流看 Attunement.fullSetStage（四件最低的阶）；魔力防护四件合计不到 20 份、挡不满一下，按「挡下一部分」触发；打来的是玩家时急迫时长 × pvp_effect_scale；份额、存电、腐化抗性、放电覆盖按每件自己的阶"
+      ]
+    },
+    {
+      "id": "wind_armor",
+      "title": "风之护甲的同调",
+      "icon": "essentialcraft5:wind_chestplate",
+      "summary": "偏转更勤，空中多跳一次",
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:2>0"
+          ],
+          "text": "[[wind_gear/wind_armor|风之护甲]]最高同调到 3 阶。四件穿齐就有御风，升阶让偏转的间隔更短，在空中也能多跳一次。下表每一阶的效果，都要四件都到那一阶才有。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_armor.air_jump_velocity>0 || !cfg:general.wind_armor.air_jumps|stage:2>0",
+          "text": "[[wind_gear/wind_armor|风之护甲]]最高同调到 3 阶。四件穿齐就有御风，升阶让偏转的间隔更短。下表每一阶的效果，都要四件都到那一阶才有。"
+        },
+        {
+          "type": "h",
+          "text": "各阶效果"
+        },
+        {
+          "type": "table",
+          "header": [
+            "阶",
+            "效果"
+          ],
+          "widths": [
+            1,
+            7
+          ],
+          "rows": [
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0>0"
+              ],
+              "cells": [
+                "0",
+                "御风：每 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:0|sec}偏开一个飞来的弹射物"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0==0"
+              ],
+              "cells": [
+                "0",
+                "御风：飞来的弹射物每一个都从你身上穿过去"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.air_jump_velocity>0",
+                "cfg:general.wind_armor.air_jumps|stage:0>0"
+              ],
+              "cells": [
+                "0",
+                "御风：在空中能再跳 {cfg:general.wind_armor.air_jumps|stage:0} 次"
+              ]
+            },
+            {
+              "if": "cfg:general.wind_armor.fall_damage_multiplier<1",
+              "cells": [
+                "0",
+                "御风：摔落伤害只剩 {cfg:general.wind_armor.fall_damage_multiplier|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:1>0"
+              ],
+              "cells": [
+                "1",
+                "偏转每 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:1|sec}一次"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:1==0"
+              ],
+              "cells": [
+                "1",
+                "飞来的弹射物每一个都偏开"
+              ]
+            },
+            [
+              "1",
+              "潜行时不会被击退"
+            ],
+            {
+              "if": [
+                "cfg:general.wind_armor.air_jump_velocity>0",
+                "cfg:general.wind_armor.air_jumps|stage:2>0"
+              ],
+              "cells": [
+                "2",
+                "空中能跳 {cfg:general.wind_armor.air_jumps|stage:2} 次"
+              ]
+            },
+            {
+              "if": "cfg:general.wind_armor.sprint_speed_bonus>0",
+              "cells": [
+                "2",
+                "疾跑时移动速度再快 {cfg:general.wind_armor.sprint_speed_bonus|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:3>0"
+              ],
+              "cells": [
+                "3",
+                "偏转每 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:3|sec}一次"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:3==0"
+              ],
+              "cells": [
+                "3",
+                "飞来的弹射物每一个都偏开"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.tailwind_ticks>0"
+              ],
+              "cells": [
+                "3",
+                "偏开敌人射来的弹射物以后 {cfg:general.wind_armor.tailwind_ticks|sec}内顺风，移动速度 +{cfg:general.wind_armor.tailwind_speed_bonus|pct}、攻击速度 +{cfg:general.wind_armor.tailwind_attack_speed_bonus|pct}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "偏转",
+          "if": "cfg:general.wind_armor.deflect"
+        },
+        {
+          "type": "p",
+          "text": "偏开的弹射物会从你身上穿过去，箭、三叉戟、火球这类别人射来、扔来的都算，你自己射出去的不算。火球穿过去以后照样会在你身后炸开。",
+          "if": "cfg:general.wind_armor.deflect"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_armor.deflect",
+            "cfg:general.wind_armor.tailwind_ticks>0"
+          ],
+          "text": "3 阶的顺风只在偏开敌人射来的弹射物时才有，敌人是指敌对生物、首领和能伤到你的玩家。发射器射出来的、队友扔来的都不算。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind.deflect_points",
+            "cfg:general.wind_armor.deflect"
+          ],
+          "text": "已经立了[[wind_mage/deflect|风之偏转]]契约的话，两边的冷却取短的那个再减半。"
+        },
+        {
+          "type": "h",
+          "text": "空中跳",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:0>0 || cfg:general.wind_armor.air_jumps|stage:1>0 || cfg:general.wind_armor.air_jumps|stage:2>0 || cfg:general.wind_armor.air_jumps|stage:3>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "人在半空时再按一下跳跃键，就会往上再跳一次，落地以后次数回满。",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:0>0 || cfg:general.wind_armor.air_jumps|stage:1>0 || cfg:general.wind_armor.air_jumps|stage:2>0 || cfg:general.wind_armor.air_jumps|stage:3>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "升阶材料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升到",
+            "四角",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1 阶",
+              "1 个{item:essentialcraft5:wind_keeper}、2 块{item:essentialcraft5:pale_plate}、1 根{item:minecraft:feather}",
+              "2 万"
+            ],
+            [
+              "2 阶",
+              "1 颗{item:essentialcraft5:wind_gem}、2 块{item:essentialcraft5:mithriline_plate}、1 块{item:essentialcraft5:matrix_crystal}",
+              "3 万"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "3 阶",
+                "4 个{item:essentialcraft5:ley_crystal}、1 块{item:essentialcraft5:void_plating}、1 颗{item:essentialcraft5:twinkling_titanite}",
+                "4 万"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "3 阶",
+                "眼下凑不齐",
+                "4 万"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/wind_1"
+        },
+        {
+          "type": "p",
+          "text": "每一阶要的矩阵阶见[[attunement/stage_up]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §4.3 风之护甲 — 全套御风：弹射物偏转复用 player/WindPact.deflects，套装冷却 120 刻；立了风之偏转时取较小者再减半（默认 60、120 → 30）；空中再跳一次（竖直速度 0.5，client/WindArmorClient）；摔落 ×0.25（general.wind_armor.*）",
+        "tools/plan/batch13.md §4.4 风之护甲 — 1 阶冷却 80、潜行不被击退；2 阶空中跳两次、疾跑移速 +10%；3 阶冷却 40、偏转后 20 刻顺风（移速 +20%、攻速 +10%）",
+        "tools/plan/batch13.md §4.5 — 0→1 受困之风、淡青板 ×2、羽毛，2 万；1→2 风之水晶、米斯莱板 ×2、矩阵结晶（13c 换掉兜底的幻翼膜），3 万；2→3 地脉结晶 ×4（13d 换掉兜底的闪耀榍石 ×2）、虚空板、闪耀榍石（第 3 格不换：13d 起闪耀榍石由海纳尔沙漠的榍石矿出，loot_tables/blocks/titanite_ore.json，已是海纳尔材料），4 万；虚空板只在海纳尔，门关着时 3 阶那一行换成「眼下凑不齐」",
+        "player/WindPact.java deflects — 别人射来、扔来的弹射物 SKIP_ENTITY 穿过去（不是自己的）；风之偏转默认冷却 deflect_cooldown_ticks 60",
+        "升阶配方 data/essentialcraft5/recipes/attunement/wind_*.json",
+        "data/essentialcraft5/recipes/attunement/*.json — 13d 换材料（batch13.md §9.6 13d 那几行），表里的格子照配方的四角写"
+      ]
+    },
+    {
+      "id": "void_armor",
+      "title": "虚空套装的同调",
+      "icon": "essentialcraft5:void_chestplate",
+      "summary": "闪避更多，3 阶起也挡元素",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[gear/void_armor|虚空套装]]最高同调到 4 阶。四件穿齐时，0 阶就有虚空回击，海纳尔天灾的惩罚也只受一半；往上闪避几率更高、存的电更多，3 阶起护盾也挡元素伤害。"
+        },
+        {
+          "type": "h",
+          "text": "各阶效果"
+        },
+        {
+          "type": "table",
+          "header": [
+            "阶",
+            "效果"
+          ],
+          "widths": [
+            1,
+            7
+          ],
+          "rows": [
+            [
+              "0",
+              "每件存 {cfg:general.void_armor.max_mru} MRU，每挡 1 点要 {cfg:general.void_armor.mru_per_damage} MRU；胸甲闪避 20%；四件穿齐有虚空回击 +50%，天灾减半"
+            ],
+            [
+              "1",
+              "胸甲闪避敌人攻击 25%，闪开时给打你的挂上滞涩；每件存 {cfg:general.void_armor.max_mru|mul:2} MRU"
+            ],
+            [
+              "2",
+              "全套虚空回击 +75%，天灾只剩四分之一，海纳尔辐射再慢一半；靴子免掉摔落伤害"
+            ],
+            [
+              "3",
+              "护盾也挡火、爆炸、闪电伤害，这种每点贵一倍；每挡 1 点降到 {cfg:general.void_armor.mru_per_damage|mul:0.875|int} MRU"
+            ],
+            [
+              "4",
+              "胸甲闪避敌人攻击 30%；全套闪开以后有相位，天灾完全不受"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "1 阶、4 阶加上去的闪避几率只算敌人打来的攻击，摔落、着火、腐化这类没有攻击者的伤害照旧是 20%。3 阶起挡的元素伤害里，着火以后一直掉的血和在细雪里的冻伤无视护甲，照旧不挡。"
+        },
+        {
+          "type": "h",
+          "text": "虚空回击"
+        },
+        {
+          "type": "p",
+          "text": "四件穿齐时，胸甲闪开活物打来的一下以后，3 秒内你下一次近战打实多 50% 伤害，四件都到 2 阶起多 75%。打在玩家身上时，多出来的伤害只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "滞涩（1 阶）"
+        },
+        {
+          "type": "p",
+          "text": "胸甲到了 1 阶，它每闪开活物打来的一下，打你的那个就挂上 1 秒缓慢 II。这一条只看胸甲的阶，不用四件都到。打你的是玩家时，时长只有 {cfg:general.attunement.pvp_effect_scale|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "相位（4 阶）"
+        },
+        {
+          "type": "p",
+          "text": "四件都到 4 阶以后，胸甲闪开活物打来的一下，接下来半秒里什么伤害都伤不到你，/kill、掉出世界这类除外。打你的是玩家时，相位的时长只有 {cfg:general.attunement.pvp_effect_scale|pct}。挨了一下以后，同样重或更轻的一下本来就有一小会儿打不进来，相位多挡下的是更重的一击，以及连发的子弹、法术这类不受这段间隔限制的伤害。"
+        },
+        {
+          "type": "h",
+          "text": "海纳尔的天灾"
+        },
+        {
+          "type": "p",
+          "text": "四件穿齐时，海纳尔[[hoanna/events|天灾]]里日阵的灼烧、地震的推力和毒雾的中毒时长都减半；四件都到 2 阶起只剩四分之一，都到 4 阶起完全不受。日阵烧过你以后约 11 秒里，身上着火掉的血都这样减，不管火是谁点的。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.radiation.enabled",
+          "text": "四件都到 2 阶时，[[hoanna/radiation|海纳尔辐射]]在你身上积攒得再慢一半。这一半是在盔甲、饰品和别的抗性都算完以后再减的，只靠它不会把辐射完全免掉。"
+        },
+        {
+          "type": "h",
+          "text": "升阶材料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升到",
+            "四角",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1 阶",
+              "1 个{item:essentialcraft5:void_core}、2 颗{item:essentialcraft5:twinkling_titanite}、1 块{item:essentialcraft5:void_plating}",
+              "4 万"
+            ],
+            [
+              "2 阶",
+              "1 个{item:essentialcraft5:void_mru_reactor}、4 个{item:essentialcraft5:radiant_crystal}、1 块{item:essentialcraft5:demonic_plate}",
+              "6 万"
+            ],
+            [
+              "3 阶",
+              "1 颗{item:essentialcraft5:aberrant_heart}、8 个{item:essentialcraft5:aberrant_residue}、1 个{item:essentialcraft5:demonic_core}、1 颗{item:essentialcraft5:titanite}",
+              "8 万"
+            ],
+            [
+              "4 阶",
+              "1 个{item:essentialcraft5:ancient_core}、1 块{item:essentialcraft5:matter_of_eternity}、1 个{item:essentialcraft5:void_core}、1 个{item:essentialcraft5:demonic_core}",
+              "10 万"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/void_1"
+        },
+        {
+          "type": "p",
+          "text": "每一阶要的矩阵阶见[[attunement/stage_up]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §4.3 虚空 — 每件 5 万 MRU、每点 400（§8.1 D13 A）；全套虚空回击：胸甲闪避后 60 刻内下一次近战打实 +50%（对玩家 × pvp_effect_scale）；api/HoannaWard 全套 0 阶 0.5",
+        "tools/plan/batch13.md §4.4 虚空 — 1 阶闪避 25%、每件 10 万、滞涩：闪避成功时攻击者 20 刻缓慢 II（§8.1 D35 A，对玩家时长 × pvp_effect_scale）；2 阶回击 +75%、海纳尔辐射易伤再 ×0.5（0.25 → 0.125）、HoannaWard 0.75、摔落 ×0.1 → 0；3 阶护盾也挡元素（每点 ×2 价）、每点 400 → 350；4 阶闪避 30%、闪避后 10 刻相位（bypasses_invulnerability 以外都免）、HoannaWard 1.0",
+        "tools/plan/batch13.md §4.4 — HoannaWard.level 作用于日阵露天火伤、地震踉跄 / 强震推力、毒雾中毒时长：×(1 − w)",
+        "tools/plan/batch13.md §4.5 — 0→1 虚空核心、闪耀榍石 ×2、虚空板，4 万；1→2 MRU 反应核、辐晶 ×4（13d 换掉兜底的闪耀榍石 ×2）、恶魔板，6 万；2→3 异变之心 + 异变残质 ×8（13d 换掉兜底的被俘灵魂 ×2 + 虚空核心）、恶魔核心、榍石，8 万；3→4 上古晶核（13c 换掉兜底的故障核心）、永恒物质、虚空核心、恶魔核心，10 万",
+        "升阶配方 data/essentialcraft5/recipes/attunement/void_*.json",
+        "item/VoidArmorEvents.java 类注释「各阶按哪件算」— 闪避几率、滞涩看胸甲的阶；减摔看靴子的阶（2 阶起整下免掉）；回击、相位、海纳尔环境抗性看全套；容量、单价、元素覆盖看各件自己的阶；滞涩、回击、相位只在闪开活物打来的一下后触发，相位对玩家时长 × pvp_effect_scale",
+        "item/VoidArmorItem.java radiationMultiplier — 每件海纳尔辐射抗性各阶都是 0.75；全套 2 阶起由 api/MRUResistance 在公式算完以后再 ×0.5（registerMultiplier），矩阵五阶、古卷、神秘饰品先相加",
+        "item/VoidArmorEvents.java dodgeChance(Player, DamageSource, int) — 1 阶 25%、4 阶 30% 只给有活物攻击者、不是自己的伤害，别的 20%；util/ECDamageKinds.isElemental 含 is_freezing，但原版 on_fire、freeze 在 bypasses_armor 里，VoidArmorItem.coverage 先排除",
+        "item/VoidArmorEvents.java 类注释 — 相位 10 刻和原版受伤冷却后半段重合，多挡的是更重的一击和结算前后清受伤冷却的伤害（别的模组的子弹、本模组 PendingMagic 结算的法术）",
+        "hoanna/HoannaHazards.java SUN_WARD_TICKS 220 — 被日阵烧过后 220 刻内的 on_fire 都按抵挡减（不分火源），抵挡取被烧时和现在里小的",
+        "data/essentialcraft5/recipes/attunement/*.json — 13d 换材料（batch13.md §9.6 13d 那几行），表里的格子照配方的四角写"
+      ]
+    },
+    {
+      "id": "inquisitorium_armor",
+      "title": "审判庭套装的同调",
+      "icon": "essentialcraft5:inquisitorium_chestplate",
+      "summary": "抗魔更多，3 阶起削平重击",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[inquisitorium/armor|审判庭套装]]最高同调到 4 阶。它不用电，四件穿齐 0 阶就有审判庭之律，越往上越扛得住首领和法术。除了不掉耐久是每件自己的，下表别的效果都要四件穿齐，按四件里最低的阶算。"
+        },
+        {
+          "type": "h",
+          "text": "各阶效果"
+        },
+        {
+          "type": "table",
+          "header": [
+            "阶",
+            "效果"
+          ],
+          "widths": [
+            1,
+            7
+          ],
+          "rows": [
+            [
+              "0",
+              "审判庭之律：抗魔 {cfg:general.inquisitorium_armor.magic_resistance|pct}、首领的伤害少受 {cfg:general.inquisitorium_armor.boss_resistance|pct}、律令、定罪 +{cfg:general.inquisitorium_armor.conviction_bonus|pct}；穿着不掉耐久"
+            ],
+            [
+              "1",
+              "抗魔 {cfg:general.inquisitorium_armor.magic_resistance_stage_1|pct}；赦罪"
+            ],
+            [
+              "2",
+              "定罪 +{cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct}，对首领再多 {cfg:general.inquisitorium_armor.conviction_boss_bonus_stage_2|pct}"
+            ],
+            [
+              "3",
+              "审判庭的壁垒：有攻击者的一下，护甲后超过最大生命 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} 的部分只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct}"
+            ],
+            [
+              "4",
+              "有攻击者的无视护甲伤害（魔法以外）少受 {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct}；壁垒从 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct} 算起，超出的只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "审判庭之律"
+        },
+        {
+          "type": "list",
+          "items": [
+            "抗魔：有攻击者的魔法伤害少受 {cfg:general.inquisitorium_armor.magic_resistance|pct}，1 阶起少受 {cfg:general.inquisitorium_armor.magic_resistance_stage_1|pct}。腐化、「MRU 腐化」这类没有攻击者的伤害不减。",
+            "首领打来的伤害少受 {cfg:general.inquisitorium_armor.boss_resistance|pct}。",
+            "律令：身上的有害效果，持续时间大约只剩 {cfg:general.inquisitorium_armor.edict_reduction|mul:-1|add:1|pct}。",
+            "定罪：打中你的活物被定罪 {cfg:general.inquisitorium_armor.conviction_ticks|sec}，同一时间最多记 {cfg:general.inquisitorium_armor.conviction_max_targets|raw} 个，被定罪的身上会冒一下粒子。你亲手打被定罪的目标多 {cfg:general.inquisitorium_armor.conviction_bonus|pct} 伤害，2 阶起多 {cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct}；反伤、饰品打出的伤害和裁决之刃的裁断不加。",
+            "定罪多出来的伤害打在玩家身上时，只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "赦罪（1 阶）"
+        },
+        {
+          "type": "p",
+          "text": "四件都到 1 阶以后，亲手打死一个被定罪的目标，就清掉自己身上一个有害效果，{cfg:general.inquisitorium_armor.absolution_cooldown|sec}里最多一次。"
+        },
+        {
+          "type": "h",
+          "text": "壁垒（3 阶）"
+        },
+        {
+          "type": "p",
+          "text": "四件都到 3 阶以后，有攻击者的一下伤害，护甲减过以后超过你最大生命 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} 的部分只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct}。4 阶起从 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct} 算起，超出的只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct}。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "100 点生命，护甲后挨 60 点",
+              "3 阶受 45 点，4 阶受 39 点"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "壁垒只是把重击削平一些，碰上一下能打掉好几倍生命的，照样扛不住。"
+        },
+        {
+          "type": "h",
+          "text": "升阶材料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升到",
+            "四角",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1 阶",
+              "1 个{item:essentialcraft5:demonic_core}、2 块{item:essentialcraft5:ackronite_ingot}、1 颗{item:essentialcraft5:twinkling_titanite}",
+              "4 万"
+            ],
+            [
+              "2 阶",
+              "1 个任一数学核心、1 块{item:essentialcraft5:demonic_plating}、2 块{item:essentialcraft5:ackronite_ingot}、4 块{item:essentialcraft5:frost_marrow}",
+              "6 万"
+            ],
+            [
+              "3 阶",
+              "1 颗{item:essentialcraft5:aberrant_heart}、8 个{item:essentialcraft5:aberrant_residue}、1 块{item:essentialcraft5:neuronic_enriched_plating}、1 个{item:essentialcraft5:demonic_core}",
+              "8 万"
+            ],
+            [
+              "4 阶",
+              "1 块{item:essentialcraft5:inquisitorium_chip}、1 块{item:essentialcraft5:matrix_crystal}、1 块{item:essentialcraft5:matter_of_eternity}、1 个{item:essentialcraft5:demonic_core}",
+              "10 万"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/inquisitorium_1"
+        },
+        {
+          "type": "p",
+          "text": "每一阶要的矩阵阶见[[attunement/stage_up]]。数学核心是打倒全息投影掉的，见[[hologram/math_cores]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §4.3 审判庭 — 穿在玩家身上不掉耐久（§8.1 D14 A）；审判庭之律：抗魔（isMagic 且有攻击者、不在 unshieldable，×0.65，带不带 bypasses_armor 都算）、首领 ×0.85、律令（有害效果时长约 ×0.6）、定罪（活物打实你记 200 刻、每人 ≤ 8 个，打被定罪的 +20%，对玩家 × pvp_effect_scale，记上时出一次粒子）",
+        "tools/plan/batch13.md §4.4 审判庭 — 1 阶抗魔 45%、赦罪（亲手打死被定罪的清一个有害效果，每 200 刻一次，§8.1 D35 A）；2 阶定罪 +30%、对首领再 +10%；3 阶壁垒（护甲后单下超过最大生命 30% 的部分 ×0.5，LivingDamageEvent HIGH）；4 阶带攻击者的 bypasses_armor 非魔法 ×0.7、壁垒 25% / ×0.4",
+        "壁垒举例：100 生命挨 60 → 30 + 30 × 0.5 = 45；4 阶 25 + 35 × 0.4 = 39",
+        "tools/plan/batch13.md §4.5 — 0→1 恶魔核心、阿克罗尼特锭 ×2、闪耀榍石，4 万；1→2 任一数学核心、恶魔护板、阿克罗尼特锭 ×2、霜髓 ×4（13d 换掉兜底的蓝冰 ×4，§8.1 D36 A），6 万；2→3 异变之心 + 异变残质 ×8（13d 换掉兜底的被俘灵魂 ×2 + 虚空核心）、富神经元护板、恶魔核心，8 万；3→4 审判庭芯片、矩阵结晶（13c 换掉兜底的故障核心）、永恒物质、恶魔核心，10 万",
+        "升阶配方 data/essentialcraft5/recipes/attunement/inquisitorium_*.json",
+        "item/InquisitoriumArmorEvents.java — 除不掉耐久（按件）以外都要四件穿齐、按最低的阶；壁垒只管有攻击者的伤害（LivingDamageEvent HIGH），按护甲后、扣伤害吸收之前的整下算（applyBulwark）；定罪增伤只算亲手（notOwnHit 和裁断不加）",
+        "data/essentialcraft5/recipes/attunement/*.json — 13d 换材料（batch13.md §9.6 13d 那几行），表里的格子照配方的四角写"
+      ]
+    },
+    {
+      "id": "computer_armor",
+      "title": "宅男套装的同调",
+      "icon": "essentialcraft5:computer_chestplate",
+      "summary": "模块槽变多，护盾挡得更多",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[computer/suit|宅男套装]]最高同调到 5 阶。0 阶就是你一直穿的样子，往上每阶多一样本事。主线第二十一章要你把四件都升到 2 阶，见[[terminal/attuned]]。"
+        },
+        {
+          "type": "h",
+          "text": "各阶效果"
+        },
+        {
+          "type": "table",
+          "header": [
+            "阶",
+            "效果"
+          ],
+          "rows": [
+            [
+              "1",
+              "胸甲模块槽变成 {cfg:general.computer_modules.slots_chestplate|add:1|min:4} 个；护盾每挡 1 点伤害的电费按 {cfg:general.computer_armor.mru_per_damage} MRU 的 {cfg:general.computer_armor.stage_price_multipliers|at:1|pct} 算"
+            ],
+            [
+              "2",
+              "护盾也挡怪物打来的魔法伤害，这种每点电费是 {cfg:general.computer_armor.magic_price_multiplier} 倍"
+            ],
+            [
+              "3",
+              "头盔模块槽变成 {cfg:general.computer_modules.slots_helmet|add:1|min:4} 个，护腿变成 {cfg:general.computer_modules.slots_leggings|add:1|min:4} 个；矩阵修复"
+            ],
+            [
+              "4",
+              "电费按 {cfg:general.computer_armor.mru_per_damage} MRU 的 {cfg:general.computer_armor.stage_price_multipliers|at:4|pct} 算；怪物打来的无视护甲伤害（魔法以外）挡 {cfg:general.computer_armor.piercing_share|pct}，每点电费 {cfg:general.computer_armor.piercing_price_multiplier} 倍"
+            ],
+            [
+              "5",
+              "靴子模块槽变成 {cfg:general.computer_modules.slots_boots|add:1|min:4} 个；过载屏障"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "护盾挡得更多（2 阶、4 阶）"
+        },
+        {
+          "type": "list",
+          "items": [
+            "2 阶起多挡的魔法伤害，得是怪物冲你出的手，比如女巫扔来的伤害药水、唤魔者召出的尖牙、监守者的音波。腐化效果、「MRU 腐化」、中毒这类没有攻击者的伤害照样不挡，玩家打来的也不挡，见下面的「对玩家」。",
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "text": "胸甲装着[[terminal/matrix_shunt|矩阵分流模块]]时，分流先拿走一半，护盾再挡剩下的。"
+            },
+            "4 阶起挡一部分的，是怪物打来的、无视护甲又不算魔法的伤害。原版里几乎没有这种伤害，主要是别的模组的技能。",
+            "挡这两种新伤害时，不从{item:essentialcraft5:infinite_mru_crystal}里扣电，只扣别的灵魂储存、矩阵容量和盔甲自己存的，付不起就不挡。",
+            {
+              "if": "bauble:essentialcraft5:eta_amulet",
+              "text": "戴着{item:essentialcraft5:eta_amulet}时，不论几阶，它让你多受的那一半伤害护盾都不挡，直接落到生命上。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "矩阵修复（3 阶）"
+        },
+        {
+          "type": "p",
+          "text": "四件都到 3 阶以后，只要 {cfg:general.computer_armor.repair_delay|sec}没受伤，就每秒回你最大生命的 {cfg:general.computer_armor.repair_percent|pct}，每回 1 点生命花 {cfg:general.computer_armor.repair_mru_per_health} MRU。身上挂着腐蚀时回不了；受到的治疗被减半时它也只回一半，电费按真正回上去的算。"
+        },
+        {
+          "type": "h",
+          "text": "过载屏障（5 阶）"
+        },
+        {
+          "type": "p",
+          "text": "四件都到 5 阶以后，护盾挡下的一下有你最大生命的 {cfg:general.computer_armor.overload_threshold|pct} 以上时，接下来 {cfg:general.computer_armor.overload_duration|sec}你什么伤害都不吃（/kill、掉出世界这类除外）。之后要等 {cfg:general.computer_armor.overload_cooldown|sec}才能再触发，退出重进也不清。"
+        },
+        {
+          "type": "h",
+          "text": "对玩家"
+        },
+        {
+          "type": "p",
+          "text": "打你的是玩家时，护盾一下最多挡这一下的 {cfg:general.computer_armor.pvp_shield_max_share|pct}，每点电费是平时的 {cfg:general.computer_armor.pvp_shield_cost_multiplier} 倍；2 阶、4 阶新挡的那两种伤害对玩家不起作用。过载屏障要是被玩家的一下打出来，只撑平时的 {cfg:general.attunement.pvp_effect_scale|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "升阶材料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升到",
+            "四角",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1 阶",
+              "2 块{item:essentialcraft5:demonic_plate}、1 个{item:essentialcraft5:logic_core}、1 块{item:essentialcraft5:force_field_plating}",
+              "5 万"
+            ],
+            [
+              "2 阶",
+              "胸甲用 1 个任一数学核心，另外三件用 1 个{item:essentialcraft5:logic_core}；2 个{item:essentialcraft5:tide_crystal}、1 个{item:essentialcraft5:demonic_core}",
+              "7 万"
+            ],
+            [
+              "3 阶",
+              "1 颗{item:essentialcraft5:aberrant_heart}、1 个{item:essentialcraft5:elder_remnant}、1 块{item:essentialcraft5:matter_of_eternity}、1 块{item:essentialcraft5:neuronic_enriched_plating}",
+              "9 万"
+            ],
+            [
+              "4 阶",
+              "1 个{item:essentialcraft5:ancient_core}、2 颗{item:essentialcraft5:wind_gem}、1 个{item:essentialcraft5:void_mru_reactor}",
+              "12 万"
+            ],
+            {
+              "if": "cfg:machines.enrichment_chamber.shade.enabled",
+              "cells": [
+                "5 阶",
+                "1 个{item:essentialcraft5:calamity_remnant}、4 个{item:essentialcraft5:umbral_crystal}、1 个{item:essentialcraft5:demonic_core}、1 颗{item:minecraft:nether_star}",
+                "15 万"
+              ]
+            },
+            {
+              "if": "!cfg:machines.enrichment_chamber.shade.enabled",
+              "cells": [
+                "5 阶",
+                "眼下凑不齐",
+                "15 万"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/computer_1"
+        },
+        {
+          "type": "p",
+          "text": "每一阶要的矩阵阶见[[attunement/stage_up]]。数学核心是打倒全息投影掉的，见[[hologram/math_cores]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §4.4 宅男 — 1 阶胸甲槽 +1（2/3/1/1 = 7）、每点 250 → 225；2 阶护盾覆盖魔法（isMagic 且有攻击者，含 bypasses_armor；腐化 / MRU 腐化 / 中毒等无攻击者的不挡），每点 ×2，矩阵分流（NORMAL）先分一半、护盾（LOW）挡剩下；3 阶头 / 腿槽 +1（3/3/2/1 = 9）、矩阵修复 120 刻无伤后每秒 1% 最大生命、每回 1 点 500 MRU（走 heal，腐蚀照样挡）；4 阶 225 → 200，带攻击者的无视护甲（非魔法）挡一半、每点 ×3；5 阶靴槽 +1（3/3/2/2 = 10）、过载屏障：护盾挡下单下 ≥ 最大生命 25% 时 20 刻免疫（bypasses_invulnerability 除外），冷却 1 200 刻（存 PlayerData）",
+        "tools/plan/batch13.md §4.4 — 新覆盖面不从无尽 MRU 晶体扣电；η 护身符翻倍多出的一半不让护盾吸收；PvP（D12 A）：护盾最多吸收 pvp_shield_max_share 0.5、每点 × pvp_shield_cost_multiplier 2，新覆盖面对玩家攻击者不生效；0 阶也照这条限份额、加价（护盾在 PvP 里的规则，不是同调效果）",
+        "电费 225 / 200 写成 mru_per_damage 配 stage_price_multipliers|at:N|pct（ECComputer.Config.attuned 的单价倍数，下标 = 同调阶）；模块槽数 add:1|min:4（ModuleConfig.MAX_SLOTS 封顶 4）；监守者音波在原版 witch_resistant_to 里，ECDamageKinds.isMagic 算魔法，2 阶起整份挡",
+        "tools/plan/batch13.md §4.5 宅男行（13a 兜底材料）：0→1 恶魔板 ×2、逻辑核心、力场护板，5 万；1→2 胸甲任一数学核心 / 头腿靴逻辑核心、潮晶 ×2（13d 起是真材料）、恶魔核心，7 万；2→3 异变之心（13d 起）+ 先辈残核（13e 前兜底虚空核心）、永恒物质、富神经元护板，9 万；3→4 上古晶核（13c 换掉兜底的故障核心 + 恶魔核心）、风之水晶 ×2、MRU 反应核，12 万；4→5 天灾残核 + 影晶 ×4（兜底审判庭芯片 + 下界之星）、恶魔核心、下界之星，15 万；13c~13e 换掉兜底时这张表跟着改",
+        "item/ComputerAttunement.java — 矩阵修复（3 阶）、过载屏障（5 阶）看 fullSetStage；槽数、单价、覆盖面按每件自己的阶",
+        "data/essentialcraft5/recipes/attunement/*.json — 13d 换材料（batch13.md §9.6 13d 那几行），表里的格子照配方的四角写",
+        "recipes/attunement/computer_3.json、computer_5.json（13e 换掉兜底）— 3 阶的虚空核心换成先辈残核（封印宝库核心必给）；5 阶的审判庭芯片 + 下界之星换成天灾残核 + 影晶 ×4（另一颗下界之星、恶魔核心不变）；暗影核心凝不出来时（machines.enrichment_chamber.shade.enabled = false）天灾信标做不成，5 阶那行写「眼下凑不齐」"
+      ]
+    },
+    {
+      "id": "ember_sword",
+      "title": "余烬元素剑的同调",
+      "icon": "essentialcraft5:forged_elemental_sword",
+      "summary": "效果更长，2 阶以后能升格",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[void_machines/ember_sword|余烬元素剑]]最高同调到 2 阶，靠拿在主手里打仗攒同调度，见[[attunement/points]]。升到 2 阶以后，它还能升格成{item:essentialcraft5:verdict_blade}。"
+        },
+        {
+          "type": "h",
+          "text": "各阶效果"
+        },
+        {
+          "type": "table",
+          "header": [
+            "阶",
+            "效果"
+          ],
+          "widths": [
+            1,
+            7
+          ],
+          "rows": [
+            [
+              "1",
+              "命中时的主元素效果和右键效果，持续时间都是原来的 {cfg:general.ember_sword.stage1_duration_multiplier} 倍"
+            ],
+            [
+              "2",
+              "余烬组合的命中效果每次只扣 {cfg:general.ember_sword.stage2_ember_cost_multiplier|mul:50} MRU，持续时间是原来的 {cfg:general.ember_sword.stage2_ember_duration_multiplier} 倍"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这两阶多出来的时长，挂在别的玩家身上时只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+        },
+        {
+          "type": "p",
+          "text": "每阶攻击力还多 {cfg:general.attunement.damage_per_stage|pct}，2 阶一共多 {cfg:general.attunement.damage_per_stage|mul:2|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "升阶材料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升到",
+            "四角",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1 阶",
+              "任意 2 个余烬、1 块{item:essentialcraft5:void_plating}、1 块{item:essentialcraft5:demonic_plate}",
+              "4 万"
+            ],
+            [
+              "2 阶",
+              "任意 2 个余烬、1 个{item:essentialcraft5:demonic_core}、1 个{item:essentialcraft5:void_mru_reactor}",
+              "6 万"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/ember_sword_1"
+        },
+        {
+          "type": "p",
+          "text": "每一阶要的矩阵阶见[[attunement/stage_up]]。升到 2 阶以后，接着看[[attunement/verdict_blade]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §4.4 余烬元素剑 — 1 阶主元素命中 / 右键效果时长 ×2；2 阶余烬效果 MRU 花费减半（50 → 25）、余烬组合效果时长 ×1.5（item/ForgedElementalSwordItem）",
+        "tools/plan/batch13.md §3.3.5 — 武器每阶攻击 ×(1 + damage_per_stage × 阶)",
+        "tools/plan/batch13.md §4.5 — 0→1 任意余烬 ×2、虚空板、恶魔板，4 万；1→2 任意余烬 ×2、恶魔核心、MRU 反应核，6 万",
+        "升阶配方 data/essentialcraft5/recipes/attunement/ember_sword_*.json",
+        "item/ForgedElementalSwordItem.java — 两阶多出来的时长挂在别的玩家身上只多给 (倍数 − 1) × pvp_effect_scale"
+      ]
+    },
+    {
+      "id": "verdict_blade",
+      "title": "{item:essentialcraft5:verdict_blade}",
+      "icon": "essentialcraft5:verdict_blade",
+      "summary": "余烬元素剑升格而成，按目标生命补伤害",
+      "complete": "essentialcraft5:guide/attunement/verdict_blade",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:verdict_blade"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：把一把同调 2 阶的{item:essentialcraft5:forged_elemental_sword}升格成{item:essentialcraft5:verdict_blade}。它蓄满力打实一下，就按目标的最大生命多补一截伤害，2 阶起还能一下砍中身边一圈敌人。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：一把同调 2 阶的余烬元素剑，1 块{item:essentialcraft5:inquisitorium_chip}、1 个{item:essentialcraft5:demonic_core}、1 块{item:essentialcraft5:matter_of_eternity}、2 块{item:essentialcraft5:matrix_crystal}，再在魔力工作台里备好 20 万 MRU。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.attunement.rank_gate"
+          ],
+          "text": "工作台还要看剑上记的矩阵阶，至少要 {cfg:general.attunement.rank_gate|at:2} 阶。把余烬元素剑拿在主手里几秒，它就会记下你现在的矩阵阶，见[[attunement/stage_up]]。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把余烬元素剑放在[[crafting/magician_table|魔力工作台]]正中，四角放上这几样材料。",
+            "等工作台做完，取出来的就是{item:essentialcraft5:verdict_blade}。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:magician_table",
+          "items": [
+            "essentialcraft5:verdict_blade"
+          ],
+          "optional": true
+        },
+        {
+          "type": "list",
+          "items": [
+            "锻造时定下的主副元素、余烬组合，还有附魔和存着的 MRU，都原样带过来。",
+            "同调从 0 阶重新算，余烬元素剑累计的同调度带一半过来，最多填满 0 阶。",
+            "命中和右键时的元素、余烬效果照旧，时长和花费按余烬元素剑 2 阶算。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有一把{item:essentialcraft5:verdict_blade}。"
+        },
+        {
+          "type": "h",
+          "text": "属性"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "攻击",
+              "比原来那把余烬元素剑多 6 点，余烬配到最好时约 51"
+            ],
+            [
+              "攻击速度",
+              "1.6"
+            ],
+            [
+              "耐久",
+              "不掉耐久"
+            ],
+            [
+              "MRU",
+              "自己能存 5 万 MRU，扣 MRU 时先扣你身上的储存物品"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "[[matrix/alignment|矩阵特性]]",
+                "是普通带特性武器的 {cfg:general.verdict_blade.trait_multiplier} 倍"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "裁断",
+          "if": "cfg:general.verdict_blade.verdict.cap>0"
+        },
+        {
+          "type": "p",
+          "text": "每次蓄满力打实一个不是玩家的目标，这一刻结束时再补它一下，横扫和断罪打中的也算。0 阶时补的是它最大生命的 {cfg:general.verdict_blade.verdict.percent|pctv}，一下最多 {cfg:general.verdict_blade.verdict.cap} 点，阶越高补得越多。补的这一下无视护甲，每次花 {cfg:general.verdict_blade.verdict.mru} MRU，MRU 不够就不补。",
+          "if": "cfg:general.verdict_blade.verdict.cap>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.verdict.cap>0",
+          "text": "攻击指示器还没走满就挥出去的那一下不补。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.verdict_blade.verdict.cap>0",
+            "cfg:general.verdict_blade.verdict.pvp_percent>0"
+          ],
+          "text": "打玩家时也补，按对方最大生命的 {cfg:general.verdict_blade.verdict.pvp_percent|pctv} 算，一下最多 {cfg:general.verdict_blade.verdict.cap} 点，这两个数都不随阶变。"
+        },
+        {
+          "type": "p",
+          "text": "对 20 点生命的僵尸 0 阶只补 {cfg:general.verdict_blade.verdict.percent|mul:0.2} 点，目标的生命越多，补得越多。",
+          "if": "cfg:general.verdict_blade.verdict.cap>0"
+        },
+        {
+          "type": "p",
+          "text": "打首领时不补这一截。",
+          "if": "cfg:general.verdict_blade.verdict.cap>0"
+        },
+        {
+          "type": "h",
+          "text": "断罪（2 阶）"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "2 阶起，按住右键 {cfg:general.verdict_blade.judgment.charge_ticks|sec}以上再松开，身边 {cfg:general.verdict_blade.judgment.radius} 格内最多 {cfg:general.verdict_blade.judgment.max_targets} 个敌对生物各挨你一下，伤害是你现在攻击力的 {cfg:general.verdict_blade.judgment.damage_multiplier|pct}，也会触发裁断。放一次花 {cfg:general.verdict_blade.judgment.mru} MRU，2 阶时冷却 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}，往上每阶少 {cfg:general.verdict_blade.judgment.cooldown_per_stage|sec}。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "断罪只打敌对生物和首领，村民、宠物、玩家都不打，起了名字或拴着绳的敌对生物也不打。一个都没打到时不花 MRU，也不进冷却。2 阶起右键不再格挡，改成蓄力放断罪。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier<=0",
+          "text": "断罪没有开启。2 阶起右键照样不再格挡。"
+        },
+        {
+          "type": "p",
+          "text": "5 阶起，被断罪砍中的首领挂上{cfg:general.verdict_blade.judgment.bisect_ticks|sec}{lang:effect.essentialcraft5.bisected}，造成的伤害和受到的治疗都减半。",
+          "if": [
+            "cfg:general.verdict_blade.judgment.bisect_ticks>0",
+            "cfg:general.verdict_blade.judgment.damage_multiplier>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "各阶效果"
+        },
+        {
+          "type": "table",
+          "if": [
+            "cfg:general.verdict_blade.verdict.cap>0",
+            "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+            "cfg:general.verdict_blade.judgment.bisect_ticks>0"
+          ],
+          "header": [
+            "阶",
+            "裁断（最大生命 / 一下最多）",
+            "另外"
+          ],
+          "widths": [
+            1,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "0",
+              "{cfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap}",
+              "无"
+            ],
+            [
+              "1",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:1|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:1|addcfg:general.verdict_blade.verdict.cap}",
+              "无"
+            ],
+            [
+              "2",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:2|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:2|addcfg:general.verdict_blade.verdict.cap}",
+              "断罪，冷却 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+            ],
+            [
+              "3",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:3|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:3|addcfg:general.verdict_blade.verdict.cap}",
+              "断罪冷却 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-3|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+            ],
+            [
+              "4",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:4|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:4|addcfg:general.verdict_blade.verdict.cap}",
+              "断罪冷却 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-4|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+            ],
+            [
+              "5",
+              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:5|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:5|addcfg:general.verdict_blade.verdict.cap}",
+              "断罪冷却 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-5|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}，首领挂{lang:effect.essentialcraft5.bisected}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.verdict_blade.verdict.cap>0",
+            "cfg:general.verdict_blade.judgment.damage_multiplier<=0||cfg:general.verdict_blade.judgment.bisect_ticks<=0"
+          ],
+          "text": "每升一阶，裁断多算最大生命的 {cfg:general.verdict_blade.verdict.percent_per_stage|pctv}，一下最多多 {cfg:general.verdict_blade.verdict.cap_per_stage} 点。"
+        },
+        {
+          "type": "p",
+          "text": "每阶攻击力还多 {cfg:general.attunement.damage_per_stage|pct}，5 阶一共多 {cfg:general.attunement.damage_per_stage|mul:5|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "升阶材料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升到",
+            "四角",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1 阶",
+              "1 个{item:essentialcraft5:demonic_core}、任意 2 个余烬、1 块{item:essentialcraft5:ackronite_ingot}",
+              "6 万"
+            ],
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "cells": [
+                "2 阶",
+                "1 个任一数学核心、8 个{item:essentialcraft5:aberrant_residue}、1 块{item:essentialcraft5:matter_of_eternity}、1 块{item:essentialcraft5:condensed_matrix}",
+                "8 万"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.enabled||!cfg:machines.enrichment_chamber.condense.enabled",
+              "cells": [
+                "2 阶",
+                "眼下凑不齐",
+                "8 万"
+              ]
+            },
+            [
+              "3 阶",
+              "1 颗{item:essentialcraft5:aberrant_heart}、1 个{item:essentialcraft5:elder_remnant}、1 个{item:essentialcraft5:glitchy_core}、任意 1 个余烬",
+              "10 万"
+            ],
+            [
+              "4 阶",
+              "1 个{item:essentialcraft5:ancient_core}、2 个{item:essentialcraft5:demonic_core}、1 颗{item:essentialcraft5:wind_gem}",
+              "12 万"
+            ],
+            {
+              "if": "cfg:machines.enrichment_chamber.shade.enabled",
+              "cells": [
+                "5 阶",
+                "1 个{item:essentialcraft5:calamity_remnant}、4 个{item:essentialcraft5:umbral_crystal}、1 个{item:essentialcraft5:demonic_core}、1 颗{item:minecraft:nether_star}",
+                "15 万"
+              ]
+            },
+            {
+              "if": "!cfg:machines.enrichment_chamber.shade.enabled",
+              "cells": [
+                "5 阶",
+                "眼下凑不齐",
+                "15 万"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:attunement/verdict_1"
+        },
+        {
+          "type": "p",
+          "text": "每一阶要的矩阵阶见[[attunement/stage_up]]。数学核心是打倒全息投影掉的，见[[hologram/math_cores]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §4.4 裁决之刃（§8.1 D11 A）— 升格：魔力工作台，中心 2 阶余烬元素剑，四角审判庭芯片、恶魔核心、永恒物质、矩阵结晶 ×2（13c 换掉兜底的审判庭芯片），20 万；保留元素、余烬、附魔，余烬剑累计的一半转进来（item/attunement/Attunement.promoted、transferAmount）",
+        "tools/plan/batch13.md §4.4 — 攻击 = 余烬元素剑原值 + 6（满余烬约 51 = 1 + 8 + 36 + 6），攻速 1.6，不掉耐久，自带 5 万 MRU（不是储存物品）；每阶 ×1.03；矩阵特性 ×1.5",
+        "tools/plan/batch13.md §4.4 裁断 — 蓄满（攻击蓄力 > 0.9，AttackEntityEvent 记）打实非玩家、非首领目标后本刻末补一下 = 最大生命 × 3%（每阶 +0.5%），单下封顶 40（每阶 +10）；伤害类型 essentialcraft5:verdict（bypasses_armor），每次 200 MRU，对玩家默认 0（verdict.pvp_percent，百分比和封顶都不随阶涨）；首领不补",
+        "tools/plan/batch13.md §4.4 断罪 — 2 阶解锁，按住使用 20 刻放出，半径 6 内最多 16 个 Enemy 或首领（普通生物跳过 ECEntityRules.isSpared，首领只跳过驯服、拴绳；跳过盟友、旁观者；damage_multiplier 0 = 不开），各吃一下玩家攻击伤害 = 当前攻击力 ×1.0（会触发特性、裁断），20 000 MRU，冷却 300 刻每阶 −20（2 阶 260 = 13 秒），5 阶起范围内首领二分 40 刻（ECEffects.BISECTED）",
+        "tools/plan/batch13.md §4.5 — 0→1 恶魔核心、任意余烬 ×2、阿克罗尼特锭，6 万；1→2 任一数学核心、异变残质 ×8（13d 换掉兜底的被俘灵魂 ×2）、永恒物质、凝结矩阵，8 万；2→3 异变之心（13d 起）+ 先辈残核（13e 前兜底虚空核心）、故障核心、任意余烬，10 万；3→4 上古晶核（13c 换掉兜底的故障核心）、恶魔核心 ×2、风之水晶，12 万；4→5 审判庭芯片 + 下界之星（天灾残核 + 影晶 ×4 的兜底）、下界之星、恶魔核心，15 万",
+        "凝结矩阵只在矩阵阶、富集仓凝结都开着时有（pentacle/condensed），关着时 2 阶那一行换成「眼下凑不齐」",
+        "各阶表、冷却 13 秒、每阶少 1 秒按默认配置写，挂默认值条件；不是默认值时换成按配置算的每阶增量和冷却算式",
+        "升格的矩阵阶门槛：AttunementAscensionRecipe.requiredRank() = rank_gate[升到的阶 − 1]，升格按 3 阶算（默认 5）；阶戳拿在主手里每 40 刻按现在的矩阵阶抬（AttunementGains）",
+        "升格配方块用 recipe_type magician_table + items verdict_blade、optional；升阶配方 data/essentialcraft5/recipes/attunement/verdict_*.json",
+        "data/essentialcraft5/advancements/guide/attunement/verdict_blade.json — inventory_changed，标签 essentialcraft5:attunement/verdict_blade",
+        "item/VerdictBladeItem.java 类注释 — 命中、右键照余烬元素剑，倍数按余烬剑 2 阶；横扫、断罪打中的也补裁断；断罪按住右键 20 刻以上松开，一个都没打成不扣、不冷却；2 阶起右键不再格挡（换成蓄力）；扣费走 MRUDrain.playerUseMRU（先扣身上的储存物品）",
+        "data/essentialcraft5/recipes/attunement/*.json — 13d 换材料（batch13.md §9.6 13d 那几行），表里的格子照配方的四角写",
+        "recipes/attunement/verdict_3.json、verdict_5.json（13e 换掉兜底）— 同宅男：3 阶先辈残核，5 阶天灾残核 + 影晶 ×4、下界之星、恶魔核心；暗影核心凝不出来时 5 阶那行写「眼下凑不齐」"
+      ]
+    }
+  ]
+}

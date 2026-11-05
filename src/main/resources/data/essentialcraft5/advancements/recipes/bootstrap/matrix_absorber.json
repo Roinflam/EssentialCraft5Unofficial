@@ -1,0 +1,50 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_soul_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essentialcraft5:soul_stone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_parts": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essentialcraft5:iron_support",
+              "essentialcraft5:mru_catcher",
+              "essentialcraft5:matrix_link",
+              "essentialcraft5:heating_rod"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "essentialcraft5:bootstrap/matrix_absorber"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_soul_stone",
+      "has_parts",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "essentialcraft5:bootstrap/matrix_absorber"
+    ]
+  }
+}

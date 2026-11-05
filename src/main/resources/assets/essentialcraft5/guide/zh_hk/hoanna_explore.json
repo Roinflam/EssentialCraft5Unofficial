@@ -1,0 +1,1398 @@
+{
+  "id": "hoanna_explore",
+  "order": 111,
+  "group": "side",
+  "title": "支線 · 海納爾探索",
+  "subtitle": "七種特產、天災和巢穴",
+  "icon": "essentialcraft5:ley_crystal",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "往遠處走",
+      "icon": "minecraft:compass",
+      "summary": "特產、天災、勘測圖和巢穴",
+      "blocks": [
+        {
+          "type": "quote",
+          "by": "海納爾塔基銘文",
+          "text": "月圓那幾夜，城東的草地上會冒出亮晶晶的芽，孩子們成羣去掰，我們沒攔過。城燒了以後，芽照舊在長。"
+        },
+        {
+          "type": "p",
+          "text": "第十六章講的是怎麼進海納爾、在遺蹟裏翻箱子。這一章往荒野裏走，下表是各篇講的東西。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "篇",
+            "講什麼"
+          ],
+          "rows": [
+            [
+              "[[hoanna_explore/tide]]",
+              "潮位跟着月亮漲落，大潮那幾夜有的特產才長、本地怪也多"
+            ],
+            [
+              "[[hoanna_explore/specialties]]",
+              "七種地貌各長一樣東西，在哪、怎麼採"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "[[hoanna_explore/ley_storm]]",
+                "只在大潮夜來的第五種天災，天上往下落晶體"
+              ]
+            },
+            [
+              "[[hoanna_explore/calamity_windows]]",
+              "哪種天災讓哪樣東西來得快"
+            ],
+            [
+              "[[hoanna_explore/hotspots]]",
+              "輻射最強的那些區塊，輻晶長在那裏"
+            ],
+            [
+              "[[hoanna_explore/survey]]",
+              "勘測圖從哪來、怎麼用，還有路邊的里程碑"
+            ],
+            [
+              "[[hoanna_explore/survey_trip]]",
+              "照着勘測圖走到地方"
+            ],
+            [
+              "[[hoanna_explore/abyssal_salt]]",
+              "能清掉一部分輻射的鹽"
+            ],
+            [
+              "[[hoanna_explore/midscapes]]",
+              "冰封營地、混沌裂隙和輻射隕坑"
+            ],
+            [
+              "[[hoanna_explore/nests]]",
+              "守着這三處的巢穴，清掉以後人人一份"
+            ],
+            [
+              "[[hoanna_explore/sealed_vault]]",
+              "沙漠和恐懼之地地下的寶庫，讀懂碑文才打得開"
+            ],
+            [
+              "[[hoanna_explore/sunken_district]]",
+              "海底的空氣穹頂，祭壇能召出淵潮領主"
+            ],
+            [
+              "[[hoanna_explore/inquisitorium_outpost]]",
+              "暗影腐化之地裏被毀的審判庭場地"
+            ]
+          ],
+          "widths": [
+            3,
+            7
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這一章的步驟都是可選的，打不打勾都不影響主線。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "主線從這裏拿兩樣東西：[[attunement/computer_armor|宅男套裝]]升 2 階時每件要 2 個{item:essentialcraft5:tide_crystal}，第二十二章要攢一堆{item:essentialcraft5:umbral_crystal}，怎麼採都見[[hoanna_explore/specialties]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.attunement.enabled",
+          "text": "主線只從這裏拿一樣東西：第二十二章要攢一堆{item:essentialcraft5:umbral_crystal}，怎麼採見[[hoanna_explore/specialties]]。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "特產、營地和里程碑都是區塊第一次生成時放上去的。老存檔裏已經走過的地方不會補上，要往沒去過的方向走才找得到。"
+        }
+      ]
+    },
+    {
+      "id": "tide",
+      "title": "魔力潮汐",
+      "icon": "minecraft:clock",
+      "summary": "看月亮算潮位",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海納爾的 MRU 跟着月亮漲落，叫作<em>魔力潮汐</em>，漲到多高叫潮位。滿月那夜潮位最高，是 1，之後每過一夜少四分之一，到新月那夜是 0，再一夜一夜漲回去。",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "海納爾的 MRU 本來會跟着月亮漲落，叫作魔力潮汐。在這個世界裏它停住了，潮位一直是 0.5，沒有大潮，地脈風暴也不會來。{item:essentialcraft5:tide_bud}改成每個夜裏都長，比大潮夜慢一些。",
+          "if": "!cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "formula",
+          "text": "潮位 = 1 − 離滿月差幾夜 ÷ 4",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "table",
+          "header": [
+            "這一夜的月亮",
+            "潮位"
+          ],
+          "rows": [
+            [
+              "滿月",
+              "1"
+            ],
+            [
+              "滿月前後一夜",
+              "0.75"
+            ],
+            [
+              "半月",
+              "0.5"
+            ],
+            [
+              "新月前後一夜",
+              "0.25"
+            ],
+            [
+              "新月",
+              "0"
+            ]
+          ],
+          "widths": [
+            3,
+            2
+          ],
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "看哪個月亮",
+          "text": "看天上大的那個月亮，它的圓缺和主世界的月亮一樣。旁邊要是還掛着一個小月亮，那是伴月，它總和大的差半個週期，伴月圓的那夜正是新月，別看錯。在牀上睡過去的夜也算，月相照樣往下走。",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "h",
+          "text": "大潮",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "潮位到 0.75 以上的三夜叫<em>大潮</em>，也就是滿月和它前後各一夜，八天裏有三天。",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:tide_bud}只在大潮的夜裏長，見[[hoanna_explore/specialties]]。",
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0"
+              ],
+              "text": "[[hoanna_explore/ley_storm|地脈風暴]]只在大潮夜的黃昏才可能來。"
+            },
+            {
+              "if": "cfg:general.mobs.hoanna_spawns.tide_weights",
+              "text": "本地怪刷出來的機會跟着潮位變，潮位 0.5 時照常，滿月那夜多四分之一，新月那夜少四分之一。"
+            },
+            "天上的 MRU 光幕跟着潮位變亮，滿月前後最亮，新月時最淡。",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "[[hoanna/collapse|聚集體坍縮]]也會快一些，新月時照常，滿月時快一半。趕上天災時按天災那份算，兩樣不疊在一起。"
+            }
+          ],
+          "if": "cfg:general.hoanna_tide.enabled"
+        }
+      ]
+    },
+    {
+      "id": "specialties",
+      "title": "七種地貌的特產",
+      "icon": "essentialcraft5:ley_crystal",
+      "summary": "每種地貌各有一樣",
+      "complete": "essentialcraft5:guide/hoanna_explore/specialty",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ley_crystal",
+        "essentialcraft5:radiant_crystal",
+        "essentialcraft5:tide_crystal",
+        "essentialcraft5:umbral_crystal",
+        "essentialcraft5:frost_marrow",
+        "essentialcraft5:ley_vent",
+        "essentialcraft5:titanite_ore",
+        "essentialcraft5:radiant_cluster",
+        "essentialcraft5:tide_bud",
+        "essentialcraft5:umbral_cluster"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：採到一樣海納爾特產。每種地貌都長着一樣別處沒有的東西，下表是它們在哪、怎麼採。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "地貌",
+            "特產",
+            "怎麼採"
+          ],
+          "rows": [
+            [
+              "冰凍腐化之地",
+              "{item:essentialcraft5:frost_marrow}",
+              "嵌在冰刺裏，用帶絲綢之觸的鎬挖"
+            ],
+            [
+              "魔力腐化之地",
+              "{item:essentialcraft5:tide_crystal}",
+              "{item:essentialcraft5:tide_bud}長滿以後右鍵收"
+            ],
+            [
+              "混沌腐化之地",
+              "{item:essentialcraft5:ley_crystal}",
+              "{item:essentialcraft5:ley_vent}攢了能就空手右鍵收，別的陸地上也零星有幾座"
+            ],
+            [
+              "恐懼之地",
+              "{item:essentialcraft5:radiant_crystal}",
+              "輻射最強的區塊里長着{item:essentialcraft5:radiant_cluster}，拿鎬挖，沙漠裏也有"
+            ],
+            [
+              "海納爾沙漠",
+              "{item:essentialcraft5:titanite}、{item:essentialcraft5:twinkling_titanite}",
+              "拿鐵鎬或更好的鎬挖{item:essentialcraft5:titanite_ore}"
+            ],
+            [
+              "暗影腐化之地",
+              "{item:essentialcraft5:umbral_crystal}",
+              "成熟的{item:essentialcraft5:umbral_cluster}右鍵收，夜裏收得多"
+            ],
+            [
+              "海納爾之海",
+              "{item:essentialcraft5:abyssal_salt}",
+              "拿鏟子挖海底的{item:essentialcraft5:abyssal_salt_crust}"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            6
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裏有了{item:essentialcraft5:ley_crystal}、{item:essentialcraft5:radiant_crystal}、{item:essentialcraft5:tide_crystal}、{item:essentialcraft5:frost_marrow}、{item:essentialcraft5:umbral_crystal}、{item:essentialcraft5:abyssal_salt}中的任意一樣，這一步就打勾了。榍石不算。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "這六樣合起來叫<em>海納爾特產</em>，[[matrix/ranks|矩陣六階]]的祭品要其中同一種 4 個。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.matrix_rank.enabled",
+          "text": "這六樣合起來叫<em>海納爾特產</em>。"
+        },
+        {
+          "type": "p",
+          "text": "噴口、潮晶芽和影晶簇要你親手右鍵才收得到，機器替你右鍵不算。它們也只在有人待在附近時才長、才攢能，附近沒人就停着。"
+        },
+        {
+          "type": "h",
+          "text": "霜髓"
+        },
+        {
+          "type": "p",
+          "text": "冰凍腐化之地裏立着一根根浮冰刺，最高有九格，{item:essentialcraft5:frost_marrow}就嵌在刺裏，泛着一點微光。用帶<b>絲綢之觸</b>的鎬挖才掉它本身，換別的挖法，挖掉以後什麼都不剩。"
+        },
+        {
+          "type": "p",
+          "text": "霜髓放在地上和浮冰一樣滑，自己發一點光，可以拿來裝飾。它不算{item:essentialcraft5:cold_distillator}認的寒冷方塊。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "沒有絲綢之觸就別碰霜髓，挖碎了什麼都不掉，那根冰刺上的就少一塊。"
+        },
+        {
+          "type": "h",
+          "text": "潮晶"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:tide_bud}長在魔力腐化之地頭頂露天的草地和石頭上，分四階，一階比一階大。它只在<em>大潮</em>的夜裏、頭頂看得見天的時候往上長，別的時候一動不動，大潮是什麼見[[hoanna_explore/tide]]。海納爾和主世界共用晝夜，主世界那邊睡覺跳過的夜，海納爾也一起跳過，芽就少長一夜。",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:tide_bud}長在魔力腐化之地頭頂露天的草地和石頭上，分四階，一階比一階大。這個世界裏沒有大潮，芽改在每個夜裏、頭頂看得見天的時候往上長，比大潮夜慢一些。海納爾和主世界共用晝夜，主世界那邊睡覺跳過的夜，海納爾也一起跳過，芽就少長一夜。",
+          "if": "!cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "長到最大一階時右鍵，收下 1~2 個{item:essentialcraft5:tide_crystal}，芽退回最小的一階，留在原地接着長。沒長滿時右鍵收不到東西。",
+            "直接挖掉的話，長滿的掉 1 個潮晶，沒長滿的什麼都不掉。",
+            "用絲綢之觸挖下來的是芽本身，可以拿去種，可它只在魔力腐化之地長。",
+            {
+              "if": [
+                "cfg:general.hoanna_tide.enabled",
+                "cfg:general.hoanna_world.tide_bud.growth_chance==0.5"
+              ],
+              "text": "你守在附近的話，一個大潮夜下來，芽大多能從最小長到最大，一輪大潮能收三回。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "地脈結晶"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:ley_vent}是地上一個暗紫色的小噴口，混沌腐化之地最多，別的五種陸地地貌偶爾也有一座。它自己慢慢攢能，最多攢 {cfg:general.hoanna_world.vent.max_charge} 格，攢到 2 格以上時頂上冒淡紫色的塵。世界生成時放下的噴口一開始就攢着 2 格。"
+        },
+        {
+          "type": "p",
+          "text": "主手空着右鍵攢了能的噴口，每格換 {cfg:general.hoanna_world.vent.crystals_per_charge} 個{item:essentialcraft5:ley_crystal}，噴口隨即清空，再從頭攢。主手拿着{item:essentialcraft5:ley_crystal}也照樣能收，拿着別的東西右鍵沒用。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "白天",
+              "每次隨機刻有 {cfg:general.hoanna_world.vent.charge_chance_day|pct} 的幾率攢 1 格"
+            ],
+            [
+              "夜裏",
+              "{cfg:general.hoanna_world.vent.charge_chance_night|pct}"
+            ],
+            {
+              "if": "cfg:general.hoanna_events.earthquake_enabled",
+              "cells": [
+                "地震中",
+                "{cfg:general.hoanna_world.vent.charge_chance_calamity|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "地脈風暴中",
+                "{cfg:general.hoanna_world.vent.charge_chance_calamity|pct}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_world.vent.charge_chance_day==0.08",
+            "cfg:general.hoanna_world.vent.charge_chance_night==0.16"
+          ],
+          "text": "一個方塊平均一分鐘出頭才輪到一次隨機刻，照這個算，白天攢 1 格要十四分鐘左右，夜裏七分鐘左右。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "噴口挖不走，挖掉就什麼都沒了，用絲綢之觸也一樣。別動它，在附近忙別的，隔一陣回來收就好。"
+        },
+        {
+          "type": "h",
+          "text": "輻晶"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:radiant_cluster}只長在輻射最強的區塊裏，恐懼之地和海納爾沙漠都有，有的貼在地上，有的掛在洞壁上，怎麼找見[[hoanna_explore/hotspots]]。拿鎬挖，掉 1~2 個{item:essentialcraft5:radiant_crystal}，幸運能多掉，用絲綢之觸挖下來的是晶簇本身。只有親手挖才掉東西，爆炸和機器弄掉的什麼都不剩，活塞也推不動它。"
+        },
+        {
+          "type": "p",
+          "text": "在海納爾裏每挖一塊，你的輻射就漲 {cfg:general.hoanna_world.radiant_mining_dose}，盔甲的輻射抗性最多替你擋一半，不穿防護挖 10 塊就是 {cfg:general.hoanna_world.radiant_mining_dose|mul:10}，見[[hoanna/radiation]]。",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "h",
+          "text": "榍石"
+        },
+        {
+          "type": "p",
+          "text": "海納爾沙漠裏散着砂巖和平滑砂巖堆成的巨石，表面嵌着幾塊{item:essentialcraft5:titanite_ore}。用鐵鎬或更好的鎬挖，掉 1 個{item:essentialcraft5:titanite}，幸運能多掉，還有 8% 的幾率多掉 1 個{item:essentialcraft5:twinkling_titanite}。用絲綢之觸挖下來的是礦本身。"
+        },
+        {
+          "type": "p",
+          "text": "趕上[[hoanna/events|日陣]]時挖頭頂露天的榍石礦，閃耀榍石的幾率升到 40%，見[[hoanna_explore/calamity_windows]]。",
+          "if": "cfg:general.hoanna_events.sun_array_enabled"
+        },
+        {
+          "type": "h",
+          "text": "影晶"
+        },
+        {
+          "type": "p",
+          "text": "暗影腐化之地的地上長着{item:essentialcraft5:umbral_cluster}。成熟的晶簇右鍵就能收，收完退成一叢暗淡的<em>殘簇</em>，留在原地慢慢長回去。晶簇自己透着一點微光，天黑時走近了才看得見。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "夜裏或黑暗天災中右鍵",
+                "1~2 個{item:essentialcraft5:umbral_crystal}"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "夜裏右鍵",
+                "1~2 個{item:essentialcraft5:umbral_crystal}"
+              ]
+            },
+            [
+              "白天右鍵",
+              "{cfg:general.hoanna_world.umbral.day_chance|pct} 的幾率收到 1 個"
+            ],
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "長回去",
+                "只在暗影腐化之地、夜裏或黑暗天災中長，大約一個遊戲日"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "長回去",
+                "只在暗影腐化之地的夜裏長，大約一個遊戲日"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "別拿鎬挖成熟的影晶簇。挖掉時掉的和右鍵一樣多，可晶簇也就沒了，再也長不回來。幾個人一起玩時尤其別挖，後來的人只能走更遠的路。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "用絲綢之觸挖下來的是晶簇本身，成熟的還是成熟的，殘簇還是殘簇。挪到暗影腐化之地以外，殘簇就不再長回去。",
+            "殘簇挖掉什麼都不掉。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "淵鹽"
+        },
+        {
+          "type": "p",
+          "text": "海納爾之海的海底鋪着一片片{item:essentialcraft5:abyssal_salt_crust}，拿鏟子挖出{item:essentialcraft5:abyssal_salt}，見[[hoanna_explore/abyssal_salt]]。"
+        },
+        {
+          "type": "h",
+          "text": "拿去做什麼"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:ley_crystal}：[[attunement/wind_armor|風之護甲]]升 3 階，拼[[hoanna_explore/survey|勘測圖]]。"
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:ley_crystal}：拼[[hoanna_explore/survey|勘測圖]]。"
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:radiant_crystal}：[[attunement/void_armor|虛空套裝]]升 2 階。"
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:tide_crystal}：[[attunement/computer_armor|宅男套裝]]升 2 階，這是主線要走的一步。"
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:frost_marrow}：[[attunement/inquisitorium_armor|審判庭套裝]]升 2 階，每件 4 塊。它還能當裝飾。"
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:frost_marrow}：當裝飾。"
+            },
+            "{item:essentialcraft5:umbral_crystal}：第二十二章的主線材料，暗影核心、暗瀆水晶柱、立誓都要它，見[[shade/umbral]]。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "{item:essentialcraft5:umbral_crystal}：也能當[[matrix/ranks|矩陣六階]]的祭品，八階的祭品裏也有它。"
+            },
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "{item:essentialcraft5:abyssal_salt}：吃下去清輻射，見[[hoanna_explore/abyssal_salt]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的海納爾只有遺蹟和箱子，這一章的特產、噴口和晶簇都是這一版加的。"
+        }
+      ]
+    },
+    {
+      "id": "ley_storm",
+      "title": "地脈風暴",
+      "icon": "minecraft:amethyst_shard",
+      "summary": "大潮夜裏往下落的晶體",
+      "complete": "essentialcraft5:guide/hoanna_explore/starfall",
+      "optional": true,
+      "if": [
+        "cfg:general.hoanna_events.ley_storm_enabled",
+        "cfg:general.hoanna_events.ley_storm_chance>0",
+        "cfg:general.hoanna_tide.enabled"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：在地脈風暴裏撿到一顆地脈落晶。地脈風暴是海納爾的第五種天災，只在大潮夜來，天上會往下落髮光的晶體。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "什麼時候來",
+              "[[hoanna_explore/tide|大潮]]那三夜，天剛黑的那一刻有 {cfg:general.hoanna_events.ley_storm_chance|pct} 的幾率來；那時已經有別的天災在鬧，或者海納爾裏沒有人，就不來"
+            ],
+            [
+              "持續",
+              "約 5 分鐘，最晚到天亮。海納爾和主世界共用晝夜，主世界那邊睡覺跳過夜晚時，風暴也跟着結束"
+            ],
+            [
+              "提醒",
+              "和別的天災一樣，聊天欄有紅字，屏幕頂上有提示條"
+            ],
+            [
+              "看起來",
+              "天色偏暗紫，身邊飄着緩緩下落的淡紫光點，沒有閃光"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "落晶"
+        },
+        {
+          "type": "p",
+          "text": "風暴裏站在露天的地方，每 {cfg:general.hoanna_events.ley_storm_starfall_interval|sec}有六成的幾率在離你 12~40 格的地方落下一顆<em>地脈落晶</em>。它從高處慢慢飄下來，停在離地一格的地方發光，走過去碰到它就收下 1 個{item:essentialcraft5:ley_crystal}，滿月那夜是 2 個。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每個人身邊同時最多有 {cfg:general.hoanna_events.ley_storm_starfall_per_player} 顆，沒撿的過 2 分鐘自己消失。",
+            "頭頂有遮擋時不會給你落，落晶也只落在已經載入的地方。",
+            "落晶不會存下來，退出遊戲再進來，沒撿的就沒了。",
+            "風暴裏所有地脈噴口都攢能攢得飛快，見[[hoanna_explore/calamity_windows]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "碰到第一顆地脈落晶，收下地脈結晶。"
+        },
+        {
+          "type": "h",
+          "text": "露天的輻射",
+          "if": [
+            "cfg:general.radiation.enabled",
+            "cfg:general.hoanna_events.ley_storm_radiation>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "風暴不傷人，可只要站在露天，輻射每秒漲 {cfg:general.hoanna_events.ley_storm_radiation}，盔甲最多替你擋一半，躲進有屋頂的地方就不漲了，見[[hoanna/radiation]]。",
+          "if": [
+            "cfg:general.radiation.enabled",
+            "cfg:general.hoanna_events.ley_storm_radiation>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怪"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.hoanna_spawns.storm_prism_weight>0",
+              "text": "[[bestiary/mana_prism]]在所有陸地上都會刷，每個人身邊最多 {cfg:general.mobs.hoanna_spawns.storm_prism_max_nearby} 只。"
+            },
+            {
+              "if": "cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier>1",
+              "text": "本地怪是精英的幾率是平時的 {cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier} 倍，見[[bestiary/overview]]。"
+            },
+            "和別的天災一樣，風暴不會動任何方塊。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "躲不躲",
+          "text": "想撿落晶就得站在露天，輻射照吃。撿夠了就鑽進屋裏，或者挖個洞待着，等風暴過去。",
+          "if": "cfg:general.radiation.enabled"
+        }
+      ]
+    },
+    {
+      "id": "calamity_windows",
+      "title": "天災裏的收成",
+      "icon": "minecraft:clock",
+      "summary": "哪種天災讓什麼來得快",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海納爾的[[hoanna/events|天災]]會傷人，有幾種也會讓某樣特產來得快。天災來了以後，可以照下表挑地方去。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "天災",
+            "去哪",
+            "有什麼不同"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.hoanna_events.sun_array_enabled",
+              "cells": [
+                "日陣",
+                "海納爾沙漠的露天",
+                "挖{item:essentialcraft5:titanite_ore}出{item:essentialcraft5:twinkling_titanite}的幾率從 8% 升到 40%，露在外面的礦石冒小閃光"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "黑暗",
+                "暗影腐化之地",
+                "白天右鍵{item:essentialcraft5:umbral_cluster}也按夜裏收，殘簇白天也長回去，成熟的晶簇周圍冒暗紫色的塵"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.earthquake_enabled",
+                "cfg:general.hoanna_world.vent.charge_chance_calamity==1",
+                "cfg:general.hoanna_world.vent.max_charge==3"
+              ],
+              "cells": [
+                "地震",
+                "混沌腐化之地",
+                "{item:essentialcraft5:ley_vent}每次隨機刻都攢 1 格能，三分半鐘左右就攢滿"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.earthquake_enabled",
+                "!cfg:general.hoanna_world.vent.charge_chance_calamity==1||!cfg:general.hoanna_world.vent.max_charge==3"
+              ],
+              "cells": [
+                "地震",
+                "混沌腐化之地",
+                "{item:essentialcraft5:ley_vent}每次隨機刻攢能的幾率升到 {cfg:general.hoanna_world.vent.charge_chance_calamity|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "地脈風暴",
+                "哪裏都行，站在露天",
+                "天上落[[hoanna_explore/ley_storm|地脈落晶]]，噴口也和地震時一樣攢得快"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.fumes_enabled",
+                "cfg:general.hoanna_events.fumes_max_nearby>0"
+              ],
+              "cells": [
+                "毒霧",
+                "哪裏都一樣",
+                "沒有額外的收成"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            3,
+            6
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.hoanna_events.darkness_enabled",
+                "cfg:general.mobs.hoanna_spawns.darkness_patroller_weight>0"
+              ],
+              "text": "黑暗裏[[bestiary/inquisitorium_patroller]]在所有陸地上都刷，亮不亮都一樣，64 格內最多 {cfg:general.mobs.hoanna_spawns.darkness_patroller_max_nearby} 只。"
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.fumes_enabled",
+                "cfg:general.hoanna_events.fumes_max_nearby>0",
+                "cfg:general.mobs.hoanna_spawns.fumes_scavenger_multiplier>1"
+              ],
+              "text": "毒霧裏[[bestiary/hoanna_scavenger]]刷得是平時的 {cfg:general.mobs.hoanna_spawns.fumes_scavenger_multiplier} 倍。"
+            },
+            {
+              "if": "cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier>1",
+              "text": "天災期間本地怪是精英的幾率是平時的 {cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier} 倍。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "日陣裏站在露天挖礦要挨燒，每秒 1 點還會着火。喝一瓶抗火藥水再去，見[[hoanna/events]]。",
+          "if": "cfg:general.hoanna_events.sun_array_enabled"
+        }
+      ]
+    },
+    {
+      "id": "hotspots",
+      "title": "輻射熱點",
+      "icon": "essentialcraft5:radiant_cluster",
+      "summary": "焦痕和灰綠細塵",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海納爾每個區塊都有一個固定的輻射強度，在 0~5 之間。強度到 4 和 5 的區塊是<em>輻射熱點</em>，空中飄着灰綠色的細塵，恐懼之地和海納爾沙漠裏的熱點地上還有一片片燒焦的痕跡，強度 5 的那些長着{item:essentialcraft5:radiant_cluster}。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "灰綠細塵每隔半秒左右在你身邊飄起一顆，看到它就説明腳下這塊區塊的強度在 4 以上。",
+            "輻射隕坑只落在強度 3 以上的恐懼之地裏，見[[hoanna_explore/midscapes]]。",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "不穿防護時，恐懼之地的熱點裏輻射每秒漲 9~10，沙漠的熱點裏每秒漲 5~6，比別處快得多，見[[hoanna/radiation]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎麼認",
+          "text": "打開背包或聊天欄，把滑鼠停在快捷欄左邊的輻射圖示上，能看到這裏每秒漲多少。跟着它往漲得快的方向走，就能摸到熱點。",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "p",
+          "text": "挖輻晶簇之前看一眼劑量，挖一塊就漲一截，見[[hoanna_explore/specialties]]。",
+          "if": "cfg:general.radiation.enabled"
+        }
+      ]
+    },
+    {
+      "id": "survey",
+      "title": "勘測圖",
+      "icon": "essentialcraft5:hoanna_survey_map",
+      "summary": "三張殘圖拼成一張",
+      "complete": "essentialcraft5:guide/hoanna_explore/survey_map",
+      "optional": true,
+      "items": [
+        "essentialcraft5:torn_survey_map",
+        "essentialcraft5:hoanna_survey_map",
+        "essentialcraft5:ruin_milestone"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：拼出一張{item:essentialcraft5:hoanna_survey_map}。海納爾人的勘測圖大多爛掉了，箱子裏剩下的是一張張{item:essentialcraft5:torn_survey_map}，湊夠三張才拼得出一張能用的。"
+        },
+        {
+          "type": "p",
+          "text": "城鎮廢墟塔頂的箱子和古代墓穴出口房間的箱子，每個有 12% 的幾率多一張殘破勘測圖，一座城鎮平均能翻出一張半，見[[hoanna/ruins]]。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：3 張殘破勘測圖和 1 個{item:essentialcraft5:ley_crystal}，放進工作台，不用擺形狀。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:hoanna_survey_map"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拼出第一張海納爾勘測圖。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它只在海納爾裏認得路。在別處右鍵，它只會告訴你認不出這裏。",
+            "在海納爾裏右鍵，它要找一會兒，找到離你最近的一處你要找的地方就記在圖上，最遠找 {cfg:general.hoanna_survey.search_radius} 格，找不到也會告訴你。",
+            "拿在主手或副手裏時，動作欄寫着目標在哪個方向、還有多遠。",
+            "夜裏或黑暗天災中，目標離你 32~512 格時，那個方向會立起一根淡紫色的光柱，只有拿着圖的你看得見，它不閃也不跳。",
+            "潛行右鍵換要找的東西，依次是[[hoanna_explore/sealed_vault|封印寶庫]]、[[hoanna_explore/sunken_district|沉沒城區]]、[[hoanna_explore/inquisitorium_outpost|審判庭前哨]]和城鎮廢墟，動作欄寫着換成了哪一種。新拼的圖先找封印寶庫。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "里程碑"
+        },
+        {
+          "type": "p",
+          "text": "海納爾六種陸地地貌裏，偶爾立着一根四格高的柱子，下面三格是{item:essentialcraft5:fortified_stone}，頂上一塊發光的{item:essentialcraft5:ruin_milestone}。右鍵里程碑，動作欄會寫着最近一座城鎮廢墟在哪個方向、有多遠，最遠找 1024 格。"
+        },
+        {
+          "type": "p",
+          "text": "還沒有勘測圖的時候，碰到里程碑就照着它指的方向走。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作沒有勘測圖和里程碑，找城鎮只能爬到高處張望。"
+        }
+      ]
+    },
+    {
+      "id": "survey_trip",
+      "title": "照着圖走到",
+      "icon": "minecraft:compass",
+      "summary": "走到圖上記着的地方",
+      "complete": "essentialcraft5:guide/hoanna_explore/survey_arrive",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：拿着記好了地方的{item:essentialcraft5:hoanna_survey_map}，走到它指的那個地方。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "拿着圖走到離目標 {cfg:general.hoanna_survey.arrive_radius} 格以內就算到了。圖會記下這一處，再右鍵時去找下一座沒去過的。",
+            "一張圖最多記 16 處到過的地方，再多就忘掉最早的那處。",
+            "找城鎮時，極少數時候到了那裏只看到幾條路，那是一座沒建起來的城鎮，圖照樣把它記下。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿着圖走進目標 {cfg:general.hoanna_survey.arrive_radius} 格以內。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "城鎮塔頂的箱子、寶庫核心和沉城的箱子裏都可能翻到新的殘破勘測圖，到了城鎮就先去爬塔。"
+        }
+      ]
+    },
+    {
+      "id": "abyssal_salt",
+      "title": "{item:essentialcraft5:abyssal_salt}",
+      "icon": "essentialcraft5:abyssal_salt",
+      "summary": "吃下去清掉一部分輻射",
+      "items": [
+        "essentialcraft5:abyssal_salt",
+        "essentialcraft5:abyssal_salt_crust"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海納爾之海的海底鋪着一片片{item:essentialcraft5:abyssal_salt_crust}，拿鏟子挖，掉 2~4 個{item:essentialcraft5:abyssal_salt}，幸運能多掉，用絲綢之觸挖下來的是結殼本身。"
+        },
+        {
+          "type": "p",
+          "text": "淵鹽像食物一樣吃，飽着也能吃，吃了不長飽食度，能清掉你身上的一部分[[hoanna/radiation|輻射]]。在主世界吃也一樣管用。",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "清掉多少",
+              "當前劑量的 {cfg:general.abyssal_salt.purge_ratio|pct}，最少 {cfg:general.abyssal_salt.purge_min}，最多 {cfg:general.abyssal_salt.purge_max}，不會清到 0 以下"
+            ],
+            [
+              "冷卻",
+              "{cfg:general.abyssal_salt.cooldown_ticks|div:1200} 分鐘，退出遊戲再進來也還在"
+            ],
+            [
+              "副作用",
+              "飢餓 I，30 秒"
+            ]
+          ],
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "p",
+          "text": "比如劑量 5 萬時吃一顆清掉 1 萬；劑量 8000 時按兩成只有 1600，不到下限，照下限清掉 {cfg:general.abyssal_salt.purge_min}；劑量 2000 時直接清到 0。",
+          "if": [
+            "cfg:general.radiation.enabled",
+            "cfg:general.abyssal_salt.purge_ratio==0.2",
+            "cfg:general.abyssal_salt.purge_min==3000",
+            "cfg:general.abyssal_salt.purge_max==12000"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "什麼時候吃",
+          "text": "在普通地方和沙漠裏每 {cfg:general.abyssal_salt.cooldown_ticks|div:1200} 分鐘吃一顆，輻射就攢不起來。恐懼之地漲得太快，吃鹽只能讓它漲得慢些，還是早點離開。",
+          "if": [
+            "cfg:general.radiation.enabled",
+            "cfg:general.abyssal_salt.purge_ratio==0.2",
+            "cfg:general.abyssal_salt.purge_min==3000",
+            "cfg:general.abyssal_salt.purge_max==12000",
+            "cfg:general.abyssal_salt.cooldown_ticks==12000"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "冷卻時物品欄裏的淵鹽會變暗，和末影珍珠的冷卻一樣。",
+            "它清的是海納爾輻射，和 MRU 輻射、矩陣損傷都沒有關係。",
+            {
+              "if": "bauble:essentialcraft5:lambda_ring",
+              "text": "戴着{item:essentialcraft5:lambda_ring}照樣能吃，兩樣各管各的。"
+            }
+          ],
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "p",
+          "text": "這個世界裏沒有海納爾輻射，淵鹽吃了不起作用，它照樣算一樣[[hoanna_explore/specialties|海納爾特產]]。",
+          "if": "!cfg:general.radiation.enabled"
+        }
+      ]
+    },
+    {
+      "id": "midscapes",
+      "title": "營地、裂隙和隕坑",
+      "icon": "essentialcraft5:frost_marrow",
+      "summary": "荒野裏有怪守着的地方",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "冰凍腐化之地、混沌腐化之地和恐懼之地的荒野裏，每隔兩百來格就有一處這樣的地方。地方不大，正中都守着一處[[hoanna_explore/nests|巢穴]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "地方",
+            "在哪",
+            "長什麼樣"
+          ],
+          "rows": [
+            [
+              "<hl>冰封營地</hl>",
+              "冰凍腐化之地",
+              "一圈嵌着{item:essentialcraft5:frost_marrow}的冰刺圍着一片雪地"
+            ],
+            [
+              "<hl>混沌裂隙</hl>",
+              "混沌腐化之地",
+              "一道 3 格寬、18 格長、6 格深的地裂，底下鋪着巖漿塊，兩邊立着 4~6 座攢滿能的{item:essentialcraft5:ley_vent}"
+            ],
+            [
+              "<hl>輻射隕坑</hl>",
+              "恐懼之地裏輻射強度 3 以上的區塊",
+              "開口半徑約 8~11 格的淺坑，坑底有焦痕，長着 3~5 叢{item:essentialcraft5:radiant_cluster}"
+            ]
+          ],
+          "widths": [
+            2,
+            3,
+            6
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "冰凍和混沌腐化之地裏大約每兩百二十格一處，恐懼之地裏稀一倍，兩處之間至少隔 8 個區塊。",
+            "它們不會挨着城鎮廢墟生成。",
+            "裂隙兩邊的噴口一開始就是滿的，空手右鍵能收一把{item:essentialcraft5:ley_crystal}。",
+            "隕坑裏的輻晶簇不看區塊的輻射強度，有隕坑就有。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "裂隙底下鋪着巖漿塊，踩上去會燙傷，潛行走過去就沒事。掉下去了就墊幾個方塊爬上來，裂隙裏沒有巖漿。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎麼找",
+          "text": "在冰凍或混沌腐化之地裏認準一個方向走，兩百來格就能碰到一處。裂隙兩邊的噴口冒淡紫色的塵，遠遠就能看見。"
+        }
+      ]
+    },
+    {
+      "id": "nests",
+      "title": "巢穴",
+      "icon": "essentialcraft5:nest_core",
+      "summary": "打掉整波怪，人人一份",
+      "complete": "essentialcraft5:guide/hoanna_explore/nest",
+      "optional": true,
+      "items": [
+        "essentialcraft5:nest_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：清掉一處巢穴，分到一份獎勵。營地、裂隙和隕坑的正中各有一塊{item:essentialcraft5:nest_core}，有人走近時它會一次放出一整波本地怪。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "巢穴在",
+            "一波",
+            "每人一份"
+          ],
+          "rows": [
+            [
+              "冰封營地",
+              "4 只[[bestiary/frostbitten]] + 1 只{lang:entity.essentialcraft5.frostbitten.elite}",
+              "1 個{item:essentialcraft5:aberrant_heart}、2~4 個{item:essentialcraft5:aberrant_residue}，再抽 1 件[[hoanna/relics|遺蹟裏的東西]]"
+            ],
+            [
+              "混沌裂隙",
+              "3 只[[bestiary/chaos_aberrant]] + 1 只{lang:entity.essentialcraft5.chaos_aberrant.elite}",
+              "同上"
+            ],
+            [
+              "輻射隕坑",
+              "4 個[[bestiary/hoanna_scavenger]] + 1 個{lang:entity.essentialcraft5.hoanna_scavenger.elite}",
+              "同上，再加 2~4 個{item:essentialcraft5:radiant_crystal}"
+            ]
+          ],
+          "widths": [
+            2,
+            5,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼打"
+        },
+        {
+          "type": "list",
+          "items": [
+            "核心 16 格內來了生存或冒險模式的玩家，它就一次放出整波守衞，領頭的那只是精英。和平難度下它不放。",
+            "整波都死了以後，當時在核心 16 格內、對這一波打出過傷害的人每人一份獎勵，直接進背包，背包滿了就掉在腳下。站在旁邊不出手的拿不到。",
+            "守衞自己照常掉東西，和野外的一樣。",
+            "清完以後核心休眠 {cfg:general.hoanna_nests.recharge_ticks|div:24000} 個遊戲日，之後有人走近，它又會放出新的一波。",
+            "打到一半都走開，48 格內沒人滿 {cfg:general.hoanna_nests.reset_ticks|div:1200} 分鐘，沒死的守衞會散掉。這一波要是已經死過一隻，核心照樣休眠 {cfg:general.hoanna_nests.recharge_ticks|div:24000} 個遊戲日，只是沒有獎勵；一隻都沒打死的，核心從頭來過。",
+            "每個人身邊同時最多有 {cfg:general.hoanna_nests.max_active_per_player} 處巢穴在打，再走近別的核心，它要等前面的打完才放怪。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "清掉一處巢穴，分到一份獎勵。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "{item:essentialcraft5:nest_core}很硬，挖掉以後什麼都不掉，這處巢穴也就沒了。想以後接着打，就別挖它。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "守衞沒能出來的時候，比如那塊地方不讓刷怪，核心過 1 分鐘再試。",
+            "在別人的領地裏，核心挖不動。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "守衞算野外的本地怪，親手殺了照樣記進[[matrix/codex|矩陣圖譜]]。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sealed_vault",
+      "title": "封印寶庫",
+      "icon": "essentialcraft5:elder_stele",
+      "summary": "讀懂碑文，按次序放下四種魔晶",
+      "items": [
+        "essentialcraft5:elder_stele",
+        "essentialcraft5:vault_pedestal",
+        "essentialcraft5:vault_keyhole",
+        "essentialcraft5:vault_core",
+        "essentialcraft5:elder_remnant"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海納爾沙漠和恐懼之地的地面上，偶爾立着一塊五格高的{item:essentialcraft5:elder_stele}，腳下是一塊三乘三的平台。平台底下有一口螺旋樓梯井，通到一間前廳，前廳後面是一道封住的門。"
+        },
+        {
+          "type": "p",
+          "text": "門後是寶庫室，正中一塊{item:essentialcraft5:vault_core}收着一個{item:essentialcraft5:elder_remnant}和一些遺物，解開封印的人每人一份。"
+        },
+        {
+          "type": "p",
+          "text": "先輩殘核是裝備同調升階要用的材料，宅男套裝和裁決之刃升 3 階都要它，見[[attunement/stage_up]]。",
+          "if": "cfg:general.attunement.enabled"
+        },
+        {
+          "type": "h",
+          "text": "怎麼解"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "右鍵先輩碑。聊天欄出現四句碑文，每句説一種元素和它排第幾。",
+            "走下樓梯到前廳。東南西北四座{item:essentialcraft5:vault_pedestal}各刻着一種元素。",
+            "往前廳中央的{item:essentialcraft5:vault_keyhole}放 1 個{item:essentialcraft5:ley_crystal}。這是這一次的鑰匙，答對答錯都不退。",
+            "照碑文的次序，往每座祭座放 {cfg:general.sealed_vault.crystals_per_pedestal} 個對應元素的魔晶：{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}、{item:essentialcraft5:air_drops}。",
+            "四座都放對，封印門打開 {cfg:general.sealed_vault.door_open_ticks|sec}。這時站在前廳裏的人都算解開了封印。",
+            "走進寶庫室，右鍵寶庫核心領你那一份。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "只有答對那一刻站在前廳裏的人才算數。幾個人一起來時，先都站進前廳再放最後一個魔晶；門開了才進來的、挖牆繞進寶庫室的，右鍵核心什麼也拿不到。"
+        },
+        {
+          "type": "h",
+          "text": "放錯了"
+        },
+        {
+          "type": "p",
+          "text": "往還沒輪到的祭座上放魔晶，就算放錯。拿着別的元素的魔晶去右鍵祭座，只會提示一句，不算放錯，也不扣東西。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "這一次放進去的魔晶退一半，向下取整；鎖孔裏的地脈結晶不退。",
+            {
+              "if": "cfg:general.sealed_vault.backlash_fraction>0",
+              "text": "封印反噬放錯的那個人，當前最大生命的 {cfg:general.sealed_vault.backlash_fraction|pct}。"
+            },
+            {
+              "if": "cfg:general.sealed_vault.guard_count>0",
+              "text": "放錯時還會召出 {cfg:general.sealed_vault.guard_count} 只[[bestiary/catacomb_revenant]]。召過一回以後 {cfg:general.sealed_vault.guard_cooldown_ticks|sec}內再錯，就不再召守衞。和平難度下不召。"
+            },
+            {
+              "if": "cfg:general.sealed_vault.lockout_failures>0",
+              "text": "一個人連着錯 {cfg:general.sealed_vault.lockout_failures} 次，這座寶庫對他封鎖 {cfg:general.sealed_vault.lockout_ticks|div:24000|round:1} 個遊戲日，右鍵時會告訴你還剩多久；答對一次就清零。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "寶庫核心給什麼"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:elder_remnant} ×1，每份都有",
+            "兩輪[[hoanna/relics|遺物]]，每輪 6~17 件，和遺蹟城塔箱子裏的是同一類東西",
+            "{item:essentialcraft5:ley_crystal} ×4~8",
+            "三成的幾率多一張{item:essentialcraft5:torn_survey_map}"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每座寶庫每人只領一次。門關上以後也不要緊：解開過封印的人再來，右鍵封印石，門會為你再開 {cfg:general.sealed_vault.door_open_ticks|sec}，核心那一份一直給你留着。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每座寶庫的碑文、四座祭座刻的元素和次序都不一樣，換一座要重新讀碑。",
+            "先輩碑、祭座、鎖孔、封印石和寶庫核心都挖不動，活塞也推不動；牆可以挖，挖進去也領不到東西。",
+            "被關在寶庫室裏時，右鍵封印石就能開門出去。",
+            "鎖孔裏還沒放地脈結晶時，往祭座放魔晶會提示你先往鎖孔裏放。",
+            "勘測圖能找寶庫，見[[hoanna_explore/survey]]。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sunken_district",
+      "title": "沉沒城區",
+      "icon": "essentialcraft5:sunken_altar",
+      "summary": "海底的空氣穹頂和一座祭壇",
+      "items": [
+        "essentialcraft5:sunken_altar"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海納爾之海底下沉着整片城區：中間一座虛空玻璃砌的穹頂，裏面沒進水，還是乾的；四周是三五棟泡在水裏的房子和倒塌的塔身。"
+        },
+        {
+          "type": "h",
+          "text": "裏面有什麼"
+        },
+        {
+          "type": "list",
+          "items": [
+            "穹頂裏有 2 個箱子，沉房裏也常有一個，裝着{item:essentialcraft5:abyssal_salt}、遺物，有時還有殘破勘測圖。",
+            "穹頂兩側各守着一處[[hoanna_explore/nests|巢穴]]，一波是 3 只[[bestiary/catacomb_revenant]]加 1 只領頭的，清掉以後人人一份，比別處的巢穴多給 4~8 塊淵鹽。",
+            "穹頂正中是一座{item:essentialcraft5:sunken_altar}。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "沉城祭壇"
+        },
+        {
+          "type": "p",
+          "text": "主手或副手拿着{item:essentialcraft5:tide_crystal}右鍵祭壇，交出 {cfg:general.sunken_district.altar_tide_crystals} 個潮晶和 {cfg:general.sunken_district.altar_aberrant_hearts} 顆{item:essentialcraft5:aberrant_heart}，就能召出[[bestiary/abyss_tyrant]]。同一座祭壇每個遊戲日只能召一次。召法、打法和獎勵見那一篇。",
+          "if": [
+            "cfg:general.sunken_district.altar_tide_crystals>0",
+            "cfg:general.sunken_district.altar_aberrant_hearts>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "主手或副手拿着{item:essentialcraft5:tide_crystal}右鍵祭壇，交出 {cfg:general.sunken_district.altar_tide_crystals} 個潮晶，就能召出[[bestiary/abyss_tyrant]]。同一座祭壇每個遊戲日只能召一次。召法、打法和獎勵見那一篇。",
+          "if": [
+            "cfg:general.sunken_district.altar_tide_crystals>0",
+            "!cfg:general.sunken_district.altar_aberrant_hearts>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "右鍵祭壇，交出 {cfg:general.sunken_district.altar_aberrant_hearts} 顆{item:essentialcraft5:aberrant_heart}，就能召出[[bestiary/abyss_tyrant]]。同一座祭壇每個遊戲日只能召一次。召法、打法和獎勵見那一篇。",
+          "if": [
+            "!cfg:general.sunken_district.altar_tide_crystals>0",
+            "cfg:general.sunken_district.altar_aberrant_hearts>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "右鍵祭壇就能召出[[bestiary/abyss_tyrant]]，不用交東西。同一座祭壇每個遊戲日只能召一次。召法、打法和獎勵見那一篇。",
+          "if": [
+            "!cfg:general.sunken_district.altar_tide_crystals>0",
+            "!cfg:general.sunken_district.altar_aberrant_hearts>0"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "穹頂封得嚴嚴實實，沒有門。要進去，就在側面敲開一塊玻璃鑽進去，進去馬上把洞補上；洞一直開着，水就一直往裏灌。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "海不夠深的地方，穹頂頂上會露出水面，遠遠就能看見。",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "海水擋不住輻射，在水下和穹頂裏也照樣漲，別在沉城耗太久。"
+            },
+            "帶上水下呼吸藥水，或者在穹頂裏歇口氣再出去。",
+            "勘測圖能找沉城，見[[hoanna_explore/survey]]。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquisitorium_outpost",
+      "title": "審判庭前哨",
+      "icon": "essentialcraft5:inquisitorium_dais",
+      "summary": "暗影腐化之地裏的一片廢場",
+      "items": [
+        "essentialcraft5:inquisitorium_dais"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "暗影腐化之地裏，有幾處地面被削得平平整整：一片圓形的場地，外圈立着 8 根虛空石柱，有幾根斷了，正中鋪着五乘五的{item:essentialcraft5:inquisitorium_dais}。審判庭在這裏做過什麼，檔案裏沒有寫。"
+        },
+        {
+          "type": "h",
+          "text": "裏面有什麼"
+        },
+        {
+          "type": "list",
+          "items": [
+            "離場地中心 26~30 格、出了場地再走十來格的地方，有 2 個營地，各有一處[[hoanna_explore/nests|巢穴]]和一個箱子。巢穴一波是 4 只[[bestiary/inquisitorium_patroller]]加 1 只領頭的。",
+            "營地箱子裏有 2~3 件[[hoanna/relics|遺物]]、1~3 個{item:essentialcraft5:umbral_crystal}，四分之一的箱子還有一張{item:essentialcraft5:torn_survey_map}。",
+            "信標座只是擺設，右鍵沒有反應。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "和第十九章"
+        },
+        {
+          "type": "p",
+          "text": "第十九章解出來的審判庭座標，多半就指着離你最近的一座前哨，見[[inquisitorium/journey]]。場地又平又空，頭頂露天，在場地上點亮[[inquisitorium/beacon|審判庭信標]]打哨兵正合適。",
+          "if": "cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "p",
+          "text": "場地又平又空，頭頂露天，在場地上點亮[[inquisitorium/beacon|審判庭信標]]打第十九章的哨兵正合適。",
+          "if": "!cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "暗影腐化之地裏刷審判庭巡衞，亮不亮都刷，營地裏還守着一波。到場地上先清一清四周再點信標。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "場地是生成時削平的：地面往上 16 格以內的石頭、泥土、沙子、樹這類天然方塊削掉，底下往下墊 8 格地基。更高的山頭、更深的斷崖照樣留着。",
+            "前哨和城鎮、封印寶庫不會挨在一起生成。",
+            "勘測圖能找前哨，見[[hoanna_explore/survey]]。"
+          ]
+        }
+      ]
+    }
+  ]
+}

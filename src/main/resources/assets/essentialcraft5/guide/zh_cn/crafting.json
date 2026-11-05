@@ -1,0 +1,808 @@
+{
+  "id": "crafting",
+  "order": 30,
+  "group": "main",
+  "title": "第三章 · 辐射与合成",
+  "subtitle": "辐射仓与魔力工作台",
+  "icon": "essentialcraft5:magician_table",
+  "entries": [
+    {
+      "id": "bound_gem",
+      "title": "{item:essentialcraft5:bound_gem}",
+      "icon": "essentialcraft5:bound_gem",
+      "summary": "不拉管道也能送 MRU",
+      "complete": "essentialcraft5:guide/bound_gem",
+      "items": [
+        "essentialcraft5:bound_gem"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "机器干一刻活，就往外漏一刻 MRU。漏出来的走不远，聚在近旁，越聚越亮，亮到一定地步，站在旁边的人就要受伤。",
+          "by": "《源质残卷·卷三》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做几颗{item:essentialcraft5:bound_gem}，学会怎样给机器接上 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "MRU 本是一种辐射，穿得过空气，先辈的机器之间从不拉线。这个模组里也没有管道和电线，用 MRU 的机器都有一个画着灰色宝石的<em>绑定宝石槽</em>，放进一颗记住了源头位置的绑定宝石，机器就会隔空把 MRU 拉过来。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：每颗绑定宝石要{item:essentialcraft5:elemental_gem}和{item:minecraft:quartz}各一个，石英要去下界挖。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:bound_gem"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿宝石右键 MRU 的源头，眼下的源头就是你的{item:essentialcraft5:matrix_absorber}。成组的宝石一次只绑一颗，绑好的那颗会单独回到背包里。",
+            "打开要用 MRU 的机器，把绑好的宝石放进绑定宝石槽，按住 Shift 点击宝石，它也会自己落进这一格。",
+            "看一眼界面上的连接状态，显示「{lang:gui.essentialcraft5.link.working}」就是接通了，此后机器会一直把自己存满。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "同一维度",
+              "源头和机器要在同一个维度"
+            ],
+            [
+              "距离",
+              "东西、上下、南北三个方向各自相距不超过 16 格"
+            ],
+            [
+              "加载",
+              "源头所在的区块要处于加载状态"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有了一颗绑定宝石，把它绑到矩阵换能器上，下一篇的辐射仓就用得上。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "每台机器都先把<em>自己</em>存满，两台机器绑着同一个源头时，先拉到 MRU 的那台会把它全囤在自己身上。MRU 紧张的时候，把暂时不用的那台机器里的宝石先取出来。"
+        },
+        {
+          "type": "h",
+          "text": "状态一览"
+        },
+        {
+          "type": "table",
+          "header": [
+            "界面上写着",
+            "意思"
+          ],
+          "widths": [
+            3,
+            5
+          ],
+          "rows": [
+            [
+              "{lang:gui.essentialcraft5.link.working}",
+              "正常，正在拉取 MRU"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.no_mru}",
+              "源头是空的，要等它产出"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.unloaded}",
+              "源头所在的区块没有加载，走近一些即可"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.out_of_range}",
+              "离源头超过 16 格"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.wrong_dimension}",
+              "宝石绑的是别的维度的方块"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.not_magical}",
+              "绑定的方块不储存 MRU"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "宝石只绑得上你有权改动的方块，去绑别人领地里的机器，快捷栏上方会提示没有权限，宝石不会因此损失。",
+            "绑好的宝石要先清除才能改绑，做法见下面的「改绑」。",
+            "离得更远的机器，可以用{item:essentialcraft5:ray_tower}一段一段地接过去，做法见[[generators/ray_tower]]。",
+            "拉进来的 MRU 会和机器里原有的混在一起，平衡值按两边的数量加权平均，见[[start/mru]]。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "绑定宝石还能用来给[[void_machines/magical_teleporter]]定落点，这样用时不受距离限制。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "改绑"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "手拿绑好的宝石，潜行对着空气右键，听到一声低沉的音符、物品提示里的坐标没了，宝石就清除干净了。",
+            "没反应就再按一次。要是绑定时你正在潜行，这颗宝石就要按两次才会清除，免得手滑清掉。",
+            "拿清除过的宝石右键新的源头，照常绑上就好。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/materials/bound_gem.json — 元素晶石 + #forge:gems/quartz，无序，出 1",
+        "item/BoundGemItem.java:100 — 已绑定的宝石右键方块不再绑；L115 假玩家不绑；L118 canEdit 不过就提示 no_permission、不绑；L122 一组里拆一颗出来绑",
+        "item/BoundGemItem.java:137 — 潜行右键空气：created 为 true 就解绑，潜行时绑的（created false）第一次只把它置 true",
+        "mru/MRULink.java:34 — DEFAULT_RANGE 16（三个轴各自）；L101 不同维度 WRONG_DIMENSION；L114 区块没完全加载 UNLOADED",
+        "mru/MRUStorage.java:117 — pullFrom 每刻拉满自身，平衡值按数量加权平均",
+        "lang gui.essentialcraft5.link.* — 状态文字",
+        "item/BoundGemItem.java:133-145 — 潜行右键空气：created 为 true 就解绑（低音音符），否则先置 true；潜行时绑定的 created = false，所以要两次"
+      ]
+    },
+    {
+      "id": "radiating_chamber",
+      "title": "{item:essentialcraft5:radiating_chamber}",
+      "icon": "essentialcraft5:radiating_chamber",
+      "summary": "用 MRU 照射物品",
+      "complete": "essentialcraft5:main/radiating_chamber",
+      "items": [
+        "essentialcraft5:radiating_chamber",
+        "essentialcraft5:diamond_plate",
+        "essentialcraft5:eye_of_absorption"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：造一台{item:essentialcraft5:radiating_chamber}，这是你第一台耗用 MRU 的机器。它拿 MRU 照射上下两格里的东西，把它们变成新的材料。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：4 块{item:essentialcraft5:diamond_plate}、2 个{item:essentialcraft5:eye_of_absorption}，再加{item:essentialcraft5:mru_catcher}、{item:essentialcraft5:elemental_core}和{item:essentialcraft5:heating_rod}各一个。钻石板一共要 8 颗钻石，吸收之眼每个要 1 颗末影珍珠，钻石是这一章最大的一笔开销。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:radiating_chamber"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:diamond_plate",
+            "essentialcraft5:eye_of_absorption"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下辐射仓，把一颗绑着矩阵换能器的{item:essentialcraft5:bound_gem}放进它的宝石槽。",
+            "照配方把材料放进上格和下格，配方图上画的上下两格就是这两格。",
+            "进度走满，产物就出现在输出格里，上下两格各扣掉一个。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "容量",
+              "{cfg:machines.radiating_chamber.max_mru} MRU"
+            ],
+            [
+              "进度",
+              "每刻 +1，配方要多少刻，界面上的进度就写多少"
+            ],
+            [
+              "耗能",
+              "每刻 {cfg:machines.radiating_chamber.mru_usage_modifier} × 配方倍率 MRU，这一章的配方倍率都是 1"
+            ],
+            [
+              "平衡值",
+              "有的配方只认某一段平衡值，界面上会写明「所需平衡值」，这一章的配方都不挑"
+            ],
+            [
+              "红石信号",
+              "停机，进度保留"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "辐射仓到手，放下、接上 MRU 以后，界面上的 MRU 往上涨，它就能用了。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:machines.radiating_chamber.generate_corruption",
+          "title": "坑",
+          "text": "辐射仓干活时会往四周漏 MRU，守在旁边的人会染上「MRU 腐化」效果。放好原料就走开，详见下一篇[[crafting/corruption]]。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "做到一半换了原料，或者平衡值跑出了配方的范围，进度都会从 0 重来。",
+            "输出格放不下时，进度停在原处等着，取走产物就接着做。进度会存盘，区块卸载了也不会丢。",
+            "漏斗和管道会照配方把东西送进对应的格子，比如{item:minecraft:iron_ingot}做魔力强化石时进下格，做{item:essentialcraft5:mru_magnet}时进上格。两格都空着的时候，就照上一次做成的配方摆。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "一格放一颗写着目标平衡值的{item:essentialcraft5:glitchy_core}、另一格空着，辐射仓就不再找配方，改为解码这颗核心，详见[[inquisitorium/decoding]]。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/radiating_chamber/radiating_chamber.json — 钻石板 ×4、收集器、吸收之眼 ×2、#cores/magic、加热棒",
+        "data/essentialcraft5/recipes/materials/diamond_plate_h.json — 铁锭 4、#essentialcraft5:diamonds 2、元素晶石 1；eye_of_absorption.json — 铁锭 4、元素晶石 4、珍珠 1",
+        "blockentity/RadiatingChamberBlockEntity.java:76 — max_mru、mru_usage_modifier；L235 每刻耗能 = 配置 × 配方倍率（向下取整）；L310 进度 +1，到配方的 mru 值出产物",
+        "blockentity/RadiatingChamberBlockEntity.java:265 — 红石停机、进度保留；L285 没配方 / 平衡值不符清零；L292 换配方清零；L296 输出放不下停在原处",
+        "blockentity/RadiatingChamberBlockEntity.java:54 — 进度连同配方 ID 存盘；L188 漏斗按配方放位置、平手照上一次的配方",
+        "blockentity/RadiatingChamberBlockEntity.java:307 — generate_corruption 开着时每个工作刻泄漏",
+        "blockentity/RadiatingChamberBlockEntity.java serverTick — 上下两格只有一个带目标平衡值的故障核心、另一格空着时走 blockentity/GlitchyCoreDecoder（第十批 10c）"
+      ]
+    },
+    {
+      "id": "corruption",
+      "title": "当心 MRU 腐化",
+      "icon": "essentialcraft5:mru_mover",
+      "summary": "机器会漏 MRU",
+      "items": [
+        "essentialcraft5:mru_mover",
+        "essentialcraft5:mrucu_container"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "MRU 聚得越多、赶得越急，就越不安分。下面这些机器工作时，每刻都会往四周漏出一点不稳定的 MRU："
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.radiating_chamber.generate_corruption",
+              "text": "{item:essentialcraft5:radiating_chamber}：每刻 0～{cfg:machines.radiating_chamber.max_corruption_gen} MRU"
+            },
+            {
+              "if": "cfg:machines.magician_table.generate_corruption",
+              "text": "{item:essentialcraft5:magician_table}：每刻 0～{cfg:machines.magician_table.max_corruption_gen} MRU"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "漏出的 MRU 会给守在旁边的人叠上「MRU 腐化」效果，也会在附近慢慢养出一团越来越大的 <em>MRU 聚集体</em>。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:machines.radiating_chamber.generate_corruption",
+            "!cfg:machines.magician_table.generate_corruption"
+          ],
+          "text": "辐射仓和魔力工作台干活时不往外漏 MRU，放在哪里都行。别的机器漏不漏，各自的篇目里都写着，漏出的 MRU 有什么后果见[[start/mrucu]]。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "「MRU 腐化」效果"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "cfg:general.corruption.respect_claims"
+          ],
+          "text": "机器每漏一次，就给水平 6 格、上下 3 格以内<em>这台机器的主人</em>叠一层「{lang:effect.essentialcraft5.mru_corruption}」。只有放下它的人会被叠上，队友和路过的人都不受牵连，创造模式下也不受影响。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "!cfg:general.corruption.respect_claims"
+          ],
+          "text": "机器每漏一次，就给周围水平 6 格、上下 3 格以内的玩家叠一层「{lang:effect.essentialcraft5.mru_corruption}」，创造模式下不受影响。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "守在一台机器旁边，一分半钟左右会升到 II 级，从这时起偶尔挨一下魔法伤害，每次扣掉最大生命的 {cfg:general.corruption.mru_corruption_health_percent|pct}，三分多钟升到 III 级以后挨得更勤。旁边干活的机器越多，效果涨得越快。走开以后持续时间只减不增，耗尽就消失。它不是药水效果，喝牛奶没有用，叠层的细则见[[start/mrucu]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "!cfg:general.corruption.mru_corruption_lethal"
+          ],
+          "text": "它和中毒一样打不死人，最多把你打到只剩半颗心，可到了那一步，随便一只怪都能要你的命，别守着机器挂机。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "MRU 聚集体"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "漏出的 MRU 会流进水平 32 格、上下 16 格以内最近的一团 MRU 聚集体，附近没有，就在机器旁边凝出新的一团。聚集体是一团悬在空中、向四面放光的光球，存得越多，个头越大。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen==1"
+          ],
+          "text": "每次漏得不多，时间长了却不少。辐射仓做一块下一章的矩阵投影要花 1 万刻，这期间旁边的聚集体会多出 5000 MRU 左右。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "聚集体存到 1 万 MRU 以后，就开始损伤 12 格内玩家的 MRU 矩阵，这种损伤不会自己消退，规则见[[start/mrucu]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "矩阵损伤攒多了，会凝成<em>腐化效果</em>，见[[corruption/matrix_damage]]。在第十二章打开第一座搭好的[[pentacle/pentacle]]以前，损伤只会攒着，不会凝成任何效果。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "矩阵损伤攒多了，会凝成永久的<em>腐化效果</em>，见[[corruption/matrix_damage]]，要等到第十二章的[[pentacle/pentacle]]才治得好。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "怎么办"
+        },
+        {
+          "type": "list",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "items": [
+            {
+              "if": [
+                "cfg:machines.radiating_chamber.generate_corruption",
+                "cfg:machines.magician_table.generate_corruption"
+              ],
+              "text": "把辐射仓和魔力工作台放在平时不大经过的角落，放好原料就走开，走出 6 格以外就不会再叠腐化。"
+            },
+            {
+              "if": [
+                "cfg:machines.radiating_chamber.generate_corruption",
+                "!cfg:machines.magician_table.generate_corruption"
+              ],
+              "text": "把辐射仓放在平时不大经过的角落，放好原料就走开，走出 6 格以外就不会再叠腐化。"
+            },
+            {
+              "if": [
+                "!cfg:machines.radiating_chamber.generate_corruption",
+                "cfg:machines.magician_table.generate_corruption"
+              ],
+              "text": "把魔力工作台放在平时不大经过的角落，放好原料就走开，走出 6 格以外就不会再叠腐化。"
+            },
+            "放机器的房间用[[crafting/fortified]]里的{item:essentialcraft5:fortified_stone}和{item:essentialcraft5:fortified_glass}来砌，隔着这两种方块，聚集体伤到你的几率要小得多。",
+            "聚集体快长到 1 万的时候，用下面讲的魔杖把它挪到你不常去的角落。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "矩阵一阶起，主手或副手拿着绑定你的灵魂石，就看得见附近的聚集体和它存了多少，不用戴单片镜，见[[mru/rank_1]]。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "挪走聚集体"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_mover"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:mru_mover}用一颗元素晶石和一根木棍就能做。对准前方 20 格内的聚集体<em>按住右键</em>，它就往你这边移，<em>潜行</em>时则往外推，每秒大约挪 2 格。"
+        },
+        {
+          "type": "p",
+          "text": "聚集体所在的格子和要挪去的格子，都得是你有权改动的地方，别人领地里的聚集体挪不动。聚集体的其他事见[[start/mrucu]]。"
+        },
+        {
+          "type": "h",
+          "text": "整团收走、倒掉"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mrucu_container"
+        },
+        {
+          "type": "p",
+          "text": "挪来挪去，它还是在你的地盘上。想彻底清掉一团，就用{item:essentialcraft5:mrucu_container}，拿空瓶对准前方 6 格内的聚集体<em>按住右键</em> 2 秒，把它收进瓶里，代价是从你身上带的 MRU 储存物品里扣掉这团存量 {cfg:general.mrucu_container.capture_cost_percent}% 的 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "拿装着聚集体的瓶子对着<em>方块</em>右键，就把它放在那里，那里同样得是你能改动的地方。对着<em>空处</em>按住右键 3 秒，瓶里那团就散掉了，MRU 不会退回来，空瓶还能再用。"
+        },
+        {
+          "type": "h",
+          "text": "野外的聚集体"
+        },
+        {
+          "type": "p",
+          "text": "野外也有聚集体，最常见的是上古遗迹里那一团，多半埋在地下的石头里。戴上{item:essentialcraft5:magic_monocle}，隔着石头也看得见它在发光，那里可能守着一只聚能魔像，见[[bestiary/mru_golem]]。[[gear/ley_detector|地脉探测仪]]切到「聚集体」档，能指出附近存量大的那一团在哪个方向。"
+        }
+      ],
+      "_src": [
+        "blockentity/RadiatingChamberBlockEntity.java:307 — generate_corruption 开着时每个工作刻 randomIncreaseAt(0~max_corruption_gen)；blockentity/MagicianTableBlockEntity.java:202 同",
+        "mru/ECCorruption.java:125 — randomIncreaseAt：0~max 随机，取到 0 也算一次（照样叠效果）；默认 max 1 → 平均每刻 0.5，1 万刻约 5000",
+        "mru/ECCorruption.java:89 — 找水平 32、竖直 16 内的聚集体（L233 chooseTarget：respect_claims 关着时取最近的，开着时泄漏点那一格的直接汇、别的从近到远最多试 4 团主人能动的），没有就新建（L205）",
+        "mru/ECCorruption.java:97 — 给水平 6、竖直 3 内的玩家叠 MRU 腐化，叠的层数 = 累计调用次数；L212 创造 / 旁观不叠；respect_claims 开着时只叠给机器主人 / 丢东西的人（L317 stackRecipients）",
+        "corruption/MRUCorruption.java — 初次 200 刻；L123 等级 = 叠前时长 / 2000；L124 每层 +2 刻；L51 每秒 (放大值)/16 的几率；L76 damage — 魔法伤害 = 最大生命 × general.corruption.mru_corruption_health_percent（0.25）× 易伤",
+        "entity/MRUPresenceEntity.java:335 — 存量 / 10000 ≥ 1 才伤矩阵；L88 范围 12 格",
+        "machines.mru_presence.block_resistances — 强化石 2、强化玻璃 3：连线上最大抗性 r，受影响几率 1/r",
+        "data/essentialcraft5/recipes/mrucu/mru_mover_1.json — 元素晶石 + 木棍",
+        "item/MRUMoverItem.java:52 — 视线前方 20 段；L54 每刻 0.1 格（每秒 2 格）；L88 潜行往外推；L154 当前格和目的格都要 canEdit",
+        "item/MRUCUContainerItem.java — REACH 6、USE_TICKS 40（收）、DISPERSE_TICKS 60（倒掉）；capture 付 captureCost = 存量 × capture_cost_percent%（向上取整，MRUDrain.playerUseMRU）；release 对方块、disperse 对空处；data/essentialcraft5/recipes/gear/mrucu_container.json — 魔力锭 ×2、魔力净化玻璃合金 ×3、钻石 ×1",
+        "corruption/CorruptionGate.java:60 drawable — 没打开过成形的五芒星（pentacle_tier −1）时一个都不抽",
+        "corruption/MRUCorruption.java pulse — mru_corruption_lethal 关着时伤害夹到「生命 − 1」",
+        "tools/plan/batch13.md §5.3.1 — 新生成的上古遗迹有聚能魔像守着；地脉探测仪「聚集体」档指 64 格内 ≥ 5 000 MRU 的聚集体（13c-M2）"
+      ]
+    },
+    {
+      "id": "fortified",
+      "title": "强化材料",
+      "icon": "essentialcraft5:fortified_frame",
+      "summary": "通往魔力工作台",
+      "complete": "essentialcraft5:guide/obsidian_plate",
+      "items": [
+        "essentialcraft5:fortified_stone",
+        "essentialcraft5:fortified_glass",
+        "essentialcraft5:fortified_frame",
+        "essentialcraft5:obsidian_plate"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：用辐射仓照出{item:essentialcraft5:fortified_stone}和{item:essentialcraft5:fortified_glass}，再合成{item:essentialcraft5:fortified_frame}和 2 块{item:essentialcraft5:obsidian_plate}，魔力工作台要用的就是这两块黑曜石板。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：石头、玻璃、铁锭和 8 块黑曜石。玻璃换成染色玻璃也行，石头要普通石头，圆石代替不了。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "辐射仓的上格放石头或玻璃，下格放铁锭。",
+            "每照一次要半秒，合 10 刻，花 10 MRU 出 4 块，上下两格各扣一个。",
+            "在工作台里，4 块魔力强化玻璃加 4 块魔力强化石合成 3 个魔力强化框架。",
+            "一个框架四周围上 4 块黑曜石，就成了一块黑曜石板。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fortified_stone",
+            "essentialcraft5:fortified_glass"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fortified_frame",
+            "essentialcraft5:obsidian_plate"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里同时有 2 块黑曜石板。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "多照一些",
+          "text": "框架后面用得很多，光一块{item:essentialcraft5:magical_screen}就要 4 个，做到第五章大约要 16 个。魔力强化玻璃照 6 次、魔力强化石照 8 次左右就够，每次只花 1 个铁锭和 10 MRU，几乎不费 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "魔力强化石和魔力强化玻璃本身也是好建材，能挡住聚集体放出的一部分 MRU，拿来砌放机器的屋子正合适，见[[start/mrucu]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/radiating_chamber/fortified_stone.json — minecraft:stone + #forge:ingots/iron，10 刻，出 4（倍率默认 1）；fortified_glass.json — #forge:glass",
+        "data/essentialcraft5/recipes/materials/fortified_frame.json — 强化玻璃 4 + 强化石 4 → 3",
+        "data/essentialcraft5/recipes/materials/obsidian_plate.json — #forge:obsidian 4 + 框架 1",
+        "data/essentialcraft5/advancements/guide/obsidian_plate.json — 同时有 2 块",
+        "框架用量（到第五章）：黑曜石板 2、热力产能器 1、魔力屏幕 ×3（产能器、冷凝器、充能仓）各 4、充能仓 1 = 16",
+        "machines.mru_presence.block_resistances — fortified_stone=2、fortified_glass=3",
+        "强化石用量（到第五章）：框架 6 次 × 4 = 24，加魔力强化板 4~5 块（魔力板 4 块、末影鳞合金 1 块）≈ 29 → 照 8 次；强化玻璃 24 → 照 6 次"
+      ]
+    },
+    {
+      "id": "magician_table",
+      "title": "{item:essentialcraft5:magician_table}",
+      "icon": "essentialcraft5:magician_table",
+      "summary": "核心合成台",
+      "complete": "essentialcraft5:main/magician_table",
+      "items": [
+        "essentialcraft5:magician_table",
+        "essentialcraft5:emerald_plate"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：造一台{item:essentialcraft5:magician_table}，它是一张用 MRU 驱动的工作台，这个模组的大部分材料都要经它做出来。先辈的方子多是五样东西配一份 MRU，这张台子就是照着这个造的。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：2 块{item:essentialcraft5:obsidian_plate}、2 块{item:essentialcraft5:emerald_plate}、3 个{item:essentialcraft5:iron_support}，再加{item:essentialcraft5:mru_catcher}和{item:essentialcraft5:elemental_core}各一个，绿宝石板一共要 4 颗绿宝石。第一章做的{item:essentialcraft5:iron_support}要是用完了，就再合成一次，一次出 4 个。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magician_table"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:emerald_plate"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下工作台，放进一颗绑着 MRU 源头的绑定宝石。",
+            "五个原料格是正中一格和四个角，照配方图上的位置摆，配方里空着的格子也要空着。",
+            "进度走满出一份产物，五格各扣掉一个。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "容量",
+              "{cfg:machines.magician_table.max_mru} MRU"
+            ],
+            [
+              "进度",
+              "每刻 +1，装了升级就按升级的倍数加快"
+            ],
+            [
+              "耗能",
+              "每 1 点进度花 {cfg:machines.magician_table.mru_usage_modifier} MRU，配方要多少进度就花多少"
+            ],
+            [
+              "平衡值",
+              "不挑"
+            ],
+            [
+              "红石信号",
+              "停机，进度保留"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "魔力工作台到手，放下、接上 MRU 就能开工。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>输出格放不下时，进度会清零</w>，做一整组时记得及时把产物取走。做到一半换了原料，也会从头开始。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "提速",
+          "text": "手拿一个{item:essentialcraft5:eye_of_absorption}右键工作台，就装上了 ×3 的升级，花同样的 MRU，只要三分之一的时间。吸收之眼现在就做得出来，详见[[storage/upgrades]]。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.magician_table.generate_corruption",
+              "text": "工作台干活时也会漏 MRU，见[[crafting/corruption]]。"
+            },
+            "漏斗和管道会照配方把原料送进对应的格子，几格要同一种原料时就轮流补，多原料的配方也能全靠漏斗供料。",
+            "同一件东西在不同配方里位置不同，比如{item:essentialcraft5:mru_shard}做水晶时放中间、做灵魂碎片时放四角，漏斗会照工作台上一次做成的配方摆。想换配方，就先手动摆一份做出来。",
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "同调装备升阶、换装转移也在这张台子上做，四角按配方图上写的数量扣，见[[attunement/stage_up]]和[[attunement/transfer]]。转移做完，旧件会留在左上角，记得取回。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/magician_table/magician_table.json — 铁框架 ×3、收集器、#cores/magic、绿宝石板 ×2、黑曜石板 ×2",
+        "data/essentialcraft5/recipes/materials/emerald_plate_h.json — 铁锭 4、#essentialcraft5:emeralds 2、元素晶石 1",
+        "blockentity/MagicianTableBlockEntity.java:64 — max_mru、mru_usage_modifier；L192 每刻进度 += 速度系数，耗 速度 × 配置 MRU（小数累计）",
+        "blockentity/MagicianTableBlockEntity.java:178 — 红石停机、进度保留；L182 没配方或输出放不下清零；L186 换配方清零",
+        "block/MagicianTableBlock.java:60 — 手持升级右键装上",
+        "api/MagicianTableUpgrades.java:43 — 吸收之眼 3",
+        "blockentity/MagicianTableBlockEntity.java:144 — 漏斗按配方放位置、几格均摊，平手照上一次的配方（lastRecipeId）"
+      ]
+    },
+    {
+      "id": "magician_crafts",
+      "title": "魔力工作台常用配方",
+      "icon": "essentialcraft5:magic_plate",
+      "summary": "为产能器备料",
+      "complete": "essentialcraft5:guide/generator_parts",
+      "items": [
+        "essentialcraft5:magical_ingot",
+        "essentialcraft5:magical_water",
+        "essentialcraft5:magic_fortified_plating",
+        "essentialcraft5:magic_plate",
+        "essentialcraft5:magical_screen",
+        "essentialcraft5:mru_conversion_matrix",
+        "essentialcraft5:world_interactor"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：给第一台产能器备好{item:essentialcraft5:magic_plate}、{item:essentialcraft5:magical_screen}、{item:essentialcraft5:mru_conversion_matrix}和{item:essentialcraft5:world_interactor}这四样零件。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "要做的",
+            "在哪做",
+            "原料",
+            "每个 MRU"
+          ],
+          "widths": [
+            4,
+            2,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_ingot} ×14",
+              "魔力工作台",
+              "中间一个铁锭",
+              "50"
+            ],
+            [
+              "{item:essentialcraft5:magical_water}",
+              "魔力工作台",
+              "中间一个装了水的玻璃瓶",
+              "250"
+            ],
+            [
+              "{item:essentialcraft5:magic_fortified_plating}",
+              "魔力工作台",
+              "中间一块魔力强化石",
+              "10"
+            ],
+            [
+              "{item:essentialcraft5:magic_plate}",
+              "魔力工作台",
+              "中间魔力强化板，四角魔力锭",
+              "100"
+            ],
+            [
+              "{item:essentialcraft5:magical_screen}",
+              "工作台",
+              "4 个魔力强化框架 + 魔力水",
+              "—"
+            ],
+            [
+              "{item:essentialcraft5:mru_conversion_matrix}",
+              "工作台",
+              "2 个魔力锭 + 元素核心",
+              "—"
+            ],
+            [
+              "{item:essentialcraft5:world_interactor}",
+              "工作台",
+              "8 个魔力锭 + 吸收之眼",
+              "—"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated==1",
+          "text": "这一步很费 MRU，光 14 个魔力锭就要 700 MRU，整套下来 1060 MRU 左右，折合 {cfg:machines.matrix_absorber.ubmru_usage|mul:1060} UBMRU。MRU 不够的话，回去再打一轮怪，或者先做一部分。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated!=1",
+          "text": "这一步很费 MRU，光 14 个魔力锭就要 700 MRU，整套下来 1060 MRU 左右。MRU 不够的话，回去再打一轮怪，或者先做一部分。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magical_ingot",
+            "essentialcraft5:magical_water"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_fortified_plating",
+            "essentialcraft5:magic_plate"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magical_screen",
+            "essentialcraft5:mru_conversion_matrix"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:world_interactor"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "四样东西都拿到过手。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "多做几套",
+          "text": "魔力板、魔力屏幕、MRU 转换矩阵和世界交互器，后面几乎每台机器都要用，冷凝器、充能仓、富集仓的零件、水晶成型器、月亮井都少不了它们。产能器转起来以后，多做两三套备着，省得每次回头补。前五章大概要备多少原版材料，见[[start/materials]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "接下来进入第四章，造一台[[generators/heat_generator]]，不想烧燃料的话，换成[[generators/natural_furnace]]也行，两台任选一台就够。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/magician_table/magical_ingot.json — #forge:ingots/iron 中间，50",
+        "data/essentialcraft5/recipes/magician_table/magical_water.json — forge:nbt 水瓶（Potion minecraft:water）中间，250",
+        "data/essentialcraft5/recipes/magician_table/magic_fortified_plating.json — 强化石中间，10；magic_plate.json — 中间强化板、四角魔力锭，100",
+        "data/essentialcraft5/recipes/materials/magical_screen.json — 框架 4 + 魔力水；mru_conversion_matrix.json — 魔力锭 2 + #cores/magic；world_interactor.json — 魔力锭 8 + 吸收之眼",
+        "合计：魔力锭 4 + 2 + 8 = 14 → 700；+ 魔力水 250 + 强化板 10 + 魔力板 100 = 1060；按矩阵换能器 10:1 约 1 万 UBMRU",
+        "data/essentialcraft5/advancements/guide/generator_parts.json — 四样都拿到过",
+        "blockentity/MatrixAbsorberBlockEntity.java:55 — UBMRU 折算按 mru_generated = 1；不是 1 时换成不带 UBMRU 数的那段"
+      ]
+    }
+  ]
+}

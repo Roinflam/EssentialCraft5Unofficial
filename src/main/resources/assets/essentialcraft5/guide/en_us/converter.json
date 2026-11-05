@@ -1,0 +1,438 @@
+{
+  "id": "converter",
+  "order": 106,
+  "group": "side",
+  "title": "Side Chapter · MRU Converters",
+  "subtitle": "MRU as power for other mods",
+  "icon": "essentialcraft5:mru_converter",
+  "if": "cfg:machines.mru_converter.enabled",
+  "entries": [
+    {
+      "id": "mru_converter",
+      "title": "{item:essentialcraft5:mru_converter}",
+      "icon": "essentialcraft5:mru_converter",
+      "summary": "Turn MRU into power other mods use",
+      "complete": "essentialcraft5:guide/converter/mru_converter",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mru_converter",
+        "essentialcraft5:pale_mru_converter",
+        "essentialcraft5:mithriline_mru_converter",
+        {
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:demonic_mru_converter"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "There is no such machine in the Fragments. Ours is not the only craft in the world, and other people's machines don't know MRU when they see it. It has to be put into a shape they understand.",
+          "by": "Compiler's note"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+          "text": "<em>Goal</em> (optional): build an {item:essentialcraft5:mru_converter} and turn MRU into energy (FE). Machines, batteries and cables from many other mods take this energy, and some of them call it RF."
+        },
+        {
+          "type": "p",
+          "if": [
+            "mod:botania",
+            "cfg:machines.mru_converter.mana_per_1000_mru>0"
+          ],
+          "text": "With Botania installed, it can also turn MRU into Botania mana and pour it straight into a mana pool."
+        },
+        {
+          "type": "p",
+          "text": "This mod's own machines run on MRU alone and have no use for what it makes. It is there so the other mods in your pack can draw on your MRU too."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "list",
+          "items": [
+            "four {item:essentialcraft5:magic_plate} and one {item:essentialcraft5:mru_conversion_matrix}, both made on the Magician Table ([[crafting/magician_crafts]]);",
+            "two {item:essentialcraft5:fortified_frame} ([[crafting/fortified]]);",
+            "two blocks of redstone."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_converter"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the converter. It has no facing; all six sides are the same.",
+            "Put a {item:essentialcraft5:bound_gem} linked to an MRU source in the gem slot ([[crafting/bound_gem]]).",
+            {
+              "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+              "text": "For energy, click “{lang:gui.essentialcraft5.mru_converter.mode.energy}” on the right of the screen."
+            },
+            {
+              "if": [
+                "mod:botania",
+                "cfg:machines.mru_converter.mana_per_1000_mru>0"
+              ],
+              "text": "For Botania mana, click “{lang:gui.essentialcraft5.mru_converter.mode.mana}”."
+            },
+            {
+              "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+              "text": "Put blocks that take energy against it, whether another mod's machines, batteries or cables. It pushes energy into touching blocks every tick, and cables can also pull from it."
+            },
+            {
+              "if": [
+                "mod:botania",
+                "cfg:machines.mru_converter.mana_per_1000_mru>0"
+              ],
+              "text": "For mana, put a mana pool or mana spreader against it ([[converter/mana]])."
+            }
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU capacity",
+              "{cfg:machines.mru_converter.basic.max_mru} MRU"
+            ],
+            [
+              "Converts per tick",
+              "up to {cfg:machines.mru_converter.basic.max_mru_per_tick} MRU"
+            ],
+            {
+              "if": [
+                "cfg:machines.mru_converter.fe_per_1000_mru>0",
+                "cfg:machines.mru_converter.fe_per_1000_mru==500"
+              ],
+              "cells": [
+                "Energy per tick",
+                "up to {cfg:machines.mru_converter.basic.max_mru_per_tick|div:2} FE"
+              ]
+            },
+            {
+              "if": [
+                "mod:botania",
+                "cfg:machines.mru_converter.mana_per_1000_mru>0",
+                "cfg:machines.mru_converter.mana_per_1000_mru==25"
+              ],
+              "cells": [
+                "Mana per tick",
+                "up to {cfg:machines.mru_converter.basic.max_mru_per_tick|div:40} mana"
+              ]
+            },
+            {
+              "if": "cfg:machines.mru_converter.max_per_owner>0",
+              "cells": [
+                "Working at once per player",
+                "{cfg:machines.mru_converter.max_per_owner}"
+              ]
+            },
+            {
+              "if": "cfg:machines.mru_converter.generate_corruption",
+              "cells": [
+                "Leak per second of work",
+                "0～{cfg:machines.mru_converter.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is ticked as soon as you have a converter of any tier. Once it is hooked up, the status bar reads “{lang:gui.essentialcraft5.mru_converter.status.working}” and the port in the middle of each side lights up and flows."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<w>It only pushes into the six blocks touching it.</w> A block one space away gets nothing; to send it further, relay it with another mod's cables, energy conduits or mana spreaders."
+        },
+        {
+          "type": "h",
+          "text": "Good to know"
+        },
+        {
+          "type": "list",
+          "items": [
+            "When nothing around it can take more, it stores one second's worth and stops using MRU; the status bar reads “{lang:gui.essentialcraft5.mru_converter.status.no_receiver}”.",
+            "A redstone signal pauses it.",
+            "Switching modes clears whatever is still waiting in its buffer, at most one second's worth.",
+            {
+              "if": "cfg:machines.mru_converter.max_per_owner>0",
+              "text": "At most {cfg:machines.mru_converter.max_per_owner} of your converters work at once, counting all tiers together and only the loaded ones. The extras show “{lang:gui.essentialcraft5.mru_converter.status.owner_limit}”, and when you break one, the next takes over within seconds."
+            },
+            "It never loads chunks itself and stops when its chunk unloads. It keeps working while whoever placed it is offline.",
+            {
+              "if": "cfg:machines.mru_converter.generate_corruption",
+              "text": "While working it leaks 0–{cfg:machines.mru_converter.max_corruption_gen} MRU per second into its surroundings ([[crafting/corruption]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "All four tiers convert at the same rate and differ only in how much MRU they convert per tick; see [[converter/upgrades]]."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the status bar reads “{lang:gui.essentialcraft5.owner.none}”, break it and place it again by hand.",
+            "When nothing takes its output for a while, it only tries once a second; putting a new block against it wakes it at once."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original had no such machine and never dealt with other mods at all. The converter takes its name from the MRU Conversion Matrix in the third chapter."
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "title": "Energy (FE)",
+      "icon": "essentialcraft5:mru_converter",
+      "summary": "Energy: how much, where it goes, who pulls it",
+      "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Energy (FE, Forge Energy) is the power shared by many mods, also called RF. Machines, batteries and cables that take it all accept what the converter sends."
+        },
+        {
+          "type": "formula",
+          "text": "Every 1,000 MRU → {cfg:machines.mru_converter.fe_per_1000_mru} FE"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_converter.fe_per_1000_mru==500",
+          "text": "That is, 2 MRU make 1 FE."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Every tick it pushes the energy in its buffer into the blocks touching it, starting from a different side each tick, so none of them is starved.",
+            "Cables and energy conduits can also pull from it. What it pushes and what is pulled together never exceed the tier's per-tick limit, and the limits are listed in [[converter/upgrades]].",
+            "It takes no energy itself: other generators can't feed it, and two converters side by side never push into each other."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mana",
+      "title": "Mana (Botania)",
+      "icon": "essentialcraft5:mru_converter",
+      "summary": "Turning MRU into Botania mana",
+      "if": [
+        "mod:botania",
+        "cfg:machines.mru_converter.mana_per_1000_mru>0"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "This is Botania's mana. The “{lang:gui.essentialcraft5.mru_converter.mode.mana}” button in the converter's screen only works when Botania is installed."
+        },
+        {
+          "type": "formula",
+          "text": "Every 1,000 MRU → {cfg:machines.mru_converter.mana_per_1000_mru} mana"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_converter.mana_per_1000_mru==25",
+          "text": "That is, 40 MRU make 1 mana."
+        },
+        {
+          "type": "list",
+          "items": [
+            "A mana pool against it fills fastest. Once the pool is full it stops, and nothing is wasted.",
+            "A mana spreader takes it too, filled directly the way generating flowers fill it. When you relay through a spreader, its firing speed sets the pace.",
+            "It only feeds blocks that are taking mana right now. A runic altar or terrestrial agglomeration plate only takes mana with a recipe on it, and without one the converter doesn't push.",
+            "Blocks that don't keep the mana they receive, such as the Mana Splitter or the Mana Void, don't show how much they took, so the converter feeds them once and then stops. To fill several pools, put the pools directly against the converter's sides and it takes turns feeding them."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:machines.mru_converter.fe_per_1000_mru>0",
+          "text": "If energy is what you want, use [[converter/energy|energy mode]] directly. It beats making mana and running it through Botania's Mana Fluxfield."
+        }
+      ]
+    },
+    {
+      "id": "upgrades",
+      "title": "The Four Tiers",
+      "icon": "essentialcraft5:demonic_mru_converter",
+      "summary": "Tiers compared, and upgrade recipes",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "All four tiers convert at the same rate and differ only in how much MRU they convert per tick, so an upgrade just makes it faster. Each tier's recipe takes the tier below."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Converter",
+            "Per tick",
+            "MRU capacity",
+            "Available from"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mru_converter}",
+              "{cfg:machines.mru_converter.basic.max_mru_per_tick} MRU",
+              "{cfg:machines.mru_converter.basic.max_mru}",
+              "Chapter 3; useful once you have generators (chapter 4)"
+            ],
+            [
+              "{item:essentialcraft5:pale_mru_converter}",
+              "{cfg:machines.mru_converter.pale.max_mru_per_tick} MRU",
+              "{cfg:machines.mru_converter.pale.max_mru}",
+              "Chapter 6 (Pale)"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_mru_converter}",
+              "{cfg:machines.mru_converter.mithriline.max_mru_per_tick} MRU",
+              "{cfg:machines.mru_converter.mithriline.max_mru}",
+              "Chapter 11 (Mithriline)"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_mru_converter}",
+                "{cfg:machines.mru_converter.demonic.max_mru_per_tick} MRU",
+                "{cfg:machines.mru_converter.demonic.max_mru}",
+                "Chapter 17 (Demons)"
+              ]
+            }
+          ],
+          "widths": [
+            4,
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "table",
+          "if": [
+            "cfg:machines.mru_converter.fe_per_1000_mru>0",
+            "cfg:machines.mru_converter.fe_per_1000_mru==500"
+          ],
+          "header": [
+            "Converter",
+            "Energy per tick"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mru_converter}",
+              "{cfg:machines.mru_converter.basic.max_mru_per_tick|div:2} FE"
+            ],
+            [
+              "{item:essentialcraft5:pale_mru_converter}",
+              "{cfg:machines.mru_converter.pale.max_mru_per_tick|div:2} FE"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_mru_converter}",
+              "{cfg:machines.mru_converter.mithriline.max_mru_per_tick|div:2} FE"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_mru_converter}",
+                "{cfg:machines.mru_converter.demonic.max_mru_per_tick|div:2} FE"
+              ]
+            }
+          ],
+          "widths": [
+            4,
+            4
+          ]
+        },
+        {
+          "type": "table",
+          "if": [
+            "mod:botania",
+            "cfg:machines.mru_converter.mana_per_1000_mru>0",
+            "cfg:machines.mru_converter.mana_per_1000_mru==25"
+          ],
+          "header": [
+            "Converter",
+            "Mana per tick"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mru_converter}",
+              "{cfg:machines.mru_converter.basic.max_mru_per_tick|div:40} mana"
+            ],
+            [
+              "{item:essentialcraft5:pale_mru_converter}",
+              "{cfg:machines.mru_converter.pale.max_mru_per_tick|div:40} mana"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_mru_converter}",
+              "{cfg:machines.mru_converter.mithriline.max_mru_per_tick|div:40} mana"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_mru_converter}",
+                "{cfg:machines.mru_converter.demonic.max_mru_per_tick|div:40} mana"
+              ]
+            }
+          ],
+          "widths": [
+            4,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.mru_converter.fe_per_1000_mru>0",
+            "!cfg:machines.mru_converter.fe_per_1000_mru==500"
+          ],
+          "text": "Energy per tick = MRU converted per tick × {cfg:machines.mru_converter.fe_per_1000_mru} ÷ 1,000."
+        },
+        {
+          "type": "h",
+          "text": "Upgrade recipes"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pale_mru_converter"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_mru_converter"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_mru_converter",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "text": "The MRU stored in a converter is lost when you upgrade it: use it up before you break it for the recipe."
+        },
+        {
+          "type": "p",
+          "text": "There is also an {item:essentialcraft5:infinite_mru_converter} that uses no MRU; it has no crafting recipe, see [[creative/creative_items]]."
+        }
+      ]
+    }
+  ]
+}

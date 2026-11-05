@@ -1,0 +1,437 @@
+{
+  "id": "enrichment",
+  "order": 63,
+  "group": "main",
+  "title": "第七章 · 富集倉",
+  "subtitle": "把幾十萬 MRU 存進一座倉",
+  "icon": "essentialcraft5:ec_controller",
+  "entries": [
+    {
+      "id": "controller",
+      "title": "控制器與外殼",
+      "icon": "essentialcraft5:ec_controller",
+      "summary": "一座倉的骨架",
+      "complete": "essentialcraft5:guide/enrichment/controller",
+      "items": [
+        "essentialcraft5:ec_controller"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "籠中關着一團還在長大的輻光。莫在近旁開爐。它若長滿了，就在外面再砌一座更大的籠，不要放它出來。",
+          "by": "上古遺蹟籠銘"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：用{item:essentialcraft5:ec_controller}和外殼方塊搭一座富集倉，它像一塊大電池，能存下幾十萬 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "富集倉從外面看只是一隻六面封死的匣子，看不出裏面存着多少 MRU。機器自己只存得下幾千 MRU，產能器直接接一台耗能大的機器，比如下一章每刻要吃 100 MRU 的{item:essentialcraft5:crystal_former}，它就會做一陣停一陣。中間隔一座富集倉，MRU 先在倉裏攢起來，再平穩地放出去。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "這一章要準備什麼",
+          "text": "這一章的主線一共要用約 90 塊鐵錠，大多做成魔力錠和魔力板。魔力工作台要走約 7000 點進度，摺合 {cfg:machines.magician_table.mru_usage_modifier|mul:7000|int} MRU，裝着注魔合金的話一兩分鐘就能做完。外殼用魔力強化石和魔力強化玻璃就夠，不必用護板。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "只有外殼時",
+              "{cfg:machines.enrichment_chamber.max_mru} MRU"
+            ],
+            [
+              "每個存儲方塊",
+              "再加 {cfg:machines.enrichment_chamber.mru_per_storage} MRU"
+            ],
+            [
+              "外殼每條邊",
+              "{cfg:machines.enrichment_chamber.min_size}~{cfg:machines.enrichment_chamber.max_size} 格"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：做控制器要 1 塊{item:essentialcraft5:magic_plate}、1 個{item:essentialcraft5:elemental_core}、1 個{item:essentialcraft5:mru_conversion_matrix}、1 個{item:essentialcraft5:world_interactor}、2 個{item:essentialcraft5:fortified_frame}和 3 個{item:essentialcraft5:matrix_link}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ec_controller"
+        },
+        {
+          "type": "h",
+          "text": "示例：最小的富集倉（{cfg:machines.enrichment_chamber.min_size}×{cfg:machines.enrichment_chamber.min_size}×{cfg:machines.enrichment_chamber.min_size}）",
+          "if": "cfg:machines.enrichment_chamber.min_size==3"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "S": "essentialcraft5:fortified_stone",
+            "G": "essentialcraft5:fortified_glass",
+            "C": "essentialcraft5:ec_controller",
+            "A": "essentialcraft5:ec_acceptor",
+            "E": "essentialcraft5:ec_ejector",
+            "H": "essentialcraft5:ec_holding_chamber"
+          },
+          "anchor": "C",
+          "layers": [
+            {
+              "pattern": [
+                "SSS",
+                "SSS",
+                "SSS"
+              ]
+            },
+            {
+              "pattern": [
+                "SCS",
+                "A E",
+                "SSS"
+              ],
+              "label": "正中一格是倉的內部"
+            },
+            {
+              "pattern": [
+                "GGG",
+                "GHG",
+                "GGG"
+              ]
+            }
+          ],
+          "caption": "從下往上共三層，外殼 26 格，控制器在北牆，接收器和輸出器分在東西兩牆，存儲方塊在頂上",
+          "if": "cfg:machines.enrichment_chamber.min_size==3"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "搭一個空心長方體，六個面上的每一格都要是外殼方塊，哪些方塊能用見下面的清單。",
+            "把控制器嵌進<em>側牆</em>，頂替一格外殼。",
+            "接收器、輸出器和存儲方塊也各佔一格外殼的位置，嵌在哪一面都行，後兩篇再細講。",
+            "右鍵控制器，聊天欄裏會報出檢查結果，包括尺寸、存儲方塊數和存量，外殼不完整時則指出缺了哪一塊。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "右鍵控制器時，聊天欄裏顯示「富集倉已成形」。倉成形的那一刻，16 格內的玩家也會直接打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "倉裏的 MRU 傷不傷人",
+          "text": "倉裏的 MRU 存在控制器裏，不是聚集體，存多少都不會傷人。要提防的是外殼裏另外飄着的聚集體，它可能是關在倉裏的漏能機器長出來的，也可能是你挪進去的。這樣的聚集體存量過了 1 萬，照樣會傷到 12 格內的人，外殼只擋得住一部分，第十二章的[[pentacle/ec_balancer]]能把它完全壓住。"
+        },
+        {
+          "type": "h",
+          "text": "哪些方塊能當外殼"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:fortified_stone}、{item:essentialcraft5:fortified_glass}",
+            "護板，即{item:essentialcraft5:magic_plating}、{item:essentialcraft5:pale_plating}和{item:essentialcraft5:mithriline_plating}，前兩種的做法見[[alloys/plating]]",
+            "富集倉自己的部件，包括控制器、接收器、輸出器、存儲方塊、狀態檢測器、紅石控制器，以及{item:essentialcraft5:ec_balancer}",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "{item:essentialcraft5:void_stone}、{item:essentialcraft5:void_glass}和{item:essentialcraft5:demonic_plating}，分別見[[hoanna/void_stone]]和[[demons/demonic_plating]]"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "坑"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>一座倉只能有一個控制器</em>，兩座倉的外殼也不能貼在一起。",
+            "倉裏面可以空着，也可以擺<em>外殼方塊以外</em>的東西。裏面一出現外殼方塊，掃描就可能把倉判小，被劃到外面的部件也就不工作了。",
+            "控制器最好嵌在側牆上。控制器所在的那一面要是和外面的外殼方塊連成一片，比如控制器嵌在倉底，倉底又和一大片魔力強化石地板齊平，倉的邊界就分不出來了。整座倉坐在魔力強化石地板上倒沒有關係。",
+            "<em>拆掉控制器，裏面的 MRU 就沒了</em>，要搬家先用輸出器把 MRU 抽到別處。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "外殼平時每隔 {cfg:machines.enrichment_chamber.recheck_interval|sec}自動複查一次，附近放下或拆掉外殼方塊時，1 秒左右就會重查。",
+            "外殼不完整時所有部件都停工，控制器裏的 MRU 原樣留着，外殼補好就恢復。",
+            "倉有一部分在未載入的區塊裏時，沿用上一次的檢查結果。",
+            "外殼上嵌一個[[pentacle/ec_balancer]]，倉裏飄着的 MRU 聚集體就會被穩住、不再傷人，會漏 MRU 的機器也就能放心關進倉裏。",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "text": "第十二章起，倉還能把關在裏面的聚集體凝成{item:essentialcraft5:condensed_matrix}，見[[pentacle/condensed]]。"
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.shade.enabled"
+              ],
+              "text": "第二十二章起，搭在海納爾暗影腐化之地附近的倉還能坍縮出{item:essentialcraft5:shade_core}，見[[shade/shade_core]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書裏，富集倉本是一座牢籠，用來關住越長越大的 MRU 聚集體，免得它們毀了你的房子，存 MRU 倒是順帶的用處。原作裏的倉還得先關進一團聚集體，結構才會啓動。"
+        }
+      ]
+    },
+    {
+      "id": "io",
+      "title": "接收器與輸出器",
+      "icon": "essentialcraft5:ec_acceptor",
+      "summary": "MRU 怎麼進、怎麼出",
+      "complete": "essentialcraft5:guide/enrichment/io",
+      "items": [
+        "essentialcraft5:ec_acceptor",
+        "essentialcraft5:ec_ejector"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：給富集倉裝上管進的{item:essentialcraft5:ec_acceptor}和管出的{item:essentialcraft5:ec_ejector}。這種倉最初是先輩造來關聚集體的，籠子本不留出口，拿來存 MRU 以後，才在倉壁上開了進出的口子。控制器本身不能綁定，MRU 只能從這兩樣進出。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>："
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:ec_acceptor}",
+              "2 個{item:essentialcraft5:fortified_frame}、1 個元素核心、2 塊魔力板、1 個 MRU 轉換矩陣、1 個 MRU 連結器、1 個{item:essentialcraft5:mru_catcher}、1 塊{item:essentialcraft5:magical_screen}"
+            ],
+            [
+              "{item:essentialcraft5:ec_ejector}",
+              "2 個{item:essentialcraft5:fortified_frame}、1 個元素核心、2 塊魔力板、2 個 MRU 轉換矩陣、2 個 MRU 連結器"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:ec_acceptor",
+            "essentialcraft5:ec_ejector"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "接收器和輸出器各頂替外殼上的一格。",
+            "要讓 MRU <em>進</em>倉，右鍵接收器打開界面，放進一顆綁向產能器的{item:essentialcraft5:bound_gem}，源頭的 MRU 就會被直接拉進整座倉，寶石的用法見[[crafting/bound_gem]]。",
+            "要讓 MRU <em>出</em>倉，把用 MRU 的機器裏的綁定寶石綁到<em>輸出器</em>上，機器就會從整座倉里拉 MRU。",
+            "接好幾台產能器時就多嵌幾個接收器，一個輸出器則能同時被很多台機器綁定。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "接收器和輸出器都做出來就會打勾。裝好以後，接收器界面上的寶石狀態是綠色的「工作中」，遠處機器的界面上也會顯示已接通。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "別綁錯",
+          "text": "機器的寶石要綁到輸出器上，那是倉唯一的出口。綁到接收器上什麼也拉不到，寶石狀態會變成黃色的「目標沒有 MRU！」。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "綁定距離和別的機器一樣，要在同一維度，三個方向上各不超過 16 格。",
+            "倉沒成形時，接收器不拉 MRU，輸出器也放不出 MRU，界面上顯示「未連接富集倉」。",
+            "倉裏 MRU 的平衡值照常按數量混合，冰凍和混沌的源頭接進同一座倉，放出來的就介於兩者之間，平衡值的説明見[[start/mru]]。輸出器上顯示的是倉裏真實的平衡值。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "holding_chamber",
+      "title": "{item:essentialcraft5:ec_holding_chamber}",
+      "icon": "essentialcraft5:ec_holding_chamber",
+      "summary": "每個都給倉加一大截容量",
+      "complete": "essentialcraft5:guide/enrichment/holding_chamber",
+      "items": [
+        "essentialcraft5:ec_holding_chamber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在外殼上嵌幾個{item:essentialcraft5:ec_holding_chamber}，把倉的容量擴大。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：每個要 1 塊{item:essentialcraft5:magic_purified_glass_alloy}、2 塊{item:essentialcraft5:dark_soul_matter}，再加 2 個魔力強化框架、1 個 MRU 收集器、2 塊魔力板和 1 個 MRU 連結器。玻璃合金的做法見[[alloys/purified_alloys]]，暗黑靈魂物質在魔力工作台裏做，中心放 1 顆末影珍珠，四角放 4 顆 MRU 寶石。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ec_holding_chamber"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "用存儲方塊換掉外殼上的任意一格，嵌在哪一面都一樣。",
+            "右鍵控制器重新檢查，聊天欄裏會顯示存儲方塊數和容量。"
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "倉的容量 = {cfg:machines.enrichment_chamber.max_mru} + 存儲方塊數 × {cfg:machines.enrichment_chamber.mru_per_storage}"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "右鍵控制器，結果裏的存儲方塊數和容量變大了。"
+        },
+        {
+          "type": "p",
+          "text": "一座倉嵌上 10 個以上存儲方塊，就能拿到進度「越大越好」。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "拆掉存儲方塊，上限立刻變小，<em>已經存進去的 MRU 卻不會被刪掉</em>。超出新上限的時候只出不進，取到上限以下就恢復正常。",
+            "一個存儲方塊只算在一座倉裏。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "這一章剩下的[[enrichment/monitoring]]和[[enrichment/intersector]]兩篇是可選的，主線接着做[[crystal/crystal_former]]。"
+        }
+      ]
+    },
+    {
+      "id": "monitoring",
+      "title": "狀態檢測器與紅石控制器",
+      "icon": "essentialcraft5:ec_state_checker",
+      "summary": "看存量、出紅石",
+      "complete": "essentialcraft5:guide/enrichment/monitoring",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ec_state_checker",
+        "essentialcraft5:ec_redstone_controller"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（按需）：隨時看清倉裏還剩多少 MRU，或者拿紅石信號去控制別的東西，比如倉滿了就讓熱力產能器停下來省燃料。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:ec_state_checker",
+            "essentialcraft5:ec_redstone_controller"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "狀態檢測器"
+        },
+        {
+          "type": "p",
+          "text": "把{item:essentialcraft5:ec_state_checker}嵌在外殼上，右鍵打開界面，能看到整座倉的存量、平衡值和 <em>MROV</em>。MROV 是外殼上每一格阻擋 MRU 的能力之和，比如魔力強化石算 2、魔力強化玻璃算 3、魔力護板算 5，每個富集倉部件算 100。它只是個讀數，不影響倉怎麼工作。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:machines.enrichment_chamber.condense.enabled"
+          ],
+          "text": "倉成形以後，界面右邊還有一條凝結的進度條，滑鼠移上去會寫出卡在哪一步，見[[pentacle/condensed]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.enrichment_chamber.shade.enabled"
+          ],
+          "text": "倉裏丟了影晶、或者搭在暗影腐化之地附近時，界面上還有一條坍縮條，滑鼠移上去會寫出凝[[shade/shade_core|暗影核心]]還差什麼：地點不對，或者影晶還差幾個。正在凝暗影核心時，這條是紫色的。"
+        },
+        {
+          "type": "h",
+          "text": "紅石控制器"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把{item:essentialcraft5:ec_redstone_controller}嵌進外殼。",
+            "空手潛行右鍵，設定會在始終、10%、20%……90%、存滿之間輪換，普通右鍵則在快捷欄上方顯示當前設定。",
+            "倉裏的 MRU 到了設定值，它就向六個方向輸出 15 級紅石信號，每秒更新一次。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "倉成形以後，這兩樣嵌在它的外殼上才會工作。熱力產能器這類機器收到紅石信號就停機，把信號直接接過去就行。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "狀態檢測器和紅石控制器做出任意一樣，這一步就會打勾。"
+        }
+      ]
+    },
+    {
+      "id": "intersector",
+      "title": "{item:essentialcraft5:intersector}",
+      "icon": "essentialcraft5:intersector",
+      "summary": "兩路匯成一路",
+      "complete": "essentialcraft5:guide/enrichment/intersector",
+      "optional": true,
+      "items": [
+        "essentialcraft5:intersector"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（按需）：把兩個 MRU 源頭匯到一處，再讓別的機器從這裏拉。"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:intersector}有兩個綁定寶石槽，能同時從兩個源頭拉 MRU，每個源頭都要在三個方向各 16 格以內。它自己存得下 {cfg:machines.intersector.max_mru} MRU，別的機器把寶石綁到它身上就能取用。它不是富集倉的部件，放在哪裏都行。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：2 座{item:essentialcraft5:ray_tower}、1 塊{item:essentialcraft5:obsidian_plate}、3 塊魔力強化玻璃和 3 塊魔力強化石，射線塔怎麼做見[[generators/ray_tower]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:intersector"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "界面上的兩條寶石狀態都變成了綠色。"
+        },
+        {
+          "type": "p",
+          "text": "平衡值照常按數量混合，一路{balance:chaos}、一路{balance:frozen}，匯出來的就介於兩者之間。做魔力矩陣投影這類要接近純淨 MRU 的東西時，可以拿它湊出合適的平衡值。"
+        }
+      ]
+    }
+  ]
+}

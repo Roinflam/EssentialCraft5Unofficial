@@ -1,0 +1,392 @@
+{
+  "id": "magmatic",
+  "order": 87,
+  "group": "side",
+  "title": "Side Chapter · Ore Processing",
+  "subtitle": "Double your ores with MRU",
+  "icon": "essentialcraft5:magmatic_smeltery",
+  "entries": [
+    {
+      "id": "fortified_furnace",
+      "title": "{item:essentialcraft5:fortified_magmatic_furnace}",
+      "icon": "essentialcraft5:fortified_magmatic_furnace",
+      "summary": "The earliest ore doubler",
+      "complete": "essentialcraft5:guide/magmatic/fortified_furnace",
+      "optional": true,
+      "items": [
+        "essentialcraft5:fortified_magmatic_furnace"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "A lump of ore used to give one ingot. Burn it once more with MRU and it gives two. The big lava-fed furnace I built later gives four. I often wonder how much was in the ore all along.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:fortified_magmatic_furnace}. One ore block gives 1 ingot in a vanilla furnace and 2 in this one. Its parts are ones you can already make in Chapter 3, so it is the first pay-off of this side chapter."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:fortified_magmatic_furnace"
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 8 {item:essentialcraft5:magic_fortified_plating}, made from {item:essentialcraft5:fortified_stone} on the Magician Table at 10 MRU each ([[crafting/magician_crafts]]), and 1 {item:essentialcraft5:heating_rod}, which is 6 {item:essentialcraft5:fire_drops} around 3 iron ingots."
+        },
+        {
+          "type": "p",
+          "text": "Like any other machine it runs on MRU, so you need an MRU source, a [[generators/heat_generator]] for example, and a [[crafting/bound_gem]] linking the furnace to it."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the furnace and open it. The input slot is at the top, the gem slot right below it and the output slot on the right. Put the Bound Gem linked to your source in the gem slot.",
+            "Put an <em>ore block</em> in the input slot. The furnace uses {cfg:machines.magmatic_furnace.mru_usage} MRU per tick, and after {cfg:machines.magmatic_furnace.ticks_required|sec} {item:essentialcraft5:magmatic_alloy} comes out on the right, 1 for iron, gold, copper, diamond and the like, 8 for redstone and 16 for lapis.",
+            "Take the alloy out and put it back in the input slot. The same time and the same MRU turn 1 alloy into 2 products."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "One {block:minecraft:iron_ore} ends up as 2 iron ingots after both steps, about 20,000 MRU in all. Each Magmatic Alloy remembers which ore it came from, and its tooltip says so; alloys from different ores never stack."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Fortified Magmatic Furnace. With ore inside, the arrow in its screen starts moving."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Skip raw ores",
+          "text": "It wants the <em>ore blocks</em> themselves, mined with a Silk Touch pickaxe. Raw ores like {item:minecraft:raw_iron} are accepted too, but two make one alloy, no better than a vanilla furnace, so the trip is wasted. Copper is better mined normally. It drops 3.5 raw copper on average, more than the 2 ingots you would get here, so don't bother with Silk Touch for it."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "When MRU runs short it simply waits, and progress is kept.",
+            "When the output slot can't take a whole batch it waits too, and never destroys anything.",
+            "A redstone signal stops it and keeps the progress.",
+            "It needs no lava and leaves no slag. Switching to a different ore restarts the progress.",
+            "Hoppers can only feed it ores it knows and Magmatic Alloy."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Faster versions are on the next page; for 4 ingots per ore, see the [[magmatic/smeltery]]."
+        }
+      ]
+    },
+    {
+      "id": "furnace_upgrades",
+      "title": "Faster Magmatic Furnaces",
+      "icon": "essentialcraft5:pale_magmatic_furnace",
+      "summary": "Same cost per tick: faster and cheaper",
+      "complete": "essentialcraft5:guide/magmatic/furnace_upgrades",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magic_magmatic_furnace",
+        "essentialcraft5:pale_magmatic_furnace",
+        {
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:void_magmatic_furnace"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): upgrade the fortified furnace into a {item:essentialcraft5:magic_magmatic_furnace} at ×2 speed, then into a {item:essentialcraft5:pale_magmatic_furnace} at ×3. The cost per tick never changes, so faster also means cheaper."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: for each tier, 8 plates around the furnace of the tier below. The magic tier takes 8 {item:essentialcraft5:magic_plate} ([[crafting/magician_crafts]]) and the pale tier 8 {item:essentialcraft5:pale_plate} ([[alloys/pale]])."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_magmatic_furnace",
+            "essentialcraft5:pale_magmatic_furnace"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Once you've been to Hoanna you can go one tier further. 8 {item:essentialcraft5:void_plating} around a pale furnace make a {item:essentialcraft5:void_magmatic_furnace} at ×4 speed; for Void Plates see [[hoanna/void_plating]]."
+        },
+        {
+          "type": "recipe",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "item": "essentialcraft5:void_magmatic_furnace"
+        },
+        {
+          "type": "h",
+          "text": "The tiers side by side"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Tier",
+            "Each step",
+            "MRU per step",
+            "One iron ore, both steps"
+          ],
+          "rows": [
+            [
+              "Fortified",
+              "{cfg:machines.magmatic_furnace.ticks_required|sec}",
+              "10,000 MRU",
+              "20,000 MRU"
+            ],
+            [
+              "Magic",
+              "{cfg:machines.magmatic_furnace.ticks_required|div:2|round:0|sec}",
+              "5,000 MRU",
+              "10,000 MRU"
+            ],
+            [
+              "Pale",
+              "{cfg:machines.magmatic_furnace.ticks_required|div:3|round:0|sec}",
+              "3,325 MRU",
+              "6,650 MRU"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Void",
+                "{cfg:machines.magmatic_furnace.ticks_required|div:4|round:0|sec}",
+                "2,500 MRU",
+                "5,000 MRU"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every tier uses {cfg:machines.magmatic_furnace.mru_usage} MRU per tick and only the steps get shorter, so after an upgrade the same amount of ore is done faster and for less MRU."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a magic or pale magmatic furnace."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "When you pick up the old furnace its contents drop out and its progress is lost, so swap it while it's idle."
+        }
+      ]
+    },
+    {
+      "id": "smeltery",
+      "title": "{item:essentialcraft5:magmatic_smeltery}",
+      "icon": "essentialcraft5:magmatic_smeltery",
+      "summary": "Four ingots per ore, two steps at once",
+      "complete": "essentialcraft5:guide/magmatic/smeltery",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magmatic_smeltery",
+        "essentialcraft5:magmatic_alloy"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:magmatic_smeltery}. This is the big furnace the Workshop Notebook talks about. It melts ore with MRU and lava and gets twice as much out of each ore as a magmatic furnace, so one {block:minecraft:iron_ore} becomes 4 iron ingots. Melting and smelting can run at the same time."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magmatic_smeltery"
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: one each of {item:essentialcraft5:combined_magical_alloys}, {item:essentialcraft5:mru_catcher}, {item:essentialcraft5:magical_screen}, {item:essentialcraft5:world_interactor} and {item:essentialcraft5:elemental_core}, plus 2 {item:essentialcraft5:mru_conversion_matrix} and 2 {item:essentialcraft5:heating_rod}. A better core works too. Bring a few buckets of lava as well, and for the alloy see [[alloys/combined_magical_alloys]]."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Slot",
+            "What goes there"
+          ],
+          "rows": [
+            [
+              "Middle",
+              "The Bound Gem linked to your MRU source"
+            ],
+            [
+              "Far left",
+              "Lava bucket; the emptied bucket comes out in the slot to its right"
+            ],
+            [
+              "Ore slot (top of the left column on the right)",
+              "Ore; the Magmatic Alloy comes out right below it"
+            ],
+            [
+              "Alloy slot (top of the right column on the right)",
+              "Magmatic Alloy; the finished products come out right below it"
+            ],
+            [
+              "Slag slot (below, between those two columns)",
+              "Magical Slag, made by the machine"
+            ]
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "The gem slot is in the middle of the screen. Put the Bound Gem linked to your MRU source there.",
+            "Put a {item:minecraft:lava_bucket} in the leftmost slot. It is poured in once the tank has room for a whole bucket, and the empty bucket comes out to its right. The tank holds 8 buckets, or 8,000 mB, and pipes can fill it too.",
+            "Put ore in the <em>ore slot</em>. It uses {cfg:machines.magmatic_smeltery.mru_usage_ores} MRU per tick, and after {cfg:machines.magmatic_smeltery.ticks_required_ores|sec} Magmatic Alloy comes out right below it, 2 for iron, gold, copper or diamond, 16 for redstone and 32 for lapis.",
+            "Move the alloy into the <em>alloy slot</em>, by hand or by hopper. It uses {cfg:machines.magmatic_smeltery.mru_usage_alloys} MRU per tick, and every {cfg:machines.magmatic_smeltery.ticks_required_alloys|sec} one alloy becomes 2 products, which come out right below it.",
+            "Each ore melted and each alloy smelted also adds a {item:essentialcraft5:magical_slag} to the slag slot. When that slot is full no more slag comes out, and the machine carries on. Keep the slag, since the {item:essentialcraft5:magnetizing_staff}, Mimic Blocks, Magical Lanterns and patterned blocks all need it."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "One {block:minecraft:iron_ore} melts in {cfg:machines.magmatic_smeltery.ticks_required_ores|sec}, its 2 alloys smelt in {cfg:machines.magmatic_smeltery.ticks_required_alloys|sec} each, and you get 4 iron ingots for about 22,400 MRU in all."
+        },
+        {
+          "type": "p",
+          "text": "While melting, each tick has a 10% chance to use 1 mB of lava, about {cfg:machines.magmatic_smeltery.ticks_required_ores|div:10|int} mB per ore on average, so a full tank lasts some 200 ores. With the tank empty it melts nothing, but smelting alloy needs no lava."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Magmatic Smeltery. With lava and ore inside, alloy appears in the bottom slot of the left column."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Feed it enough MRU",
+          "text": "With both steps running it wants 80 MRU per tick, more than one or two Heat Generators can supply. When MRU runs short it only pauses and slows down, and nothing breaks. Hook up more sources if you want it at full speed."
+        },
+        {
+          "type": "h",
+          "text": "Which way to mine"
+        },
+        {
+          "type": "p",
+          "text": "The same ore block can end up as very different amounts depending on how you mine it and where it goes. The table gives the average ingots per ore block."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Mined with",
+            "Vanilla furnace",
+            "Magmatic furnace",
+            "Smeltery"
+          ],
+          "rows": [
+            [
+              "Iron, gold · Silk Touch",
+              "1",
+              "2",
+              "4"
+            ],
+            [
+              "Iron, gold · normal",
+              "1",
+              "1",
+              "2"
+            ],
+            [
+              "Iron, gold · Fortune III",
+              "2.2",
+              "2.2",
+              "4.4"
+            ],
+            [
+              "Copper · Silk Touch",
+              "1",
+              "2",
+              "4"
+            ],
+            [
+              "Copper · normal",
+              "3.5",
+              "3.5",
+              "7"
+            ],
+            [
+              "Copper · Fortune III",
+              "7.7",
+              "7.7",
+              "15.4"
+            ]
+          ],
+          "widths": [
+            4,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Normal and Fortune mining give raw ore. In the smeltery each raw ore makes 1 alloy, or 2 ingots, while the magmatic furnace takes two raw ores for 1 alloy. So mine iron, gold and copper, which all drop raw ore, with Fortune III and take the raw ore to the smeltery. Silk Touch only pays off for ores with no raw form, such as diamond, redstone, lapis and mithriline."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Best ores to bring",
+          "text": "For ores without a raw form, Silk Touch and the smeltery are the best pair. Diamonds and emeralds give 4 against an average of 2.2 from Fortune III mining, redstone gives 32 and lapis 64. A mithriline ore gives 32 {item:essentialcraft5:mithriline_dust}, against 18.5 on average with Fortune III, and you'll need a lot of that dust later, so it is worth mining this way."
+        },
+        {
+          "type": "h",
+          "text": "Ore table"
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:ore_smelting",
+          "compact": true
+        },
+        {
+          "type": "p",
+          "text": "Each row shows how many products one ore makes in the smeltery, and the note gives the numbers for both the smeltery and the magmatic furnace. Ores are matched by kind, so deepslate ores and the same ore from other mods count too."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "When an output slot can't take a whole batch, that step waits instead of destroying anything, and the other step carries on.",
+            "A redstone signal stops the whole machine, even the lava pouring, and keeps the progress.",
+            "The tank only takes lava, and nothing can pump it back out.",
+            "Hoppers can only put ores it knows into the ore slot."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "To turn ore into Magmatic Alloy right where it sits, see the [[staffs/magmatic_staff]]."
+        }
+      ]
+    }
+  ]
+}

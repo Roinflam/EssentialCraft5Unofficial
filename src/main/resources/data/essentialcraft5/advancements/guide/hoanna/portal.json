@@ -1,0 +1,30 @@
+{
+  "criteria": {
+    "portal": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "essentialcraft5:hoanna_portal"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "essentialcraft5:wind_tablet"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": false
+}

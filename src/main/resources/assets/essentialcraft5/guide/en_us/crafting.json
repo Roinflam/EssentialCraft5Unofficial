@@ -1,0 +1,748 @@
+{
+  "id": "crafting",
+  "order": 30,
+  "group": "main",
+  "title": "Chapter 3 · Radiation and Crafting",
+  "subtitle": "Radiating Chamber and Magician Table",
+  "icon": "essentialcraft5:magician_table",
+  "entries": [
+    {
+      "id": "bound_gem",
+      "title": "{item:essentialcraft5:bound_gem}",
+      "icon": "essentialcraft5:bound_gem",
+      "summary": "Moving MRU without pipes",
+      "complete": "essentialcraft5:guide/bound_gem",
+      "items": [
+        "essentialcraft5:bound_gem"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "A machine leaks for as long as it works. What leaks out does not go far. It gathers close by and grows brighter, and past a certain brightness it begins to hurt whoever stands near.",
+          "by": "Fragments of Essence, Book III"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a few {item:essentialcraft5:bound_gem} and learn how to hook a machine up to MRU."
+        },
+        {
+          "type": "p",
+          "text": "MRU is a kind of radiation and passes through open air, so the forebears never ran wires between their machines. This mod has no pipes or wires either. Every machine that uses MRU has a <em>Bound Gem slot</em>, the one with a gray gem drawn in it. Put in a Bound Gem that remembers where the source is, and the machine pulls MRU from it through the air."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: one {item:essentialcraft5:elemental_gem} and one {item:minecraft:quartz} for each gem. Quartz is mined in the Nether."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:bound_gem"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Right-click the MRU source with a gem. For now, that source is your {item:essentialcraft5:matrix_absorber}. Only one gem from a stack is bound at a time, and the bound one goes back into your inventory on its own.",
+            "Open the machine that needs MRU and put the bound gem in its Bound Gem slot. Shift-clicking the gem puts it there for you.",
+            "Check the link status on the machine's screen. \"{lang:gui.essentialcraft5.link.working}\" means it is connected, and from then on the machine keeps itself topped up."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Same dimension",
+              "The source and the machine must be in the same dimension"
+            ],
+            [
+              "Range",
+              "No more than 16 blocks apart along each of the three axes"
+            ],
+            [
+              "Loaded",
+              "The source's chunk must be loaded"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Bound Gem. Bind it to the Matrix Destructor and it's ready for the Radiating Chamber on the next page."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Every machine fills <em>itself</em> first. If two machines share one source, whichever pulls first hoards the MRU. When MRU is short, take the gem out of the machine you aren't using right now."
+        },
+        {
+          "type": "h",
+          "text": "Status messages"
+        },
+        {
+          "type": "table",
+          "header": [
+            "The screen says",
+            "Meaning"
+          ],
+          "widths": [
+            3,
+            5
+          ],
+          "rows": [
+            [
+              "{lang:gui.essentialcraft5.link.working}",
+              "All good, MRU is flowing"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.no_mru}",
+              "The source is empty. Wait for it to make more"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.unloaded}",
+              "The source's chunk isn't loaded. Move closer"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.out_of_range}",
+              "More than 16 blocks from the source"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.wrong_dimension}",
+              "The gem is bound to a block in another dimension"
+            ],
+            [
+              "{lang:gui.essentialcraft5.link.not_magical}",
+              "The bound block doesn't store MRU"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A gem only binds to blocks you're allowed to change. If you try a machine inside someone else's claim, a no-permission message appears above the hotbar and you keep the gem.",
+            "A bound gem has to be cleared before it can bind to something else. See Rebinding below.",
+            "Machines farther away can be reached by relaying through a {item:essentialcraft5:ray_tower} ([[generators/ray_tower]]).",
+            "MRU that comes in mixes with what the machine already holds, and the Balance becomes the average weighted by amount ([[start/mru]]).",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "A Bound Gem can also set where a [[void_machines/magical_teleporter]] sends you, and used that way it has no range limit."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Rebinding"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hold the bound gem, sneak and right-click the air. When a low note plays and the coordinates disappear from its tooltip, the gem is cleared.",
+            "If nothing happens, click again. A gem that was bound while you were sneaking needs two clicks, so a slip of the hand won't clear it.",
+            "Then right-click the new source with the cleared gem to bind it as usual."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "radiating_chamber",
+      "title": "{item:essentialcraft5:radiating_chamber}",
+      "icon": "essentialcraft5:radiating_chamber",
+      "summary": "Irradiating items with MRU",
+      "complete": "essentialcraft5:main/radiating_chamber",
+      "items": [
+        "essentialcraft5:radiating_chamber",
+        "essentialcraft5:diamond_plate",
+        "essentialcraft5:eye_of_absorption"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:radiating_chamber}, your first machine that runs on MRU. It bathes whatever is in its top and bottom slots in MRU and turns them into new materials."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 4 {item:essentialcraft5:diamond_plate}, 2 {item:essentialcraft5:eye_of_absorption}, plus one each of {item:essentialcraft5:mru_catcher}, {item:essentialcraft5:elemental_core} and {item:essentialcraft5:heating_rod}. The plates take 8 diamonds in all and each Eye takes an ender pearl. Diamonds are the biggest expense in this chapter."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:radiating_chamber"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:diamond_plate",
+            "essentialcraft5:eye_of_absorption"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the chamber, then put a {item:essentialcraft5:bound_gem} bound to your Matrix Destructor into its gem slot.",
+            "Put the ingredients in the top and bottom slots as the recipe shows. The two slots in the recipe picture are these two.",
+            "When the progress fills up, the product appears in the output slot and one item is used from each of the two slots."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Capacity",
+              "{cfg:machines.radiating_chamber.max_mru} MRU"
+            ],
+            [
+              "Progress",
+              "+1 per tick, up to however many ticks the recipe takes, as shown on the screen"
+            ],
+            [
+              "Cost",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier} × the recipe's multiplier, in MRU per tick. Every recipe in this chapter has a multiplier of 1"
+            ],
+            [
+              "Balance",
+              "Some recipes only work within a certain Balance range, shown as \"Required Balance\" on the screen. None in this chapter care"
+            ],
+            [
+              "Redstone signal",
+              "Stops it; progress is kept"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Radiating Chamber. Once it's placed and connected, the MRU on its screen starts rising and it's ready to use."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:machines.radiating_chamber.generate_corruption",
+          "title": "Pitfall",
+          "text": "While it works, the chamber leaks MRU around it, and anyone standing close picks up the MRU Corruption effect. Load it and walk away. The next page, [[crafting/corruption]], has the details."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Swap the ingredients halfway, or let the Balance drift out of the recipe's range, and progress starts again from 0.",
+            "If the output slot is full, progress waits where it is and carries on once you take the product out. Progress is saved, so it survives the chunk unloading.",
+            "Hoppers and pipes put items in the right slot for the recipe. An {item:minecraft:iron_ingot} goes in the bottom for Magical Fortified Stone and in the top for an {item:essentialcraft5:mru_magnet}. When both slots are empty, they follow the last recipe that finished.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "With a {item:essentialcraft5:glitchy_core} that carries a target Balance in one slot and the other slot empty, the chamber decodes the core instead of looking for a recipe ([[inquisitorium/decoding]])."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "corruption",
+      "title": "Beware of MRU Corruption",
+      "icon": "essentialcraft5:mru_mover",
+      "summary": "Machines leak MRU",
+      "items": [
+        "essentialcraft5:mru_mover",
+        "essentialcraft5:mrucu_container"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "The harder MRU is gathered and driven, the more restless it gets. These machines leak a little unstable MRU around them every tick while they work:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.radiating_chamber.generate_corruption",
+              "text": "{item:essentialcraft5:radiating_chamber}: 0–{cfg:machines.radiating_chamber.max_corruption_gen} MRU per tick"
+            },
+            {
+              "if": "cfg:machines.magician_table.generate_corruption",
+              "text": "{item:essentialcraft5:magician_table}: 0–{cfg:machines.magician_table.max_corruption_gen} MRU per tick"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "The leaked MRU builds up the MRU Corruption effect on anyone standing nearby, and slowly feeds an <em>MRUCU</em> that forms close by."
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:machines.radiating_chamber.generate_corruption",
+            "!cfg:machines.magician_table.generate_corruption"
+          ],
+          "text": "The Radiating Chamber and Magician Table don't leak MRU while they work, so they can go anywhere. Each other machine's page says whether it leaks, and [[start/mrucu]] covers what leaked MRU does."
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "The MRU Corruption effect"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "cfg:general.corruption.respect_claims"
+          ],
+          "text": "Each leak adds one layer of \"{lang:effect.essentialcraft5.mru_corruption}\" to <em>the machine's owner</em> if they're within 6 blocks horizontally and 3 up or down. Only whoever placed the machine is affected, never teammates or passers-by, and Creative mode is immune."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "!cfg:general.corruption.respect_claims"
+          ],
+          "text": "Each leak adds one layer of \"{lang:effect.essentialcraft5.mru_corruption}\" to every player within 6 blocks horizontally and 3 up or down. Creative mode is immune."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "Stay by one machine and you reach level II in about a minute and a half. From then on you take an occasional magic hit worth {cfg:general.corruption.mru_corruption_health_percent|pct} of your max health, and at level III, after a bit over three minutes, the hits come more often. The more machines working nearby, the faster it grows. Once you walk away it only counts down, and when the time runs out it's gone. It isn't a potion effect, so milk does nothing. The exact stacking rules are in [[start/mrucu]]."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "!cfg:general.corruption.mru_corruption_lethal"
+          ],
+          "text": "Like Poison, it can't kill you. At worst it leaves you on half a heart, and then any passing mob can finish you, so don't idle next to your machines."
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "MRUCUs"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "Leaked MRU flows into the nearest MRUCU within 32 blocks horizontally and 16 up or down. If there isn't one, a new one forms beside the machine. An MRUCU is a ball of light hanging in the air and shining in every direction, and it grows as it fills."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen==1"
+          ],
+          "text": "Each leak is small, but they add up. One matrix projection from the next chapter takes the chamber 10,000 ticks, and over that time the MRUCU beside it gains about 5,000 MRU."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "Once an MRUCU holds 10,000 MRU, it starts damaging the MRU Matrix of players within 12 blocks. Matrix damage doesn't fade by itself. The rules are in [[start/mrucu]]."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Enough matrix damage hardens into <em>corruption effects</em> ([[corruption/matrix_damage]]). Until you open your first finished [[pentacle/pentacle]] in Chapter 12, though, it only builds up and forms nothing."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Enough matrix damage hardens into permanent <em>corruption effects</em> ([[corruption/matrix_damage]]), and only the [[pentacle/pentacle]] in Chapter 12 can cure them."
+        },
+        {
+          "type": "h",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "text": "What to do"
+        },
+        {
+          "type": "list",
+          "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+          "items": [
+            {
+              "if": [
+                "cfg:machines.radiating_chamber.generate_corruption",
+                "cfg:machines.magician_table.generate_corruption"
+              ],
+              "text": "Put the Radiating Chamber and Magician Table in a corner you rarely pass, load them and walk away. Past 6 blocks, no more corruption builds up."
+            },
+            {
+              "if": [
+                "cfg:machines.radiating_chamber.generate_corruption",
+                "!cfg:machines.magician_table.generate_corruption"
+              ],
+              "text": "Put the Radiating Chamber in a corner you rarely pass, load it and walk away. Past 6 blocks, no more corruption builds up."
+            },
+            {
+              "if": [
+                "!cfg:machines.radiating_chamber.generate_corruption",
+                "cfg:machines.magician_table.generate_corruption"
+              ],
+              "text": "Put the Magician Table in a corner you rarely pass, load it and walk away. Past 6 blocks, no more corruption builds up."
+            },
+            "Build the machine room from the {item:essentialcraft5:fortified_stone} and {item:essentialcraft5:fortified_glass} in [[crafting/fortified]]. With those between you, an MRUCU is much less likely to reach you.",
+            "When an MRUCU nears 10,000, use the wand below to move it to a corner away from where you spend your time.",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "From matrix rank 1, holding your bound Soul Stone in either hand shows you nearby MRUCUs and how much they hold, no monocle needed ([[mru/rank_1]])."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Moving an MRUCU"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_mover"
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:mru_mover} is made from one Elemental Gem and a stick. Aim it at an MRUCU up to 20 blocks ahead and <em>hold right-click</em> to pull it toward you, or <em>sneak</em> as well to push it away. It moves about 2 blocks a second."
+        },
+        {
+          "type": "p",
+          "text": "The space the MRUCU is in and the space you move it to must both be places you're allowed to change, so you can't move one inside someone else's claim. There's more about MRUCUs in [[start/mrucu]]."
+        },
+        {
+          "type": "h",
+          "text": "Bottling and pouring out"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mrucu_container"
+        },
+        {
+          "type": "p",
+          "text": "Moving an MRUCU still leaves it on your land. To get rid of one for good, use the {item:essentialcraft5:mrucu_container}. <em>Hold right-click</em> with the empty flask on an MRUCU up to 6 blocks ahead for 2 seconds to bottle it. That costs {cfg:general.mrucu_container.capture_cost_percent}% of the MRU it holds, taken from the MRU storage you carry."
+        },
+        {
+          "type": "p",
+          "text": "Right-click a <em>block</em> with a full flask to set the MRUCU down there, again only where you're allowed to change things. <em>Hold right-click at empty air</em> for 3 seconds and the MRUCU inside fades away. No MRU comes back, and the flask is empty and ready for the next one."
+        },
+        {
+          "type": "h",
+          "text": "MRUCUs in the wild"
+        },
+        {
+          "type": "p",
+          "text": "There are MRUCUs out in the wild too, most often the one inside an ancient ruin, usually buried in stone. With a {item:essentialcraft5:magic_monocle} you can see it glowing through the rock, and an MRU Golem may be guarding it ([[bestiary/mru_golem]]). A [[gear/ley_detector|Ley Detector]] in its MRUCU mode points toward the nearest big one."
+        }
+      ]
+    },
+    {
+      "id": "fortified",
+      "title": "Fortified Materials",
+      "icon": "essentialcraft5:fortified_frame",
+      "summary": "The road to the Magician Table",
+      "complete": "essentialcraft5:guide/obsidian_plate",
+      "items": [
+        "essentialcraft5:fortified_stone",
+        "essentialcraft5:fortified_glass",
+        "essentialcraft5:fortified_frame",
+        "essentialcraft5:obsidian_plate"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: use the Radiating Chamber to make {item:essentialcraft5:fortified_stone} and {item:essentialcraft5:fortified_glass}, then craft {item:essentialcraft5:fortified_frame} and 2 {item:essentialcraft5:obsidian_plate}. The Magician Table needs those Obsidian Plates."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: stone, glass, iron ingots and 8 obsidian. Stained glass works in place of glass, but the stone has to be plain stone, not cobblestone."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Stone or glass goes in the chamber's top slot, an iron ingot in the bottom slot.",
+            "Each batch takes 10 ticks (half a second) and 10 MRU, and turns one item from each slot into 4 blocks.",
+            "In a crafting table, 4 Magical Fortified Glass and 4 Magical Fortified Stone make 3 Magic Fortified Frames.",
+            "Surround one frame with 4 obsidian and you have an Obsidian Plate."
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fortified_stone",
+            "essentialcraft5:fortified_glass"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fortified_frame",
+            "essentialcraft5:obsidian_plate"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold 2 Obsidian Plates at once."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Make extra",
+          "text": "Frames get used a lot. One {item:essentialcraft5:magical_screen} alone takes 4, and you'll need about 16 by Chapter 5. Around 6 batches of Magical Fortified Glass and 8 of Magical Fortified Stone will cover it. Each batch takes one iron ingot and only 10 MRU, so the MRU cost is next to nothing."
+        },
+        {
+          "type": "p",
+          "text": "Magical Fortified Stone and Glass are good building blocks in their own right. They block part of the MRU an MRUCU sends out, which suits a machine room well ([[start/mrucu]])."
+        }
+      ]
+    },
+    {
+      "id": "magician_table",
+      "title": "{item:essentialcraft5:magician_table}",
+      "icon": "essentialcraft5:magician_table",
+      "summary": "The core crafting station",
+      "complete": "essentialcraft5:main/magician_table",
+      "items": [
+        "essentialcraft5:magician_table",
+        "essentialcraft5:emerald_plate"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:magician_table}. It's a crafting station that runs on MRU, and most materials in this mod come out of it. Most of the forebears' recipes call for five things and a measure of MRU, and the table is built around that."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 2 {item:essentialcraft5:obsidian_plate}, 2 {item:essentialcraft5:emerald_plate}, 3 {item:essentialcraft5:iron_support}, plus one {item:essentialcraft5:mru_catcher} and one {item:essentialcraft5:elemental_core}. The Emerald Plates take 4 emeralds in all. If your {item:essentialcraft5:iron_support}s from Chapter 1 are gone, craft another batch, which makes 4."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magician_table"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:emerald_plate"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the table and put in a Bound Gem linked to an MRU source.",
+            "The five ingredient slots are the center and the four corners. Fill them as the recipe picture shows, and leave empty any slot the recipe leaves empty.",
+            "When the progress fills up, one product comes out and one item is used from each of the five slots."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Capacity",
+              "{cfg:machines.magician_table.max_mru} MRU"
+            ],
+            [
+              "Progress",
+              "+1 per tick, multiplied by any upgrade"
+            ],
+            [
+              "Cost",
+              "{cfg:machines.magician_table.mru_usage_modifier} MRU per point of progress, so a recipe costs as much MRU as its progress"
+            ],
+            [
+              "Balance",
+              "Doesn't matter"
+            ],
+            [
+              "Redstone signal",
+              "Stops it; progress is kept"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Magician Table. Place it and connect MRU to start crafting."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<w>If the output slot can't take the product, progress drops to 0</w>, so keep emptying it when you craft a full stack. Swapping ingredients halfway also starts over."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Speed it up",
+          "text": "Right-click the table holding an {item:essentialcraft5:eye_of_absorption} to install a ×3 upgrade. It spends the same MRU in a third of the time. You can already make the Eye; see [[storage/upgrades]]."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.magician_table.generate_corruption",
+              "text": "The table also leaks MRU while working; see [[crafting/corruption]]."
+            },
+            "Hoppers and pipes put ingredients in the right slots for the recipe and take turns topping up slots that want the same item, so even recipes with several ingredients can run on hoppers alone.",
+            "Some items sit in different places in different recipes. An {item:essentialcraft5:mru_shard} goes in the middle for a crystal but in the corners for a Soul Shard. Hoppers follow the table's last finished recipe, so to switch, place one batch by hand and let it finish.",
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "Attuned gear is stepped up, and has its attunement moved over, on this table too; each corner takes as many items as the recipe picture shows ([[attunement/stage_up]], [[attunement/transfer]]). After a transfer the old piece stays in the top-left slot, so take it back out."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magician_crafts",
+      "title": "Magician Table Basics",
+      "icon": "essentialcraft5:magic_plate",
+      "summary": "Parts for a generator",
+      "complete": "essentialcraft5:guide/generator_parts",
+      "items": [
+        "essentialcraft5:magical_ingot",
+        "essentialcraft5:magical_water",
+        "essentialcraft5:magic_fortified_plating",
+        "essentialcraft5:magic_plate",
+        "essentialcraft5:magical_screen",
+        "essentialcraft5:mru_conversion_matrix",
+        "essentialcraft5:world_interactor"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: get the {item:essentialcraft5:magic_plate}, {item:essentialcraft5:magical_screen}, {item:essentialcraft5:mru_conversion_matrix} and {item:essentialcraft5:world_interactor} ready for your first generator."
+        },
+        {
+          "type": "table",
+          "header": [
+            "To make",
+            "Where",
+            "Ingredients",
+            "MRU each"
+          ],
+          "widths": [
+            4,
+            2,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_ingot} ×14",
+              "Magician Table",
+              "One iron ingot in the middle",
+              "50"
+            ],
+            [
+              "{item:essentialcraft5:magical_water}",
+              "Magician Table",
+              "One water bottle in the middle",
+              "250"
+            ],
+            [
+              "{item:essentialcraft5:magic_fortified_plating}",
+              "Magician Table",
+              "One Magical Fortified Stone in the middle",
+              "10"
+            ],
+            [
+              "{item:essentialcraft5:magic_plate}",
+              "Magician Table",
+              "Magic Fortified Plate in the middle, Magical Ingots in the corners",
+              "100"
+            ],
+            [
+              "{item:essentialcraft5:magical_screen}",
+              "Crafting table",
+              "4 Magic Fortified Frames + Magical Water",
+              "—"
+            ],
+            [
+              "{item:essentialcraft5:mru_conversion_matrix}",
+              "Crafting table",
+              "2 Magical Ingots + Elemental Core",
+              "—"
+            ],
+            [
+              "{item:essentialcraft5:world_interactor}",
+              "Crafting table",
+              "8 Magical Ingots + Eye of Absorption",
+              "—"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated==1",
+          "text": "This step is expensive. The 14 Magical Ingots alone cost 700 MRU, and the whole set comes to about 1,060 MRU, or {cfg:machines.matrix_absorber.ubmru_usage|mul:1060} UBMRU. If you run short, go hunting again, or make part of it now and the rest later."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated!=1",
+          "text": "This step is expensive. The 14 Magical Ingots alone cost 700 MRU, and the whole set comes to about 1,060 MRU. If you run short, go hunting again, or make part of it now and the rest later."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magical_ingot",
+            "essentialcraft5:magical_water"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_fortified_plating",
+            "essentialcraft5:magic_plate"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magical_screen",
+            "essentialcraft5:mru_conversion_matrix"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:world_interactor"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have held all four."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Make spares",
+          "text": "Magical Plates, Magical Screens, MRU Conversion Matrices and World Interacting Devices go into almost every machine from here on, among them the Cold Distillator, the Charging Chamber, the Enrichment Chamber's parts, the Crystal Former and the Moon Well. Once your generator is running, make two or three spare sets so you don't keep coming back for them. [[start/materials]] lists roughly how many vanilla materials Chapters 1–5 take."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Next",
+          "text": "On to Chapter 4 and a [[generators/heat_generator]]. If you'd rather not burn fuel, a [[generators/natural_furnace]] does the job instead. Either one is enough."
+        }
+      ]
+    }
+  ]
+}

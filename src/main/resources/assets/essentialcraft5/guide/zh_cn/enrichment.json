@@ -1,0 +1,487 @@
+{
+  "id": "enrichment",
+  "order": 63,
+  "group": "main",
+  "title": "第七章 · 富集仓",
+  "subtitle": "把几十万 MRU 存进一座仓",
+  "icon": "essentialcraft5:ec_controller",
+  "entries": [
+    {
+      "id": "controller",
+      "title": "控制器与外壳",
+      "icon": "essentialcraft5:ec_controller",
+      "summary": "一座仓的骨架",
+      "complete": "essentialcraft5:guide/enrichment/controller",
+      "items": [
+        "essentialcraft5:ec_controller"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "笼中关着一团还在长大的辐光。莫在近旁开炉。它若长满了，就在外面再砌一座更大的笼，不要放它出来。",
+          "by": "上古遗迹笼铭"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：用{item:essentialcraft5:ec_controller}和外壳方块搭一座富集仓，它像一块大电池，能存下几十万 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "富集仓从外面看只是一只六面封死的匣子，看不出里面存着多少 MRU。机器自己只存得下几千 MRU，产能器直接接一台耗能大的机器，比如下一章每刻要吃 100 MRU 的{item:essentialcraft5:crystal_former}，它就会做一阵停一阵。中间隔一座富集仓，MRU 先在仓里攒起来，再平稳地放出去。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "这一章要准备什么",
+          "text": "这一章的主线一共要用约 90 块铁锭，大多做成魔力锭和魔力板。魔力工作台要走约 7000 点进度，折合 {cfg:machines.magician_table.mru_usage_modifier|mul:7000|int} MRU，装着注魔合金的话一两分钟就能做完。外壳用魔力强化石和魔力强化玻璃就够，不必用护板。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "只有外壳时",
+              "{cfg:machines.enrichment_chamber.max_mru} MRU"
+            ],
+            [
+              "每个存储方块",
+              "再加 {cfg:machines.enrichment_chamber.mru_per_storage} MRU"
+            ],
+            [
+              "外壳每条边",
+              "{cfg:machines.enrichment_chamber.min_size}~{cfg:machines.enrichment_chamber.max_size} 格"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：做控制器要 1 块{item:essentialcraft5:magic_plate}、1 个{item:essentialcraft5:elemental_core}、1 个{item:essentialcraft5:mru_conversion_matrix}、1 个{item:essentialcraft5:world_interactor}、2 个{item:essentialcraft5:fortified_frame}和 3 个{item:essentialcraft5:matrix_link}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ec_controller"
+        },
+        {
+          "type": "h",
+          "text": "示例：最小的富集仓（{cfg:machines.enrichment_chamber.min_size}×{cfg:machines.enrichment_chamber.min_size}×{cfg:machines.enrichment_chamber.min_size}）",
+          "if": "cfg:machines.enrichment_chamber.min_size==3"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "S": "essentialcraft5:fortified_stone",
+            "G": "essentialcraft5:fortified_glass",
+            "C": "essentialcraft5:ec_controller",
+            "A": "essentialcraft5:ec_acceptor",
+            "E": "essentialcraft5:ec_ejector",
+            "H": "essentialcraft5:ec_holding_chamber"
+          },
+          "anchor": "C",
+          "layers": [
+            {
+              "pattern": [
+                "SSS",
+                "SSS",
+                "SSS"
+              ]
+            },
+            {
+              "pattern": [
+                "SCS",
+                "A E",
+                "SSS"
+              ],
+              "label": "正中一格是仓的内部"
+            },
+            {
+              "pattern": [
+                "GGG",
+                "GHG",
+                "GGG"
+              ]
+            }
+          ],
+          "caption": "从下往上共三层，外壳 26 格，控制器在北墙，接收器和输出器分在东西两墙，存储方块在顶上",
+          "if": "cfg:machines.enrichment_chamber.min_size==3"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "搭一个空心长方体，六个面上的每一格都要是外壳方块，哪些方块能用见下面的清单。",
+            "把控制器嵌进<em>侧墙</em>，顶替一格外壳。",
+            "接收器、输出器和存储方块也各占一格外壳的位置，嵌在哪一面都行，后两篇再细讲。",
+            "右键控制器，聊天栏里会报出检查结果，包括尺寸、存储方块数和存量，外壳不完整时则指出缺了哪一块。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "右键控制器时，聊天栏里显示「富集仓已成形」。仓成形的那一刻，16 格内的玩家也会直接打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "仓里的 MRU 伤不伤人",
+          "text": "仓里的 MRU 存在控制器里，不是聚集体，存多少都不会伤人。要提防的是外壳里另外飘着的聚集体，它可能是关在仓里的漏能机器长出来的，也可能是你挪进去的。这样的聚集体存量过了 1 万，照样会伤到 12 格内的人，外壳只挡得住一部分，第十二章的[[pentacle/ec_balancer]]能把它完全压住。"
+        },
+        {
+          "type": "h",
+          "text": "哪些方块能当外壳"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:fortified_stone}、{item:essentialcraft5:fortified_glass}",
+            "护板，即{item:essentialcraft5:magic_plating}、{item:essentialcraft5:pale_plating}和{item:essentialcraft5:mithriline_plating}，前两种的做法见[[alloys/plating]]",
+            "富集仓自己的部件，包括控制器、接收器、输出器、存储方块、状态检测器、红石控制器，以及{item:essentialcraft5:ec_balancer}",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "{item:essentialcraft5:void_stone}、{item:essentialcraft5:void_glass}和{item:essentialcraft5:demonic_plating}，分别见[[hoanna/void_stone]]和[[demons/demonic_plating]]"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "坑"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>一座仓只能有一个控制器</em>，两座仓的外壳也不能贴在一起。",
+            "仓里面可以空着，也可以摆<em>外壳方块以外</em>的东西。里面一出现外壳方块，扫描就可能把仓判小，被划到外面的部件也就不工作了。",
+            "控制器最好嵌在侧墙上。控制器所在的那一面要是和外面的外壳方块连成一片，比如控制器嵌在仓底，仓底又和一大片魔力强化石地板齐平，仓的边界就分不出来了。整座仓坐在魔力强化石地板上倒没有关系。",
+            "<em>拆掉控制器，里面的 MRU 就没了</em>，要搬家先用输出器把 MRU 抽到别处。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "外壳平时每隔 {cfg:machines.enrichment_chamber.recheck_interval|sec}自动复查一次，附近放下或拆掉外壳方块时，1 秒左右就会重查。",
+            "外壳不完整时所有部件都停工，控制器里的 MRU 原样留着，外壳补好就恢复。",
+            "仓有一部分在未加载的区块里时，沿用上一次的检查结果。",
+            "外壳上嵌一个[[pentacle/ec_balancer]]，仓里飘着的 MRU 聚集体就会被稳住、不再伤人，会漏 MRU 的机器也就能放心关进仓里。",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "text": "第十二章起，仓还能把关在里面的聚集体凝成{item:essentialcraft5:condensed_matrix}，见[[pentacle/condensed]]。"
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.shade.enabled"
+              ],
+              "text": "第二十二章起，搭在海纳尔暗影腐化之地附近的仓还能坍缩出{item:essentialcraft5:shade_core}，见[[shade/shade_core]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书里，富集仓本是一座牢笼，用来关住越长越大的 MRU 聚集体，免得它们毁了你的房子，存 MRU 倒是顺带的用处。原作里的仓还得先关进一团聚集体，结构才会启动。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/enrichment/ec_controller.json — FPF/XCI/LLL：魔力强化框架 ×2、#plates/magic、MRU 转换矩阵、#cores/magic、世界交互器、MRU 链接器 ×3",
+        "blockentity/EnrichmentControllerBlockEntity.java:78-88 — max_mru 60000、mru_per_storage 100000、min_size 3、max_size 32、recheck_interval 200；L193-199 capacity：成形时 = 基础 + 每个存储方块",
+        "enrichment/CuboidShellScanner.java:17-62（类注释）— 空心长方体、内部不查、控制器在外壳上；收边（坐在外壳方块地板上、贴着外壳墙都行）；控制器所在面和外面的外壳方块连成一片判不出；内部的外壳方块会让仓判小",
+        "src/generated/resources/data/essentialcraft5/tags/blocks/mrucuec_casing.json — 外壳方块：三种护板 + 恶魔护板、强化石、强化玻璃、六种富集仓部件、富集仓稳定器、虚空石、虚空玻璃（tools/tags/ecvoid.json、ecdemonic.json 等）",
+        "blockentity/EnrichmentControllerBlockEntity.java:51-53 — 一座仓只能有一个控制器、一个部件只属于一座仓；结构不完整时部件全部失效、MRU 留着；L94 标脏后最快 20 tick 重扫；L226 平时按 recheck_interval",
+        "blockentity/EnrichmentControllerBlockEntity.java:369-378 — onBroken：仓里的 MRU 随控制器消失",
+        "block/EnrichmentControllerBlock.java:51-64 — 右键立即检查并把结果发到聊天栏，成形时触发进度；EnrichmentControllerBlockEntity.java:98、386 — 成形时 16 格内的玩家触发 enrichment_chamber_formed",
+        "lang：message.essentialcraft5.ec_controller.formed「富集仓已成形：…」",
+        "blockentity/EnrichmentControllerBlockEntity.java:60-63 — 外壳上有稳定器且成形时，每 20 tick 给整个外壳范围里的聚集体续稳定期（期间不给玩家加矩阵损伤）",
+        "tools/plan/progression.md「按章节」第 7 章 — 铁 92、工作台 6 910；3×3×3 = 26 格外壳",
+        "原作 en_US.lang essentialcraft.page.mrucuec_0 — 富集仓的来历（小知识）",
+        "blockentity/EnrichmentControllerBlockEntity.java:40-63 — 仓里的 MRU 在控制器的 MRUStorage 里；稳定器只给外壳范围里的 MRUPresenceEntity 续稳定期；entity/MRUResistances.java 富集仓部件抗性 100",
+        "tools/plan/batch13.md §2.8 — enrichment/controller 补暗影核心分支一句（13e）；shade 整章 if 海纳尔之门，这一条一起带上"
+      ]
+    },
+    {
+      "id": "io",
+      "title": "接收器与输出器",
+      "icon": "essentialcraft5:ec_acceptor",
+      "summary": "MRU 怎么进、怎么出",
+      "complete": "essentialcraft5:guide/enrichment/io",
+      "items": [
+        "essentialcraft5:ec_acceptor",
+        "essentialcraft5:ec_ejector"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：给富集仓装上管进的{item:essentialcraft5:ec_acceptor}和管出的{item:essentialcraft5:ec_ejector}。这种仓最初是先辈造来关聚集体的，笼子本不留出口，拿来存 MRU 以后，才在仓壁上开了进出的口子。控制器本身不能绑定，MRU 只能从这两样进出。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>："
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:ec_acceptor}",
+              "2 个{item:essentialcraft5:fortified_frame}、1 个元素核心、2 块魔力板、1 个 MRU 转换矩阵、1 个 MRU 链接器、1 个{item:essentialcraft5:mru_catcher}、1 块{item:essentialcraft5:magical_screen}"
+            ],
+            [
+              "{item:essentialcraft5:ec_ejector}",
+              "2 个{item:essentialcraft5:fortified_frame}、1 个元素核心、2 块魔力板、2 个 MRU 转换矩阵、2 个 MRU 链接器"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:ec_acceptor",
+            "essentialcraft5:ec_ejector"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "接收器和输出器各顶替外壳上的一格。",
+            "要让 MRU <em>进</em>仓，右键接收器打开界面，放进一颗绑向产能器的{item:essentialcraft5:bound_gem}，源头的 MRU 就会被直接拉进整座仓，宝石的用法见[[crafting/bound_gem]]。",
+            "要让 MRU <em>出</em>仓，把用 MRU 的机器里的绑定宝石绑到<em>输出器</em>上，机器就会从整座仓里拉 MRU。",
+            "接好几台产能器时就多嵌几个接收器，一个输出器则能同时被很多台机器绑定。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "接收器和输出器都做出来就会打勾。装好以后，接收器界面上的宝石状态是绿色的「工作中」，远处机器的界面上也会显示已接通。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "别绑错",
+          "text": "机器的宝石要绑到输出器上，那是仓唯一的出口。绑到接收器上什么也拉不到，宝石状态会变成黄色的「目标没有 MRU！」。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "绑定距离和别的机器一样，要在同一维度，三个方向上各不超过 16 格。",
+            "仓没成形时，接收器不拉 MRU，输出器也放不出 MRU，界面上显示「未连接富集仓」。",
+            "仓里 MRU 的平衡值照常按数量混合，冰冻和混沌的源头接进同一座仓，放出来的就介于两者之间，平衡值的说明见[[start/mru]]。输出器上显示的是仓里真实的平衡值。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/enrichment/ec_acceptor.json — FMF/SCX/PLP：框架 ×2、MRU 收集器、魔力屏幕、#cores/magic、MRU 转换矩阵、#plates/magic ×2、MRU 链接器",
+        "data/essentialcraft5/recipes/enrichment/ec_ejector.json — FLF/XCX/PLP：框架 ×2、MRU 链接器 ×2、MRU 转换矩阵 ×2、#cores/magic、#plates/magic ×2",
+        "blockentity/EnrichmentAcceptorBlockEntity.java:84-108 — 宝石格放绑定宝石，MRULink.pull 往控制器的存储里拉；没连上控制器时 NO_TILE",
+        "blockentity/EnrichmentAcceptorBlockEntity.java:35-36 — 对外只进不出、读数恒 0：机器宝石误绑到这里显示「目标没有 MRU」",
+        "blockentity/EnrichmentEjectorBlockEntity.java:15-19 — 对外只出不进，平衡值报控制器真实值；没成形时读数 0、取不出",
+        "mru/MRULink.java:34、105-111 — 默认距离 16（三个轴各自），跨维度 WRONG_DIMENSION；L128-129 MRUStorage.pullFrom 按量加权平均平衡值",
+        "lang：gui.essentialcraft5.link.working「工作中」、link.no_mru「目标没有 MRU！」、enrichment.no_chamber「未连接富集仓」",
+        "data/essentialcraft5/advancements/guide/enrichment/io.json — 接收器、输出器两个条件都要（没写 requirements，默认全部）",
+        "data/essentialcraft5/recipes/enrichment/ec_acceptor.json、ec_ejector.json — 两张配方的原料逐格数过"
+      ]
+    },
+    {
+      "id": "holding_chamber",
+      "title": "{item:essentialcraft5:ec_holding_chamber}",
+      "icon": "essentialcraft5:ec_holding_chamber",
+      "summary": "每个都给仓加一大截容量",
+      "complete": "essentialcraft5:guide/enrichment/holding_chamber",
+      "items": [
+        "essentialcraft5:ec_holding_chamber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：在外壳上嵌几个{item:essentialcraft5:ec_holding_chamber}，把仓的容量扩大。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：每个要 1 块{item:essentialcraft5:magic_purified_glass_alloy}、2 块{item:essentialcraft5:dark_soul_matter}，再加 2 个魔力强化框架、1 个 MRU 收集器、2 块魔力板和 1 个 MRU 链接器。玻璃合金的做法见[[alloys/purified_alloys]]，暗黑灵魂物质在魔力工作台里做，中心放 1 颗末影珍珠，四角放 4 颗 MRU 宝石。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ec_holding_chamber"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "用存储方块换掉外壳上的任意一格，嵌在哪一面都一样。",
+            "右键控制器重新检查，聊天栏里会显示存储方块数和容量。"
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "仓的容量 = {cfg:machines.enrichment_chamber.max_mru} + 存储方块数 × {cfg:machines.enrichment_chamber.mru_per_storage}"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "右键控制器，结果里的存储方块数和容量变大了。"
+        },
+        {
+          "type": "p",
+          "text": "一座仓嵌上 10 个以上存储方块，就能拿到进度「越大越好」。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "拆掉存储方块，上限立刻变小，<em>已经存进去的 MRU 却不会被删掉</em>。超出新上限的时候只出不进，取到上限以下就恢复正常。",
+            "一个存储方块只算在一座仓里。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "这一章剩下的[[enrichment/monitoring]]和[[enrichment/intersector]]两篇是可选的，主线接着做[[crystal/crystal_former]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/enrichment/ec_holding_chamber.json — FMF/SGS/PLP：框架 ×2、MRU 收集器、暗黑灵魂物质 ×2、玻璃合金、#plates/magic ×2、MRU 链接器",
+        "data/essentialcraft5/recipes/magician_table/dark_soul_matter.json — 中心 #essentialcraft5:ender_pearls、四角 MRU 宝石，mru 100",
+        "blockentity/EnrichmentControllerBlockEntity.java:193-199 — capacity = max_mru + mru_per_storage × 存储方块数",
+        "enrichment/EnrichmentStorage.java:9-17、60 — 上限变小时不截断，超出部分只出不进",
+        "blockentity/EnrichmentControllerBlockEntity.java:53 — 一个部件只属于一座仓（共用墙上的存储方块不重复计算）",
+        "data/essentialcraft5/advancements/main/mrucuec_big.json — enrichment_chamber_formed，holding_chambers ≥ 10；lang advancements.essentialcraft5.mrucuec_big.title「越大越好」"
+      ]
+    },
+    {
+      "id": "monitoring",
+      "title": "状态检测器与红石控制器",
+      "icon": "essentialcraft5:ec_state_checker",
+      "summary": "看存量、出红石",
+      "complete": "essentialcraft5:guide/enrichment/monitoring",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ec_state_checker",
+        "essentialcraft5:ec_redstone_controller"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（按需）：随时看清仓里还剩多少 MRU，或者拿红石信号去控制别的东西，比如仓满了就让热力产能器停下来省燃料。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:ec_state_checker",
+            "essentialcraft5:ec_redstone_controller"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "状态检测器"
+        },
+        {
+          "type": "p",
+          "text": "把{item:essentialcraft5:ec_state_checker}嵌在外壳上，右键打开界面，能看到整座仓的存量、平衡值和 <em>MROV</em>。MROV 是外壳上每一格阻挡 MRU 的能力之和，比如魔力强化石算 2、魔力强化玻璃算 3、魔力护板算 5，每个富集仓部件算 100。它只是个读数，不影响仓怎么工作。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:machines.enrichment_chamber.condense.enabled"
+          ],
+          "text": "仓成形以后，界面右边还有一条凝结的进度条，鼠标移上去会写出卡在哪一步，见[[pentacle/condensed]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.enrichment_chamber.shade.enabled"
+          ],
+          "text": "仓里丢了影晶、或者搭在暗影腐化之地附近时，界面上还有一条坍缩条，鼠标移上去会写出凝[[shade/shade_core|暗影核心]]还差什么：地点不对，或者影晶还差几个。正在凝暗影核心时，这条是紫色的。"
+        },
+        {
+          "type": "h",
+          "text": "红石控制器"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把{item:essentialcraft5:ec_redstone_controller}嵌进外壳。",
+            "空手潜行右键，设定会在始终、10%、20%……90%、存满之间轮换，普通右键则在快捷栏上方显示当前设定。",
+            "仓里的 MRU 到了设定值，它就向六个方向输出 15 级红石信号，每秒更新一次。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "仓成形以后，这两样嵌在它的外壳上才会工作。热力产能器这类机器收到红石信号就停机，把信号直接接过去就行。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "状态检测器和红石控制器做出任意一样，这一步就会打勾。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/enrichment/ec_state_checker.json、ec_redstone_controller.json — 配方（红石控制器要 2 块红石合金）",
+        "blockentity/EnrichmentStateCheckerBlockEntity.java:21-28 — 界面显示整座仓的存量、平衡值、MROV（外壳各方块 MRU 抗性之和）；EnrichmentControllerBlockEntity.java:171-173、508-521 — resistance 只在状态检测器上显示",
+        "entity/MRUResistances.java:35-50 — 强化石 2、强化玻璃 3、魔力护板 5、富集仓部件 100",
+        "blockentity/EnrichmentRedstoneControllerBlockEntity.java:15-16、27-29、58-60 — 设定 0 始终、1~9 为 10%~90%、10 存满；每 20 tick 更新；潜行右键切换",
+        "block/EnrichmentRedstoneControllerBlock.java:38-39 — 输出 15；L44-58 潜行右键 cycleSetting，提示发在快捷栏上方（displayClientMessage …, true）；没连着成形的仓时附「现在不输出」",
+        "blockentity/HeatGeneratorBlockEntity.java — hasNeighborSignal 时停机（各产能器同）",
+        "data/essentialcraft5/advancements/guide/enrichment/monitoring.json — requirements 只有一组 [[state_checker, redstone_controller]]：两个条件任一满足就算完成",
+        "13e-C5 blockentity/EnrichmentControllerBlockEntity、menu/EnrichmentStateCheckerMenu、client/screen/EnrichmentStateCheckerScreen — 状态检测器 / 控制器右键在暗影地点多两行（地点不对、外壳里的影晶几个），正在凝暗影核心时坍缩那一条换成暗影核心的秒数（紫色）"
+      ]
+    },
+    {
+      "id": "intersector",
+      "title": "{item:essentialcraft5:intersector}",
+      "icon": "essentialcraft5:intersector",
+      "summary": "两路汇成一路",
+      "complete": "essentialcraft5:guide/enrichment/intersector",
+      "optional": true,
+      "items": [
+        "essentialcraft5:intersector"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（按需）：把两个 MRU 源头汇到一处，再让别的机器从这里拉。"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:intersector}有两个绑定宝石槽，能同时从两个源头拉 MRU，每个源头都要在三个方向各 16 格以内。它自己存得下 {cfg:machines.intersector.max_mru} MRU，别的机器把宝石绑到它身上就能取用。它不是富集仓的部件，放在哪里都行。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：2 座{item:essentialcraft5:ray_tower}、1 块{item:essentialcraft5:obsidian_plate}、3 块魔力强化玻璃和 3 块魔力强化石，射线塔怎么做见[[generators/ray_tower]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:intersector"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "界面上的两条宝石状态都变成了绿色。"
+        },
+        {
+          "type": "p",
+          "text": "平衡值照常按数量混合，一路{balance:chaos}、一路{balance:frozen}，汇出来的就介于两者之间。做魔力矩阵投影这类要接近纯净 MRU 的东西时，可以拿它凑出合适的平衡值。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/enrichment/intersector.json — GGG/TOT/SSS：魔力强化玻璃 ×3、射线塔 ×2、黑曜石板、魔力强化石 ×3",
+        "blockentity/IntersectorBlockEntity.java:19-27 — 两个宝石槽、存 5000、本身可被绑定；L36 max_mru；L88 第二个槽 MRULink.pull",
+        "mru/MRUStorage.java:117-131 — pullFrom 按量加权平均平衡值",
+        "data/essentialcraft5/recipes/radiating_chamber/magic_matrix_projection.json — 平衡值 0.5~1.5（开区间）"
+      ]
+    }
+  ]
+}

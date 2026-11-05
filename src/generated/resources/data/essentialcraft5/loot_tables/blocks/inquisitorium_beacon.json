@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "replace",
+                  "source": "Dim",
+                  "target": "Dim"
+                },
+                {
+                  "op": "replace",
+                  "source": "X",
+                  "target": "X"
+                },
+                {
+                  "op": "replace",
+                  "source": "Z",
+                  "target": "Z"
+                }
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "essentialcraft5:inquisitorium_beacon"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "essentialcraft5:blocks/inquisitorium_beacon"
+}

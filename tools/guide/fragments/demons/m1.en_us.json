@@ -1,0 +1,235 @@
+[
+  {
+    "id": "demonic_pentacle",
+    "title": "{item:essentialcraft5:demonic_pentacle}",
+    "icon": "essentialcraft5:demonic_pentacle",
+    "summary": "A 7×7 ritual five layers tall with 16 pillars",
+    "complete": "essentialcraft5:guide/demons/pentacle",
+    "items": [
+      "essentialcraft5:demonic_pentacle"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: build a Demonic Pentacle. Its 16 crystal pillars gather ESPE for you; once they hold enough, you can summon a demon ([[demons/summoning]])."
+      },
+      {
+        "type": "h",
+        "text": "What you need"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The pentacle itself: 4 {item:essentialcraft5:fire_focus} ([[essence/fuel_and_focus]]), 4 {item:essentialcraft5:void_plating} and 1 {item:essentialcraft5:void_core}; the last two come from Hoanna ([[hoanna/void_plating]], [[hoanna/relics]]).",
+          "13 {item:essentialcraft5:void_stone} ([[hoanna/void_stone]]), 20 {item:essentialcraft5:pale_plating} ([[alloys/plating]]), 4 {item:essentialcraft5:mithriline_plating} ([[mithriline/furnace]]) and 4 {item:minecraft:glowstone}. Stone and plating may be any color.",
+          "16 crystal pillars: 4 of any kind ([[mithriline/crystal_pillar]]), 8 that are Pale or better ([[pentacle/pale_crystal_pillar]]), 4 that are Void or better ([[demons/void_crystal_pillar]])."
+        ]
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:demonic_pentacle"
+      },
+      {
+        "type": "h",
+        "text": "Layout"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:demonic_pentacle"
+      },
+      {
+        "type": "p",
+        "text": "The bottom layer holds 13 Void Stone and 20 Pale Plating; the pentacle sits on the Void Stone in the middle. On the pentacle's layer, put a Glowstone two blocks out in each cardinal direction and a Mithriline Plating one block out on each diagonal. The pillars go in three kinds of spots:"
+      },
+      {
+        "type": "table",
+        "header": [
+          "Spot",
+          "Count",
+          "At least"
+        ],
+        "widths": [
+          5,
+          2,
+          4
+        ],
+        "rows": [
+          [
+            "On the Mithriline Plating",
+            "<t>4</t>",
+            "Any crystal pillar"
+          ],
+          [
+            "On the outer Pale Plating",
+            "<t>8</t>",
+            "Pale Crystal Pillar"
+          ],
+          [
+            "On the Glowstone",
+            "<t>4</t>",
+            "Void Crystal Pillar"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Pillars gather ESPE only under open sky. While they can see the sky, each one gains {cfg:machines.mithriline_crystal_pillar.espe_generated} per tick, or {cfg:machines.mithriline_crystal_pillar.espe_generated_end} per tick in the End."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "The rune on the ground turns from dull grey to a dark red that pulses and slowly spins, and red sparks drift up and down the pillars."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "In the original 1.12 releases, the pentacle's recipe misspelled the Void Core's name, so the pentacle could not be crafted at all; 1.10 and earlier defined the recipe in code and did not have the typo."
+      }
+    ]
+  },
+  {
+    "id": "summoning",
+    "title": "Summoning",
+    "icon": "minecraft:soul_lantern",
+    "summary": "Spend ESPE to call a demon onto the ritual",
+    "complete": "essentialcraft5:guide/demons/summon",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: right-click a finished pentacle to draw {cfg:general.demon.summon_espe} ESPE from its pillars and summon a demon."
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Wait for the pillars to fill: together the 16 must hold {cfg:general.demon.summon_espe} ESPE. The cost is taken at face value, without the discount a Soul Pentacle applies ([[pentacle/cure]]).",
+          "Leave two free blocks right above the pentacle; that is where the demon stands.",
+          "Right-click the pentacle. The demon appears in the middle of the rune, and the ESPE is drawn pillar by pillar in a fixed order: first the 4 on the Mithriline Plating, then the 8 on the Pale Plating, and the 4 on the Glowstone last."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "When it fails",
+        "text": "The action bar tells you why: which block of the structure is wrong, that something blocks the space above, that a demon is already here, or how much ESPE is missing. A failed summoning costs no ESPE at all."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Only one demon at a time can stand on a pentacle.",
+          "The demon stays on the ritual and never walks off. If the ritual is broken, it leaves within a few seconds ([[demons/demon]])."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "With a low growl, a winged figure with glowing eyes rises in the middle of the rune, and wisps of black smoke curl around the ritual."
+      }
+    ]
+  },
+  {
+    "id": "demon",
+    "title": "Demon",
+    "icon": "essentialcraft5:demon_spawn_egg",
+    "summary": "Guards the ritual, clears monsters, awaits trade",
+    "items": [
+      "essentialcraft5:demon_spawn_egg"
+    ],
+    "blocks": [
+      {
+        "type": "entity",
+        "id": "essentialcraft5:demon"
+      },
+      {
+        "type": "p",
+        "text": "A demon stands still on the pentacle that summoned it and turns its head to watch whoever is near. Fire and potions do nothing to it, and it can be neither pushed nor leashed."
+      },
+      {
+        "type": "h",
+        "if": "cfg:general.demon.clear_radius>0",
+        "text": "It clears monsters"
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.demon.clear_radius>0",
+        "text": "Every {cfg:general.demon.clear_interval|sec} it picks one hostile monster within {cfg:general.demon.clear_radius} blocks and usually kills it in a single blow. Monsters it kills <b>drop nothing and give no experience</b>."
+      },
+      {
+        "type": "p",
+        "if": [
+          "cfg:general.demon.clear_radius>0",
+          "cfg:general.demon.explosion_power>0"
+        ],
+        "text": "Each blow also sets off a blast at the monster's feet that only hurts the kind of monster it would strike: players, pets, villagers, animals and dropped items are untouched, and no blocks break."
+      },
+      {
+        "type": "list",
+        "if": "cfg:general.demon.clear_radius>0",
+        "items": [
+          "It leaves bosses (the Wither, the Ender Dragon) alone.",
+          "It also spares named, tamed and leashed monsters, and monsters that have picked things up."
+        ]
+      },
+      {
+        "type": "h",
+        "text": "Sending it away"
+      },
+      {
+        "type": "p",
+        "text": "Hitting, shooting or blowing it up does nothing. Only the player who summoned it, or a player in Creative mode, can strike it once to make it leave; the ESPE spent on the summoning is not refunded."
+      },
+      {
+        "type": "p",
+        "text": "Every 2 seconds it checks the ritual under its feet, and it leaves if the pentacle's structure is broken. It also leaves after a finished trade ([[demons/trade]])."
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "Spawn egg",
+        "text": "The Creative inventory has a {item:essentialcraft5:demon_spawn_egg}. A demon from the egg has no summoner, so anyone can trade with it; if it is not standing on a pentacle, it leaves after 2 seconds."
+      }
+    ]
+  },
+  {
+    "id": "trade",
+    "title": "Trading",
+    "icon": "essentialcraft5:ackronite_ingot",
+    "summary": "Give it what it wants for Ackronite Ingots",
+    "complete": "essentialcraft5:guide/demons/trade",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: finish a trade with a demon and get your first {item:essentialcraft5:ackronite_ingot}. Ackronite only comes from demons ([[demons/ackronite]])."
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Right-click the demon to open the trade screen. The left slot shows what it wants and how many; hover over it for details. Only the player who summoned it (and players in Creative mode) can trade with it.",
+          "Put the items into the right slot. It only accepts the kind the demon wants, up to the amount it wants; anything extra stays in your hand.",
+          "The trade completes the moment the slot is full: the items are taken, {cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} Ackronite Ingots go straight into your inventory (or drop at your feet if it is full), and the demon leaves."
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "Every demon wants something different, from iron blocks, bookshelves, Eyes of Ender and Nether Stars to this mod's machines, wind tools and guns.",
+          "Things that wear out (tools, armor) must be undamaged, and the screen says so; guns may be worn. Renamed or enchanted items are fine.",
+          "When it wants souls, give it {item:essentialcraft5:captured_soul} of that creature, collected with a Soul Scriber ([[demons/soul_scriber]]).",
+          "Changed your mind halfway? Close the screen and the items come back; they also come back if the demon leaves in the middle."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "Don't like the offer",
+        "text": "Strike it once to send it away and summon another. The ESPE spent on the summoning is not refunded."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "According to the original research book, Ackronite is a metal that exists only in hell and only demons can see and mine it, as read in the Forgotten Necronomicon; the book also warns never to hand a demon maps or anything else about your own world."
+      }
+    ]
+  }
+]

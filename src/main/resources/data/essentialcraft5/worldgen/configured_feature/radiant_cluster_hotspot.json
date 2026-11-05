@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "essentialcraft5:attached_cluster",
+        "config": {
+          "to_place": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "essentialcraft5:radiant_cluster",
+              "Properties": {
+                "facing": "up",
+                "waterlogged": "false"
+              }
+            }
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:any_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:water"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 14,
+    "xz_spread": 4,
+    "y_spread": 3
+  }
+}

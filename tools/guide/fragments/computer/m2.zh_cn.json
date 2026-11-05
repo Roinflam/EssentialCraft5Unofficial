@@ -1,0 +1,716 @@
+[
+  {
+    "id": "force_parts",
+    "title": "基础力场零件",
+    "icon": "essentialcraft5:force_emitter",
+    "summary": "五种基础件，每次出 4 个",
+    "complete": "essentialcraft5:guide/computer/force_parts",
+    "items": [
+      "essentialcraft5:force_absorber",
+      "essentialcraft5:force_emitter",
+      "essentialcraft5:particle_catcher",
+      "essentialcraft5:particle_emitter",
+      "essentialcraft5:force_field_core"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：做出五种基础力场零件。宅男套装和反重力板的零件都是用它们一层层拼起来的，这一章从这里开始。五种的摆法一样：四个角、四条边各放一种，中间放一个，每次合成出 <t>4</t> 个。"
+      },
+      {
+        "type": "table",
+        "widths": [
+          3,
+          2,
+          2,
+          2
+        ],
+        "header": [
+          "零件",
+          "四个角",
+          "四条边",
+          "中间"
+        ],
+        "rows": [
+          [
+            "{item:essentialcraft5:force_absorber}",
+            "{item:essentialcraft5:demonic_plate}",
+            "{item:essentialcraft5:mithriline_crystal}",
+            "{item:essentialcraft5:wind_gem}"
+          ],
+          [
+            "{item:essentialcraft5:force_emitter}",
+            "{item:essentialcraft5:demonic_plate}",
+            "{item:essentialcraft5:fading_crystal}",
+            "{item:essentialcraft5:wind_gem}"
+          ],
+          [
+            "{item:essentialcraft5:particle_catcher}",
+            "{item:essentialcraft5:demonic_plate}",
+            "{item:essentialcraft5:fading_crystal}",
+            "{item:essentialcraft5:force_absorber}"
+          ],
+          [
+            "{item:essentialcraft5:particle_emitter}",
+            "{item:essentialcraft5:demonic_plate}",
+            "{item:essentialcraft5:mru_resonating_crystal}",
+            "{item:essentialcraft5:force_emitter}"
+          ],
+          [
+            "{item:essentialcraft5:force_field_core}",
+            "{item:essentialcraft5:pale_plate}",
+            "{item:essentialcraft5:demonic_core}",
+            "{item:essentialcraft5:void_mru_reactor}"
+          ]
+        ]
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:force_absorber",
+          "essentialcraft5:force_emitter",
+          "essentialcraft5:particle_catcher",
+          "essentialcraft5:particle_emitter",
+          "essentialcraft5:force_field_core"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "<em>原料从哪来</em>：恶魔板和恶魔核心见[[demons/ackronite]]，风之水晶见[[wind/wind_gem]]，米斯莱水晶见[[mithriline/mithriline_ingot]]，黯淡水晶见[[pentacle/pale_crystal_pillar]]，MRU 共鸣水晶见[[alloys/resonating_crystal]]，淡青板见[[alloys/pale]]；MRU 反应核只出海纳尔的遗迹箱子（[[hoanna/relics]]）。"
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "省着用",
+        "text": "力场核心每次吃 1 个 MRU 反应核。全套加反重力板要做 5 次力场核心，正好 5 个反应核，别拿去做别的机器。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到这五种里的任意一种。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/computer/{force_absorber,force_emitter,particle_catcher,particle_emitter,force_field_core}.json — #@# / @C@ / #@#，各出 4（batch8 D4 = A，原作 1）",
+      "registry/ECComputer.java FORCE_ABSORBER 等 — genitem 74 / 68 / 66 / 67 / 65，形状照 1.10.2 代码配方 RecipeRegistry L488~703",
+      "tools/gen/computer_bom.py — 全套 + 反重力板：force_field_core 5 次、void_mru_reactor 5"
+    ]
+  },
+  {
+    "id": "force_field",
+    "title": "力场发生器与力场护板",
+    "icon": "essentialcraft5:force_field_generator",
+    "summary": "两种中间件，每次出 2 个",
+    "complete": "essentialcraft5:guide/computer/force_field",
+    "items": [
+      "essentialcraft5:force_field_generator",
+      "essentialcraft5:force_field_plating"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：用基础件拼出{item:essentialcraft5:force_field_generator}和{item:essentialcraft5:force_field_plating}。四件套装每件都要 1 个发生器和 2~3 块护板，反重力板也要 1 个发生器。"
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:force_field_generator",
+          "essentialcraft5:force_field_plating"
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "{item:essentialcraft5:force_field_generator}",
+            "四个角力场发射器、四条边力场核心、中间一块{item:essentialcraft5:matter_of_eternity}，每次出 <t>2</t> 个"
+          ],
+          [
+            "{item:essentialcraft5:force_field_plating}",
+            "四个角粒子捕捉器、四条边粒子发射器、中间一个力场核心，每次出 <t>2</t> 个"
+          ]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "坑",
+        "text": "<w>永恒物质里存的 MRU 合成时一起吃掉</w>，先把它抽空。全套加反重力板要做 3 次发生器，也就是 3 块永恒物质（[[storage/soul_storage]]）。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到一个力场发生器。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/computer/force_field_generator.json — #@# / @C@ / #@#：力场发射器 ×4、力场核心 ×4、永恒物质，出 2",
+      "data/essentialcraft5/recipes/computer/force_field_plating.json — 粒子捕捉器 ×4、粒子发射器 ×4、力场核心，出 2",
+      "tools/gen/computer_bom.py — 全套 + 反重力板：force_field_generator 3 次、matter_of_eternity 3"
+    ]
+  },
+  {
+    "id": "drives",
+    "title": "稳定器、斥力与推进",
+    "icon": "essentialcraft5:thruster_engine",
+    "summary": "压力稳定器、斥力发生器、推进引擎",
+    "complete": "essentialcraft5:guide/computer/drives",
+    "items": [
+      "essentialcraft5:pressure_stabilizer",
+      "essentialcraft5:repulsion_generator",
+      "essentialcraft5:thruster_engine"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：做出{item:essentialcraft5:thruster_engine}。它要{item:essentialcraft5:pressure_stabilizer}，顺手把{item:essentialcraft5:repulsion_generator}也做了：胸甲、护腿、反重力板都要这几样，每件套装也都要压力稳定器。"
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:pressure_stabilizer",
+          "essentialcraft5:repulsion_generator",
+          "essentialcraft5:thruster_engine"
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "{item:essentialcraft5:pressure_stabilizer}",
+            "四个角力场吸收器、十字五格富神经元护板，每次出 <t>2</t> 个"
+          ],
+          [
+            "{item:essentialcraft5:repulsion_generator}",
+            "四个角粒子发射器、四条边力场发射器、中间富神经元护板，每次出 <t>2</t> 个"
+          ],
+          [
+            "{item:essentialcraft5:thruster_engine}",
+            "力场发射器 ×4、粒子发射器、压力稳定器 ×2、富神经元护板 ×2（摆法看上面的图），每次出 <t>2</t> 个"
+          ]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到一个推进引擎。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/computer/pressure_stabilizer.json — #@# / @@@ / #@#：力场吸收器 ×4、富神经元护板 ×5，出 2",
+      "data/essentialcraft5/recipes/computer/repulsion_generator.json — 粒子发射器 ×4、力场发射器 ×4、富神经元护板，出 2",
+      "data/essentialcraft5/recipes/computer/thruster_engine.json — #@# / $#$ / P#P：力场发射器 ×4、粒子发射器、压力稳定器 ×2、富神经元护板 ×2，出 2"
+    ]
+  },
+  {
+    "id": "senses",
+    "title": "声音与视觉",
+    "icon": "essentialcraft5:speaker_plate",
+    "summary": "声音管理器、扬声器板、视觉透镜",
+    "complete": "essentialcraft5:guide/computer/senses",
+    "items": [
+      "essentialcraft5:sound_manager",
+      "essentialcraft5:speaker_plate",
+      "essentialcraft5:vision_lens"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：做头盔要的两样：{item:essentialcraft5:speaker_plate}（先做{item:essentialcraft5:sound_manager}）和{item:essentialcraft5:vision_lens}。头盔要 2 块扬声器板、1 个视觉透镜，这三样只有头盔用。"
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:sound_manager",
+          "essentialcraft5:speaker_plate",
+          "essentialcraft5:vision_lens"
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "{item:essentialcraft5:sound_manager}",
+            "恶魔板 ×4、恶魔核心 ×2、力场吸收器 ×2、中间压力稳定器，每次 <t>1</t> 个"
+          ],
+          [
+            "{item:essentialcraft5:speaker_plate}",
+            "四个角力场吸收器、四条边富神经元护板、中间声音管理器，每次 <t>1</t> 个"
+          ],
+          [
+            "{item:essentialcraft5:vision_lens}",
+            "四个角富神经元护板，上下力场吸收器，左右{item:essentialcraft5:sun_imbued_glass}，中间{item:essentialcraft5:magic_purified_glass_alloy}，每次 <t>1</t> 个"
+          ]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作后来的版本里，视觉透镜、宅男胸甲、反重力板三张配方被抄错了（透镜照抄了力场核心的原料），那几个版本根本做不出这套盔甲。这里照更早版本代码里写的配方。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到一块扬声器板。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/computer/sound_manager.json — #C# / 767 / #C#：恶魔板 ×4、恶魔核心 ×2、力场吸收器 ×2、压力稳定器",
+      "data/essentialcraft5/recipes/computer/speaker_plate.json — 力场吸收器 ×4、富神经元护板 ×4、声音管理器",
+      "data/essentialcraft5/recipes/computer/vision_lens.json — #@# / ACA / #@#：富神经元护板 ×4、力场吸收器 ×2、太阳灌注玻璃 ×2、魔力纯化玻璃合金",
+      "tools/plan/batch8.md §0 第 2 条 — 原作 1.12 JSON 三处抄错，照 1.10.2 代码配方（b62e0f5^ RecipeRegistry L488~703）修"
+    ]
+  },
+  {
+    "id": "computer_engine",
+    "title": "{item:essentialcraft5:computer_engine}",
+    "icon": "essentialcraft5:computer_engine",
+    "summary": "控制恶魔板的电脑",
+    "complete": "essentialcraft5:guide/computer/computer_engine",
+    "items": [
+      "essentialcraft5:computer_engine",
+      "essentialcraft5:logic_core"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：做出{item:essentialcraft5:computer_engine}——全息那一章开头说的「控制恶魔板的电脑」就是它。胸甲要一个。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：一个{item:essentialcraft5:logic_core}（下面）、加 / 减 / 乘 / 除四种数学核心各一个（打倒全息投影掉，见[[hologram/math_cores]]），4 块富神经元护板。"
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:computer_engine",
+          "essentialcraft5:logic_core"
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "{item:essentialcraft5:logic_core}",
+            "四个角恶魔板，上下{item:minecraft:redstone}，左右{item:minecraft:lapis_lazuli}，中间{item:minecraft:quartz}，每次 <t>1</t> 个"
+          ],
+          [
+            "{item:essentialcraft5:computer_engine}",
+            "四个角富神经元护板；上加法核心、下减法核心、左除法核心、右乘法核心；中间逻辑核心"
+          ]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "四种核心",
+        "text": "每种只要一个，凑齐就够了；数学核心没有合成配方，也没有别的用处。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到电脑引擎。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/computer/computer_engine.json — #+# / /C* / #-#：富神经元护板 ×4、加 / 除 / 乘 / 减核心、逻辑核心",
+      "data/essentialcraft5/recipes/computer/logic_core.json — #R# / LQL / #R#：恶魔板 ×4、红石 ×2、青金石 ×2、石英",
+      "registry/ECComputer.java — 数学核心没有配方（gametest/ComputerPartsTests.computerNoCoreRecipeNoDisassembly）"
+    ]
+  },
+  {
+    "id": "suit",
+    "title": "宅男套装",
+    "icon": "essentialcraft5:computer_helmet",
+    "summary": "主线的最后一步：四件套装",
+    "complete": "essentialcraft5:main/computer_armor",
+    "items": [
+      "essentialcraft5:computer_helmet",
+      "essentialcraft5:computer_chestplate",
+      "essentialcraft5:computer_leggings",
+      "essentialcraft5:computer_boots"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：做出{item:essentialcraft5:computer_helmet}、{item:essentialcraft5:computer_chestplate}、{item:essentialcraft5:computer_leggings}、{item:essentialcraft5:computer_boots}，四件同时带在身上（穿着的也算）。这是主线的最后一步。"
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:computer_helmet",
+          "essentialcraft5:computer_chestplate",
+          "essentialcraft5:computer_leggings",
+          "essentialcraft5:computer_boots"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "每件都要力场发生器、力场护板、富神经元护板和压力稳定器；头盔另要 2 块扬声器板和视觉透镜，胸甲要电脑引擎、斥力发生器和推进引擎，护腿要斥力发生器和 2 个推进引擎。做出来是空的，放进[[storage/charging_chamber]]充上 MRU。"
+      },
+      {
+        "type": "h",
+        "text": "护甲"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "护甲值",
+            "头盔 {cfg:general.computer_armor.armor_helmet}、胸甲 {cfg:general.computer_armor.armor_chestplate}、护腿 {cfg:general.computer_armor.armor_leggings}、靴子 {cfg:general.computer_armor.armor_boots}"
+          ],
+          [
+            "盔甲韧性",
+            "每件 {cfg:general.computer_armor.toughness}"
+          ],
+          [
+            "击退抗性",
+            "每件 {cfg:general.computer_armor.knockback_resistance|pct}"
+          ],
+          [
+            "生命上限",
+            "头盔、护腿、靴子各 +{cfg:general.computer_armor.max_health}，胸甲 +{cfg:general.computer_armor.chestplate_max_health}"
+          ],
+          [
+            "耐久",
+            "16384，穿在身上不掉"
+          ],
+          [
+            "附魔能力",
+            "127（钻石 10、下界合金 15）"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "这些属性一直都在，有没有电都一样。全套的护甲、韧性加起来超过游戏的上限（护甲 <t>30</t>、韧性 <t>20</t>）时，超出的部分不算。脱下以后多出来的生命上限跟着去掉，血量也会降回去。"
+      },
+      {
+        "type": "h",
+        "text": "有电挡伤害"
+      },
+      {
+        "type": "p",
+        "text": "每件存 {cfg:general.computer_armor.max_mru} MRU（提示框里写着）。有电的那件替你挡下它那一份伤害：头盔 3/20、胸甲 8/20、护腿 6/20、靴子 3/20；四件都有电就整下都挡住，一点血都不掉（击退照样有）。"
+      },
+      {
+        "type": "p",
+        "text": "挡的是近战、箭这类弹射物，以及火焰、岩浆、爆炸、闪电（提示框第一行紫字写着它挡哪些）。魔法（包括别人扔的喷溅伤害药水）、轨道打击、无视护甲的伤害（身上着火的持续烧伤、细雪冻伤、溺水）不挡、不扣 MRU，照常按护甲减伤。"
+      },
+      {
+        "type": "p",
+        "text": "每件挡一次要花 MRU：它那一份伤害每 1 点 {cfg:general.computer_armor.mru_per_damage} MRU，向下取整、至少按 1 点算。先从身上的储存物品（{item:essentialcraft5:soul_shard}这类）里扣，凑不够再扣这件自己存的。<w>扣不起的那件这一下就不挡</w>，那一份照常挨；这件自己一点电都没有时也不挡。"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "挨 8 点",
+            "头盔 1 点 + 胸甲 3 点 + 护腿 2 点 + 靴子 1 点，一共 {cfg:general.computer_armor.mru_per_damage|mul:7} MRU"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "带着{item:essentialcraft5:infinite_mru_crystal}时这笔电全由它付，宅男套装的电不会耗尽。"
+      },
+      {
+        "type": "h",
+        "text": "每件自己的本事"
+      },
+      {
+        "type": "table",
+        "widths": [
+          1,
+          4
+        ],
+        "header": [
+          "部位",
+          "效果"
+        ],
+        "rows": [
+          {
+            "if": "!cfg:general.computer_armor.helmet_saturation",
+            "cells": [
+              "{item:essentialcraft5:computer_helmet}",
+              "氧气不会耗尽，饥饿值一直是满的（回血按吃饱时的速度）；按 {keybind:key.essentialcraft5.computer_armor_night_vision} 开关夜视；戴着能隔墙看见聚集体"
+            ]
+          },
+          {
+            "if": "cfg:general.computer_armor.helmet_saturation",
+            "cells": [
+              "{item:essentialcraft5:computer_helmet}",
+              "氧气不会耗尽，饥饿值和饱和度一直是满的（回血很快）；按 {keybind:key.essentialcraft5.computer_armor_night_vision} 开关夜视；戴着能隔墙看见聚集体"
+            ]
+          },
+          [
+            "{item:essentialcraft5:computer_chestplate}",
+            "免疫魔法、凋零和饥饿伤害（自己喝的伤害药水、中毒都算魔法）；别人扔的喷溅伤害药水照样打得到"
+          ],
+          [
+            "{item:essentialcraft5:computer_leggings}",
+            "走得更快（移速 +{cfg:general.computer_armor.leggings_speed}），跳得更高；身上着火时每秒补 5 秒抗火"
+          ],
+          [
+            "{item:essentialcraft5:computer_boots}",
+            "免疫摔落伤害；能直接迈上一格高的方块"
+          ]
+        ]
+      },
+      {
+        "type": "h",
+        "text": "穿齐四件"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "if": "cfg:general.computer_armor.thorns_ratio>0",
+            "text": "受到有攻击者的伤害时，把这一下的 {cfg:general.computer_armor.thorns_ratio|pct} 用荆棘伤害反给攻击者（整下挡掉时照样反；算出来不到 0.5 点不反；荆棘伤害本身不再反回去）；"
+          },
+          "按 {keybind:key.essentialcraft5.computer_armor_boost} 朝视线方向喷射推进，冷却 {cfg:general.computer_armor.dash_cooldown|sec}；骑乘、睡觉时不行；",
+          {
+            "if": "cfg:general.computer_armor.dash_mru>0",
+            "text": "每次推进花 {cfg:general.computer_armor.dash_mru} MRU；"
+          },
+          {
+            "if": "cfg:general.computer_armor.swim_speed>0",
+            "text": "在水里游得快得多（{cfg:general.computer_armor.swim_speed|add:1|x} 速度）。"
+          }
+        ]
+      },
+      {
+        "type": "p",
+        "text": "屏幕顶上两个小圆：左边是夜视（亮着 = 开着），右边是喷射推进（缺的那块是剩下的冷却）。四件穿齐对 MRU 腐化和各种辐射全免。"
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "破法",
+        "text": "套装挡不住：魔法（别人扔的喷溅伤害药水）；全息投影的二分场（直接把生命减半；玩家射的二分弹不打玩家）；无视护甲的伤害；还有轨道打击——它既不算物理也不算元素。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "四件同时带在身上，完成进度「全副武装的宅男」。主线到这里就走完了。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/computer/computer_{helmet,chestplate,leggings,boots}.json — 形状照 1.10.2 代码配方（胸甲 S = 压力稳定器、F = 力场护板）",
+      "data/essentialcraft5/advancements/main/computer_armor.json — inventory_changed 四个谓词各一件（要同时在物品栏里，穿着的也算），challenge 框",
+      "registry/ECComputer.java Config — general.computer_armor 各键；MATERIAL 耐久 16384、附魔 127",
+      "item/ComputerArmorItem.java share — 头 3 / 胸 8 / 腿 6 / 靴 3（二十分之几）；getDefaultAttributeModifiers 按配置给属性，不看电量",
+      "item/armor/MRUShield.java cost — max(1, ⌊伤害 × 份额 / 20⌋) × 单价；先扣储存物品；扣不起不挡；这件自己 MRU 为 0 不挡；bypasses_armor 不挡",
+      "registry/ECComputer.java ShieldScope.PHYSICAL_ELEMENTAL — ECDamageKinds.isPhysical || (isElemental && !isMagic)；轨道打击（ECDamageTypes.orbitalStrike）没有直接实体也不带火 / 爆炸标签，不算",
+      "原版伤害类型标签 bypasses_armor — on_fire、freeze、drown、magic、indirect_magic 等无视护甲",
+      "item/ComputerArmorEvents.java — 胸甲免疫 magic / wither / starve（不含 indirect_magic）、靴子免摔、护腿起跳 + leggings_jump、着火时每 20 刻给 100 刻抗火、头盔每 20 刻补氧气和饥饿值（饱和度看 helmet_saturation）",
+      "item/ComputerArmorEvents.java onComputerArmorThorns — 全套反伤 thorns_ratio，不到 0.5 不反，荆棘与饰品伤害不反；tryDash — 视线 × dash_strength，冷却 dash_cooldown，骑乘 / 睡觉 / 旁观不行",
+      "item/ComputerArmorEvents.java refreshSwimSpeed — forge:swim_speed + swim_speed（基础 1）",
+      "item/ComputerArmorItem.java getResistance — 每件 1 / 1 / 1；mru/MRUDrain.java — 无尽 MRU 晶体付一切",
+      "client/ComputerClient.java renderHud — 屏幕顶上中线 −108 / +105 两个小圆",
+      "tools/plan/batch8.md §10.3 D5 = B — 轨道打击、二分场、喷溅伤害药水、无视护甲的是破法"
+    ]
+  },
+  {
+    "id": "antigravity_board",
+    "title": "{item:essentialcraft5:computer_board}",
+    "icon": "essentialcraft5:computer_board",
+    "summary": "戴在腰带槽里就能飞",
+    "if": "bauble:essentialcraft5:computer_board",
+    "items": [
+      "essentialcraft5:computer_board"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：做一块{item:essentialcraft5:computer_board}，戴在饰品栏的腰带槽里就能像创造模式那样飞。不要套装，也不耗电。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:computer_board"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "飞行速度",
+            "{cfg:general.computer_board.fly_speed}（创造模式飞行是 0.05）"
+          ],
+          [
+            "戴在",
+            "腰带槽，同时只有一块生效"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "飞着时脚下会出现一块板子。摘下板子就不能飞了，别的东西给你的飞行不受影响。"
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "坑",
+        "text": "和全息投影战斗时飞不起来（[[hologram/summoning]]）。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作的研究书说它「飞起来还给你难以置信的速度」：那时它把飞行速度提到创造模式的 4 倍。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/computer/computer_board.json — SCS / EEE / RTR：压力稳定器 ×2、力场发生器、富神经元护板 ×3、斥力发生器 ×2、推进引擎（1.10.2，1.12 JSON 的 S 写成了力场护板）",
+      "item/ComputerBoardItem.java — Curios 腰带槽、同种只一件、ECFlight.grant(FLIGHT_SOURCE, fly_speed)，摘下只撤自己的",
+      "util/ECFlight.java — 压制器（全息投影参战者）暂停本模组给的飞行；ECFlight.VANILLA_FLY_SPEED 0.05",
+      "client/ComputerClient.java renderBoard — 飞着时脚下画 board.obj",
+      "原作 PlayerTickHandler L452~515 — 客户端 setFlySpeed(0.2)；en_US.lang redSuit_6"
+    ]
+  },
+  {
+    "id": "costs",
+    "title": "全套要多少",
+    "icon": "essentialcraft5:demonic_plate",
+    "summary": "套装和反重力板的材料总账",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "宅男套装是整个模组最贵的东西。下面是把零件一层层展开、合在一起做的总数：零件做多出来的零头会留给下一件用，所以比一件件单算要省一点。"
+      },
+      {
+        "type": "table",
+        "widths": [
+          3,
+          2,
+          2
+        ],
+        "header": [
+          "材料",
+          "全套 + 反重力板",
+          "只做四件"
+        ],
+        "rows": [
+          [
+            "{item:essentialcraft5:demonic_plate}",
+            "329",
+            "287"
+          ],
+          [
+            "{item:essentialcraft5:wind_gem}",
+            "55",
+            "48"
+          ],
+          [
+            "{item:essentialcraft5:void_mru_reactor}",
+            "5",
+            "4"
+          ],
+          [
+            "{item:essentialcraft5:matter_of_eternity}",
+            "3",
+            "2"
+          ],
+          [
+            "{item:essentialcraft5:elemental_gem}（做恶魔核心）",
+            "96",
+            "80"
+          ],
+          [
+            "{item:essentialcraft5:mru_resonating_crystal}",
+            "56",
+            "48"
+          ],
+          [
+            "{item:essentialcraft5:fading_crystal}",
+            "56",
+            "48"
+          ],
+          [
+            "{item:essentialcraft5:mithriline_crystal}",
+            "48",
+            "44"
+          ],
+          [
+            "{item:essentialcraft5:pale_plate}",
+            "20",
+            "16"
+          ],
+          [
+            "{item:essentialcraft5:combined_magical_alloys}",
+            "34",
+            "30"
+          ],
+          [
+            "{item:essentialcraft5:sun_imbued_glass}",
+            "2",
+            "2"
+          ],
+          [
+            "{item:essentialcraft5:magic_purified_glass_alloy}",
+            "1",
+            "1"
+          ],
+          [
+            "四种数学核心",
+            "各 1",
+            "各 1"
+          ]
+        ]
+      },
+      {
+        "type": "table",
+        "widths": [
+          3,
+          2
+        ],
+        "header": [
+          "单做一件",
+          "恶魔板"
+        ],
+        "rows": [
+          [
+            "{item:essentialcraft5:computer_helmet}",
+            "126"
+          ],
+          [
+            "{item:essentialcraft5:computer_chestplate}",
+            "105"
+          ],
+          [
+            "{item:essentialcraft5:computer_leggings}",
+            "96"
+          ],
+          [
+            "{item:essentialcraft5:computer_boots}",
+            "83"
+          ],
+          [
+            "{item:essentialcraft5:computer_board}",
+            "68"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "恶魔板要靠和恶魔交易换阿克罗尼特锭（[[demons/trade]]）：每次给 {cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 个锭，4 个锭做 4 块，329 块恶魔板就是 329 个锭。55 颗风之水晶注风一共要 {cfg:general.wind.gem_espe|mul:55} ESPE，是最费时间的一环。"
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "注风快一点",
+        "text": "末地的水晶柱每刻攒 {cfg:machines.mithriline_crystal_pillar.espe_generated_end} ESPE（主世界 {cfg:machines.mithriline_crystal_pillar.espe_generated}），风之符文建在末地快得多；多建几座符文一起注（[[wind/wind_rune]]）。"
+      }
+    ],
+    "_src": [
+      "tools/gen/computer_bom.py — 全部数字是它的输出（展开 recipes/computer/*.json 与 demonic/demonic_core.json，中间件合起来按整次合成取整）；gametest/ComputerCostTests 从 RecipeManager 再算一遍比对",
+      "entity/DemonEntity.java completeTrade — 报酬 general.demon.reward_min ~ reward_max 个阿克罗尼特锭；data/essentialcraft5/recipes/demonic/demonic_plate.json — 魔术师台 4 锭 + 魔力强化板 → 4 块",
+      "registry/ECWind.java Config.gemESPE — general.wind.gem_espe（默认 10000）每颗",
+      "blockentity/MithrilineCrystalPillarBlockEntity — machines.mithriline_crystal_pillar.espe_generated / espe_generated_end"
+    ]
+  }
+]

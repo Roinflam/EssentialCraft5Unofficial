@@ -1,0 +1,302 @@
+{
+  "id": "crystal",
+  "order": 66,
+  "group": "main",
+  "title": "Chapter 8 · Elemental Crystals",
+  "subtitle": "Grow a crystal and build a Moon Well",
+  "icon": "essentialcraft5:crystal_former",
+  "entries": [
+    {
+      "id": "crystal_former",
+      "title": "{item:essentialcraft5:crystal_former}",
+      "icon": "essentialcraft5:crystal_former",
+      "summary": "Water, glass, a diamond and lots of MRU",
+      "complete": "essentialcraft5:guide/crystal/crystal_former",
+      "items": [
+        "essentialcraft5:crystal_former"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Where MRU once ran thick, crystals grew of their own accord, in a single night. Then the world changed, and not one was left. The ones we make by the old method are born very small, and must be planted and raised slowly.",
+          "by": "Fragments of Essence, Book III"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:crystal_former} and make your first {item:essentialcraft5:elemental_crystal}. An Elemental Crystal is a block that slowly grows on its own. The Moon Well needs one, and the machines in the next chapter are all built around it."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "What this chapter takes",
+          "text": "One crystal costs 100,000 MRU and a diamond, which a Heat Generator surrounded by lava makes in about 5 minutes. The slow part is the Magic Matrix Projection for the Moon Well. It takes about 17 minutes in a Radiating Chamber and only accepts MRU with a balance of 0.5 to 1.5, so start it first. A crystal takes about 41 minutes to grow, and you can do other things in the meantime."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 2 {item:essentialcraft5:crystal_dust} ([[alloys/crystal_dust]]), 2 {item:essentialcraft5:obsidian_plate}, and one each of these parts you've made before: Magical Screen, MRU Collecting Device, Magical Plate, Elemental Core and MRU Conversion Matrix."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_former"
+        },
+        {
+          "type": "h",
+          "text": "What goes where"
+        },
+        {
+          "type": "items",
+          "items": [
+            "minecraft:water_bucket",
+            "minecraft:glass",
+            "minecraft:diamond",
+            "essentialcraft5:elemental_crystal"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The right side of the screen is a 3×3 ingredient grid, and its bottom row takes 3 {item:minecraft:water_bucket}.",
+            "In the middle row, put one {item:minecraft:glass} in the left and right slots and leave the center empty. Stained glass, tinted glass and the like work too.",
+            "In the top row, one {item:minecraft:diamond} goes in the middle.",
+            "The top-left slot holds the Bound Gem, and the finished crystal appears in the slot between it and the ingredients."
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Bind a Bound Gem to an MRU source, ideally the Ejector of last chapter's Enrichment Chamber, and put it in the gem slot.",
+            "With all ingredients in place, the output slot empty and no redstone signal, it uses {cfg:machines.crystal_former.mru_usage} MRU per tick. After {cfg:machines.crystal_former.ticks_required} ticks ({cfg:machines.crystal_former.ticks_required|sec}) it makes a size 1 Elemental Crystal.",
+            "When it's done, the 3 water buckets are left in their slots as empty buckets, and the diamond and one glass from each glass slot are used up."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "An Elemental Crystal appears in the output slot."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "It only holds {cfg:machines.crystal_former.max_mru} MRU itself, so if the source can't supply {cfg:machines.crystal_former.mru_usage} MRU per tick it keeps stopping. The total cost stays the same; it just takes longer. Running it from an Enrichment Chamber saves the trouble."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.crystal_former.generate_corruption",
+          "text": "While working it leaks 0 to {cfg:machines.crystal_former.max_corruption_gen} MRU per tick into its surroundings, and an MRUCU builds up nearby ([[start/mrucu]]). Keep it away from where you spend a lot of time."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Progress is saved, and taking ingredients out doesn't lose it either. It carries on once they're back.",
+            "Hoppers can top up these slots, filling the two glass slots in turn, and pull out finished crystals and used empty buckets. Full water buckets stay put.",
+            "Hover over the progress arrow to see what it's stuck on."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book calls the old crystals the main source of MRU, drawing in the world's MRU much like a magnet. The first one rebuilt from old knowledge broke almost at once. Only later came the former, which makes the smallest crystal, but a fairly sturdy one, out of diamond, water, glass and a great deal of MRU."
+        }
+      ]
+    },
+    {
+      "id": "elemental_crystal",
+      "title": "{item:essentialcraft5:elemental_crystal}",
+      "icon": "essentialcraft5:elemental_crystal",
+      "summary": "Plant it and let it grow",
+      "complete": "essentialcraft5:guide/crystal/elemental_crystal",
+      "items": [
+        "essentialcraft5:elemental_crystal"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: place the {item:essentialcraft5:elemental_crystal} you just made and let it grow. The Moon Well takes one crystal of any size, even a fresh one, but the Crystal Extractor in the next chapter wants a grown one, so make a few."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Stick the crystal onto any full face of any block, and it grows outward from that face.",
+            "When first placed it is size 1, almost too small to see. After that it grows {cfg:machines.elemental_crystal.growth_modifier|mul:0.002} per tick and takes about 41 minutes to get from 1 to 100.",
+            "It glows brighter as it grows, up to light level 15. While growing it gives off enchanting-table glyphs, and when they stop, it's fully grown."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You carry an Elemental Crystal of any size."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<em>Always break it with a pickaxe.</em> With bare hands or any other tool it drops nothing, and half an hour of growth is gone. It only grows while its chunk is loaded, so it stops when you go too far away."
+        },
+        {
+          "type": "h",
+          "text": "Elements"
+        },
+        {
+          "type": "p",
+          "text": "Every crystal carries four elements, fire, water, earth and air, each between 0 and 100, and a fresh one starts at 0 in all four. While growing it has a {cfg:machines.elemental_crystal.mutation_chance|pct} chance each tick to mutate, shifting one random element by −2 to +2 within the 0 to 100 range. Once fully grown it stops changing."
+        },
+        {
+          "type": "p",
+          "text": "Left to itself, a grown crystal usually ends up with only two or three points per element, sometimes 0 in one of them. The elements decide what the next chapter's extractor can pull out. To raise one, feed the crystal essences with a [[essence/crystal_controller]] while it is still growing."
+        },
+        {
+          "type": "p",
+          "text": "The item's color leans toward its strongest element: dark red for fire, blue for water, dark green for earth and gray for air. The tooltip lists its size and all four element values."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Save time",
+          "text": "Grow several at once. The Moon Well uses one up, the extractor and controller in the next chapter each need one beside them, and since elements are random, extra crystals let you pick the best."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Mined with a pickaxe, it keeps its size and all four elements, and once placed back down it carries on growing.",
+            "If the block holding it is removed, the crystal drops as an item with its data intact."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "moon_well",
+      "title": "{item:essentialcraft5:moon_well}",
+      "icon": "essentialcraft5:moon_well",
+      "summary": "The deeper, the better",
+      "complete": "essentialcraft5:guide/crystal/moon_well",
+      "items": [
+        "essentialcraft5:moon_well"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:moon_well}. It makes MRU every night from moonlight, without fuel, at balance {cfg:machines.moon_well.balance}. The forebears drew their MRU at night from wells like this one."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: an {item:essentialcraft5:elemental_crystal} of any size and a {item:essentialcraft5:magic_matrix_projection}, plus 2 Magical Plates and one each of Magical Screen, MRU Collecting Device, Elemental Core, MRU Conversion Matrix and World Interacting Device."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:moon_well"
+        },
+        {
+          "type": "h",
+          "text": "The magic matrix projection"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "First make an {item:essentialcraft5:empty_matrix_projection} from a Soul Stone in the Radiating Chamber, as described in [[generators/projections]].",
+            "Then irradiate it with MRU of balance between 0.5 and 1.5 for 20,000 ticks, about 17 minutes.",
+            {
+              "if": "cfg:machines.heat_generator.balance<0",
+              "text": "A Heat Generator gets a random balance when placed, and about 50% of the time it lands between 0.5 and 1.5. Pick one like that and give it a Radiating Chamber of its own."
+            },
+            "Or mix one frozen and one chaotic source into a balance in between with an {item:essentialcraft5:intersector}, as described in [[enrichment/intersector]]."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Balance mixes",
+          "text": "MRU already stored in a machine mixes with what it pulls in, by amount, so a Radiating Chamber that has held chaotic or frozen MRU may sit outside the range. An empty chamber is safest. Once its stored MRU runs out, its balance becomes entirely the new source's."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "It feeds the MRUCU",
+          "text": "This projection takes 20,000 ticks, and the chamber leaks MRU the whole time. About 10,000 goes into the MRUCU within 32 blocks, right up to the harmful line. Keep the chamber more than 13 blocks from where you spend time, or move the MRUCU away with an {item:essentialcraft5:mru_mover} afterwards ([[start/mrucu]]).",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen==1"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "It feeds the MRUCU",
+          "text": "This projection takes 20,000 ticks, and the chamber leaks MRU the whole time, so the MRUCU nearby keeps growing. Keep the chamber more than 13 blocks from where you spend time, or move the MRUCU away afterwards with an {item:essentialcraft5:mru_mover} ([[start/mrucu]]).",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen!=1"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Where to put it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put it in the Overworld with <em>a clear view of the sky straight above</em>. Glass doesn't block it, but Tinted Glass, leaves and water do.",
+            "The lower the better. It runs at full output at y=0 or below, loses 1/{cfg:machines.moon_well.max_height} for every block higher, and makes nothing at y={cfg:machines.moon_well.max_height}.",
+            "Bind the gems of the machines that need MRU, or of an Enrichment Chamber Acceptor, to it. It holds at most {cfg:machines.moon_well.max_mru} MRU itself."
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Moon phase",
+            "Output per tick (y=0 or below)"
+          ],
+          "rows": [
+            [
+              "Full moon",
+              "{cfg:machines.moon_well.max_mru_generated} MRU"
+            ],
+            [
+              "Gibbous (waxing or waning)",
+              "{cfg:machines.moon_well.max_mru_generated|mul:0.75} MRU"
+            ],
+            [
+              "First or last quarter",
+              "{cfg:machines.moon_well.max_mru_generated|mul:0.5} MRU"
+            ],
+            [
+              "Crescent (waxing or waning)",
+              "{cfg:machines.moon_well.max_mru_generated|mul:0.25} MRU"
+            ],
+            [
+              "New moon",
+              "Nothing"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "At night its stored MRU keeps climbing. The output figure on its screen only accounts for moon phase and height, and shows even by day or with the sky blocked, so watch the stored amount instead."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "A practical setup",
+          "text": "Dig a shaft down below y=0, put the Moon Well at the bottom and cap the shaft with glass to keep mobs out, and it runs at full output. It makes nothing by day or at new moon, nor in the Nether or the End, which have no sky. A redstone signal stops it."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book says photons carry no MRU themselves, but moonlight picks some up as it travels through the air, more the further it goes. How much also depends on the moon's phase, and with no moon there is nothing to pick up."
+        }
+      ]
+    }
+  ]
+}

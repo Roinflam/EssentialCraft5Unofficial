@@ -1,0 +1,949 @@
+{
+  "id": "hologram",
+  "order": 101,
+  "group": "main",
+  "title": "Chapter 18 · Holograms",
+  "subtitle": "Send a signal to the Inquisitorium",
+  "icon": "essentialcraft5:glitchy_core",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "neuronic_plating",
+      "title": "{item:essentialcraft5:neuronic_enriched_plating}",
+      "icon": "essentialcraft5:neuronic_enriched_plating",
+      "summary": "Base material for this chapter and the suit",
+      "complete": "essentialcraft5:guide/hologram/neuronic_plating",
+      "items": [
+        "essentialcraft5:neuronic_enriched_plating"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Signal received. Origin: surface of Hoanna, open sky. Sender unknown, matrix not on record. Action: dispatch a projection to take their measure.",
+          "by": "Inquisitorium archive, fragment"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make {item:essentialcraft5:neuronic_enriched_plating}. In this chapter you build a Holopad and defeat the boss it calls. The Holopad takes one Neuronic Enriched Plating, and nearly every part of the Computer Guy's Suit later on needs it too."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:neuronic_enriched_plating"
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 5 {item:essentialcraft5:demonic_plate}s, 2 {item:essentialcraft5:wind_gem}s and 2 {item:essentialcraft5:combined_magical_alloys}, covered in [[demons/ackronite]], [[wind/wind_gem]] and [[alloys/combined_magical_alloys]]. One craft makes <t>4</t> platings."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Neuronic Enriched Plating."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Start imbuing more now",
+          "text": "Wind Crystals are the slowest part of what lies ahead. Each Neuronic Enriched Plating craft takes 2, and the four pieces of the suit take 48 in all ([[computer/costs]]). Imbuing one costs {cfg:general.wind.gem_espe} ESPE, while an altar's 8 pillars gather only {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160} per second in the Overworld and {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160} in the End."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "text": "That comes to over thirty hours of nonstop gathering for one Overworld altar, and eight or nine hours for one in the End."
+            },
+            "Build two or three more [[wind/wind_rune]] altars and imbue in parallel, ideally in the End.",
+            "Pillars only gather while you stay nearby ([[mithriline/crystal_pillar]])."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Uses"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each {item:essentialcraft5:holopad} takes 1 ([[hologram/holopad]]).",
+            "Pressure Stabilizers, Repulsion Generators, Thruster Engines, Speaker Plates, the Vision Lens and the Computer Engine all need it ([[computer/drives]]).",
+            "The four suit pieces and the board each take 2–3 more on their own, and the full suit plus the board comes to <t>17</t> plating crafts in all ([[computer/costs]]).",
+            {
+              "if": "cfg:machines.ley_condenser.enabled",
+              "text": "The {item:essentialcraft5:ley_condenser} takes 1 too ([[ley/ley_condenser]])."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "holopad",
+      "title": "{item:essentialcraft5:holopad}",
+      "icon": "essentialcraft5:holopad",
+      "summary": "A pad that signals across Hoanna",
+      "complete": "essentialcraft5:guide/hologram/holopad",
+      "items": [
+        "essentialcraft5:holopad"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a Holopad. Right-click it under open sky in Hoanna and it calls this chapter's boss, the Holographic Projection. The math cores the Computer Engine needs can only be had by defeating it."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:holopad"
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 6 {item:essentialcraft5:twinkling_titanite}, 1 {item:essentialcraft5:void_core}, 1 {item:essentialcraft5:matter_of_eternity} and 1 {item:essentialcraft5:neuronic_enriched_plating}. The first two come from the chests in Hoanna's ruins ([[hoanna/relics]]), and {item:essentialcraft5:titanite_ore} sometimes drops {item:essentialcraft5:twinkling_titanite} as well."
+        },
+        {
+          "type": "p",
+          "text": "Matter Of Eternity takes a Nether Star. Put 1 {item:minecraft:nether_star} and 4 {item:essentialcraft5:mru_large_chunk}s in a {item:essentialcraft5:magician_table} ([[storage/soul_storage]]). Any MRU stored in it is lost when you craft the Holopad, so use a freshly made one that was never charged."
+        },
+        {
+          "type": "p",
+          "text": "Nether Stars come from the Wither. Summoning one takes 3 Wither Skeleton Skulls, and a wither skeleton drops its skull only <t>2.5%</t> of the time, or <t>5.5%</t> with Looting III. You'll need several pads, so start collecting skulls at a Nether fortress early."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.ley_condenser.enabled",
+          "text": "After the first fight, once you have a math core, you can build a {item:essentialcraft5:ley_condenser} and condense the Nether Stars you still need ([[ley/condensing]]). The star for your first Holopad has to come from a Wither."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "One pad, one summoning",
+          "text": "Every fight takes a new Holopad. The four math cores come from four separate fights ([[hologram/math_cores]]), and the modules of Chapter 21 need at least one more core, so plan for 5–7 pads, which means 5–7 Nether Stars, 5–7 Void Cores and 30–42 Twinkling Titanite. Each victory gives some of that back in relics, on average about 2 Twinkling Titanite, plus a Void Core every third fight or so. Every victory also drops a {item:essentialcraft5:glitchy_core}, and Chapter 19 needs only one ([[inquisitorium/glitchy_core]])."
+        },
+        {
+          "type": "h",
+          "text": "Where to put it"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "!cfg:general.hologram.other_dimensions",
+              "text": "It only activates in <hl>Hoanna</hl>. In any other dimension the action bar tells you it won't start."
+            },
+            {
+              "if": "cfg:general.hologram.other_dimensions",
+              "text": "It activates in any dimension."
+            },
+            "It needs <hl>open sky</hl>. Nothing that blocks movement may sit in the column above it, water included, though flowers, grass and torches are fine.",
+            "The projection appears <t>5</t> blocks above the pad, so keep that spot clear.",
+            "There must be no other Holographic Projection within <t>64</t> blocks.",
+            "It won't start where you aren't allowed to change blocks, such as someone else's claim.",
+            "Right-click it in survival or adventure mode. On Peaceful the signal goes unanswered.",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.holopad>0"
+              ],
+              "text": "You need matrix rank {cfg:general.matrix_rank.gates.holopad}; below that, right-clicking tells you the rank it needs and the rank you have ([[matrix/overview]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Holopad."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "If a condition isn't met, right-clicking costs nothing and the action bar says what's missing. Once everything is in place, the pad vanishes and the boss appears on the spot, so read [[hologram/summoning]] and [[hologram/hologram]] and gear up before you right-click."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Wrong spot?",
+          "text": "You can break a Holopad by hand and it drops itself, so just place it somewhere else."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book puts a few rumors before this device. Somewhere in Hoanna, they say, is an Inquisitorium that no one has ever found. To really put the Demonic Plates to work you need a computer your skills can't build, and the Inquisitorium might help. This device sends a strong signal across all of Hoanna, and if the Inquisitorium exists, it will hear."
+        }
+      ]
+    },
+    {
+      "id": "summoning",
+      "title": "Summoning: Once You're In",
+      "icon": "essentialcraft5:glitchy_core",
+      "summary": "Who counts as a fighter, and running too far",
+      "complete": "essentialcraft5:guide/hologram/summon",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: right-click the pad to summon the Holographic Projection. What answers the signal is a machine the Inquisitorium left behind, and the guard it sends is only a projection. The pad vanishes, a translucent Holographic Projection appears <t>5</t> blocks above, and battle music starts. It hangs in the air without moving and attacks round after round until it is defeated or everyone has left."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.gates.holopad>0"
+          ],
+          "text": "Summoning needs matrix rank {cfg:general.matrix_rank.gates.holopad}; below that, the pad only tells you the rank it needs and the rank you have ([[matrix/overview]])."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The projection appears and a red boss bar lights up at the top of the screen."
+        },
+        {
+          "type": "h",
+          "text": "Who counts as a fighter"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Whoever summoned it.",
+            "Any player in survival or adventure mode who actually takes health off it afterwards. A friend who wants in just needs to hit it once.",
+            "Onlookers, passers-by and spectators don't count. Its attacks don't target them, and they aren't pulled back."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Once you are fighting"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Go more than <t>24</t> blocks away and you are pulled back to where the pad was, losing <t>5</t> health, a bit less on Easy and more on Hard. Distance is checked every half second, so you can't walk or fly out.",
+            "To leave, get more than <t>{cfg:general.hologram.escape_range}</t> blocks away in one go, within half a second, or change dimension or log out. Dying or switching to creative or spectator mode also takes you out. After that you are no longer pulled back and its attacks stop following you.",
+            {
+              "if": "bauble:essentialcraft5:computer_board",
+              "text": "Flight is switched off while you fight, the board's included. Elytra work as usual."
+            },
+            {
+              "if": "!bauble:essentialcraft5:computer_board",
+              "text": "Flight is switched off while you fight. Elytra work as usual."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Losing doesn't cost the pad",
+          "text": "Once everyone has left, the projection shuts down after {cfg:general.hologram.abandon_ticks|sec} and the pad drops back where it was. It never despawns, so you can try again. Switching to Peaceful also shuts it down and gives the pad back."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Neither it nor its attacks break blocks, but the attacks hit every fighter, your friends included, and nearby hostile mobs as well."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the spot you'd be pulled to is blocked, has lava or something else harmful below it, is somewhere you aren't allowed to build (say the pad is in someone else's claim), or the teleport is stopped, you aren't pulled and lose no health. You are still in the fight, though, and the attacks keep following you. You leave the fight after <t>{cfg:general.hologram.abandon_ticks|sec}</t> in a row without being pulled back, or once you get more than <t>{cfg:general.hologram.escape_range}</t> blocks away.",
+            "Villagers, pets and animals are never hit by its attacks, so you can't lure it into hurting them."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hologram",
+      "title": "{lang:entity.essentialcraft5.hologram}",
+      "icon": "essentialcraft5:hologram_spawn_egg",
+      "summary": "Dodging its four attacks, and when to strike",
+      "complete": "essentialcraft5:main/hologram",
+      "items": [
+        "essentialcraft5:hologram_spawn_egg",
+        "essentialcraft5:player_clone_spawn_egg",
+        "essentialcraft5:music_disc_ropocalypse"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:hologram"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: defeat the Holographic Projection. The Inquisitorium dealt in measures and rulings, and even its guard attacks by addition, subtraction, multiplication and division. It has <t>{cfg:general.hologram.max_health}</t> health, and <hl>it can only be hurt in the rest between two attacks</hl>. Hits during an attack do nothing. The lower its health, the shorter the rest, from about 5 seconds at full health to just 1 second near the end."
+        },
+        {
+          "type": "h",
+          "text": "What to bring"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A melee weapon. Arrows, guns, explosions and other non-melee damage count for only a quarter.",
+            "Old armor you don't mind wearing out. Every hit of the Subtraction attack takes 5 durability off what you hold and off each armor piece.",
+            "Food and healing, and a stack of blocks. What the Subtraction attack shoots vanishes when it hits a block, so a bit of cover stops it.",
+            "Potions of Fire Resistance, for the orbital strikes that set you alight, and of Healing, for the divider fields that halve your health outright. Armor around full diamond is enough for the copies. Against the later orbital strikes armor hardly helps, so keep moving."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A rest usually lets you take only about 40 off it, so a fight means sitting through around {cfg:general.hologram.max_health|div:40|int} rounds, each 5 seconds of attacks and 1–5 seconds of rest. That's two or three minutes if all goes well. If your weapon hits for only ten-odd a swing, expect twice as many rounds."
+        },
+        {
+          "type": "h",
+          "text": "Four attacks"
+        },
+        {
+          "type": "p",
+          "text": "The core spinning over its head shows which attack it is using. While it rests, the core is a {item:essentialcraft5:glitchy_core}."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Core overhead",
+            "Attack",
+            "How to deal with it"
+          ],
+          "widths": [
+            4,
+            5,
+            7
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:addition_core}",
+              "Addition: conjures copies of you ({lang:entity.essentialcraft5.player_clone}) beside every fighter, with your face and your weapon. They run fast",
+              "A copy breaks at a touch and vanishes after 10 seconds. It hits for at most <t>{cfg:general.hologram.clone_max_attack_damage}</t>, a bit less on Easy and half again on Hard. The lower its health, the more copies"
+            ],
+            [
+              "{item:essentialcraft5:subtraction_core}",
+              "Subtraction: fires a stream of {lang:entity.essentialcraft5.armor_destroyer}s at every fighter",
+              "No damage, but every hit takes <t>5</t> durability off what you hold and off each armor piece. Armor that blocks damage with MRU, such as MHS Armor and the Void and Computer Guy's suits, loses MRU instead, and MHS Armor without enough charge loses durability as usual. Hide behind blocks"
+            ],
+            [
+              "{item:essentialcraft5:multiplication_core}",
+              "Multiplication: calls orbital strikes under a random fighter's feet, 10 in all",
+              "When you see a magenta beam, move. The beam narrows, then the strike hits everything in a 5 × 5 × 5 cube and sets it alight. It takes 3 seconds to land at full health and only 1 near the end, so keep moving"
+            ],
+            [
+              "{item:essentialcraft5:division_core}",
+              "Division: drops magenta divider fields at fighters' feet",
+              "When you hear the hiss and see a magenta ball, get 3 blocks away. After 2 seconds it opens, halves the health of anyone inside and adds Weakness, Slowness, Mining Fatigue and Blindness. The lower its health, the more balls"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hologram.orbital_max_damage<512",
+          "text": "Each orbital strike hurts more than the last. It starts at 1 and doubles with every strike until it reaches <t>{cfg:general.hologram.orbital_max_damage}</t>. Armor blocks part of it, but Resistance, Protection enchantments and shields don't help at all."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hologram.orbital_max_damage>=512",
+          "text": "Each orbital strike hurts more than the last. It starts at 1 and doubles every strike, so from the 8th on each one deals over a hundred, and the tenth deals <t>512</t>, which almost nothing survives. Never stand still. Armor blocks part of it, but Resistance, Protection enchantments and shields don't help at all."
+        },
+        {
+          "type": "h",
+          "text": "Hitting it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Stay within 24 blocks of it, since from farther away your hits do nothing, and dodge its attacks while you wait for a rest.",
+            "When the core overhead turns into the Glitchy Core, go in and hit it.",
+            "Once you deal about 40 damage in one rest, in one hit or several, it starts its next attack at once. So each rest only chips off a little, and you have to survive many rounds of attacks."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The projection flickers out and drops a math core ([[hologram/math_cores]]), a {item:essentialcraft5:glitchy_core}, a pile of relics and <t>50</t> experience. Every fighter earns the advancement \"{lang:advancements.essentialcraft5.hologram.title}\"."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Ranged attacks are a bad deal. The 40 counts the damage you deal before the reduction, so a 40-damage arrow takes only 10 health off it and still makes it attack at once. Only a player's own attacks can hurt it. Pets, machines and other creatures can't."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.hologram.max_damage_per_hit>0",
+              "text": "A single hit takes off at most <t>{cfg:general.hologram.max_damage_per_hit}</t> health, however heavy the weapon."
+            },
+            "Its own orbital strikes cannot hurt it.",
+            "Defeat it without wearing any armor for a separate advancement, \"{lang:advancements.essentialcraft5.hologram_big.title}\".",
+            "The creative inventory has a {item:essentialcraft5:hologram_spawn_egg} and a {item:essentialcraft5:player_clone_spawn_egg}. A Holographic Projection from the egg follows the same dimension rule and the one-within-64-blocks rule. With no one fighting it, it vanishes without dropping a Holopad."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decoy",
+      "title": "{item:essentialcraft5:holo_decoy_projector}",
+      "icon": "essentialcraft5:holo_decoy_projector",
+      "summary": "Project a double that draws mobs off for a few seconds",
+      "complete": "essentialcraft5:guide/hologram/decoy",
+      "optional": true,
+      "items": [
+        "essentialcraft5:holo_decoy_projector"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:holo_decoy_projector} and project a holographic double of yourself. The Holographic Projection conjures copies of you to fight you. The projector does the same trick, only the copy is on your side. Hostile mobs nearby that are after you turn on it instead, buying you a few seconds to catch your breath, reposition or finish things off."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: the recipe needs an {item:essentialcraft5:addition_core}, which only ever drops from a defeated Holographic Projection ([[hologram/math_cores]]), so the projector has to wait until you've beaten this chapter's boss."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:holo_decoy_projector"
+        },
+        {
+          "type": "p",
+          "text": "<em>Charging</em>: it runs on its own MRU and starts out empty. Fill it in a {item:essentialcraft5:charging_chamber} ([[storage/charging_chamber]]). If you carry soul storage, that is drawn from first."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hold it and aim at the ground within {cfg:general.holo_decoy.max_range} blocks. Aiming at a wall or into the air works too, and the double drops to the nearest ground below, up to 4 blocks down.",
+            "Right-click. {cfg:general.holo_decoy.mru_per_use} MRU is spent, and a translucent copy of you appears there, facing the way you face.",
+            "Hostile mobs within {cfg:general.holo_decoy.radius} blocks of it that are after you turn on it at once. While it stands, any that try to come back for you are pulled back to it.",
+            "After {cfg:general.holo_decoy.lifetime_ticks|sec} it fades, or sooner if it loses its 20 health."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have projected a Holographic Decoy."
+        },
+        {
+          "type": "tip",
+          "if": [
+            "cfg:general.holo_decoy.boss_ticks",
+            "cfg:general.holo_decoy.cooldown_ticks"
+          ],
+          "style": "warn",
+          "title": "Bosses see through it quickly",
+          "text": "A boss such as the Wither only falls for it for <t>{cfg:general.holo_decoy.boss_ticks|sec}</t>, then comes back for you. For {cfg:general.holo_decoy.cooldown_ticks|sec} from the moment it was fooled, nobody's double can fool it again, even if several of you take turns. Some modded bosses pick a new target all the time, and against them it barely helps."
+        },
+        {
+          "type": "tip",
+          "if": [
+            "cfg:general.holo_decoy.boss_ticks",
+            "!cfg:general.holo_decoy.cooldown_ticks"
+          ],
+          "style": "warn",
+          "title": "Bosses see through it quickly",
+          "text": "A boss such as the Wither only falls for it for <t>{cfg:general.holo_decoy.boss_ticks|sec}</t> at a time, then turns back to you first. Some modded bosses pick a new target all the time, and against them it barely helps."
+        },
+        {
+          "type": "tip",
+          "if": "!cfg:general.holo_decoy.boss_ticks",
+          "style": "warn",
+          "title": "Bosses ignore it",
+          "text": "A boss such as the Wither does not fall for it at all; the double only works on ordinary hostile mobs."
+        },
+        {
+          "type": "h",
+          "text": "Numbers"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Per use",
+              "{cfg:general.holo_decoy.mru_per_use} MRU"
+            ],
+            [
+              "Holds",
+              "20000 MRU"
+            ],
+            [
+              "Range",
+              "Up to {cfg:general.holo_decoy.max_range} blocks ahead"
+            ],
+            [
+              "Lure radius",
+              "{cfg:general.holo_decoy.radius} blocks around the double"
+            ],
+            [
+              "Lasts",
+              "{cfg:general.holo_decoy.lifetime_ticks|sec}"
+            ],
+            [
+              "Double's health",
+              "20"
+            ],
+            {
+              "if": "cfg:general.holo_decoy.cooldown_ticks",
+              "cells": [
+                "Cooldown",
+                "{cfg:general.holo_decoy.cooldown_ticks|sec}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Who it fools"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Only hostile mobs such as zombies, skeletons and creepers. Those after you, or after a player on your team, are drawn off.",
+            "Named or leashed mobs aren't affected. The Warden is blind and hunts by smell and vibration, so it can't see the projection either.",
+            "It never touches other players, villagers, animals or anyone's pets. Other players being chased are left alone unless they're on your team."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "One double per player. Projecting another makes the old one vanish on the spot.",
+            {
+              "if": "cfg:general.holo_decoy.cooldown_ticks",
+              "text": "The cooldown stays with you and is shared by all your projectors. Logging out and back in doesn't reset it, and only dying does."
+            },
+            "If you log out, die or change dimension, your double vanishes at once, and it is never kept in the save.",
+            "You and your teammates can't break your own double, so sweeps and area weapons don't hit it by accident. Mobs hitting it still hurt it.",
+            "A creeper chasing your double still blows up next to it, and that can catch you too, so project it a little farther away.",
+            "The double drops nothing, does not burn and takes no fall damage."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math_cores",
+      "title": "Math Cores",
+      "icon": "essentialcraft5:addition_core",
+      "summary": "Land the final blow after the attack you want",
+      "items": [
+        "essentialcraft5:addition_core",
+        "essentialcraft5:subtraction_core",
+        "essentialcraft5:multiplication_core",
+        "essentialcraft5:division_core"
+      ],
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:addition_core",
+            "essentialcraft5:subtraction_core",
+            "essentialcraft5:multiplication_core",
+            "essentialcraft5:division_core"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Math cores are parts of the Inquisitorium's calculating machines, and its projected guards carry them. A defeated Holographic Projection drops one, and which one depends on <hl>the last attack it finished</hl>. Addition gives an {item:essentialcraft5:addition_core}, Subtraction a {item:essentialcraft5:subtraction_core}, Multiplication a {item:essentialcraft5:multiplication_core} and Division a {item:essentialcraft5:division_core}. If it goes down before finishing any attack, you get a random one."
+        },
+        {
+          "type": "p",
+          "text": "The [[computer/computer_engine]] takes one of each. Math cores have no recipe, so this fight is the only way to get them."
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:addition_core} also goes into the {item:essentialcraft5:holo_decoy_projector} ([[hologram/decoy]]), so keep a spare if you want one."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "The modules of Chapter 21 take math cores too ([[terminal/modules]]). The main line needs two of them fitted, so plan on at least one more fight:"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "text": "{item:essentialcraft5:addition_core}: the Accumulator Module"
+            },
+            {
+              "if": "module:essentialcraft5:rewind_module||module:essentialcraft5:shred_module",
+              "text": "{item:essentialcraft5:subtraction_core}: one each for the Rewind and Shred Modules"
+            },
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "text": "{item:essentialcraft5:multiplication_core}: the Matrix Filter Module"
+            },
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "text": "{item:essentialcraft5:division_core}: the Matrix Shunt Module"
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "text": "The Phase Anchor Module needs no math core"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Getting the one you want"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Bring it down to one or two hits of health.",
+            "Watch the core over its head. During an attack it shows that attack's core.",
+            "Wait until it finishes the attack you want, then land the final blow in the rest right after."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "With good timing, four fights give you all four. With a few misses, five or six."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.ley_condenser.enabled",
+          "text": "Spare cores aren't wasted. Any kind goes into a {item:essentialcraft5:ley_condenser}, which condenses minerals and Nether Stars on demand ([[ley/ley_condenser]])."
+        },
+        {
+          "type": "h",
+          "text": "Other drops"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:orbital_remote}",
+              "<t>25%</t> ([[hologram/orbital_remote]])"
+            ],
+            [
+              "{item:essentialcraft5:divider_gun}",
+              "<t>25%</t> ([[hologram/divider_gun]])"
+            ],
+            [
+              "{item:essentialcraft5:music_disc_ropocalypse}",
+              "<t>30%</t> (a music disc)"
+            ],
+            [
+              "{item:essentialcraft5:glitchy_core}",
+              "<t>Always 1</t>, carrying a target balance for Chapter 19 ([[inquisitorium/glitchy_core]])"
+            ],
+            [
+              "Hoanna relics",
+              "<t>18–20</t> rolls from the same list as town tower chests ([[hoanna/relics]])"
+            ],
+            [
+              "Experience",
+              "<t>50</t>"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "It only drops anything when a player brings it down, and a group fight still drops one set. The advancement \"{lang:advancements.essentialcraft5.hologram.title}\" goes to everyone still in the fight when it falls."
+        }
+      ]
+    },
+    {
+      "id": "orbital_remote",
+      "title": "{item:essentialcraft5:orbital_remote}",
+      "icon": "essentialcraft5:orbital_remote",
+      "summary": "Rare boss loot: call down a strike from afar",
+      "complete": "essentialcraft5:main/hologram_remote",
+      "optional": true,
+      "items": [
+        "essentialcraft5:orbital_remote"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): the Holographic Projection sometimes drops a {item:essentialcraft5:orbital_remote} when it goes down, at the chance listed in [[hologram/math_cores]]. There's no recipe, so this is the only way to get one."
+        },
+        {
+          "type": "p",
+          "text": "<em>Charging</em>: it runs on its own MRU and drops empty. Fill it in a {item:essentialcraft5:charging_chamber} ([[storage/charging_chamber]]). If you carry soul storage, that is drawn from first."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hold it in either hand and aim at the ground within 32 blocks. A magenta beam rises there to mark where the strike will land. Aim at the sky or somewhere out of reach and there's no beam, and nothing happens.",
+            "Right-click. {cfg:general.orbital_remote.mru_per_strike} MRU is spent, and the real beam rises at that spot and slowly narrows.",
+            "3 seconds later the strike lands. Every creature in the 5×5×5 cube around that spot takes {cfg:general.orbital_remote.damage} damage and burns for 2 seconds."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Remote Orbital Strike and the advancement \"{lang:advancements.essentialcraft5.hologram_remote.title}\"."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Through walls",
+          "text": "Walls don't matter. Creatures in the 5×5×5 cube are hit however many blocks are in between. Armor blocks part of it, but <w>Resistance, Protection enchantments and shields don't</w>."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.orbital_remote.lock_range>0",
+          "text": "Lock-on"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.orbital_remote.lock_range>0",
+          "text": "When your crosshair is on a creature within {cfg:general.orbital_remote.lock_range} blocks, the preview beam stands under it and follows it. That is a lock-on. Right-click now and the strike keeps following it, settling only half a second before it lands, so a fast creature still has a moment to leave the 5×5×5 cube."
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.orbital_remote.lock_range>0",
+          "items": [
+            "It only follows sideways and keeps the height it had when you locked on. If the creature jumps off a cliff or flies up, the strike still lands at the old height.",
+            "If the locked creature disappears or goes to another world, the strike stays where it last followed and lands as usual.",
+            "Creatures behind walls or invisible can't be locked, and neither can anything the strike would spare anyway, such as you, your teammates or pets. When you aren't aiming at a creature, it strikes the block in your crosshair as before."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Numbers"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Per strike",
+              "{cfg:general.orbital_remote.mru_per_strike} MRU"
+            ],
+            [
+              "Holds",
+              "20,000 MRU"
+            ],
+            [
+              "Damage",
+              "{cfg:general.orbital_remote.damage}"
+            ],
+            {
+              "if": "cfg:general.orbital_remote.player_damage_multiplier>0",
+              "cells": [
+                "Damage multiplier against players",
+                "{cfg:general.orbital_remote.player_damage_multiplier|x}"
+              ]
+            },
+            [
+              "Area",
+              "5×5×5 around the target"
+            ],
+            [
+              "Lands",
+              "3 seconds after you right-click"
+            ],
+            [
+              "Range",
+              "32 blocks"
+            ],
+            {
+              "if": "cfg:general.orbital_remote.lock_range>0",
+              "cells": [
+                "Lock-on range",
+                "{cfg:general.orbital_remote.lock_range} blocks"
+              ]
+            },
+            {
+              "if": "cfg:general.orbital_remote.cooldown_ticks>0",
+              "cells": [
+                "Cooldown",
+                "{cfg:general.orbital_remote.cooldown_ticks|sec}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Who gets hit"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It never hurts you, your tamed animals or players on your team.",
+            "Villagers, named or leashed creatures, other people's tamed animals, player-built golems and armor stands are spared too.",
+            {
+              "if": "cfg:general.orbital_remote.player_damage_multiplier>0",
+              "text": "<b>Other players are hit</b>, subject to the usual PvP and claim rules."
+            },
+            {
+              "if": "cfg:general.orbital_remote.player_damage_multiplier==0",
+              "text": "Other players are never hurt."
+            },
+            "Creatures it kills count as your kills and drop their loot and experience as usual."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The strike always lands on top of a block, so aiming at a wall puts it on top of that block. Still water counts as ground, and tall grass and flowers catch your aim.",
+            "The blast on landing is only sound and light. It breaks no blocks, sets nothing on fire and pushes no one, so the terrain stays exactly as it was.",
+            "If you log out or die, strikes that haven't landed yet fizzle out."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original mod, the strike first boiled away water, ice and snow near the target, then smelted whatever could be smelted on the spot, sand into glass and ore into ingots, and scattered the results around. In this version it only hurts creatures and never touches the terrain."
+        }
+      ]
+    },
+    {
+      "id": "divider_gun",
+      "title": "{item:essentialcraft5:divider_gun}",
+      "icon": "essentialcraft5:divider_gun",
+      "summary": "Rare boss loot: halves enemies' health",
+      "complete": "essentialcraft5:main/hologram_gun",
+      "optional": true,
+      "items": [
+        "essentialcraft5:divider_gun"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): the {item:essentialcraft5:divider_gun} is the Holographic Projection's other rare drop, at the chance listed in [[hologram/math_cores]]. There is no recipe."
+        },
+        {
+          "type": "p",
+          "text": "<em>Charging</em>: like the remote, it drops empty. Fill it in a {item:essentialcraft5:charging_chamber}. Soul storage you carry is drawn from first."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hold right-click to draw it like a bow. After a full second it fires a divider shell by itself. It won't draw unless you have enough MRU for one shot, and the MRU is spent when the shell flies.",
+            "The shell arcs like a snowball and stops wherever it hits a block or a creature, releasing a small magenta ball.",
+            "2 seconds later the ball opens into a sphere 3 blocks in radius. Hostile mobs inside lose half their health and get the four effects in the table below."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Divider's Gun and the advancement \"{lang:advancements.essentialcraft5.hologram_gun.title}\"."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Hostile mobs only",
+          "text": "It only affects hostile mobs. You and other players, villagers, animals, pets and named or leashed creatures are untouched, and so is anything you couldn't normally hit, such as a creature in someone else's claim. Halving <w>never kills</w>, so you have to finish the job yourself."
+        },
+        {
+          "type": "h",
+          "text": "Numbers"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Per shot",
+              "{cfg:general.divider_gun.mru_per_shot} MRU"
+            ],
+            [
+              "Holds",
+              "20,000 MRU"
+            ],
+            [
+              "Draw",
+              "1 second"
+            ],
+            [
+              "Opens",
+              "2 seconds after landing"
+            ],
+            [
+              "Radius",
+              "3 blocks"
+            ],
+            [
+              "Effect",
+              "Health halved; Weakness V, Slowness V, Mining Fatigue V for 10 seconds each; Blindness for 5 seconds"
+            ],
+            {
+              "if": [
+                "!cfg:general.divider_gun.affect_bosses",
+                "cfg:general.divider_gun.boss_mode_ticks>0"
+              ],
+              "cells": [
+                "Against bosses",
+                "Not halved; Bisected for {cfg:general.divider_gun.boss_mode_ticks|sec} (not if immune to status effects)"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.divider_gun.affect_bosses",
+          "text": "It works on bosses like the Wither too, taking half their health per shot. The Ender Dragon and the Holographic Projection are the exceptions, and divider fields never affect them."
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.divider_gun.affect_bosses",
+            "cfg:general.divider_gun.boss_mode_ticks>0"
+          ],
+          "text": "Bosses aren't halved. Instead they get <hl>Bisected</hl> for {cfg:general.divider_gun.boss_mode_ticks|sec}, which halves both the damage they deal and any healing they receive. A boss you couldn't normally hit is out of its reach too. <w>Bosses immune to status effects don't get it</w>, and the Wither and the Ender Dragon are both like that, so this only helps against bosses from other mods that can take status effects. The Holographic Projection is unaffected as well."
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.divider_gun.affect_bosses",
+            "!cfg:general.divider_gun.boss_mode_ticks"
+          ],
+          "text": "It does nothing to bosses like the Wither or the Ender Dragon, nor to the Holographic Projection."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A shell that hasn't landed within 10 seconds disappears.",
+            "It doesn't press pressure plates, trigger targets or break blocks.",
+            "There's no cooldown. With a 1-second draw and 2 seconds before opening, two or three balls can be out at once.",
+            {
+              "if": [
+                "!cfg:general.divider_gun.affect_bosses",
+                "cfg:general.divider_gun.boss_mode_ticks>0"
+              ],
+              "text": "Bisected on a boss is an ordinary harmful effect, and other mods' cleansing can remove it."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original mod the divider field didn't care whom it hit. Apart from the Holographic Projection and creative players, every living thing in range lost half its health, the shooter included if they stood too close."
+        }
+      ]
+    }
+  ]
+}

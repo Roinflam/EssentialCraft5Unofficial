@@ -1,0 +1,392 @@
+{
+  "id": "magmatic",
+  "order": 87,
+  "group": "side",
+  "title": "支線 · 礦石加工",
+  "subtitle": "用 MRU 讓礦石翻倍",
+  "icon": "essentialcraft5:magmatic_smeltery",
+  "entries": [
+    {
+      "id": "fortified_furnace",
+      "title": "{item:essentialcraft5:fortified_magmatic_furnace}",
+      "icon": "essentialcraft5:fortified_magmatic_furnace",
+      "summary": "最早能做的礦石翻倍機器",
+      "complete": "essentialcraft5:guide/magmatic/fortified_furnace",
+      "optional": true,
+      "items": [
+        "essentialcraft5:fortified_magmatic_furnace"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "一塊礦原本只煉得出一個錠，拿 MRU 多燒一道，就出兩個。後來那座燒岩漿的大爐子出四個。我常想，礦裡原本到底藏著多少。",
+          "by": "《工坊手記》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:fortified_magmatic_furnace}。一塊礦石在原版熔爐裡只煉得出 1 個錠，在它這裡能煉出 2 個，要的零件第三章就會做，是這條支線最早能拿到的好處。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:fortified_magmatic_furnace"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：8 塊{item:essentialcraft5:magic_fortified_plating}，在魔力工作台上用{item:essentialcraft5:fortified_stone}做，每塊耗 10 MRU，見[[crafting/magician_crafts]]，再加 1 根{item:essentialcraft5:heating_rod}，用 6 個{item:essentialcraft5:fire_drops}夾 3 個鐵錠做成。"
+        },
+        {
+          "type": "p",
+          "text": "它和別的機器一樣耗 MRU，要先有一個 MRU 源頭，比如[[generators/heat_generator]]，再用[[crafting/bound_gem]]把熔爐連過去。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下熔爐，開啟介面，上方是輸入格，它正下方是寶石格，右邊是輸出格，把連著源頭的綁定寶石放進寶石格。",
+            "把<em>礦石方塊</em>放進輸入格，熔爐每刻耗 {cfg:machines.magmatic_furnace.mru_usage} MRU，{cfg:machines.magmatic_furnace.ticks_required|sec}後右邊出{item:essentialcraft5:magmatic_alloy}，鐵、金、銅、鑽石這類出 1 個，紅石 8 個，青金石 16 個。",
+            "把岩漿合金取出來再放回輸入格，花同樣的時間、同樣的 MRU，1 個合金就煉成 2 個成品。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "一塊{block:minecraft:iron_ore}走完這兩步得 2 個鐵錠，一共耗約 2 萬 MRU。每個岩漿合金的提示框裡都寫著它是哪種礦煉成的，不同礦的合金不會疊在一起。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出一台強化岩漿熔爐。放進礦石以後，介面上的箭頭開始往前走。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "粗礦不划算",
+          "text": "它要的是用絲綢之觸鎬挖下來的<em>礦石方塊</em>。{item:minecraft:raw_iron}這類粗礦也收，可兩個才出一個合金，產量和原版熔爐一樣，等於白跑一趟。銅礦直接挖更划算，平均能掉 3.5 個粗銅，比在這裡煉出的 2 個錠還多，用不著絲綢之觸。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "MRU 供不上時它就停下來等，進度不會丟。",
+            "輸出格放不下一整份產物時也會等，不會吞東西。",
+            "旁邊有紅石訊號時會停機，進度保留。",
+            "它不用岩漿，也不出爐渣，換成別的礦，進度就從頭算。",
+            "漏斗只能往輸入格里送它能處理的礦石和岩漿合金。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "更快的版本在下一篇，一塊礦出 4 個錠的是[[magmatic/smeltery]]。"
+        }
+      ]
+    },
+    {
+      "id": "furnace_upgrades",
+      "title": "更快的岩漿熔爐",
+      "icon": "essentialcraft5:pale_magmatic_furnace",
+      "summary": "每刻耗能不變，檔位越高越快也越省",
+      "complete": "essentialcraft5:guide/magmatic/furnace_upgrades",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magic_magmatic_furnace",
+        "essentialcraft5:pale_magmatic_furnace",
+        {
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:void_magmatic_furnace"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：把強化岩漿熔爐升級成速度 ×2 的{item:essentialcraft5:magic_magmatic_furnace}，再升級成速度 ×3 的{item:essentialcraft5:pale_magmatic_furnace}。每刻耗能一直不變，所以越快越省。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：每升一級，都用 8 塊板圍住上一級的熔爐，魔力級用 8 塊{item:essentialcraft5:magic_plate}，做法見[[crafting/magician_crafts]]，淡青級用 8 塊{item:essentialcraft5:pale_plate}，做法見[[alloys/pale]]。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_magmatic_furnace",
+            "essentialcraft5:pale_magmatic_furnace"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "去過海納爾以後還能再升一級，拿 8 塊{item:essentialcraft5:void_plating}圍住淡青岩漿熔爐，就是速度 ×4 的{item:essentialcraft5:void_magmatic_furnace}，虛空板的做法見[[hoanna/void_plating]]。"
+        },
+        {
+          "type": "recipe",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "item": "essentialcraft5:void_magmatic_furnace"
+        },
+        {
+          "type": "h",
+          "text": "幾檔對比"
+        },
+        {
+          "type": "table",
+          "header": [
+            "檔位",
+            "每一步",
+            "每一步耗能",
+            "一塊鐵礦煉完"
+          ],
+          "rows": [
+            [
+              "強化",
+              "{cfg:machines.magmatic_furnace.ticks_required|sec}",
+              "1 萬 MRU",
+              "2 萬 MRU"
+            ],
+            [
+              "魔力",
+              "{cfg:machines.magmatic_furnace.ticks_required|div:2|round:0|sec}",
+              "5000 MRU",
+              "1 萬 MRU"
+            ],
+            [
+              "淡青",
+              "{cfg:machines.magmatic_furnace.ticks_required|div:3|round:0|sec}",
+              "3325 MRU",
+              "6650 MRU"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "虛空",
+                "{cfg:machines.magmatic_furnace.ticks_required|div:4|round:0|sec}",
+                "2500 MRU",
+                "5000 MRU"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每一檔每刻都耗 {cfg:machines.magmatic_furnace.mru_usage} MRU，差別只在每一步要的時間更短，所以升級以後，煉同樣多的礦更快，也更省 MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出一台魔力或淡青岩漿熔爐。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "拆舊熔爐時，裡面的東西會掉出來，進度也不保留，最好趁它空著的時候換。"
+        }
+      ]
+    },
+    {
+      "id": "smeltery",
+      "title": "{item:essentialcraft5:magmatic_smeltery}",
+      "icon": "essentialcraft5:magmatic_smeltery",
+      "summary": "一塊礦出四個錠，兩道工序同時開工",
+      "complete": "essentialcraft5:guide/magmatic/smeltery",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magmatic_smeltery",
+        "essentialcraft5:magmatic_alloy"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:magmatic_smeltery}。工坊手記裡說的那座大爐子就是它。冶煉爐用 MRU 和岩漿熔礦，一塊礦的產出是岩漿熔爐的兩倍，一塊{block:minecraft:iron_ore}能出 4 個鐵錠，熔礦和煉合金兩道工序還能同時開工。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magmatic_smeltery"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：{item:essentialcraft5:combined_magical_alloys}、{item:essentialcraft5:mru_catcher}、{item:essentialcraft5:magical_screen}、{item:essentialcraft5:world_interactor}和{item:essentialcraft5:elemental_core}各 1 個，核心換成更高階的也行，再加{item:essentialcraft5:mru_conversion_matrix}、{item:essentialcraft5:heating_rod}各 2 個，另外備幾桶岩漿。注魔合金的做法見[[alloys/combined_magical_alloys]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "table",
+          "header": [
+            "格子",
+            "放什麼"
+          ],
+          "rows": [
+            [
+              "正中",
+              "連到 MRU 源頭的綁定寶石"
+            ],
+            [
+              "最左邊",
+              "岩漿桶，倒空的桶會出現在它右邊那格"
+            ],
+            [
+              "礦石格，位於右側左列上方",
+              "礦石，熔好的岩漿合金出在它正下方"
+            ],
+            [
+              "合金格，位於右側右列上方",
+              "岩漿合金，煉好的成品出在它正下方"
+            ],
+            [
+              "爐渣格，位於右側兩列下方的中間",
+              "魔力爐渣，由機器自行產出"
+            ]
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "介面正中是寶石格，放進連著 MRU 源頭的綁定寶石。",
+            "把{item:minecraft:lava_bucket}放進最左邊那格，罐裡放得下一整桶時它會自己倒進去，空桶出在它右邊。罐子能裝 8 桶，即 8000 mB，管道也能往裡灌。",
+            "把礦石放進<em>礦石格</em>，每刻耗 {cfg:machines.magmatic_smeltery.mru_usage_ores} MRU，{cfg:machines.magmatic_smeltery.ticks_required_ores|sec}後它正下方出岩漿合金，鐵、金、銅、鑽石出 2 個，紅石 16 個，青金石 32 個。",
+            "把合金挪進<em>合金格</em>，用漏斗送也行，每刻耗 {cfg:machines.magmatic_smeltery.mru_usage_alloys} MRU，每 {cfg:machines.magmatic_smeltery.ticks_required_alloys|sec}把 1 個合金煉成 2 個成品，成品出在它正下方。",
+            "每熔一塊礦或煉一個合金，爐渣格里就多一個{item:essentialcraft5:magical_slag}，那格滿了就不再出，機器照常運轉。爐渣最好留著，{item:essentialcraft5:magnetizing_staff}、擬態方塊、魔力燈籠和花紋方塊都要用。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "一塊{block:minecraft:iron_ore}熔 {cfg:machines.magmatic_smeltery.ticks_required_ores|sec}，得到的 2 個合金再各煉 {cfg:machines.magmatic_smeltery.ticks_required_alloys|sec}，最後出 4 個鐵錠，一共耗約 22400 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "熔礦時每刻有 10% 的機率耗 1 mB 岩漿，平均每塊礦約 {cfg:machines.magmatic_smeltery.ticks_required_ores|div:10|int} mB，滿滿一罐能熔兩百來塊。罐裡有岩漿才熔礦，煉合金不用岩漿。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出一台冶煉爐。放進岩漿和礦石後，左列下格會出現岩漿合金。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "MRU 要夠",
+          "text": "兩道工序一起運轉時每刻要 80 MRU，一兩台熱力產能器供不上。供不上時它停下來等，不會壞，只是變慢，想讓它滿速運轉，就多接幾個源頭。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼挖最划算"
+        },
+        {
+          "type": "p",
+          "text": "同一塊礦，挖法和機器不同，最後的收穫能差很多，下表列出一塊礦平均出幾個錠。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "挖法",
+            "原版熔爐",
+            "岩漿熔爐",
+            "冶煉爐"
+          ],
+          "rows": [
+            [
+              "鐵、金 · 絲綢之觸",
+              "1",
+              "2",
+              "4"
+            ],
+            [
+              "鐵、金 · 普通挖掘",
+              "1",
+              "1",
+              "2"
+            ],
+            [
+              "鐵、金 · 幸運 III",
+              "2.2",
+              "2.2",
+              "4.4"
+            ],
+            [
+              "銅 · 絲綢之觸",
+              "1",
+              "2",
+              "4"
+            ],
+            [
+              "銅 · 普通挖掘",
+              "3.5",
+              "3.5",
+              "7"
+            ],
+            [
+              "銅 · 幸運 III",
+              "7.7",
+              "7.7",
+              "15.4"
+            ]
+          ],
+          "widths": [
+            4,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "普通挖掘和幸運掉的是粗礦，冶煉爐裡一個粗礦出 1 個合金，摺合 2 個錠，岩漿熔爐裡要兩個粗礦才出 1 個合金。所以鐵、金、銅這類有粗礦的，最好用幸運 III 挖，再把粗礦送進冶煉爐，收穫最多，絲綢之觸只對鑽石、紅石、青金石、米斯萊這些沒有粗礦的礦划算。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "最值得送進來的",
+          "text": "沒有粗礦的礦石，用絲綢之觸挖下來送進冶煉爐最划算，鑽石、綠寶石能出 4 個，幸運 III 直接挖平均只有 2.2 個，紅石和青金石分別出 32 個和 64 個。一塊米斯萊礦能出 32 份{item:essentialcraft5:mithriline_dust}，幸運 III 直接挖平均只有 18.5 份，後面要用的米斯萊粉很多，值得專門這樣挖。"
+        },
+        {
+          "type": "h",
+          "text": "礦表"
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:ore_smelting",
+          "compact": true
+        },
+        {
+          "type": "p",
+          "text": "每一行是一塊礦在冶煉爐裡最後能出的成品數，說明裡分別寫著冶煉爐和岩漿熔爐各出幾個。礦石按種類識別，深層礦石和別的模組加的同種礦也算在內。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "某個輸出格放不下一整份產物時，對應的那道工序就等著，不會吞東西，另一道照常運轉。",
+            "旁邊有紅石訊號時整台停機，連岩漿桶也不倒，進度保留。",
+            "罐子只收岩漿，灌進去的岩漿也抽不出來。",
+            "漏斗只能往礦石格里送它能處理的礦石。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "想在野外把礦石直接變成岩漿合金，見[[staffs/magmatic_staff]]。"
+        }
+      ]
+    }
+  ]
+}

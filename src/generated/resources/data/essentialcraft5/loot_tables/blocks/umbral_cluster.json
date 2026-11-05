@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "block": "essentialcraft5:umbral_cluster",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "ripe"
+              ]
+            }
+          ],
+          "name": "essentialcraft5:umbral_cluster"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "essentialcraft5:blocks/umbral_cluster"
+}

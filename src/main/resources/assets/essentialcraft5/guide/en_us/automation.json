@@ -1,0 +1,598 @@
+{
+  "id": "automation",
+  "order": 81,
+  "group": "main",
+  "title": "Chapter 14 · Automation",
+  "subtitle": "Let machines do the work",
+  "icon": "essentialcraft5:crafter",
+  "entries": [
+    {
+      "id": "rules",
+      "title": "How Machines Work for You",
+      "icon": "minecraft:redstone",
+      "summary": "Rules every machine follows",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "One pulse of redstone and it crafts once. I sat beside it all afternoon and watched it turn them out, one after another. I felt a little guilty, and a little pleased.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "The Workshop Notebook has more drawings of these small working machines than of anything else. From this chapter on, machines take over jobs like crafting, moving items, feeding animals and shearing. This page sets out the rules they all share, so the pages after it don't repeat them."
+        },
+        {
+          "type": "p",
+          "text": "Nothing in this chapter or the next costs much. It is mostly Magical Fortified Stone, redstone and crafting tables, with no waiting for pillars to gather ESPE, so once the materials are in hand it all goes quickly."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "The most important rule",
+          "text": "The machines in this mod <em>never mine or place blocks for you</em>, and they never light fires. Changing blocks is still a job for you and your own tools."
+        },
+        {
+          "type": "h",
+          "text": "Redstone"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The {item:essentialcraft5:crafter} in this chapter and several machines in the [[farming/item_shuffler|Farm Automation]] side chapter work once at the <em>moment a redstone signal switches on</em>. A button press means one run, and a signal left on still counts as one. To keep one working, wire up a redstone clock.",
+            "There is a minimum gap between two runs, given on each machine's own page. A signal that arrives during the gap is remembered, and the machine catches up once the gap is over. However many signals came, it catches up only once.",
+            "Many other machines work the other way round, among them the {item:essentialcraft5:magical_hopper}, the Radiating Chamber and the generators. <em>A redstone signal stops them</em>, and they carry on once it is gone."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Whose machine"
+        },
+        {
+          "type": "p",
+          "text": "A machine remembers <em>the player who placed it</em>. Machines that handle animals or items on the ground around them follow these rules:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.protection.require_owner_online",
+              "text": "While the player who placed it is offline, it does not work;"
+            },
+            {
+              "if": "!cfg:general.protection.require_owner_online",
+              "text": "It keeps working while the player who placed it is offline;"
+            },
+            "It only works where that player could make changes themselves, and never touches anything in someone else's claim;",
+            "When it can't work, its window says why. For machines without a window, right-click with an empty hand."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Machines that only work inside themselves, like the {item:essentialcraft5:crafter}, touch nothing around them, so they run no matter who placed them or whether that player is online."
+        },
+        {
+          "type": "h",
+          "text": "Animals and dropped items"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Machines never touch named or leashed creatures, saddled camels, villagers, wandering traders, golems built by players, or allays bonded to a player;",
+            "Among tamed animals, your machines only look after <em>the ones you tamed yourself</em> and leave other people's pets alone;",
+            "Items on the ground that only one particular player may pick up are left alone unless they are meant for you;",
+            "Mobs killed by [[tesla/mru_coil|MRU discharges]] from machines drop nothing and give no experience. Anything a mob picked up off the ground still drops, though, and it usually belongs to a player."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crafter",
+      "title": "{item:essentialcraft5:crafter}",
+      "icon": "essentialcraft5:crafter",
+      "summary": "One redstone pulse, one craft",
+      "complete": "essentialcraft5:guide/automation/crafter",
+      "items": [
+        "essentialcraft5:crafter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:crafter} and let it do your crafting-table work. Each redstone pulse makes it craft once from whatever is laid out in its grid, and with hoppers feeding it you have an automatic crafting line. It needs no MRU at all."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "6 {item:essentialcraft5:fortified_stone} ([[crafting/fortified]]), 1 {item:minecraft:redstone}, 2 {item:minecraft:crafting_table}s"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crafter"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place it and right-click to open it. The window is laid out like a crafting table, with the 3×3 grid for ingredients on the left and the output slot on the right. The slot above the arrow can take a {item:essentialcraft5:crafting_frame} if you want one; see the next page.",
+            "Lay out the ingredients as you would on a crafting table. Each craft takes only 1 item from each slot, so every slot can hold a full stack.",
+            "Put a button or lever next to it. Every time the signal switches on, it crafts once and the result goes into the output slot.",
+            "For non-stop crafting, wire up a redstone clock. There are at least {cfg:machines.crafter.pulse_interval} ticks between two crafts."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Press the button and something appears in the output slot."
+        },
+        {
+          "type": "h",
+          "text": "Adding hoppers"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Hoppers and pipes can pull items out of the output slot.",
+            "<em>Without a frame, hoppers only top up slots that already hold the same ingredient</em> and never put anything into an empty slot. Lay out one set by hand to claim the spots, and as long as no slot runs empty the hoppers can keep it going.",
+            "To run fully automatic from an empty machine, fit a Crafting Frame, described on the next page."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Watch out"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the output slot has no room, because it is full or holds something else, nothing is crafted and no ingredients are used.",
+            "Without a frame, once a slot runs empty the hoppers can never refill it, so keep a few extra in each slot or feed faster than it crafts.",
+            "Ingredients like milk buckets and honey bottles leave their containers behind. The empty bucket or bottle goes back into its own slot, stacking onto any of the same kind there. If it doesn't fit, it joins the output slot when that holds the same item, and only failing that does it pop out of the top of the machine."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book gave it a teasing subtitle, \"Autocrafting for the nubz\"."
+        }
+      ]
+    },
+    {
+      "id": "crafting_frame",
+      "title": "{item:essentialcraft5:crafting_frame}",
+      "icon": "essentialcraft5:crafting_frame",
+      "summary": "A pattern for the crafter",
+      "complete": "essentialcraft5:guide/automation/crafting_frame",
+      "optional": true,
+      "items": [
+        "essentialcraft5:crafting_frame"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:crafting_frame} to give the crafter a pattern. Once it is fitted, each slot only takes what the pattern calls for, hoppers can't fill the wrong slot, and an empty crafter can start up and run fully automatic."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "5 {item:essentialcraft5:magic_fortified_plating}s (made on the Magician Table, [[crafting/magician_crafts]]), 4 {item:minecraft:crafting_table}s"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crafting_frame"
+        },
+        {
+          "type": "h",
+          "text": "Setting the pattern"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hold the frame and right-click to open the pattern window.",
+            "The quickest way is to click the slot on the right while holding the <em>result</em> you want. The frame finds the recipe and lays out the samples itself, and if there are several ways to make that item, clicking again moves to the next one.",
+            "You can also lay it out yourself. Click a slot on the left while holding an item and it becomes that slot's sample; <em>the item is not used up</em>. Clicking with an empty hand, or right-clicking, clears the slot.",
+            "When you're done, just close the window. Every change is saved to the frame as you make it."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Clicking the slot on the right with an empty hand clears the whole pattern."
+        },
+        {
+          "type": "h",
+          "text": "Two modes"
+        },
+        {
+          "type": "p",
+          "text": "The button in the top-left corner switches what each slot accepts:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Recipe ingredients</em> is the default. Each slot takes anything the recipe allows in that spot, so in a pattern for sticks the two plank slots take planks of any wood;",
+            "In <em>Exact</em> mode each slot only takes items identical to its sample, whatever the count."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Some special recipes don't say where each ingredient goes, such as tipped arrows, dyed leather armor, repairing tools, copying books, and some recipes other mods write themselves. A pattern for one of these accepts items exactly, whichever mode is chosen."
+        },
+        {
+          "type": "h",
+          "text": "Fitting it to the Crafter"
+        },
+        {
+          "type": "p",
+          "text": "With the frame in the crafter's slot above the arrow:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "each slot only accepts what the pattern needs, whether by hand or by hopper, and an empty slot shows a faint picture of what goes there;",
+            "ingredients from hoppers and pipes are <em>shared out in turn</em>, the emptiest slot first;",
+            "empty buckets and bottles that went back into a slot no longer match the pattern, so a hopper can pull them out."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "A crafter with a frame, fed by hoppers, turns out a result on every redstone pulse."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Invalid frame pattern",
+          "text": "If the frame's recipe no longer exists, after a data pack change for example, or its samples don't make anything, the crafter stops and its window shows \"Invalid frame pattern\". Setting the pattern again fixes it."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Pairs well with",
+          "text": "The [[logistics/magical_hopper]] in Chapter 15 gathers scattered items into a chest, and from there a hopper can carry them into the crafter."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original these two options were \"use / ignore the Ore Dictionary\". The Ore Dictionary was an item catalogue all mods shared back in 1.12, filing every mod's copper ingot under \"copper ingot\". 1.20 no longer has it."
+        }
+      ]
+    },
+    {
+      "id": "assembly_line",
+      "title": "Assembly Line",
+      "icon": "minecraft:hopper",
+      "summary": "Hoppers feed it, it crafts a batch",
+      "complete": "essentialcraft5:guide/automation/assembly_line",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:crafter} craft {cfg:machines.crafter.assembly_line_crafts} times in a row with every ingredient brought in by hoppers or pipes, none placed by hand. The craftsman who kept the Workshop Notebook later set a chest above his crafter, and after that he no longer had to sit beside it. The chapters ahead ask for dozens of Demonic Plates and hundreds of parts, and an assembly line lets you leave those running."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A [[automation/crafter|Crafter]], ideally fitted with a {item:essentialcraft5:crafting_frame} whose pattern is set ([[automation/crafting_frame]]). Only with a frame will hoppers feed empty slots.",
+            "Two chests and two {item:minecraft:hopper}s, one chest for the ingredients and one for the output.",
+            "A redstone clock, since the Crafter only crafts at the moment the signal switches on."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the ingredient chest above the Crafter with a downward hopper between them, and another hopper under the Crafter leading into the output chest.",
+            "Wire a redstone clock to the Crafter. Two crafts are at least {cfg:machines.crafter.pulse_interval} ticks apart, so a faster clock won't craft any more.",
+            "Fill the ingredient chest with enough for {cfg:machines.crafter.assembly_line_crafts} crafts and go do something else."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The Crafter has crafted {cfg:machines.crafter.assembly_line_crafts} times in a row from ingredients the hoppers brought in, and this page is ticked. The tick goes to whoever placed the Crafter; if they are offline, it is given on the first craft after they come back."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Hand-placed ingredients restart the count",
+          "text": "Any craft that uses an ingredient you put in by hand drops the count to zero, and counting starts over once those hand-placed items are used up. Taking items out of the Crafter doesn't reset it."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Without a frame",
+          "text": "Without a frame, hoppers only top up slots that already hold the same ingredient, so you begin by placing one item in each slot by hand as a starter. The crafts that use up those starters don't count, and after that counting goes on as normal."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Anything that feeds blocks by itself counts as feeding, including vanilla hoppers, the {item:essentialcraft5:magical_hopper}, the {item:essentialcraft5:magical_mirror} and pipes that push items into blocks. Only items put in through the window count as hand-placed, and that includes Shift-clicking.",
+            "A pulse that can't craft, because the output slot is full or ingredients are missing, neither counts nor resets.",
+            "The count is kept in the Crafter itself, so leaving the game or unloading the chunk loses nothing, but breaking and replacing the Crafter starts it over."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mimic",
+      "title": "{item:essentialcraft5:mimic}",
+      "icon": "essentialcraft5:mimic",
+      "summary": "Looks like a wall, walks like air",
+      "complete": "essentialcraft5:guide/automation/mimic",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mimic"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a few {item:essentialcraft5:mimic}s. A wall of them looks solid, but your hand goes straight through it. A mimic can take on the look of almost any ordinary block, yet it has no collision at all and you pass right through. It makes a good secret door, or a cover for machines and tunnel entrances."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "4 {item:essentialcraft5:fortified_stone}, 4 {item:essentialcraft5:fortified_glass}, 1 {item:essentialcraft5:magical_slag}; makes 4"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mimic"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the mimic.",
+            "Right-click it with the block it should look like and it takes on that look; the block in your hand isn't used up. Stairs, slabs and the like follow the spot you clicked and the way you face, as if you had placed them there yourself.",
+            "To change the look, right-click again with a different block. Sneak-right-click with both hands empty to turn it back.",
+            "To place a block against it, sneak while you right-click."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "It can copy most ordinary blocks, crafting tables and anvils among them. Blocks with special contents, such as chests, furnaces, signs, beds and banners, can't be copied, and neither can liquids or another mimic."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "After the right-click it looks exactly like the block in your hand."
+        },
+        {
+          "type": "h",
+          "text": "Watch out"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It never has collision. A mimic floor looks solid, but you drop straight through it, so never lay one over lava;",
+            "Mobs treat it as a wall when finding a path and won't walk through on purpose, but they still slip in when pushed or knocked back, and a mob that steps onto a mimic floor falls through too;",
+            "Whatever it copies, it blocks light completely, even when it looks like glass;",
+            "No mobs spawn inside it or on top of it, and water and lava can't flow into its space."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "p",
+          "text": "Every face of it counts as solid, so torches, buttons, levers, redstone dust and doors can all go on it, and a secret door's switch can sit right on the mimic wall. Sneak while placing them, or the mimic simply takes on their look."
+        },
+        {
+          "type": "p",
+          "text": "For a disguise you can stand on, use a fancy mimic ([[decorations/fancy_mimic]]). It has collision and lays a pattern over its disguise."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book gave it a joking subtitle, \"Totally my idea\"."
+        }
+      ]
+    },
+    {
+      "id": "redstone_transmitter",
+      "title": "{item:essentialcraft5:redstone_transmitter}",
+      "icon": "essentialcraft5:redstone_transmitter",
+      "summary": "Redstone over any distance",
+      "complete": "essentialcraft5:guide/automation/redstone_transmitter",
+      "optional": true,
+      "items": [
+        "essentialcraft5:redstone_transmitter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a pair of {item:essentialcraft5:redstone_transmitter}s to carry a redstone signal a long way without laying any dust."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "2 {item:minecraft:redstone}, 1 {item:minecraft:redstone_torch}, 3 {item:essentialcraft5:fortified_stone}; makes 2"
+            ],
+            [
+              "Also",
+              "1 {item:essentialcraft5:bound_gem} ([[crafting/bound_gem]])"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:redstone_transmitter"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the two transmitters; they attach to a block like a torch. A goes where the signal starts and B where you need it, with space between them, since they must not touch.",
+            "<em>Sneak</em>-right-click A with the Bound Gem so the gem remembers where A is.",
+            "Right-click B to open it and put the gem in its slot.",
+            "Power A, either by powering the block it is attached to, with a lever on that block for example, or by running redstone dust right up to it."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "From then on, whatever signal strength reaches A, B gives out the same from all six sides, updating every {cfg:machines.redstone_transmitter.update_interval_ticks} ticks. B drives redstone dust, lamps and pistons right next to it, but its signal doesn't pass through a solid block."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Flipping the lever at the source switches a redstone lamp next to B on and off, and B's window shows \"Linked\"."
+        },
+        {
+          "type": "h",
+          "text": "When it does not work"
+        },
+        {
+          "type": "p",
+          "text": "In B's window, the bar next to the gem shows the link status and the current output strength. Hover over it for the reason; the usual ones are listed below."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Both transmitters must be in the same dimension;",
+            "B only has an output while A and the block or two around it are loaded, and outputs 0 otherwise. It never loads distant areas for you;",
+            "If A touches another transmitter, B outputs 0, so transmitters can't be chained one after another;",
+            "A gem can only be bound to places you are allowed to change, so a transmitter in someone else's claim can't be bound."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Breaking B drops the gem."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book called it \"Wireless Redstone, mod author's edition\" and warned that the signal takes a little time to get across."
+        }
+      ]
+    },
+    {
+      "id": "metadata_manager",
+      "title": "{item:essentialcraft5:metadata_manager}",
+      "icon": "essentialcraft5:metadata_manager",
+      "summary": "A block's number as redstone",
+      "complete": "essentialcraft5:guide/automation/metadata_manager",
+      "optional": true,
+      "items": [
+        "essentialcraft5:metadata_manager"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:metadata_manager} so your redstone knows whether the crops are ripe or how much cake is left. Checking on the crops used to mean walking out to the field yourself."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "7 {item:essentialcraft5:fortified_stone}, 1 {item:minecraft:redstone}, 1 {item:essentialcraft5:bound_gem} (bound or not)"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:metadata_manager"
+        },
+        {
+          "type": "h",
+          "text": "Placing it"
+        },
+        {
+          "type": "p",
+          "text": "The patterned side is its front, and when you place it the front faces away from the block you clicked. To aim it at a wheat field, put a block behind the spot where it will go, then click the face of that block that looks toward the wheat."
+        },
+        {
+          "type": "p",
+          "text": "It reads the \"number\" of the block in front and puts it out as a redstone signal from its other five sides. The front gives no signal and doesn't connect to dust. When the block in front changes, it follows by itself within a tick or two."
+        },
+        {
+          "type": "h",
+          "text": "What it reads"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Block",
+            "Reads"
+          ],
+          "rows": [
+            [
+              "Wheat, carrots and other crops",
+              "How far they have grown (ripe wheat is 7)"
+            ],
+            [
+              "Cake",
+              "How many bites are gone"
+            ],
+            [
+              "Composter, cauldron",
+              "How full it is"
+            ],
+            [
+              "Snow, turtle eggs, sea pickles",
+              "How many layers or how many"
+            ],
+            [
+              "Stone, dirt and the like",
+              "No number, outputs 0"
+            ]
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Anything above 15 counts as 15. To trigger only when the wheat is ripe, run a line of 7 redstone dust from it and put what you want to trigger at the far end, since only a signal of strength 7 reaches that far."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Facing a cake with one bite taken, it lights the redstone lamp beside it."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original it was the Metadata Manager, and the research book's subtitle for it was \"Only for nerds!\". Back then it put out the block's metadata, which for many blocks was really a direction or a color. It never refreshed itself either, so after the wheat grew you had to give it a block update by hand."
+        }
+      ]
+    }
+  ]
+}

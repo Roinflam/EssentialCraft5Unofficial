@@ -1,0 +1,643 @@
+{
+  "id": "elements",
+  "order": 10,
+  "group": "main",
+  "title": "Chapter 1 · Elements",
+  "subtitle": "Mine drops and make your first parts",
+  "icon": "essentialcraft5:elemental_gem",
+  "entries": [
+    {
+      "id": "book",
+      "title": "Using This Book",
+      "icon": "essentialcraft5:research_book",
+      "summary": "Reading, looking up and ticking steps",
+      "items": [
+        "essentialcraft5:research_book"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "It fell as rays past counting and went through every layer of rock in this world, and some of the stone held on to it. Break such a stone and you will find earth, water, fire and air, pressed into small hard grains.",
+          "by": "Fragments of Essence, Book I"
+        },
+        {
+          "type": "p",
+          "text": "This book was put together from the Fragments and the notebook the forebears left behind, and it is laid out as a <em>step-by-step tutorial</em>. Each main chapter is one stage of the game and each page in it is one step. Follow them in order and a handful of drops grows into a workshop full of magic machines."
+        },
+        {
+          "type": "p",
+          "text": "Every step is written in roughly the same order: the <em>goal</em> → what to <em>prepare</em> → <em>how to do it</em> → how you know it is <em>done</em> → the <em>pitfalls</em>. The fine print goes at the end of the page, and you can skip it the first time through."
+        },
+        {
+          "type": "h",
+          "text": "Check marks and \"Next step\""
+        },
+        {
+          "type": "p",
+          "text": "Finish a step and its page gets a ✓ in the sidebar, with \"✓ Done\" under its title. The bottom of the home page always shows your next step, and clicking it takes you there."
+        },
+        {
+          "type": "p",
+          "text": "Steps marked \"Optional\" are up to you and never come up as your next step. A tick is only a marker. Nothing is locked, and you can read ahead whenever you like."
+        },
+        {
+          "type": "h",
+          "text": "Reading"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To…",
+            "Do this"
+          ],
+          "widths": [
+            2,
+            5
+          ],
+          "rows": [
+            [
+              "Scroll",
+              "Mouse wheel, ↑↓, PgUp / PgDn or Space"
+            ],
+            [
+              "Read the next page",
+              "The \"Next\" card at the end of each page; a finished chapter leads into the next one"
+            ],
+            [
+              "Go back",
+              "Right-click, Backspace or the mouse back button"
+            ],
+            [
+              "Search",
+              "Just start typing; Tab or Ctrl+F also work"
+            ],
+            [
+              "Close",
+              "Esc; the book reopens where you left off"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Text colors"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<c:C8B6F2>Lilac text with a dotted underline</c> is an item name. Hover it for the tooltip, or click it to open the page about it; item slots in recipe pictures work the same way.",
+            "<c:E7A3F0>Pale magenta text with a dotted underline</c> is a link to another page; click it to go there.",
+            "<t>Ice blue</t> marks numbers and names shown in machine screens, and <w>apricot</w> marks things to watch out for.",
+            "Green boxes tell you a step is done, orange boxes are pitfalls, and blue boxes hold extra notes and next steps. The cream \"EssentialCraft Lore\" boxes tell the original mod's history and can be skipped."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Quick lookup"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "In your inventory, a chest or a machine screen, point at an item and <em>hold Ctrl</em> (Cmd on a Mac). When the little circle in the tooltip fills, the book opens on that item's page, and closing it takes you back to the screen you were in.",
+            "Out in the world, hold the book and <em>sneak + right-click</em>. Aim at a block to look up that block, or at an item on the ground to look up that item."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Both need the book somewhere on you. If you'd rather use a key, bind \"Look Up in Research Book\" under Options → Controls → Key Binds."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:research_book"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.give_research_book_on_first_join",
+          "text": "The book went into your inventory the first time you joined the world. If you lose it, craft another with the recipe above."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.give_research_book_on_first_join",
+          "text": "Craft one with the recipe above and keep it with you."
+        },
+        {
+          "type": "p",
+          "text": "Every recipe picture in this book is read from the game when you open the page, so if another mod or a data pack changes a recipe, the picture changes with it."
+        }
+      ]
+    },
+    {
+      "id": "ores",
+      "title": "Infused Ores",
+      "icon": "essentialcraft5:fire_infused_ore",
+      "summary": "Mine the four elemental drops",
+      "complete": "essentialcraft5:main/root",
+      "items": [
+        "essentialcraft5:fire_drops",
+        "essentialcraft5:water_drops",
+        "essentialcraft5:earth_drops",
+        "essentialcraft5:air_drops",
+        "essentialcraft5:elemental_infused_ore",
+        "essentialcraft5:fire_infused_ore",
+        "essentialcraft5:water_infused_ore",
+        "essentialcraft5:earth_infused_ore",
+        "essentialcraft5:air_infused_ore",
+        "essentialcraft5:nether_elemental_infused_ore",
+        "essentialcraft5:nether_fire_infused_ore",
+        "essentialcraft5:nether_water_infused_ore",
+        "essentialcraft5:nether_earth_infused_ore",
+        "essentialcraft5:nether_air_infused_ore",
+        "essentialcraft5:end_elemental_infused_ore",
+        "essentialcraft5:end_fire_infused_ore",
+        "essentialcraft5:end_water_infused_ore",
+        "essentialcraft5:end_earth_infused_ore",
+        "essentialcraft5:end_air_infused_ore"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: mine {item:essentialcraft5:fire_drops}, {item:essentialcraft5:water_drops}, {item:essentialcraft5:earth_drops} and {item:essentialcraft5:air_drops}, all four kinds. Together they are called <em>drops</em>, the most basic material in this mod."
+        },
+        {
+          "type": "p",
+          "text": "<em>Infused ores</em> are rock that held on to some of the MRU that fell through it. They sit in stone like vanilla ores and aren't rare, so keep an eye out while mining or caving."
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:elemental_infused_ore",
+            "essentialcraft5:fire_infused_ore",
+            "essentialcraft5:water_infused_ore",
+            "essentialcraft5:earth_infused_ore",
+            "essentialcraft5:air_infused_ore",
+            "essentialcraft5:nether_elemental_infused_ore",
+            "essentialcraft5:nether_fire_infused_ore",
+            "essentialcraft5:nether_water_infused_ore",
+            "essentialcraft5:nether_earth_infused_ore",
+            "essentialcraft5:nether_air_infused_ore",
+            "essentialcraft5:end_elemental_infused_ore",
+            "essentialcraft5:end_fire_infused_ore",
+            "essentialcraft5:end_water_infused_ore",
+            "essentialcraft5:end_earth_infused_ore",
+            "essentialcraft5:end_air_infused_ore"
+          ],
+          "per_row": 5
+        },
+        {
+          "type": "h",
+          "text": "Where to look"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Dimension",
+            "Found in",
+            "Height"
+          ],
+          "widths": [
+            2,
+            4,
+            3
+          ],
+          "rows": [
+            [
+              "Overworld",
+              "Stone, granite, diorite, andesite",
+              "y 0 and up (none in deepslate)"
+            ],
+            [
+              "Nether",
+              "Netherrack",
+              "Top to bottom"
+            ],
+            [
+              "End",
+              "End stone",
+              "Top to bottom"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each dimension has five kinds, one per element plus Elemental Infused Ore, which drops {item:essentialcraft5:elemental_gem} directly. Always mine it when you see it, since it saves the drops you would otherwise spend crafting gems."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Hoanna's underground has the same ores as the Overworld, in about the same amounts ([[hoanna/lands]])."
+        },
+        {
+          "type": "h",
+          "text": "Mining"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Tool",
+              "Any pickaxe, even wood; bare hands get nothing"
+            ],
+            [
+              "Drops",
+              "1–2 of the matching drop, plus 0–2 experience"
+            ],
+            [
+              "Fortune",
+              "More per level: 1–8 at Fortune III"
+            ],
+            [
+              "Silk Touch",
+              "The ore block itself"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Your first drop ticks off this step, but the goal is all four kinds, so keep mining."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Flame Drops run out first",
+          "text": "One {item:essentialcraft5:heating_rod} takes 6 {item:essentialcraft5:fire_drops}, and the first four chapters need at least 5 rods. By the end of Chapter 5 you'll have used about 40 Flame Drops and a dozen or so of each other kind, so mine every Flame Infused Ore you see, with Fortune if you can."
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.mobs.elemental_wisp.max_nearby>0",
+          "style": "info",
+          "title": "Wisps in the caves",
+          "text": "<em>Elemental Wisps</em> drift through caves below y {cfg:general.mobs.elemental_wisp.max_y} in the Overworld. Each one's element depends on the biome it spawned in, and killing one yourself has a one-in-two chance to drop the matching drops. The ones under deserts and badlands are fire wisps ([[bestiary/elemental_wisp]])."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Next",
+          "text": "Once you have all four, make [[elements/elemental_gem]]. If one kind won't turn up, or you'd rather not go mining, read [[elements/rituals]] first; a few vanilla materials can condense drops for you."
+        }
+      ]
+    },
+    {
+      "id": "rituals",
+      "title": "Ground Rituals",
+      "icon": "essentialcraft5:fire_drops_cluster",
+      "summary": "Drops without mining",
+      "items": [
+        "essentialcraft5:fire_drops_cluster",
+        "essentialcraft5:water_drops_cluster",
+        "essentialcraft5:earth_drops_cluster",
+        "essentialcraft5:air_drops_cluster"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Another way</em>: drop one vanilla item onto the right arrangement of blocks and a <em>drops cluster</em> condenses there. Break it for drops. Each element has its own ritual."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Element",
+            "Center",
+            "North, south, east, west",
+            "Throw"
+          ],
+          "widths": [
+            1,
+            3,
+            3,
+            3
+          ],
+          "rows": [
+            [
+              "Fire",
+              "{block:minecraft:netherrack}",
+              "{block:minecraft:lava} (flowing counts)",
+              "{item:minecraft:blaze_powder}"
+            ],
+            [
+              "Water",
+              "{block:minecraft:ice}",
+              "{block:minecraft:water} (flowing counts)",
+              "{item:minecraft:clay_ball}"
+            ],
+            [
+              "Earth",
+              "{block:minecraft:slime_block}",
+              "{block:minecraft:grass_block}",
+              "{item:minecraft:slime_ball}"
+            ],
+            [
+              "Air",
+              "{block:minecraft:quartz_block} (chiseled and pillar count)",
+              "{block:minecraft:sand} (red sand counts)",
+              "{item:minecraft:gunpowder}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the center block down with the ring block on its four sides, north, south, east and west. The corners don't matter. Keep the space right above the center empty.",
+            "Stand within about 2 blocks and press Q to drop the item onto the center block.",
+            "About once a second the ritual checks and eats one item, whether or not it works. It works 80% of the time, and when it does, that space becomes a drops cluster.",
+            "The cluster breaks in one hit with no tool and gives 1–6 of the matching drops."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "While a cluster sits in the space the ritual pauses and the rest of the items wait untouched, so a whole stack still makes only one cluster at a time. Stay close and break each one as it forms. Each thrown item comes to 2.8 drops on average."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The item has to be <em>thrown by you with Q</em>, and only where you're allowed to place blocks. Items from dispensers, droppers or hoppers, items thrown in Adventure mode and items thrown inside someone else's claim don't count, and in those cases the item isn't eaten."
+        },
+        {
+          "type": "h",
+          "text": "Fire ritual (Flame Drops)"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:netherrack",
+            "R": {
+              "block": "minecraft:lava",
+              "label": "Flowing counts"
+            }
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:blaze_powder",
+          "result": "essentialcraft5:fire_drops_cluster",
+          "chance": 0.8
+        },
+        {
+          "type": "p",
+          "text": "Blaze powder and netherrack both come from the Nether. Flame Drops get used the most, and once you have a blaze spawner this ritual is the easiest way to get them."
+        },
+        {
+          "type": "h",
+          "text": "Water ritual"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:ice",
+            "R": {
+              "block": "minecraft:water",
+              "label": "Flowing counts"
+            }
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:clay_ball",
+          "result": "essentialcraft5:water_drops_cluster",
+          "chance": 0.8
+        },
+        {
+          "type": "h",
+          "text": "Earth ritual"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:slime_block",
+            "R": "minecraft:grass_block"
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:slime_ball",
+          "result": "essentialcraft5:earth_drops_cluster",
+          "chance": 0.8
+        },
+        {
+          "type": "h",
+          "text": "Air ritual"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": {
+              "block": [
+                "minecraft:quartz_block",
+                "minecraft:chiseled_quartz_block",
+                "minecraft:quartz_pillar"
+              ],
+              "label": "Chiseled quartz and quartz pillars count"
+            },
+            "R": {
+              "block": [
+                "minecraft:sand",
+                "minecraft:red_sand"
+              ],
+              "label": "Red sand counts"
+            }
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:gunpowder",
+          "result": "essentialcraft5:air_drops_cluster",
+          "chance": 0.8
+        },
+        {
+          "type": "p",
+          "text": "Quartz blocks are crafted from Nether quartz."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Quartz bricks, smooth quartz, suspicious sand and soul soil don't count.",
+            "The same layout with an {block:minecraft:emerald_block} and {block:minecraft:soul_sand} turns thrown emeralds into a [[mru/soul_stone]], while thrown diamonds feed a nearby [[start/mrucu|MRUCU]]. These two don't care who threw the item."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elemental_gem",
+      "title": "{item:essentialcraft5:elemental_gem}",
+      "icon": "essentialcraft5:elemental_gem",
+      "summary": "In nearly every recipe",
+      "complete": "essentialcraft5:guide/elemental_gem",
+      "items": [
+        "essentialcraft5:elemental_gem",
+        "essentialcraft5:fire_drops_block",
+        "essentialcraft5:water_drops_block",
+        "essentialcraft5:earth_drops_block",
+        "essentialcraft5:air_drops_block",
+        "essentialcraft5:elemental_drops_block"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: craft a batch of {item:essentialcraft5:elemental_gem}. It is the four elements crystallized together, and almost every machine and part needs it."
+        },
+        {
+          "type": "p",
+          "text": "<em>How</em>: one of each drop, placed anywhere in a crafting table, makes 4 Elemental Gems."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:elemental_gem"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have Elemental Gems in your inventory."
+        },
+        {
+          "type": "p",
+          "text": "<em>How many</em>: the parts on the next page alone take 9, and chapters 1–5 need forty or fifty in all, so make a few extra each time."
+        },
+        {
+          "type": "h",
+          "text": "Storage blocks"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:fire_drops_block",
+            "essentialcraft5:water_drops_block",
+            "essentialcraft5:earth_drops_block",
+            "essentialcraft5:air_drops_block",
+            "essentialcraft5:elemental_drops_block"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Nine drops of one kind, or nine Elemental Gems, pack into a block in a crafting table and unpack back into nine, which saves space in storage."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:elemental_drops_block",
+          "caption": "The Elemental Gem block as an example; the four drop blocks work the same way"
+        }
+      ]
+    },
+    {
+      "id": "parts",
+      "title": "Machine Parts",
+      "icon": "essentialcraft5:elemental_core",
+      "summary": "Parts for your first machine",
+      "complete": "essentialcraft5:guide/absorber_parts",
+      "items": [
+        "essentialcraft5:elemental_core",
+        "essentialcraft5:iron_support",
+        "essentialcraft5:mru_catcher",
+        "essentialcraft5:matrix_link",
+        "essentialcraft5:heating_rod"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make the five parts for your first machine, the {item:essentialcraft5:matrix_absorber}. Machines in this mod are never put together from raw materials; you make the parts first, then build the machine from them."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Part",
+            "Needed",
+            "Per craft"
+          ],
+          "widths": [
+            4,
+            2,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:iron_support}",
+              "4",
+              "4"
+            ],
+            [
+              "{item:essentialcraft5:mru_catcher}",
+              "1",
+              "8"
+            ],
+            [
+              "{item:essentialcraft5:matrix_link}",
+              "1",
+              "8"
+            ],
+            [
+              "{item:essentialcraft5:elemental_core}",
+              "1",
+              "1"
+            ],
+            [
+              "{item:essentialcraft5:heating_rod}",
+              "2",
+              "1"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In raw materials that comes to 9 Elemental Gems, 15 iron ingots, 8 gold ingots, 4 ender pearls, 2 emeralds and 4 stone, plus 12 {item:essentialcraft5:fire_drops}. Endermen at night are a good source of pearls."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:iron_support",
+            "essentialcraft5:elemental_core"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:mru_catcher",
+            "essentialcraft5:matrix_link"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:heating_rod"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have held all five parts."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Keep the leftovers",
+          "text": "The collector and the linking device come 8 at a time, and the Destructor uses only one of each. Keep the rest, because almost every later machine needs an {item:essentialcraft5:mru_catcher}, and you'll keep needing {item:essentialcraft5:elemental_core} and {item:essentialcraft5:heating_rod} as well."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Plan ahead",
+          "text": "Chapter 2 opens with a [[mru/soul_stone]], which takes an emerald block, 4 soul sand and a few emeralds. Soul sand is only found in the Nether, so this is a good time to make the trip."
+        }
+      ]
+    }
+  ]
+}

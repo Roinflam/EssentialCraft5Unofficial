@@ -1,0 +1,162 @@
+[
+  {
+    "id": "orbital_remote",
+    "title": "{item:essentialcraft5:orbital_remote}",
+    "icon": "essentialcraft5:orbital_remote",
+    "summary": "Rare Projection loot: call down a strike from afar",
+    "complete": "essentialcraft5:main/hologram_remote",
+    "optional": true,
+    "items": [
+      "essentialcraft5:orbital_remote"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em> (optional): the Holographic Projection sometimes drops a {item:essentialcraft5:orbital_remote} when it goes down (drop chances in [[hologram/math_cores]]). There is no recipe; this is the only way to get one."
+      },
+      {
+        "type": "h",
+        "text": "How to use it"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Hold it in either hand and point at the ground within 32 blocks: a magenta beam of light marks where the strike will land. Pointing at the sky or out of reach shows no beam, and nothing happens when you click.",
+          "Right-click: {cfg:general.orbital_remote.mru_per_strike} MRU is spent, a real beam rises at the target and slowly narrows.",
+          "3 seconds later the strike lands: every creature in the 5×5×5 around the target takes {cfg:general.orbital_remote.damage} damage, and those it hits burn for 2 seconds."
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          ["Per strike", "{cfg:general.orbital_remote.mru_per_strike} MRU (taken from MRU storages you carry first, then from the remote itself)"],
+          ["Holds", "20000 MRU"],
+          ["Damage", "{cfg:general.orbital_remote.damage}"],
+          {
+            "if": "cfg:general.orbital_remote.player_damage_multiplier>0",
+            "cells": ["Damage to players", "{cfg:general.orbital_remote.player_damage_multiplier|x}"]
+          },
+          ["Area", "5×5×5 around the target"],
+          ["Lands", "3 seconds after the click"],
+          ["Range", "32 blocks"],
+          {
+            "if": "cfg:general.orbital_remote.cooldown_ticks>0",
+            "cells": ["Cooldown", "{cfg:general.orbital_remote.cooldown_ticks|sec}"]
+          }
+        ]
+      },
+      {
+        "type": "p",
+        "text": "The strike always lands on top of the block you point at: aim at a wall and it comes down right above that block. Still water counts as ground, and grass and flowers catch your aim too."
+      },
+      {
+        "type": "list",
+        "items": [
+          "It spares you, the animals you tamed and players on your team;",
+          "it also spares villagers, named or leashed creatures, other people's pets and player-built golems, and leaves armor stands alone;",
+          {
+            "if": "cfg:general.orbital_remote.player_damage_multiplier>0",
+            "text": "<b>other players do get hit</b>, following the usual PvP and land-claim rules;"
+          },
+          {
+            "if": "cfg:general.orbital_remote.player_damage_multiplier==0",
+            "text": "it never hurts other players;"
+          },
+          "whatever it kills counts as your kill: normal drops and experience."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "Through walls",
+        "text": "Walls do not stop it: creatures inside the 5×5×5 get hit no matter how many blocks are in between. Armor still soaks part of the damage, but <w>Resistance, Protection enchantments and shields do nothing</w>."
+      },
+      {
+        "type": "p",
+        "text": "The blast when it lands is only sound and light: it breaks no blocks, starts no fires and pushes nobody. The terrain stays exactly as it was."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "In the original mod this strike first boiled away water, ice and snow around the target, then smelted every block it could on the spot: sand into glass, ores into ingots, with the results scattered on the ground, a furnace that worked from a distance. Here it only hurts creatures and leaves the terrain alone."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "You have a Remote Orbital Strike."
+      }
+    ]
+  },
+  {
+    "id": "divider_gun",
+    "title": "{item:essentialcraft5:divider_gun}",
+    "icon": "essentialcraft5:divider_gun",
+    "summary": "Rare Projection loot: halves enemies' health",
+    "complete": "essentialcraft5:main/hologram_gun",
+    "optional": true,
+    "items": [
+      "essentialcraft5:divider_gun"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em> (optional): the {item:essentialcraft5:divider_gun} is the other rare drop of the Holographic Projection (drop chances in [[hologram/math_cores]]). There is no recipe."
+      },
+      {
+        "type": "h",
+        "text": "How to use it"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Hold right-click to draw it like a bow; after 1 second it fires a divider projectile on its own. You need enough MRU for a shot when you start drawing, or it will not draw; the MRU is spent when the shot flies.",
+          "The projectile arcs like a snowball and stops at the first block or creature it hits, leaving a small magenta orb.",
+          "2 seconds later the orb opens into a sphere with a 3-block radius: hostile mobs inside lose half their health and get the four debuffs in the table below."
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          ["Per shot", "{cfg:general.divider_gun.mru_per_shot} MRU"],
+          ["Holds", "20000 MRU"],
+          ["Draw", "1 second"],
+          ["Opens", "2 seconds after landing"],
+          ["Radius", "3 blocks"],
+          ["Effect", "Half of current health; Weakness V, Slowness V and Mining Fatigue V for 10 seconds; Blindness for 5 seconds"]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "Hostile mobs only",
+        "text": "Players (you included), villagers, animals, pets and named or leashed creatures are never affected, and neither is anything you could not hit yourself (in someone else's claim, for example). Halving <w>never kills</w>; you still have to finish the job."
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.divider_gun.affect_bosses",
+        "text": "It works on bosses like the Wither too, taking half their health in one shot. The Ender Dragon and the Holographic Projection are the exceptions: divider fields never touch them."
+      },
+      {
+        "type": "p",
+        "if": "!cfg:general.divider_gun.affect_bosses",
+        "text": "It does nothing to bosses like the Wither and the Ender Dragon, or to the Holographic Projection."
+      },
+      {
+        "type": "p",
+        "text": "A projectile that has not landed after 10 seconds simply vanishes. It never presses pressure plates or triggers targets, and it breaks nothing."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "\"Divide by two\": it is the same joke as the Projection's four math cores (addition, subtraction, multiplication and division), and this gun is the division. The advancement for getting one is called \"The Math of the Universe\"."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "You have a Divider's Gun."
+      }
+    ]
+  }
+]

@@ -1,0 +1,165 @@
+[
+  {
+    "id": "legend",
+    "title": "The Legend of Hoanna",
+    "icon": "minecraft:dead_bush",
+    "summary": "The first world MRU destroyed",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "Long before us, another world learned to master MRU. Its people built ever larger machines and drew ever more MRU, until the land burned into desert and only a few dim, broken suns were left in the sky. That world is <hl>Hoanna</hl>, the first world MRU destroyed."
+      },
+      {
+        "type": "p",
+        "text": "Its people are long gone. What remains are ruined towns, catacombs and mine shafts underground, and radiation and strange weather that never lift. The ruins hold <em>void materials</em> you cannot find anywhere here, and the machines ahead of you need them ([[hoanna/relics]])."
+      },
+      {
+        "type": "p",
+        "text": "Only the wind still remembers the way. Once the wind trusts you, the {item:essentialcraft5:wind_tablet} can turn a lit Nether portal into a Gate to Hoanna: first make the tablet reveal the wind’s true name ([[hoanna/wind_name]]), then open the gate ([[hoanna/open_gate]])."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "The letters that slowly appear on the Wind Tablet spell the wind’s true name: <em>Owethanna Else Hugaida</em>. In the original, the wind only opens the way to Hoanna for those who can speak it."
+      }
+    ]
+  },
+  {
+    "id": "wind_name",
+    "title": "The Wind’s Name",
+    "icon": "essentialcraft5:wind_tablet",
+    "summary": "No question marks left on the tablet",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: turn every question mark on the {item:essentialcraft5:wind_tablet} into a letter."
+      },
+      {
+        "type": "p",
+        "text": "Hover over the tablet: under “Wind Name:” there is a row of question marks. Every time your wind relation grows a little, one of them turns into a letter; at {cfg:general.wind.tablet_points} the whole name shows and the tablet starts to answer you. Making the tablet: [[wind/wind_tablet]]. Raising your relation: [[wind/air_potion]]."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "The name in the tooltip has no question marks left."
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "Watch out",
+        "text": "Until the whole name shows, right-clicking a Nether portal with the tablet only gets you “The portal does not respond...”: no MRU is spent and the portal stays as it is."
+      }
+    ]
+  },
+  {
+    "id": "open_gate",
+    "title": "Opening the Gate",
+    "icon": "minecraft:flint_and_steel",
+    "summary": "Turn a Nether portal green with the tablet",
+    "complete": "essentialcraft5:guide/hoanna/portal",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: turn a lit Nether portal in the Overworld into a Gate to Hoanna."
+      },
+      {
+        "type": "p",
+        "text": "<em>You need</em>: a {item:essentialcraft5:wind_tablet} that shows the wind’s name ([[hoanna/wind_name]]); at least {cfg:general.wind.tablet_portal_mru} MRU, either in the tablet itself or in MRU storage items you carry; and a Nether portal: an obsidian frame with an opening 2 to 21 wide and 3 to 21 tall, any size you like."
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Build and light a Nether portal in the <em>Overworld</em>. Do not step in yet.",
+          "Hold the Wind Tablet and right-click the purple surface of the portal.",
+          "The whole portal turns green at once and {cfg:general.wind.tablet_portal_mru} MRU is spent (from your storage items first, then from the tablet)."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "The portal is green and the message above your hotbar says the Gate to Hoanna is open."
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "Watch out",
+        "text": "<b>Only Overworld portals can be changed</b>, not ones in the Nether, and the portal has to be fully lit. Inside someone else’s claim the change is refused: not a single block changes and <em>no</em> MRU is spent."
+      },
+      {
+        "type": "p",
+        "text": "A Gate to Hoanna cannot be picked up as an item. Break one obsidian block of the frame and the whole gate is gone, just like a Nether portal; rebuild the frame, light it and change it again."
+      }
+    ]
+  },
+  {
+    "id": "crossing",
+    "title": "Crossing Over",
+    "icon": "minecraft:obsidian",
+    "summary": "Stand in the gate for a moment",
+    "complete": "essentialcraft5:guide/hoanna/enter",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: set foot in Hoanna for the first time."
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Walk into the Gate to Hoanna and stand still.",
+          "Wait {cfg:general.hoanna.portal_wait_ticks|sec} (instantly in creative). A green glow slowly creeps in from the edges of the screen, without spinning or nausea; if it bothers you, turn down “Distortion Effects”.",
+          "You arrive standing in a Gate to Hoanna: if there is one within {cfg:general.hoanna.portal_search_radius} blocks on that side you come out of it, otherwise a new one is built near the matching spot."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "The sky turns dark, the horizon hazy yellow, and the land around you looks like nothing you have seen."
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "Watch out",
+        "text": "<b>You cannot pass through while riding</b>; dismount first. After crossing, gates will not take you again for {cfg:general.hoanna.portal_cooldown_ticks|sec}, and the time you spend standing in a gate does not count, so step out first. If every spot to arrive at on the other side is in someone else’s claim, the gate refuses to send you; try again later."
+      },
+      {
+        "type": "p",
+        "text": "Only players can pass: items you throw in, animals and minecarts all stay where they are."
+      }
+    ]
+  },
+  {
+    "id": "way_home",
+    "title": "The Way Home",
+    "icon": "minecraft:red_bed",
+    "summary": "Return gates, beds and mending a gate",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "Stepping into a Gate to Hoanna in Hoanna takes you back to the same coordinates in the Overworld: if there is a Gate to Hoanna within {cfg:general.hoanna.portal_search_radius} blocks (usually the one you came through) you come out of it."
+      },
+      {
+        "type": "p",
+        "text": "If there is <em>no</em> Gate to Hoanna nearby in the Overworld (it was broken, or you are too far away), the gate does <em>not</em> build one there. It sends you to your spawn point instead: the bed you last slept in in the Overworld, or the world spawn if there is none."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Beds work in Hoanna: sleeping in one sets your spawn point there (it does not skip the night). Respawn anchors do not work in Hoanna.",
+          "If you die without having slept in Hoanna, you respawn at your Overworld spawn point.",
+          "If your spawn point is in Hoanna and no gate is found on the way back, you land at the world spawn."
+        ]
+      },
+      {
+        "type": "h",
+        "text": "If the gate breaks"
+      },
+      {
+        "type": "p",
+        "text": "Nether portals cannot be lit in Hoanna. If the gate on that side is broken, build an empty obsidian frame again and right-click the <em>inside</em> of the frame with the {item:essentialcraft5:wind_tablet} (for example the top of the bottom row): the empty frame turns straight into a Gate to Hoanna. It needs the wind’s name and {cfg:general.wind.tablet_portal_mru} MRU just the same, and inside someone else’s claim it is refused without spending MRU."
+      }
+    ]
+  }
+]

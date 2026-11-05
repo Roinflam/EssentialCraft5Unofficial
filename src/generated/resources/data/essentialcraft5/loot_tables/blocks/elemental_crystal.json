@@ -1,0 +1,54 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "replace",
+                  "source": "size",
+                  "target": "BlockEntityTag.size"
+                },
+                {
+                  "op": "replace",
+                  "source": "fire",
+                  "target": "BlockEntityTag.fire"
+                },
+                {
+                  "op": "replace",
+                  "source": "water",
+                  "target": "BlockEntityTag.water"
+                },
+                {
+                  "op": "replace",
+                  "source": "earth",
+                  "target": "BlockEntityTag.earth"
+                },
+                {
+                  "op": "replace",
+                  "source": "air",
+                  "target": "BlockEntityTag.air"
+                }
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "essentialcraft5:elemental_crystal"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "essentialcraft5:blocks/elemental_crystal"
+}

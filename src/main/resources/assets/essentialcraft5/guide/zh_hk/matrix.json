@@ -1,0 +1,1165 @@
+{
+  "id": "matrix",
+  "order": 6,
+  "group": "start",
+  "title": "矩陣階位速查",
+  "subtitle": "九階、圖譜、試煉與相性",
+  "icon": "essentialcraft5:soul_stone",
+  "if": "cfg:general.matrix_rank.enabled",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "你的矩陣",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "矩陣階是什麼，每階給什麼",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "矩陣並非生來如此。心神看管得久了，它會一層層加厚，經得起的也多起來。只是每厚一層，我們都得先捱上一場。",
+          "by": "《源質殘卷·卷二》"
+        },
+        {
+          "type": "p",
+          "text": "你身上那層[[mru/soul_stone|MRU 矩陣]]分九階，叫作<hl>矩陣階</hl>，起初是零階。矩陣階沒有經驗條，只能一階一階地突破：每一階先湊齊圖譜、祭品和能量，再在{item:essentialcraft5:matrix_crucible}上打一場試煉。"
+        },
+        {
+          "type": "h",
+          "text": "突破要湊齊的三樣"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>圖譜</em>：你親手殺過的敵對生物要夠多少種，有幾階還點名要地獄、海納爾或首領，見[[matrix/codex]]。",
+            "<em>祭品和能量</em>：放進淬鍊台的幾樣材料，以及 UBMRU、MRU 或 ESPE。能量在試煉開始時扣，祭品成功了才用掉。",
+            "<em>試煉</em>：在台子旁邊打倒一批長着你自己模樣的矩陣迴響，見[[matrix/crucible]]。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每一次突破都是主線裏的一步，第二章起每隔幾章就有一次。下面是總覽，每階要的東西見[[matrix/ranks]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "階",
+            "名字",
+            "在哪一章",
+            "新本事",
+            "矩陣容量"
+          ],
+          "rows": [
+            [
+              "一階",
+              "覺察",
+              "第二章",
+              "拿着靈魂石看得見聚集體",
+              "—"
+            ],
+            [
+              "二階",
+              "汲取",
+              "第五章",
+              "矩陣容量，體內能存 MRU",
+              "{cfg:general.matrix_rank.pool_per_rank|mul:1}"
+            ],
+            [
+              "三階",
+              "定性",
+              "第十章",
+              "相性 I，武器帶上矩陣特性",
+              "{cfg:general.matrix_rank.pool_per_rank|mul:2}"
+            ],
+            [
+              "四階",
+              "凝鍊",
+              "第十二章",
+              "矩陣虹吸",
+              "{cfg:general.matrix_rank.pool_per_rank|mul:3}"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "cells": [
+                "五階",
+                "越界",
+                "第十五章",
+                "海納爾輻射抗性 +5%",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled||!cfg:general.radiation.enabled",
+              "cells": [
+                "五階",
+                "越界",
+                "第十五章",
+                "容量和耐受再漲一檔",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "六階",
+                "契約",
+                "第十七章",
+                "相性 II",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:5}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "七階",
+                "審視",
+                "第十九章",
+                "矩陣穩固",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:6}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "八階",
+                "暗影",
+                "第二十二章",
+                "暗影相性（直接 II）",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:7}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "九階",
+                "源質",
+                "第二十三章",
+                "相性 III",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:8}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每升一階，<em>耐受</em>還多 {cfg:general.matrix_rank.tolerance_per_rank|pct}，它只抵矩陣階這一套帶來的矩陣損傷，見[[matrix/tolerance]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "淬鍊台上列着九階。八階在第二十二章，九階是第二十三章、也是主線的最後一步，見[[shade/rank_8]]和[[apex/rank_9]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "淬鍊台上列着九階。六階起要在海納爾殺怪，去不了海納爾的話，最高練到五階。"
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0||cfg:general.matrix_rank.gates.holopad>0"
+          ],
+          "text": "門"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            {
+              "if": "cfg:general.matrix_rank.gates.hoanna_portal>0",
+              "cells": [
+                "海納爾之門",
+                "矩陣階不到 {cfg:general.matrix_rank.gates.hoanna_portal} 階時，站進門裏不會傳送，魔力傳送器也不往海納爾送你，見[[hoanna/crossing]]"
+              ]
+            },
+            {
+              "if": "cfg:general.matrix_rank.gates.holopad>0",
+              "cells": [
+                "全息投影台",
+                "不到 {cfg:general.matrix_rank.gates.holopad} 階召不出全息投影，見[[hologram/holopad]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0||cfg:general.matrix_rank.gates.holopad>0"
+          ],
+          "text": "門只攔進，不攔出，從海納爾回來不看矩陣階。"
+        },
+        {
+          "type": "h",
+          "text": "看自己幾階"
+        },
+        {
+          "type": "list",
+          "items": [
+            "綁定你的{item:essentialcraft5:soul_stone}，物品提示裏寫着你幾階、圖譜幾種、矩陣容量和相性，這幾行只有你自己看得到。",
+            "淬鍊台的界面左邊是九階表，右邊列着下一階的條件，湊齊的打勾，下面是按組翻頁的圖譜。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "codex",
+      "title": "矩陣圖譜",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "記下你親手殺過的敵對生物",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<hl>矩陣圖譜</hl>記着你親手殺過哪些敵對生物，每種只記第一次，記的是種類，不是隻數。突破的第一樣條件就是圖譜，每階要幾種見[[matrix/ranks]]。"
+        },
+        {
+          "type": "p",
+          "text": "殺到一種新的敵對生物時，快捷欄上方會寫「矩陣圖譜 +1：喪屍（9 / 13，三階要 13）」這樣一行。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.first_kill_ubmru_multiplier>0",
+          "text": "添上新種類的那一下，吸到的 UBMRU 另加本來的 {cfg:general.matrix_rank.first_kill_ubmru_multiplier|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "什麼算數"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只算敵對生物。喪屍、骷髏、蜘蛛、苦力怕、終界使者、女巫、夜魅都算，村民、動物和鐵人不算。別的模組加的敵對生物同樣算數。",
+            "致命一擊要是你自己打的，近戰、弓箭、三叉戟、槍都行，寵物咬死的、別人補刀的不算。你打過它，它在 5 秒內摔死或燒死，也算你的。",
+            "首領例外：凋零怪、終界龍、全息投影、審判庭哨兵這些首領，打掉它至少一成生命的人每人都記一次，幾個人合打時不只記補刀的那個。聚能魔像、矩陣之影這些一下只能打掉一部分血的首領，算的是真正扣掉的那部分。",
+            "被不死圖騰救下的不算死。矩陣迴響、全息誘餌這類東西不記。",
+            "刷怪籠和刷怪塔裏的怪照樣能記，只是每種只記一次，多殺沒有用。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "分組"
+        },
+        {
+          "type": "p",
+          "text": "有幾階除了總數，還要求某一組裏有幾種："
+        },
+        {
+          "type": "table",
+          "header": [
+            "組",
+            "怎麼算"
+          ],
+          "rows": [
+            [
+              "地獄",
+              "地獄的九種怪：烈焰人、地獄幽靈、巖漿史萊姆、凋零怪骷髏、豬靈、豬靈蠻兵、野豬獸、喪屍野豬獸、喪屍豬靈，在哪裏殺的都算"
+            ],
+            [
+              "遠征",
+              "掠奪者、衞道士、喚魔者、惱鬼、劫毀獸、深海守衞、遠古深海守衞、監守者，打一場襲擊或去一趟海底神殿就有"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海納爾",
+                "在海納爾殺死的種類，單獨記一份，主世界殺過的種類到海納爾再殺一次也記"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海納爾原生",
+                "八種海納爾本地的怪，見[[bestiary/overview]]"
+              ]
+            },
+            [
+              "首領",
+              "凋零怪、終界龍、全息投影、審判庭哨兵這類首領"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "終界",
+                "界伏蚌和終界龍"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "源質魔法的生物",
+                "這個模組自己的怪，異獸錄裏寫的那些和風法師、全息投影都算，見[[bestiary/overview]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "和平難度",
+          "text": "和平難度下不刷敵對生物，圖譜這一條按已經湊齊算。換回別的難度以後照實際的圖譜算，已經升上去的階不會收回。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "圖譜記在你身上，死了也不丟。",
+            "最多記 {cfg:general.matrix_rank.codex_max_entries} 種。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crucible",
+      "title": "{item:essentialcraft5:matrix_crucible}",
+      "icon": "essentialcraft5:matrix_crucible",
+      "summary": "試煉儲備、站點、開始與失敗",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:matrix_crucible}是突破矩陣階的地方，第二章就能做，見[[mru/crucible]]。台子裏能存 {cfg:machines.matrix_crucible.max_mru} MRU，用[[crafting/bound_gem|綁定寶石]]從產能器拉；枱面上的祭品格只能親手放東西，漏斗塞不進去。"
+        },
+        {
+          "type": "p",
+          "text": "台子是誰放下的就歸誰，別人能不能用，要看領地許不許他動這一格。"
+        },
+        {
+          "type": "h",
+          "text": "試煉儲備"
+        },
+        {
+          "type": "p",
+          "text": "一、二階要花 UBMRU，可 UBMRU 死了就清零，第二章的矩陣換能器又一直在抽它。拿着綁定你的{item:essentialcraft5:soul_stone}潛行右鍵任意一台淬鍊台，身上的 UBMRU 就存進你的<em>試煉儲備</em>。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "儲備記在你身上，哪一台淬鍊台都能用。",
+            "死了也不丟，只能花在試煉上。",
+            "最多存到下一階要的量，多出來的留在你身上。升階以後儲備比新的上限多，多出的部分會退回你身上。",
+            "試煉進行中存不進去，等它結束再存。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "存之前先把矩陣換能器裏的靈魂石取出來。換能器沒存滿的時候，每刻都在換走你的 UBMRU，你攢不起來。"
+        },
+        {
+          "type": "h",
+          "text": "站點"
+        },
+        {
+          "type": "p",
+          "text": "一到三階，有淬鍊台就夠。四階起，台子 8 格內要有一座搭好的[[pentacle/pentacle|靈魂五芒星]]，檔位見下表。試煉要的 ESPE 從這座五芒星的柱子裏抽，和五芒星治腐化效果時一樣，按折算後的數算。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "四階",
+              "0 檔"
+            ],
+            [
+              "五階",
+              "1 檔"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "六階",
+                "2 檔"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "七階",
+                "3 檔"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這座五芒星要是你自己的，或者是你有權改動的。別人家的五芒星不算，界面上會寫「這座五芒星不歸你」，也不會抽它的 ESPE。"
+        },
+        {
+          "type": "h",
+          "text": "開始"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把這一階的祭品放進台子，能量備夠。",
+            "站在台子 3 格內，主手拿着綁定你的靈魂石，打開界面，點「開始淬鍊」。",
+            "界面右邊每一條都打勾才點得動。你的生命還要在一半以上，不在冷卻裏，也沒有別的試煉正在進行。",
+            "開始的那一刻扣掉能量：UBMRU 先扣試煉儲備，不夠再扣身上的，MRU 扣台子裏的，ESPE 扣五芒星柱子裏的。祭品鎖在格子裏，成功了才用掉。"
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "text": "打回響"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "text": "台子周圍 {cfg:general.matrix_rank.trial.spawn_radius_min}～{cfg:general.matrix_rank.trial.spawn_radius_max} 格的空地上會陸續冒出<em>矩陣迴響</em>，它們長着你自己的模樣，半透明，顏色隨你的矩陣屬性。屏幕上方有一條只有你看得見的進度條，限時內打倒夠數就成功，每階幾隻、限時多久見[[matrix/ranks]]。"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "items": [
+            "迴響只打你，也只吃你的傷害和藥水，別人幫不上忙，也妨礙不了你。",
+            "它們不掉東西，不給經驗和 UBMRU，不進圖譜，也不破壞方塊。",
+            "台子周圍沒有空地，或者那裏不歸你改動，迴響就放不出來，試煉也開不了，什麼都不扣。",
+            "開始以後，迴響出現過的地方變成了你動不了的領地，或者回響被攔着放不出來，試煉會中止，能量退還。那些地方要是被方塊或液體堵住了，試煉照常計時。",
+            "台子最好放在開闊的平地上。迴響被牆或坑困住、走不到你身邊時，過幾秒會被挪到你附近。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+          "text": "試煉不放回響，改成<em>引導</em>：站在台子 3 格內不動、不受傷，堅持夠時間就成功。基礎 {cfg:general.matrix_rank.trial.peaceful_channel_seconds} 秒，每階再加 10 秒，走動或受傷會打斷。引導也有時限，是要站的秒數的兩倍再加 60 秒，進度條上寫着還剩幾秒，到點還沒站夠就算失敗。"
+        },
+        {
+          "type": "h",
+          "text": "失敗與冷卻"
+        },
+        {
+          "type": "p",
+          "text": "這幾種情況算失敗：你死了、下線、換了維度、離開台子超過 {cfg:general.matrix_rank.trial.leave_radius} 格、台子被挖掉，或者時間到了還沒打完（引導是還沒站夠）。已經扣掉的能量不退，祭品原樣留在格子裏（台子被挖掉時掉在原地），{cfg:general.matrix_rank.trial.fail_cooldown_seconds} 秒內不能再開，退出重進也不清冷卻。"
+        },
+        {
+          "type": "h",
+          "text": "成功"
+        },
+        {
+          "type": "p",
+          "text": "成功時矩陣升一階，祭品用掉，屏幕正中出現新階的名字。突破也會傷到矩陣：矩陣損傷加 {cfg:general.matrix_rank.trial.success_matrix_damage_per_rank} × 新階，按[[matrix/tolerance|耐受]]打折。"
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "style": "info",
+          "title": "和平難度",
+          "text": "和平難度下沒有迴響，試煉改成<em>引導</em>：站在台子 3 格內不動、不受傷，堅持 {cfg:general.matrix_rank.trial.peaceful_channel_seconds} 秒再加每階 10 秒，走動或受傷會打斷。引導也有時限，是要站的秒數的兩倍再加 60 秒，進度條上寫着還剩幾秒，到點還沒站夠就算失敗。"
+        }
+      ]
+    },
+    {
+      "id": "ranks",
+      "title": "各階的條件",
+      "icon": "essentialcraft5:matrix_crucible",
+      "summary": "每階的圖譜、祭品、能量與迴響",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "下面每階的「回報」不含耐受，耐受每階都給。能量裏的 ESPE 是折算後的數，和五芒星界面上顯示的一樣。"
+        },
+        {
+          "type": "h",
+          "text": "一階 · 覺察（第二章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "總數 4 種"
+            ],
+            [
+              "站點",
+              "只要淬鍊台"
+            ],
+            [
+              "祭品",
+              "{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}、{item:essentialcraft5:air_drops}各 4 顆"
+            ],
+            [
+              "能量",
+              "5000 UBMRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 2 只，同時最多 2 只；每隻 20 點生命，一下打 4 點；限時 70 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:10} 秒"
+              ]
+            },
+            [
+              "回報",
+              "矩陣視覺：主手或副手拿着綁定你的靈魂石時，看得見聚集體和它的存量"
+            ],
+            [
+              "步驟",
+              "[[mru/rank_1]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "二階 · 汲取（第五章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "總數 8 種，其中地獄 2 種"
+            ],
+            [
+              "站點",
+              "只要淬鍊台"
+            ],
+            [
+              "祭品",
+              "2 塊{item:essentialcraft5:mru_shard}、2 塊{item:essentialcraft5:obsidian_plate}、4 塊{item:essentialcraft5:magical_ingot}"
+            ],
+            [
+              "能量",
+              "2 萬 UBMRU，台子裏另要 2000 MRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 3 只，同時最多 2 只；每隻 32 點生命，一下打 5 點；限時 80 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:20} 秒"
+              ]
+            },
+            [
+              "回報",
+              "[[matrix/reservoir|矩陣容量]] {cfg:general.matrix_rank.pool_per_rank|mul:1} MRU"
+            ],
+            [
+              "步驟",
+              "[[storage/rank_2]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "三階 · 定性（第十章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "總數 13 種，其中地獄 3 種；你的矩陣屬性不能是中性"
+            ],
+            [
+              "站點",
+              "只要淬鍊台"
+            ],
+            [
+              "祭品",
+              "第九章的精華 4 個，要同一種、疊在同一格里（哪種元素、哪個稀有度都行，不能混着放）、1 塊{item:essentialcraft5:combined_magical_alloys}、1 塊{item:essentialcraft5:sun_imbued_glass}"
+            ],
+            [
+              "能量",
+              "1 萬 MRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 4 只，同時最多 3 只；每隻 44 點生命，一下打 6 點；限時 90 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:30} 秒"
+              ]
+            },
+            [
+              "回報",
+              "[[matrix/alignment|相性]] I，帶矩陣特性的武器開始起作用；矩陣容量 {cfg:general.matrix_rank.pool_per_rank|mul:2}"
+            ],
+            [
+              "步驟",
+              "[[solar/rank_3]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "四階 · 凝鍊（第十二章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "總數 17 種，其中地獄 4 種"
+            ],
+            [
+              "站點",
+              "0 檔靈魂五芒星"
+            ],
+            [
+              "祭品",
+              "1 個{item:essentialcraft5:condensed_matrix}、4 塊{item:essentialcraft5:mithriline_ingot}、2 塊{item:essentialcraft5:pale_block}"
+            ],
+            [
+              "能量",
+              "2 萬 MRU + 2000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 5 只，同時最多 3 只；每隻 56 點生命，一下打 7 點；限時 100 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:40} 秒"
+              ]
+            },
+            [
+              "回報",
+              "[[matrix/reservoir|矩陣虹吸]]；矩陣容量 {cfg:general.matrix_rank.pool_per_rank|mul:3}"
+            ],
+            [
+              "步驟",
+              "[[pentacle/rank_4]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "五階 · 越界（第十五章）"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "總數 21 種，其中地獄 4 種，要有[[wind_mage/wind_mages|風法師]]，遠征至少 1 種"
+            ],
+            [
+              "站點",
+              "1 檔靈魂五芒星"
+            ],
+            [
+              "祭品",
+              "1 個{item:essentialcraft5:condensed_matrix}、1 顆{item:essentialcraft5:wind_gem}、1 顆{item:essentialcraft5:air_focus}、4 塊{item:essentialcraft5:mithriline_ingot}"
+            ],
+            [
+              "能量",
+              "4 萬 MRU + 4000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 6 只，同時最多 3 只；每隻 68 點生命，一下打 8 點；限時 110 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:50} 秒"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "cells": [
+                "回報",
+                "海納爾輻射抗性 +5%；矩陣容量 {cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled||!cfg:general.radiation.enabled",
+              "cells": [
+                "回報",
+                "矩陣容量 {cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.matrix_rank.gates.hoanna_portal==5"
+              ],
+              "cells": [
+                "門",
+                "海納爾之門"
+              ]
+            },
+            [
+              "步驟",
+              "[[logistics/rank_5]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "六階 · 契約（第十七章）"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "圖譜",
+              "總數 24 種，其中至少 4 種是在海納爾殺的、2 種是海納爾的本地怪"
+            ],
+            [
+              "站點",
+              "2 檔靈魂五芒星"
+            ],
+            [
+              "祭品",
+              "2 個{item:essentialcraft5:condensed_matrix}、1 個{item:essentialcraft5:void_mru_reactor}、4 塊{item:essentialcraft5:ackronite_ingot}、4 個同一種[[hoanna_explore/specialties|海納爾特產]]"
+            ],
+            [
+              "能量",
+              "6 萬 MRU + 6000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 7 只，同時最多 3 只；每隻 80 點生命，一下打 9 點；限時 120 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:60} 秒"
+              ]
+            },
+            [
+              "回報",
+              "相性 II；矩陣容量 {cfg:general.matrix_rank.pool_per_rank|mul:5}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.gates.holopad==6",
+              "cells": [
+                "門",
+                "全息投影台"
+              ]
+            },
+            [
+              "步驟",
+              "[[demons/rank_6]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "七階 · 審視（第十九章）"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "圖譜",
+              "總數 27 種，其中首領至少 2 種"
+            ],
+            [
+              "站點",
+              "3 檔靈魂五芒星"
+            ],
+            [
+              "祭品",
+              "2 個{item:essentialcraft5:condensed_matrix}、2 個{item:essentialcraft5:demonic_core}、1 個數學核心（加、減、乘、除哪一種都行）"
+            ],
+            [
+              "能量",
+              "8 萬 MRU + 8000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 8 只，同時最多 4 只；每隻 92 點生命，一下打 10 點；限時 130 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:70} 秒"
+              ]
+            },
+            [
+              "回報",
+              "[[matrix/tolerance|矩陣穩固]]；矩陣容量 {cfg:general.matrix_rank.pool_per_rank|mul:6}"
+            ],
+            [
+              "步驟",
+              "[[inquisitorium/rank_7]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "八階 · 暗影（第二十二章）"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "圖譜",
+              "總數 30 種，其中至少 8 種是在海納爾殺的、1 種是終界的、3 種是源質魔法的生物"
+            ],
+            [
+              "站點",
+              "4 檔靈魂五芒星"
+            ],
+            [
+              "祭品",
+              "3 個{item:essentialcraft5:condensed_matrix}、1 個{item:essentialcraft5:shade_core}、1 塊{item:essentialcraft5:matter_of_eternity}、8 個{item:essentialcraft5:umbral_crystal}"
+            ],
+            [
+              "能量",
+              "10 萬 MRU + 12000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 9 只，同時最多 4 只；每隻 104 點生命，一下打 11 點；限時 140 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:80} 秒"
+              ]
+            },
+            [
+              "回報",
+              "暗影相性（直接 II）；矩陣容量 {cfg:general.matrix_rank.pool_per_rank|mul:7}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.gates.calamity_beacon==8",
+              "cells": [
+                "門",
+                "天災信標"
+              ]
+            },
+            [
+              "步驟",
+              "[[shade/rank_8]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "九階 · 源質（第二十三章）"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "圖譜",
+              "總數 33 種，要有天災之心"
+            ],
+            [
+              "站點",
+              "4 檔靈魂五芒星"
+            ],
+            [
+              "祭品",
+              "3 個{item:essentialcraft5:condensed_matrix}、2 個{item:essentialcraft5:shade_core}、1 個{item:essentialcraft5:calamity_remnant}"
+            ],
+            [
+              "能量",
+              "10 萬 MRU + 16000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 10 只，同時最多 4 只；每隻 116 點生命，一下打 12 點；限時 150 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:90} 秒"
+              ]
+            },
+            [
+              "回報",
+              "相性 III；矩陣容量 {cfg:general.matrix_rank.pool_per_rank|mul:8}"
+            ],
+            [
+              "步驟",
+              "[[apex/rank_9]]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alignment",
+      "title": "相性與矩陣特性",
+      "icon": "essentialcraft5:chaos_matrix_projection",
+      "summary": "三階起，矩陣屬性有了被動",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "你的矩陣屬性由最後吸收的那塊[[gear/projection_use|矩陣投影]]決定，分中性、混沌、冰凍、魔力和暗影。矩陣三階起，屬性給你一項被動，叫<hl>相性</hl>：三階是相性 I，六階 II，九階 III。中性沒有相性，所以三階要求屬性不是中性。"
+        },
+        {
+          "type": "p",
+          "text": "換屬性就再吸收一塊別的投影，代價和以前一樣，換完相性的級數不丟。"
+        },
+        {
+          "type": "h",
+          "text": "四種相性"
+        },
+        {
+          "type": "table",
+          "header": [
+            "屬性",
+            "相性",
+            "I / II / III"
+          ],
+          "rows": [
+            [
+              "混沌",
+              "躁動：打實的近戰和彈射物傷害提高",
+              "{cfg:general.matrix_rank.resonance.chaos.damage_bonus|at:0|sign|pct} / {cfg:general.matrix_rank.resonance.chaos.damage_bonus|at:1|sign|pct} / {cfg:general.matrix_rank.resonance.chaos.damage_bonus|at:2|sign|pct}"
+            ],
+            [
+              "冰凍",
+              "凝滯：受到的近戰傷害降低，用近戰打中你的活物會凍上一些",
+              "−{cfg:general.matrix_rank.resonance.frozen.melee_reduction|at:0|pct} / −{cfg:general.matrix_rank.resonance.frozen.melee_reduction|at:1|pct} / −{cfg:general.matrix_rank.resonance.frozen.melee_reduction|at:2|pct}，對方冰凍 +{cfg:general.matrix_rank.resonance.frozen.retaliation_freeze_ticks|at:0} / +{cfg:general.matrix_rank.resonance.frozen.retaliation_freeze_ticks|at:1} / +{cfg:general.matrix_rank.resonance.frozen.retaliation_freeze_ticks|at:2} 刻"
+            ],
+            [
+              "魔力",
+              "澄澈：本模組隨身物品耗的 MRU 打折，虹吸一次抽得更多",
+              "耗電 −{cfg:general.matrix_rank.resonance.magic.cost_discount|at:0|pct} / −{cfg:general.matrix_rank.resonance.magic.cost_discount|at:1|pct} / −{cfg:general.matrix_rank.resonance.magic.cost_discount|at:2|pct}，虹吸上限 +{cfg:general.matrix_rank.resonance.magic.siphon_bonus|at:0|pct} / +{cfg:general.matrix_rank.resonance.magic.siphon_bonus|at:1|pct} / +{cfg:general.matrix_rank.resonance.magic.siphon_bonus|at:2|pct}"
+            ],
+            [
+              "暗影",
+              "吞噬：受到的、有攻擊者的魔法傷害降低，八階起才有，直接從 II 開始",
+              "— / −{cfg:general.matrix_rank.resonance.shade.magic_reduction|at:1|pct} / −{cfg:general.matrix_rank.resonance.shade.magic_reduction|at:2|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "冰凍相性不減無視護甲的傷害。冰凍刻攢滿 140，對方就凍僵了。",
+            "魔力相性的折扣不算護盾盔甲擋傷害花的電。",
+            "暗影相性不減腐化效果、「MRU 腐化」這類沒有攻擊者的傷害。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "矩陣特性"
+        },
+        {
+          "type": "p",
+          "text": "帶矩陣特性的武器打實一下，會按你的矩陣屬性多出一樣效果，相性至少 I 才有，所以暗影的特性也要八階起才有。每觸發一次扣 {cfg:general.matrix_rank.resonance.trait_mru_cost} MRU，先扣身上的[[storage/soul_storage|靈魂儲存]]，再扣[[matrix/reservoir|矩陣容量]]，魔力相性的折扣照算；付不起就不觸發，傷害照打。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "屬性",
+            "打實以後"
+          ],
+          "rows": [
+            [
+              "混沌",
+              "目標掛上 {cfg:general.guns.lens_corrosion_ticks|sec}腐蝕，掛着腐蝕回不了血；打已經掛着腐蝕的目標多 {cfg:general.matrix_rank.resonance.chaos.trait_bonus_vs_corroded|pct} 傷害"
+            ],
+            [
+              "冰凍",
+              "目標冰凍 +{cfg:general.guns.lens_freeze_per_hit} 刻；打凍僵的目標多 {cfg:general.matrix_rank.resonance.frozen.trait_bonus_vs_frozen|pct} 傷害"
+            ],
+            [
+              "魔力",
+              "驅散目標身上一個有益效果，同一個目標 {cfg:general.matrix_rank.resonance.magic.trait_dispel_cooldown_ticks|sec}一次"
+            ],
+            [
+              "暗影",
+              "這一下傷害的 {cfg:general.guns.lens_drain_percent|pctv}回到你身上"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "相性越高效果越強，I、II、III 依次是 {cfg:general.matrix_rank.resonance.trait_level_multipliers|at:0}、{cfg:general.matrix_rank.resonance.trait_level_multipliers|at:1}、{cfg:general.matrix_rank.resonance.trait_level_multipliers|at:2} 倍，時長、冰凍刻和回血比例都跟着乘，對腐蝕、凍僵的目標多打的那部分不乘。{item:essentialcraft5:holy_mace}的特性效果是別的武器的 {cfg:general.staffs.holy_mace_trait_multiplier} 倍。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "帶矩陣特性的武器有{item:essentialcraft5:elemental_sword}、{item:essentialcraft5:wind_elemental_sword}、{item:essentialcraft5:chaos_fork}、{item:essentialcraft5:frozen_mace}、{item:essentialcraft5:holy_mace}和{item:essentialcraft5:forged_elemental_sword}。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "帶矩陣特性的武器有{item:essentialcraft5:elemental_sword}、{item:essentialcraft5:wind_elemental_sword}、{item:essentialcraft5:chaos_fork}、{item:essentialcraft5:frozen_mace}和{item:essentialcraft5:holy_mace}。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.attunement.enabled"
+          ],
+          "text": "{item:essentialcraft5:verdict_blade}也帶矩陣特性，效果是普通帶特性武器的 {cfg:general.verdict_blade.trait_multiplier} 倍。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+              "text": "槍的透鏡和你的矩陣屬性相同、相性又至少 I 時，透鏡效果是平時的 {cfg:general.matrix_rank.resonance.same_type_lens_multiplier} 倍，見[[guns/lens_effects]]。"
+            },
+            "{item:essentialcraft5:chaos_fork}和{item:essentialcraft5:frozen_mace}掛在目標身上的效果，最高等級再加上你的相性級數；目標是玩家時不加，混沌之叉給你自己的力量也不加，見[[staffs/matrix_weapons]]。",
+            "相性和特性打在玩家身上時，時長、回血和多打的百分比都只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reservoir",
+      "title": "矩陣容量與虹吸",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "體內存 MRU，從聚集體裏抽",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "矩陣二階起能直接存 MRU，叫<hl>矩陣容量</hl>，上限是 {cfg:general.matrix_rank.pool_per_rank} ×（階 − 1）：二階 {cfg:general.matrix_rank.pool_per_rank|mul:1}，七階 {cfg:general.matrix_rank.pool_per_rank|mul:6}。"
+        },
+        {
+          "type": "p",
+          "text": "身上的 UBMRU 會自動換進容量，比例和[[mru/matrix_absorber|矩陣換能器]]一樣，10 UBMRU 換 1 MRU，每秒最多換 {cfg:general.matrix_rank.pool_absorb_per_second} MRU，滿了就停。"
+        },
+        {
+          "type": "p",
+          "text": "只換<em>保留線</em>以上的那部分 UBMRU。保留線是 {cfg:general.matrix_rank.pool_absorb_reserve} UBMRU，有幾件特殊飾品按 UBMRU 扣費，這條線替它們留着家底。靈魂石的物品提示裏寫着現在的保留線。"
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:theta_belt",
+          "text": "戴着{item:essentialcraft5:theta_belt}時，保留線是平時的 5 倍。"
+        },
+        {
+          "type": "p",
+          "text": "換入預設開着。主手拿着綁定你的靈魂石潛行右鍵就能開關，副手拿着不算。四階起面前 5 格內有聚集體時，這樣按住是虹吸，見下面。"
+        },
+        {
+          "type": "h",
+          "text": "誰先付電"
+        },
+        {
+          "type": "p",
+          "text": "本模組的隨身物品和護盾盔甲要用 MRU 時，先扣身上的[[storage/soul_storage|靈魂儲存]]，再扣矩陣容量，最後才扣物品自己存的。"
+        },
+        {
+          "type": "tip",
+          "style": "bad",
+          "title": "死亡會清零",
+          "text": "<b>你一死，容量裏的 MRU 就清零。</b>換維度、下線都不會清。"
+        },
+        {
+          "type": "h",
+          "text": "矩陣虹吸（四階）"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "潛行，主手拿着綁定你的靈魂石，對準 5 格內的一團聚集體按住右鍵。",
+            "按滿 1 秒，它身上最多 {cfg:general.matrix_rank.siphon.amount} MRU 抽進你的矩陣容量。",
+            "你自己挨 {cfg:general.matrix_rank.siphon.matrix_damage} 點矩陣損傷，按耐受打折；下一次要等 {cfg:general.matrix_rank.siphon.cooldown_ticks|sec}。"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "聚集體那一格要是你能改動的，規矩和{item:essentialcraft5:mrucu_container}一樣。",
+            "正被穩定器壓着的、裝在瓶裏的、關在別人倉裏又不歸你改動的，都抽不了。",
+            "魔力相性讓一次抽得更多，見[[matrix/alignment]]。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tolerance",
+      "title": "耐受與矩陣穩固",
+      "icon": "essentialcraft5:player_pentacle",
+      "summary": "只抵矩陣階帶來的新損傷",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "每升一階，你的<hl>耐受</hl>多 {cfg:general.matrix_rank.tolerance_per_rank|pct}。耐受只管矩陣階這一套帶來的矩陣損傷，試煉成功時的那一下和矩陣虹吸都算，這些損傷要除以 1 加上你的耐受。"
+        },
+        {
+          "type": "p",
+          "text": "[[bestiary/matrix_wraith|矩陣遊魂]]打中你時加的矩陣損傷也照這樣打折。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.tolerance_per_rank==0.1",
+          "text": "例如七階時耐受 70%，試煉和虹吸給的矩陣損傷除以 1.7。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "七階的<hl>矩陣穩固</hl>讓這幾種損傷再乘 {cfg:general.matrix_rank.stability.matrix_damage_multiplier}，和耐受連着算。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.tolerance_per_rank==0.1",
+            "cfg:general.matrix_rank.stability.matrix_damage_multiplier==0.8"
+          ],
+          "text": "七階時兩樣合起來，約是原來的 47%。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "不抵的",
+          "text": "機器漏出的 MRU、聚集體、審判庭哨兵、魔力槍這些原來就有的矩陣損傷，一點都不減；腐化效果的發作幾率、門檻和後遺症時長也都照舊。矩陣階不是腐化抗性，基地裏的聚集體還是要管住，見[[crafting/corruption]]。"
+        }
+      ]
+    }
+  ]
+}

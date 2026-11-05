@@ -1,0 +1,264 @@
+[
+  {
+    "id": "holopad",
+    "title": "{item:essentialcraft5:holopad}",
+    "icon": "essentialcraft5:holopad",
+    "summary": "A pad that sends a signal across Hoanna",
+    "complete": "essentialcraft5:guide/hologram/holopad",
+    "items": [
+      "essentialcraft5:holopad"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: make a Holopad. This chapter starts with it: activated in Hoanna, it calls down the Holographic Projection ([[hologram/summoning]]), and only by defeating that can you get the math cores a computer needs."
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:holopad"
+      },
+      {
+        "type": "p",
+        "text": "It takes 6 {item:essentialcraft5:twinkling_titanite}, 1 {item:essentialcraft5:void_core} (both from Hoanna's ruin chests, see [[hoanna/relics]]), 1 {item:essentialcraft5:matter_of_eternity} and 1 {item:essentialcraft5:neuronic_enriched_plating} ([[hologram/neuronic_plating]])."
+      },
+      {
+        "type": "h",
+        "text": "Where it works"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "if": "!cfg:general.hologram.other_dimensions",
+            "text": "Only in <hl>Hoanna</hl>; in any other dimension the hotbar tells you it won't work."
+          },
+          {
+            "if": "cfg:general.hologram.other_dimensions",
+            "text": "In any dimension."
+          },
+          "It needs <hl>open sky</hl> above: nothing that blocks movement anywhere in the column over it (flowers and torches are fine).",
+          "The projection appears <t>5</t> blocks above the pad; that spot must be clear.",
+          "There must be no other Holographic Projection within <t>64</t> blocks.",
+          "Right-click it in Survival or Adventure mode; on Peaceful nothing answers the signal."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "If a condition isn't met, right-clicking takes nothing and the hotbar says what's missing. Once everything is in place the pad vanishes at once and there is no way back: read [[hologram/summoning]] and gear up first."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "The original research book leads up to this device with rumours: somewhere in Hoanna hides a mysterious \"Inquisition\" that nobody has managed to find. To make the Demonic Plates truly work you still lack a computer, and your technology can't build one — perhaps the Inquisition could help. This device sends a powerful signal across all of Hoanna; if the Inquisition exists, it will surely hear it."
+      }
+    ]
+  },
+  {
+    "id": "summoning",
+    "title": "Summoning: No Way Back",
+    "icon": "essentialcraft5:glitchy_core",
+    "summary": "Who counts as a fighter, and running too far",
+    "complete": "essentialcraft5:guide/hologram/summon",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "Right-click the pad: it vanishes, a translucent Holographic Projection appears <t>5</t> blocks above, and battle music starts. It hangs in the air without moving and attacks round after round, until it is defeated or everyone has left."
+      },
+      {
+        "type": "h",
+        "text": "Who counts as a fighter"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Whoever summoned it.",
+          "Any player in Survival or Adventure mode who actually takes health off it afterwards. Friends who want in should hit it once.",
+          "Onlookers, passers-by and spectators don't count: its attacks don't seek them out, and they never get pulled back."
+        ]
+      },
+      {
+        "type": "h",
+        "text": "Once you're fighting"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Stray more than <t>24</t> blocks from it and you are pulled back to where the pad stood, losing <t>5</t> health (a little less on Easy, more on Hard).",
+          "Go beyond <t>{cfg:general.hologram.escape_range}</t> blocks, change dimension, die, log out, or switch to Creative or Spectator, and you have left the fight: you are no longer pulled back and its attacks stop following you.",
+          "If the spot you would be pulled back to is blocked or has lava or something else harmful underfoot, or the teleport is stopped, you aren't pulled and lose no health, but you are still in the fight and its attacks keep following you; only going beyond <t>{cfg:general.hologram.escape_range}</t> blocks takes you out.",
+          "No flying while you fight: flight is switched off (including the Anti-Gravity Board's); elytra still work."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "If nobody is fighting",
+        "text": "{cfg:general.hologram.abandon_ticks|sec} after everyone has left, the projection shuts itself off and the pad drops back where it stood (it won't despawn), ready for another try. Switching to Peaceful also shuts it off, and the pad drops back the same way."
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "Neither it nor its attacks break blocks; but the attacks do hit hostile mobs nearby, and every fighter — your friends included."
+      }
+    ]
+  },
+  {
+    "id": "hologram",
+    "title": "{lang:entity.essentialcraft5.hologram}",
+    "icon": "essentialcraft5:hologram_spawn_egg",
+    "summary": "Dodging its four attacks, and when to strike",
+    "complete": "essentialcraft5:main/hologram",
+    "items": [
+      "essentialcraft5:hologram_spawn_egg",
+      "essentialcraft5:player_clone_spawn_egg"
+    ],
+    "blocks": [
+      {
+        "type": "entity",
+        "id": "essentialcraft5:hologram"
+      },
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: defeat the Holographic Projection. It has <t>{cfg:general.hologram.max_health}</t> health and casts one attack after another; <hl>it can only be hurt in the rest between two attacks</hl>, and hits during an attack do nothing. The lower its health, the shorter the rest: about 5 seconds at full health, just 1 second near the end."
+      },
+      {
+        "type": "h",
+        "text": "Four attacks"
+      },
+      {
+        "type": "table",
+        "header": [
+          "Core overhead",
+          "Attack",
+          "How to deal with it"
+        ],
+        "widths": [
+          4,
+          5,
+          7
+        ],
+        "rows": [
+          [
+            "{item:essentialcraft5:addition_core}",
+            "Addition: conjures your doubles ({lang:entity.essentialcraft5.player_clone}) around every fighter, looking like you and holding your weapon",
+            "Doubles shatter at a touch and last 10 seconds; they hit for at most <t>{cfg:general.hologram.clone_max_attack_damage}</t> (a little less on Easy, half again on Hard). The lower its health, the more appear"
+          ],
+          [
+            "{item:essentialcraft5:subtraction_core}",
+            "Subtraction: fires a stream of {lang:entity.essentialcraft5.armor_destroyer} at every fighter",
+            "They don't hurt you, but each hit takes <t>5</t> durability off what you hold and off every armor piece; armor that blocks with MRU (Void, Computer suits) loses charge instead. Don't wear anything you can't spare"
+          ],
+          [
+            "{item:essentialcraft5:multiplication_core}",
+            "Multiplication: calls an orbital strike under a random fighter, 10 in all",
+            "Step away from the magenta beam: it narrows, then strikes, hitting and setting alight everything in a 5 × 5 × 5 area. Keep moving"
+          ],
+          [
+            "{item:essentialcraft5:division_core}",
+            "Division: drops magenta divider fields under the fighters",
+            "Run when you see a magenta sphere: after 2 seconds it opens, halving the health of everything within 3 blocks and adding Weakness, Slowness, Mining Fatigue and Blindness"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.hologram.orbital_max_damage<512",
+        "text": "Each orbital strike hurts more than the last: starting at 1 and doubling every time, until it reaches <t>{cfg:general.hologram.orbital_max_damage}</t>. Armor blocks part of it; Resistance, Protection and shields don't help."
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.hologram.orbital_max_damage>=512",
+        "text": "Each orbital strike hurts more than the last: starting at 1 and doubling every time, the 10th deals <t>512</t>, which almost nothing survives. Armor blocks part of it; Resistance, Protection and shields don't help."
+      },
+      {
+        "type": "h",
+        "text": "Hitting it"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Melee counts in full; arrows, guns, explosions and anything else that isn't melee count for a quarter.",
+          {
+            "if": "cfg:general.hologram.max_damage_per_hit>0",
+            "text": "A single hit takes at most <t>{cfg:general.hologram.max_damage_per_hit}</t> health, however heavy the weapon."
+          },
+          "A blow of about <t>40</t> (for ranged attacks, what you fire counts, not the health it loses), or about 40 in total within one rest, makes it start its next attack right away.",
+          "Only a player's own hands can hurt it: pets, machines and other creatures can't, and neither can its own orbital strikes.",
+          "From more than <t>24</t> blocks away you can't hurt it: you have to fight up close, not take a shot and run."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "The projection flickers out, dropping a math core, a heap of relics and <t>50</t> experience on the spot ([[hologram/math_cores]]); every fighter gets the advancement \"Phantom Fighter\"."
+      }
+    ]
+  },
+  {
+    "id": "math_cores",
+    "title": "Math Cores",
+    "icon": "essentialcraft5:addition_core",
+    "summary": "Land the final blow after the attack you want",
+    "items": [
+      "essentialcraft5:addition_core",
+      "essentialcraft5:subtraction_core",
+      "essentialcraft5:multiplication_core",
+      "essentialcraft5:division_core"
+    ],
+    "blocks": [
+      {
+        "type": "items",
+        "items": [
+          "essentialcraft5:addition_core",
+          "essentialcraft5:subtraction_core",
+          "essentialcraft5:multiplication_core",
+          "essentialcraft5:division_core"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "A defeated Holographic Projection drops one math core, and which one depends on <hl>the last attack it finished</hl>: Addition drops an {item:essentialcraft5:addition_core}, Subtraction a {item:essentialcraft5:subtraction_core}, Multiplication a {item:essentialcraft5:multiplication_core}, Division a {item:essentialcraft5:division_core}. If it is defeated before finishing any attack, you get a random one."
+      },
+      {
+        "type": "p",
+        "text": "The core spinning over its head is your hint: during an attack it shows that attack's core, while resting a {item:essentialcraft5:glitchy_core}. To get a particular core, wait until it finishes that attack and land the final blow in the rest that follows. All four go into the Computer Engine ([[computer/computer_engine]]); with good timing, four fights are enough."
+      },
+      {
+        "type": "h",
+        "text": "Other drops"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "{item:essentialcraft5:orbital_remote}",
+            "<t>25%</t> ([[hologram/orbital_remote]])"
+          ],
+          [
+            "{item:essentialcraft5:divider_gun}",
+            "<t>25%</t> ([[hologram/divider_gun]])"
+          ],
+          [
+            "{item:essentialcraft5:music_disc_ropocalypse}",
+            "<t>30%</t>"
+          ],
+          [
+            "Hoanna relics",
+            "<t>18~20</t> draws from the same list as the town tower chests ([[hoanna/relics]])"
+          ],
+          [
+            "Experience",
+            "<t>50</t>"
+          ]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "text": "It only drops anything when a player defeats it. Fighting it together still yields one set of drops; the \"Phantom Fighter\" advancement goes to everyone still in the fight when it falls."
+      }
+    ]
+  }
+]

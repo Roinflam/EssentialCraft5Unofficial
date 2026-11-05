@@ -1,0 +1,451 @@
+{
+  "id": "charms",
+  "order": 89,
+  "group": "side",
+  "title": "Side Chapter · Charms and Trinkets",
+  "subtitle": "Small helpers that run on MRU",
+  "icon": "essentialcraft5:fire_charm",
+  "entries": [
+    {
+      "id": "charms",
+      "title": "The Ten Charms",
+      "icon": "essentialcraft5:fire_charm",
+      "summary": "Little helpers for your necklace slot",
+      "complete": "essentialcraft5:guide/charms/charm",
+      "optional": true,
+      "items": [
+        "essentialcraft5:fire_charm",
+        "essentialcraft5:water_charm",
+        "essentialcraft5:earth_charm",
+        "essentialcraft5:air_charm",
+        "essentialcraft5:steam_charm",
+        "essentialcraft5:magma_charm",
+        "essentialcraft5:lightning_charm",
+        "essentialcraft5:life_charm",
+        "essentialcraft5:rain_charm",
+        "essentialcraft5:dust_charm"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "No matter how much I drink from this bottle, it never runs dry. It tastes a bit like apples, and I couldn't say why apples. The porkchop is no different. I've chewed on it all winter and it's no smaller.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a charm and wear it in your necklace slot; [[baubles/finding]] shows how to open the accessory slots. On long trips the forebears often wore one around the neck. When its moment comes it acts on its own, putting you out when you burn, giving you air when you're drowning or speeding you up when you sprint, for a little MRU each time."
+        },
+        {
+          "type": "p",
+          "text": "Each charm takes two <em>focuses</em>, which you can make from <em>Chapter 9</em> on ([[essence/fuel_and_focus]]). Surround a piece of coal with 4 essences of one element to make fuel, and the rarer the essence, the more fuel you get at once. Then combine 1 fuel with 4 gold and 4 iron ingots for 1 focus. The two focuses you use decide which charm you get."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_charm",
+            "essentialcraft5:water_charm",
+            "essentialcraft5:earth_charm",
+            "essentialcraft5:air_charm",
+            "essentialcraft5:steam_charm",
+            "essentialcraft5:magma_charm",
+            "essentialcraft5:lightning_charm",
+            "essentialcraft5:life_charm",
+            "essentialcraft5:rain_charm",
+            "essentialcraft5:dust_charm"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 2 string, 2 {item:essentialcraft5:magic_purified_gold_alloy}, 1 {item:essentialcraft5:red_soul_matter} and 2 {item:essentialcraft5:magical_water}, the same for all ten charms apart from the focuses. The two focuses go left and right in the middle row."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Craft with an empty one",
+          "text": "The {item:essentialcraft5:red_soul_matter} is itself a storage item that holds up to 120,000 MRU, and whatever is inside is lost in the craft, so use an empty one."
+        },
+        {
+          "type": "h",
+          "text": "The ten charms"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Charm",
+            "Focuses",
+            "When",
+            "What you get (MRU each time)"
+          ],
+          "rows": [
+            {
+              "if": "bauble:essentialcraft5:fire_charm",
+              "cells": [
+                "{item:essentialcraft5:fire_charm}",
+                "fire + fire",
+                "You are burning without Fire Resistance",
+                "The fire goes out (50)"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:water_charm",
+              "cells": [
+                "{item:essentialcraft5:water_charm}",
+                "water + water",
+                "Under water and almost out of air",
+                "Air back up to 100, about 5 more seconds (100)"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:earth_charm",
+              "cells": [
+                "{item:essentialcraft5:earth_charm}",
+                "earth + earth",
+                "You get hurt",
+                "Resistance I for 5 s (200)"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:air_charm",
+              "cells": [
+                "{item:essentialcraft5:air_charm}",
+                "air + air",
+                "You sprint",
+                "Speed II for 1 s, renewed while you keep running (10)"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:steam_charm",
+              "cells": [
+                "{item:essentialcraft5:steam_charm}",
+                "fire + air",
+                "Below 5 health",
+                "Speed VI for 5 s, to run for it (200)"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:magma_charm",
+              "cells": [
+                "{item:essentialcraft5:magma_charm}",
+                "fire + earth",
+                "You are in lava",
+                "Fire Resistance for 5 s (100)"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:lightning_charm",
+              "cells": [
+                "{item:essentialcraft5:lightning_charm}",
+                "fire + water",
+                "A thunderstorm",
+                "Strength I and Fire Resistance for 5 s, Night Vision for 30 s (100)"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:life_charm",
+              "cells": [
+                "{item:essentialcraft5:life_charm}",
+                "earth + water",
+                "Below 20 health",
+                "Regeneration I for 2.5 s (50); below 5 health, Regeneration II instead (200)"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:rain_charm",
+              "cells": [
+                "{item:essentialcraft5:rain_charm}",
+                "water + air",
+                "It is raining",
+                "Haste I, Jump Boost III and Speed I for 5 s (50)"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:dust_charm",
+              "cells": [
+                "{item:essentialcraft5:dust_charm}",
+                "earth + air",
+                "Standing on sand, gravel, soul sand or concrete powder",
+                "Resistance I and Regeneration I for 5 s (100)"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A charm checks every tick and only pays MRU when it actually helps. The ones that give an effect don't give it again, or pay again, while you still have it."
+        },
+        {
+          "type": "h",
+          "text": "Charging and wearing"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A charm holds 5,000 MRU of its own and starts out empty. Fill it in a [[storage/charging_chamber]].",
+            "It pays from the [[storage/soul_storage|soul storage items]] you carry first and only then from its own MRU. In Creative mode it pays nothing.",
+            "You can only wear one of each kind. How many different ones you can wear depends on your necklace slots, usually just 1."
+          ]
+        },
+        {
+          "type": "tip",
+          "if": [
+            "bauble:essentialcraft5:fire_charm",
+            "bauble:essentialcraft5:magma_charm"
+          ],
+          "style": "warn",
+          "title": "Lava drains it fast",
+          "text": "In lava you catch fire again every tick, so the {item:essentialcraft5:fire_charm} costs 1,000 MRU a second. Switch to the {item:essentialcraft5:magma_charm} before you go in."
+        },
+        {
+          "type": "tip",
+          "if": [
+            "bauble:essentialcraft5:fire_charm",
+            "!bauble:essentialcraft5:magma_charm"
+          ],
+          "style": "warn",
+          "title": "Lava drains it fast",
+          "text": "In lava you catch fire again every tick, so the {item:essentialcraft5:fire_charm} costs 1,000 MRU a second."
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:life_charm",
+          "style": "warn",
+          "title": "The Life Charm keeps paying",
+          "text": "The {item:essentialcraft5:life_charm}'s trigger is fixed at 20 health and doesn't move with your max health. With the usual 20 max health, it heals, and pays, whenever you aren't at full health."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Short on focuses?",
+          "text": "Focuses are where this chapter usually stalls. Freshly grown crystals give few essences, and mixed ones. To get one element, grow crystals toward it with the [[essence/crystal_controller]] rather than extracting over and over."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Save some for the main line",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "The main line still needs 4 {item:essentialcraft5:air_focus} for the [[wind/wind_tablet]] and 4 {item:essentialcraft5:fire_focus} for the [[demons/demonic_pentacle]]. Set those aside first and spend only the extras here."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have any of the charms."
+        }
+      ]
+    },
+    {
+      "id": "consumables",
+      "title": "Heal, Feed, Cleanse",
+      "icon": "essentialcraft5:emerald_heart",
+      "summary": "Run on MRU, never used up",
+      "complete": "essentialcraft5:guide/charms/consumable",
+      "optional": true,
+      "items": [
+        "essentialcraft5:emerald_heart",
+        "essentialcraft5:magical_porkchop",
+        "essentialcraft5:magic_water_bottle"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a trinket that runs on MRU and is never used up. The {item:essentialcraft5:emerald_heart} heals, the {item:essentialcraft5:magical_porkchop} feeds you, and the {item:essentialcraft5:magic_water_bottle} is a bucket of milk that never runs dry."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:emerald_heart",
+            "essentialcraft5:magical_porkchop",
+            "essentialcraft5:magic_water_bottle"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: each one takes 1 empty {item:essentialcraft5:red_soul_matter} and 4 focuses, plus what is listed below."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The {item:essentialcraft5:emerald_heart} takes 2 {item:essentialcraft5:earth_focus} and 2 {item:essentialcraft5:water_focus}, plus 1 emerald, 1 apple and 2 {item:essentialcraft5:magical_water}.",
+            "The {item:essentialcraft5:magical_porkchop} takes 2 {item:essentialcraft5:earth_focus} and 2 {item:essentialcraft5:water_focus}, plus 1 raw porkchop and 3 {item:essentialcraft5:crystal_dust}.",
+            "The {item:essentialcraft5:magic_water_bottle} takes 1 {item:essentialcraft5:air_focus}, 1 {item:essentialcraft5:earth_focus} and 2 {item:essentialcraft5:water_focus}, plus 2 {item:essentialcraft5:diamond_plate} and 2 Magical Water."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to use them"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Item",
+            "Effect",
+            "MRU each use"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:emerald_heart}",
+              "Heals 10 health (5 hearts)",
+              "500"
+            ],
+            [
+              "{item:essentialcraft5:magical_porkchop}",
+              "Hunger +5, and saturation rises to match your hunger level, by at most +30. You can eat it even when full to top up saturation",
+              "1,500"
+            ],
+            [
+              "{item:essentialcraft5:magic_water_bottle}",
+              "Clears <em>all</em> your status effects, good and bad alike. Matrix after-effects aren't status effects and stay",
+              "500"
+            ]
+          ],
+          "widths": [
+            3,
+            5,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Hold right-click for 1.6 seconds, as if eating. When you finish, it takes the MRU and works at once, and the item stays. Without enough MRU it won't even start, and a message above the hotbar says how much it needs."
+        },
+        {
+          "type": "p",
+          "text": "Like the charms, each holds 5,000 MRU, recharges in a [[storage/charging_chamber]] and pays from your soul storage first."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "It clears the good ones too",
+          "text": "The {item:essentialcraft5:magic_water_bottle} clears good effects too. Don't drink it while Fire Resistance is keeping you alive in lava, or in a boss fight where you're relying on potions."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "The Magical Water Bottle is not the crafting material {item:essentialcraft5:magical_water}, so don't mix them up."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have any of the three."
+        }
+      ]
+    },
+    {
+      "id": "magical_wings",
+      "title": "{item:essentialcraft5:magical_wings}",
+      "icon": "essentialcraft5:magical_wings",
+      "summary": "A pair of wings for your belt",
+      "complete": "essentialcraft5:guide/charms/magical_wings",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_wings"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "text": "<em>Goal</em> (optional): make a pair of {item:essentialcraft5:magical_wings} and wear them in your belt slot. Hold jump to fly up, and you drift down gently when you fall. They also make you walk twice as fast."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_wings"
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 2 {item:essentialcraft5:magic_plate}, 2 {item:essentialcraft5:air_focus}, 4 feathers and 1 empty {item:essentialcraft5:red_soul_matter}. Pale, mithriline and other plates of the same family work in place of the magic plates."
+        },
+        {
+          "type": "h",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "text": "Three ways to use them"
+        },
+        {
+          "type": "table",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "header": [
+            "Where",
+            "How it flies",
+            "When it costs MRU"
+          ],
+          "rows": [
+            [
+              "Worn on the belt",
+              "Hold jump to rise. Falls slow down on their own with no fall damage, and holding sneak lets you drop normally",
+              "1 MRU per tick while rising or slowing a fall"
+            ],
+            [
+              "Held in a hand",
+              "You keep rising without pressing anything, and holding sneak makes you sink slowly",
+              "1 MRU per tick as long as you hold them, even standing on the ground"
+            ],
+            [
+              "In your inventory",
+              "Hold sneak while falling to drift down with no fall damage",
+              "1 MRU per tick while slowing a fall"
+            ]
+          ],
+          "widths": [
+            2,
+            4,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "text": "Worn, they also add +0.1 to your movement speed. The bonus goes on the base value, so you walk twice as fast, and it stacks with Speed."
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "style": "warn",
+          "text": "Held wings drain MRU for as long as you hold them, so put them away when you're done. While you fly in Creative mode, glide with an elytra or ride something, worn and carried wings do nothing."
+        },
+        {
+          "type": "h",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "items": [
+            "MRU is paid a second ahead, 20 at once and then nothing for 20 ticks, which still averages 1 per tick.",
+            "Out of MRU, you stop rising. Let go of jump and press it again to retry.",
+            "With one pair worn and another held, only the held pair counts. Once it runs out of MRU, the worn pair takes over.",
+            "Several pairs in your inventory only cost as much as one.",
+            {
+              "if": [
+                "cfg:general.computer_seal.enabled",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.slow_fall_ticks>0"
+              ],
+              "text": "Inside a [[computer/seal_field|Curio Seal Field]], wings worn in the belt slot stop working. If you're in the air at that moment, you get a few seconds of Slow Falling to come down gently. Wings held in hand or kept in the inventory are unaffected."
+            },
+            {
+              "if": [
+                "cfg:general.computer_seal.enabled",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.slow_fall_ticks==0"
+              ],
+              "text": "Inside a [[computer/seal_field|Curio Seal Field]], wings worn in the belt slot stop working, and if you're in the air you simply fall. Wings held in hand or kept in the inventory are unaffected."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a pair of Magical Wings."
+        }
+      ]
+    }
+  ]
+}

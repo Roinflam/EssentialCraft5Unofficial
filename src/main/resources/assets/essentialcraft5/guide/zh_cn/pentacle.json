@@ -1,0 +1,1160 @@
+{
+  "id": "pentacle",
+  "order": 79,
+  "group": "main",
+  "title": "第十二章 · 腐化与灵魂五芒星",
+  "subtitle": "治好 MRU 留下的毛病",
+  "icon": "essentialcraft5:player_pentacle",
+  "entries": [
+    {
+      "id": "pentacle",
+      "title": "{item:essentialcraft5:player_pentacle}",
+      "icon": "essentialcraft5:player_pentacle",
+      "summary": "花 ESPE 治腐化效果",
+      "complete": "essentialcraft5:guide/pentacle/player_pentacle",
+      "items": [
+        "essentialcraft5:player_pentacle"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "矩阵受了伤落下的病根，拿 MRU 去治只会更糟。治得好它的只有绿太阳的脉冲，万物能活着，靠的就是这个。",
+          "by": "《源质残卷·卷四》"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "<em>目标</em>：做一张{item:essentialcraft5:player_pentacle}，搭好它的 0 档结构。残卷第四卷里画着这座五芒星，正中一面符文，外圈立着八根柱子。它花 ESPE 治<em>腐化效果</em>，那是矩阵损伤积攒多了以后凝成的永久小毛病。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.effects_enabled",
+          "text": "<em>目标</em>：做一张{item:essentialcraft5:player_pentacle}，搭好它的 0 档结构。残卷第四卷里画着这座五芒星，正中一面符文，外圈立着八根柱子。这一章做出的淡青块和淡青水晶柱，后面的章节还用得上。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "腐化效果是什么"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "在存着 1 万 MRU 以上的聚集体旁边干活，身上会慢慢积下<em>矩阵损伤</em>，见[[start/mrucu]]。这种损伤不会自行消退，每分钟还有一次机会凝成一个腐化效果，比如双手迟钝、双腿无力。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "损伤越多越容易中招，攒到 36000 左右时每分钟必中。中招时，这个效果的门槛会从损伤里扣掉，门槛是它成本的 {cfg:general.corruption.draw_threshold_multiplier} 倍。腐化效果死后也不会消失，只有灵魂五芒星治得好，各个效果发作起来是什么样，见[[corruption/matrix_damage]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "<em>五芒星认人</em>：你第一次打开一座搭好的五芒星，哪怕只是 0 档，它也会照见你的矩阵，聊天栏里会提示一声。从这时起，损伤可能凝成<em>任何一类</em>效果，不再看你打开的是哪一档。在这之前，损伤只会积攒着，不会凝成效果，身上已有的效果也潜伏着不发作。打开以后，你这一档还治不了的效果照样会发作，要治就得搭更高档的五芒星。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier",
+            "cfg:general.corruption.respect_claims"
+          ],
+          "text": "只有<em>你自己的</em>五芒星才认你，你有权改动的地方里放着的也算，比如你的领地、别人信任你的地方和野外。别人领地里的五芒星照样能打开来治，只是不算你打开过。这样就没人能领你去开一下他的五芒星，让你的损伤开始凝成你自己还没办法治的效果。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "矩阵类效果也在其中，成本 72000 的那三种门槛最高，损伤要攒到 {cfg:general.corruption.draw_threshold_multiplier|mul:72000|int} 点才会出现。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "五芒星",
+              "4 份{item:essentialcraft5:mithriline_dust}、4 块{item:essentialcraft5:empty_matrix_projection}和 1 块{item:essentialcraft5:soul_stone}"
+            ],
+            [
+              "0 档结构",
+              "13 块{item:essentialcraft5:mithriline_plating}和 8 根水晶柱，哪种水晶柱都行"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:player_pentacle"
+        },
+        {
+          "type": "p",
+          "text": "合成时四角放米斯莱粉，四边放空白矩阵投影，正中放灵魂石。空白矩阵投影本身就是灵魂石放进辐射仓辐射出来的，所以一张五芒星一共要 <t>5</t> 块灵魂石，做法见[[mru/soul_stone]]和[[generators/projections]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先摆柱子",
+          "text": "8 根水晶柱是这一步最费料的部分，做法见[[mithriline/crystal_pillar]]。柱子一放下就开始积攒 ESPE，可以先把护板铺好、柱子立起来，等你凑齐灵魂石做出五芒星，柱子里已经攒下不少了。"
+        },
+        {
+          "type": "h",
+          "text": "0 档结构"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "选择一块头顶无遮挡的空地，即可让柱子积攒 ESPE，玻璃等透光方块不会影响积攒效率。"
+            },
+            {
+              "if": "!cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "选择一块空地。"
+            },
+            "先铺底下一层，用 13 块米斯莱护板摆成菱形，中间 5 块拼成十字，外面再围一圈 8 块，什么颜色都行，染过色的也算。",
+            "在外圈的 8 块护板上各立一根水晶柱，每边两根，哪种水晶柱都行，只要护板正上方那一格是柱子的<em>底座</em>。",
+            "最后把五芒星放在正中那块护板上。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "地上的符文变成绿色并转动起来，柱子上冒出绿色的光点。只要缺一格，符文就是灰的，也不会转。结构每 2 秒检查一次，打开界面时也会当场查一遍。"
+        },
+        {
+          "type": "h",
+          "text": "界面"
+        },
+        {
+          "type": "p",
+          "text": "不潜行时右键五芒星，就会打开它的界面。界面正中是你自己，脚下的红条是矩阵损伤，红条满了说明损伤已到上限，再往下写着现在能用的 ESPE 和档位，你身上的腐化效果一个个排在符文四周。"
+        },
+        {
+          "type": "h",
+          "text": "要注意"
+        },
+        {
+          "type": "list",
+          "items": [
+            "水晶柱要你人在附近才积攒 ESPE，见[[mithriline/crystal_pillar]]，所以五芒星最好建在家旁边。",
+            "水晶柱挖下来再放回去，里面攒的 ESPE 就清零了。",
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "text": "治好效果并不会减少矩阵损伤，你要是还在聚集体旁边待着，过一阵损伤又会凝成新的效果。最好先用{item:essentialcraft5:mru_mover}把聚集体挪远，或者穿上[[gear/mhs_armor|魔力防护套装]]，再回来治。"
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "矩阵四阶起，淬炼台 8 格内要有一座你自己的灵魂五芒星，试炼开始时从它的柱子扣 ESPE，见[[pentacle/rank_4]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书给五芒星的副标题是「净化灵魂！」，书里还说这座结构不知为什么分成了好几档。原作的档位从 1 数起，那里的 4 档就是这里的 3 档。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/pentacle/player_pentacle.json — MPM / PSP / MPM：米斯莱粉 ×4、空白矩阵投影 ×4、灵魂石",
+        "data/essentialcraft5/recipes/radiating_chamber/empty_matrix_projection.json — 灵魂石辐射成空白矩阵投影（所以一张五芒星 5 块灵魂石）",
+        "registry/ECPentacle.java:199 PLATING_OFFSETS — 脚下一层 13 块米斯莱护板（中间十字 5 块 + 外圈 8 块）；L191 PILLAR_OFFSETS 第 0 段 8 根柱子在外圈护板正上方；L223 pillarRule(0, …) 任意档柱子的底座",
+        "block/DyeableBlock.java:55 — 护板颜色是方块状态，按方块判，颜色随意",
+        "blockentity/PlayerPentacleBlockEntity.java:65 CHECK_INTERVAL = 40（2 秒判一次）；L300 createMenu 打开界面时当场重判",
+        "client/render/PlayerPentacleRenderer.java:50~52 — 成形才转；blockentity/PlayerPentacleBlockEntity.java:84 TIER_COLORS（不成形灰、0 档绿、1 档蓝、2 档紫、3 档红）；L360 clientTick 柱子上的光点按各段柱子所属档位着色",
+        "client/screen/PlayerPentacleScreen.java:210 — 损伤条满格 CorruptionEffects.damageBarMax()（= general.corruption.max_matrix_damage，默认 288000；不封顶时按最贵门槛算）",
+        "api/CorruptionEffects.java:139~141 — 每 1200 tick 抽一次，概率 min(1, (损伤 + 1) / 36000)；corruption/CorruptionTicker.java:151 抽中扣成本；L133 注释：损伤不会自然消退，只在抽中时减少",
+        "entity/MRUPresenceEntity.java:335 — 存量 ⌊MRU / 10000⌋ ≥ 1 才给附近玩家加矩阵损伤",
+        "blockentity/MithrilineCrystalPillarBlockEntity.java:115 — requires_unobstructed_sky 时柱顶以上没有挡天空光的方块才攒；方块实体 tick 才攒（区块不加载就停）；registry/ECPentacle.java:166 掉落表只掉方块本身，不带 ESPE",
+        "原作 lang en_US.lang L1069 discovery_playerPentacle.desc「Cleanse the soul!」、L1096 page.playerPentacle_0「the structure has multiple tiers」、L1097~1100 Tier 1~4",
+        "blockentity/PlayerPentacleBlockEntity.java:312 onMenuOpened（界面真的打开以后，corruption/CorruptionGate.java:103 PentacleOpenEvents 在 PlayerContainerEvent.Open 里调）、:340 mayRecordTier（主人不问、别人要能动五芒星那一格，respect_claims）→ corruption/CorruptionGate.java:74 recordPentacle — 打开成形的五芒星记下档位（只升不降），升档时发一句话、抽取冷却拉满一次"
+      ]
+    },
+    {
+      "id": "cure",
+      "title": "治好一个腐化效果",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "五芒星怎么算 ESPE",
+      "complete": "essentialcraft5:guide/pentacle/cure",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：在五芒星上治好一个腐化效果。0 档就治得了双手、双腿那几种身体类效果，见[[corruption/body]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎么治"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "右键五芒星打开界面，鼠标停在效果图标上，就能看到它的名字、类别和要花的 ESPE。",
+            "花费显示为绿色时，点一下就治好了，耳边会有一声轻响。",
+            "花费显示为红色时，下方会写明缺的是档位还是 ESPE。当前档位治不了的效果，名字显示成一团乱码。",
+            {
+              "if": "cfg:general.corruption.draw_requires_cure_tier",
+              "text": "标着「潜伏」的效果暂时不会发作，等你打开一座搭好的五芒星，它才会醒过来。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "快捷栏上方出现「已治愈：……」。"
+        },
+        {
+          "type": "h",
+          "text": "要花多少"
+        },
+        {
+          "type": "p",
+          "text": "五芒星自己不存 ESPE，治疗时直接从结构里的水晶柱抽取，还要打个折扣，柱子里的 1 点只顶 <t>0.36</t> 点，界面上显示的已经是折过的数。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "类别",
+            "成本",
+            "从柱子里抽走（3 档减半）",
+            "最低档位"
+          ],
+          "rows": [
+            [
+              "身体",
+              "6000",
+              "16666",
+              "0 档"
+            ],
+            [
+              "心智",
+              "8000～36000",
+              "22222～100000",
+              "1 档"
+            ],
+            {
+              "if": [
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "矩阵",
+                "2000～72000",
+                "5555～200000",
+                "2 档，72000 的三种要 3 档"
+              ]
+            }
+          ],
+          "widths": [
+            1,
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "档位",
+            "抽哪些柱子",
+            "柱子攒满时能用"
+          ],
+          "rows": [
+            [
+              "0 档",
+              "8 根",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:2.88|int}"
+            ],
+            [
+              "1 档",
+              "12 根",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:4.32|int}"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "2 档",
+                "16 根",
+                "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:5.76|int}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "3 档",
+                "20 根，每点按两点算",
+                "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:14.4|int}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "要等多久"
+        },
+        {
+          "type": "p",
+          "text": "水晶柱积攒得很慢，露天时每根每秒攒 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:20} ESPE，在末地每秒攒 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:20}。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "治一个身体类效果要从柱子里抽 16666，8 根空柱子从头攒起，在主世界约需 <t>69</t> 分钟，在末地约需 <t>17</t> 分钟。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "结构搭好以后就可以去忙别的，柱子会自己积攒，回来再治就行，只是人要留在附近，见[[mithriline/crystal_pillar]]。",
+            "五芒星建在末地的话，柱子积攒得快好几倍，前提是你人也待在末地。",
+            "升到 1 档以上会多出几根柱子，存得更多，攒得也更快。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "抽取时先把一根柱子抽空，再抽下一根，所有柱子加起来不够的话，一点也不抽。",
+            "点下去的那一刻，五芒星会把结构重新检查一遍，拆掉一根柱子，当场就治不了。",
+            "创造模式下按住 Shift 再点，任何效果都能免费治好。",
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.matrix_tuner.enabled"
+              ],
+              "text": "五芒星只治效果，不减矩阵损伤，损伤本身可以站到[[corruption/matrix_tuner|矩阵调律器]]上慢慢抹掉。"
+            },
+            "想把损伤一次清掉一大截，可以召出[[bestiary/matrix_shade|矩阵之影]]，把最多 {cfg:general.mobs.matrix_shade.max_absorbed|int} 点损伤转给它，再把它打倒。",
+            "召矩阵之影时从柱子里抽 ESPE 也按这个折扣算，三档同样减半，见[[bestiary/matrix_shade]]。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "升矩阵阶不会让腐化变轻：[[matrix/tolerance|耐受]]只抵试炼、虹吸、矩阵游魂这几种新来源的损伤，腐化效果照样要来这里治。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "blockentity/PlayerPentacleBlockEntity.java:67 CONSUME_MODIFIER = 0.36；L199 effectiveESPE = ⌊柱子之和 × 倍率 × 0.36⌋；L216 rawCost = (int)(成本 ÷ 0.36)：6000 → 16666、8000 → 22222、36000 → 100000、2000 → 5555、72000 → 200000",
+        "blockentity/PlayerPentacleBlockEntity.java:224 consumeESPE — 先算够不够，够了按顺序一根一根抽；L261 cure 当场 recheckTier，档位 ≥ 类别要求才扣；L276~278 BEACON_POWER_SELECT 音效 + 动作栏 message.essentialcraft5.player_pentacle.cured",
+        "api/CorruptionEffects.java:74~78 — 身体 0 档、心智 1 档、矩阵 2 档；L155~179 成本：身体 6000，心智 8000~36000，矩阵 2000~72000",
+        "api/CorruptionEffects.java:311 matrixEffectsEnabled — general.corruption.matrix_effects_enabled，且受海纳尔之门开关管（registry/ECHoannaPortal.java:91 registerMatrixGate）",
+        "registry/ECPentacle.java:246 pillarOffsets — 0~3 档 8 / 12 / 16 / 20 根；blockentity/PlayerPentacleBlockEntity.java:176 multiplier 3 档 ×2：上限 × 8 × 0.36 = 2.88、12 → 4.32、16 → 5.76、20 × 2 → 14.4；L243 3 档按 rawCost ÷ 2 抽（表头写「3 档减半」）",
+        "blockentity/MithrilineCrystalPillarBlockEntity.java:133 generation — 主世界 espe_generated（0.025/tick = 0.5/秒），末地 espe_generated_end（0.1/tick = 2/秒）；8 根 4/秒：16666 ÷ 4 ≈ 4167 秒 ≈ 69 分钟，末地 16/秒 ≈ 17 分钟（字面时长，只在两项产速是默认值时显示）",
+        "client/screen/PlayerPentacleScreen.java:263~301 — 档位不够时名字 OBFUSCATED；花费够绿、不够红，红字 needs_tier / not_enough；L140 creativeFree：创造模式按住 Shift 免费（menu/PlayerPentacleMenu.java:97 服务端判 isCreative）",
+        "client/screen/PlayerPentacleScreen.java tooltip — 潜伏的效果写「潜伏：打开一座你能用的成形灵魂五芒星之前不会发作」（corruption/CorruptionGate.active）；哪一档都治不了的另写 dormant_never",
+        "tools/plan/batch13.md §5.3.2 — 矩阵之影：转进 min(损伤, 72 000)，打倒即清；矩阵游魂 +150 走 Source.BATCH13（吃耐受）"
+      ],
+      "if": "cfg:general.corruption.effects_enabled"
+    },
+    {
+      "id": "pale_block",
+      "title": "{item:essentialcraft5:pale_block}",
+      "icon": "essentialcraft5:pale_block",
+      "summary": "1 档结构的基石",
+      "complete": "essentialcraft5:guide/pentacle/pale_block",
+      "items": [
+        "essentialcraft5:pale_block"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做{item:essentialcraft5:pale_block}。它只用来把五芒星升到 1 档，1 档本身是可选的，从下一篇起也都是可选内容。后面的主线不再用到淡青块，不打算升档的话，做 1 块打个勾就够，想升档时再做满 4 块。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "到了 1 档，物品栏被打乱、手里的东西掉出去这一类心智类效果也能治了，见[[corruption/mind]]。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每块",
+              "4 块{item:essentialcraft5:pale_ingot}、1 颗{item:essentialcraft5:pale_pearl}和 4 块{item:minecraft:lapis_block}"
+            ],
+            [
+              "四块合计",
+              "20 块青金石块、4 颗青金石、4 个金锭和 4 份荧石粉，在辐射仓里约耗 {cfg:machines.radiating_chamber.mru_usage_modifier|mul:52000|int} MRU"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pale_block"
+        },
+        {
+          "type": "p",
+          "text": "合成时淡青珍珠放正中，四角放淡青锭，四边放青金石块。淡青锭和淡青珍珠都是在辐射仓里做的，见[[alloys/pale]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先挖青金石",
+          "text": "这一步最缺的是青金石，四块淡青块要 20 块青金石块，每块又是 9 颗青金石，下矿前最好先算好要挖多少。"
+        },
+        {
+          "type": "p",
+          "text": "淡青块本身只是一种结实的建材，[[gear/pale_gem]]也要用到它。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一块淡青块。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/alloys/pale_block.json — ISI / SES / ISI：淡青锭 ×4（四角）、#forge:storage_blocks/lapis ×4（四边）、淡青珍珠（正中）",
+        "data/essentialcraft5/recipes/radiating_chamber/pale_ingot.json — 青金石块 + 金锭 → 4 淡青锭，100 刻 × 每刻 mru_usage_modifier（1）× cost_modifier 80 = 8000 MRU（blockentity/RadiatingChamberBlockEntity.java:235 costPerTick）；pale_pearl.json — 青金石 + 荧石粉 → 淡青珍珠，250 × 20 = 5000 MRU；一块 13000，四块 52000 × mru_usage_modifier；四块合计青金石块 16 + 4 = 20",
+        "registry/ECPentacle.java:115 — 淡青块：要镐、不透光（原作不透光度 0，batch3 §3.7 修 3）；第四批淡青宝石也用它",
+        "api/CorruptionEffects.java:160~163 — 心智类：mind_8 打乱主物品栏、mind_9 丢主手那一组等",
+        "data/essentialcraft5/recipes — pale_block 只出现在 alloys/pale_block.json 自身和 radiating_chamber/pale_gem_from_*.json（支线淡青宝石）；结构 player_pentacle_tier1 要 4 块"
+      ]
+    },
+    {
+      "id": "pale_crystal_pillar",
+      "title": "黯淡水晶与淡青水晶柱",
+      "icon": "essentialcraft5:pale_crystal_pillar",
+      "summary": "1 档的水晶柱",
+      "complete": "essentialcraft5:guide/pentacle/pale_crystal_pillar",
+      "items": [
+        "essentialcraft5:pale_crystal_pillar",
+        "essentialcraft5:fading_crystal",
+        "essentialcraft5:fading_dust"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做 4 根{item:essentialcraft5:pale_crystal_pillar}。第十七章的恶魔五芒星还要 12 根，熔炉闲着时可以先多做些。1 档结构新加的 4 根柱子必须是淡青水晶柱，虚空、恶魔这些更高档的柱子也算，米斯莱柱不算。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做 4 根{item:essentialcraft5:pale_crystal_pillar}。1 档结构新加的 4 根柱子必须是淡青水晶柱，虚空、恶魔这些更高档的柱子也算，米斯莱柱不算。",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每根",
+              "1 根{item:essentialcraft5:mithriline_crystal_pillar}、2 颗{item:essentialcraft5:fading_crystal}和 6 份{item:essentialcraft5:fading_dust}"
+            ],
+            [
+              "四根合计",
+              "4 根米斯莱水晶柱和 11 颗{item:essentialcraft5:mithriline_crystal}，米斯莱熔炉约耗 4080 ESPE"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pale_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "合成时米斯莱水晶柱放正中，它的正上、正下各放一颗黯淡水晶，其余六格放黯淡水晶粉。"
+        },
+        {
+          "type": "h",
+          "text": "米斯莱熔炉里的两步"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fading_crystal",
+            "essentialcraft5:fading_dust"
+          ],
+          "recipe_type": "essentialcraft5:mithriline_furnace"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把米斯莱水晶放进{item:essentialcraft5:mithriline_furnace}，花 240 ESPE 转成 1 颗黯淡水晶，熔炉怎么用见[[mithriline/furnace]]。",
+            "再放进 1 颗黯淡水晶，花 480 ESPE 磨成 8 份黯淡水晶粉。",
+            "四根柱子一共要 8 颗黯淡水晶和 24 份粉，粉得另外再磨 3 颗，合计 11 颗米斯莱水晶。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "title": "后面还要更多",
+          "text": "第十七章的恶魔五芒星要 8 根淡青柱，它另外要的 4 根虚空水晶柱也是拿淡青柱做的。熔炉闲着时就多转些黯淡水晶，到时候能少等很久。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "往后做力场发射器和粒子捕捉器，也要用到黯淡水晶，见[[computer/force_parts]]。"
+        },
+        {
+          "type": "p",
+          "text": "淡青柱比米斯莱柱攒得快，倍率见[[mithriline/crystal_pillar]]，最多能存的量和米斯莱柱一样，都是 {cfg:machines.mithriline_crystal_pillar.max_espe|int}。把它的底座摆在附魔台旁边放书架的位置，一根就顶 15 个书架。柱子里浮着的水晶是淡蓝色的。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一根淡青水晶柱。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/pentacle/pale_crystal_pillar.json — IGI / ICI / IGI：黯淡水晶粉 ×6、黯淡水晶 ×2（正上正下）、米斯莱水晶柱（正中）",
+        "data/essentialcraft5/recipes/mithriline/furnace/mithriline_crystal_to_fading_crystal.json — 米斯莱水晶 → 黯淡水晶，240 ESPE；fading_crystal_to_fading_dust.json — 黯淡水晶 → 8 份粉，480 ESPE；四根：8 + 3 = 11 颗，8 × 240 + 3 × (240 + 480) = 4080",
+        "registry/ECPentacle.java:140 — 淡青柱 Tier.PALE（档位 1），产能 / 上限和米斯莱柱共用 machines.mithriline_crystal_pillar；block/MithrilineCrystalPillarBlock.java:183 getEnchantPowerBonus 只在底座，淡青 15（原版附魔台最多认 15，一根就顶满 15 个书架）；registry/ECPentacle.java:224 pillarRule(1, …) 1 档柱位要档位 ≥ 1",
+        "registry/ECDemon.java:120~128 PILLAR_OFFSETS / PILLAR_MIN_TIER — 恶魔五芒星 16 根：4 根任意档、8 根淡青以上、4 根虚空以上；data/essentialcraft5/recipes/crystal_pillars/void_crystal_pillar.json 用淡青柱做虚空柱",
+        "黯淡水晶做力场零件：data/essentialcraft5/recipes/computer/（手册 computer/force_parts）"
+      ]
+    },
+    {
+      "id": "tier_one",
+      "title": "1 档五芒星",
+      "icon": "essentialcraft5:pale_crystal_pillar",
+      "summary": "多 4 根柱子，治心智类",
+      "complete": "essentialcraft5:guide/pentacle/tier1",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把五芒星升到 1 档。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "1 档治得了心智类效果，见[[corruption/mind]]，能用的 ESPE 也多一些。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "你打开过任何一座搭好的五芒星以后，矩阵损伤就可能凝成心智类效果，而它们要 1 档起才治得了。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "淡青块",
+              "4 块，见[[pentacle/pale_block]]"
+            ],
+            [
+              "淡青水晶柱",
+              "4 根，见[[pentacle/pale_crystal_pillar]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "1 档结构"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier1"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "保持 0 档结构完整，一格都不能少。",
+            "在和五芒星同一层、紧挨着它的四个斜角上，各放一块淡青块。",
+            "每块淡青块上立一根淡青水晶柱，底座就落在淡青块正上方。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "符文转为蓝色，新加的 4 根柱子冒出蓝色的光点，界面上显示「1 档」。第一次打开 1 档的界面时，这一步就会打勾。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "要等多久"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "1 档从 12 根柱子里抽 ESPE，柱子全攒满时能用 {cfg:machines.mithriline_crystal_pillar.max_espe|mul:4.32|int}。心智类里最贵的两种要 36000，折算下来要从柱子里抽走 10 万点。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "12 根空柱子从头攒够 10 万点，在主世界约需 4.2 小时，在末地约需 1 小时。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "再往上是[[pentacle/tier_two]]和[[pentacle/tier_three]]，要用海纳尔和恶魔那边的材料，现在可以先跳过，2 档等到第十七章再做，见[[demons/purge]]。"
+        },
+        {
+          "type": "h",
+          "text": "矩阵之影"
+        },
+        {
+          "type": "p",
+          "text": "五芒星到了 1 档，还能用来召唤<em>矩阵之影</em>。身上的矩阵损伤攒到 {cfg:general.mobs.matrix_shade.min_matrix_damage|int} 以上时，拿{item:essentialcraft5:matrix_conduit}右键五芒星的中心块，损伤就转到召出来的矩阵之影身上，打倒它，这些损伤就没了，还能拿到{item:essentialcraft5:matrix_crystal}。召唤要预扣柱子里的 ESPE，见[[bestiary/matrix_shade]]。"
+        }
+      ],
+      "_src": [
+        "registry/ECPentacle.java:204 PALE_OFFSETS — 五芒星同层四个斜角 (±1, 0, ±1)；L194 PILLAR_OFFSETS 第 1 段 (±1, 1, ±1) 在淡青块上；L60 注释：档位逐级累加，下面的档一格不能少",
+        "blockentity/PlayerPentacleBlockEntity.java:315 onMenuOpened — 档位 ≥ 1 时给 guide/pentacle/tier1 打勾；L84 TIER_COLORS 第 2 项蓝色；L360 clientTick 每段柱子按自己那档的颜色出光点",
+        "12 根 × 上限 × 0.36 = 4.32 × 上限；心智 36000 → rawCost 100000；12 根主世界 6/秒 ≈ 4.6 小时，末地 24/秒 ≈ 69 分钟",
+        "corruption/CorruptionGate.java:60 drawable — 打开过成形的五芒星才抽；blockentity/PlayerPentacleBlockEntity.java:325 界面真的打开以后记档位（:340 mayRecordTier 只认自己的、或者能动的五芒星）",
+        "tools/plan/batch13.md §5.3.2 — 矩阵导流符右键 ≥ 1 档五芒星中心块；召唤者矩阵损伤 ≥ 18 000；转进 min(损伤, 72 000)，预扣 a × 0.5 有效 ESPE（13c-M4）"
+      ]
+    },
+    {
+      "id": "tier_two",
+      "title": "2 档五芒星",
+      "icon": "essentialcraft5:void_crystal_pillar",
+      "summary": "虚空石与虚空水晶柱",
+      "complete": "essentialcraft5:guide/pentacle/tier2",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：把五芒星升到 2 档。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "海纳尔人末年挖出虚空石，想给全城砌一道挡 MRU 的墙，如今这些石头垫在了五芒星的柱子底下。2 档能治矩阵类效果，见[[corruption/matrix]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "你打开过任何一座搭好的五芒星以后，矩阵损伤就可能凝成矩阵类效果，它们要 2 档起才治得了，成本 72000 的那三种更要到 3 档。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.effects_enabled||!cfg:general.corruption.matrix_effects_enabled",
+          "text": "海纳尔人末年挖出虚空石，想给全城砌一道挡 MRU 的墙，如今这些石头垫在了五芒星的柱子底下。2 档多出 4 根柱子，能用的 ESPE 更多，它也是 3 档的底子。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "虚空石",
+              "8 块，颜色随意，见[[hoanna/void_stone]]"
+            ],
+            [
+              "虚空水晶柱",
+              "4 根，恶魔水晶柱也算，见[[demons/void_crystal_pillar]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "2 档结构"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier2"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "保持 1 档结构完整，一格都不能少。",
+            "从五芒星这一层往上，在外圈四个角上各叠两块虚空石，位置就在护板菱形缺掉的那四个角的正上方。",
+            "再在每摞虚空石顶上立一根虚空水晶柱。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "符文转为紫色，界面上显示「2 档」。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "2 档从 16 根柱子里抽 ESPE，柱子全攒满时能用 {cfg:machines.mithriline_crystal_pillar.max_espe|mul:5.76|int}，矩阵类的 14 种效果里有 11 种够得着。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "title": "2 档治不了的",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_12}、{lang:corruption_effect.essentialcraft5.matrix_19}、{lang:corruption_effect.essentialcraft5.matrix_20}这三种的成本是 72000，2 档的柱子全攒满也不够，要 3 档才治得了，见[[pentacle/tier_three]]。"
+        }
+      ],
+      "_src": [
+        "registry/ECPentacle.java:207 VOID_STONE_OFFSETS（(±2, 0, ±2)、(±2, 1, ±2) 两层 8 块）、L195 PILLAR_OFFSETS 第 2 段 (±2, 2, ±2)；L225 pillarRule(2, …) 认档位 ≥ 2 的柱子底座（恶魔柱档位 3 也算）；L219 laterBlock 按注册名 void_stone 判，颜色是方块状态（registry/ECVoid.java:118 DyeableBlock）",
+        "blockentity/PlayerPentacleBlockEntity.java effectiveESPE — 16 根 × 上限 × 0.36 = 5.76 × 上限；TIER_COLORS 第 4 项紫色",
+        "api/CorruptionEffects.java:166~179 — 矩阵类 14 种，matrix_12 / 19 / 20 成本 72000，其余 ≤ 36000；Category.MATRIX minPentacleTier 2；L311 matrixEffectsEnabled",
+        "blockentity/PlayerPentacleBlockEntity.java:318 onMenuOpened — 档位 ≥ 2 时给 guide/pentacle/tier2 打勾",
+        "corruption/CorruptionGate.java:60 drawable — 打开过成形的五芒星才抽；blockentity/PlayerPentacleBlockEntity.java:325 界面真的打开以后记档位（:340 mayRecordTier 只认自己的、或者能动的五芒星）"
+      ]
+    },
+    {
+      "id": "tier_three",
+      "title": "3 档五芒星",
+      "icon": "essentialcraft5:demonic_crystal_pillar",
+      "summary": "每点 ESPE 顶两点",
+      "complete": "essentialcraft5:guide/pentacle/tier3",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:demonic_crystal_pillar"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（本章可选，第十九章必做）：把五芒星升到 3 档，柱子里的每点 ESPE 都按两点计算，第十九章的这一步见[[inquisitorium/purify]]。这一档的恶魔柱要用阿克罗尼特，那是出自地狱的金属，只能向恶魔换。再往上的 4 档在第二十二章，见[[shade/tier4]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "3 档能治所有腐化效果，2 档够不着的那三种也在内。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "成本 72000 的三种矩阵类效果门槛最高，损伤要攒到 {cfg:general.corruption.draw_threshold_multiplier|mul:72000|int} 点才会凝成，凝成以后只有 3 档治得了。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "恶魔护板",
+              "4 块，颜色随意，见[[demons/demonic_plating]]"
+            ],
+            [
+              "恶魔水晶柱",
+              "4 根"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "合成恶魔水晶柱时，用 6 个{item:essentialcraft5:ackronite_ingot}和 2 个{item:essentialcraft5:demonic_core}围住一根{item:essentialcraft5:void_crystal_pillar}，那根虚空柱会被用掉，怎么换到阿克罗尼特见[[demons/ackronite]]。"
+        },
+        {
+          "type": "h",
+          "text": "3 档结构"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier3"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "保持 2 档结构完整，一格都不能少。",
+            "到五芒星下面的米斯莱护板那一层，朝正东、正南、正西、正北各隔一格放一块恶魔护板。",
+            "同样朝这四个方向隔一格、比五芒星高 3 格的地方，各立一根恶魔水晶柱。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "柱子悬在半空",
+          "text": "恶魔柱的底座下面是空的，没法直接放上去，可以先在下面垫几块方块，柱子放好以后再把垫的拆掉。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "符文转为红色，界面上显示「3 档」，同时获得进度「灵魂净化」。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "p",
+          "text": "3 档从 20 根柱子里抽 ESPE，每点按两点算，柱子全攒满时能用 {cfg:machines.mithriline_crystal_pillar.max_espe|mul:14.4|int}。治同一个效果，从柱子里抽走的只有低档时的一半。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "成本 72000 的那三种矩阵类效果，治一个要从柱子里抽走 10 万点。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "20 根空柱子从头攒够这么多，在主世界约需 1.6 小时，在末地约需 25 分钟。"
+        }
+      ],
+      "_src": [
+        "registry/ECPentacle.java:211 DEMONIC_OFFSETS（(±2, −1, 0)、(0, −1, ±2)：脚下一层四个正方向隔一格）、L196 PILLAR_OFFSETS 第 3 段 (±2, 3, 0) / (0, 3, ±2)；L226 pillarRule(3, …)",
+        "blockentity/PlayerPentacleBlockEntity.java:176 multiplier — 3 档每点 ESPE ×2；20 根 × 上限 × 2 × 0.36 = 14.4 × 上限；L243 consumeESPE 按 rawCost ÷ 2 抽：72000 → 100000；20 根主世界 10/秒 ≈ 2.8 小时，末地 40/秒 ≈ 42 分钟",
+        "data/essentialcraft5/recipes/crystal_pillars/demonic_crystal_pillar.json — IGI / ICI / IGI：阿克罗尼特锭 ×6、恶魔核心 ×2、虚空水晶柱",
+        "blockentity/PlayerPentacleBlockEntity.java:321~322 onMenuOpened — 档位 ≥ 3 时给 guide/pentacle/tier3 打勾、发 main/player_pentacle（进度标题 advancements.essentialcraft5.player_pentacle.title「灵魂净化」）；TIER_COLORS 第 5 项红色",
+        "corruption/CorruptionGate.java:60 drawable — 打开过成形的五芒星才抽；blockentity/PlayerPentacleBlockEntity.java:325 界面真的打开以后记档位（:340 mayRecordTier 只认自己的、或者能动的五芒星）",
+        "tools/plan/batch13.md §7.5 — 13e 起最高 4 档（第二十二章 shade/tier4），这里不再写「最高」"
+      ]
+    },
+    {
+      "id": "ec_balancer",
+      "title": "{item:essentialcraft5:ec_balancer}",
+      "icon": "essentialcraft5:ec_balancer",
+      "summary": "让仓里的聚集体不伤人",
+      "complete": "essentialcraft5:guide/pentacle/ec_balancer",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ec_balancer"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：给富集仓装一块{item:essentialcraft5:ec_balancer}，让仓里的 MRU 聚集体不再给你添矩阵损伤，富集仓怎么搭见[[enrichment/controller]]。"
+        },
+        {
+          "type": "p",
+          "text": "富集仓最初就是造来关聚集体的。仓里存的 MRU 放在控制器里，本身不伤人，可外壳里另外飘着的聚集体，不管是关在仓里的漏能机器养大的，还是你挪进去的，存量一过 1 万，照样会给 12 格内的人叠加矩阵损伤。外壳只挡得住一部分，稳定器能把这份损伤整个压住。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "4 块{item:essentialcraft5:magic_plate}或淡青板、米斯莱板等更高级的板，1 块{item:essentialcraft5:combined_magical_alloys}，2 个{item:essentialcraft5:mru_conversion_matrix}，1 个{item:essentialcraft5:elemental_core}或别的魔力核心，以及 1 个{item:essentialcraft5:mru_catcher}"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ec_balancer"
+        },
+        {
+          "type": "p",
+          "text": "合成时上排两块板夹着注魔合金，中排两个转换矩阵夹着核心，下排正中放 MRU 收集器，两侧同样是板。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把它当作一块外壳，砌进富集仓外壳的任意位置，顶替一块魔力强化石或护板，外壳照样成形。",
+            "放下后一两秒内，控制器会把外壳重新扫一遍，稳定器随之生效。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "生效以后，它每秒给外壳里的所有聚集体续上 2 秒「稳定期」，在稳定期里，它们不会给任何人添矩阵损伤。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一块富集仓稳定器。"
+        },
+        {
+          "type": "h",
+          "text": "要注意"
+        },
+        {
+          "type": "list",
+          "items": [
+            "装一块就够了，多放几块也不会多出什么效果。",
+            "稳定器拆掉了或外壳断开了，2 秒后一切恢复原样。",
+            "它只管富集仓里面的聚集体，野外的还是要用{item:essentialcraft5:mru_mover}挪走，或者穿上[[gear/mhs_armor|魔力防护套装]]。",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "text": "仓里关着聚集体、稳定器又起着作用时，仓还能把那团聚集体凝成{item:essentialcraft5:condensed_matrix}，这一章最后就要做，见[[pentacle/condensed]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.enrichment_chamber.collapse.enabled"
+          ],
+          "title": "第十六章还要用",
+          "text": "在海纳尔让聚集体坍缩时，外壳上要砌一块稳定器，见[[hoanna/collapse]]，这一步做好的这块正好留到那时候用。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书给这块稳定器的副标题只有短短一句「平衡魔力！」。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/pentacle/ec_balancer.json — PAP / XCX / PMP：#essentialcraft5:plates/magic ×4（魔力板 / 淡青板 / 米斯莱板 / 恶魔板，见 generated tags/items/plates/magic.json）、注魔合金、MRU 转换矩阵 ×2、#essentialcraft5:cores/magic、MRU 收集器",
+        "registry/ECPentacle.java:184 — 稳定器在富集仓外壳标签 essentialcraft5:mrucuec_casing 里（generated tags/blocks/mrucuec_casing.json）",
+        "blockentity/EnrichmentControllerBlockEntity.java:94 DIRTY_INTERVAL = 20（放下外壳方块后最快 20 tick 重扫）；L100 STABILIZE_INTERVAL = 20、L102 STABILIZE_TICKS = 40（重扫完再等下一次续期，最多 20 tick，所以一两秒内生效）；L217~220 有稳定器（个数 > 0）且成形才稳定；L60~62 外壳范围里的全部聚集体",
+        "entity/MRUPresenceEntity.java:335 — 存量 ⌊MRU / 10000⌋ ≥ 1 才伤人；L207 stabilize：稳定期内不加矩阵损伤",
+        "原作 lang en_US.lang L427 page.mrucuec.balancer_0「decrease the chance … by 95%」；原作代码 TileMRUCUECBalancer 整个压住",
+        "blockentity/EnrichmentControllerBlockEntity.java:58-63、238-247 — 只稳定外壳范围里的 MRUPresenceEntity；仓里的 MRU 存在控制器里",
+        "原作 en_US.lang ec3book…mrucuec.balancer.desc=Balance the Magic!"
+      ]
+    },
+    {
+      "id": "condensed",
+      "title": "{item:essentialcraft5:condensed_matrix}",
+      "icon": "essentialcraft5:condensed_matrix",
+      "summary": "富集仓把聚集体凝成一块",
+      "complete": "essentialcraft5:guide/pentacle/condensed",
+      "items": [
+        "essentialcraft5:condensed_matrix"
+      ],
+      "if": [
+        "cfg:general.matrix_rank.enabled",
+        "cfg:machines.enrichment_chamber.condense.enabled"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：让富集仓把关在里面的一团聚集体凝成一个{item:essentialcraft5:condensed_matrix}。四阶起每一阶的祭品都要它，到七阶一共要 6 个。"
+        },
+        {
+          "type": "h",
+          "text": "要满足的条件"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "外壳",
+              "一座成形的[[enrichment/controller|富集仓]]，外壳里的{item:essentialcraft5:magic_plating}和{item:essentialcraft5:pale_plating}合计至少 {cfg:machines.enrichment_chamber.condense.casing} 块"
+            ],
+            [
+              "稳定器",
+              "外壳上有一块起作用的{item:essentialcraft5:ec_balancer}，见[[pentacle/ec_balancer]]"
+            ],
+            [
+              "聚集体",
+              "仓里关着一团存量至少 {cfg:machines.enrichment_chamber.condense.presence_mru} 的聚集体"
+            ],
+            [
+              "存量",
+              "仓里存着至少 {cfg:machines.enrichment_chamber.condense.mru} MRU。控制器自己能存 {cfg:machines.enrichment_chamber.max_mru}，不够时外壳上要砌[[enrichment/holding_chamber|存储方块]]"
+            ],
+            [
+              "平衡值",
+              "仓里的平衡值在 {cfg:machines.enrichment_chamber.condense.balance_min}～{cfg:machines.enrichment_chamber.condense.balance_max} 之间，也就是{balance:pure}附近"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "条件全部满足时，凝结进度每秒 +1，攒满 {cfg:machines.enrichment_chamber.condense.seconds} 秒（{cfg:machines.enrichment_chamber.condense.seconds|div:60|round:1} 分钟）就凝成：聚集体消失，仓里扣掉 {cfg:machines.enrichment_chamber.condense.mru} MRU，仓的正中掉出一个凝结矩阵。哪个维度都行。"
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在富集仓外壳里砌够 {cfg:machines.enrichment_chamber.condense.casing} 块魔力护板或淡青护板，其余照旧，再嵌一块稳定器。",
+            "把一团聚集体关进去：围着现成的聚集体砌外壳，或者隔着强化玻璃拿{item:essentialcraft5:mru_mover}推进去。{item:essentialcraft5:mrucu_container}能把野外的聚集体装回来当种子。",
+            "在仓旁开几台会漏 MRU 的机器，让它长到 {cfg:machines.enrichment_chamber.condense.presence_mru}。",
+            "混两路产能器往仓里灌 MRU，让平衡值停在中间：一路偏冰冻、一路偏混沌，或者全用纯净的。",
+            "等 {cfg:machines.enrichment_chamber.condense.seconds|div:60|round:1} 分钟，拆开一块外壳把凝结矩阵拿出来，再补上。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到第一个凝结矩阵。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>养聚集体时先做好防护</em>，存量过了 1 万的聚集体会给 12 格内的人叠[[corruption/matrix_damage|矩阵损伤]]。先砌好稳定器再把聚集体推进去，或者穿一整套[[gear/mhs_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "条件中途断掉时进度停在原处，不清零。",
+            "凝出来的东西不会消失，同一种堆在一起，满 64 个就停，拿走一些才继续。",
+            "仓里的平衡值按存量加权平均，原先存着的 MRU 也算在内，换了产能器以后要灌上一阵才偏得过来。",
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.collapse.enabled"
+              ],
+              "text": "在海纳尔，同一座仓平衡值在两头时照旧坍缩，在中间时凝结，见[[hoanna/collapse]]。"
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.condense.event_multiplier==1"
+              ],
+              "text": "凝结不受海纳尔天灾加速。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.5 凝结矩阵 — 任何维度；外壳魔力护板 / 淡青护板合计 ≥ 8（方块标签 condense_casing）；生效的稳定器；仓里关着存量 ≥ 1.5 万的聚集体；仓里 ≥ 5 万 MRU；平衡值 [0.8, 1.2]；每秒 +1，满 900 秒：聚集体消失、扣 5 万、仓内正中一个 condensed_matrix；同种堆叠、满 64 停；不吃潮汐和天灾（event_multiplier 1）",
+        "控制器基础容量 machines.enrichment_chamber.max_mru 60 000 ≥ 5 万，默认不用存储方块；存量一行两个数都照配置写，不按 max_mru 分两种说法（条件只能拿一个配置和数字比，比不了 condense.mru 和 max_mru，服主调高 condense.mru 时会写错）",
+        "tools/plan/batch13.md §2.2 — 进度 essentialcraft5:guide/pentacle/condensed（inventory_changed 拿到过）；主线到七阶共要 6 个（四阶 1、五阶 1、六阶 2、七阶 2）"
+      ]
+    },
+    {
+      "id": "rank_4",
+      "title": "四阶 · 凝炼",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "第一次要用五芒星",
+      "complete": "essentialcraft5:guide/matrix/rank_4",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：升到矩阵四阶「凝炼」。从这一阶起，淬炼台旁边要有一座灵魂五芒星。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "一共 17 种，其中下界 4 种"
+            ],
+            [
+              "站点",
+              "淬炼台 8 格内有一座搭好的[[pentacle/pentacle|灵魂五芒星]]，0 档就行"
+            ],
+            [
+              "祭品",
+              "1 个{item:essentialcraft5:condensed_matrix}、4 块{item:essentialcraft5:mithriline_ingot}、2 块{item:essentialcraft5:pale_block}"
+            ],
+            [
+              "能量",
+              "台子里 2 万 MRU，五芒星的柱子里 2000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 5 只，同时最多 3 只；每只 56 点生命，打你一下 7 点；限时 100 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "站着不动 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:40} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把淬炼台搬到五芒星旁边，或者在台子旁边再搭一座。",
+            "把祭品放进淬炼台的祭品格，台子里的 MRU 用绑定宝石备够。",
+            "站在台子 3 格内，主手拿着绑定你的灵魂石，打开界面，右边全打勾以后点「开始淬炼」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒够数的矩阵回响，别离开台子太远。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁边不动，也别受伤，等引导走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "屏幕正中出现「四阶 · 凝炼」，灵魂石的物品提示里写着矩阵四阶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "ESPE 按五芒星治病时那样打折，界面上显示的就是打过折的数。五芒星要是你自己的，别人家的不算。"
+        },
+        {
+          "type": "p",
+          "text": "四阶的回报是[[matrix/reservoir|矩阵虹吸]]：潜行、主手拿着灵魂石对准附近的聚集体按住右键，能把它的 MRU 抽进你的矩阵容量。矩阵容量涨到 {cfg:general.matrix_rank.pool_per_rank|mul:3}。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.3 九阶表、§3.1.2 试炼；进度 essentialcraft5:guide/matrix/rank_<n> 由代码在升阶成功时发（同 guide/hoanna/radiation）",
+        "tools/plan/batch13.md §3.1.3 四阶 — 图谱总数 17、下界 ≥ 4；0 档五芒星；祭品凝结矩阵 + 米斯莱锭 ×4 + 淡青块 ×2；MRU 2 万 + 有效 ESPE 2 000；回响 5 / 3 / 56 / 7 / 100 秒；回报虹吸、容量 × 3",
+        "tools/plan/batch13.md §3.1.2 — 站点 8 格内、只认自己的或能动的五芒星；ESPE 照 PlayerPentacleBlockEntity 的有效 ESPE"
+      ]
+    }
+  ]
+}

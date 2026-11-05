@@ -1,0 +1,910 @@
+{
+  "id": "guns",
+  "order": 95,
+  "group": "side",
+  "title": "Side Chapter · MRU Guns",
+  "subtitle": "Four guns that fire MRU rays",
+  "icon": "essentialcraft5:pistol",
+  "entries": [
+    {
+      "id": "weapon_maker",
+      "title": "Weapon Benches",
+      "icon": "essentialcraft5:pistol_weapon_maker",
+      "summary": "Four benches, one for each gun",
+      "complete": "essentialcraft5:guide/guns/weapon_maker",
+      "optional": true,
+      "items": [
+        "essentialcraft5:pistol_weapon_maker",
+        "essentialcraft5:rifle_weapon_maker",
+        "essentialcraft5:sniper_weapon_maker",
+        "essentialcraft5:gatling_weapon_maker"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "I call it the ray of love. The people it goes through would probably argue with the name. They never get the chance.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a weapon bench. One of the forebears, a craftsman, built these guns. He forged the base, handle and mechanism separately and fitted them together last. Guns aren't made in a crafting grid. You <em>assemble</em> them in a weapon bench from a core, a soul item and a few kinds of ingots, and every shot costs MRU, this mod's magical energy ([[start/mru]]). The bench only needs Chapter 3 parts, but your first gun has to wait for a soul item, which you can make from <em>Chapter 5</em> on ([[storage/soul_storage]])."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 7 {item:essentialcraft5:fortified_stone} ([[crafting/fortified]]), 1 {item:minecraft:heavy_weighted_pressure_plate} and 1 {item:minecraft:crafting_table}. This recipe gives the pistol bench."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pistol_weapon_maker"
+        },
+        {
+          "type": "h",
+          "text": "Switching to the other three"
+        },
+        {
+          "type": "p",
+          "text": "Put a bench <em>alone</em> in a crafting grid and it turns into the next kind, in the order pistol → rifle → sniper → gatling → pistol. One bench switched back and forth does the job of all four."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:rifle_weapon_maker",
+            "essentialcraft5:sniper_weapon_maker",
+            "essentialcraft5:gatling_weapon_maker"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to assemble"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Right-click the bench without sneaking to open it.",
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "text": "The core slot takes an {item:essentialcraft5:elemental_core} ([[elements/parts]]) or a {item:essentialcraft5:pale_core}."
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "The core slot takes an {item:essentialcraft5:elemental_core} ([[elements/parts]]), a {item:essentialcraft5:pale_core} or a {item:essentialcraft5:demonic_core}."
+            },
+            "The soul slot takes a {item:essentialcraft5:soul_sphere}, {item:essentialcraft5:dark_soul_matter}, {item:essentialcraft5:red_soul_matter} or {item:essentialcraft5:matter_of_eternity} ([[storage/soul_storage]]).",
+            "Fill the slots by the letter beside them: <t>B</t> for base, <t>H</t> handle, <t>M</t> mechanism, plus <t>S</t> for the sniper scope on the sniper. <em>All slots with the same letter take the same material</em>, while different letters may differ ([[guns/parts]]).",
+            "When a gun preview appears in the top right, hover over it to see all its stats. Press Done and the gun appears in the output slot on the right."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "A gun appears in the output slot."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Charge it first",
+          "text": "Assembly uses up the soul item, and the MRU inside it moves into the new gun, up to 5,000, exactly what a gun holds. Charge the cheapest one, a {item:essentialcraft5:soul_sphere}, before you put it in, and the gun comes out full."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Watch out",
+          "text": "If something won't go into a slot, that slot doesn't take it. Hover over an empty slot to see what it does take.\nAssembling uses up the core, the soul item and 1 item from every material slot. Anything extra stays in the slots for the next gun.\nTake the finished gun out of the output slot before you make another."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book opens this page by reasoning that MRU is a kind of radiation, so it should be possible to build a weapon that fires MRU rays and kills every living thing."
+        }
+      ]
+    },
+    {
+      "id": "parts",
+      "title": "Parts and Materials",
+      "icon": "essentialcraft5:magical_ingot",
+      "summary": "What the base, handle and mechanism do",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Every gun has three parts, a <em>base</em> (B), a <em>handle</em> (H) and a <em>mechanism</em> (M), each made of one kind of ingot. Each part leads a few of the stats."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Base (B)",
+              "reload, delay, shots"
+            ],
+            [
+              "Handle (H)",
+              "durability, recoil"
+            ],
+            [
+              "Mechanism (M)",
+              "damage, spread"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The stats a part leads count in full and the rest count one third. Add the three parts together and you have the gun's stats. The first table lists each material's values for the four stats the mechanism and handle lead."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Material",
+            "Damage",
+            "Spread (°)",
+            "Durability",
+            "Recoil (°)"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_ingot}",
+              "8",
+              "3",
+              "120",
+              "6"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "11",
+              "6",
+              "160",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_ingot}",
+              "14",
+              "1",
+              "300",
+              "12"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_plating}",
+                "18",
+                "6",
+                "1,200",
+                "2"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ackronite_ingot}",
+                "26",
+                "1",
+                "3,000",
+                "0"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The next table covers the three stats the base leads."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Material",
+            "Reload (s)",
+            "Delay (ticks)",
+            "Shots"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_ingot}",
+              "5",
+              "6",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "8",
+              "2",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_ingot}",
+              "12",
+              "12",
+              "12"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_plating}",
+                "4",
+                "4",
+                "8"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ackronite_ingot}",
+                "2",
+                "2",
+                "20"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "All three parts magical: damage = 8 (mechanism) + 8 ÷ 3 (base) + 8 ÷ 3 (handle) ≈ 13.3"
+        },
+        {
+          "type": "p",
+          "text": "After that, the kind of gun adjusts them once more."
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:pistol}: reload time halved.",
+            "{item:essentialcraft5:rifle}: hold to fire, delay ignored; spread ×1.3, shots ×6.",
+            "{item:essentialcraft5:sniper}: damage ×2, spread ÷10, delay ×9.",
+            "{item:essentialcraft5:gatling}: hold to fire, delay ignored; spread ×4.5, shots ×20."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Shots are rounded down at the end, to no fewer than 1."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Getting the most for your ingots",
+          "text": "The mechanism fills only one or two slots, yet it leads damage. Give a pistol a mithriline mechanism and nothing else, and for that one mithriline ingot its damage rises from 13.3 to 19.3, while each shot's cost goes from 133 to 193 MRU.\nThe base leads shots, so a mithriline base holds several times as many per load, though it also reloads much more slowly.\nOnce the materials are in, hover over the preview in the top right of the bench for the final stats. There's no need to work them out yourself."
+        },
+        {
+          "type": "h",
+          "text": "Lenses and scopes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Lens</em>: one of the four matrix projections, {item:essentialcraft5:chaos_matrix_projection}, {item:essentialcraft5:frozen_matrix_projection}, {item:essentialcraft5:magic_matrix_projection} or {item:essentialcraft5:shade_matrix_projection} ([[generators/projections]]). It sets the ray's color and adds no stats.",
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+              "text": "When the ray lands, each of the four lenses also adds an effect, corrosion, freeze, dispel and drain in the same order ([[guns/lens_effects]])."
+            },
+            "The pistol, rifle and sniper can go without a lens, but the gatling must have one, with {item:essentialcraft5:sun_imbued_glass} in the lens mount and the same projection in both lens slots.",
+            "<em>Scope</em>: the pistol and rifle can take a {item:essentialcraft5:magic_purified_glass_alloy} in the scope slot, which zooms 1.2× while you sneak with the gun in hand.",
+            "<em>Sniper scope</em>: required on the sniper. Put a {item:essentialcraft5:magic_purified_glass_alloy} in the scope mount and the same ingot in both <t>S</t> slots. Magical ingots zoom 3×, pale 5× and mithriline 7×.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "{item:essentialcraft5:void_plating} in both <t>S</t> slots zooms 12× ([[hoanna/void_plating]])."
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "{item:essentialcraft5:ackronite_ingot} in both <t>S</t> slots zooms 16× ([[demons/ackronite]])."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Recoil only affects the pistol and sniper. The number is how many degrees the barrel kicks up with each shot.",
+            "The delay in the table is the minimum number of ticks between two pistol or sniper shots, and every gun of the same kind shares it. The rifle and gatling fire while held and ignore it."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book says the shade lens \"deals SHADE damage\", but the original never gave it that effect, and the lens couldn't even be made. This version gives it a drain effect and a Radiating Chamber recipe."
+        }
+      ]
+    },
+    {
+      "id": "pistol",
+      "title": "{item:essentialcraft5:pistol}",
+      "icon": "essentialcraft5:pistol",
+      "summary": "The starter gun, one shot per click",
+      "complete": "essentialcraft5:guide/guns/pistol",
+      "optional": true,
+      "items": [
+        "essentialcraft5:pistol"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): assemble a pistol in the {item:essentialcraft5:pistol_weapon_maker}. It is the cheapest gun, firing one shot per right-click."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "A core, a soul item and 5 ingots, 3 for the base, 1 for the mechanism and 1 for the handle. The lens and scope slots can stay empty. For your first gun, the simplest choice is {item:essentialcraft5:magical_ingot} throughout ([[crafting/magician_crafts]])."
+        },
+        {
+          "type": "p",
+          "text": "With all three parts magical:"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Damage per shot",
+              "13.3"
+            ],
+            [
+              "MRU per shot",
+              "133 MRU"
+            ],
+            [
+              "Shots per load",
+              "3"
+            ],
+            [
+              "Delay",
+              "10 ticks (0.5 s)"
+            ],
+            [
+              "Reload",
+              "about 4.2 s, then a 3 s cooldown"
+            ],
+            [
+              "Spread",
+              "5°"
+            ],
+            [
+              "Recoil",
+              "barrel kicks up 10°"
+            ],
+            [
+              "Durability",
+              "200 shots"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a pistol."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Right-click to fire. All pistols share one delay, so switching between two of them doesn't fire any faster.",
+            "With a scope fitted, sneak to zoom 1.2×.",
+            "Hold Shift over the gun to see all of its stats in the tooltip."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The 5,000 MRU a gun holds lasts a magical pistol 37 shots. A mithriline base holds far more per load. With all three parts mithriline you get 20 shots, but each costs 233 MRU and reloading takes 10 s."
+        }
+      ]
+    },
+    {
+      "id": "rifle",
+      "title": "{item:essentialcraft5:rifle}",
+      "icon": "essentialcraft5:rifle",
+      "summary": "Hold right-click to fire",
+      "complete": "essentialcraft5:guide/guns/rifle",
+      "optional": true,
+      "items": [
+        "essentialcraft5:rifle"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): assemble an assault rifle. <em>Hold right-click</em> and it fires one shot every 3 ticks, which makes it the best gun against groups of monsters."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "A core, a soul item and 8 ingots, 4 for the base, 1 for the mechanism and 3 for the handle. The lens and scope are optional."
+        },
+        {
+          "type": "p",
+          "text": "With all three parts magical:"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Damage per shot",
+              "13.3"
+            ],
+            [
+              "MRU per shot",
+              "40 MRU"
+            ],
+            [
+              "Shots per load",
+              "20"
+            ],
+            [
+              "Rate of fire",
+              "one shot every 3 ticks while held (about 6.7 per second)"
+            ],
+            [
+              "Reload",
+              "about 8.3 s"
+            ],
+            [
+              "Spread",
+              "6.5°"
+            ],
+            [
+              "Durability",
+              "200 shots"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have an assault rifle."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Watch out",
+          "text": "A 20-shot load is gone in 3 seconds but takes over 8 seconds to reload, so back off before it runs dry. Its spread is 1.3 times the pistol's, so it misses more often at range."
+        },
+        {
+          "type": "p",
+          "text": "At just 40 MRU a shot, the gun's own 5,000 MRU lasts 125 shots."
+        }
+      ]
+    },
+    {
+      "id": "sniper",
+      "title": "{item:essentialcraft5:sniper}",
+      "icon": "essentialcraft5:sniper",
+      "summary": "Double damage, sneak to zoom",
+      "complete": "essentialcraft5:guide/guns/sniper",
+      "optional": true,
+      "items": [
+        "essentialcraft5:sniper"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): assemble a sniper rifle. It deals double damage with almost no spread, but you wait a long time between shots."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "A core, a soul item and 7 ingots, 3 for the base, 2 for the mechanism and 2 for the handle. The sniper scope is <em>required</em>, with 1 {item:essentialcraft5:magic_purified_glass_alloy} in the scope mount ([[alloys/purified_alloys]]) and the same ingot in both <t>S</t> slots."
+        },
+        {
+          "type": "p",
+          "text": "With all three parts magical:"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Damage per shot",
+              "26.7"
+            ],
+            [
+              "MRU per shot",
+              "266 MRU"
+            ],
+            [
+              "Shots per load",
+              "3"
+            ],
+            [
+              "Delay",
+              "90 ticks (4.5 s)"
+            ],
+            [
+              "Reload",
+              "about 8.3 s, then a 3 s cooldown"
+            ],
+            [
+              "Spread",
+              "0.5°"
+            ],
+            [
+              "Recoil",
+              "barrel kicks up 10°"
+            ],
+            [
+              "Durability",
+              "200 shots"
+            ],
+            [
+              "Zoom",
+              "3×"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a sniper rifle."
+        },
+        {
+          "type": "h",
+          "text": "Zooming"
+        },
+        {
+          "type": "p",
+          "text": "<em>Sneak</em> while holding the sniper rifle to look through the scope. Better scopes zoom further, with magical ingots at 3×, pale at 5× and mithriline at 7×."
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:void_plating} in both <t>S</t> slots zooms 12×, and {item:essentialcraft5:ackronite_ingot} zooms 16×.",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "How to use it",
+          "text": "The sniper is for an opening shot and can't keep up the damage after that. There are 4.5 seconds between shots, and after 3 shots you reload for over 8 seconds, then wait out a 3 second cooldown. With all three parts mithriline it deals 46.7, but waits 180 ticks, or 9 s, between shots."
+        }
+      ]
+    },
+    {
+      "id": "gatling",
+      "title": "{item:essentialcraft5:gatling}",
+      "icon": "essentialcraft5:gatling",
+      "summary": "Spins up for 3 s, then fires every tick",
+      "complete": "essentialcraft5:guide/guns/gatling",
+      "optional": true,
+      "items": [
+        "essentialcraft5:gatling"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): assemble a gatling gun. In the Workshop Notebook, the margin beside its drawing says it's too heavy to walk fast with. Hold right-click and it spins for 3 seconds, then fires every tick."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "A core, a soul item and 13 ingots, 7 for the base, 2 for the mechanism and 4 for the handle. The lens is <em>required</em>, with {item:essentialcraft5:sun_imbued_glass} in the lens mount ([[solar/sun_imbued_glass]]) and the same matrix projection in both lens slots. The gatling has no scope."
+        },
+        {
+          "type": "p",
+          "text": "With all three parts magical:"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Damage per shot",
+              "13.3"
+            ],
+            [
+              "MRU per shot",
+              "26 MRU"
+            ],
+            [
+              "Shots per load",
+              "66"
+            ],
+            [
+              "Rate of fire",
+              "spins for 3 s while held, then one shot per tick (20 per second)"
+            ],
+            [
+              "Reload",
+              "about 8.3 s"
+            ],
+            [
+              "Spread",
+              "22.5°"
+            ],
+            [
+              "Durability",
+              "200 shots"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a gatling gun."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Watch out",
+          "text": "Held in either hand, it slows you to 40% speed, about the same as Slowness IV.\nA 66-shot load is gone in just over 3 seconds and costs 520 MRU per second while firing. The gun's own 5,000 MRU runs out in under 10 seconds, so carry a few charged storage items ([[storage/soul_storage]])."
+        },
+        {
+          "type": "p",
+          "text": "Its spread is huge, so it works best up close against a crowd. A mithriline base alone gives 266 shots per load, and all three parts mithriline give 400, enough that you barely ever stop, though reloading then takes 20 s."
+        }
+      ]
+    },
+    {
+      "id": "firing",
+      "title": "Firing, Reloading and Repair",
+      "icon": "essentialcraft5:rifle",
+      "summary": "MRU cost, reloading, jams and repair",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "Every shot costs MRU"
+        },
+        {
+          "type": "p",
+          "text": "Guns take no bullets; every ray they fire is MRU. The pistol and sniper cost damage × 10 MRU per shot, the rifle damage × 3 and the gatling damage × 2, rounded down. Without enough MRU nothing fires, and the shot doesn't count toward the load. Creative mode costs nothing."
+        },
+        {
+          "type": "p",
+          "text": "Storage items you carry, such as a {item:essentialcraft5:soul_sphere} ([[storage/soul_storage]]), are checked first. If together they hold enough for a shot, it all comes from them. Otherwise the gun's own MRU must cover the whole shot. The two are never pooled."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Recharging",
+          "text": "A gun holds 5,000 MRU of its own. When it runs empty, put it in a [[storage/charging_chamber]] to refill it. Taking a few charged soul spheres along saves you the trip home."
+        },
+        {
+          "type": "h",
+          "text": "Loads and reloading"
+        },
+        {
+          "type": "p",
+          "text": "A load holds as many shots as the gun's \"shots\" stat. When it is empty, <em>hold right-click</em> to reload, the way you draw a bow. Let go early and you start over, and you can't fire again until it is full. Pistols and sniper rifles also wait 3 seconds after reloading."
+        },
+        {
+          "type": "p",
+          "text": "The tooltip shows how many shots of the current load are spent, and the barrel smokes when the load is nearly empty."
+        },
+        {
+          "type": "h",
+          "text": "Wear, jams and repair"
+        },
+        {
+          "type": "p",
+          "text": "Each shot adds 1 wear, and the durability bar shows the wear. Once wear reaches the gun's durability, every shot has a <w>1 in 4</w> chance to jam. A jam throws away the rest of the load and forces a reload, but the gun itself never breaks."
+        },
+        {
+          "type": "p",
+          "text": "To repair a gun, put it in an {item:minecraft:anvil} with 1 ingot <em>of the same kind as its base</em>. It costs 4 levels and clears the wear."
+        },
+        {
+          "type": "h",
+          "text": "The ray"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Range 64 blocks. It hits instantly and leaves a beam that lasts 3 seconds, colored by the lens.",
+            "Any block with a collision box stops it, including stone, glass, leaves, fences and doors, while grass and flowers don't. It never damages blocks.",
+            "It pierces every creature along its line, up to {cfg:general.guns.max_targets_per_shot} per shot.",
+            "It never hits you, whatever you're riding, animals you've tamed or your teammates.",
+            "Mobs it kills count as your own kills, so they drop experience and the loot that only drops for players.",
+            "In multiplayer, shots at other players follow the PvP rules, and with PvP off they can't hurt anyone.",
+            "The ray counts as neither melee nor a projectile, nor as elemental or magic damage, so no armor that blocks damage with MRU can stop it.",
+            {
+              "if": [
+                "cfg:general.guns.player_damage_multiplier!=1",
+                "cfg:general.guns.player_damage_multiplier!=0"
+              ],
+              "text": "Against players it deals {cfg:general.guns.player_damage_multiplier|x} its usual damage."
+            },
+            {
+              "if": [
+                "cfg:general.guns.player_damage_multiplier==0",
+                "cfg:general.guns.matrix_damage_per_damage>0"
+              ],
+              "text": "It deals no damage to players and only harms their MRU matrix (see below)."
+            },
+            {
+              "if": [
+                "cfg:general.guns.player_damage_multiplier==0",
+                "!cfg:general.guns.matrix_damage_per_damage"
+              ],
+              "text": "It has no effect on players."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Hitting a player",
+          "text": "When the ray hits another player it harms their MRU matrix, adding {cfg:general.guns.matrix_damage_per_damage} matrix damage per point of the gun's damage, and enough of it turns into corruption effects ([[corruption/matrix_damage]]). Any hit counts, even one that draws no blood, but hits stopped by PvP rules, teams or claims don't. Players in Creative mode are unaffected.",
+          "if": "cfg:general.guns.matrix_damage_per_damage>0"
+        },
+        {
+          "type": "p",
+          "text": "The victim crackles with magenta arcs, and the edges of their screen flush magenta.",
+          "if": "cfg:general.guns.matrix_damage_per_damage>0"
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:divider_gun} can't be assembled on a weapon bench. It only drops from the Holographic Projection ([[hologram/divider_gun]]).",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original the ray was called the \"ray of LOVE\", and its death message still reads \"... got pierced by ...'s ray of LOVE\"."
+        }
+      ]
+    },
+    {
+      "id": "lens_effects",
+      "title": "Lens Effects",
+      "icon": "essentialcraft5:chaos_matrix_projection",
+      "summary": "Chaos corrodes, frozen freezes, magic dispels, shade drains",
+      "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Besides coloring the ray, each of the four matrix projections on a gun has an effect that triggers every time the ray <em>lands</em>, meaning it actually hurts the target. How to fit a lens is in [[guns/parts]]."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Lens",
+            "Effect",
+            "Each hit that lands"
+          ],
+          "widths": [
+            3,
+            2,
+            5
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0",
+              "cells": [
+                "{item:essentialcraft5:chaos_matrix_projection}",
+                "Corrosion",
+                "Can't heal for {cfg:general.guns.lens_corrosion_ticks|sec}; another hit restarts the timer"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_freeze_per_hit>0",
+              "cells": [
+                "{item:essentialcraft5:frozen_matrix_projection}",
+                "Freeze",
+                "Freezing +{cfg:general.guns.lens_freeze_per_hit}, frozen solid at 140"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_dispel",
+              "cells": [
+                "{item:essentialcraft5:magic_matrix_projection}",
+                "Dispel",
+                "Strips one beneficial status effect"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_drain_percent>0",
+              "cells": [
+                "{item:essentialcraft5:shade_matrix_projection}",
+                "Drain",
+                "You heal {cfg:general.guns.lens_drain_percent|pctv} of the health the target actually lost"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_corrosion_ticks>0",
+          "text": "Corrosion"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_corrosion_ticks>0",
+          "text": "A corroded creature can't heal. Natural regeneration, Regeneration, Instant Health and most life steal all do nothing. It shows the Corrosion icon with the time left, and milk clears it. Mobs and opponents that heal themselves stop recovering after a few shots."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "text": "Freeze"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "text": "Each hit that lands adds {cfg:general.guns.lens_freeze_per_hit} to the target's freezing. The higher it gets, the slower the target moves, and at 140 it freezes solid as if stuck in powder snow, taking freezing damage every 2 seconds. Freezing drops by 40 a second on its own and builds up to at most 180, so the target stays frozen for a little while after you stop."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "title": "Keep firing",
+          "text": "After a hit the target is briefly invulnerable, so one gun lands at most one hit on it every half second, and freezing it solid takes several hits in a row. A pistol with a long enough magazine, a rifle or a gatling can build it up, but between two sniper shots it has long worn off."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "text": "Anything wearing even one piece of leather armor can't be frozen, and neither can creatures that never feel the cold, such as strays, polar bears, snow golems and the Wither."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_dispel",
+          "text": "Dispel"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_dispel",
+          "text": "Each hit that lands strips one beneficial status effect from the target, endless ones first, otherwise the one with the most time left. Harmful effects are never touched, and bosses lose theirs just the same."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_drain_percent>0",
+          "text": "Drain"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_drain_percent>0",
+          "text": "Each hit that lands heals you by {cfg:general.guns.lens_drain_percent|pctv} of the health the target actually lost to it. Whatever armor or absorption soaked up doesn't count, and the killing blow still heals you. You can't heal this way while you have Corrosion yourself. A target is briefly invulnerable after each hit, so hitting several at once drains more."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.resonance.same_type_lens_multiplier>1"
+          ],
+          "text": "If your matrix is the same type as the lens and you already have an [[matrix/alignment|Alignment]], the lens effect is {cfg:general.matrix_rank.resonance.same_type_lens_multiplier} times as strong: Corrosion lasts longer, freezing builds faster and Drain heals more, while Dispel stays the same. Against players only half of the extra applies."
+        },
+        {
+          "type": "h",
+          "text": "When a hit doesn't land"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Hits stopped by claims, teams or a rule against players hurting each other, or cancelled by anything else, don't count and add nothing.",
+            "A hit that does no damage because the target is still briefly invulnerable doesn't count.",
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0",
+              "text": "Bosses immune to status effects don't get Corrosion."
+            },
+            "Matrix damage to other players still follows its own rules, separate from lens effects ([[guns/firing]])."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original, all four lenses only changed the ray's color. These on-hit effects were added in this version."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "id": "creative",
+  "order": 99,
+  "group": "side",
+  "title": "支线 · 无尽道具",
+  "subtitle": "没有合成配方的无尽能源与护符",
+  "icon": "essentialcraft5:infinite_mru_source",
+  "entries": [
+    {
+      "id": "creative_items",
+      "title": "无尽道具",
+      "icon": "essentialcraft5:infinite_mru_source",
+      "summary": "没有合成配方：无尽能源与护佑护符",
+      "items": [
+        "essentialcraft5:infinite_mru_source",
+        "essentialcraft5:infinite_espe_source",
+        "essentialcraft5:infinite_thermal_source",
+        "essentialcraft5:infinite_mru_crystal",
+        "essentialcraft5:creative_ward"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "这几件道具<em>没有合成配方</em>，也不会出现在战利品和交易里。到手以后生存模式里照常能用：三个方块用镐挖下来会掉落自己，可以搬走再放，苦力怕、TNT 炸不坏；两件随身的带在身上就生效，省掉找能源、善后的工夫。它们都不会改动周围的方块，也不产生腐化。"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:infinite_mru_source",
+            "essentialcraft5:infinite_espe_source",
+            "essentialcraft5:infinite_thermal_source",
+            "essentialcraft5:infinite_mru_crystal",
+            "essentialcraft5:creative_ward"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "道具",
+            "怎么用",
+            "效果"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:infinite_mru_source}",
+              "放在机器旁边",
+              "每秒给 <t>8</t> 格内吃 MRU 的机器补满，绑定宝石连它怎么拉都不减"
+            ],
+            [
+              "{item:essentialcraft5:infinite_espe_source}",
+              "放在米斯莱熔炉、水晶柱旁边",
+              "每秒给 <t>8</t> 格内的 ESPE 补满"
+            ],
+            [
+              "{item:essentialcraft5:infinite_thermal_source}",
+              "空手右键切换冷热",
+              "热力产能器最好的热源 / 冷凝器最好的冷源"
+            ],
+            [
+              "{item:essentialcraft5:infinite_mru_crystal}",
+              "带在身上",
+              "花 MRU 的东西都从它扣，永远是满的"
+            ],
+            [
+              "{item:essentialcraft5:creative_ward}",
+              "带在身上",
+              "UBMRU 一直满，矩阵损伤和海纳尔辐射保持为 0"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "两个无尽源"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:infinite_mru_source}每秒一轮，给三个方向各 <t>8</t> 格以内、靠[[crafting/bound_gem]]吃 MRU 的机器补满，一轮最多 <t>32</t> 台，下一轮接着补没轮到的。产能器不补（灌满了它们会停下不烧，反而看不出产量）。"
+        },
+        {
+          "type": "p",
+          "text": "也可以像普通的源头一样拿绑定宝石连它，一次就能拉满。用{item:essentialcraft5:balance_setter}改它的平衡值，补出去的 MRU 就带这个平衡值。"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:infinite_espe_source}同样每秒一轮、<t>8</t> 格、最多 <t>32</t> 个，给[[mithriline/furnace]]和[[mithriline/crystal_pillar]]补满 ESPE，五芒星、风之符文从柱子里抽也就不缺了。放在熔炉抽 ESPE 的位置上也行。"
+        },
+        {
+          "type": "p",
+          "text": "空手右键这两个源，快捷栏上方会说上一轮补了几个。"
+        },
+        {
+          "type": "h",
+          "text": "冷热源"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:infinite_thermal_source}默认是热源：给[[generators/heat_generator]]的系数是 <t>1</t>，一点不衰减（岩浆是 0.95），东南西北隔一格各放一块（和放岩浆的位置一样）就是满产量。空手右键换成冷源：一块就给[[generators/cold_distillator]] <t>171</t> 冷值，等于把它周围摆满霜冻石。热源不给冷值，冷源不给热，放错了边一样不产出。"
+        },
+        {
+          "type": "h",
+          "text": "随身的两件"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:infinite_mru_crystal}：放在背包、副手或饰品栏的指环位。法杖、护符、魔力之翼这些花 MRU 的东西都从它扣，它永远是满的；带着它时身上别的储存物品一点不会被扣。",
+            "{item:essentialcraft5:creative_ward}：放在背包或饰品栏的项链位。[[mru/ubmru]]一直是满的，矩阵损伤和海纳尔辐射保持为 0，所以不会再抽到腐化效果。被人击杀时，护符补出来的那份不会被对方拿走；摘下护符后，UBMRU 回到戴上之前的数。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "带着{item:essentialcraft5:infinite_mru_crystal}时，[[gear/void_armor]]挡伤害的电也全由它付：虚空套装的电不会耗尽，近战和箭一直挨不着。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "text": "护佑护符只挡住新的腐化；身上已经有的腐化效果不会消失，要去[[pentacle/cure]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "和{item:essentialcraft5:creative_mru_storage}、{item:essentialcraft5:creative_espe_storage}的区别：那两个是原作就有的源头，只能等机器来抽，不会主动给周围补。"
+        }
+      ],
+      "_src": [
+        "registry/ECCreative.java — 五件都没有配方、不进战利品和交易，只放创造栏（CreativeTests.creativeItemsAreCreativeOnly 查配方表）；提示最后一行「没有合成配方」（item/creative/CreativeOnly）；三个方块硬度 1、抗爆 1200（ECCreative.BLAST_RESISTANCE，同黑曜石）、进 mineable/pickaxe、掉落自己，原作的创造 MRU / ESPE 源照原作数值（CreativeTests.infiniteBlocksMineableInSurvival）；整章不带游戏模式条件（CreativeTests.infiniteGuideChapterForEveryone）",
+        "blockentity/creative/InfiniteMRUSourceBlockEntity.java — RADIUS 8（三个轴各自）、INTERVAL 20 刻、MAX_FILLED 32；只补 0 号槽只收绑定宝石的机器（isLinkedConsumer），产能器不补；对外 MRU 是 InfiniteMRUHandler（取多少给多少、塞进去全退回）；平衡值存在自己的存储里，补出去按量加权（MRUStorage.pullFrom）",
+        "block/creative/InfiniteMRUSourceBlock.java — 空手右键在动作栏报上一轮补了几台；拿着东西时 PASS（绑定宝石照常能点它绑定）",
+        "blockentity/creative/InfiniteESPESourceBlockEntity.java — RADIUS 8、INTERVAL 20、MAX_FILLED 32；走 ESPETransfer.pull，目标按自己的按面规则收（米斯莱熔炉只进不出、水晶柱能进能出）；对外 ESPE 无底，档位同创造 ESPE 源",
+        "block/creative/InfiniteThermalSourceBlock.java — 空手右键切换；HEAT_MODIFIER 1（对冷凝器 0）；COLD_VALUE 171 = (7 × 7 × 7 − 1) × 霜冻石 0.5（对热力产能器 0）；系数规则见 blockentity/HeatGeneratorBlockEntity.heatModifier（岩浆 0.95）、ColdDistillatorBlockEntity.scanCold（7 × 7 × 7 求和）",
+        "item/creative/InfiniteMRUCrystalItem.java — isStorage、isInfinite；存量和上限 Integer.MAX_VALUE；mru/MRUDrain.tryDrainFromStorages 见到 isInfinite 就由它全付（虚空套装挡伤害也走这里，带着它时电不会耗尽，item/VoidArmorEvents.absorbPhysical）；被 general.baubles.disabled 列入时 MRUDrain.collect 不收它（CharmsMRU / MRUStaffItem.canAfford 都转调 MRUDrain.canAfford）；物品标签 curios:ring",
+        "item/creative/CreativeWardItem.java — WARD_UBMRU 10 亿、每 20 刻 settle：生效就补（第一次补之前把原来的 UBMRU 记进 PlayerPersisted 的 essentialcraft5:ward_ubmru_base），不生效且有记录就退回 min(当前, 记录)；corruption/CorruptionTicker 里矩阵损伤清零；hoanna/Radiation 的 add / gainHere / tick 认它（剂量保持 0）；player/UBMRUEvents.handleDeath 有记录时杀手最多拿走记录的数；已有的腐化效果不动；物品标签 curios:necklace",
+        "blockentity/creative/CreativeScan.java — 只看已完全加载的区块（getChunkNow），每轮最多看 512 个范围内的方块实体"
+      ]
+    }
+  ]
+}

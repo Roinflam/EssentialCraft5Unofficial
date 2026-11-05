@@ -1,0 +1,451 @@
+{
+  "id": "charms",
+  "order": 89,
+  "group": "side",
+  "title": "支線 · 護符與隨身物品",
+  "subtitle": "隨身帶着、靠 MRU 驅動的小物件",
+  "icon": "essentialcraft5:fire_charm",
+  "entries": [
+    {
+      "id": "charms",
+      "title": "十種護符",
+      "icon": "essentialcraft5:fire_charm",
+      "summary": "戴在項鍊槽裏，危急時自動幫你一把",
+      "complete": "essentialcraft5:guide/charms/charm",
+      "optional": true,
+      "items": [
+        "essentialcraft5:fire_charm",
+        "essentialcraft5:water_charm",
+        "essentialcraft5:earth_charm",
+        "essentialcraft5:air_charm",
+        "essentialcraft5:steam_charm",
+        "essentialcraft5:magma_charm",
+        "essentialcraft5:lightning_charm",
+        "essentialcraft5:life_charm",
+        "essentialcraft5:rain_charm",
+        "essentialcraft5:dust_charm"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "這瓶水怎麼喝也喝不幹，味道有點像蘋果，我也不知道為什麼像蘋果。那塊豬排也一樣，啃了一個冬天，還是那麼大。",
+          "by": "《工坊手記》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一枚護符，戴在項鍊槽裏，飾品欄怎麼打開見[[baubles/finding]]。先輩出遠門時，頸上常掛着這樣一枚。條件滿足時它會自己出手，比如着火時滅火、快溺水時補氧氣、疾跑時加快腳步，每次只耗一點 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "每枚護符要兩顆<em>焦點</em>，焦點到<em>第九章</em>才做得出來，見[[essence/fuel_and_focus]]。先用 4 個同種精華圍住 1 塊煤，凝成燃料，精華越稀有，一次出的燃料越多。再拿 1 份燃料加 4 個金錠和 4 個鐵錠，做成 1 顆焦點。用哪兩顆焦點，做出來的就是哪一種護符。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_charm",
+            "essentialcraft5:water_charm",
+            "essentialcraft5:earth_charm",
+            "essentialcraft5:air_charm",
+            "essentialcraft5:steam_charm",
+            "essentialcraft5:magma_charm",
+            "essentialcraft5:lightning_charm",
+            "essentialcraft5:life_charm",
+            "essentialcraft5:rain_charm",
+            "essentialcraft5:dust_charm"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：除了焦點，十種護符的材料都一樣，要 2 根線、2 塊{item:essentialcraft5:magic_purified_gold_alloy}、1 塊{item:essentialcraft5:red_soul_matter}和 2 瓶{item:essentialcraft5:magical_water}，兩顆焦點放在中間一行的左右兩格。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "用空的靈魂物質",
+          "text": "{item:essentialcraft5:red_soul_matter}本身是能存 12 萬 MRU 的儲存物品，合成時裏面存着的 MRU 會一併耗掉，最好拿空的來做。"
+        },
+        {
+          "type": "h",
+          "text": "十種護符"
+        },
+        {
+          "type": "table",
+          "header": [
+            "護符",
+            "焦點",
+            "什麼時候",
+            "給你什麼（每次 MRU）"
+          ],
+          "rows": [
+            {
+              "if": "bauble:essentialcraft5:fire_charm",
+              "cells": [
+                "{item:essentialcraft5:fire_charm}",
+                "火 + 火",
+                "着火且沒有抗火效果時",
+                "滅火（50）"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:water_charm",
+              "cells": [
+                "{item:essentialcraft5:water_charm}",
+                "水 + 水",
+                "在水中且氧氣快要耗盡時",
+                "把氧氣補回 100 點，約能多撐 5 秒（100）"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:earth_charm",
+              "cells": [
+                "{item:essentialcraft5:earth_charm}",
+                "地 + 地",
+                "受傷時",
+                "抗性提升 I，5 秒（200）"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:air_charm",
+              "cells": [
+                "{item:essentialcraft5:air_charm}",
+                "風 + 風",
+                "疾跑時",
+                "速度 II，持續 1 秒，一直疾跑就會一直續上（10）"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:steam_charm",
+              "cells": [
+                "{item:essentialcraft5:steam_charm}",
+                "火 + 風",
+                "生命值低於 5 點時",
+                "速度 VI，持續 5 秒，適合逃命（200）"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:magma_charm",
+              "cells": [
+                "{item:essentialcraft5:magma_charm}",
+                "火 + 地",
+                "身處巖漿時",
+                "抗火，持續 5 秒（100）"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:lightning_charm",
+              "cells": [
+                "{item:essentialcraft5:lightning_charm}",
+                "火 + 水",
+                "雷雨天氣",
+                "力量 I、抗火各 5 秒，夜視 30 秒（100）"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:life_charm",
+              "cells": [
+                "{item:essentialcraft5:life_charm}",
+                "地 + 水",
+                "生命值低於 20 點時",
+                "生命恢復 I，持續 2.5 秒（50），低於 5 點時改為生命恢復 II（200）"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:rain_charm",
+              "cells": [
+                "{item:essentialcraft5:rain_charm}",
+                "水 + 風",
+                "下雨時",
+                "挖掘加速 I、跳躍提升 III、速度 I，各 5 秒（50）"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:dust_charm",
+              "cells": [
+                "{item:essentialcraft5:dust_charm}",
+                "地 + 風",
+                "站在沙子、沙礫、靈魂沙或混凝土粉末上時",
+                "抗性提升 I、生命恢復 I，各 5 秒（100）"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "護符每刻檢查一次條件，只有真幫上忙時才扣 MRU。給狀態效果的那幾種，在效果還沒結束時也不會重複施加、重複扣費。"
+        },
+        {
+          "type": "h",
+          "text": "充能與佩戴"
+        },
+        {
+          "type": "list",
+          "items": [
+            "護符自帶 5000 MRU 的存儲空間，剛做出來是空的，放進[[storage/charging_chamber]]就能充滿。",
+            "扣費時先扣你身上[[storage/soul_storage|靈魂儲存物品]]裏的 MRU，不夠了才動用護符自己存的，創造模式下一點也不扣。",
+            "同一種護符只能戴一件，不同種的能同時戴幾件，要看你有幾個項鍊槽，一般只有 1 個。"
+          ]
+        },
+        {
+          "type": "tip",
+          "if": [
+            "bauble:essentialcraft5:fire_charm",
+            "bauble:essentialcraft5:magma_charm"
+          ],
+          "style": "warn",
+          "title": "泡在巖漿裏很耗 MRU",
+          "text": "戴着{item:essentialcraft5:fire_charm}泡在巖漿裏，人每刻都會重新着火，護符每秒要扣 1000 MRU，下巖漿之前最好換成{item:essentialcraft5:magma_charm}。"
+        },
+        {
+          "type": "tip",
+          "if": [
+            "bauble:essentialcraft5:fire_charm",
+            "!bauble:essentialcraft5:magma_charm"
+          ],
+          "style": "warn",
+          "title": "泡在巖漿裏很耗 MRU",
+          "text": "戴着{item:essentialcraft5:fire_charm}泡在巖漿裏，人每刻都會重新着火，護符每秒要扣 1000 MRU。"
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:life_charm",
+          "style": "warn",
+          "title": "生命護符一直在扣",
+          "text": "{item:essentialcraft5:life_charm}的觸發線固定在 20 點生命值，不隨生命上限變化，生命上限是 20 時，只要沒滿血，它就一直回血，也一直扣 MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "焦點不夠用時",
+          "text": "這一章最容易卡在焦點不夠上。新長成的水晶裏精華又少又雜，想要哪種元素，就用[[essence/crystal_controller]]朝它定向培育，比反覆抽取快得多。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "先留夠主線的",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "主線做[[wind/wind_tablet]]還要 4 個{item:essentialcraft5:air_focus}，做[[demons/demonic_pentacle]]還要 4 個{item:essentialcraft5:fire_focus}，先把這些留夠，多出來的再拿來做這一章的東西。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裏拿到任意一種護符。"
+        }
+      ]
+    },
+    {
+      "id": "consumables",
+      "title": "回血、充飢、解毒",
+      "icon": "essentialcraft5:emerald_heart",
+      "summary": "靠 MRU 驅動，用多少次都不會用完",
+      "complete": "essentialcraft5:guide/charms/consumable",
+      "optional": true,
+      "items": [
+        "essentialcraft5:emerald_heart",
+        "essentialcraft5:magical_porkchop",
+        "essentialcraft5:magic_water_bottle"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一件靠 MRU 驅動、怎麼用也用不完的隨身物品。{item:essentialcraft5:emerald_heart}回血，{item:essentialcraft5:magical_porkchop}充飢，{item:essentialcraft5:magic_water_bottle}像一桶喝不完的牛奶。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:emerald_heart",
+            "essentialcraft5:magical_porkchop",
+            "essentialcraft5:magic_water_bottle"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：每件都要 1 塊空的{item:essentialcraft5:red_soul_matter}和 4 顆焦點，另外各要的材料如下。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "做{item:essentialcraft5:emerald_heart}要{item:essentialcraft5:earth_focus}、{item:essentialcraft5:water_focus}各 2 顆，再加 1 顆綠寶石、1 個蘋果和 2 瓶{item:essentialcraft5:magical_water}。",
+            "做{item:essentialcraft5:magical_porkchop}要{item:essentialcraft5:earth_focus}、{item:essentialcraft5:water_focus}各 2 顆，再加 1 塊生豬排和 3 份{item:essentialcraft5:crystal_dust}。",
+            "做{item:essentialcraft5:magic_water_bottle}要{item:essentialcraft5:air_focus}、{item:essentialcraft5:earth_focus}各 1 顆和 2 顆{item:essentialcraft5:water_focus}，再加 2 塊{item:essentialcraft5:diamond_plate}和 2 瓶魔力水。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "table",
+          "header": [
+            "物品",
+            "效果",
+            "每次 MRU"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:emerald_heart}",
+              "回復 10 點生命值，即 5 顆心",
+              "500"
+            ],
+            [
+              "{item:essentialcraft5:magical_porkchop}",
+              "飢餓值 +5，飽和度跟着補到和飢餓值持平，最多 +30，吃飽了也能吃，可以專門拿來補飽和度",
+              "1500"
+            ],
+            [
+              "{item:essentialcraft5:magic_water_bottle}",
+              "清除身上<em>所有</em>狀態效果，有益的、有害的都清，矩陣後遺症不是狀態效果，清不掉",
+              "500"
+            ]
+          ],
+          "widths": [
+            3,
+            5,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "用法和吃東西一樣，按住右鍵 1.6 秒，用完就扣 MRU、當場見效，物品本身不會消失。身上的 MRU 不夠，按右鍵也不會開始使用，快捷欄上方會提示要多少。"
+        },
+        {
+          "type": "p",
+          "text": "它們和護符一樣自帶 5000 MRU，能在[[storage/charging_chamber]]裏充能，扣費時也先扣你身上的靈魂儲存。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "有益效果也會清掉",
+          "text": "{item:essentialcraft5:magic_water_bottle}連有益效果也一起清掉，在巖漿裏靠抗火保命，或者正靠藥水打 Boss 時，別喝它。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "魔力水瓶和合成材料{item:essentialcraft5:magical_water}是兩樣東西，別拿錯了。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裏拿到這三件中的任意一件。"
+        }
+      ]
+    },
+    {
+      "id": "magical_wings",
+      "title": "{item:essentialcraft5:magical_wings}",
+      "icon": "essentialcraft5:magical_wings",
+      "summary": "系在腰間的一對翅膀",
+      "complete": "essentialcraft5:guide/charms/magical_wings",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_wings"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "text": "<em>目標</em>（可選）：做一對{item:essentialcraft5:magical_wings}，戴在腰帶槽裏，按住跳躍就能往上飛，下落時會慢慢飄下來，走路也快一倍。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_wings"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：2 塊{item:essentialcraft5:magic_plate}、2 顆{item:essentialcraft5:air_focus}、4 根羽毛和 1 塊空的{item:essentialcraft5:red_soul_matter}，魔力板也能換成淡青板、米斯萊板這些同類的板。"
+        },
+        {
+          "type": "h",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "text": "三種用法"
+        },
+        {
+          "type": "table",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "header": [
+            "放在哪",
+            "怎麼飛",
+            "什麼時候扣 MRU"
+          ],
+          "rows": [
+            [
+              "戴在腰帶槽",
+              "按住跳躍往上飛，下落時自動緩降，落地不受摔落傷害，按住潛行就照常下落",
+              "飛行和緩降時每刻 1 MRU"
+            ],
+            [
+              "拿在手上",
+              "不用按鍵也會一直往上飛，按住潛行就改為慢慢下降",
+              "只要拿在手上就每刻扣 1 MRU，站在地上也照扣"
+            ],
+            [
+              "放在背包裏",
+              "下落時按住潛行，就會慢慢飄落，落地不受摔落傷害",
+              "緩降時每刻 1 MRU"
+            ]
+          ],
+          "widths": [
+            2,
+            4,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "text": "戴着時移動速度另加 0.1，這份加成直接加在基礎值上，所以走路快一倍，還能和速度效果疊加。"
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "style": "warn",
+          "text": "翅膀拿在手上時會一直扣 MRU，用完記得收起來。創造模式下飛行、用鞘翅滑翔或者騎乘的時候，戴着的和放在背包裏的翅膀都不起作用。"
+        },
+        {
+          "type": "h",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "if": "bauble:essentialcraft5:magical_wings",
+          "items": [
+            "MRU 按秒預扣，一次扣 20，之後 20 刻內不再扣，平均下來仍是每刻 1。",
+            "MRU 用完就飛不上去了，鬆開跳躍鍵再按下去，會重新嘗試起飛。",
+            "腰帶槽裏戴着一對、手裏又拿着一對時，只按手裏那對算，手裏那對的 MRU 用完以後，戴着的那對照常起作用。",
+            "背包裏放了好幾對，也只扣其中一對的 MRU。",
+            {
+              "if": [
+                "cfg:general.computer_seal.enabled",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.slow_fall_ticks>0"
+              ],
+              "text": "被[[computer/seal_field|飾品封禁場]]罩住時，戴在腰帶槽裏的翅膀會失效，要是那一刻人在空中，會得到幾秒緩降，慢慢落到地上。拿在手上或放在背包裏的翅膀不受影響。"
+            },
+            {
+              "if": [
+                "cfg:general.computer_seal.enabled",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.computer_seal.slow_fall_ticks==0"
+              ],
+              "text": "被[[computer/seal_field|飾品封禁場]]罩住時，戴在腰帶槽裏的翅膀會失效，人要是在空中，會直接掉下去。拿在手上或放在背包裏的翅膀不受影響。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裏有一對魔力之翼。"
+        }
+      ]
+    }
+  ]
+}

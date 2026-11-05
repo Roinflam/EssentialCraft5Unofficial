@@ -1,0 +1,380 @@
+{
+  "id": "scrolls",
+  "order": 107,
+  "group": "side",
+  "title": "Side Chapter · Ancient Scrolls",
+  "subtitle": "Seven books the forebears left",
+  "icon": "essentialcraft5:ancient_scroll",
+  "if": "cfg:general.ancient_scrolls.enabled",
+  "entries": [
+    {
+      "id": "scrolls",
+      "title": "{lang:item.essentialcraft5.ancient_scroll}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "Where to find them and how to read them",
+      "items": [
+        "essentialcraft5:ancient_scroll"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "I found these books one at a time. The pages have gone brittle and a few words are missing. I didn't fill them in for the forebears, and where something is missing, it is missing in this copy too.",
+          "by": "Compiler's note"
+        },
+        {
+          "type": "p",
+          "text": "The forebears wrote down what they knew, and seven books of it are left, scattered far and wide. These are the {lang:item.essentialcraft5.ancient_scroll}, a Preface and Books I to VI, and each one you read opens its own page in this chapter.",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "The forebears wrote down what they knew, and seven books of it are left, scattered far and wide. These are the {lang:item.essentialcraft5.ancient_scroll}. Five of them, the Preface and Books I to IV, can be found in the Overworld, and each one you read opens its own page in this chapter.",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "h",
+          "text": "Where to find them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Chests in ancient ruins. Each has a 35% chance to hold a volume, always the Preface or one of Books I to IV.",
+            "Chests in the Overworld, the Nether and the End, such as those in villages, abandoned mineshafts, strongholds, nether fortresses, bastions and end cities, and in structures added by other mods. Each chest you open yourself has a 10% chance to hold a volume, only from the Preface and Books I to IV that you don't have yet: a volume you have read or already found won't turn up again, and once you have all five they stop appearing.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "Chests near the tops of towers in Hoanna's destroyed towns, with a 10% chance each, giving the Preface or one of Books I to V."
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "The chest in the exit room of an old catacomb in Hoanna, with a 40% chance, always Book V."
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "The [[inquisitorium/sentinel|Inquisitorium Sentinel]] always drops Book VI when a player defeats it. Several people fighting it together still get only one."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "When a chest in an ancient ruin or in Hoanna turns up a scroll, and that chest can still give a volume you have neither read nor found, the odds are at least three in four that it is one you're missing."
+        },
+        {
+          "type": "h",
+          "text": "How to read them"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hold the scroll and keep right-click held for {cfg:general.ancient_scrolls.read_ticks|sec}.",
+            {
+              "if": "cfg:general.ancient_scrolls.consume_on_read",
+              "text": "Once you finish, the scroll is used up, and the action bar names the volume you read and tells you a page has opened."
+            },
+            {
+              "if": "!cfg:general.ancient_scrolls.consume_on_read",
+              "text": "Once you finish, the scroll stays in your hand, and the action bar names the volume you read and tells you a page has opened."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Only scrolls marked \"{lang:tooltip.essentialcraft5.ancient_scroll.unread}\" in their tooltip can be read. A volume you've already read won't open again, so give it to someone who hasn't."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Everyone reads their own",
+          "text": "Each player keeps their own record, so a volume someone else has read is still unread for you."
+        },
+        {
+          "type": "p",
+          "text": "Reading every volume earns a reward; see [[scrolls/complete_set]].",
+          "if": "cfg:general.ancient_scrolls.set_resistance>0"
+        }
+      ]
+    },
+    {
+      "id": "preface",
+      "title": "{lang:lore.essentialcraft5.scroll.v0.label} · {lang:lore.essentialcraft5.scroll.v0.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "Why these books were written",
+      "complete": "essentialcraft5:guide/scrolls/preface",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/preface",
+      "locked_hint": "This volume turns up in ancient ruin chests and in chests across the Overworld, the Nether and the End. The page opens once you've read it.",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Scattered through all things, the radiance harms no one. The people of Hoanna gathered it and drove it to work, and then Hoanna burned."
+        },
+        {
+          "type": "p",
+          "text": "We gather it as well, and we drive it. Some of our craft came down to us from Hoanna. The rest we worked out for ourselves, one attempt after another. No single hand wrote these books. Each of us set down what we had come to understand, and where the accounts disagree, they have been left as they were. Only Book V is different. It holds a copy of the oldest story we have."
+        },
+        {
+          "type": "p",
+          "text": "These books set down how it is done. Where to stop, we have not yet learned."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "The radiance in the Fragments is MRU; see [[start/mru]]."
+        }
+      ]
+    },
+    {
+      "id": "book_1",
+      "title": "{lang:lore.essentialcraft5.scroll.v1.label} · {lang:lore.essentialcraft5.scroll.v1.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "Elements, drops, soul stones, accessories",
+      "complete": "essentialcraft5:guide/scrolls/book_1",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_1",
+      "locked_hint": "This volume turns up in ancient ruin chests and in chests across the Overworld, the Nether and the End. The page opens once you've read it.",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "This world had no radiance of its own. It fell as rays past counting and went through every layer of rock in this world, and some of the stone held on to it. Break such a stone and you will find earth, water, fire and air, pressed into small hard grains."
+        },
+        {
+          "type": "p",
+          "text": "There is a way that needs no digging. Set the right blocks on the ground and drop the right thing onto them, and one element gathers into a single lump that breaks into the same grains. Most of the methods in the later books start from these four."
+        },
+        {
+          "type": "p",
+          "text": "The soul stone is the first thing we made for seeing a matrix clearly. What a matrix is, Book II explains."
+        },
+        {
+          "type": "p",
+          "text": "Old chests often turn up accessories left by people who came before us. The craft that made these rings, amulets and belts is lost. Whatever you find in a chest is all there is, and the world will make no more. Read what is written on one before you put it on. Some take something in return for what they give."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "Elemental drops start at [[elements/ores]], and accessories are in [[baubles/finding]]."
+        }
+      ]
+    },
+    {
+      "id": "book_2",
+      "title": "{lang:lore.essentialcraft5.scroll.v2.label} · {lang:lore.essentialcraft5.scroll.v2.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "MRU, the matrix and MRUCUs",
+      "complete": "essentialcraft5:guide/scrolls/book_2",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_2",
+      "locked_hint": "This volume turns up in ancient ruin chests and in chests across the Overworld, the Nether and the End. The page opens once you've read it.",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The light that settled into all things, the people of Hoanna called radiance. To weigh it and keep count of it, we measured it in units and named it MRU, the Magical Radiation Unit. MRU that has just fallen is in balance. Gather too much of it or drive it too hard and it tips, and MRU that has tipped pulls the MRU around it off balance too."
+        },
+        {
+          "type": "p",
+          "text": "Every living thing wears a matrix, a small patch of MRU kept in order by a mind. The first MRU we ever ran a machine on, we took from ourselves. Only later did we learn to take it from things we had killed."
+        },
+        {
+          "type": "p",
+          "text": "MRU that gathers in one place and stays there becomes a cluster. A small one harms no one. A full one wounds the matrix of anyone standing near. A cluster is most dangerous behind a wall or under the floor. By the time you notice it, it has usually filled. First make a lens that sees through walls, then clothes that keep it out."
+        },
+        {
+          "type": "p",
+          "text": "A matrix wounded often enough leaves ills behind, some in the hands and legs, some in the mind. How to treat them is in Book IV."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "The matrix and your first MRU start at [[mru/soul_stone]], and MRUCUs are in [[start/mrucu]]."
+        }
+      ]
+    },
+    {
+      "id": "book_3",
+      "title": "{lang:lore.essentialcraft5.scroll.v3.label} · {lang:lore.essentialcraft5.scroll.v3.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "Machines, crystals, essence and sunlight",
+      "complete": "essentialcraft5:guide/scrolls/book_3",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_3",
+      "locked_hint": "This volume turns up in ancient ruin chests and in chests across the Overworld, the Nether and the End. The page opens once you've read it.",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A machine leaks for as long as it works. What leaks out does not go far. It gathers close by and grows brighter, and past a certain brightness it begins to hurt whoever stands near. Build your machines well away from where you sleep."
+        },
+        {
+          "type": "p",
+          "text": "The purer the quartz, the more MRU it will hold. Fill one and carry it, and away from home your staffs and charms will have something to draw on. Pour enough MRU into a thing and it turns pale, and in the right places it can pass for something it is not. That trick is paid for with a great deal of MRU."
+        },
+        {
+          "type": "p",
+          "text": "Where MRU once ran thick, crystals grew of their own accord, in a single night. Then the world changed, and not one was left. The ones we make by the old method are born very small, and must be planted and raised slowly. When the old crystals shattered they shed a fine dust, and that dust was essence. We cannot spare our crystals, so we learned to draw it from them a little at a time."
+        },
+        {
+          "type": "p",
+          "text": "There is a little MRU in sunlight too, spread very thin. It has to be gathered through a lens before it is of any use."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "Machine leaks are covered in [[crafting/corruption]], and crystals start at [[crystal/crystal_former]]."
+        }
+      ]
+    },
+    {
+      "id": "book_4",
+      "title": "{lang:lore.essentialcraft5.scroll.v4.label} · {lang:lore.essentialcraft5.scroll.v4.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "The Green Sun, ESPE and the pentacle",
+      "complete": "essentialcraft5:guide/scrolls/book_4",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_4",
+      "locked_hint": "This volume turns up in ancient ruin chests and in chests across the Overworld, the Nether and the End. The page opens once you've read it.",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Green Sun lies on another plane, out of sight and out of reach. By the time its pulses cross this world they are too weak to hurt anyone, but they swept up a few MRU rays on the way, and some of the stone turned to mithriline."
+        },
+        {
+          "type": "p",
+          "text": "We also call the Green Sun the Enderstar. Make a pillar of mithriline and stand it under the open sky, and it stores up those pulses little by little. What it stores we call ESPE. ESPE and MRU are two different things."
+        },
+        {
+          "type": "p",
+          "text": "Treat the ills a wounded matrix leaves behind with MRU and you only make them worse. What mends them is the pulse of the Green Sun, the same pulse that keeps every living thing alive. The pentacle was drawn for this. It turns the pulse stored in the pillars on those ills."
+        },
+        {
+          "type": "p",
+          "text": "The Wind Rune feeds on the same pulse. Hold a thing to the rune and let the pulse pour in, and the thing takes on another shape."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "Mithriline and crystal pillars are in [[mithriline/crystal_pillar]], and the pentacle in [[pentacle/pentacle]]."
+        }
+      ]
+    },
+    {
+      "id": "book_5",
+      "title": "{lang:lore.essentialcraft5.scroll.v5.label} · {lang:lore.essentialcraft5.scroll.v5.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "A copy of The Legend of Hoanna",
+      "complete": "essentialcraft5:guide/scrolls/book_5",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_5",
+      "locked_hint": "This volume turns up in chests near the tops of Hoanna's towers or at the exits of its catacombs. The page opens once you've read it.",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "The Legend of Hoanna"
+        },
+        {
+          "type": "p",
+          "text": "A world where technology and magic were joined, and everything worked as it should. It c[...]"
+        },
+        {
+          "type": "p",
+          "text": "The man called the Wind, and the Wind itself came to him and carried him to the land of dreams, to Hoanna, the world where anything was possible."
+        },
+        {
+          "type": "p",
+          "text": "He saw broad roads of gray stone running from the heart of the city further than the eye could follow. He saw towers taller than the hills, and houses with things set into their corners that held heavy loads up in the air. The people there had a name for a certain light. They called it radiance, and they gathered it and drove it to [...], so that their city was as bright by night as by day."
+        },
+        {
+          "type": "p",
+          "text": "He lived in Hoanna a long time and learned their ways. Then the Wind carried him home, and he taught what he had learned to the people here."
+        },
+        {
+          "type": "p",
+          "text": "After that, no one could call the Wind by its name anymore, and the way to Hoanna was shut."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "For Hoanna itself, start at [[hoanna/legend]]."
+        }
+      ]
+    },
+    {
+      "id": "book_6",
+      "title": "{lang:lore.essentialcraft5.scroll.v6.label} · {lang:lore.essentialcraft5.scroll.v6.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "A title and a single line",
+      "complete": "essentialcraft5:guide/scrolls/book_6",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_6",
+      "locked_hint": "The Inquisitorium Sentinel carries this volume. Defeat it, and the page opens once you've read it.",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Darkness fell..."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "This volume holds only its title and the line above. Every page after that is blank."
+        },
+        {
+          "type": "p",
+          "text": "It drops from the [[inquisitorium/sentinel|Inquisitorium Sentinel]]."
+        }
+      ]
+    },
+    {
+      "id": "complete_set",
+      "title": "Reading every volume",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "What reading them all earns you",
+      "complete": "essentialcraft5:guide/scrolls/complete",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): read all seven volumes, the Preface and Books I to VI.",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): read the five volumes the Overworld holds, the Preface and Books I to IV.",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "Finishing the last volume raises your MRU corruption resistance by {cfg:general.ancient_scrolls.set_resistance|pct} for good. It adds to what your accessories give and cuts both the damage from MRU Corruption and the matrix damage MRUCUs deal.",
+          "if": "cfg:general.ancient_scrolls.set_resistance>0"
+        },
+        {
+          "type": "p",
+          "text": "Your Hoanna radiation resistance rises by the same amount for good, so radiation builds up more slowly in Hoanna.",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled",
+            "cfg:general.ancient_scrolls.set_resistance>0"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "When you finish the last volume, a line appears in chat and the challenge-complete sound plays."
+        }
+      ]
+    }
+  ]
+}

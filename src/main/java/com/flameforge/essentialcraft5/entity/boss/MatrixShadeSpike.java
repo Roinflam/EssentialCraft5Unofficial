@@ -1,0 +1,170 @@
+package com.flameforge.essentialcraft5.entity.boss;
+
+import com.flameforge.essentialcraft5.registry.ECMatrixShade;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
+
+/**
+ * 心智钉（矩阵之影心相的招，batch13.md §5.3.2）：浮在场地里的一根矩阵钉，立着时矩阵之影挨的伤害 ×{@code spike_damage_taken}（默认减半，
+ * 见 {@link MatrixShadeEntity#hurt}），和它之间连一道紫线。12 点生命、不动、不打人，打掉就好。
+ * <p>
+ * 技能实体：不存盘、类别 MISC、不掉东西不给经验、在 {@code growth_excluded} 里；放它的矩阵之影没了、散去、离开心相，或者 {@link #LIFE} 刻到了就消失。
+ */
+public class MatrixShadeSpike extends Mob {
+
+    public static final int LIFE = 600;
+    public static final double HEALTH = 12D;
+
+    @Nullable
+    private MatrixShadeEntity owner;
+
+    public MatrixShadeSpike(EntityType<? extends MatrixShadeSpike> type, Level level) {
+        super(type, level);
+        setNoGravity(true);
+        xpReward = 0;
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, HEALTH)
+                .add(Attributes.MOVEMENT_SPEED, 0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1D);
+    }
+
+    /** 放它的矩阵之影（加进世界之前调） */
+    public void bind(MatrixShadeEntity shade) {
+        owner = shade;
+    }
+
+    @Nullable
+    public MatrixShadeEntity owner() {
+        return owner;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        setDeltaMovement(Vec3.ZERO);
+        if (!(level() instanceof ServerLevel server) || isRemoved() || isDeadOrDying()) {
+            return;
+        }
+        MatrixShadeEntity shade = owner;
+        if (shade == null || shade.isRemoved() || shade.isDeadOrDying() || shade.dissipating()
+                || shade.phase() != MatrixShadeEntity.Phase.MIND || tickCount > LIFE) {
+            server.sendParticles(ParticleTypes.REVERSE_PORTAL, getX(), getY() + 0.8D, getZ(), 10, 0.2D, 0.5D, 0.2D, 0.02D);
+            discard();
+            return;
+        }
+        if (tickCount % 5 == 0) {
+            Vec3 from = position().add(0D, getBbHeight() * 0.5D, 0D);
+            Vec3 to = shade.position().add(0D, shade.getBbHeight() * 0.6D, 0D);
+            Vec3 delta = to.subtract(from);
+            int steps = Math.min(32, Math.max(2, (int) (delta.length() * 1.5D)));
+            DustParticleOptions dust = new DustParticleOptions(new Vector3f(0.42F, 0.17F, 0.6F), 0.8F);
+            for (int i = 0; i <= steps; i++) {
+                Vec3 at = from.add(delta.scale(i / (double) steps));
+                server.sendParticles(dust, at.x, at.y, at.z, 1, 0D, 0D, 0D, 0D);
+            }
+        }
+    }
+
+    @Override
+    public void die(DamageSource source) {
+        boolean wasDead = dead;
+        super.die(source);
+        if (wasDead || !dead || !(level() instanceof ServerLevel server)) {
+            return;
+        }
+        server.sendParticles(ParticleTypes.END_ROD, getX(), getY() + 0.8D, getZ(), 16, 0.2D, 0.5D, 0.2D, 0.08D);
+        server.playSound(null, getX(), getY(), getZ(), SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.HOSTILE, 1.2F, 0.7F);
+        discard();
+    }
+
+    @Override
+    public boolean isPushable() {
+        return false;
+    }
+
+    @Override
+    protected void doPush(Entity entity) {
+    }
+
+    @Override
+    public boolean isPushedByFluid() {
+        return false;
+    }
+
+    @Override
+    public void knockback(double strength, double x, double z) {
+    }
+
+    @Override
+    protected boolean shouldDropLoot() {
+        return false;
+    }
+
+    @Override
+    public int getExperienceReward() {
+        return 0;
+    }
+
+    @Override
+    public boolean shouldBeSaved() {
+        return false;
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double distanceSquared) {
+        return false;
+    }
+
+    @Override
+    public boolean canBeLeashed(Player player) {
+        return false;
+    }
+
+    @Override
+    public boolean canChangeDimensions() {
+        return false;
+    }
+
+    @Override
+    protected boolean canRide(Entity vehicle) {
+        return false;
+    }
+
+    @Override
+    public boolean causeFallDamage(float distance, float multiplier, DamageSource source) {
+        return false;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return SoundEvents.AMETHYST_BLOCK_HIT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.AMETHYST_CLUSTER_BREAK;
+    }
+
+    @Override
+    public SoundSource getSoundSource() {
+        return SoundSource.HOSTILE;
+    }
+}

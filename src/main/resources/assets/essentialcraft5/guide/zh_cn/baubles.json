@@ -1,0 +1,759 @@
+{
+  "id": "baubles",
+  "order": 93,
+  "group": "side",
+  "title": "支线 · 特殊饰品",
+  "subtitle": "前人留下的指环、护身符和腰带",
+  "icon": "essentialcraft5:eta_amulet",
+  "entries": [
+    {
+      "id": "finding",
+      "title": "去哪找",
+      "icon": "essentialcraft5:eta_amulet",
+      "summary": "地牢和上古遗迹里的箱子",
+      "complete": "essentialcraft5:guide/baubles/finding",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "这些指环、护身符和腰带，做法已经失传，箱子里翻到一件就是一件，世上不会再多出来。戴之前先读上面的字，有的给你一样，也要拿走一样。",
+          "by": "《源质残卷·卷一》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：找到特殊饰品并戴上。这些指环、护身符和腰带压在地牢和遗迹的箱底，残卷里记着它们各自的用处，却没写是谁做的，做它们的人看样子比先辈还要早。它们一共 32 种，每件都会改动一点游戏规则，比如击杀时多得[[mru/ubmru|UBMRU]]、把伤害弹回去、挖矿多掉东西。饰品无法制作，只能寻找，开局就可以去翻箱子了。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书讲这些饰品的只有一页，夹在讲上古遗迹的「沧海桑田」里。三十二件里有二十四件直接拿希腊字母命名，从 α 一直排到 ω，剩下八件才用了寻常的名字。"
+        },
+        {
+          "type": "h",
+          "text": "去哪找"
+        },
+        {
+          "type": "list",
+          "items": [
+            "原版地牢里的箱子，地牢就是那种带刷怪笼的圆石小屋。",
+            "上古遗迹里的箱子，开出的东西和地牢一样，遗迹的介绍见[[start/mrucu]]。大多数遗迹是埋在石头里的笼子，一座有 4 个箱子，翻起来最划算。",
+            {
+              "if": "cfg:general.ancient_scrolls.enabled",
+              "text": "上古遗迹的箱子有时还会开出一卷[[scrolls/scrolls|源质残卷]]，那是先辈留下的书。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每个箱子会抽 1～3 次，每次有 3/4 的几率出一件饰品，平均一箱 1.5 件。每种饰品出现的几率相同，想要某一件指定的，平均得开二十来个箱子。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "bauble:essentialcraft5:mystical_accessory",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "海纳尔遗迹的箱子里另有一种{item:essentialcraft5:mystical_accessory}，形态和抗性都是随机的，不算在这 32 种里，详见[[baubles/mystical_accessory]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎么戴"
+        },
+        {
+          "type": "list",
+          "items": [
+            "饰品栏在原版背包之外，打开背包后点人物旁边的饰品按钮，或者直接按{keybind:key.curios.open.desc}，就能打开它。",
+            "饰品戴在饰品栏的项链槽、腰带槽和戒指槽里，一般项链槽、腰带槽各 1 个，戒指槽 2 个。拿在手里右键也能直接戴上。",
+            "<em>同种只生效一件</em>，戴着一枚{item:essentialcraft5:omega_ring}时，第二枚就戴不上了。",
+            "每件饰品的作用都写在它的提示框里。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "饰品格蒙上一层暗紫、压着禁用图标，说明附近有人穿着全套宅男套装，你被他展开的[[computer/seal_field]]罩住了。饰品暂时失效，东西还在，离他 {cfg:general.computer_seal.radius|add:2} 格以外就会恢复。"
+        },
+        {
+          "type": "h",
+          "text": "按用途分"
+        },
+        {
+          "type": "table",
+          "header": [
+            "篇",
+            "讲什么"
+          ],
+          "rows": [
+            [
+              "[[baubles/kill_ubmru]]",
+              "改变击杀得到的 UBMRU"
+            ],
+            [
+              "[[baubles/ubmru_other]]",
+              "多积攒 UBMRU，或把它换成 MRU"
+            ],
+            [
+              "[[baubles/combat]]",
+              "换一种打法"
+            ],
+            [
+              "[[baubles/harvest]]",
+              "从方块和生物身上多拿一点"
+            ],
+            [
+              "[[baubles/wind_corruption]]",
+              "风之好感和 MRU 腐化"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[baubles/radiation]]",
+                "海纳尔辐射与余烬"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "if": [
+            "bauble:essentialcraft5:omega_ring",
+            "bauble:essentialcraft5:portable_matrix_destructor"
+          ],
+          "style": "info",
+          "title": "先找哪件",
+          "text": "刚起步时最有用的是{item:essentialcraft5:omega_ring}和{item:essentialcraft5:portable_matrix_destructor}，前者让击杀得到的 UBMRU 翻倍，后者能随身把 UBMRU 换成 MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过任意一件特殊饰品。"
+        }
+      ],
+      "_src": [
+        "loot/DungeonLootInjection.java:34 — 给 minecraft:chests/simple_dungeon 加一个池，引用 inject/simple_dungeon；worldgen/ElderMRUCUFeature.java:264 遗迹的箱子也用 simple_dungeon（布局 1、3 各 4 个，布局 0、2 没有；类注释：主世界 99% 是布局 3 埋着的笼子）",
+        "data/essentialcraft5/loot_tables/inject/simple_dungeon.json — 抽 1~3 次；32 件各权重 3、空 32（3/4 出一件）；每箱平均 2 × 0.75 = 1.5 件，某一件 2 × 3 / 128 ≈ 1/21",
+        "registry/ECBaubles.java 类注释 — 32 件，没有配方；同种只生效一件；general.baubles.disabled 列进去的不生效、不进地牢池",
+        "compat/CuriosCompat.java onlyOneEquipped；默认 1 项链 + 1 腰带（Curios 默认）+ 2 戒指（data/essentialcraft5/curios/slots/ring.json size 2；Curios 合并槽位时取最大值，别的模组 / 整合包给得更多照它们的）",
+        "data/essentialcraft5/loot_tables/chests/town_tower.json、catacombs.json — 神秘饰品权重 15 / 343",
+        "data/essentialcraft5/advancements/guide/baubles/finding.json — 拿到 32 件里任一件",
+        "饰品栏由 Curios 提供：背包界面上的饰品按钮、按键 key.curios.open.desc（Curios 5.14.1 lang「打开/关闭饰品栏」）",
+        "client/CurioSealClient.java onCurioSealSlotsForeground — 被压制时功能槽罩暗紫 + 禁用图标；item/ComputerSealField.java evaluate — 已在场内的人到 radius + 2 才算离开",
+        "data/essentialcraft5/loot_tables/chests/elder_mrucu.json — 上古遗迹箱子另有一池残卷，random_chance 0.35（batch12.md §4.1）"
+      ]
+    },
+    {
+      "id": "kill_ubmru",
+      "title": "击杀的 UBMRU",
+      "icon": "essentialcraft5:omega_ring",
+      "summary": "改变击杀得到的 UBMRU",
+      "complete": "essentialcraft5:guide/baubles/kill_ubmru",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ring_of_stability",
+        "essentialcraft5:ring_of_experience",
+        "essentialcraft5:life_pendant",
+        "essentialcraft5:doctors_belt",
+        "essentialcraft5:chi_ring",
+        "essentialcraft5:omega_ring"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "这几件饰品改变的是你亲手击杀生物时得到的[[mru/ubmru|UBMRU]]，一只僵尸平均约 400。同时戴好几件时，按饰品栏里的顺序依次计算，每一步都向下取整。击杀别的玩家夺来的 UBMRU 不受这些饰品影响。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:ring_of_stability",
+              "text": "{item:essentialcraft5:ring_of_stability}：每次多得 0～99。"
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_experience",
+              "text": "{item:essentialcraft5:ring_of_experience}：少得 10%，少掉的部分每 {cfg:general.bauble_limits.experience_ring_ubmru_per_xp} 点在你身边化作 1 点经验，一只僵尸平均少 40 点。"
+            },
+            {
+              "if": "bauble:essentialcraft5:life_pendant",
+              "text": "{item:essentialcraft5:life_pendant}：少得 30%，少掉的部分除以 30 就是回复的生命值，杀一只僵尸约回 4 点，合 2 颗心。"
+            },
+            {
+              "if": "bauble:essentialcraft5:doctors_belt",
+              "text": "{item:essentialcraft5:doctors_belt}：一点也得不到，换来的是身上凋零、中毒、饥饿、失明、反胃、挖掘疲劳、缓慢、虚弱这八种负面效果的持续时间减半。"
+            },
+            {
+              "if": "bauble:essentialcraft5:chi_ring",
+              "text": "{item:essentialcraft5:chi_ring}：减半，换来捡经验球时另得球上 {cfg:general.bauble_limits.chi_xp_bonus|pct} 的经验，多得的这份不会拿去修带经验修补的装备。"
+            },
+            {
+              "if": "bauble:essentialcraft5:omega_ring",
+              "text": "{item:essentialcraft5:omega_ring}：翻倍。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier>0"
+          ],
+          "text": "[[matrix/codex|矩阵图谱]]首杀多给的那一份，按这些饰品改过以后的数算。"
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:doctors_belt",
+          "style": "info",
+          "title": "别戴错",
+          "text": "要攒 UBMRU 喂[[mru/matrix_absorber]]，或者留给便携矩阵换能器用时，先把{item:essentialcraft5:doctors_belt}摘下来，戴着它击杀几乎攒不到 UBMRU。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一件。"
+        }
+      ],
+      "_src": [
+        "item/bauble/BaubleEffects.java 类注释 — UBMRUEvents 依次调用，每次向下取整；夺取别的玩家的 UBMRU 不吃饰品倍率",
+        "item/bauble/BaubleEffects.java stability +rand(100)、experience −10%（拿走的部分 ÷ general.bauble_limits.experience_ring_ubmru_per_xp，默认 20，小数按几率进位；原作 ÷ 4）、lifePendant −30%（÷30 回血）、doctorsBelt → 0、chi ÷2、omega ×2",
+        "item/bauble/BaubleEffects.java:82 DOCTOR_EFFECTS 八种；doctorsBeltTick 每 20 刻缩短 20 刻 = 时长减半",
+        "item/bauble/BaubleHarvestEvents.java chiBonus — χ 捡经验时另给 球的数值 × general.bauble_limits.chi_xp_bonus（默认 0.5，原作 1），不修经验修补",
+        "tools/plan/progression.md — UBMRU = (20 ± 10) × 基础最大生命，僵尸平均 400",
+        "data/essentialcraft5/advancements/guide/baubles/kill_ubmru.json"
+      ]
+    },
+    {
+      "id": "ubmru_other",
+      "title": "UBMRU 的别的用处",
+      "icon": "essentialcraft5:portable_matrix_destructor",
+      "summary": "多攒 UBMRU，把它换成 MRU",
+      "complete": "essentialcraft5:guide/baubles/ubmru_other",
+      "optional": true,
+      "items": [
+        "essentialcraft5:portable_matrix_destructor",
+        "essentialcraft5:kappa_ring",
+        "essentialcraft5:alpha_ring"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "这三件饰品能让你多积攒一些 UBMRU，或者随身把 UBMRU 换成 MRU。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:portable_matrix_destructor",
+              "text": "{item:essentialcraft5:portable_matrix_destructor}：等于戴在脖子上的矩阵换能器，按[[mru/matrix_absorber]]的比例把你的 UBMRU 换成它自己存着的 MRU，{cfg:machines.matrix_absorber.ubmru_usage} UBMRU 换 {cfg:machines.matrix_absorber.mru_generated} MRU，每秒最多换 20 次，最多存 5000。它也算灵魂储存，法杖、护符这些耗 MRU 的东西会先从它这里扣。"
+            },
+            {
+              "if": "bauble:essentialcraft5:kappa_ring",
+              "text": "{item:essentialcraft5:kappa_ring}：每半秒多得 1 UBMRU，一小时合计 7200，代价是饿得更快，大约每 20 秒消耗 1 点饥饿值，有饱和度时先扣饱和度。"
+            },
+            {
+              "if": "bauble:essentialcraft5:alpha_ring",
+              "text": "{item:essentialcraft5:alpha_ring}：每喝一瓶{item:essentialcraft5:magical_water}多得 500 UBMRU，不戴它时，喝魔力水没有任何效果。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:portable_matrix_destructor",
+          "style": "info",
+          "text": "戴着便携矩阵换能器打怪，击杀攒下的 UBMRU 会慢慢变成随身的 MRU，留给[[staffs/golden_orb|法杖]]和[[charms/charms|护符]]用，省得来回跑去充能。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一件。"
+        }
+      ],
+      "_src": [
+        "item/bauble/PortableMatrixDestructorItem.java:38 MAX_MRU 5000、:40 每 20 刻结算一次、最多换 20 次；比例读 machines.matrix_absorber.ubmru_usage / mru_generated；储存物品（MRUDrain 先从饰品栏扣）",
+        "item/bauble/BaubleEffects.java:76 KAPPA_INTERVAL 10（每 10 刻 +1）、KAPPA_EXHAUSTION 0.01 / 刻（4 点饥饿消耗 = 1 点，约 20 秒）",
+        "item/MagicalWaterItem.java 类注释 — 戴 α 指环（ubmru_from_magic_water）时 500，没戴是 0",
+        "data/essentialcraft5/advancements/guide/baubles/ubmru_other.json"
+      ]
+    },
+    {
+      "id": "combat",
+      "title": "战斗",
+      "icon": "essentialcraft5:zeta_amulet",
+      "summary": "换一种打法",
+      "complete": "essentialcraft5:guide/baubles/combat",
+      "optional": true,
+      "items": [
+        "essentialcraft5:zeta_amulet",
+        "essentialcraft5:eta_amulet",
+        "essentialcraft5:theta_belt",
+        "essentialcraft5:iota_ring",
+        "essentialcraft5:sigma_ring",
+        "essentialcraft5:nu_amulet",
+        "essentialcraft5:psi_ring"
+      ],
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:zeta_amulet",
+              "text": "{item:essentialcraft5:zeta_amulet}：每次打中扣 300 UBMRU，清掉目标的受伤无敌时间，下一击马上就能打上，攻击被挡下时不扣。攻击冷却照常计算，连点的话每一下伤害都会变小。"
+            },
+            {
+              "if": "bauble:essentialcraft5:eta_amulet",
+              "text": "{item:essentialcraft5:eta_amulet}：你造成的和你受到的伤害<em>都</em>翻倍。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:theta_belt",
+                "cfg:general.bauble_limits.theta_cooldown_ticks"
+              ],
+              "text": "{item:essentialcraft5:theta_belt}：受到致命一击时，它会扣掉 UBMRU 把这一下抵消，扣的数量是这一下算过护甲后的伤害乘以 5000，UBMRU 不够就抵消不了。抵消一次后要冷却 {cfg:general.bauble_limits.theta_cooldown_ticks|sec}，冷却期间再挨致命一击就抵消不了，饰品栏里的腰带上看得到冷却进度，退出重进也照样要等冷却走完。虚空伤害和 /kill 都抵消不了。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:theta_belt",
+                "!cfg:general.bauble_limits.theta_cooldown_ticks"
+              ],
+              "text": "{item:essentialcraft5:theta_belt}：受到致命一击时，它会扣掉 UBMRU 把这一下抵消，扣的数量是这一下算过护甲后的伤害乘以 5000，UBMRU 不够就抵消不了。虚空伤害和 /kill 都抵消不了。"
+            },
+            {
+              "if": "bauble:essentialcraft5:iota_ring",
+              "text": "{item:essentialcraft5:iota_ring}：从你打出的伤害里拆出 10%，紧接着单独补一下无视护甲的魔法伤害，这一下打完，目标的受伤无敌时间清零。"
+            },
+            {
+              "if": "bauble:essentialcraft5:sigma_ring",
+              "text": "{item:essentialcraft5:sigma_ring}：受到有来源的伤害时，有 10% 的几率把这一下原样还给对方，自己不受伤。还回去的伤害不会再被弹回来。对方这一下要是根本没打着你，比如被领地的 PvP 保护拦下了，也不会还回去。"
+            },
+            {
+              "if": "bauble:essentialcraft5:nu_amulet",
+              "text": "{item:essentialcraft5:nu_amulet}：每次击杀，对你周围水平 6 格、上下 3 格内的敌对生物各造成 3 点伤害，最多 {cfg:general.bauble_limits.nu_max_targets} 只，近的优先，被这一圈打死的怪不会再引发连锁。代价是击杀所得的 UBMRU 少 25%。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "!cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:psi_ring}：怪物盯上你时，会转而去打它附近别的敌对生物，村民和宠物不会被当成新目标，同一只怪每 {cfg:general.bauble_limits.psi_cooldown_ticks|sec}内最多换一次目标。凋灵、末影龙这类首领不受影响。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:psi_ring}：怪物盯上你时，会转而去打它附近别的敌对生物，村民和宠物不会被当成新目标，同一只怪每 {cfg:general.bauble_limits.psi_cooldown_ticks|sec}内最多换一次目标。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "多人游戏里，这些伤害都算你打出的，照常受 PvP 开关、队伍和领地约束。你的攻击被挡下时，这些饰品都不起作用，也不扣 UBMRU。"
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:eta_amulet",
+          "style": "warn",
+          "text": "{item:essentialcraft5:eta_amulet}让别人打你的伤害同样翻倍，打 Boss 前想清楚再戴。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一件。"
+        }
+      ],
+      "_src": [
+        "item/bauble/BaubleCombatEvents.java 类注释 — ζ η θ ι σ ψ；伤害源带佩戴者",
+        "item/bauble/BaubleEffects.java ZETA_COST 300（BaubleCombatEvents.onBaubleDamageLanded：LivingDamageEvent 打实了才扣、清无敌帧，tick 末 flushZeta 再清；被盾牌整下挡掉的不算，util/ECShieldBlocks）、THETA_COST_PER_DAMAGE 5000（LivingDamageEvent，护甲之后；bypasses_invulnerability 不抵；冷却 general.bauble_limits.theta_cooldown_ticks 600，ItemCooldowns + 持久数据 essentialcraft5:theta_ready，重进补回）",
+        "item/bauble/BaubleCombatEvents.java:100 IOTA_FRACTION 0.1（同刻末尾魔法伤害、清无敌帧）、:102 SIGMA_CHANCE 0.1（反弹的不再反弹）",
+        "item/bauble/BaubleEffects.java:81 NU_DAMAGE 3、:224 nu −25%、:237 nuChain 13×7×13、最多 nu_max_targets、不连锁",
+        "registry/ECBaubles.java Limits — psi_cooldown_ticks 40、psi_affects_bosses false（#forge:bosses）；ψ 新目标只能是敌对生物；ι 排的魔法伤害要 LivingDamageEvent 确认过才打",
+        "data/essentialcraft5/advancements/guide/baubles/combat.json"
+      ]
+    },
+    {
+      "id": "harvest",
+      "title": "挖掘与掉落",
+      "icon": "essentialcraft5:omicron_amulet",
+      "summary": "从方块和生物身上多拿一点",
+      "complete": "essentialcraft5:guide/baubles/harvest",
+      "optional": true,
+      "items": [
+        "essentialcraft5:omicron_amulet",
+        "essentialcraft5:pi_belt",
+        "essentialcraft5:rho_ring",
+        "essentialcraft5:tau_ring",
+        "essentialcraft5:upsilon_ring",
+        "essentialcraft5:phi_ring"
+      ],
+      "blocks": [
+        {
+          "type": "h",
+          "text": "挖方块"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:omicron_amulet",
+              "text": "{item:essentialcraft5:omicron_amulet}：挖方块时，掉落物里煤、钻石、红石粉、种子这类不是方块的东西每组多 1 个，每次扣 500 UBMRU，掉的全是方块时不扣。放下去又能挖回来的东西不加，比如红石线掉的红石粉、绊线掉的线、没长成的作物掉的种子，长成的作物照样加。陶罐这类能装东西的方块，里面掉出来的东西也不加。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:pi_belt}：挖矿石掉的经验乘以 {cfg:general.bauble_limits.pi_xp_multiplier}，小数部分按几率进位。铁、铜、金矿这类本来不掉经验的矿石，有 5% 的几率给 1 点，但挖下来掉的是矿石本身时不算，比如用了精准采集。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "!cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:pi_belt}：挖方块掉的经验乘以 {cfg:general.bauble_limits.pi_xp_multiplier}，小数部分按几率进位。本来不掉经验的方块，有 5% 的几率给 1 点，但挖下来掉的是方块本身时不算，比如用了精准采集。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:rho_ring",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:rho_ring}：挖矿石不再掉经验，每点经验改给 {cfg:general.bauble_limits.rho_ubmru_per_xp} UBMRU，和 π 腰带一起戴时，先乘倍数再换算。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:rho_ring",
+                "!cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:rho_ring}：挖方块不再掉经验，每点经验改给 {cfg:general.bauble_limits.rho_ubmru_per_xp} UBMRU，和 π 腰带一起戴时，先乘倍数再换算。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这三件只认你亲手挖掉、又在你够得着的地方的方块，机器、法杖替你挖的都不算，创造模式下也不算。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.bauble_limits.mining_xp_ores_only",
+            "bauble:essentialcraft5:pi_belt||bauble:essentialcraft5:rho_ring"
+          ],
+          "text": "π 腰带和 ρ 指环只认矿石。刷怪笼、幽匿块这类挖掉也掉经验的方块，戴着它们挖，经验照原样掉。"
+        },
+        {
+          "type": "h",
+          "text": "生物"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "bauble:essentialcraft5:tau_ring",
+                "!cfg:general.bauble_limits.tau_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:tau_ring}：你亲手杀死的生物，它自己的掉落每组多 0～2 个，每次扣 1000 UBMRU。它身上穿戴的和捡起来的东西不会变多，凋灵、末影龙这类首领的掉落也不加。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:tau_ring",
+                "cfg:general.bauble_limits.tau_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:tau_ring}：你亲手杀死的生物，它自己的掉落每组多 0～2 个，每次扣 1000 UBMRU。它身上穿戴的和捡起来的东西不会变多。"
+            },
+            {
+              "if": "bauble:essentialcraft5:upsilon_ring",
+              "text": "{item:essentialcraft5:upsilon_ring}：你是离末影人最近的玩家、又在 16 格以内时，它没法瞬移。"
+            },
+            {
+              "if": "bauble:essentialcraft5:phi_ring",
+              "text": "{item:essentialcraft5:phi_ring}：拿{item:minecraft:shears}右键牛、鸡、鱿鱼、蜘蛛、苦力怕、骷髅、岩浆怪、史莱姆、僵尸或雪傀儡，能分别剪出 1～3 个皮革、羽毛、墨囊、线、火药、骨粉、岩浆膏、黏液球、腐肉或雪块。每剪一次消耗 1000 UBMRU 和剪刀 32 点耐久，两次之间至少隔 {cfg:general.bauble_limits.phi_cooldown_ticks|sec}。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:omega_ring",
+          "style": "info",
+          "text": "这几件都要花 UBMRU，配上[[baubles/kill_ubmru]]里的{item:essentialcraft5:omega_ring}，打怪攒下的就够它们用。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一件。"
+        }
+      ],
+      "_src": [
+        "item/bauble/BaubleEffects.java:65 OMICRON_COST 500、:362 omicronBonus（有可加的才扣）、:324 isReplantedForm（放下再挖回来的、没长成的不加）",
+        "item/bauble/BaubleHarvestEvents.java PI_BONUS_CHANCE 0.05（piBonusEligible：工具对、掉落里没有方块自己才掷）、applyBreakExperience（π × general.bauble_limits.pi_xp_multiplier 2 再 ρ × rho_ubmru_per_xp 1000）、countsForMiningXp（mining_xp_ores_only：只认 #forge:ores）；探测、法杖代挖、够不着、创造模式不算",
+        "item/bauble/BaubleEffects.java TAU_COST 1000、tauBonus（只动掉落表，每组 +0~2；死者在 #forge:bosses 里且 tau_affects_bosses 关时不加）",
+        "item/bauble/BaubleCombatEvents.java:99 UPSILON_RANGE 16",
+        "item/bauble/BaubleEffects.java:71 PHI_COST 1000、PHI_SHEARS_DAMAGE 32；phi_cooldown_ticks 10；BaubleHarvestEvents 类注释 剪得出才扣",
+        "data/essentialcraft5/advancements/guide/baubles/harvest.json"
+      ]
+    },
+    {
+      "id": "wind_corruption",
+      "title": "风与腐化",
+      "icon": "essentialcraft5:wind_catcher",
+      "summary": "风之好感和 MRU 腐化",
+      "complete": "essentialcraft5:guide/baubles/wind_corruption",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ring_of_resistance",
+        "essentialcraft5:wind_catcher",
+        "essentialcraft5:wind_mages_talisman",
+        "essentialcraft5:beta_ring",
+        "essentialcraft5:gamma_ring"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "前四件和[[wind/air_potion|风之好感]]有关，好感记的是风跟你有多熟，最后一件和 MRU 腐化有关。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "text": "{item:essentialcraft5:wind_mages_talisman}：风之好感系数 +0.3，平时每瓶风之药水实得 {cfg:general.wind_affinity.base_coefficient|mul:100|int} 点，戴上它变成 {cfg:general.wind_affinity.base_coefficient|add:0.3|mul:100|int} 点。"
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "{item:essentialcraft5:wind_catcher}：系数 −0.1，换来每次增加好感时有 15% 的几率捕到一个{item:essentialcraft5:wind_keeper}，喝风之药水、打碎瓶装的风都算。<em>只戴它、没有别的加成时系数为 0，好感不会增加</em>，不过每喝一瓶、每打碎一个，照样有 15% 的几率捕到{item:essentialcraft5:wind_keeper}。"
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_resistance",
+              "text": "{item:essentialcraft5:ring_of_resistance}：风不再捉弄你，受眷顾以后不会再被风从背后猛推一把，也不会被托上半空，好感照常增加。"
+            },
+            {
+              "if": "bauble:essentialcraft5:beta_ring",
+              "text": "{item:essentialcraft5:beta_ring}：受[[wind/windbound]]以后，风偶尔拂过你时，会改给你一个四选一的增益，力量 II、生命恢复 I、饱和 I 或急迫 II，持续 6 分钟，好感照常增加。"
+            },
+            {
+              "if": "bauble:essentialcraft5:gamma_ring",
+              "text": "{item:essentialcraft5:gamma_ring}：MRU 腐化不再伤害你，改为回复同样多的生命值。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:wind_catcher",
+          "style": "info",
+          "title": "捕风挂坠的妙用",
+          "text": "{item:essentialcraft5:wind_keeper}平时只有风法师里的大法师才掉，做[[wind/wind_tablet]]却要用一个。戴着{item:essentialcraft5:wind_catcher}喝风之药水，平均六七瓶就能捕到一个，捕够了再换回别的饰品。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一件。"
+        }
+      ],
+      "_src": [
+        "registry/ECBaubles.java:77 捕风挂坠 windAffinity −0.1、:80 风法师护符 +0.3；api/WindAffinity.java:83 系数累加",
+        "player/WindRelations.java:59 CATCHER_CHANCE 0.15、:79 grant — 每次加好感都掷（药水、瓶子、事件），和实得多少无关",
+        "player/WindRelations.java 类注释 — 抗性指环免疫被风推（速度 XXXII）和托起（跳跃提升 XIII）；β 指环：被动事件改成四选一增益，7200 刻",
+        "corruption/MRUCorruption.java healsInstead — γ 指环 MRU 腐化改回血，回 L76 damage 那么多（最大生命 × mru_corruption_health_percent × 易伤）",
+        "data/essentialcraft5/recipes/wind/wind_tablet.json — 要 1 个受困之风",
+        "data/essentialcraft5/advancements/guide/baubles/wind_corruption.json"
+      ]
+    },
+    {
+      "id": "radiation",
+      "title": "辐射与余烬",
+      "icon": "essentialcraft5:mu_ring",
+      "summary": "和海纳尔辐射、余烬有关的五件",
+      "complete": "essentialcraft5:guide/baubles/radiation",
+      "optional": true,
+      "items": [
+        "essentialcraft5:delta_ring",
+        "essentialcraft5:epsilon_belt",
+        "essentialcraft5:lambda_ring",
+        "essentialcraft5:mu_ring",
+        "essentialcraft5:xi_belt"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "这五件是为海纳尔准备的，做它们的人多半就是海纳尔人。其中四件和海纳尔辐射有关，一件和余烬有关。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "海纳尔辐射怎样积攒、怎样消散、会带来什么后果，见[[hoanna/radiation]]。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "bauble:essentialcraft5:delta_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:delta_ring}：辐射压低生命上限时只按<em>一半的等级</em>计算，多久压一次仍按原来的等级算。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:epsilon_belt",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "{item:essentialcraft5:epsilon_belt}：亲手击杀敌对生物时，有 {cfg:general.bauble_limits.epsilon_ember_chance|pct} 的几率多掉一个随机余烬，杀动物和玩家不算。余烬能在[[void_machines/ember_forge]]里锻剑。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:lambda_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:lambda_ring}：<em>不在</em>海纳尔时，辐射每秒多消散 60，加上平时的 5，一共 65。人在海纳尔时它没有效果。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mu_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:mu_ring}：在海纳尔不怕日阵灼烧、毒雾和强震，毒雾带来的中毒和辐射都不会有，只是地震时照样会小小踉跄一下。代价是在海纳尔每秒多积攒 20 辐射，盔甲也挡不掉。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mu_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:mu_ring}：在海纳尔不怕日阵灼烧、毒雾和强震，只是地震时照样会小小踉跄一下。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "cfg:general.radiation.enabled",
+                "cfg:general.bauble_limits.xi_dose_ceiling>0"
+              ],
+              "text": "{item:essentialcraft5:xi_belt}：打玩家时，每点伤害让对方的辐射 +5000，一下最多 +{cfg:general.bauble_limits.xi_dose_per_hit}，累计最多加到 {cfg:general.bauble_limits.xi_dose_ceiling}，对方已经高于这个值就不再加。打别的生物时，它的生命上限会跟着你打掉的生命一起降，打掉的血再也回不来，上限最低留 1，宠物和坐骑不会被压低，生物重新加载后恢复原状。你自己挨打时，每点伤害让自己的辐射 +1000，同样最多加到 {cfg:general.bauble_limits.xi_dose_ceiling}。这些都在正常伤害之外另算，攻击被挡下时，包括被盾牌挡下，一律不算。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "!cfg:general.radiation.enabled||cfg:general.bauble_limits.xi_dose_ceiling==0"
+              ],
+              "text": "{item:essentialcraft5:xi_belt}：打玩家以外的生物时，它的生命上限会跟着你打掉的生命一起降，上限最低留 1，宠物和坐骑不会被压低，生物重新加载后恢复原状。这在正常伤害之外另算，攻击被挡下时，包括被盾牌挡下，都不算。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "bauble:essentialcraft5:xi_belt",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled",
+            "cfg:general.bauble_limits.xi_dose_ceiling>=10000"
+          ],
+          "text": "所以被戴着{item:essentialcraft5:xi_belt}的人打得再多，你的生命上限最多也只压低 {cfg:general.bauble_limits.xi_dose_ceiling|div:10000|add:0.5|round:0|int} 级，每级相当于最大生命的 {cfg:general.radiation.cap_loss_percent_per_level|pct}。离开海纳尔约 {cfg:general.bauble_limits.xi_dose_ceiling|add:-9999|div:300|round:0|int} 分钟后，辐射就会散到不再压低上限，详见[[hoanna/radiation]]。戴着它的人自己挨打时也一样。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "余烬也能从海纳尔遗迹的箱子里开出来，见[[hoanna/relics]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一件。"
+        }
+      ],
+      "_src": [
+        "registry/ECBaubles.java — δ ε λ μ ξ 只挂效果标签 halves_radiation / drops_embers / purges_radiation / hoanna_attuned / irradiates_on_hit",
+        "effect/RadiationEffect.java capHealth / capLevels — δ（#halves_radiation）压 amp / 2 + 1 级（每级最大生命的 general.radiation.cap_loss_percent_per_level），判中几率仍按原等级",
+        "registry/ECVoid.java VoidEmberEvents — general.bauble_limits.epsilon_ember_chance 0.05；isEmberVictim 只认 Enemy、不算玩家；真玩家亲手击杀、doMobLoot 开，从 #embers 等概率挑一个",
+        "hoanna/Radiation.java:52 DECAY_OUTSIDE 5、:54 LAMBDA_PURGE 60（只在海纳尔外）、:56 MU_GAIN 20（不乘易伤；radiation.enabled 关时不加）",
+        "hoanna/HoannaHazards.java:130、:181 — μ（#hoanna_attuned）免日阵、强震；entity/PoisonFumeEntity.java 免毒雾；小踉跄照有",
+        "hoanna/RadiationBaubleEvents.java PER_DAMAGE_TARGET 5000、targetDose ≤ general.bauble_limits.xi_dose_per_hit 5000、ceilingAdd 推到 xi_dose_ceiling 15000 为止（打人、自己挨打都按它）、PER_DAMAGE_SELF 1000；打怪按真正少掉的生命压上限（tick 末 flushMaxHealth，addTransientModifier，canLowerMaxHealth：宠物、装了鞍的、被玩家骑着的不压）；LivingDamageEvent 生效才算，被盾牌整下挡掉的不算（util/ECShieldBlocks）；radiation.enabled 关时只压最大生命",
+        "data/essentialcraft5/loot_tables/chests/town_tower.json、catacombs.json — 8 种余烬各权重 10（tools/gen/hoanna_loot.py）",
+        "data/essentialcraft5/advancements/guide/baubles/radiation.json"
+      ]
+    },
+    {
+      "id": "mystical_accessory",
+      "title": "{item:essentialcraft5:mystical_accessory}",
+      "icon": "essentialcraft5:mystical_accessory",
+      "summary": "随机形态、三项随机抗性的饰品",
+      "items": [
+        "essentialcraft5:mystical_accessory"
+      ],
+      "if": [
+        "bauble:essentialcraft5:mystical_accessory",
+        "cfg:general.hoanna.portal_enabled"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海纳尔人留下的箱子里偶尔能翻出一件{item:essentialcraft5:mystical_accessory}，平均每箱约半件，见[[hoanna/relics]]。每一件都是随机的，可能是项链、腰带或戒指，样子也各不一样，这些都在箱子打开的那一刻定下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "戴在哪",
+              "取决于它的形态，项链只能戴在项链槽，腰带、戒指同理，形态写在提示框里"
+            ],
+            [
+              "MRU 腐化抗性",
+              "0%~10%，减轻 MRU 腐化的伤害和聚集体造成的矩阵损伤"
+            ],
+            [
+              "腐化辐射抗性",
+              "0%~10%，这个模组里没有任何东西会造成腐化辐射，可以不管"
+            ],
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "海纳尔辐射抗性",
+                "0%~10%，在海纳尔里少积攒一些辐射，见[[hoanna/radiation]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "几件神秘饰品的抗性可以叠加，<em>不受「同种只生效一件」的限制</em>，但每一项合计最多算 <t>40%</t>，正好是一条项链、一条腰带和两枚戒指都取满值时的总和，饰品栏再多也不会更高。"
+        },
+        {
+          "type": "p",
+          "text": "它们还能和盔甲的抗性叠加。盔甲四件的抗性相加后除以 4，饰品的抗性直接加上去。比如魔力防护全套四件各 25%，合起来算 25%，再加两件各 10% 的神秘饰品，MRU 腐化抗性一共 45%，受到的影响只剩 0.55。"
+        },
+        {
+          "type": "formula",
+          "text": "受到的影响 = 1 − 盔甲抗性之和 ÷ 4 − 饰品抗性之和（神秘饰品最多算 40%）"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "从创造模式物品栏里拿的神秘饰品还没有定形，放进背包的下一刻就会定下来。"
+        }
+      ],
+      "_src": [
+        "item/bauble/MysticalAccessoryItem.java — roll：形态 nextInt(3)（0 项链 1 腰带 2 戒指）、底 / 面 nextInt(6)、三项抗性 nextFloat() / 10；canEquip 只认形态对应的槽；inventoryTick 补抽",
+        "loot/RandomizeAccessoryFunction.java — 开箱时就抽；chests/*.json 神秘饰品权重 15 / 343、每箱抽 6~17 次，约 0.50 件",
+        "api/MRUResistance.java:82 vulnerability — 1 − 盔甲之和 / 4 − 其它饰品之和 − min(神秘饰品之和, 0.4)；CORRUPTION_RADIATION 现在没有用处（腐化方块没移植）",
+        "item/bauble/MysticalAccessoryItem.java 类注释 — 不受「同种只生效一件」限制；每项合计夹到 MAX_TOTAL 0.4",
+        "例：魔力防护全套 0.25 × 4 ÷ 4 = 0.25，两件神秘饰品 0.1 + 0.1 = 0.2，1 − 0.25 − 0.2 = 0.55（api/MRUResistance.java:82）"
+      ]
+    }
+  ]
+}

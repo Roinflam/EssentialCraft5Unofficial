@@ -1,0 +1,539 @@
+{
+  "id": "staffs",
+  "order": 90,
+  "group": "side",
+  "title": "支线 · 法杖与武器",
+  "subtitle": "用焦点和灵魂物质做的魔法工具",
+  "icon": "essentialcraft5:staff_of_life",
+  "entries": [
+    {
+      "id": "golden_orb",
+      "title": "{item:essentialcraft5:magical_golden_orb}",
+      "icon": "essentialcraft5:magical_golden_orb",
+      "summary": "本章三件工具的中间材料",
+      "complete": "essentialcraft5:guide/staffs/golden_orb",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_golden_orb"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "岩浆法杖敲在矿上，矿当场化成合金落下来。生命法杖一挥，满地的麦子齐齐蹿高一截。拿在手里的机器我做了不少，这两根最顺手。",
+          "by": "《工坊手记》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：制作一颗{item:essentialcraft5:magical_golden_orb}。本章这些拿在手里用的器具，残卷里很少提，大多记在一位工匠先辈的手记里。黄金法球本身没有用途，只是三件工具的材料，{item:essentialcraft5:magnetizing_staff}要 2 颗，{item:essentialcraft5:staff_of_life}和{item:essentialcraft5:holy_mace}各要 1 颗。它在第六章就能做，但本章的工具大多还要焦点，到<em>第九章</em>以后才凑得齐。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_golden_orb"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：1 颗末影珍珠和 4 块{item:essentialcraft5:magic_purified_gold_alloy}，合金的做法见[[alloys/purified_alloys]]。在[[crafting/magician_table]]上制作，耗费 5000 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "本章的工具"
+        },
+        {
+          "type": "table",
+          "header": [
+            "工具",
+            "用途",
+            "难弄的材料"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magmatic_staff}",
+              "右键矿石，当场变成岩浆合金",
+              "冶炼炉、4 颗{item:essentialcraft5:fire_focus}、永恒物质"
+            ],
+            [
+              "{item:essentialcraft5:magnetizing_staff}",
+              "把周围的掉落物吸过来",
+              "2 颗黄金法球、暗黑灵魂物质"
+            ],
+            [
+              "{item:essentialcraft5:staff_of_life}",
+              "一下催熟一大片作物",
+              "2 把元素锄、4 颗{item:essentialcraft5:earth_focus}"
+            ],
+            [
+              "{item:essentialcraft5:magical_shield}、{item:essentialcraft5:spiky_shield}",
+              "举起来扛住 2 秒",
+              "尖刺圆盾要下界之星和永恒物质"
+            ],
+            [
+              "{item:essentialcraft5:chaos_fork}、{item:essentialcraft5:frozen_mace}",
+              "配合矩阵属性的武器",
+              "矩阵投影、永恒物质"
+            ],
+            [
+              "{item:essentialcraft5:holy_mace}",
+              "伤害高、不挑矩阵的武器",
+              "黄金法球"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "先留够主线的",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "主线做[[wind/wind_tablet]]还要 4 个{item:essentialcraft5:air_focus}，做[[demons/demonic_pentacle]]还要 4 个{item:essentialcraft5:fire_focus}，先把这些留够，多出来的再拿来做这里的东西。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "永恒物质要下界之星",
+          "text": "{item:essentialcraft5:matter_of_eternity}要在魔力工作台上用 1 颗打凋灵得来的下界之星加 4 个{item:essentialcraft5:mru_large_chunk}制作。岩浆法杖和两把矩阵武器各要 1 块，尖刺圆盾一共要 2 颗下界之星。永恒物质本身也是能存 100 万 MRU 的储存物品，拿它合成时里面的 MRU 会一起耗掉，所以要用空的。"
+        },
+        {
+          "type": "h",
+          "text": "这些工具的 MRU"
+        },
+        {
+          "type": "p",
+          "text": "法杖、护盾和三把武器都自带 5000 MRU 的存储空间，刚做出来是空的。用的时候先扣你身上带着的[[storage/soul_storage|灵魂储存]]，比如{item:essentialcraft5:soul_sphere}，不够了才扣工具自己存的，创造模式下不扣。想给工具本身充满，就把它放进[[storage/charging_chamber]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "身上带一块存满的灵魂储存最省事，本章的工具都先从它扣，不必一件件去充能。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有一颗黄金法球。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/alloys/magical_golden_orb.json — 魔力工作台：末影珍珠 + 魔力金锭 ×4，mru 5000",
+        "data/essentialcraft5/recipes/staffs/*.json — 各工具配方",
+        "data/essentialcraft5/recipes/magician_table/matter_of_eternity.json — 下界之星 + 大 MRU 晶块 ×4；registry/ECItems.java:35 永恒物质存 1000000 MRU",
+        "item/MRUStaffItem.java:31 MAX_MRU 5000（三把武器同，MatrixWeaponItem.initCapabilities）；mru/MRUDrain.java:31 先扣身上储存物品，凑不够再扣自己的；创造模式不扣",
+        "data/essentialcraft5/advancements/guide/staffs/golden_orb.json",
+        "黄金法球：魔力金锭 ×4 + 末影珍珠（第六章 alloys/purified_alloys）；焦点用量 data/essentialcraft5/recipes/staffs/*.json（岩浆法杖火 ×4、生命法杖地 ×4、磁化法杖风 ×2、护盾地 ×2、三把武器各 2~3）；主线 wind_tablet 风 ×4、demonic_pentacle 火 ×4"
+      ]
+    },
+    {
+      "id": "magmatic_staff",
+      "title": "{item:essentialcraft5:magmatic_staff}",
+      "icon": "essentialcraft5:magmatic_staff",
+      "summary": "矿石当场化成合金，不用精准采集",
+      "complete": "essentialcraft5:guide/staffs/magmatic_staff",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magmatic_staff"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：制作一根{item:essentialcraft5:magmatic_staff}。拿它右键矿石，矿石会当场化成{item:essentialcraft5:magmatic_alloy}掉在原地，不用挖，也用不着精准采集。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magmatic_staff"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：1 台{item:essentialcraft5:magmatic_smeltery}、4 颗{item:essentialcraft5:fire_focus}、2 份{item:essentialcraft5:crystal_dust}、1 块空的{item:essentialcraft5:matter_of_eternity}和 1 块{item:essentialcraft5:magic_plate}，魔力板换成同类的其他板也行。冶炼炉的做法见[[magmatic/smeltery]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿着法杖右键够得着的矿石方块，潜不潜行都行。",
+            "每次耗 500 MRU，矿石消失，原地掉出岩浆合金。数量等于这种矿的掉落数，铁、金、铜、钻石是 1 个，红石 8 个，青金石 16 个，另有 33% 的几率翻倍。",
+            "把合金送进岩浆熔炉或冶炼炉，1 个合金能炼出 2 个成品。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "一块{block:minecraft:iron_ore}平均能出 1.33 个合金，约合 2.7 个铁锭，比岩浆熔炉的 2 个多，比冶炼炉的 4 个少，好处是不用精准采集，也不用把矿石背回家。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "text": "用它处理矿石，拿不到矿石原本给的经验。它只认矿表里的矿石方块，矿表列在[[magmatic/smeltery]]的末尾，粗金属块之类的方块不在其中。"
+        },
+        {
+          "type": "h",
+          "text": "权限"
+        },
+        {
+          "type": "p",
+          "text": "在别人的领地或出生点保护范围里用不了，也不扣 MRU，快捷栏上方会提示原因。MRU 不够时同样会提示，矿石保持原样。冒险模式下也用不了。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有一根岩浆法杖。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/staffs/magmatic_staff.json — 冶炼炉、火之焦点 ×4、水晶粉 ×2、永恒物质、#plates/magic",
+        "item/MagmaticStaffItem.java:49 COST 500、:51 DOUBLE_CHANCE 0.33；smelt：掉落数 = 配方 drop_amount，不给经验",
+        "item/MagmaticStaffItem.java:122 findOre — 只认配方的 ore，不认 raw；onItemUseFirst 潜不潜行都走这里",
+        "item/MagmaticStaffItem.java smelt — 冒险 / 旁观模式不行；canAfford 不够提示；ECProtection.breakGuarded 被拒提示、不扣 MRU",
+        "期望：1 × (1 + 0.33) = 1.33 合金 × 2 = 2.66 锭"
+      ]
+    },
+    {
+      "id": "magnetizing_staff",
+      "title": "{item:essentialcraft5:magnetizing_staff}",
+      "icon": "essentialcraft5:magnetizing_staff",
+      "summary": "按住右键，把掉落物吸过来",
+      "complete": "essentialcraft5:guide/staffs/magnetizing_staff",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magnetizing_staff"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：制作一根{item:essentialcraft5:magnetizing_staff}。按住右键，周围的掉落物和经验球就会朝你飞来。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magnetizing_staff"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：2 颗{item:essentialcraft5:magical_golden_orb}、2 颗{item:essentialcraft5:air_focus}、2 块{item:essentialcraft5:magic_plate}、2 个{item:essentialcraft5:magical_slag}和 1 块空的{item:essentialcraft5:dark_soul_matter}。黄金法球见[[staffs/golden_orb]]，魔力炉渣是热力产能器和冶炼炉运转时剩下的。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "p",
+          "text": "像拉弓一样按住右键，法杖每 8 刻扣一次 50 MRU，合每 0.4 秒一次，每次把水平 12 格、向下 6 格、向上 7 格以内的掉落物和经验球朝你推一把，东西飞到脚边后按原版规则拾取。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只拉<em>看得见</em>的东西，视线和目标之间隔着方块就拉不动，墙后水道里的东西不会被吸走。",
+            "怪物、方块掉落的东西和你自己丢出的东西都会拉，<em>别人丢的</em>或指定给别人拾取的东西不拉。",
+            "<em>只拉你能改动的地方的东西</em>，别人领地或出生点保护范围里的掉落物和经验球都不会被拉走，邻居刷怪塔和农场的产出也就吸不出来。",
+            "一次最多拉 {cfg:general.staffs.magnetizing_max_items} 个掉落物和 {cfg:general.staffs.magnetizing_max_orbs} 个经验球，离你近的优先。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "吸东西时每秒耗 125 MRU，法杖自带的 5000 MRU 只够用 40 秒，常用的话最好随身带着灵魂储存。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有一根磁化法杖。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/staffs/magnetizing_staff.json — 黄金法球 ×2、风之焦点 ×2、#plates/magic ×2、魔力炉渣 ×2、暗黑灵魂物质",
+        "blockentity/HeatGeneratorBlockEntity.java:150、blockentity/OreProcessing.java:115 — 魔力炉渣的来源",
+        "item/MagnetizingStaffItem.java:49 INTERVAL 8、:51 COST 50、:53 RANGE_H 12（下 6 上 7）；只改速度，拾取走原版",
+        "item/MagnetizingStaffItem.java:34 只拉看得见的（ClipContext COLLIDER）；:176 mayPull 别人丢的不拉",
+        "item/MagnetizingStaffItem.java:160 mayPullFrom — 掉落物、经验球所在那格以玩家身份 ECProtection.check，ALLOW 才拉（领地、出生点保护），看得见之后才探测（第十批 A4）",
+        "registry/ECStaffs.java — magnetizing_max_items / magnetizing_max_orbs，近的先",
+        "50 MRU / 8 刻 = 125 MRU / 秒；5000 / 125 = 40 秒"
+      ]
+    },
+    {
+      "id": "staff_of_life",
+      "title": "{item:essentialcraft5:staff_of_life}",
+      "icon": "essentialcraft5:staff_of_life",
+      "summary": "一下催熟一大片地",
+      "complete": "essentialcraft5:guide/staffs/staff_of_life",
+      "optional": true,
+      "items": [
+        "essentialcraft5:staff_of_life"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：制作一根{item:essentialcraft5:staff_of_life}。它点一下就能催熟一大片作物，还能治好僵尸村民，让幼崽立刻长大。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:staff_of_life"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：2 把{item:essentialcraft5:elemental_hoe}、4 颗{item:essentialcraft5:earth_focus}、1 颗{item:essentialcraft5:magical_golden_orb}、1 块空的{item:essentialcraft5:red_soul_matter}和 1 块{item:essentialcraft5:magic_plate}，元素锄的做法见[[gear/elemental_tools]]。"
+        },
+        {
+          "type": "h",
+          "text": "催熟"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "右键作物、树苗、草方块等能用骨粉的东西，法杖会先对它施一次骨粉，耗 100 MRU，效果和骨粉完全一样。",
+            "施肥成功后，同一高度上以它为中心、边长 {cfg:general.staffs.staff_of_life_radius|mul:2|add:1} 格的正方形里，每一格<em>作物</em>还会各长一次，每格 100 MRU。",
+            "每用一次要冷却 {cfg:general.staffs.staff_of_life_cooldown|sec}。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "范围里算作作物的有小麦、胡萝卜、马铃薯、甜菜根、火把花等农作物，以及南瓜茎、西瓜茎、甜浆果丛和可可豆。树苗、草方块、苔藓、蘑菇、海草只在点中的那一格生效，范围里的瓜茎也只会长高，不会在那里结瓜。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "催熟一片地很耗 MRU",
+          "text": "催熟一整片要 1 万多 MRU，法杖自己只存得下 5000，MRU 中途用完它就停下，已经长了的作物不会退回去。打理大片农田时，记得随身带着灵魂储存。"
+        },
+        {
+          "type": "h",
+          "text": "治愈与长大"
+        },
+        {
+          "type": "list",
+          "items": [
+            "右键<em>僵尸村民</em>耗 500 MRU，它会开始原版的治愈转化，和喂金苹果一样，只是不必先让它虚弱，1 秒后就变回村民，职业和交易都保留，你也能拿到治愈带来的折扣。",
+            "右键<em>幼年动物</em>或幼年村民耗 100 MRU，它会立刻长大，小马和你自己的小狗也一样，别人驯服的动物不受影响。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "权限"
+        },
+        {
+          "type": "p",
+          "text": "点中的那一格，连同骨粉蔓延出去的草、花和长出来的整棵树，算作一次操作，其中只要有一格在别人的领地或出生点保护范围内，就全部还原，也不扣 MRU。范围里的作物逐格判断，别人领地里的格子直接跳过，同样不扣 MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "长满果子的甜浆果丛是个例外，右键它会像空手一样摘下果子，只结了一半的照常催熟一次。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有一根生命法杖。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/staffs/staff_of_life.json — 元素锄 ×2、地之焦点 ×4、黄金法球、鲜红灵魂物质、#plates/magic",
+        "item/StaffOfLifeItem.java:87 CELL_COST 100、:89 CURE_COST 500、:91 GROW_UP_COST 100、:93 CURE_TICKS 20",
+        "item/StaffOfLifeItem.java 类注释 — 范围只催 CropBlock / StemBlock / 甜浆果丛 / 可可豆、跳过中心；茎只长高；中心一格走多格放置事件，被拒全还原",
+        "registry/ECStaffs.java:100 staff_of_life_radius（默认 5 = 11×11）、staff_of_life_cooldown 10 刻",
+        "11 × 11 − 1 = 120 格 × 100 + 中心 100 ≈ 12100 MRU > 5000（item/MRUStaffItem.java:31）",
+        "item/StaffOfLifeItem.java useOn — isValidBonemealTarget 为假（甜浆果丛 age 3）时 PASS，交给方块自己的右键；age 2 已有果子但还能催熟，照常施骨粉",
+        "item/StaffOfLifeInteractEvents.java — 右键生物抢在生物自己的交互之前；别人驯服的不行"
+      ]
+    },
+    {
+      "id": "shields",
+      "title": "魔力护盾与尖刺圆盾",
+      "icon": "essentialcraft5:spiky_shield",
+      "summary": "举起来，扛住两秒",
+      "complete": "essentialcraft5:guide/staffs/shields",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_shield",
+        "essentialcraft5:spiky_shield"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：制作一面{item:essentialcraft5:magical_shield}，危急时举起来扛住两秒。它还能升级成{item:essentialcraft5:spiky_shield}，举满时顺手刺伤身边的怪物。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magical_shield",
+            "essentialcraft5:spiky_shield"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：魔力护盾要 3 块{item:essentialcraft5:obsidian_plate}、2 份{item:essentialcraft5:crystal_dust}、2 颗{item:essentialcraft5:earth_focus}、1 块{item:essentialcraft5:combined_magical_alloys}和 1 块空的{item:essentialcraft5:red_soul_matter}。尖刺圆盾要 1 面魔力护盾、2 把{item:essentialcraft5:elemental_sword}、4 块注魔合金、1 颗下界之星和 1 块空的{item:essentialcraft5:matter_of_eternity}。"
+        },
+        {
+          "type": "h",
+          "text": "魔力护盾"
+        },
+        {
+          "type": "list",
+          "items": [
+            "右键举盾，举满 2 秒后自动放下，每举一次扣 2000 MRU，MRU 不够时举不起来。",
+            "举起 0.25 秒后，它会像原版的盾一样挡住正面来的攻击，被斧头砍中时可能被打落，之后 5 秒内举不起来。",
+            "举着它时，凡是不比你上一次受到的伤害更重的攻击全部无效，更重的只承受超出的部分，比的是算护甲之前的伤害。比如上一次挨了 6 点，举盾期间 6 点以内的攻击都伤不到你，打来 8 点只吃 2 点，之后门槛就变成 8 点。上一次不论隔了多久都算，刚重生、还没挨过打时，第一下照常承受。",
+            "它没有耐久，不会损坏。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "自带的 5000 MRU 只够举两次，最好随身带着灵魂储存。"
+        },
+        {
+          "type": "h",
+          "text": "尖刺圆盾"
+        },
+        {
+          "type": "p",
+          "text": "用法和魔力护盾相同，每举一次同样扣 2000 MRU。<em>举满 2 秒</em>时它会再扣 100 MRU，对你周围水平 5 格、上下 2 格内的所有敌对生物各造成 12 点伤害，算作你的近战攻击，中途放下就不出刺。"
+        },
+        {
+          "type": "p",
+          "text": "尖刺只伤敌对生物，玩家、村民、动物和宠物都不会被刺到。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有一面魔力护盾或尖刺圆盾。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/staffs/magical_shield.json、spiky_shield.json",
+        "item/MagicalShieldItem.java:28 USE_DURATION 40、:30 RAISE_COST 2000、:32 举着时每刻 invulnerableTime = 20（原版受伤冷却规则：不超过上次伤害无效，超过只吃差值）；SHIELD_BLOCK 动作同原版盾",
+        "item/SpikyShieldItem.java:28 SPIKE_COST 100、:30 SPIKE_DAMAGE 12、范围 ±5 / ±2；:53 只打 Enemy；playerAttack 伤害源；finishUsingItem 举满才刺",
+        "data/essentialcraft5/advancements/guide/staffs/shields.json — 两件任一",
+        "item/MagicalShieldItem.java:66 onUseTick — 举着时每刻 invulnerableTime = 20；原版 LivingEntity.hurt 在 invulnerableTime > 10 时：amount ≤ lastHurt 无效，否则只吃 amount − lastHurt 并把 lastHurt 改成 amount；lastHurt 是最近一次受伤的数（护甲前），不随时间清零，重生后的新实体是 0"
+      ]
+    },
+    {
+      "id": "matrix_weapons",
+      "title": "混沌之叉与两把重锤",
+      "icon": "essentialcraft5:chaos_fork",
+      "summary": "矩阵投影的回报",
+      "complete": "essentialcraft5:guide/staffs/matrix_weapons",
+      "optional": true,
+      "items": [
+        "essentialcraft5:chaos_fork",
+        "essentialcraft5:frozen_mace",
+        "essentialcraft5:holy_mace"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：制作一把和你的 MRU 矩阵属性相配的武器。矩阵是每个活物身上那层 MRU，用矩阵投影能改变它的属性，做法见[[gear/projection_use]]。混沌矩阵配{item:essentialcraft5:chaos_fork}，冰冻矩阵配{item:essentialcraft5:frozen_mace}，{item:essentialcraft5:holy_mace}不挑矩阵。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:chaos_fork",
+            "essentialcraft5:frozen_mace",
+            "essentialcraft5:holy_mace"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：每把都要 1 把{item:essentialcraft5:elemental_sword}，各自另需的材料如下。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:chaos_fork}另要 1 块{item:essentialcraft5:chaos_matrix_projection}、2 颗{item:essentialcraft5:fire_focus}、4 块{item:essentialcraft5:magical_ingot}和 1 块空的{item:essentialcraft5:matter_of_eternity}。",
+            "{item:essentialcraft5:frozen_mace}另要 1 块{item:essentialcraft5:frozen_matrix_projection}、2 颗{item:essentialcraft5:water_focus}、4 块魔力锭和 1 块空的永恒物质。",
+            "{item:essentialcraft5:holy_mace}另要 1 颗{item:essentialcraft5:magical_golden_orb}、2 颗{item:essentialcraft5:air_focus}、1 颗{item:essentialcraft5:earth_focus}、2 块魔力锭和 2 块空的{item:essentialcraft5:red_soul_matter}。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "三把对比"
+        },
+        {
+          "type": "table",
+          "header": [
+            "武器",
+            "攻击",
+            "要什么矩阵",
+            "打中时",
+            "按住右键"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:chaos_fork}",
+              "12",
+              "混沌",
+              "目标挖掘疲劳 +1 级，持续 5 秒，你获得力量",
+              "1.6 秒后冲刺"
+            ],
+            [
+              "{item:essentialcraft5:frozen_mace}",
+              "17",
+              "冰冻",
+              "目标缓慢 +1 级，持续 50 秒",
+              "1.6 秒后冲刺"
+            ],
+            [
+              "{item:essentialcraft5:holy_mace}",
+              "13",
+              "不挑",
+              "对亡灵多 {cfg:general.staffs.holy_mace_undead_bonus|pct} 伤害",
+              "无"
+            ]
+          ],
+          "widths": [
+            3,
+            1,
+            2,
+            4,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "三把都算剑，混沌之叉攻击速度 2.0，两把重锤 1.6，能在附魔台和铁砧上附剑类魔咒，横扫攻击照常能用。它们<em>没有耐久</em>，永远不会坏，所以也附不上耐久和经验修补。"
+        },
+        {
+          "type": "p",
+          "text": "每打中一下扣 250 MRU，不管你的矩阵是什么属性都照扣。MRU 用完以后照样能砍，伤害不变，只是没了特效。"
+        },
+        {
+          "type": "p",
+          "text": "混沌之叉给你的力量比目标的挖掘疲劳慢一拍，第一、二下是力量 I，第三下是 II，依此类推。这两种效果和冰冻重锤的缓慢最高都是 {cfg:general.staffs.weapon_max_effect_level} 级。冲刺会让你朝视线方向冲出一段距离。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩阵三阶起，三把都带上[[matrix/alignment|矩阵特性]]：打实以后按你的矩阵属性再多一样效果，上面这些自带的效果照留。混沌之叉、冰冻重锤挂在目标身上的效果，最高等级再加上你的相性级数，只是打玩家时不加，给你自己的力量也不加。神圣重锤的特性效果是别的武器的 {cfg:general.staffs.holy_mace_trait_multiplier} 倍。每触发一次特性另花 {cfg:general.matrix_rank.resonance.trait_mru_cost} MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有这三把里的任意一把。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.attunement.enabled"
+          ],
+          "text": "<em>想深入</em>：{item:essentialcraft5:forged_elemental_sword}同调到 2 阶以后，能升格成{item:essentialcraft5:verdict_blade}，见[[attunement/verdict_blade]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/staffs/chaos_fork.json、frozen_mace.json、holy_mace.json",
+        "registry/ECStaffs.java:63~67 — 攻击修正 6 / 11 / 7 + 元素材料 5（item/ElementalTier.java:34）+ 1 = 12 / 17 / 13；速度 −2 / −2.4 / −2.4（item/MatrixWeaponItem.java:57~59）→ 2.0 / 1.6 / 1.6",
+        "item/MatrixWeaponItem.java:51 HIT_COST 250、:55 DASH_TICKS 32、:57 CHAOS_TICKS 100、:59 FROZEN_TICKS 1000；:100 不掉耐久；isEnabled 照样能附魔",
+        "item/MatrixWeaponItem.java:134 stackEffect — 叠一级、封顶 weapon_max_effect_level；力量等级 = 目标叠之前的挖掘疲劳等级（第一下没有时给 I）",
+        "item/MatrixWeaponItem.java hurtEnemy — 先扣 250，扣不到就没有特效；神圣重锤 Bonus.NONE 不能冲刺",
+        "data/essentialcraft5/advancements/guide/staffs/matrix_weapons.json — 三件任一",
+        "tools/plan/batch13.md §4.2 — 近战毕业武器是裁决之刃（余烬元素剑 2 阶升格），见 attunement/verdict_blade"
+      ]
+    }
+  ]
+}

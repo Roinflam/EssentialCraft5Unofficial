@@ -1,0 +1,965 @@
+{
+  "id": "corruption",
+  "order": 88,
+  "group": "side",
+  "title": "Side Chapter · Corruption Effects",
+  "subtitle": "What matrix damage turns into",
+  "icon": "essentialcraft5:empty_matrix_projection",
+  "entries": [
+    {
+      "id": "matrix_damage",
+      "title": "Matrix Damage",
+      "icon": "essentialcraft5:magic_monocle",
+      "summary": "Where it comes from and how to avoid it",
+      "complete": "essentialcraft5:guide/corruption/matrix_damage",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Here lies one whose hands shook in his last years. Rain set him coughing, and he would wake in the night saying the world had turned into a painting. We could not cure him.",
+          "by": "Catacomb inscription, Hoanna"
+        },
+        {
+          "type": "p",
+          "text": "You carry an <em>MRU matrix</em>, and the UBMRU you absorb from kills is kept in it ([[mru/ubmru]]). The matrix also shields you from the MRU around you, and too much of that wears it down. The harm it builds up is called <em>matrix damage</em>. You can't see it, it never fades on its own, and death doesn't clear it. There is nothing to build in this chapter, so read it whenever you like."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "Once enough of it builds up it turns into <em>corruption effects</em>, afflictions that never go away by themselves. The mild ones make your hands or legs weak now and then. The bad ones cost you health in the rain, or make you explode out of nowhere."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.effects_enabled",
+          "text": "In this world matrix damage only keeps building up. It never turns into any effect."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Not the same thing",
+          "text": "The MRU Corruption you pick up next to leaking machines is something else. It is a matrix after-effect that wears off in time, not a status effect; see [[crafting/corruption]]."
+        },
+        {
+          "type": "h",
+          "text": "Where it comes from"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Source",
+            "How much"
+          ],
+          "rows": [
+            [
+              "An MRUCU holding 10,000 MRU or more ([[start/mrucu]])",
+              "40 a second to every player within 12 blocks, or 80 once it is full at 20,000"
+            ],
+            {
+              "if": "cfg:general.guns.matrix_damage_per_damage",
+              "cells": [
+                "Being hit by a [[guns/firing|ray from an MRU gun]]",
+                "{cfg:general.guns.matrix_damage_per_damage} per point of the gun's damage"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.inquisitorium.matrix_damage_per_hit"
+              ],
+              "cells": [
+                "Being hit by the [[inquisitorium/sentinel|Inquisitorium Sentinel]]'s attacks",
+                "+{cfg:general.inquisitorium.matrix_damage_per_hit} per hit"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:rewind_module",
+                "cfg:general.computer_modules.rewind.matrix_damage>0"
+              ],
+              "cells": [
+                "Being saved by the [[terminal/rewind|Rewind Module]]",
+                "+{cfg:general.computer_modules.rewind.matrix_damage}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:matrix_filter_module"
+              ],
+              "cells": [
+                "The [[terminal/matrix_filter|Matrix Filter Module]] blocking a harmful effect",
+                "seconds × level × {cfg:general.computer_modules.matrix_filter.matrix_per_effect_second}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:matrix_shunt_module"
+              ],
+              "cells": [
+                "The [[terminal/matrix_shunt|Matrix Shunt Module]] taking magic damage",
+                "{cfg:general.computer_modules.matrix_shunt.matrix_per_max_health|div:100} per 1% of max health taken"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "The corruption effect {lang:corruption_effect.essentialcraft5.matrix_16}",
+                "An occasional +1"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.trial.success_matrix_damage_per_rank>0"
+              ],
+              "cells": [
+                "Winning a trial at the {item:essentialcraft5:matrix_crucible} ([[matrix/crucible]])",
+                "{cfg:general.matrix_rank.trial.success_matrix_damage_per_rank} × your new rank, reduced by tolerance"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.siphon.matrix_damage>0"
+              ],
+              "cells": [
+                "Each [[matrix/reservoir|Matrix Siphon]] from an MRUCU",
+                "{cfg:general.matrix_rank.siphon.matrix_damage}, reduced by tolerance"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.mobs.matrix_wraith.matrix_damage_per_hit>0"
+              ],
+              "cells": [
+                "Hit by a [[bestiary/matrix_wraith|Matrix Wraith]]",
+                "+{cfg:general.mobs.matrix_wraith.matrix_damage_per_hit} per hit, reduced by tolerance"
+              ]
+            },
+            {
+              "if": [
+                "!cfg:general.matrix_rank.enabled",
+                "cfg:general.mobs.matrix_wraith.matrix_damage_per_hit>0"
+              ],
+              "cells": [
+                "Hit by a [[bestiary/matrix_wraith|Matrix Wraith]]",
+                "+{cfg:general.mobs.matrix_wraith.matrix_damage_per_hit} per hit"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In practice only the first one matters. Working machines leak MRU, which drifts into the air and gathers into an MRUCU. Below 10,000 MRU it is harmless, and players in Creative mode are never affected."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.respect_claims",
+          "text": "Only MRUCUs floating where you yourself could build can hurt you. One inside someone else's claim does nothing to you however close you stand, and MRU leaking from a neighbor's machines never feeds an MRUCU inside your claim. Out in the open, they all count."
+        },
+        {
+          "type": "h",
+          "text": "How to avoid it"
+        },
+        {
+          "type": "table",
+          "header": [
+            "What to do",
+            "Effect"
+          ],
+          "rows": [
+            [
+              "See it",
+              "Wear a {item:essentialcraft5:magic_monocle} ([[gear/magic_monocle]]) to see MRUCUs even through walls"
+            ],
+            [
+              "Keep away",
+              "Only players within 12 blocks are affected, so move a big MRUCU to a corner you rarely visit with an {item:essentialcraft5:mru_mover}"
+            ],
+            [
+              "Put a wall between",
+              "Ordinary walls do nothing. With these blocks in the way it reaches you only part of the time: 1 in 2 behind {item:essentialcraft5:fortified_stone}, 1 in 3 behind {item:essentialcraft5:fortified_glass}, 1 in 5 behind {item:essentialcraft5:magic_plating}, 1 in 7 behind {item:essentialcraft5:mithriline_plating}, 1 in 10 behind {item:essentialcraft5:pale_plating} ([[alloys/plating]])"
+            ],
+            [
+              "Wear protection",
+              "A full [[gear/mhs_armor]] set cuts the 40 / 80 a second to 1 / 3, and a full [[wind_gear/wind_armor]] set to 0 / 1"
+            ],
+            [
+              "Contain it",
+              "Build an [[pentacle/ec_balancer]] into an Enrichment Chamber's shell and the MRUCUs inside stop hurting anyone"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_wraith.spawn_weight>0",
+          "text": "An MRUCU holding {cfg:general.mobs.matrix_wraith.min_presence_mru} MRU or more that no stabilizer holds also draws [[bestiary/matrix_wraith|Matrix Wraiths]] into the dark within {cfg:general.mobs.matrix_wraith.presence_radius} blocks, and each one takes {cfg:general.mobs.matrix_wraith.drain_mru} MRU from it. Cage it in an Enrichment Chamber, hold it with a stabilizer or light up the area and they stop coming."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "The <em>tolerance</em> from matrix ranks ({cfg:general.matrix_rank.tolerance_per_rank|pct} per rank, with Matrix Fortitude cutting it again from Rank 7) only reduces the newer sources, such as trials, siphoning and Matrix Wraiths. The older sources above are not reduced at all ([[matrix/tolerance]])."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.max_matrix_damage<2147483647",
+          "text": "Matrix damage stops growing once it reaches {cfg:general.corruption.max_matrix_damage|int}."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "How it turns into effects"
+        },
+        {
+          "type": "steps",
+          "if": "cfg:general.corruption.effects_enabled",
+          "items": [
+            "Roughly every 60 seconds a lot is drawn. The chance of success is (damage + 1) ÷ 36,000, which is 10% at 3,600, one in two at 18,000, and certain from 36,000 on.",
+            "On a success, one effect is picked at random from those <em>whose threshold is no more than your current damage</em> and that you don't have yet. Body effects are three times as likely as the others. An effect's threshold is its cost times {cfg:general.corruption.draw_threshold_multiplier}.",
+            {
+              "if": "cfg:general.corruption.draw_requires_cure_tier",
+              "text": "What can be picked depends on whether you have <em>opened a Soul Pentacle</em> ([[pentacle/pentacle]]). Once you have opened one finished pentacle, even a tier 0 one, every kind of effect can be picked, whatever its tier. Until then damage just builds up and nothing forms."
+            },
+            "Its threshold is taken off your damage, and a red line appears in chat that doesn't say which effect it was: \"{lang:message.essentialcraft5.corruption.gained}\"",
+            {
+              "if": "cfg:general.corruption.draw_cooldown_minutes>1",
+              "text": "After one is drawn, at least {cfg:general.corruption.draw_cooldown_minutes} minutes of play must pass before the next one can be."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "The lowest threshold belongs to the matrix effect {lang:corruption_effect.essentialcraft5.matrix_16}, at {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int}, while the cheapest body effect needs {cfg:general.corruption.draw_threshold_multiplier|mul:6000|int}. Below {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int} damage nothing happens."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "!cfg:general.corruption.matrix_effects_enabled||!cfg:general.hoanna.portal_enabled",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "The cheapest body effect needs {cfg:general.corruption.draw_threshold_multiplier|mul:6000|int}, so below {cfg:general.corruption.draw_threshold_multiplier|mul:6000|int} damage nothing happens."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Once you have opened a pentacle, body effects need {cfg:general.corruption.draw_threshold_multiplier|mul:6000|int} damage and mind effects start at {cfg:general.corruption.draw_threshold_multiplier|mul:8000|int}. Below those thresholds nothing happens."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "Matrix effects are in the pool too. The cheapest, {lang:corruption_effect.essentialcraft5.matrix_16}, needs only {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int}, while the three costing 72,000 have the highest threshold, {cfg:general.corruption.draw_threshold_multiplier|mul:72000|int}."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "How to cure them"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "Corruption effects can only be cured one at a time at a [[pentacle/pentacle]], with ESPE, a second kind of energy that crystal pillars gather. Each cure takes exactly as much ESPE as the effect's cost. Body effects need tier 0, mind effects tier 1 ([[pentacle/tier_one]])."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "Matrix effects need tier 2 ([[pentacle/tier_two]]), and the three costing 72,000 need tier 3 ([[pentacle/tier_three]])."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Until you have opened a pentacle, effects you already carry lie <em>dormant</em>. They stay with you but do nothing, and wake the moment you open your first one. After that they all act, including the ones your tier can't cure yet, and those need a higher-tier pentacle."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.effect_chance_multiplier>1"
+          ],
+          "text": "Effects strike more often. Each effect's chance per second is multiplied by {cfg:general.corruption.effect_chance_multiplier|x}, up to a certain hit at 100%."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.effect_damage_multiplier>1"
+          ],
+          "text": "Effects that take health hurt more. The share of max health each one takes is multiplied by {cfg:general.corruption.effect_damage_multiplier|x}, and one hit never takes more than your whole max health. The MRU Corruption from leaking machines isn't affected by this."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Keep your damage low early on",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Matrix effects need a tier 2 pentacle, so you can't cure them until you've been to Hoanna, in Chapter 16 or later. Past {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int} matrix damage you can draw them, and past {cfg:general.corruption.draw_threshold_multiplier|mul:20000|int} even {lang:corruption_effect.essentialcraft5.matrix_13}. Early on, try to stay under {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int}. Wear a [[gear/magic_monocle]] to find big MRUCUs and move them away; even a single piece of [[gear/mhs_armor]] cuts 40 points a second down to 6."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "title": "Before your first pentacle",
+          "text": "Until you open your first finished Soul Pentacle, damage never forms any effect, but it doesn't fade either. Once you've opened one, what you've stored starts coming out, and any kind of effect can show up. So keep away from big MRUCUs early on anyway. A [[gear/magic_monocle]] finds them so you can move them, and even a single piece of [[gear/mhs_armor]] cuts 40 points a second down to 6."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "The pentacle cures effects, not damage. Each effect that forms takes a chunk off your damage, and otherwise it never goes down by itself. The pentacle's window shows how much damage you carry and which effects you have."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.matrix_tuner.enabled"
+          ],
+          "text": "Later on, you can stand on a [[corruption/matrix_tuner|Matrix Tuner]] and pay ESPE and MRU to wear the damage away."
+        },
+        {
+          "type": "p",
+          "text": "Once you carry {cfg:general.mobs.matrix_shade.min_matrix_damage|int} or more, you can also use a {item:essentialcraft5:matrix_conduit} on a Soul Pentacle of tier 1 or higher to call a [[bestiary/matrix_shade|Matrix Specter]] and move up to {cfg:general.mobs.matrix_shade.max_absorbed|int} of it into the Specter at once. Defeat it and that damage is gone; lose and it comes back to you."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have some matrix damage. This step checks itself off the first time a large MRUCU or a ray reaches you."
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "title": "Body Effects",
+      "icon": "minecraft:fermented_spider_eye",
+      "summary": "Cost 6,000; a tier 0 pentacle cures them",
+      "complete": "essentialcraft5:guide/corruption/body",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Book II of the Fragments notes that the ailments matrix damage sets into most often strike the hands and legs. There are five body effects, each costing 6,000, and a tier 0 pentacle cures them ([[pentacle/cure]]). The chances in the table are per second, before the multiplier explained in [[corruption/matrix_damage]]."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Effect",
+            "How often",
+            "What happens"
+          ],
+          "rows": [
+            [
+              "{lang:corruption_effect.essentialcraft5.body_0}",
+              "0.1% (about every 17 minutes)",
+              "Mining as slow as with Mining Fatigue II and a slower swing, for 20 seconds"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.body_1}",
+              "0.1%",
+              "Attack damage halved for 20 seconds"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.body_2}",
+              "1% while you swing, as when mining or hitting",
+              "Lose {cfg:general.corruption.hand_burn_health_percent|pct} of your max health"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.body_3}",
+              "0.1%",
+              "Walking as slow as with Slowness II, for 20 seconds"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.body_4}",
+              "Every second while falling",
+              "Adds 1 block to your fall, so landings hurt more"
+            ]
+          ],
+          "widths": [
+            2,
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "{lang:corruption_effect.essentialcraft5.body_2} takes a share of your <em>max health</em>, including health from gear and baubles, so it hurts however much health you have. The share in the table is also multiplied by {cfg:general.corruption.effect_damage_multiplier|x}."
+        },
+        {
+          "type": "p",
+          "text": "{lang:corruption_effect.essentialcraft5.body_0}, {lang:corruption_effect.essentialcraft5.body_1} and {lang:corruption_effect.essentialcraft5.body_3} leave a <em>matrix after-effect</em>, not a status effect. A small purple-framed icon appears left of your hotbar showing the time left, and hovering over it with your inventory open explains it. Milk, Totems of Undying and cleansing items can't remove it, so wait it out. It also fades when you die."
+        },
+        {
+          "type": "p",
+          "text": "Except for {lang:corruption_effect.essentialcraft5.body_4}, each one announces itself first with a dark red line in chat, such as \"{lang:corruption_effect.essentialcraft5.body_0.message}\", so you can tell which effect it was."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have any body effect. This step checks itself off when one is drawn."
+        }
+      ],
+      "if": "cfg:general.corruption.effects_enabled"
+    },
+    {
+      "id": "mind",
+      "title": "Mind Effects",
+      "icon": "minecraft:spider_eye",
+      "summary": "Cost 8,000 to 36,000; tier 1 cures them",
+      "complete": "essentialcraft5:guide/corruption/mind",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "There are six mind effects, curable from a tier 1 pentacle up ([[pentacle/tier_one]]). The chances in the table are per second, before the multiplier explained in [[corruption/matrix_damage]]."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Effect (cost)",
+            "How often",
+            "What happens"
+          ],
+          "rows": [
+            [
+              "{lang:corruption_effect.essentialcraft5.mind_5} (36,000)",
+              "0.1% (about every 17 minutes)",
+              "100 seconds of [[corruption/paradox]]"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.mind_6} (36,000)",
+              "0.08%",
+              "A strange whisper; nothing else happens"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.mind_7} (14,400)",
+              "0.1%",
+              "Again just a line of text"
+            ],
+            {
+              "if": "cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_8} (18,000)",
+                "0.005% (about every 5.6 hours)",
+                "Only your 9 hotbar slots are shuffled, and the rest of the inventory, armor, off hand and baubles stay put"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_8} (18,000)",
+                "0.005% (about every 5.6 hours)",
+                "Your 36 main slots, hotbar included, are shuffled, while armor, off hand and baubles stay put"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_9} (8,000)",
+                "0.007% (about every 4 hours)",
+                "The stack in your main hand is moved to another inventory slot, and nothing is dropped"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_9} (8,000)",
+                "0.007% (about every 4 hours)",
+                "The stack in your main hand is thrown away, as if you pressed Ctrl+Q"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_10} (8,000)",
+                "0.1%",
+                "Your hand twitches: eating, drinking, drawing a bow or raising a shield is interrupted, and nothing gets used up"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_10} (8,000)",
+                "0.1%",
+                "Right-clicks your main-hand item into the air for you"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Mind what you hold",
+          "text": "{lang:corruption_effect.essentialcraft5.mind_10} works exactly like your own right-click. Ender pearls get thrown and buckets get emptied, so be careful with a lava bucket or pearls in hand. Anything a claim forbids you, it can't do either. Neither {lang:corruption_effect.essentialcraft5.mind_9} nor {lang:corruption_effect.essentialcraft5.mind_10} does anything while your main hand is empty.",
+          "if": "!cfg:general.corruption.gentle_effects"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.corruption.gentle_effects",
+          "title": "Nothing gets lost",
+          "text": "{lang:corruption_effect.essentialcraft5.mind_9} only moves the stack into your inventory and {lang:corruption_effect.essentialcraft5.mind_10} only makes your hand twitch. Neither throws away or uses up anything, and both do nothing while your main hand is empty."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have any mind effect. This step checks itself off when one is drawn."
+        }
+      ],
+      "if": "cfg:general.corruption.effects_enabled"
+    },
+    {
+      "id": "matrix",
+      "title": "Matrix Effects",
+      "icon": "minecraft:wither_rose",
+      "summary": "Cost 2,000 to 72,000; tier 2 and up",
+      "complete": "essentialcraft5:guide/corruption/matrix",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.draw_requires_cure_tier",
+          "text": "There are fourteen matrix effects. They need a tier 2 pentacle ([[pentacle/tier_two]]), and the three costing 72,000 need tier 3 ([[pentacle/tier_three]]). Once you have opened a pentacle they can form, and they act even when you can't cure them yet. The chances in the tables are per second, before the multiplier explained in [[corruption/matrix_damage]]."
+        },
+        {
+          "type": "p",
+          "text": "There are fourteen matrix effects, and none can be cured until you've been to Hoanna. They need a tier 2 pentacle ([[pentacle/tier_two]]), and the three costing 72,000 need tier 3 ([[pentacle/tier_three]]). The chances in the tables are per second, before the multiplier explained in [[corruption/matrix_damage]].",
+          "if": "!cfg:general.corruption.draw_requires_cure_tier"
+        },
+        {
+          "type": "h",
+          "text": "The ones that hurt"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Effect (cost)",
+            "When",
+            "What happens"
+          ],
+          "rows": [
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_12}, {lang:corruption_effect.essentialcraft5.matrix_19}, {lang:corruption_effect.essentialcraft5.matrix_20} (72,000 each)",
+              "0.3% in the End, the Nether and the Overworld respectively",
+              "{cfg:general.corruption.suffocation_health_percent|pct} of your max health (drowning)"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_14} (4,000)",
+              "0.1%",
+              "You catch fire for 8 seconds and lose {cfg:general.corruption.burning_health_percent|pct} of your max health at once, though Fire Resistance blocks that hit"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_15} (8,000)",
+              "0.07%",
+              "Lightning strikes you: {cfg:general.corruption.lightning_health_percent|pct} of your max health and 8 seconds of fire"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_17} (36,000)",
+              "1% at night, without rain, under open sky",
+              "Magic damage by moon phase: full {cfg:general.corruption.moonlight_health_percent|pct}, gibbous {cfg:general.corruption.moonlight_health_percent|mul:0.6|pct}, half {cfg:general.corruption.moonlight_health_percent|mul:0.4|pct}, crescent {cfg:general.corruption.moonlight_health_percent|mul:0.2|pct}, new moon none"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_18} (14,400)",
+              "0.1% while you have MRU Corruption",
+              "{cfg:general.corruption.mru_failure_health_percent|pct} of your max health (magic)"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_21} (36,000)",
+              "10% in daytime while rain falls on you",
+              "{cfg:general.corruption.withering_health_percent|pct} of your max health (wither)"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_22} (36,000)",
+              "0.3% in daytime, without rain, under open sky",
+              "{cfg:general.corruption.withering_health_percent|pct} of your max health (wither)"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_23} (8,000)",
+              "3% with your head under water",
+              "{cfg:general.corruption.acid_water_health_percent|pct} of your max health (wither)"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_24} (4,000)",
+              "0.5%",
+              "{cfg:general.corruption.withering_health_percent|pct} of your max health (wither)"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "All of these take a share of your <em>max health</em>, including health from gear and baubles, so they hurt however much health you have, and the shares in the table are also multiplied by {cfg:general.corruption.effect_damage_multiplier|x}. Resistance and Protection still reduce them."
+        },
+        {
+          "type": "h",
+          "text": "The others"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Effect (cost)",
+            "When",
+            "What happens"
+          ],
+          "rows": [
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_11} (20,000)",
+              "3% within half a second of being hit",
+              "Your brief invulnerability is wiped, so the next blow lands in full"
+            ],
+            {
+              "if": "cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.matrix_13} (20,000)",
+                "0.06% (about every 28 minutes)",
+                "You explode, losing at most half your health, and creatures around you are hurt"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.matrix_13} (20,000)",
+                "0.06% (about every 28 minutes)",
+                "You explode like a creeper and take {cfg:general.corruption.self_blast_health_percent|pct} of your max health yourself, times {cfg:general.corruption.effect_damage_multiplier|x}"
+              ]
+            },
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_16} (2,000)",
+              "1%",
+              "Matrix damage +1"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Beware the explosion",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_13} is the most dangerous effect. You are at the center of the blast, losing {cfg:general.corruption.self_blast_health_percent|pct} of your max health (times {cfg:general.corruption.effect_damage_multiplier|x}) on Normal, half as much again on Hard and about half on Easy, and you get thrown into the air. Armor and Blast Protection take some of it off, but when you're already hurt it's hard to survive, so get it cured soon. It breaks no blocks and lights no fires. Item frames, paintings, armor stands and items on the ground are safe, while creatures around you are hurt, and that counts as your attack.",
+          "if": "!cfg:general.corruption.gentle_effects"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.corruption.gentle_effects",
+          "title": "The explosion will not kill you",
+          "text": "When {lang:corruption_effect.essentialcraft5.matrix_13} goes off you lose at most half of your current health, and the blast only lifts you a little, so the fall won't kill you either. It breaks no blocks and lights no fires. Item frames, paintings, armor stands, items on the ground, tamed animals and villagers are safe, while other creatures around you are hurt, and that counts as your attack."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Good to know",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_21} has the highest chance, but deserts, snowy places and glass roofs keep the rain off, and then it doesn't strike. Thunderstorms are too dark to count as daytime. The lightning from {lang:corruption_effect.essentialcraft5.matrix_15} is only for show: it sets nothing alight, hurts nobody else and turns no villagers or pigs into anything."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.inquisitorium.matrix_damage_per_hit"
+          ],
+          "title": "The costliest three",
+          "text": "Each hit from Chapter 19's Inquisitorium Sentinel adds {cfg:general.inquisitorium.matrix_damage_per_hit} matrix damage ([[inquisitorium/sentinel]]). That chapter ends with the tier 3 pentacle ([[inquisitorium/purify]]), which is what cures the three effects costing 72,000."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have any matrix effect. This step checks itself off when one is drawn."
+        }
+      ],
+      "if": [
+        "cfg:general.corruption.effects_enabled",
+        "cfg:general.corruption.matrix_effects_enabled",
+        "cfg:general.hoanna.portal_enabled"
+      ]
+    },
+    {
+      "id": "paradox",
+      "title": "Mind Paradox",
+      "icon": "minecraft:ender_eye",
+      "summary": "The 100 seconds after The universe shatters",
+      "complete": "essentialcraft5:guide/corruption/paradox",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "When {lang:corruption_effect.essentialcraft5.mind_5} strikes, you spend 100 seconds in a <em>Mind Paradox</em>. It can't hurt you, but for all that time your eyes and ears play tricks on you."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "First your ears ring and the world turns into an oil painting for about 20 seconds.",
+            "From the 5th second on, a heartbeat sounds every 5 seconds until the last 5 seconds.",
+            "After 15 seconds, everything goes black every so often, 10 seconds apart on average, and a 10-second vision follows, each one ending in a white flash. You might see a pencil sketch of the world with dark red dust drifting through it, a world drained of color, a world of afterimages with explosions raining from the sky, or a world turned upside down while your body grows light, so you jump higher and fall slower.",
+            "The last 5 seconds are quiet."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The explosions and the dust are only in your head. Nobody else sees them, and they hurt no one and break nothing."
+        },
+        {
+          "type": "h",
+          "text": "What to do"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Mind Paradox is a matrix after-effect, not a status effect. Milk, a {item:essentialcraft5:magic_water_bottle} or a Totem of Undying won't end it, so you have to sit out the 100 seconds. Dying also ends it.",
+            "If the screen effects bother you, go to {lang:options.title} → {lang:options.accessibility.title} and turn on {lang:options.hideLightningFlashes} to remove the black-outs and white flashes, and set {lang:options.screenEffectScale} to 0 to remove the filters.",
+            "Sitting it out only ends these 100 seconds. {lang:corruption_effect.essentialcraft5.mind_5} itself stays with you until a pentacle cures it ([[pentacle/tier_one]])."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have been through a Mind Paradox."
+        }
+      ],
+      "if": "cfg:general.corruption.effects_enabled"
+    },
+    {
+      "id": "matrix_tuner",
+      "title": "{item:essentialcraft5:matrix_tuner}",
+      "icon": "essentialcraft5:matrix_tuner",
+      "summary": "Stand on it to wear down matrix damage",
+      "complete": "essentialcraft5:guide/corruption/matrix_tuner",
+      "optional": true,
+      "items": [
+        "essentialcraft5:matrix_tuner"
+      ],
+      "if": [
+        "cfg:machines.matrix_tuner.enabled",
+        "cfg:general.hoanna.portal_enabled"
+      ],
+      "blocks": [
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "This is a late-game machine. You can only make the {item:essentialcraft5:void_plating} after reaching Hoanna, and the {item:essentialcraft5:demonic_core} not until Chapter 17."
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:matrix_tuner}. Matrix damage never fades on its own, but stand on the tuner and it wears a little away every second, charging ESPE and MRU for each point."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "4 {item:essentialcraft5:demonic_plate}s and 1 {item:essentialcraft5:demonic_core} ([[demons/ackronite]]);",
+            "1 {item:essentialcraft5:void_plating} ([[hoanna/void_plating]]);",
+            "2 {item:essentialcraft5:mru_resonating_crystal}s ([[alloys/resonating_crystal]]);",
+            "1 {item:essentialcraft5:player_pentacle}. The recipe uses it up, but another one is easy to make ([[pentacle/pentacle]])."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_tuner"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the tuner and put a {item:essentialcraft5:bound_gem} linked to an MRU source into the slot on the right of its screen.",
+            "Set up to 8 crystal pillars in a ring at the same height, one block out from the tuner. It draws ESPE from them; the picture below shows where.",
+            "Stand on the tuning plate on top. Once a second it removes up to {cfg:machines.matrix_tuner.damage_per_second} points. It keeps going as long as you stay, until your damage reaches zero or its stored ESPE and MRU run short."
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": [
+                "essentialcraft5:mithriline_crystal_pillar",
+                "essentialcraft5:pale_crystal_pillar",
+                "essentialcraft5:void_crystal_pillar",
+                "essentialcraft5:demonic_crystal_pillar"
+              ],
+              "label": "Any crystal pillar"
+            },
+            "R": "essentialcraft5:matrix_tuner"
+          },
+          "anchor": "R",
+          "pattern": [
+            "C C C",
+            "     ",
+            "C R C",
+            "     ",
+            "C C C"
+          ],
+          "caption": "A ring one block apart at the same height. Any kind of pillar works, and fewer than 8 is fine."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The pillar bases must be at the same height as the tuner.",
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "Nothing may block the sky above the pillars, or they gather no ESPE."
+            },
+            "ESPE, Ender Star Pulse Energy, is gathered by the pillars and is not the same thing as MRU; see [[mithriline/crystal_pillar]]."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Price"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Most removed per second",
+              "{cfg:machines.matrix_tuner.damage_per_second} points"
+            ],
+            {
+              "if": "cfg:machines.matrix_tuner.espe_per_damage",
+              "cells": [
+                "ESPE per point",
+                "{cfg:machines.matrix_tuner.espe_per_damage}"
+              ]
+            },
+            {
+              "if": "cfg:machines.matrix_tuner.mru_per_damage",
+              "cells": [
+                "MRU per point",
+                "{cfg:machines.matrix_tuner.mru_per_damage}"
+              ]
+            },
+            [
+              "MRU capacity",
+              "{cfg:machines.matrix_tuner.max_mru} MRU"
+            ],
+            [
+              "ESPE capacity",
+              "{cfg:machines.matrix_tuner.max_espe} ESPE"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.matrix_tuner.espe_per_damage==0.5"
+          ],
+          "text": "ESPE is what really sets the pace. Full speed takes {cfg:machines.matrix_tuner.damage_per_second|mul:0.5} ESPE a second, while 8 pillars gather a base of {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160} a second in the Overworld and {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160} in the End. Each pillar's share is then multiplied by its tier's multiplier, listed in [[mithriline/crystal_pillar]]. Whatever the tuner and the pillars have stored goes first, and after that it runs only as fast as the pillars refill."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.matrix_tuner.damage_per_second==60",
+            "cfg:general.corruption.max_matrix_damage<2147483647"
+          ],
+          "text": "Even with ESPE to spare, going from a full {cfg:general.corruption.max_matrix_damage|int} points down to zero takes {cfg:general.corruption.max_matrix_damage|div:3600|int} minutes of standing."
+        },
+        {
+          "type": "h",
+          "text": "Private and public"
+        },
+        {
+          "type": "p",
+          "text": "It starts out <em>private</em> and only tunes the player who placed it. The button at the bottom of its screen switches it to <em>public</em>, so anyone standing on it gets tuned, the owner first. In either mode it tunes one player at a time, and the next one gets a turn only after the first reaches zero."
+        },
+        {
+          "type": "p",
+          "text": "In public mode other players spend the ESPE and MRU you gathered. Only the owner can press that button."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have a tuner. With MRU connected and pillars in place, stand on it, and the status bar reads \"{lang:gui.essentialcraft5.matrix_tuner.status.working}\" while the damage left on its screen drops every second."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "<w>It only lowers damage and never cures effects.</w> Every corruption effect you already have stays until a [[pentacle/cure|Soul Pentacle]] cures it."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "text": "Less damage also means a lower chance of drawing the next corruption effect ([[corruption/matrix_damage]])."
+            },
+            "If the player on it has no damage, the status bar reads \"{lang:gui.essentialcraft5.matrix_tuner.status.clean}\" and nothing is charged. Spectators standing on it don't count.",
+            "The gem slot only takes items by hand, so hoppers can't fill it, and other machines can't draw ESPE out of it.",
+            "If you placed it yourself and the status bar still says \"{lang:gui.essentialcraft5.matrix_tuner.status.not_allowed}\", break it and place it again.",
+            {
+              "if": "cfg:machines.matrix_tuner.generate_corruption",
+              "text": "While working it leaks 0–{cfg:machines.matrix_tuner.max_corruption_gen} MRU a second into its surroundings; see [[crafting/corruption]]."
+            },
+            "To clear a big chunk at once, fight a [[bestiary/matrix_shade|Matrix Specter]]. The pentacle's pillars pay {cfg:general.mobs.matrix_shade.espe_per_damage} effective ESPE per point and no MRU is needed; if you lose, both the damage and the ESPE come back."
+          ]
+        }
+      ]
+    }
+  ]
+}

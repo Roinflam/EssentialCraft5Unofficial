@@ -1,0 +1,609 @@
+{
+  "id": "wind_mage",
+  "order": 92,
+  "group": "side",
+  "title": "支线 · 风法师",
+  "subtitle": "夜里射箭的怪，身上带着风",
+  "icon": "essentialcraft5:wind_mage_spawn_egg",
+  "entries": [
+    {
+      "id": "wind_mages",
+      "title": "风法师",
+      "icon": "essentialcraft5:wind_mage_spawn_egg",
+      "summary": "三个等级，都在远处射 MRU 箭",
+      "complete": "essentialcraft5:guide/wind_mage/wind_mages",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_mage_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "那些人把我分成一小瓶一小瓶，揣在怀里走夜路。打碎瓶子，我就回来了。回来的时候，我会记得是谁放的我。",
+          "by": "《风语抄》"
+        },
+        {
+          "type": "image",
+          "texture": "essentialcraft5:textures/special/bookicons/windmages.png",
+          "width": 256,
+          "height": 256
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：认识风法师，并打败一只。它们把风分装在瓶子里随身带着，掉下来的风打碎后能涨[[wind/air_potion|风之好感]]，大法师掉的那一种还是做{item:essentialcraft5:wind_tablet}的材料。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "text": "风法师是主世界的敌对生物，和僵尸、骷髅一样在<em>夜里或黑暗的地方</em>生成，只有蘑菇岛和深暗之域里没有。它们不怕阳光，天亮后也留在原地，开局第一个夜里就能碰上。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "海纳尔里也有风法师。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_mage.max_nearby>0",
+          "text": "在这个世界里风法师不会自然出现，只能用刷怪蛋放出来。"
+        },
+        {
+          "type": "h",
+          "text": "三个等级"
+        },
+        {
+          "type": "table",
+          "header": [
+            "等级",
+            "袍子",
+            "一箭打掉（普通难度）",
+            "死后掉"
+          ],
+          "rows": [
+            [
+              "学徒",
+              "绿",
+              "约 5 点",
+              "{item:essentialcraft5:bottled_wind}"
+            ],
+            [
+              "法师",
+              "蓝",
+              "约 10 点",
+              "{item:essentialcraft5:imprisoned_wind}"
+            ],
+            [
+              "大法师",
+              "红",
+              "约 15 点",
+              "{item:essentialcraft5:wind_keeper}，偶尔一件[[wind_mage/wind_mage_armor|风法师套装]]"
+            ]
+          ],
+          "widths": [
+            2,
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "三种风法师出现的几率相同，生命都是 20 点，合 10 颗心。它们只在远处射 <em>MRU 箭</em>，从不近身，发现你以后会走到 15 格以内站定，离得越近射得越快，1~3 秒一发。箭伤在简单难度下少一些，困难难度下 ×1.5。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "大法师下手重",
+          "text": "大法师一箭 15 点，没穿护甲的人挨两箭就会倒下，困难难度下一箭就倒。最好拿着盾、穿好护甲再去，或者借着掩体贴近了打。"
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.mobs.storm_sorcerer.thunder_chance>0"
+          ],
+          "text": "第四种：风暴术士"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.mobs.storm_sorcerer.thunder_chance>0"
+          ],
+          "text": "下雷雨的时候，刷出来的风法师有 {cfg:general.mobs.storm_sorcerer.thunder_chance|pct} 是<em>风暴术士</em>。它有 {cfg:general.mobs.storm_sorcerer.max_health} 点生命，放疾风弹把人吹退，还会在你脚下标一圈电火花招雷，打倒以后有时掉{item:essentialcraft5:wind_keeper}，见[[bestiary/storm_sorcerer]]。"
+        },
+        {
+          "type": "h",
+          "text": "MRU 箭"
+        },
+        {
+          "type": "p",
+          "text": "MRU 箭拖着一道烟，飞 3 秒就散了，捡不起来。它只打活的生物，会直接穿过展示框、画、盔甲架、矿车和船，碰到方块就散掉，不会插在上面，也不会触发按钮、压力板、绊线和标靶。"
+        },
+        {
+          "type": "p",
+          "text": "伤害记在射箭的风法师头上，所以被误伤的怪会回头去打它。"
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "style": "info",
+          "title": "大法师很少见",
+          "text": "风法师在主世界的敌对生物里占不到 0.5%，三个等级又各占三分之一，平均八百来只敌对生物里才有一只大法师。附近 {cfg:general.wind_mage.nearby_radius} 格内已经有 {cfg:general.wind_mage.max_nearby} 只风法师时，那里就不会再自然生成，刷怪塔里也攒不起来。运气一般要打八百来只怪才碰上一只，运气差要上千只，得专门清好多个晚上的怪。想要{item:essentialcraft5:wind_keeper}，就多在夜里出去转转，留意穿红袍的法师。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "title": "自己把大法师叫来",
+          "text": "受了风之眷顾以后，可以做一支{item:essentialcraft5:wind_horn}，夜里吹响就能把大法师召来，亲手打倒它必掉受困之风，见[[wind/wind_horn]]和[[wind/archmage]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "bauble:essentialcraft5:wind_catcher"
+          ],
+          "text": "更稳妥的是{item:essentialcraft5:wind_catcher}，在地牢里翻到它的话，戴着它喝风之药水，平均六七瓶就能捕到一个，见[[wind_mage/bottled_winds]]。"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:wind_mage_spawn_egg}只有创造模式里才有，拿它右键刷怪笼，只会在旁边放出一只风法师，刷怪笼的类型不会变。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "打败过一只风法师。"
+        }
+      ],
+      "_src": [
+        "entity/WindMageEntity.java 类注释 — 三种等概率、生命 20、白天不燃烧、只有远程 AI",
+        "entity/WindMageEntity.java:104 EXCLUDED_BIOMES 蘑菇岛、深暗之域；:91 间隔 20~60 刻、:86 ATTACK_RADIUS 15；:167 基础伤害 (类型 + 1) × 3，速度 1.6 → 约 5 / 10 / 15",
+        "entity/WindMageEntity.java:143 belowNearbyCap — max_nearby（0 = 不自然生成）/ nearby_radius",
+        "data/essentialcraft5/forge/biome_modifier/wind_mage_spawns.json — 主世界权重 2、每群 1~6；wind_mage_spawns_hoanna.json 海纳尔同样",
+        "data/essentialcraft5/loot_tables/entities/wind_mage_apprentice.json / wind_mage.json / wind_mage_archmage.json",
+        "entity/MRUArrowEntity.java:34 LIFETIME 60；类注释：碰方块就散、不触发方块、只打活体、伤害记在射手头上（minecraft:arrow）",
+        "tools/plan/progression.md 机器速率 — 风法师约占敌对生物 0.37%，大法师约 0.12%（约 1/830）",
+        "registry/ECWindMage.java — 刷怪蛋只在创造栏，右键刷怪笼不改类型（ECEntities.spawnEgg）",
+        "data/essentialcraft5/advancements/guide/wind_mage/wind_mages.json — player_killed_entity 风法师",
+        "大法师约占敌对生物 1/830（tools/plan/progression.md）：几何分布，打 830 只碰上的几率约 63%；捕风挂坠每次加好感 15%（player/WindRelations.java:59），平均 6.7 瓶",
+        "item/WindHornItem.java、entity/WindMageSummons.java — 第十批 10b：风之号角召来的大法师，召唤者亲手打倒才掉（loot_tables/entities/wind_mage_archmage.json 必掉受困之风）",
+        "tools/plan/batch13.md §5.2 风法师 Type 3 — 雷雨时风法师的 1/5；生命 50；疾风弹击退、1 秒预警落雷；受困之风 25%（带风暴余息，13c-M1）"
+      ]
+    },
+    {
+      "id": "bottled_winds",
+      "title": "风法师掉的风",
+      "icon": "essentialcraft5:wind_keeper",
+      "summary": "打碎它们，讨风的欢心",
+      "complete": "essentialcraft5:guide/wind_mage/bottled_winds",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:bottled_wind",
+            "essentialcraft5:imprisoned_wind",
+            "essentialcraft5:wind_keeper"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：收集风法师身上的风。拿在手里右键打碎，把风放出来，<em>风之好感</em>就会上涨，它记的是风和你有多熟，见[[wind/air_potion]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "风",
+            "谁掉",
+            "打碎时的原始好感",
+            "没有加成时实得"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:bottled_wind}",
+              "学徒",
+              "10",
+              "1"
+            ],
+            [
+              "{item:essentialcraft5:imprisoned_wind}",
+              "法师",
+              "25",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:wind_keeper}",
+              "大法师",
+              "100",
+              "10"
+            ]
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "学徒、法师、大法师死后必掉一样，和抢夺无关。实得点数是原始值乘以风之好感系数，小数部分舍去。系数平时只有 {cfg:general.wind_affinity.base_coefficient}，穿上[[wind_mage/wind_mage_armor|风法师套装]]会高很多。"
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "style": "warn",
+          "title": "受困之风先别打碎",
+          "text": "做[[wind/wind_tablet]]要 1 个{item:essentialcraft5:wind_keeper}，大法师每只必掉一个，拿到的第一个要留着做石板，别顺手打碎了。"
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "style": "info",
+          "title": "风暴余息",
+          "text": "雷雨天的[[bestiary/storm_sorcerer|风暴术士]]有时也掉{item:essentialcraft5:wind_keeper}。它掉的带着「风暴余息」，注不进风之好感，只能当材料，留着做石板正合适。"
+        },
+        {
+          "type": "tip",
+          "if": [
+            "!cfg:general.wind_mage.max_nearby>0",
+            "bauble:essentialcraft5:wind_catcher"
+          ],
+          "style": "warn",
+          "title": "受困之风先别打碎",
+          "text": "做[[wind/wind_tablet]]要 1 个{item:essentialcraft5:wind_keeper}。风法师不会自然出现，它只能靠下面介绍的捕风挂坠捕获，捕到的第一个要留着做石板。"
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:wind_catcher",
+          "style": "info",
+          "title": "另一条路",
+          "text": "戴着地牢里翻到的{item:essentialcraft5:wind_catcher}，每喝下一瓶风之药水或打碎一瓶风，都有 15% 的几率捕到一个受困之风，平均六七瓶药水出一个。它会让好感系数 −0.1，捕够了就摘下来，见[[baubles/wind_corruption]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一样。"
+        }
+      ],
+      "_src": [
+        "registry/ECWind.java:99 / 102 / 105 — BottledWindItem 10 / 25 / 100",
+        "item/BottledWindItem.java:51 — 右键打碎走 WindRelations.grant；api/WindAffinity.java:144 scaled = (int)(原始值 × 系数)",
+        "data/essentialcraft5/loot_tables/entities/wind_mage*.json — 每只必掉一样，没有抢夺条件",
+        "data/essentialcraft5/recipes/wind/wind_tablet.json — 风之焦点 ×4、魔力强化板 ×4、受困之风 ×1",
+        "entity/WindMageEntity.java:143 belowNearbyCap — max_nearby 0 时不自然生成（主世界、海纳尔都一样），受困之风只剩捕风挂坠一条路（第二条提示带 !cfg 条件）",
+        "player/WindRelations.java:59 CATCHER_CHANCE 0.15、:79 grant — 每次加好感（药水、瓶子、事件）都掷，和实得多少无关；registry/ECBaubles.java:77 捕风挂坠系数 −0.1",
+        "entity/WindMageEntity.java:184 + MRUArrowEntity（minecraft:arrow，按难度缩放）— 大法师普通 15、困难 22.5、简单 8.5；玩家 20 生命",
+        "data/essentialcraft5/advancements/guide/wind_mage/bottled_winds.json",
+        "policy §4.18、tools/lang/glossary.md 第十二节 — 风暴术士掉的受困之风带「风暴余息」NBT：能当合成材料，不能注风之好感（13c-M1）"
+      ]
+    },
+    {
+      "id": "wind_mage_armor",
+      "title": "风法师套装",
+      "icon": "essentialcraft5:wind_mage_robe",
+      "summary": "风之好感涨得快十倍",
+      "complete": "essentialcraft5:guide/wind_mage/wind_mage_armor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_mage_hood",
+        "essentialcraft5:wind_mage_robe",
+        "essentialcraft5:wind_mage_leggings",
+        "essentialcraft5:wind_mage_boots"
+      ],
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:wind_mage_hood",
+            "essentialcraft5:wind_mage_robe",
+            "essentialcraft5:wind_mage_leggings",
+            "essentialcraft5:wind_mage_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：凑齐风法师套装。这套袍子不经打，可每一件都能让风之好感涨得更快，积攒好感时能省下好几个钟头。"
+        },
+        {
+          "type": "p",
+          "text": "<em>来源</em>：只有<em>大法师</em>会掉，每只有 10% 的几率掉一件，抢夺每级再加 2.5%，抢夺 III 时是 17.5%，四件掉落的几率相同，没有合成配方。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "护甲",
+              "和皮革一样，兜帽 1、长袍 3、护腿 2、靴子 1"
+            ],
+            [
+              "耐久",
+              "128 / 384 / 256 / 128，用皮革修复"
+            ],
+            [
+              "风之好感系数",
+              "每穿一件 +0.23"
+            ],
+            [
+              "兜帽",
+              "戴在头上能隔墙看见 MRU 聚集体，和{item:essentialcraft5:magic_monocle}一样"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "能省多少"
+        },
+        {
+          "type": "p",
+          "text": "风之石板要攒 {cfg:general.wind.tablet_points} 点风之好感，最常用的办法是一瓶瓶地喝{item:essentialcraft5:air_potion}，每瓶耗 250 ESPE、给原始好感 100。系数不同，要喝的瓶数就差得很远。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "你身上",
+            "系数",
+            "每瓶实得",
+            "要喝几瓶"
+          ],
+          "rows": [
+            [
+              "什么都没有",
+              "{cfg:general.wind_affinity.base_coefficient}",
+              "{cfg:general.wind_affinity.base_coefficient|mul:100|int}",
+              "约 {cfg:general.wind.tablet_points|div:10|int}"
+            ],
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "cells": [
+                "{item:essentialcraft5:wind_mages_talisman}",
+                "{cfg:general.wind_affinity.base_coefficient|add:0.3}",
+                "{cfg:general.wind_affinity.base_coefficient|add:0.3|mul:100|int}",
+                "约 {cfg:general.wind.tablet_points|div:40|int}"
+              ]
+            },
+            [
+              "套装 2 件",
+              "{cfg:general.wind_affinity.base_coefficient|add:0.46}",
+              "{cfg:general.wind_affinity.base_coefficient|add:0.46|mul:100|int}",
+              "约 {cfg:general.wind.tablet_points|div:56|int}"
+            ],
+            [
+              "套装全套",
+              "{cfg:general.wind_affinity.base_coefficient|add:0.92}",
+              "{cfg:general.wind_affinity.base_coefficient|add:0.92|mul:100|int}",
+              "约 {cfg:general.wind.tablet_points|div:102|int}"
+            ],
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "cells": [
+                "全套 + 风法师护符",
+                "{cfg:general.wind_affinity.base_coefficient|add:1.22}",
+                "{cfg:general.wind_affinity.base_coefficient|add:1.22|mul:100|int}",
+                "约 {cfg:general.wind.tablet_points|div:132|int}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:wind_mages_talisman",
+          "text": "风法师护符是能在地牢箱子里找到的特殊饰品，见[[baubles/wind_corruption]]。"
+        },
+        {
+          "type": "p",
+          "text": "什么都不穿时要的 ESPE，够一座主世界风之祭坛忙上六个钟头，穿齐一套则四十分钟左右就够了。每件都单独起作用，不必凑齐。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "别等凑齐",
+          "text": "套装只有大法师会掉，凑齐四件要打很多只，先穿上手头有的几件再喝药水，比干等着凑齐划算。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过其中任意一件。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/loot_tables/entities/wind_mage_archmage.json — random_chance_with_looting 0.1 + 0.025 / 级，四件权重各 1",
+        "item/WindMageArmorItem.java:36 WIND_AFFINITY 0.23；材料皮革（护甲 1 / 3 / 2 / 1，皮革修）；兜帽进 mru_vision",
+        "registry/ECWindMage.java:54~57 — 耐久 128 / 384 / 256 / 128",
+        "api/WindAffinity.java:84 coefficient = 基础 + 盔甲 + 饰品（float 累加）；registry/ECBaubles.java:80 风法师护符 +0.3",
+        "item/AirPotionItem.java:38 POINTS 100；data/essentialcraft5/recipes/wind/imbue/air_potion.json 250 ESPE",
+        "float 实算：0.1 / 0.4 / 0.56 / 1.02 / 1.32 → 每瓶 10 / 40 / 56 / 102 / 132；3500 ÷ 每瓶 = 350 / 87.5 / 62.5 / 34.3 / 26.5",
+        "3500 ÷ 10 × 250 = 8.75 万 ESPE ÷ 4 ESPE / 秒 ≈ 6 小时；35 瓶 × 250 = 8750 ESPE ≈ 36 分钟（tools/plan/progression.md 风之祭坛 4 ESPE / 秒）",
+        "data/essentialcraft5/advancements/guide/wind_mage/wind_mage_armor.json"
+      ]
+    },
+    {
+      "id": "steadfast",
+      "title": "风之契约 · 不动如山",
+      "icon": "essentialcraft5:wind_mage_boots",
+      "summary": "真名显全后接着积攒，潜行时站稳不退",
+      "complete": "essentialcraft5:guide/wind_mage/steadfast",
+      "optional": true,
+      "if": "cfg:general.wind.steadfast_points",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：风之真名显全以后接着攒风之好感，到 <t>{cfg:general.wind.steadfast_points}</t> 点时，风会和你立下第一份契约，从此<hl>潜行时不会被击退</hl>。"
+        },
+        {
+          "type": "p",
+          "text": "风只和叫得出它名字的人立约。风之真名显全，指的是{item:essentialcraft5:wind_tablet}肯回应你的那一刻，石板上风的名字已经全部显现，该凑的也都凑齐了，见[[wind/wind_tablet]]。在那之前，好感攒得再多也不作数。"
+        },
+        {
+          "type": "h",
+          "text": "怎么攒"
+        },
+        {
+          "type": "list",
+          "items": [
+            "照旧可以喝[[wind/air_potion|风之药水]]，每瓶原始好感 100，再乘以你的好感系数。",
+            {
+              "if": "cfg:general.wind_wish.enabled",
+              "text": "真名显全以后照样可以问[[wind/wishes|风之心愿]]，每完成一个原始好感 {cfg:general.wind_wish.points}。"
+            },
+            "受到[[wind/windbound|风之眷顾]]以后多在外面跑动，风偶尔会主动来找你，每次原始好感 1000。",
+            "好感系数在这里最要紧，什么都不穿时每瓶药水只涨 {cfg:general.wind_affinity.base_coefficient|mul:100|int} 点，穿齐[[wind_mage/wind_mage_armor|风法师套装]]后每瓶涨 {cfg:general.wind_affinity.base_coefficient|add:0.92|mul:100|int} 点。",
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "text": "再戴上风法师护符，每瓶涨到 {cfg:general.wind_affinity.base_coefficient|add:1.22|mul:100|int} 点。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "按住潜行。",
+            "这时挨打带来的击退全部无效，近战、箭本身和怪物打中你时的击退都推不动你。",
+            "松开潜行后会照常被击退。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "好感达到门槛且真名已经显全时，风会在聊天栏里告诉你，它已在你脚边站定。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "不是所有的推力都算击退",
+          "text": "爆炸的冲击波、冲击附魔的箭额外带来的推力、疣猪兽和僵尸疣猪兽把人挑飞、掠夺兽的吼叫、监守者的音波以及铁傀儡把人往上抛，都不算击退，潜行时照样推得动你。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "不消耗好感，也没有次数限制。",
+            "它只对你自己有效，骑着坐骑时，坐骑照样会被击退。",
+            {
+              "if": "cfg:general.wind.deflect_points",
+              "text": "和[[wind_mage/deflect]]互不影响，两者可以同时拥有。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "player/WindPact.java resistsKnockback — 潜行（isShiftKeyDown）且 hasSteadfast：门槛 general.wind.steadfast_points（默认 7000，0 = 关掉）、WindAffinity.points ≥ 门槛、trueNameShown（WindTabletItem.attuned）",
+        "player/WindPact.java WindPactEvents.pactKnockBack — LivingKnockBackEvent 取消",
+        "原版 LivingEntity.hurt — 有攻击者、不是爆炸的伤害才调 knockback（发 LivingKnockBackEvent）；Mob.doHurtTarget、Player.attack 的击退附魔也走 knockback；Explosion 直接改速度、Ravager 吼叫用 push、IronGolem 往上抛直接改速度，都不发这个事件；AbstractArrow.onHitEntity L370~374 冲击附魔多出来的推力、HoglinBase.throwTarget L43 疣猪兽 / 僵尸疣猪兽挑人、warden/SonicBoom L67 监守者音波都是 push，同样不发",
+        "item/WindTabletItem.java attuned — 好感 ≥ general.wind.tablet_points 且完成的心愿数 ≥ general.wind_wish.required（第十批 10b-M1）",
+        "item/AirPotionItem.java:38 POINTS 100；player/WindRelations.java EVENT_POINTS 1000（受眷顾后的被动事件、疾跑事件、起跳事件）；player/WindWishes.java 完成心愿原始好感 general.wind_wish.points",
+        "api/WindAffinity.java coefficient — 基础 general.wind_affinity.base_coefficient + 风法师套装每件 0.23（item/WindMageArmorItem.java WIND_AFFINITY）+ 风法师护符 0.3（registry/ECBaubles.java）",
+        "player/WindPact.java checkSteps — 服务端每 20 刻查一次（按玩家 id 错开），第一次够了发 guide/wind_mage/steadfast，聊天栏 message.essentialcraft5.wind_pact.steadfast",
+        "data/essentialcraft5/advancements/guide/wind_mage/steadfast.json — minecraft:impossible，由代码发"
+      ]
+    },
+    {
+      "id": "deflect",
+      "title": "风之契约 · 风之偏转",
+      "icon": "minecraft:arrow",
+      "summary": "再往上积攒，飞来的东西便穿身而过",
+      "complete": "essentialcraft5:guide/wind_mage/deflect",
+      "optional": true,
+      "if": "cfg:general.wind.deflect_points",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：风之真名显全以后，把好感攒到 <t>{cfg:general.wind.deflect_points}</t> 点，风就会开始替你拨开飞来的东西，<hl>别人射来、扔来的弹射物会从你身上穿过去</hl>。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind.steadfast_points",
+          "text": "攒法和[[wind_mage/steadfast]]一样，只是要攒得更多，穿齐风法师套装再喝药水，比什么都不穿快十倍。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind.steadfast_points",
+          "text": "攒法照旧是喝风之药水、等风主动来找你，穿齐[[wind_mage/wind_mage_armor|风法师套装]]时涨得快十倍。"
+        },
+        {
+          "type": "h",
+          "text": "固定的节奏"
+        },
+        {
+          "type": "p",
+          "text": "偏转按固定的间隔发生。每偏开一个，接下来 <t>{cfg:general.wind.deflect_cooldown_ticks|sec}</t> 里新飞来的会照常打中你，这段时间一过，下一个又会被偏开。被偏开的那一个不会回头再打中你。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "偏得开",
+            "偏不开"
+          ],
+          "rows": [
+            [
+              "箭、三叉戟、雪球、鸡蛋、火球、凋灵之首、药水瓶、潜影贝的导弹、羊驼的口水……",
+              "近战、魔法、魔力枪械的射线等不属于弹射物的伤害"
+            ],
+            [
+              "没人射的也算，比如发射器里射出来的箭",
+              "你自己射出、扔出去的东西"
+            ]
+          ],
+          "widths": [
+            1,
+            1
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "好感达到门槛且真名已经显全时，风会在聊天栏里告诉你，它开始替你挡开飞来的东西了。偏开时身边会冒出一小团白雾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "穿过去不等于没事",
+          "text": "火球和凋灵之首穿过去以后会在你身后炸开，药水瓶也会落地碎开，离得近照样会被炸到或溅到，偏开以后要及时挪开。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "不消耗好感，也没有次数限制，全凭固定的节奏，与几率无关。",
+            "它只对你自己有效，站在你身后的人照样会被穿过去的箭射中。",
+            "别的模组的子弹如果不按原版弹射物的规矩飞行，就无法偏开。"
+          ]
+        }
+      ],
+      "_src": [
+        "player/WindPact.java deflects — hasDeflect（门槛 general.wind.deflect_points，默认 12000，0 = 关掉；好感 ≥ 门槛；WindTabletItem.attuned）；弹射物主人是自己时不偏；同一颗对同一人偏过一直放行（DeflectLedger.passed，弱引用）；新的一颗要离上次偏开 ≥ general.wind.deflect_cooldown_ticks（默认 60），偏开时记下这一刻；服务端出 CLOUD 粒子",
+        "player/WindPact.java WindPactEvents.pactProjectileImpact — ProjectileImpactEvent（LOW），结果还是 DEFAULT 才改 SKIP_ENTITY；客户端只算本地玩家",
+        "原版 AbstractArrow.tick — SKIP_ENTITY 把这人加进 ignoredEntities，穿过去；ThrowableProjectile / AbstractHurtingProjectile 只是跳过这一刻的命中（所以按这一颗记账）；弹射物主人为空（发射器）时也算别人的",
+        "原版 LargeFireball / WitherSkull / ThrownPotion — 穿过去以后在别处命中照常爆炸、碎开",
+        "player/WindPact.java checkSteps — 第一次够了发 guide/wind_mage/deflect，聊天栏 message.essentialcraft5.wind_pact.deflect",
+        "data/essentialcraft5/advancements/guide/wind_mage/deflect.json — minecraft:impossible，由代码发",
+        "tools/plan/batch10.md §8.4 — 别的模组的子弹实体走不走 ProjectileImpactEvent 待实测"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,593 @@
+{
+  "id": "tesla",
+  "order": 94,
+  "group": "side",
+  "title": "支线 · 特斯拉：线圈与反应堆",
+  "subtitle": "守家的电塔和不烧燃料的产能器",
+  "icon": "essentialcraft5:mru_coil",
+  "entries": [
+    {
+      "id": "mru_magnet",
+      "title": "{item:essentialcraft5:mru_magnet}",
+      "icon": "essentialcraft5:mru_magnet",
+      "summary": "线圈和反应堆都要用的零件",
+      "complete": "essentialcraft5:guide/tesla/mru_magnet",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mru_magnet"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "反应堆不烧任何东西，自己就会产 MRU，我起先以为是自己算错了。走近它的怪会被电倒，一根骨头、一点经验也不留下，想攒骨头的话，得走远些再打。",
+          "by": "《工坊手记》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做几块{item:essentialcraft5:mru_magnet}。这一章的线圈、线圈基座、反应堆核心和反应堆支架都要用到它。<em>第六章</em>做出魔力精华以后就能开始这一章，反应堆另外还要一颗下界之星。"
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "备好 1 块{item:minecraft:iron_ingot}和 1 份{item:essentialcraft5:magical_essence}，魔力精华的做法见[[alloys/magical_essence]]。",
+            "把铁锭放进{item:essentialcraft5:radiating_chamber}的<em>上格</em>，魔力精华放进下格，辐射仓的用法见[[crafting/radiating_chamber]]。",
+            "给辐射仓供上 MRU，每块要辐射 1000 刻，合 50 秒。MRU 是这个模组的魔力能量，见[[start/mru]]。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_magnet"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一块 MRU 磁体。"
+        },
+        {
+          "type": "h",
+          "text": "要备多少"
+        },
+        {
+          "type": "table",
+          "header": [
+            "用在哪",
+            "每次合成要几块"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mru_coil}",
+              "1"
+            ],
+            [
+              "{item:essentialcraft5:mru_coil_hardener}",
+              "1，一次产出 3 个基座"
+            ],
+            [
+              "{item:essentialcraft5:reactor}",
+              "1"
+            ],
+            [
+              "{item:essentialcraft5:reactor_support}",
+              "2，一次产出 2 根，一座反应堆要 4 根"
+            ]
+          ],
+          "widths": [
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "算下来，一座反应堆一共要 5 块磁体，线圈本体要 1 块，基座每叠 3 层再多用 1 块。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "省时间",
+          "text": "用漏斗给辐射仓送料时，先亲手做出一块，辐射仓记住这条配方以后，漏斗送来的铁锭会自己进上格，就能挂机做一批了。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/radiating_chamber/mru_magnet.json — #forge:ingots/iron + 魔力精华，mru 1000、cost_modifier 1，没有平衡值要求",
+        "blockentity/RadiatingChamberBlockEntity.java:310 — 每刻进度 +1，到配方的 mru 值（1000）出产物 → 1000 刻",
+        "blockentity/RadiatingChamberBlockEntity.java:188 — canAutomationInsert：按 lastRecipe 放格，做过一块磁体后漏斗送来的铁锭进上格",
+        "data/essentialcraft5/recipes/tesla/mru_coil.json、tesla/mru_coil_hardener.json（出 3）、reactor/reactor.json、reactor/reactor_support.json（出 2，用 2 块磁体）",
+        "registry/ECReactor.java:93 — 反应堆结构要 4 根支架（ASRSA / ASASA 两层）",
+        "data/essentialcraft5/recipes/radiating_chamber/mru_magnet.json — 铁锭 + 魔力精华（第六章 alloys/magical_essence）；reactor/reactor.json 要 #forge:nether_stars"
+      ]
+    },
+    {
+      "id": "mru_coil",
+      "title": "{item:essentialcraft5:mru_coil}",
+      "icon": "essentialcraft5:mru_coil",
+      "summary": "替你守家的电塔",
+      "complete": "essentialcraft5:guide/tesla/mru_coil",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mru_coil",
+        "essentialcraft5:mru_coil_hardener"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：搭一座{item:essentialcraft5:mru_coil}。它会自己放电守住你的基地，放下它的你<em>永远不会挨电</em>。底下的基座叠得越高，它的射程就越远。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "list",
+          "items": [
+            "线圈本体 1 座，配方见下方，其中的魔力板也可以换成淡青板或米斯莱板；",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "配方里的魔力板也可以换成恶魔板；"
+            },
+            "底座需要 25 块护板，{item:essentialcraft5:magic_plating}、{item:essentialcraft5:pale_plating}和{item:essentialcraft5:mithriline_plating}可以随意混用，颜色也不限，做法见[[alloys/plating]]。4 块魔力板合成一次能出 16 块魔力护板，合两次就够了；",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "底座同样认{item:essentialcraft5:void_stone}和{item:essentialcraft5:demonic_plating}，可以和护板混着用，两者分别见[[hoanna/void_stone]]和[[demons/demonic_plating]]；"
+            },
+            "基座按需添加，{item:essentialcraft5:mru_coil_hardener}一次合成出 3 个，每个增加 2 格射程；",
+            "1 颗{item:essentialcraft5:bound_gem}，绑到你的 MRU 储存或产能器上给线圈供 MRU，用法见[[crafting/bound_gem]]。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_coil"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_coil_hardener"
+        },
+        {
+          "type": "h",
+          "text": "怎么搭"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:mru_coil",
+          "caption": "图中叠了 2 层基座，不叠或多叠都可以"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "先铺底座，用 25 块护板摆成 7×7 的十字圆，就是图中最下面那一层。",
+            "在底座正中那块护板上往上叠基座，一层接一层，中间不能断开。不放基座也可以。",
+            "最上面放线圈，不叠基座时，线圈就直接放在底座正中那块上面。",
+            "右键线圈打开界面，把绑好的{item:essentialcraft5:bound_gem}放进上方那一格。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "界面里的状态行不再显示「结构不完整」，有 MRU 时显示射程，没有时显示「MRU 不足」。接上 MRU 以后，线圈上方会冒出紫色的小电弧。"
+        },
+        {
+          "type": "h",
+          "text": "射程与耗能"
+        },
+        {
+          "type": "formula",
+          "text": "射程 = 3 + 2 × 基座层数，最远 {cfg:machines.mru_coil.max_radius} 格"
+        },
+        {
+          "type": "p",
+          "text": "射程是以线圈为中心的球体，叠到 {cfg:machines.mru_coil.max_radius|add:-3|div:2|int} 层时达到 {cfg:machines.mru_coil.max_radius} 格的上限，再往上叠也不会更远。"
+        },
+        {
+          "type": "p",
+          "text": "线圈最多存 {cfg:machines.mru_coil.max_mru} MRU，每<em>打中</em>一个目标消耗 {cfg:machines.mru_coil.mru_per_hit} MRU，没打中不耗，存量不够打一下时它就停下。"
+        },
+        {
+          "type": "p",
+          "text": "和这个模组的大多数机器一样，线圈收到<em>红石</em>信号就停机，信号撤掉后立刻恢复，装一个拉杆就是总开关。"
+        },
+        {
+          "type": "h",
+          "text": "它打谁"
+        },
+        {
+          "type": "p",
+          "text": "线圈每隔{cfg:machines.mru_coil.strike_interval|sec}放一次电，一次最多打 {cfg:machines.mru_coil.max_targets} 个目标，先打玩家后打怪，离得近的先打。",
+          "if": [
+            "cfg:machines.mru_coil.hurt_players",
+            "cfg:machines.mru_coil.hurt_monsters"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "线圈每隔{cfg:machines.mru_coil.strike_interval|sec}放一次电，一次最多打 {cfg:machines.mru_coil.max_targets} 个目标，离得近的先打。",
+          "if": "!cfg:machines.mru_coil.hurt_players||!cfg:machines.mru_coil.hurt_monsters"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "text": "<em>怪物</em>：僵尸、骷髅、苦力怕等敌对生物每下受到 {cfg:machines.mru_coil.monster_damage} 点伤害，无视护甲。"
+            },
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "text": "<em>只打你能改动的地方的怪</em>：射程伸进别人的领地时，那边的怪它不碰，所以不会替你清空邻居刷怪塔里的怪。你不在线时，它只打你在线时确认过的地方的怪，这份记录最多保留一小时。世界重开，或者这片区域没人、区块卸载以后，都要等你上线重新确认。"
+            },
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "cfg:machines.mru_coil.trespassers_only"
+              ],
+              "text": "<em>玩家</em>：只打<em>闯进来的人</em>，指的是站在你的地盘上、自己却没有权限的玩家，比如进了你的领地、你又没给他权限的人。野外的路人，站在自己领地或被信任的地方的人，它都不打。射程伸进别人的领地，或者主城、道路这类谁都不能挖的公共保护区时，站在那里的人它也不打。你不在线时，它只打你在线时确认过的地方的闯入者，记录最多保留一小时，世界重开或区块卸载以后要等你上线。没有领地的世界里，没有人算闯入者。[[tesla/player_list|白名单]]上的人、放下它的你自己，以及创造和旁观模式的人，永远不会挨电。"
+            },
+            {
+              "if": [
+                "cfg:machines.mru_coil.hurt_players",
+                "!cfg:machines.mru_coil.trespassers_only"
+              ],
+              "text": "<em>玩家</em>：只打你<em>白名单以外</em>的人，白名单的用法见[[tesla/player_list]]。放下它的你自己永远不会挨电，创造和旁观模式的人也一样。"
+            },
+            {
+              "if": "!cfg:machines.mru_coil.hurt_players",
+              "text": "<em>玩家</em>：线圈不打任何玩家。"
+            },
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "text": "<em>不打</em>：动物、村民、宠物、盔甲架，起了名字或拴着绳的生物，凋灵、末影龙等 Boss，以及不会自然消失的怪，比如捡过东西的僵尸，它身上穿的可能是玩家的装备。"
+            },
+            "<em>要看得见</em>：隔着实心方块就打不到，玻璃、玻璃板和铁栏杆不挡视线。用玻璃把线圈罩起来，它照样能打，别人却碰不到它。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "不掉东西",
+          "text": "被线圈电死的怪<em>什么都不掉</em>，也不给经验，只有怪从地上捡走的东西照样掉出来，那些多半是玩家的物品。它守得住基地，却当不了刷怪塔的收割机。",
+          "if": "cfg:machines.mru_coil.hurt_monsters"
+        },
+        {
+          "type": "h",
+          "text": "电到玩家时",
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "p",
+          "text": "这一节只在多人游戏里用得上。线圈对人下手很重，但会给人留出离开的余地：",
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.mru_coil.warning_ticks",
+              "text": "一个人第一次进入射程时，快捷栏上方会先出现一行红字警告，{cfg:machines.mru_coil.warning_ticks|sec}后才开始打；"
+            },
+            "每下伤害是 {cfg:machines.mru_coil.player_damage} 点加上他最大生命值的 {cfg:machines.mru_coil.player_health_percent|pct}，无视护甲，保护附魔、抗性提升、伤害吸收和不死图腾照样管用，盾牌挡不住；",
+            {
+              "if": "cfg:machines.mru_coil.slowness_ticks",
+              "text": "打中后施加 {cfg:machines.mru_coil.slowness_level} 级缓慢，持续 {cfg:machines.mru_coil.slowness_ticks|sec}；"
+            },
+            {
+              "if": "cfg:machines.mru_coil.weakness_ticks",
+              "text": "打中后施加 {cfg:machines.mru_coil.weakness_level} 级虚弱，持续 {cfg:machines.mru_coil.weakness_ticks|sec}；"
+            },
+            {
+              "if": "cfg:machines.mru_coil.glowing_ticks",
+              "text": "打中后让他发光 {cfg:machines.mru_coil.glowing_ticks|sec}，隔着墙也能看见他的位置；"
+            },
+            "即使这个世界关闭了 PvP，或者他站在禁止 PvP 的领地里，线圈也照样会打；",
+            {
+              "if": "cfg:machines.mru_coil.spawn_safe_radius",
+              "text": "主世界出生点周围 {cfg:machines.mru_coil.spawn_safe_radius} 格以内的人不打；"
+            },
+            "被线圈打死的人身上的东西照常掉在原地，死亡消息会写明是谁的线圈；",
+            {
+              "if": "cfg:machines.mru_coil.respawn_grace_ticks",
+              "text": "他重生后 {cfg:machines.mru_coil.respawn_grace_ticks|sec}内，所有线圈都不打他。"
+            }
+          ],
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "h",
+          "text": "界面与开关"
+        },
+        {
+          "type": "p",
+          "text": "右键线圈打开界面，潜行时不会打开。只有<em>放下它的人</em>、白名单上的人和创造模式的玩家能打开，其中白名单上的人只能看，不能拿走或放入东西。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "上方那一格放{item:essentialcraft5:bound_gem}，右下那一格放{item:essentialcraft5:player_list}；",
+            "状态行会显示当前处于哪种情况，是射程多远、结构不完整、红石停机还是 MRU 不足，鼠标指上去能看到说明；",
+            {
+              "if": "cfg:machines.mru_coil.hurt_players",
+              "text": "右上角的按钮是这台线圈的「打玩家」开关，只有放下它的人能点。专门放在公共区域打怪的线圈，把这个开关关掉就不会误伤路人。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "不是玩家亲手放下的线圈没有主人，它不打玩家，在多人游戏里连怪也不打，因为没法判断该按谁能改动的地方来算。",
+          "if": "cfg:machines.mru_coil.hurt_players||cfg:machines.mru_coil.hurt_monsters"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "注意",
+          "text": "摆好结构的那一刻，你要站在线圈这一竖列 16 格以内，手册这一步才会打勾。当时离得太远的话，拆下一块底座，等一两秒再放回去。\n花纹方块不能当底座用，见[[decorations/patterns]]。\n多放几台不会叠加伤害，同一个目标 1 秒内只挨一台线圈的电，多放的好处是覆盖范围更大、一次能打的目标更多。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节",
+          "if": "cfg:machines.mru_coil.generates_corruption"
+        },
+        {
+          "type": "p",
+          "text": "每打中一下，线圈会往周围泄漏最多 {cfg:machines.mru_coil.corruption_per_hit} MRU，化作[[crafting/corruption|腐化]]，最好别把它放在怕腐化的机器旁边。",
+          "if": "cfg:machines.mru_coil.generates_corruption"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书讲线圈的那一页，副标题是「末日在此！」，正文说它的半径「可以无限扩大」。那时每加一层基座，射程就涨一格，确实没有上限。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/tesla/mru_coil.json — IRS/PMP/LJL；P = #essentialcraft5:plates/magic（src/generated/.../tags/items/plates/magic.json：魔力 / 淡青 / 米斯莱 / 恶魔板）",
+        "data/essentialcraft5/recipes/tesla/mru_coil_hardener.json — PCP/PMP/PLP → 3；data/essentialcraft5/recipes/alloys/magic_plating.json — 4 魔力板 → 16 魔力护板",
+        "registry/ECTesla.java:98 — COIL_FOUNDATION：7×7 十字圆 25 格，规则是方块标签 mru_coil_base（src/generated/.../tags/blocks/mru_coil_base.json：魔力 / 淡青 / 米斯莱护板、虚空石、恶魔护板）；L116 手册画的整座塔（两层基座，可选）",
+        "blockentity/MRUCoilBlockEntity.java:566 refreshStructure、L607 countHardeners — 线圈正下方连续的基座层数，底座在最下面那层基座正下方",
+        "blockentity/MRUCoilBlockEntity.java:232 / 234 / 361 — 射程 = BASE_RADIUS 3 + RADIUS_PER_LAYER 2 × 层数，封顶 max_radius；L913 inRange 球形",
+        "blockentity/MRUCoilBlockEntity.java:630 discharge — 成形、MRU ≥ 每击费用、无红石才放电；间隔 strike_interval；先玩家（hurt_players 且有主人，再过 mayStrikePlayer）后怪（hurt_monsters；先看 OwnerCellMemory 记录、已知不能动的跳过，看得见了才以主人身份探测），由近到远，最多 max_targets；以主人身份的新探测每次放电最多 OWNER_PROBES_PER_DISCHARGE 4 格（L249）",
+        "blockentity/MRUCoilBlockEntity.java:727 strike — 伤害生效才扣 mru_per_hit；L760 applyEffects 缓慢 / 虚弱 / 发光（ticks 为 0 不给）；generates_corruption 时 ECCorruption.randomIncreaseAt(corruption_per_hit)",
+        "blockentity/MRUCoilBlockEntity.java:793 playerCheck — 创造 / 旁观不打、没有主人不打、主人不打、白名单不打、重生保护、出生点 spawn_safe_radius（只在主世界）；L826 canTargetMob — Enemy、非 isSpared（起名 / 拴绳 / 驯服…，util/ECEntityRules.java:57）、非 #forge:bosses、非持久生物",
+        "blockentity/MRUCoilBlockEntity.java:845 standingPermission / L867 mayStrikePlayer — trespassers_only（默认开）时：先看主人记录（已知主人在那格没权限、或主人离线又没确认过 → 不打、不探测），再以被打的人自己的身份探测他脚下那格，被拒（DENY）才往下，最后那格要主人能动（记录或以主人身份探测）才打；野外、自己的领地、被信任的地方放行 = 不打；第三个人的领地、公共保护区主人也被拒 = 不打；没装领地时谁都放行 = 不打玩家；关掉就是白名单以外都打",
+        "blockentity/MRUCoilBlockEntity.java:903 mobPermission → util/OwnerCellMemory.java:68 — 怪脚下那格以主人身份探测，能动才打；结论都记下（不能动 DENY_TICKS 6000 刻、能动在线时 RECHECK_TICKS 6000 刻内直接用，L47~51）；主人离线时只认在线时探测成能动、记了 REMEMBER_TICKS 72000 刻（1 小时）的格子，记录只在内存里；多人服里没有主人的线圈不打怪",
+        "blockentity/MRUCoilBlockEntity.java:942 warningPassed — 第一次进射程先警告 warning_ticks；L1021 clearLine — 按视觉形状挡视线，玻璃 / 玻璃板 / 铁栏杆不挡",
+        "blockentity/MRUCoilBlockEntity.java:1192 CoilDischargeSource — mru_discharge 不带攻击者（PvP 关了也打），死亡消息写主人名字；data/essentialcraft5/tags/damage_type/no_death_loot.json — 电死的生物不掉物品和经验",
+        "blockentity/MRUCoilTargets.java:45 — TARGET_COOLDOWN 20：同一目标 20 刻内只挨一台线圈",
+        "block/MRUCoilBlock.java:81 — 潜行不开；canView（MRUCoilBlockEntity.java:516）= 主人 / 创造 / 白名单；menu/MRUCoilMenu.java:160 只有 canEdit（主人 / 创造）能拿放格子，L184 只有 canEdit 能切「打玩家」",
+        "client/screen/MRUCoilScreen.java:35 — 开关按钮在右上（109, 4）；menu/MRUCoilMenu.java:76 宝石格（108, 23）、L80 白名单格（140, 41）",
+        "advancement/StructureFormedTrigger.java:52 — TRIGGER_RANGE 16；MRUCoilBlockEntity.java:591 playersNearColumn 按「底座中心 → 线圈」这一竖列算；第一次成形或射程变大时触发",
+        "gametest/DecorationsTests.java:446 fancyNotUsableAsMaterial — 花纹方块不进 mru_coil_base",
+        "data/minecraft/tags/damage_type/bypasses_armor.json — mru_discharge 无视护甲；CoilDischargeSource 不带攻击者、不带位置，盾牌挡不住",
+        "client/render/ArcEffect.java:66 COIL_IDLE — 待机电弧颜色 (1, 0.2, 1)；MRUCoilBlockEntity.java:1078 clientTick 只在 isActive（成形、MRU 够一击、没红石）时冒",
+        "client/screen/MRUCoilScreen.java:159 StatusElement — 状态行 (25, 40)：射程 / 结构不完整 / 红石停机 / MRU 不足（lang gui.essentialcraft5.mru_coil.status.*）",
+        "structure/StructureCache.java:56 MIN_INTERVAL 20 — 离线圈远的底座方块被拆靠每 20 刻复查发现，所以拆了要等一两秒再放回去才会重新成形、触发进度",
+        "射程封顶要的层数 = ⌈(max_radius − 3) ÷ 2⌉：正文写 {cfg:…|add:-3|div:2|int}，int 按 HALF_UP（client/guide/GuideValues.java:265），(32 − 3) ÷ 2 = 14.5 → 15；max_radius 为奇数时整除"
+      ]
+    },
+    {
+      "id": "player_list",
+      "title": "{item:essentialcraft5:player_list}",
+      "icon": "essentialcraft5:player_list",
+      "summary": "谁不挨电，由你决定",
+      "complete": "essentialcraft5:guide/tesla/player_list",
+      "optional": true,
+      "items": [
+        "essentialcraft5:player_list"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一张{item:essentialcraft5:player_list}，把朋友写上去再放进线圈，名单上的人不会挨电，还能打开线圈的界面查看状态。",
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一张{item:essentialcraft5:player_list}，把朋友写上去再放进线圈，名单上的人就能打开线圈的界面查看状态。",
+          "if": "!cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：1 张{item:minecraft:paper}和 1 颗{item:essentialcraft5:bound_gem}，在工作台里随便怎么摆都行。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:player_list"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一张玩家白名单。"
+        },
+        {
+          "type": "h",
+          "text": "怎么写名单"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>右键</em>把自己写上去；",
+            "<em>对着别的玩家右键</em>把他写上去，不需要他同意；",
+            "<em>潜行右键</em>把自己划掉；",
+            "<em>单独放进工作台</em>可以把它清空，得到一张空白的名单。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "一张最多写 64 个人，鼠标指着它就能看到名单上有谁。名单认的是玩家本人。"
+        },
+        {
+          "type": "h",
+          "text": "放进线圈"
+        },
+        {
+          "type": "p",
+          "text": "打开你的线圈，把名单放进右下那一格。只有放下线圈的人和创造模式的玩家能放入或取出名单，漏斗和管道也塞不进去，别人没法偷偷把自己加进你的线圈。"
+        },
+        {
+          "type": "p",
+          "text": "放下线圈的人不必把自己写上去，线圈永远不会打他。",
+          "if": "cfg:machines.mru_coil.hurt_players"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "改名单",
+          "text": "要改名单时，先把它从线圈里拿出来，改好后再放回去。有几台线圈，就要给每台各放一张名单。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/tesla/player_list.json — 纸 + 绑定宝石，无序；tesla/player_list_clear.json — 单独一张 → 空白名单",
+        "item/PlayerListItem.java:47 — MAX_ENTRIES 64；L190 use：右键加自己、潜行右键删自己；L215 interactLivingEntity：对着玩家右键加他；判定只比 UUID",
+        "item/PlayerListItem.java:237 — 提示里列名字",
+        "blockentity/MRUCoilBlockEntity.java:296 slotRule（1 号格只收白名单）、L307 canAutomationInsert（1 号格不收漏斗 / 管道）、L477 canView（白名单上的人能开界面）、L730 playerCheck（WHITELISTED、OWNER 不打）",
+        "menu/MRUCoilMenu.java:160 — canEditSlots：只有主人和创造模式能拿放"
+      ]
+    },
+    {
+      "id": "reactor",
+      "title": "MRU 特斯拉反应堆",
+      "icon": "essentialcraft5:reactor",
+      "summary": "不烧燃料，自己产 MRU",
+      "complete": "essentialcraft5:guide/tesla/reactor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:reactor",
+        "essentialcraft5:reactor_support"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：以{item:essentialcraft5:reactor}为中心搭一座反应堆。工坊手记里提到的反应堆就是它。搭好以后它不烧任何燃料，每刻就能产出 {cfg:machines.reactor.mru_generated} MRU，比好几台前期产能器加起来还多。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "list",
+          "items": [
+            "反应堆核心 1 个，需要 2 个{item:essentialcraft5:magic_matrix_projection}、1 颗{item:minecraft:nether_star}、2 个{item:essentialcraft5:mru_resonating_crystal}、1 块{item:essentialcraft5:mru_magnet}和 3 块魔力板，魔力板也可以换成淡青板或米斯莱板；",
+            "{item:essentialcraft5:reactor_support} 4 根，一次合成出 2 根，合两次就够，每次要 2 块磁体、1 个共鸣水晶、4 块魔力板、1 个{item:essentialcraft5:elemental_core}和 1 块{item:essentialcraft5:magic_purified_ender_scale_alloy}，元素核心也可以换成淡青元素核心；",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "核心和支架配方里的魔力板也可以换成恶魔板，支架配方里的元素核心也可以换成{item:essentialcraft5:demonic_core}；"
+            },
+            "{item:essentialcraft5:magic_plating} 15 块用来铺地基，颜色不限，4 块魔力板合成一次就有 16 块。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先做什么",
+          "text": "最费事的是下界之星，要去打凋灵。其余材料前面都讲过，分别见[[generators/projections]]、[[alloys/resonating_crystal]]、[[storage/upgrades]]和[[elements/parts]]。可以先把 5 块磁体和 4 个共鸣水晶备齐，等下界之星到手再一起合成。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:reactor"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:reactor_support"
+        },
+        {
+          "type": "h",
+          "text": "摆法"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:reactor"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "用{item:essentialcraft5:magic_plating}铺一块 5×3 的地基，地基只认魔力护板，淡青、米斯莱护板和花纹护板都不能代替。",
+            "把核心放在地基正中那块护板上。",
+            "在核心左右两侧紧挨着各立一根两格高的支架，每根由两个支架叠成。",
+            "地基上方的这两层，除了核心和支架都要留空，核心正上方那格也要空着。整座反应堆沿东西或南北方向摆放都可以。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "核心上方的球浮了起来，周围冒出电弧，两侧的支架亮起电栏。空手右键核心，动作栏会显示它存了多少 MRU，没摆对时，它会指出第一个摆错的格子。"
+        },
+        {
+          "type": "h",
+          "text": "产出"
+        },
+        {
+          "type": "list",
+          "items": [
+            "运转时每刻产出 {cfg:machines.reactor.mru_generated} MRU，合每秒 {cfg:machines.reactor.mru_generated|mul:20}，最多储存 {cfg:machines.reactor.max_mru} MRU，不需要燃料，也不受红石影响。",
+            "它没有界面，把{item:essentialcraft5:bound_gem}绑到核心上，别的机器就能从它这里抽取 MRU，用法见[[crafting/bound_gem]]。",
+            {
+              "if": "cfg:machines.reactor.balance<0",
+              "text": "它产出的 MRU 平衡值一直在变，每刻变 0.01，从代表{balance:frozen}的 0 升到代表{balance:chaos}的 2 再降回来，一个来回 20 秒。平衡值是每份 MRU 都带着的属性，取值 0~2，见[[start/glossary]]。"
+            },
+            {
+              "if": "cfg:machines.reactor.balance>=0",
+              "text": "它产出的 MRU 平衡值固定为 {cfg:machines.reactor.balance}。平衡值是每份 MRU 都带着的属性，取值 0~2，见[[start/glossary]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "平衡值",
+          "text": "辐射仓做矩阵投影这类对平衡值有要求的配方时，最好别直接接反应堆的 MRU。它的平衡值一直在变，做出来的未必是你想要的，还可能做到一半换了配方，只能从头再来。",
+          "if": "cfg:machines.reactor.balance<0"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "配线圈",
+          "text": "反应堆很适合给[[tesla/mru_coil]]供能，线圈只在打中目标时消耗 MRU，没有怪的时候，反应堆会把它慢慢充满。"
+        },
+        {
+          "type": "h",
+          "text": "靠近的怪会挨电",
+          "if": "cfg:machines.reactor.damage_mobs"
+        },
+        {
+          "type": "list",
+          "items": [
+            "核心周围 3 格以内，也就是以它为中心 7×7×7 范围里的<em>敌对生物</em>，每 {cfg:machines.reactor.damage_interval|sec}挨一下 {cfg:machines.reactor.damage} 点电，无视护甲，一次最多电 {cfg:machines.reactor.max_targets} 只。",
+            "被它电死的怪什么都不掉，也不给经验，只有怪从地上捡走的东西照样会掉。",
+            "玩家、动物、村民、宠物、起了名字或拴着绳的生物，以及凋灵、末影龙等 Boss，它都不会电。"
+          ],
+          "if": "cfg:machines.reactor.damage_mobs"
+        },
+        {
+          "type": "p",
+          "text": "所以它当不了刷怪塔的收割机，倒能顺手清掉闯进基地的怪。",
+          "if": "cfg:machines.reactor.damage_mobs"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "这一章到此结束，想看看还有哪些支线没走，可以回到[[logistics/after_main_line]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书说，靠它能造出「无限的 MRU 能源」，又提醒它「非常危险」，要放得尽可能远。那时它连玩家和牲口一起电，电死的怪倒是照常掉东西。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/reactor/reactor.json — JNJ/GMG/PPP：魔力矩阵投影 ×2、#forge:nether_stars、共鸣水晶 ×2、磁体、#essentialcraft5:plates/magic ×3",
+        "data/essentialcraft5/recipes/reactor/reactor_support.json — MGM/PCP/PEP → 2：磁体 ×2、共鸣水晶、plates/magic ×4、cores/magic、魔力纯化末影鳞片合金",
+        "src/generated/.../tags/items/plates/magic.json — 魔力 / 淡青 / 米斯莱 / 恶魔板都算 plates/magic；registry/ECReactor.java:84 — 地基规则只认魔力护板；L93 REACTOR_STRUCTURE：PPPPP×3 / ASRSA / ASASA（核心两侧紧挨支架、核心正上方空），L106 两个轴都试",
+        "blockentity/ReactorBlockEntity.java:162 serverTick — 成形时每刻 + mru_generated，不看红石；max_mru；balance < 0 时 L298 stepBalance 每刻 ±0.01（BALANCE_STEPS 200，一个来回 400 刻），否则固定成配置值",
+        "blockentity/ReactorBlockEntity.java:333 zap — 每 damage_interval 刻，AABB 外扩 RANGE 3（L112），最多 max_targets；L357 canDamage：Enemy、非玩家、非 isSpared、非 #forge:bosses",
+        "data/essentialcraft5/tags/damage_type/no_death_loot.json — mru_discharge 打死的不掉物品和经验",
+        "block/ReactorBlock.java:61 — 主手空手右键在动作栏写状态；ReactorBlockEntity.java:265 statusMessage 成形写存量，否则写第一个不对的格子",
+        "registry/ECReactor.java:63 — 支架 multipart：相邻核心成形时加电栏；blockentity/ReactorBlockEntity.java:153 没有物品栏和界面（createMenu 返回 null）",
+        "src/generated/.../tags/items/cores/magic.json — 支架配方的 C 格 #essentialcraft5:cores/magic：元素核心、淡青元素核心、恶魔核心",
+        "原作 lang essentialcraft.page.reactor_0 / reactor_8 — \"an infinite source of MRU\"、\"pretty dangerous ... as far away as you can\"；原作 TileMRUReactor L150~153 对 7³ 内所有 EntityLivingBase 打 5 点"
+      ]
+    }
+  ]
+}

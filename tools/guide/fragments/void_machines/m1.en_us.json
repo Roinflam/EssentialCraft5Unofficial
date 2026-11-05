@@ -1,0 +1,146 @@
+[
+  {
+    "id": "magical_builder",
+    "title": "Magical Building Wand",
+    "icon": "essentialcraft5:magical_builder_fill",
+    "summary": "Fill, clear or swap a whole area at once",
+    "complete": "essentialcraft5:guide/void_machines/magical_builder",
+    "optional": true,
+    "items": [
+      "essentialcraft5:magical_builder_fill",
+      "essentialcraft5:magical_builder_clear",
+      "essentialcraft5:magical_builder_clear_matching",
+      "essentialcraft5:magical_builder_clear_others",
+      "essentialcraft5:magical_builder_replace_all"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: craft a Magical Building Wand, mark out an area and fill it, clear it or swap every block in it for another in one go. It runs on MRU, finishes an area in a few seconds and puts whatever it breaks straight into your inventory."
+      },
+      {
+        "type": "recipe",
+        "recipe": "essentialcraft5:builder/magical_builder"
+      },
+      {
+        "type": "p",
+        "text": "<em>You need</em>: Void Plating and Void Cores come back from Hoanna ([[hoanna/void_plating]], [[hoanna/relics]]); the {item:essentialcraft5:world_interactor} is made on the Magician Table ([[crafting/magician_crafts]]); see [[logistics/filters]] for the Whitelist Filter and [[gear/magical_digger]] for the Magical Digger. It comes out in Fill mode."
+      },
+      {
+        "type": "h",
+        "text": "How to use it"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Holding the wand, right-click a block to set the first corner, then right-click another block to set the second. The box between them is the selection; while the wand is in your main hand it is outlined in magenta.",
+          "Sneak + right-click a block to <hl>select</hl> it: Fill and Replace All place it, and Remove Selected and Remove All But Selected compare against it.",
+          "Carry the selected block's item in your inventory and right-click the air to start. The wand works through the area block by block; keep holding it and stay close while it works.",
+          "Sneak + right-click the air to stop. If nothing is running, this clears both corners instead (the selected block stays)."
+        ]
+      },
+      {
+        "type": "h",
+        "text": "Five modes"
+      },
+      {
+        "type": "table",
+        "header": [
+          "Mode",
+          "What it does",
+          "MRU per block"
+        ],
+        "widths": [
+          3,
+          6,
+          2
+        ],
+        "rows": [
+          [
+            "Fill",
+            "Places the selected block into empty air only",
+            "<t>25</t>"
+          ],
+          [
+            "Remove All",
+            "Breaks every block in the area; no selected block needed",
+            "<t>250</t>"
+          ],
+          [
+            "Remove Selected",
+            "Breaks only blocks of the selected kind",
+            "<t>250</t>"
+          ],
+          [
+            "Remove All But Selected",
+            "Breaks everything except the selected kind",
+            "<t>250</t>"
+          ],
+          [
+            "Replace All",
+            "Places the selected block into air, water and lava, swaps every other block for it, leaves ones that already match",
+            "place <t>25</t>, swap <t>300</t>"
+          ]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "Switching modes",
+        "text": "Put the wand alone in a crafting grid to switch to the next mode: Fill → Remove All → Remove Selected → Remove All But Selected → Replace All → Fill. Stored MRU, both corners and the selected block are kept."
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "Largest area",
+            "{cfg:general.builder.max_volume} blocks"
+          ],
+          [
+            "Corners at most",
+            "{cfg:general.builder.max_point_distance} blocks apart"
+          ],
+          [
+            "To start, stay within",
+            "{cfg:general.builder.max_reach} blocks of the area"
+          ],
+          [
+            "Speed",
+            "up to {cfg:general.builder.cells_per_tick} blocks per tick"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "The wand holds 5000 MRU of its own and comes out empty. It draws from storage items you carry first ([[storage/soul_storage]]) and only then from itself; charge the wand in the [[storage/charging_chamber]]. You only pay for <em>blocks it actually changes</em>: air and skipped blocks cost nothing."
+      },
+      {
+        "type": "list",
+        "items": [
+          "Blocks are placed facing you (stairs face you), slabs go in as bottom halves, candles and sea pickles as one, and crops start freshly planted.",
+          "If the new block can't stay in a spot (e.g. a flower on stone, kelp out of water) or someone is standing in the way, that spot is left untouched and costs nothing; Replace All won't break the old block first either. The chat message at the end says how many spots were skipped.",
+          "It only uses items that are not renamed and hold nothing; it stops when they run out or MRU runs short, and keeps what is done.",
+          "Broken blocks go into your inventory; what doesn't fit drops at your feet. Doors, tall flowers and extended pistons come off whole and still go into your inventory. Removing works from the top layer down, so sand and gravel don't fall.",
+          "It stops if you change what's in your hand, walk more than {cfg:general.builder.max_reach} blocks away or change dimension. One area per player at a time.",
+          "In Creative mode it costs no MRU or materials and gives nothing back."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "Blocks you can't change (someone else's claim, bedrock, barriers) are left alone and cost nothing; once 256 blocks have been refused the wand stops, so keep the selection out of other people's claims. Chests, furnaces, machines and other blocks holding contents, as well as water and lava, are skipped when removing. Doors, beds, tall flowers and blocks holding contents can't be selected. If Replace All may break a block but not place there, the spot is left as air and costs 250."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "With the wand in your main hand you see a magenta selection box; right-clicking the air starts the work, and chat reports how many blocks were changed."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "The original research book subtitled it with a single line of code: world.edit();. Its first page warned that the wand has nearly unlimited power, and with great power comes great responsibility."
+      }
+    ]
+  }
+]

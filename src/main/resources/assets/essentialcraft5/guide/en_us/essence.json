@@ -1,0 +1,634 @@
+{
+  "id": "essence",
+  "order": 70,
+  "group": "main",
+  "title": "Chapter 9 · Essences and Focuses",
+  "subtitle": "What a grown crystal is worth",
+  "icon": "essentialcraft5:crystal_extractor",
+  "entries": [
+    {
+      "id": "crystal_extractor",
+      "title": "{item:essentialcraft5:crystal_extractor}",
+      "icon": "essentialcraft5:crystal_extractor",
+      "summary": "Essences from a grown crystal",
+      "complete": "essentialcraft5:guide/essence/crystal_extractor",
+      "items": [
+        "essentialcraft5:crystal_extractor"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "When the old crystals shattered they shed a fine dust, and that dust was essence. We cannot spare our crystals, so we learned to draw it from them a little at a time.",
+          "by": "Fragments of Essence, Book III"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: place a {item:essentialcraft5:crystal_extractor} next to a grown {item:essentialcraft5:elemental_crystal} and use MRU to pull elemental essences out of it. The crystal isn't used up, so you can keep extracting for as long as you like."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "What this chapter takes",
+          "text": "One extraction round costs 100,000 MRU. With a fully grown crystal, an element at 3 points yields enough essence for about one focus of that element per round on average. At 2 points it takes about two rounds per focus, and at only 1 point five or six. So start early: grow several crystals, extract from the ones with the best elements, and use the [[essence/crystal_controller]] to push the element you want while a crystal is still growing."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Further along the main line you'll need 4 {item:essentialcraft5:air_focus} for the Wind Tablet that opens the Gate to Hoanna and 4 {item:essentialcraft5:fire_focus} for the Demonic Pentacle, so it pays to breed extra air and fire early."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: {item:essentialcraft5:combined_magical_alloys}, 2 Crystal Dust, 2 MRU Conversion Matrices, 2 Obsidian Plates, 1 Magical Screen and 1 Elemental Core, or a Pale Elemental Core in its place. It uses {cfg:machines.crystal_extractor.mru_usage} MRU per tick, far more than one Heat Generator can supply, so draw from an Enrichment Chamber."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_extractor"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the extractor <em>right next to the crystal, at the same height</em>, on its north, south, east or west side.",
+            "Put in a Bound Gem that's bound to an MRU source.",
+            "It only starts when all 12 output slots are <em>empty</em>. It then uses {cfg:machines.crystal_extractor.mru_usage} MRU per tick, and a round takes {cfg:machines.crystal_extractor.required_ticks} ticks ({cfg:machines.crystal_extractor.required_ticks|sec}).",
+            "At the end of a round each of the 12 slots rolls once and keeps what it gets. The next round only starts once they're emptied, so put a hopper underneath to keep it going."
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": "essentialcraft5:elemental_crystal",
+            "X": "essentialcraft5:crystal_extractor"
+          },
+          "anchor": "X",
+          "pattern": [
+            "XC"
+          ],
+          "caption": "The extractor sits right against the crystal, on any of its four sides, at the same height."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Essences show up in the extractor's output slots. Hovering over the progress arrow also shows its status and the neighboring crystal's values."
+        },
+        {
+          "type": "h",
+          "text": "What you get"
+        },
+        {
+          "type": "p",
+          "text": "Each slot first picks one of 16 essences (4 elements × 4 rarities) at random, all equally likely, then rolls a chance based on that essence's element."
+        },
+        {
+          "type": "formula",
+          "text": "Chance (%) = crystal size × that element's value × factor"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Rarity",
+            "Factor",
+            "Size 100, element 3",
+            "Size 100, element 50"
+          ],
+          "rows": [
+            [
+              "Common",
+              "0.08",
+              "24%",
+              "400%"
+            ],
+            [
+              "Uncommon",
+              "0.06",
+              "18%",
+              "300%"
+            ],
+            [
+              "Rare",
+              "0.04",
+              "12%",
+              "200%"
+            ],
+            [
+              "Exceptional",
+              "0.02",
+              "6%",
+              "100%"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "On a hit, the amount is random between 1 and chance ÷ 4, up to 64 per slot. The chance can go past 100%, so a size 100 crystal with 50 fire gives a whole handful whenever a slot picks common Fire Essence."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Before setting up an extractor, check the crystal's four elements in its tooltip. An element at 0 never yields its essence, and a <em>freshly formed crystal</em> (size 1, all elements 0) yields nothing at all."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Several extractors can surround one crystal, each working on its own. An extractor next to several crystals uses the first one in the order north, south, west, east.",
+            "A crystal that's still growing can be extracted too, at its smaller size and with lower chances.",
+            "A redstone signal stops it. Progress is kept, even when you leave the world."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book says the simplest devices can give MRU an element with a plain Elemental Core, while more advanced ones need something more specific, the elemental focus. That need is what sent the book looking for the old crystals and their essence in the first place."
+        }
+      ]
+    },
+    {
+      "id": "essences",
+      "title": "Essences",
+      "icon": "essentialcraft5:common_fire_essence",
+      "summary": "Four elements, four rarities",
+      "complete": "essentialcraft5:guide/essence/essences",
+      "items": [
+        "essentialcraft5:common_fire_essence",
+        "essentialcraft5:common_water_essence",
+        "essentialcraft5:common_earth_essence",
+        "essentialcraft5:common_air_essence",
+        "essentialcraft5:uncommon_fire_essence",
+        "essentialcraft5:uncommon_water_essence",
+        "essentialcraft5:uncommon_earth_essence",
+        "essentialcraft5:uncommon_air_essence",
+        "essentialcraft5:rare_fire_essence",
+        "essentialcraft5:rare_water_essence",
+        "essentialcraft5:rare_earth_essence",
+        "essentialcraft5:rare_air_essence",
+        "essentialcraft5:exceptional_fire_essence",
+        "essentialcraft5:exceptional_water_essence",
+        "essentialcraft5:exceptional_earth_essence",
+        "essentialcraft5:exceptional_air_essence"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: take your first essence out of the extractor and learn to read its element and rarity."
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:common_fire_essence",
+            "essentialcraft5:common_water_essence",
+            "essentialcraft5:common_earth_essence",
+            "essentialcraft5:common_air_essence"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The extractor gives essences of the four elements: {item:essentialcraft5:common_fire_essence}, {item:essentialcraft5:common_water_essence}, {item:essentialcraft5:common_earth_essence} and {item:essentialcraft5:common_air_essence}. Elemental fuels and focuses are made from them, and they can also be fed to a Crystal Controller."
+        },
+        {
+          "type": "p",
+          "text": "Each essence comes in four rarities that share one name. Tell them apart by the color of the name and the \"Rarity\" line in the tooltip. Common is white, Uncommon yellow, Rare aqua and Exceptional purple. Essences stack to 64."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Rarity",
+            "Extractor factor",
+            "Fuel from 4",
+            "Controller chance per tick",
+            "Each one adds"
+          ],
+          "rows": [
+            [
+              "Common",
+              "0.08",
+              "1",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|pct}",
+              "0 to 1"
+            ],
+            [
+              "Uncommon",
+              "0.06",
+              "4",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|mul:2|pct}",
+              "0 to 3"
+            ],
+            [
+              "Rare",
+              "0.04",
+              "8",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|mul:3|pct}",
+              "0 to 5"
+            ],
+            [
+              "Exceptional",
+              "0.02",
+              "16",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|mul:4|pct}",
+              "0 to 7"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Higher rarities are harder to roll but worth much more. A set of 4 Exceptional essences makes 16 fuel, as much as 64 Common ones."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold any essence."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Don't mix them up",
+          "text": "{item:essentialcraft5:magical_essence} is a material made from Redstone and Blaze Powder in the Radiating Chamber ([[alloys/magical_essence]]). It has nothing to do with crystals and is not an elemental essence."
+        }
+      ]
+    },
+    {
+      "id": "fuel_and_focus",
+      "title": "Fuel and Focuses",
+      "icon": "essentialcraft5:fire_focus",
+      "summary": "Essences, condensed",
+      "complete": "essentialcraft5:guide/essence/focus",
+      "items": [
+        "essentialcraft5:fire_elemental_fuel",
+        "essentialcraft5:water_elemental_fuel",
+        "essentialcraft5:earth_elemental_fuel",
+        "essentialcraft5:air_elemental_fuel",
+        "essentialcraft5:fire_focus",
+        "essentialcraft5:water_focus",
+        "essentialcraft5:earth_focus",
+        "essentialcraft5:air_focus"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: turn essences into elemental fuel such as {item:essentialcraft5:fire_elemental_fuel}, then turn the fuel into a focus such as the {item:essentialcraft5:fire_focus}. Most of the devices the forebears carried had a focus at their core. The charms, staffs and several other devices to come are built around one too."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 4 essences of the same element and rarity. A focus also takes 4 Gold Ingots, or Pale Ingots in their place, and 4 Iron Ingots."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_elemental_fuel",
+            "essentialcraft5:water_elemental_fuel",
+            "essentialcraft5:earth_elemental_fuel",
+            "essentialcraft5:air_elemental_fuel"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Lay the 4 essences out as a plus in a crafting grid and fill the middle by element: coal or charcoal for fire, a snowball for water, wheat seeds for earth, and nothing for air.",
+            "Common essences make 1 fuel, Uncommon 4, Rare 8 and Exceptional 16. Fuel stacks to 16.",
+            "Put the fuel in the middle, gold in the corners and iron on the sides, and you get the focus of that element. Focuses don't stack."
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_focus",
+            "essentialcraft5:water_focus",
+            "essentialcraft5:earth_focus",
+            "essentialcraft5:air_focus"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold any focus."
+        },
+        {
+          "type": "h",
+          "text": "How many focuses you'll need"
+        },
+        {
+          "type": "list",
+          "items": [
+            "This chapter's optional [[essence/magical_lantern]] takes 2 fire and 2 air.",
+            "The side paths' charms, Magical Wings, staffs and shields take 1 to 4 each; see [[charms/charms]], [[charms/magical_wings]], [[staffs/magmatic_staff]] and others.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "The [[wind/wind_tablet]] that opens the Gate to Hoanna takes 4 {item:essentialcraft5:air_focus}es, and the [[demons/demonic_pentacle]] takes 4 {item:essentialcraft5:fire_focus}es."
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "Once you've been to Hoanna, every sword forged in the [[void_machines/ember_forge]] uses up a full 4 focuses."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Stretch your essences",
+          "text": "A focus costs one fuel, so count in fuel: 4 Uncommon essences make 4 fuel, enough for 4 focuses, while 4 Common essences make just 1. Before feeding Uncommon or better essences to a crystal, check whether you have the focuses you need."
+        }
+      ]
+    },
+    {
+      "id": "crystal_controller",
+      "title": "{item:essentialcraft5:crystal_controller}",
+      "icon": "essentialcraft5:crystal_controller",
+      "summary": "Steering a growing crystal",
+      "complete": "essentialcraft5:guide/essence/bred_crystal",
+      "items": [
+        "essentialcraft5:crystal_controller"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: while a crystal is <em>still growing</em>, use a {item:essentialcraft5:crystal_controller} to feed it essences and push one element to {cfg:machines.crystal_controller.bred_threshold} or more. The higher the element, the more of that essence the extractor gets. Whenever a grown crystal's roll lands on that essence, at 3 points it only pays out about 24% of the time and gives about 3 when it does. From 13 points it pays out every time, and at 20 points it gives about 20 at once."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 2 Crystal Dust, a Magical Screen, an MRU Collecting Device, 1 Magical Plate, 2 {item:essentialcraft5:magic_fortified_plating}, an MRU Conversion Matrix and an Elemental Core. Have a freshly placed, still-growing crystal and some essences ready as well."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_controller"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "As soon as a new crystal goes down, put the controller right next to it at the same height.",
+            "Hook up MRU and put the essence of the element you want to raise in the slot on the right.",
+            "While it holds at least {cfg:machines.crystal_controller.mru_usage|mul:10} MRU, each tick it has a chance to eat 1 essence and {cfg:machines.crystal_controller.mru_usage|mul:10} MRU and add a few points to the matching element of the crystal. The chances and points are in the table on [[essence/essences]].",
+            "Keep an eye on the element readings on the screen and feed until the element reaches {cfg:machines.crystal_controller.bred_threshold}."
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": "essentialcraft5:elemental_crystal",
+            "K": "essentialcraft5:crystal_controller"
+          },
+          "anchor": "K",
+          "pattern": [
+            "KC"
+          ],
+          "caption": "The controller sits right against the crystal, on any of its four sides, at the same height."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "After a feed, once the element that was fed is at {cfg:machines.crystal_controller.bred_threshold} or more, everyone within 16 blocks of the controller gets this step checked off."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<em>Only a growing crystal can be changed.</em> Once it reaches size 100 its elements are fixed and the controller stops, so have the essences ready as soon as the crystal goes down. A crystal takes about 41 minutes to grow. In that time Common essences raise one element by about 25, eating around 50 of them plus about 50,000 MRU, and Exceptional ones can max it out."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Getting started",
+          "text": "The controller needs essences, and essences come from a crystal that already has elements. Let your first crystal grow on its own, extract some essences, and feed them to a second, freshly planted crystal. Once that element is pushed up, far more of that essence comes out, and you feed it to a third. Two or three generations get you to {cfg:machines.crystal_controller.bred_threshold}."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Controllers can sit on all four sides of one crystal, and several feeding the same element work much faster. Once it's grown, swap one of them for a [[essence/crystal_extractor]].",
+            "Once an element is at 100, the controller stops taking that essence.",
+            "Next to a growing crystal the controller also uses a little MRU now and then, with a {cfg:machines.crystal_controller.use_mru_chance|pct} chance each tick to spend {cfg:machines.crystal_controller.mru_usage} MRU. With no crystal beside it, or only a fully grown one, it uses nothing.",
+            "A redstone signal stops it.",
+            "Only the element being fed counts toward the check mark. Whatever the other elements reach on their own doesn't."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Next",
+          "text": "That's all the required steps in this chapter. The main line continues in Sunlight with [[solar/sun_imbued_glass]]. If you're short of one element's essence, the next page, [[essence/elemental_decomposer]], turns junk into it. For a light you can carry, see [[essence/magical_lantern]]."
+        }
+      ]
+    },
+    {
+      "id": "elemental_decomposer",
+      "title": "{item:essentialcraft5:elemental_decomposer}",
+      "icon": "essentialcraft5:elemental_decomposer",
+      "summary": "Break junk down into element essences",
+      "complete": "essentialcraft5:guide/essence/elemental_decomposer",
+      "optional": true,
+      "items": [
+        "essentialcraft5:elemental_decomposer"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make an {item:essentialcraft5:elemental_decomposer} and feed it the junk you pile up, like cobblestone, rotten flesh and feathers, to get essence of the element you want."
+        },
+        {
+          "type": "p",
+          "text": "When MRU fell it went into rock and living things alike, and even common stone, bone and feathers kept a trace of the elements. The decomposer doesn't make much, but you pick the element. When you want the [[essence/crystal_controller]] to push one element of a crystal higher and you're short of that essence, this is how to stock up on it."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: four {item:essentialcraft5:pale_plate}, one each of {item:essentialcraft5:fire_focus}, {item:essentialcraft5:water_focus}, {item:essentialcraft5:earth_focus} and {item:essentialcraft5:air_focus}, and one {item:essentialcraft5:fortified_frame}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:elemental_decomposer"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a {item:essentialcraft5:bound_gem} linked to an MRU source in the gem slot.",
+            "Put the junk in the 3×3 input slots on the left; hoppers and pipes can fill them too. It only takes things from the four groups in the table below, and nothing else fits.",
+            "It takes one item at a time, pays some MRU and adds 1 point to that item's element. The screen shows how many points each element has.",
+            "When an element has enough points it makes one essence of that element and puts it in the matching slot on the right. Each row there is one element, with common essence in the left column and uncommon in the right.",
+            {
+              "if": "cfg:machines.elemental_decomposer.uncommon_every>0",
+              "text": "For each element, the last of every {cfg:machines.elemental_decomposer.uncommon_every} essences comes out uncommon."
+            }
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Time per item",
+              "{cfg:machines.elemental_decomposer.ticks_per_item|sec}"
+            ],
+            [
+              "MRU per item",
+              "{cfg:machines.elemental_decomposer.mru_per_item}"
+            ],
+            [
+              "Items per essence",
+              "{cfg:machines.elemental_decomposer.points_per_essence}"
+            ],
+            {
+              "if": "cfg:machines.elemental_decomposer.uncommon_every>0",
+              "cells": [
+                "One uncommon every",
+                "{cfg:machines.elemental_decomposer.uncommon_every} essences"
+              ]
+            },
+            [
+              "MRU capacity",
+              "{cfg:machines.elemental_decomposer.max_mru}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Element",
+            "What it takes (examples)"
+          ],
+          "rows": [
+            [
+              "Fire",
+              "{item:minecraft:netherrack}, {item:minecraft:blackstone}, {item:minecraft:basalt}, {item:minecraft:soul_sand}, {item:minecraft:magma_block}, {item:minecraft:gunpowder}"
+            ],
+            [
+              "Water",
+              "{item:minecraft:kelp}, {item:minecraft:seagrass}, {item:minecraft:lily_pad}, {item:minecraft:ink_sac}, {item:minecraft:snowball}, {item:minecraft:clay_ball}"
+            ],
+            [
+              "Earth",
+              "{item:minecraft:cobblestone}, {item:minecraft:dirt}, {item:minecraft:sand}, {item:minecraft:gravel}, {item:minecraft:flint}, {item:minecraft:bone}, {item:minecraft:rotten_flesh}"
+            ],
+            [
+              "Air",
+              "{item:minecraft:feather}, {item:minecraft:string}, {item:minecraft:stick}, {item:minecraft:wheat_seeds}, {item:minecraft:grass}, {item:minecraft:vine}, plus all leaves and saplings"
+            ]
+          ],
+          "widths": [
+            1,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "if": "mod:jei",
+          "text": "The full list is in the Elemental Decomposer category in JEI, one page per element."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.elemental_decomposer.ticks_per_item==10",
+            "cfg:machines.elemental_decomposer.points_per_essence==32"
+          ],
+          "text": "With enough MRU, one decomposer eats 7200 items an hour and makes about 225 essences, so a chest of 1728 cobblestone comes to about 54 {item:essentialcraft5:common_earth_essence}."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have a decomposer. Put in a stack of cobblestone and give it MRU, and the Earth points on its screen start climbing."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "If either the common or the uncommon slot of an element is full, it stops taking items of that element while the others carry on, so keep the slots on the right emptied with a hopper."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The points it has saved up are stored in the machine and are lost if you break it.",
+            "An item that belongs to several groups counts for the first of fire, water, earth and air.",
+            "Fed to a crystal controller, uncommon essence is twice as likely as common essence to be taken each tick, and each one adds more points ([[essence/essences]]).",
+            "Hoppers and pipes can only put items into the input slots and pull from the essence slots.",
+            "A redstone signal pauses it.",
+            {
+              "if": "cfg:machines.elemental_decomposer.generate_corruption",
+              "text": "While working it leaks 0–{cfg:machines.elemental_decomposer.max_corruption_gen} MRU per second into its surroundings ([[crafting/corruption]])."
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/decomposer/elemental_decomposer.json — PFP/AXW/PEP：淡青板 ×4、火 / 风 / 水 / 地之焦点各 1、魔力强化框架",
+        "menu/ElementalDecomposerMenu.java — 输入 3×3 在左边；精华格两列（x 134 普通、152 罕见）× 四行（火、水、地、风）；宝石格 (112,5)，在状态字右边",
+        "blockentity/ElementalDecomposerBlockEntity.java:60-79 Config — max_mru 10000、ticks_per_item 10、mru_per_item 30、points_per_essence 32、uncommon_every 16（0 = 不出罕见）、generate_corruption、max_corruption_gen 1",
+        "blockentity/ElementalDecomposerBlockEntity.java:291 processOne — 从输入格往后找第一件元素已定、且这种元素两个精华格都有空的；MRU 够才拿 1 件；:333 addPoint 点数到 points_per_essence 出 1 颗，第 uncommon_every 的倍数颗出罕见（:247 isUncommon）",
+        "blockentity/ElementalDecomposerBlockEntity.java:185 elementOf — 按火 → 水 → 地 → 风取第一个标签；点数、计数存方块实体 NBT，拆了就没了（掉落物不带 NBT）",
+        "tools/tags/ecdecomposer.json — 四个标签的默认内容（表里只列一部分）；风含 #minecraft:leaves、#minecraft:saplings",
+        "估算（ticks_per_item 10、points_per_essence 32 时）：72000 / 10 = 7200 件 / 小时，/ 32 = 225 颗；1728 / 32 = 54",
+        "blockentity/CrystalControllerBlockEntity.java — 喂精华的几率 = mutation_chance_modifier × (稀有度 + 1)，罕见（1）是普通（0）的 2 倍",
+        "blockentity/ElementalDecomposerBlockEntity.java:276 — WORKING 时每 LEAK_INTERVAL = 20 刻泄漏 0～max_corruption_gen；红石 → PAUSED"
+      ]
+    },
+    {
+      "id": "magical_lantern",
+      "title": "{item:essentialcraft5:magical_lantern}",
+      "icon": "essentialcraft5:magical_lantern",
+      "summary": "Light wherever you go",
+      "complete": "essentialcraft5:guide/essence/magical_lantern",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_lantern"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:magical_lantern}. Held in hand it lights the ground at your feet, and it can also place permanent invisible lights on walls and floors. It is the lamp the forebears carried when they walked at night."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 2 Fiery Focuses and 2 Windy Focuses, 1 {item:essentialcraft5:red_soul_matter}, 2 Magical Plates and 2 {item:essentialcraft5:magical_slag}. The slag is what a [[generators/heat_generator]] leaves behind, 1 for each fuel it burns."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_lantern"
+        },
+        {
+          "type": "p",
+          "text": "The lantern holds 5,000 MRU of its own and comes out empty. Charge it in a [[storage/charging_chamber]]."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Held</em> in the main hand or off hand, it lights up the spot at your feet when that block is air and darker than light level 12, and the light goes out about a second after you leave. No MRU is used. Walking, you get a light every few blocks; it stays off where it's already bright and while you glide with an Elytra.",
+            "<em>Right-click a block face</em> with air in front of it to spend 1 Magical Slag and 100 MRU and place a permanent {block:essentialcraft5:magic_light} there. Looking down and right-clicking the floor under you works too.",
+            "The MRU comes first from any soul storage you carry ([[storage/soul_storage]]), then from the lantern itself. In Creative mode nothing is used."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold a Magical Lantern."
+        },
+        {
+          "type": "h",
+          "text": "Magic Light"
+        },
+        {
+          "type": "p",
+          "text": "A Magic Light has light level 15. It is invisible and has no collision, so you can walk right through it. Wearing something that lets you see MRU, such as the [[gear/magic_monocle]], shows magenta sparks around it. To remove one, hit the small space at its very center; it drops nothing."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,437 @@
+{
+  "id": "enrichment",
+  "order": 63,
+  "group": "main",
+  "title": "Chapter 7 · Enrichment Chamber",
+  "subtitle": "Bank MRU by the hundred thousand",
+  "icon": "essentialcraft5:ec_controller",
+  "entries": [
+    {
+      "id": "controller",
+      "title": "Controller and Shell",
+      "icon": "essentialcraft5:ec_controller",
+      "summary": "The frame of a chamber",
+      "complete": "essentialcraft5:guide/enrichment/controller",
+      "items": [
+        "essentialcraft5:ec_controller"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "In this cage is a knot of radiance that is still growing. Light no furnace near it. If it fills the cage, build a larger cage around this one. Do not let it out.",
+          "by": "Cage inscription, an ancient ruin"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build an Enrichment Chamber from an {item:essentialcraft5:ec_controller} and shell blocks. It works like one big battery and holds hundreds of thousands of MRU."
+        },
+        {
+          "type": "p",
+          "text": "From outside, an Enrichment Chamber is just a box sealed on all six sides, with no sign of how much MRU it holds. Machines only hold a few thousand MRU each. Wire a generator straight into a hungry machine, such as next chapter's {item:essentialcraft5:crystal_former} at 100 MRU a tick, and it keeps stopping and starting. Put a chamber in between and the MRU banks up there first, then flows out steadily."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "What this chapter takes",
+          "text": "The main line here takes about 90 Iron Ingots, most of which become Magical Ingots and plates, and about 7,000 points of Magician Table progress ({cfg:machines.magician_table.mru_usage_modifier|mul:7000|int} MRU). With Combined Magical Alloys installed that is a minute or two. Magical Fortified Stone and Glass are all the shell needs, so you don't need plating."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Shell only",
+              "{cfg:machines.enrichment_chamber.max_mru} MRU"
+            ],
+            [
+              "Each Holding Block",
+              "Another {cfg:machines.enrichment_chamber.mru_per_storage} MRU"
+            ],
+            [
+              "Each shell edge",
+              "{cfg:machines.enrichment_chamber.min_size} to {cfg:machines.enrichment_chamber.max_size} blocks"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: for the controller, 1 {item:essentialcraft5:magic_plate}, 1 {item:essentialcraft5:elemental_core}, 1 {item:essentialcraft5:mru_conversion_matrix}, 1 {item:essentialcraft5:world_interactor}, 2 {item:essentialcraft5:fortified_frame} and 3 {item:essentialcraft5:matrix_link}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ec_controller"
+        },
+        {
+          "type": "h",
+          "text": "Example: the Smallest Chamber ({cfg:machines.enrichment_chamber.min_size}×{cfg:machines.enrichment_chamber.min_size}×{cfg:machines.enrichment_chamber.min_size})",
+          "if": "cfg:machines.enrichment_chamber.min_size==3"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "S": "essentialcraft5:fortified_stone",
+            "G": "essentialcraft5:fortified_glass",
+            "C": "essentialcraft5:ec_controller",
+            "A": "essentialcraft5:ec_acceptor",
+            "E": "essentialcraft5:ec_ejector",
+            "H": "essentialcraft5:ec_holding_chamber"
+          },
+          "anchor": "C",
+          "layers": [
+            {
+              "pattern": [
+                "SSS",
+                "SSS",
+                "SSS"
+              ]
+            },
+            {
+              "pattern": [
+                "SCS",
+                "A E",
+                "SSS"
+              ],
+              "label": "the middle block is the inside"
+            },
+            {
+              "pattern": [
+                "GGG",
+                "GHG",
+                "GGG"
+              ]
+            }
+          ],
+          "caption": "Three layers from bottom to top, 26 shell blocks, with the controller in the north wall, the Acceptor and Ejector in the west and east walls and the Holding Block on top",
+          "if": "cfg:machines.enrichment_chamber.min_size==3"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Build a hollow box whose six faces are made entirely of shell blocks. The list below says which blocks count.",
+            "Set the controller into a <em>side wall</em>, where it takes the place of one shell block.",
+            "The Acceptor, Ejector and Holding Blocks each take the place of one shell block too, on any face. The next two pages cover them.",
+            "Right-click the controller and chat reports the result: the size, the number of Holding Blocks and the stored MRU, or where the shell has a gap."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Right-click the controller and chat says \"Enrichment Chamber formed\". The moment the chamber forms, players within 16 blocks get this step checked off as well."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Is the stored MRU dangerous?",
+          "text": "The MRU a chamber stores sits in the controller. It is not an MRUCU and never hurts anyone, however much there is. Watch out instead for a separate MRUCU floating inside the shell, grown by a leaky machine locked in the chamber or moved in by you. Past 10,000 it still hurts anyone within 12 blocks, and the shell only blocks part of that. The [[pentacle/ec_balancer]] from Chapter 12 stops it completely."
+        },
+        {
+          "type": "h",
+          "text": "What counts as shell"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:fortified_stone} and {item:essentialcraft5:fortified_glass}",
+            "Plating, meaning {item:essentialcraft5:magic_plating}, {item:essentialcraft5:pale_plating} and {item:essentialcraft5:mithriline_plating}, the first two made as shown in [[alloys/plating]]",
+            "The chamber's own parts, meaning the controller, Acceptor, Ejector, Holding Block, State Checker and Redstone Controller, and the {item:essentialcraft5:ec_balancer}",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "{item:essentialcraft5:void_stone} and {item:essentialcraft5:void_glass} from [[hoanna/void_stone]], and {item:essentialcraft5:demonic_plating} from [[demons/demonic_plating]]"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Pitfalls"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>One controller per chamber</em>, and the shells of two chambers mustn't touch.",
+            "The inside can be empty or hold anything <em>except shell blocks</em>. A shell block inside can make the scan see a smaller chamber, and any part left outside that smaller box stops working.",
+            "A side wall is the safest place for the controller. If the controller's face merges with shell blocks outside it, for instance a controller in the floor with the floor flush with a big slab of Magical Fortified Stone, the chamber's edges can't be found. A chamber simply standing on a Magical Fortified Stone floor is fine.",
+            "<em>Break the controller and the MRU inside is gone</em>, so drain it elsewhere through an Ejector before you move."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The shell is rechecked on its own every {cfg:machines.enrichment_chamber.recheck_interval|sec}, and about a second after a shell block nearby is placed or broken.",
+            "While the shell is incomplete every part stops. The MRU stays in the controller, and everything resumes once the shell is fixed.",
+            "If part of the chamber is in an unloaded chunk, the last check result stands.",
+            "Set an [[pentacle/ec_balancer]] into the shell and any MRUCU floating inside is stabilized and stops hurting people, so leaky machines can safely be locked inside the chamber.",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "text": "From Chapter 12, a chamber can also condense the MRUCU shut inside it into a {item:essentialcraft5:condensed_matrix} ([[pentacle/condensed]])."
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.shade.enabled"
+              ],
+              "text": "From Chapter 22, a chamber built near the Shadow Corrupted Land in Hoanna can also collapse into a {item:essentialcraft5:shade_core} ([[shade/shade_core]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original research book the chamber was a cage first, meant to hold MRUCUs that kept growing so they wouldn't wreck your house, and storing MRU came along with it. Back then the structure wouldn't even start until an MRUCU was shut inside it."
+        }
+      ]
+    },
+    {
+      "id": "io",
+      "title": "Acceptor and Ejector",
+      "icon": "essentialcraft5:ec_acceptor",
+      "summary": "Getting MRU in and out",
+      "complete": "essentialcraft5:guide/enrichment/io",
+      "items": [
+        "essentialcraft5:ec_acceptor",
+        "essentialcraft5:ec_ejector"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: give your chamber an {item:essentialcraft5:ec_acceptor} to let MRU in and an {item:essentialcraft5:ec_ejector} to let it out. The forebears first built these chambers to cage MRUCUs, and a cage was never meant to have a way out. Only when they began keeping MRU in them did they open a way in and a way out in the walls. The controller itself can't be bound to, so MRU only enters and leaves through these two."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>:"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:ec_acceptor}",
+              "2 {item:essentialcraft5:fortified_frame}s, 1 Elemental Core, 2 Magical Plates, 1 MRU Conversion Matrix, 1 MRU Linking Device, 1 {item:essentialcraft5:mru_catcher}, 1 {item:essentialcraft5:magical_screen}"
+            ],
+            [
+              "{item:essentialcraft5:ec_ejector}",
+              "2 {item:essentialcraft5:fortified_frame}s, 1 Elemental Core, 2 Magical Plates, 2 MRU Conversion Matrices, 2 MRU Linking Devices"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:ec_acceptor",
+            "essentialcraft5:ec_ejector"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Set the Acceptor and the Ejector into the shell, each in place of one shell block.",
+            "To get MRU <em>in</em>, open the Acceptor and put in a {item:essentialcraft5:bound_gem} bound to a generator ([[crafting/bound_gem]]). It pulls that source's MRU straight into the whole chamber.",
+            "To get MRU <em>out</em>, bind the gems of the machines that need it to the <em>Ejector</em>, and they draw from the whole chamber.",
+            "For several generators, set in more Acceptors. A single Ejector can be bound by any number of machines."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Making both an Acceptor and an Ejector checks off this step. Once they're in place, the gem status in the Acceptor reads a green \"Working\", and the screens of machines farther away show they're connected."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Bind the right block",
+          "text": "Machines must bind to the Ejector, the chamber's only way out. A gem bound to the Acceptor gets nothing, and its status turns yellow with \"No MRU In Tile!\"."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Binding range works as for any other machine, within 16 blocks along each axis and in the same dimension.",
+            "Until the chamber is formed, the Acceptor pulls nothing and the Ejector gives nothing, and their screens say \"No chamber\".",
+            "Balance in the chamber mixes by amount as usual ([[start/mru]]). Feed it from a frozen source and a chaotic one and what comes out lies in between. The Ejector shows the chamber's true balance."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "holding_chamber",
+      "title": "{item:essentialcraft5:ec_holding_chamber}",
+      "icon": "essentialcraft5:ec_holding_chamber",
+      "summary": "Each one adds a lot of capacity",
+      "complete": "essentialcraft5:guide/enrichment/holding_chamber",
+      "items": [
+        "essentialcraft5:ec_holding_chamber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: set a few {item:essentialcraft5:ec_holding_chamber}s into the shell to raise the chamber's capacity."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: each takes 1 {item:essentialcraft5:magic_purified_glass_alloy} and 2 {item:essentialcraft5:dark_soul_matter}, plus 2 Magic Fortified Frames, 1 MRU Collecting Device, 2 Magical Plates and 1 MRU Linking Device. The Glass Alloy is covered in [[alloys/purified_alloys]]. Dark Soul Matter is made on the Magician Table from 1 Ender Pearl in the center and 4 MRU Gems in the corners."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ec_holding_chamber"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Replace any shell block with a Holding Block, on whichever face you like.",
+            "Right-click the controller to recheck, and chat shows the Holding Block count and the capacity."
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "Capacity = {cfg:machines.enrichment_chamber.max_mru} + Holding Blocks × {cfg:machines.enrichment_chamber.mru_per_storage}"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Right-click the controller and the result shows a higher Holding Block count and capacity."
+        },
+        {
+          "type": "p",
+          "text": "Once a chamber has 10 or more Holding Blocks, you earn the advancement \"The Bigger the Better\"."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Removing a Holding Block lowers the limit at once, but <em>MRU already stored is not deleted</em>. While the chamber is over the new limit, MRU can come out but not go in, until the level drops below it.",
+            "A Holding Block counts toward one chamber only."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Next",
+          "text": "The last two pages of this chapter, [[enrichment/monitoring]] and [[enrichment/intersector]], are optional. The main line continues with the [[crystal/crystal_former]]."
+        }
+      ]
+    },
+    {
+      "id": "monitoring",
+      "title": "State Checker and Redstone Controller",
+      "icon": "essentialcraft5:ec_state_checker",
+      "summary": "Read the level, emit redstone",
+      "complete": "essentialcraft5:guide/enrichment/monitoring",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ec_state_checker",
+        "essentialcraft5:ec_redstone_controller"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (as needed): see at a glance how much MRU is left in the chamber, or use redstone to control other things, such as stopping a Heat Generator to save fuel once the chamber is full."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:ec_state_checker",
+            "essentialcraft5:ec_redstone_controller"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "State Checker"
+        },
+        {
+          "type": "p",
+          "text": "Set the {item:essentialcraft5:ec_state_checker} into the shell and right-click it to see the whole chamber's stored MRU, balance and <em>MROV</em>. MROV adds up how well every shell block shields against MRU. For example, Magical Fortified Stone counts 2, Magical Fortified Glass 3, Magic Plating 5 and each chamber part 100. It is only a reading and doesn't change how the chamber works."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:machines.enrichment_chamber.condense.enabled"
+          ],
+          "text": "Once the chamber is formed, a condensing progress bar sits on the right of the screen. Hover over it to see what it is waiting for ([[pentacle/condensed]])."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.enrichment_chamber.shade.enabled"
+          ],
+          "text": "When the chamber has Umbral Crystals inside or sits near the Shadow Corrupted Land, the screen also shows a collapse bar. Hover over it to see what a [[shade/shade_core|Shade Core]] still needs: the right place, or more crystals. The bar turns purple while a Shade Core is on its way."
+        },
+        {
+          "type": "h",
+          "text": "Redstone Controller"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Set the {item:essentialcraft5:ec_redstone_controller} into the shell.",
+            "Sneak-right-click with an empty hand to cycle through always, 10%, 20% ... 90% and full. A plain right-click shows the current setting above your hotbar.",
+            "Once the chamber's MRU reaches the setting, it puts out a level 15 redstone signal on all six sides, updated once a second."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Both only work in the shell of a formed chamber. Machines like the Heat Generator stop when they get a redstone signal, so you can wire it straight to them."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Make either a State Checker or a Redstone Controller and this step is checked off."
+        }
+      ]
+    },
+    {
+      "id": "intersector",
+      "title": "{item:essentialcraft5:intersector}",
+      "icon": "essentialcraft5:intersector",
+      "summary": "Two sources into one",
+      "complete": "essentialcraft5:guide/enrichment/intersector",
+      "optional": true,
+      "items": [
+        "essentialcraft5:intersector"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (as needed): bring two MRU sources together at one point that other machines can draw from."
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:intersector} has two Bound Gem slots and pulls from two sources at once, each within 16 blocks along every axis. It holds {cfg:machines.intersector.max_mru} MRU itself, and other machines just bind their gems to it. It isn't part of an Enrichment Chamber and can go anywhere."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 2 {item:essentialcraft5:ray_tower}, 1 {item:essentialcraft5:obsidian_plate}, 3 Magical Fortified Glass and 3 Magical Fortified Stone. The ray tower is covered in [[generators/ray_tower]]."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:intersector"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Both gem statuses on its screen have turned green."
+        },
+        {
+          "type": "p",
+          "text": "Balance mixes by amount as usual, so one {balance:chaos} source and one {balance:frozen} source give something in between. Use it when you need fairly pure MRU, for a Magic Matrix Projection for example."
+        }
+      ]
+    }
+  ]
+}

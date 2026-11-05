@@ -1,0 +1,392 @@
+{
+  "id": "wind_gear",
+  "order": 91,
+  "group": "side",
+  "title": "Side Chapter · Wind Gear",
+  "subtitle": "Shape-shifting tools and dyeable armor",
+  "icon": "essentialcraft5:wind_elemental_pickaxe",
+  "entries": [
+    {
+      "id": "wind_tools",
+      "title": "Wind Tools",
+      "icon": "essentialcraft5:wind_elemental_pickaxe",
+      "summary": "One tool, five shapes",
+      "complete": "essentialcraft5:guide/wind_gear/wind_tools",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_elemental_pickaxe",
+        "essentialcraft5:wind_elemental_axe",
+        "essentialcraft5:wind_elemental_shovel",
+        "essentialcraft5:wind_elemental_hoe",
+        "essentialcraft5:wind_elemental_sword"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Want stone? I'll be a pick. Want wood? I'll be an axe. Don't thank me. Just run with me a little more.",
+          "by": "Sayings of the Wind"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a wind tool from the Wind Crystals of Chapter 13. The wind has no fixed shape, and neither does a tool made from Wind Crystals. The {item:essentialcraft5:wind_elemental_pickaxe}, {item:essentialcraft5:wind_elemental_axe}, {item:essentialcraft5:wind_elemental_shovel}, {item:essentialcraft5:wind_elemental_hoe} and {item:essentialcraft5:wind_elemental_sword} are <em>five shapes of one tool</em>. Make any one of them and it changes shape to suit what you do, so there is no need to make all five."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:wind_elemental_pickaxe",
+            "essentialcraft5:wind_elemental_axe",
+            "essentialcraft5:wind_elemental_shovel",
+            "essentialcraft5:wind_elemental_hoe",
+            "essentialcraft5:wind_elemental_sword"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: {item:essentialcraft5:wind_gem} and sticks, laid out like vanilla tools, with 1 crystal for the shovel, 2 for the hoe or sword and 3 for the pickaxe or axe. A Wind Crystal is a diamond imbued on a Wind Rune altar with {cfg:general.wind.gem_espe} ESPE, a second kind of energy that crystal pillars gather ([[wind/wind_gem]])."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "How long it takes",
+          "text": "An 8-pillar Wind Rune altar in the Overworld gathers about 4 ESPE a second, so one Wind Crystal takes some forty minutes, and the same altar in the End works 4 times as fast. Pillars only gather while their chunk is loaded, so stay nearby. The cheapest start is the shovel, which takes 1 crystal and turns itself into a pickaxe as soon as you mine stone. [[wind_gear/wind_armor]] lists how many more the armor and the late main line need."
+        },
+        {
+          "type": "h",
+          "text": "Changing shape"
+        },
+        {
+          "type": "table",
+          "header": [
+            "What you do",
+            "It becomes"
+          ],
+          "rows": [
+            [
+              "Start mining stone or ore",
+              "{item:essentialcraft5:wind_elemental_pickaxe}"
+            ],
+            [
+              "Start mining wood",
+              "{item:essentialcraft5:wind_elemental_axe}"
+            ],
+            [
+              "Start mining dirt or sand",
+              "{item:essentialcraft5:wind_elemental_shovel}"
+            ],
+            [
+              "Start mining leaves or hay",
+              "{item:essentialcraft5:wind_elemental_hoe}"
+            ],
+            [
+              "Start on a cobweb, or hit a creature",
+              "{item:essentialcraft5:wind_elemental_sword}"
+            ]
+          ],
+          "widths": [
+            3,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "It takes whichever shape mines the block fastest. Blocks that break instantly, such as flowers and torches, don't make it change, and neither do unbreakable ones. In Creative, mining never changes it, though hitting a creature still turns it into the sword."
+        },
+        {
+          "type": "p",
+          "text": "Whatever its shape, right-clicking a block tills it. On blocks that can't be tilled, the axe still strips logs and the shovel still makes paths."
+        },
+        {
+          "type": "h",
+          "text": "Enchantments and durability"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Each shape has its own enchantments.</em> Put Fortune on the pickaxe and Sharpness on the sword, and it has Fortune as a pickaxe and Sharpness as a sword. Anvil costs are kept per shape too, and the tooltip lists the other shapes' enchantments.",
+            "All five shapes <em>share one durability</em>, and they share any name you give the tool at an anvil as well.",
+            "It can't be repaired with materials. Either combine two of the same shape at an anvil, getting them into the same shape first, or use Mending, which only works on the shapes that carry it."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Numbers"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Durability",
+              "15,684 (elemental tools 3,568)"
+            ],
+            [
+              "Mining speed",
+              "15 (same as elemental tools; diamond 8, netherite 9)"
+            ],
+            [
+              "Mining level",
+              "Higher than elemental tools, so it mines everything they can"
+            ],
+            [
+              "Enchantability",
+              "42 (elemental tools 36)"
+            ],
+            [
+              "Attack damage",
+              "sword 10, axe 12, pickaxe 8, shovel 8.5, hoe 1"
+            ],
+            [
+              "Attack speed",
+              "sword 1.6, pickaxe 1.2, axe and shovel 1.0, hoe 7"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The sword shape loses 1 durability per hit, while the pickaxe, axe, shovel and hoe shapes lose nothing for hitting creatures."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one of the shapes."
+        }
+      ]
+    },
+    {
+      "id": "wind_armor",
+      "title": "Wind Armor",
+      "icon": "essentialcraft5:wind_chestplate",
+      "summary": "Fast, springy, and proof against MRU",
+      "complete": "essentialcraft5:guide/wind_gear/wind_armor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_helmet",
+        "essentialcraft5:wind_chestplate",
+        "essentialcraft5:wind_leggings",
+        "essentialcraft5:wind_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make the four pieces of wind armor, the {item:essentialcraft5:wind_helmet}, {item:essentialcraft5:wind_chestplate}, {item:essentialcraft5:wind_leggings} and {item:essentialcraft5:wind_boots}. It has more armor than netherite and every piece has a trick of its own. It also keeps out nearly all the matrix damage MRUCUs deal. With all four on you also get Windwalk, which turns aside incoming arrows and gives you a jump in midair."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:wind_helmet",
+            "essentialcraft5:wind_chestplate",
+            "essentialcraft5:wind_leggings",
+            "essentialcraft5:wind_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: {item:essentialcraft5:wind_gem}, 5 for the helmet, 8 for the chestplate, 8 for the leggings and 4 for the boots, 25 for the whole set. The layouts match vanilla armor except for the leggings, which fill the top two rows and put one crystal at each end of the third."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "How long it takes",
+          "text": "25 crystals means 25 diamonds and 250,000 ESPE, which takes one 8-pillar Wind Rune altar about 17 hours in the Overworld and a little over 4 in the End. Pillars only gather while their chunk is loaded, so stay nearby. Start with the chestplate and boots, since the speed and the step-up are what you'll notice first."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Save some for the main line",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.gem_espe==10000",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "Chapters 18 to 21 of the main line, from holograms to the suit's modules, need over fifty more Wind Crystals, twice this whole set. That is 30-odd hours on one Overworld altar and still 8–9 hours in the End ([[computer/costs]]). If you want this armor, build a second altar in the End first."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Save some for the main line",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.wind.gem_espe==10000||!cfg:machines.mithriline_crystal_pillar.espe_generated==0.025||!cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "Chapters 18 to 21 of the main line, from holograms to the suit's modules, need over fifty more Wind Crystals, twice this whole set ([[computer/costs]]). If you want this armor, build a second altar in the End first."
+        },
+        {
+          "type": "h",
+          "text": "Armor and tricks"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Piece",
+            "Armor",
+            "Durability",
+            "Trick"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:wind_helmet}",
+              "4",
+              "624",
+              "See MRUCUs through walls, like the {item:essentialcraft5:magic_monocle}"
+            ],
+            [
+              "{item:essentialcraft5:wind_chestplate}",
+              "10",
+              "1,248",
+              "+75% movement speed (0.075 added to the base 0.1)"
+            ],
+            [
+              "{item:essentialcraft5:wind_leggings}",
+              "7",
+              "936",
+              "An extra push when you jump, about two and a half blocks high"
+            ],
+            [
+              "{item:essentialcraft5:wind_boots}",
+              "4",
+              "624",
+              "Walk up one-block steps without jumping"
+            ]
+          ],
+          "widths": [
+            3,
+            1,
+            2,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The full set gives 25 armor, more than netherite's 20, and each piece adds 2.5 toughness for 10 in all, so it takes less from any hit than netherite does. Its enchantability is 40. No material repairs it. Combine two of the same piece at an anvil (the right-hand one is used up), use Mending, or mend it in the [[devices/magical_repairer]]. A crafting grid or grindstone won't combine it."
+        },
+        {
+          "type": "h",
+          "text": "Full set: Windwalk"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0>0"
+              ],
+              "text": "Every {cfg:general.wind_armor.deflect_cooldown_ticks|stage:0|sec} one incoming projectile is turned aside and passes through you."
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0==0"
+              ],
+              "text": "Every incoming projectile passes through you."
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.air_jump_velocity>0",
+                "cfg:general.wind_armor.air_jumps|stage:0>0"
+              ],
+              "text": "Press jump again in midair to jump up to {cfg:general.wind_armor.air_jumps|stage:0} more time(s)."
+            },
+            {
+              "if": "cfg:general.wind_armor.fall_damage_multiplier<1",
+              "text": "Fall damage is cut to {cfg:general.wind_armor.fall_damage_multiplier|pct}."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind.deflect_points",
+            "cfg:general.wind_armor.deflect"
+          ],
+          "text": "If you also have the [[wind_mage/deflect|Wind Deflection]] pact, the shorter of the two cooldowns applies, halved."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:2>0"
+          ],
+          "text": "Attunement stages shorten the gap between deflections and add another midair jump ([[attunement/wind_armor]])."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "!cfg:general.wind_armor.air_jump_velocity>0 || !cfg:general.wind_armor.air_jumps|stage:2>0"
+          ],
+          "text": "Attunement stages shorten the gap between deflections ([[attunement/wind_armor]])."
+        },
+        {
+          "type": "h",
+          "text": "MRU resistance"
+        },
+        {
+          "type": "p",
+          "text": "Every piece carries 50% MRU corruption resistance, shown in its tooltip, twice as much as [[gear/mhs_armor]]. Pieces are averaged over the four slots, so with the full set each MRU Corruption hit drops from {cfg:general.corruption.mru_corruption_health_percent|pct} to {cfg:general.corruption.mru_corruption_health_percent|mul:0.5|pct} of your max health."
+        },
+        {
+          "type": "p",
+          "text": "It works even better against the matrix damage a large MRUCU adds each second. In the table below, the numbers either side of the slash are for an MRUCU holding 10,000 and for a full one holding 20,000."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Pieces worn",
+            "Matrix damage per second"
+          ],
+          "rows": [
+            [
+              "None",
+              "40 / 80"
+            ],
+            [
+              "1",
+              "3 / 6"
+            ],
+            [
+              "2",
+              "1 / 3"
+            ],
+            [
+              "3",
+              "1 / 2"
+            ],
+            [
+              "Full set",
+              "0 / 1"
+            ]
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "[[hoanna/radiation|Hoanna radiation]] works the same way, and with the full set it builds up in you at half the rate."
+        },
+        {
+          "type": "h",
+          "text": "Dyeing"
+        },
+        {
+          "type": "p",
+          "text": "Wind armor can be dyed like leather. Put it in a crafting grid with dyes, and several dyes at once blend together. Right-click a water cauldron with it to wash the color off."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any one piece."
+        }
+      ]
+    }
+  ]
+}

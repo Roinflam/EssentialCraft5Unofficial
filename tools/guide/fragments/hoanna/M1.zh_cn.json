@@ -1,0 +1,201 @@
+[
+ {
+  "id": "lands",
+  "title": "七种地貌",
+  "icon": "essentialcraft5:dread_dirt",
+  "summary": "腐化之地、恐惧之地、沙漠和海",
+  "items": [
+   "essentialcraft5:dread_dirt"
+  ],
+  "blocks": [
+   {
+    "type": "p",
+    "text": "海纳尔也有山、河谷和洞穴，但地貌和主世界对不上：同一个坐标，这边可能是山，那边是海。从冷到热依次是冰冻、魔力、混沌三种<em>腐化之地</em>，然后是恐惧之地和海纳尔沙漠；湿的地方偶尔有暗影腐化之地，大片的水是<em>海纳尔之海</em>。"
+   },
+   {
+    "type": "table",
+    "header": [
+     "地貌",
+     "看起来",
+     "长什么"
+    ],
+    "widths": [
+     3,
+     5,
+     5
+    ],
+    "rows": [
+     [
+      "冰冻腐化之地",
+      "灰蓝的草叶和水，飘着细雪似的小点；下雨不下雪",
+      "橡树、{item:essentialcraft5:hoanna_tall_grass}、{item:essentialcraft5:green_flower}"
+     ],
+     [
+      "魔力腐化之地",
+      "暗紫的草叶和水，飘着淡紫色的细尘",
+      "同上，草地上偶尔有{item:essentialcraft5:magical_fruit_block}"
+     ],
+     [
+      "混沌腐化之地",
+      "砖红的草叶、暗红的水，飘着红色孢子",
+      "同上"
+     ],
+     [
+      "暗影腐化之地",
+      "灰黑的草叶，天和雾最暗，飘着灰烬；很少见（陆地的约 2%）",
+      "同上"
+     ],
+     [
+      "恐惧之地",
+      "一片暗褐色的{item:essentialcraft5:dread_dirt}，不下雨",
+      "只有{item:minecraft:dead_bush}"
+     ],
+     [
+      "海纳尔沙漠",
+      "沙子和砂岩，不下雨",
+      "{item:essentialcraft5:dread_cactus}、{item:minecraft:dead_bush}，水边有{item:minecraft:sugar_cane}"
+     ],
+     [
+      "海纳尔之海",
+      "大片的水，水底铺着沙砾",
+      "几乎什么都不长"
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "text": "地下和主世界一样：原版的矿、各种蕴魔矿石和{item:essentialcraft5:mithriline_ore}都有，数量也和主世界差不多（[[elements/ores]]）。<em>上古遗迹</em>比主世界密得多，平均三十来个区块就有一座（[[start/mrucu]]）。"
+   },
+   {
+    "type": "p",
+    "text": "这里<b>不刷动物</b>，只刷和主世界一样的怪物，还有风法师（[[wind_mage/wind_mages]]）。吃的要自己带，或者去魔力腐化之地找{item:essentialcraft5:magical_fruit}：[[hoanna/flora]]。"
+   },
+   {
+    "type": "tip",
+    "style": "warn",
+    "text": "{item:essentialcraft5:dread_cactus}和原版仙人掌一样扎人，碰到还会<b>中毒 5 秒</b>。在沙漠里赶路别贴着它走。"
+   },
+   {
+    "type": "tip",
+    "style": "lore",
+    "text": "原作里这几片地叫 Chaos / Frozen / Magic / Shadow Corrupted Land、Hoanna Dreadlands 和 Hoanna Desert。原作的恐惧之地配了枯萎的灌木，却因为恐惧泥土不算泥土，一株也长不出来。"
+   }
+  ],
+  "_src": [
+   "tools/gen/hoanna_biomes.py:69 — PALETTE：各群系的天 / 雾 / 水 / 草叶颜色（D3 A）",
+   "tools/gen/hoanna_biomes.py:84 — PARTICLES：魔力 dust（EC 淡紫 #9684BE、个头 0.6、概率 0.002）、混沌 crimson_spore、冰冻 snowflake、暗影 ash",
+   "tools/gen/hoanna_biomes.py:94 — CLIMATE：恐惧之地、沙漠不下雨；冰冻腐化之地温度 0.5（下雨不下雪）",
+   "tools/gen/hoanna_biomes.py:183 — VEGETATION_BY_BIOME：腐化之地长树 / 草丛 / 绿花（魔力再加果实块），恐惧之地只有枯灌木，沙漠仙人掌 / 枯灌木 / 甘蔗，海只有蘑菇和发光地衣",
+   "tools/gen/hoanna_biomes.py:196 — T_BOUNDS / SHADOW_HUMIDITY：暗影约占陆地 2%（tools/gen/hoanna_climate 普查）",
+   "data/essentialcraft5/dimension/hoanna.json — multi_noise：冷到热五段、湿处暗影、大陆度 < −0.19 是海",
+   "worldgen/hoanna/HoannaSurfaceRules.java:50 — 恐惧之地铺恐惧泥土、沙漠沙子 / 砂岩、海底沙砾",
+   "data/essentialcraft5/worldgen/noise_settings/hoanna.json（datagen，worldgen/hoanna/HoannaTerrain.java）— D1 A′：噪声换了 id，地貌和主世界同坐标不重合；老式洞穴 / 峡谷（carver）前面垫了 3 个不开挖的占位（tools/gen/hoanna_biomes.py CARVER_PLACEHOLDERS），种子和主世界错开，也不重合",
+   "data/essentialcraft5/forge/biome_modifier/hoanna_ores.json — 主世界 6 种 EC 矿原样进海纳尔（同一份 placed feature，同样的密度）",
+   "data/essentialcraft5/worldgen/placed_feature/elder_mrucu_hoanna.json — rarity_filter 3：约每 32 区块一座（rarity 2 时 64 × 64 普查实测每 21.3 区块，审查后改 3；主世界 16，约每 190~260 区块）",
+   "tools/gen/hoanna_biomes.py:97 — MONSTERS：怪物表 = 原版平原，其余类别全空；data/essentialcraft5/forge/biome_modifier/wind_mage_spawns_hoanna.json — 风法师",
+   "block/DreadCactusBlock.java:36 — 中毒 100 刻 = 5 秒",
+   "原作 BiomeRegistry L27~34（群系英文名）、BiomeHoannaDreadlands（deadBushPerChunk 2、topBlock dreadDirt）"
+  ]
+ },
+ {
+  "id": "flora",
+  "title": "海纳尔的植物",
+  "icon": "essentialcraft5:green_flower",
+  "summary": "花草、恐惧仙人掌和魔力果实",
+  "complete": "essentialcraft5:guide/hoanna/flora",
+  "optional": true,
+  "items": [
+   "essentialcraft5:green_flower",
+   "essentialcraft5:hoanna_tall_grass",
+   "essentialcraft5:dread_cactus",
+   "essentialcraft5:magical_fruit_block",
+   "essentialcraft5:magical_fruit",
+   "essentialcraft5:root"
+  ],
+  "blocks": [
+   {
+    "type": "p",
+    "text": "<em>目标</em>：采到一样海纳尔的植物。它们都只长在海纳尔，主世界找不到。"
+   },
+   {
+    "type": "items",
+    "items": [
+     "essentialcraft5:green_flower",
+     "essentialcraft5:hoanna_tall_grass",
+     "essentialcraft5:dread_cactus",
+     "essentialcraft5:magical_fruit_block",
+     "essentialcraft5:magical_fruit"
+    ]
+   },
+   {
+    "type": "h",
+    "text": "花草"
+   },
+   {
+    "type": "list",
+    "items": [
+     "{item:essentialcraft5:hoanna_tall_grass}长满四种腐化之地的草地，颜色跟着当地的草走。拿剪刀剪下来是它自己；徒手挖有 1/8 的几率掉 1 个{item:minecraft:wheat_seeds}（时运不加成）；用骨粉会长成原版的高草丛。",
+     "{item:essentialcraft5:green_flower}也长在腐化之地。在那里的草方块上用骨粉，偶尔会冒出新的绿花。"
+    ]
+   },
+   {
+    "type": "h",
+    "text": "恐惧仙人掌"
+   },
+   {
+    "type": "p",
+    "text": "{item:essentialcraft5:dread_cactus}只长在海纳尔沙漠的沙子上，最高 3 格，旁边贴着方块就会碎，这些和原版仙人掌一样。碰到它不光扎伤，还会<b>中毒 5 秒</b>。"
+   },
+   {
+    "type": "h",
+    "text": "魔力果实"
+   },
+   {
+    "type": "p",
+    "text": "{item:essentialcraft5:magical_fruit_block}只在<em>魔力腐化之地</em>的草地上偶尔见到，一处两三块，用斧子挖得快。挖掉掉 3~7 个{item:essentialcraft5:magical_fruit}，时运每级多 0~1 个、最多 9 个；精准采集能把整块搬走。"
+   },
+   {
+    "type": "kv",
+    "rows": [
+     [
+      "恢复饥饿",
+      "8 点"
+     ],
+     [
+      "饱和度",
+      "补满"
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "text": "果实块不会重新长出来，找到了省着吃。海纳尔不刷动物，别的吃的只有蘑菇、橡树掉的苹果，和用草丛里的种子自己种的庄稼。"
+   },
+   {
+    "type": "tip",
+    "style": "good",
+    "title": "做成的标志",
+    "text": "物品栏里有过绿花、草丛、恐惧仙人掌、魔力果实块或魔力果实中的任意一样。"
+   },
+   {
+    "type": "h",
+    "text": "根系"
+   },
+   {
+    "type": "p",
+    "text": "古代墓穴里长着{item:essentialcraft5:root}（[[hoanna/ruins]]），斧子挖得动，只能当装饰。"
+   }
+  ],
+  "_src": [
+   "registry/ECHoannaNature.java:102 — 草丛：原版 TallGrassBlock，剪刀（#forge:shears）掉本体，否则 12.5% 掉 1 个小麦种子、不吃时运（TALL_GRASS_SEED_CHANCE，L66）；骨粉长原版高草丛",
+   "tools/gen/hoanna_biomes.py:262 — green_flower_patch 用 minecraft:flower 类型：草方块骨粉会从 getFlowerFeatures 挑到绿花；只挂四种腐化之地",
+   "block/DreadCactusBlock.java:61 — canSustainPlant：能叠在恐惧仙人掌上；其余照原版仙人掌（沙子、最高 3 格、旁边有实心方块就碎）",
+   "block/DreadCactusBlock.java:36 — 中毒 I、100 刻",
+   "registry/ECHoannaNature.java:126 — 魔力果实块：3~7（FRUIT_MIN / FRUIT_MAX）+ 时运 uniform_bonus_count ×1、封顶 9（FRUIT_CAP，L69）、精准采集掉本体、斧挖",
+   "tools/gen/hoanna_biomes.py:214 — FRUIT_RARITY 48：只在魔力腐化之地的草方块上，每处 tries 8",
+   "registry/ECHoannaNature.java:118 — 魔力果实 nutrition 8、saturationMod 10（原作 ItemFood(8, 10F)）：饱和度 = 8 × 10 × 2 = 160，封顶到饥饿值 = 补满",
+   "registry/ECHoannaNature.java:138 — 根系：斧挖、不是原木",
+   "data/essentialcraft5/advancements/guide/hoanna/flora.json — 拿到 5 样之一"
+  ]
+ }
+]

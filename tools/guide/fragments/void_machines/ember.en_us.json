@@ -1,0 +1,265 @@
+[
+  {
+    "id": "ember_forge",
+    "title": "{item:essentialcraft5:ember_forge}",
+    "icon": "essentialcraft5:ember_forge",
+    "complete": "essentialcraft5:guide/void_machines/ember_forge",
+    "optional": true,
+    "items": [
+      "essentialcraft5:ember_forge"
+    ],
+    "summary": "Forge embers and foci into a sword",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: build an Ember Forge and forge 4 embers and 4 elemental foci into an {item:essentialcraft5:forged_elemental_sword}."
+      },
+      {
+        "type": "h",
+        "text": "You'll need"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The forge itself: {item:essentialcraft5:void_plating}, a {item:essentialcraft5:void_core} and a {item:essentialcraft5:void_mru_reactor} brought back from Hoanna, plus a {item:essentialcraft5:matter_of_eternity}. Recipe below.",
+          "29 {item:essentialcraft5:void_stone} ([[hoanna/void_stone]]), 4 {item:essentialcraft5:pale_plating} and 4 {item:essentialcraft5:magic_plating} ([[alloys/plating]]), any colors.",
+          "4 embers, found in the chests of Hoanna's ruins ([[hoanna/relics]]).",
+          "4 elemental foci ([[essence/fuel_and_focus]]); each forging uses them up completely."
+        ]
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:ember_forge"
+      },
+      {
+        "type": "h",
+        "text": "Layout"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:ember_forge"
+      },
+      {
+        "type": "p",
+        "text": "Lay a 5×5 floor of Void Stone and put the forge on the middle block. On the forge's layer, place a Void Stone in each corner and a Pale Plating two blocks away on each side; one layer up, place a Magic Plating in each corner, right on top of those four Void Stones."
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Throw one ember onto each of the four Pale Platings and one focus onto each of the four Magic Platings. Whatever lands there is straightened out and held in place; passers-by and mobs can't pick it up.",
+          {
+            "if": "cfg:machines.ember_forge.night_required",
+            "text": "Wait for night. {cfg:machines.ember_forge.ticks_required|sec} after all eight are in place, a sword pops out of the top of the forge."
+          },
+          {
+            "if": "!cfg:machines.ember_forge.night_required",
+            "text": "{cfg:machines.ember_forge.ticks_required|sec} after all eight are in place, a sword pops out of the top of the forge."
+          },
+          "What element the sword gets and what it does: see [[void_machines/ember_sword]]."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "Spell particles drift around the forge and a trail of red or blue sparks links each item to it; once forging starts, lava sparks rise from the top and a portal sound plays every so often."
+      },
+      {
+        "type": "h",
+        "text": "Rules"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Each forging takes only one item per spot: a whole stack of embers on one plating gives one at a time, and the rest goes into the next sword. Foci are eaten whole regardless of durability.",
+          {
+            "if": "cfg:machines.ember_forge.night_required",
+            "text": "It only works at night: during the day nothing happens even with all eight in place. Places without a sky, like the Nether and the End, work any time, and a thunderstorm counts as night too."
+          },
+          "A redstone signal pauses it and keeps the progress. If an item goes missing or the structure loses a block, progress starts over.",
+          "Right-click the forge with an empty hand to see what it's waiting for: which spot is missing, how many items are left, night, or the progress.",
+          "Sneak-right-click with an empty hand to release everything it's holding; it won't hold anything again for 10 seconds. Use this to take back items you put in the wrong place."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "Watch out",
+        "text": "The finished sword lands on top of the forge. At night, nearby mobs will happily pick up a sword lying on the ground, so light the area up and stay close until it's done."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "The original research book describes it in a single line: \"So shiny... So warm...\""
+      }
+    ]
+  },
+  {
+    "id": "ember_sword",
+    "title": "{item:essentialcraft5:forged_elemental_sword}",
+    "icon": "essentialcraft5:forged_elemental_sword",
+    "complete": "essentialcraft5:guide/void_machines/ember_sword",
+    "optional": true,
+    "items": [
+      "essentialcraft5:forged_elemental_sword"
+    ],
+    "summary": "Foci set the element, ember pairs add the rest",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: forge an Ember Elemental Sword in the [[void_machines/ember_forge]]. Its damage and special effects depend entirely on the foci and embers that went in, and two swords from the same materials can still differ."
+      },
+      {
+        "type": "h",
+        "text": "Primary element"
+      },
+      {
+        "type": "p",
+        "text": "If one element appears more often among the four foci than each of the other three, it's the primary element; ties and one of each give \"Combined\". The primary element sets the base damage and an on-hit effect that costs <t>50</t> MRU per hit."
+      },
+      {
+        "type": "table",
+        "header": [
+          "Primary",
+          "Attack damage",
+          "On hit"
+        ],
+        "rows": [
+          [
+            "Fire",
+            "+7",
+            "Sets the target on fire for 5 s"
+          ],
+          [
+            "Water",
+            "+3",
+            "Weakness and Slowness on the target for 2 s"
+          ],
+          [
+            "Earth",
+            "+8",
+            "Blindness and Mining Fatigue on the target for 2 s"
+          ],
+          [
+            "Air",
+            "+8",
+            "Speed and Strength for you for 2.5 s"
+          ],
+          [
+            "Combined",
+            "+5",
+            "Nothing (and no MRU spent)"
+          ]
+        ]
+      },
+      {
+        "type": "h",
+        "text": "Secondary element"
+      },
+      {
+        "type": "p",
+        "text": "The secondary element is picked at random from the elements among the foci. It triggers when you press right-click and costs <t>50</t> MRU; at the same time the sword comes up to block like a shield."
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "Fire",
+            "Fire Resistance for 2.5 s; hostile mobs within 2 blocks catch fire for 2 s (villagers, pets and other players don't)"
+          ],
+          [
+            "Water",
+            "Regeneration for 2.5 s; does nothing and costs nothing while you already have Regeneration"
+          ],
+          [
+            "Earth",
+            "Resistance for 2 s"
+          ],
+          [
+            "Air",
+            "Speed and Strength for 1.5 s"
+          ]
+        ]
+      },
+      {
+        "type": "h",
+        "text": "Ember pairs"
+      },
+      {
+        "type": "p",
+        "text": "The 4 embers pair up by kind: four of the same kind make no pairs, four different kinds make 6. Each pair is looked up below. Damage bonuses add up pair by pair (up to <t>+36</t>); an effect given by several pairs only counts once."
+      },
+      {
+        "type": "p",
+        "text": "If there are on-hit effects, each hit costs another <t>50</t> MRU and the effects last 3 s; damage bonuses alone cost nothing."
+      },
+      {
+        "type": "table",
+        "header": [
+          "Pair",
+          "Effect"
+        ],
+        "widths": [
+          2,
+          3
+        ],
+        "rows": [
+          ["Acidic + Chaotic", "Damage +4"],
+          ["Acidic + Smouldering", "Damage +2"],
+          ["Acidic + Corrupted", "Slowness on the target"],
+          ["Acidic + Crystal", "Damage +6"],
+          ["Acidic + Divine", "Poison on the target"],
+          ["Acidic + Magical", "Poison II on the target"],
+          ["Acidic + Burning", "Damage +8"],
+          ["Chaotic + Smouldering", "Damage +7, <b>hurts the wielder</b>"],
+          ["Chaotic + Corrupted", "Slowness II on the target"],
+          ["Chaotic + Crystal", "Damage +5"],
+          ["Chaotic + Divine", "Lightning"],
+          ["Chaotic + Magical", "Damage +6"],
+          ["Chaotic + Burning", "Damage +4"],
+          ["Smouldering + Corrupted", "Weakness on the target"],
+          ["Smouldering + Crystal", "Damage +3"],
+          ["Smouldering + Divine", "Strength for you"],
+          ["Smouldering + Magical", "Speed for you"],
+          ["Smouldering + Burning", "Damage +11"],
+          ["Corrupted + Crystal", "Lifesteal (heals 1)"],
+          ["Corrupted + Divine", "<b>Hurts the wielder</b>, Hunger II on the target"],
+          ["Corrupted + Magical", "Greater Lifesteal (heals 3)"],
+          ["Corrupted + Burning", "Damage +5"],
+          ["Crystal + Divine", "Damage +9"],
+          ["Crystal + Magical", "Damage +7"],
+          ["Crystal + Burning", "Speed II for you"],
+          ["Divine + Magical", "Nothing"],
+          ["Divine + Burning", "Nothing"],
+          ["Magical + Burning", "Damage +6"]
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "<em>Lightning</em>: a bolt comes down on the target you hit, dealing <t>5</t> damage and setting it on fire for 8 s, and you get Fire Resistance II for 3 s. It only strikes that one target, doesn't set blocks on fire and doesn't turn villagers or pigs into anything; at most one strike every 2 seconds.",
+          "<em>Hurts the wielder</em>: you take <t>2</t> damage on every hit.",
+          "The strongest four are Acidic, Chaotic, Smouldering and Burning: their 6 pairs add up to +36 damage, at the price of hurting yourself."
+        ]
+      },
+      {
+        "type": "h",
+        "text": "Other details"
+      },
+      {
+        "type": "list",
+        "items": [
+          "No durability loss and enchantable; mining and blocking don't wear it down.",
+          "Holds 5000 MRU. Costs are taken from storage items you carry first, such as a {item:essentialcraft5:soul_shard} ([[storage/soul_storage]]), then from the sword itself; without enough MRU the effects stop but the damage still lands.",
+          "Blocking works like a shield: an axe hit can knock it down for 5 seconds.",
+          "The two copies in the creative inventory are unforged and have no attributes."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "The original forge used up the items before reading their names, so the foci had already turned into air: every sword it made was \"Combined / Combined\" and no ember was ever recorded. Three typos in the effect table also kept all 7 Corrupted pairs from ever working. This table is working for the first time."
+      }
+    ]
+  }
+]

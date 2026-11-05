@@ -1,0 +1,604 @@
+{
+  "id": "farming",
+  "order": 84,
+  "group": "side",
+  "title": "Side Chapter · Farm Automation",
+  "subtitle": "Let redstone feed and shear your animals",
+  "icon": "essentialcraft5:breeder",
+  "entries": [
+    {
+      "id": "item_shuffler",
+      "title": "{item:essentialcraft5:item_shuffler}",
+      "icon": "essentialcraft5:item_shuffler",
+      "summary": "Scatter items lying on the ground",
+      "complete": "essentialcraft5:guide/farming/item_shuffler",
+      "optional": true,
+      "items": [
+        "essentialcraft5:item_shuffler"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "I once built a sorter. It never sorted a thing; all it did was nudge things about on the ground. I kept it anyway. With it in the sheep pen, the feeding and the shearing go more smoothly.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "This chapter builds a ranch that runs with nobody watching. The {item:essentialcraft5:breeder} feeds the animals, the {item:essentialcraft5:shearing_station} shears them, two animal separators sort the young from the grown, and the {item:essentialcraft5:item_shuffler} lends a hand."
+        },
+        {
+          "type": "p",
+          "text": "They are all cheap. The main ingredient is {item:essentialcraft5:fortified_stone} ([[crafting/fortified]]), so you can build them as soon as you reach <em>Chapter 3</em>. Machines in this mod never break or place blocks, so no machine here harvests or replants crops in a field, and field crops are still grown the vanilla way. To have a machine do the growing, use the [[farming/magical_cultivator]] at the end of the chapter, which grows them inside itself."
+        },
+        {
+          "type": "h",
+          "text": "What the three redstone farm devices share"
+        },
+        {
+          "type": "p",
+          "text": "The shuffler, the breeder and the shearing station work the same way and follow the same rules:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "They act once <em>when a redstone signal turns on</em>, and a signal that stays on does nothing more. Use a button, or a redstone clock that switches on and off.",
+            "There is a minimum gap between two runs, listed in each device's table. A pulse that arrives during the gap is remembered and carried out once the gap is over.",
+            "Their range is a 25×25×25 cube centered on the device, 12 blocks in every direction.",
+            "They need no MRU and have no screen. Right-click one with an empty hand and the action bar shows its owner, and also says so if it is idle because of that owner."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What they leave alone"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.protection.require_owner_online",
+              "text": "<em>While the player who placed it is offline, it does nothing</em>, and pulses in the meantime are not made up later."
+            },
+            {
+              "if": "!cfg:general.protection.require_owner_online",
+              "text": "It keeps working while the player who placed it is offline."
+            },
+            "It only touches places its owner could change: animals and items inside someone else's claim are left alone.",
+            "Pets you tamed yourself are handled as usual. Named or leashed animals, saddled camels, villagers and other players' pets are never touched.",
+            "Items on the ground that only a certain player may pick up are left alone unless that player is you."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The rules shared by all machines are in [[automation/rules]]."
+        },
+        {
+          "type": "h",
+          "text": "The shuffler"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:item_shuffler} from seven {item:essentialcraft5:fortified_stone}, one {item:minecraft:redstone} and a {item:minecraft:water_bucket}. You get the empty bucket back."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:item_shuffler"
+        },
+        {
+          "type": "p",
+          "text": "Give it a pulse and every dropped item in range slides sideways a little, less than one block east–west and north–south, never up or down. An item whose new spot is blocked stays put, so nothing gets pushed into walls."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Items moved per pulse",
+              "{cfg:machines.item_shuffler.max_per_pulse}"
+            ],
+            [
+              "Minimum gap",
+              "{cfg:machines.item_shuffler.pulse_interval|sec}"
+            ],
+            [
+              "Range",
+              "25×25×25"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The [[farming/breeder]] only feeds animals close to the food, so shuffling spreads a heap of food out. It can also nudge items lying next to a hopper onto it."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is ticked as soon as you have a shuffler. Place it, give it a pulse, and the items around it shift about."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The direction is random, so it can't herd items one way. To gather scattered items in one place, use the [[logistics/magical_hopper]]."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book itself admitted that this device \"works not as its name suggests\"."
+        }
+      ]
+    },
+    {
+      "id": "breeder",
+      "title": "{item:essentialcraft5:breeder}",
+      "icon": "essentialcraft5:breeder",
+      "summary": "Feed animals with food on the ground",
+      "complete": "essentialcraft5:guide/farming/breeder",
+      "optional": true,
+      "items": [
+        "essentialcraft5:breeder"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:breeder}. The craftsman who kept the Workshop Notebook had a pen of sheep too, and in the end he left all the feeding to this machine. Give it a redstone pulse and it feeds nearby adult animals with food lying on the ground, so they breed just as if you had fed them by hand."
+        },
+        {
+          "type": "p",
+          "text": "Like the shuffler, it needs no MRU and has no screen, and each redstone pulse means one round of work. The rules the three redstone farm devices share, covering range, the gap between runs and what they leave alone, are at the start of [[farming/item_shuffler]]."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: seven {item:essentialcraft5:fortified_stone}, one {item:minecraft:redstone} and one {item:minecraft:hay_block}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:breeder"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Pen the animals within 12 blocks of it, a 25×25×25 cube centered on the breeder.",
+            "Drop the food near the animals. An animal within 3.5 blocks of it, in any direction, can eat.",
+            "Send a pulse. Each adult in range eats one piece of food from the ground and hearts appear; two of them together produce a baby, and experience drops as usual.",
+            "An adult that just bred has to wait 5 minutes before it can breed again, so a redstone clock and an occasional refill of food are all you need."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Animals fed per pulse",
+              "{cfg:machines.breeder.max_per_pulse}"
+            ],
+            [
+              "Stops feeding a kind at",
+              "{cfg:machines.breeder.max_same_type} (babies count)"
+            ],
+            [
+              "Minimum gap",
+              "{cfg:machines.breeder.pulse_interval|sec}"
+            ],
+            [
+              "Reach to the food",
+              "3.5 blocks"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each animal eats what it likes, as in vanilla: wheat for cows and sheep, carrots for pigs, seeds for chickens, and so on."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is ticked as soon as you have a breeder. Give it a pulse and hearts float above the animals while the food on the ground goes down."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Once {cfg:machines.breeder.max_same_type} animals of one kind, babies included, are within its range plus 3.5 blocks, it stops feeding that kind, so the herd doesn't grow until the game slows down. When your ranch stalls, move the young ones out; the [[farming/animal_separator]] can do that for you."
+        },
+        {
+          "type": "h",
+          "text": "Who it does not feed"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Babies and animals already in love, and hoglins, which count as animals but attack on sight.",
+            "Animals that must be tamed before they can breed, such as wolves, cats, horses, donkeys and llamas, are only fed if <em>you</em> tamed them.",
+            "Horses and donkeys need a {item:minecraft:golden_carrot} or {item:minecraft:golden_apple}, and llamas need a {item:minecraft:hay_block}. Wheat and apples only fill their bellies.",
+            "Camels eat {item:minecraft:cactus} and need no taming, so wild ones are fed too.",
+            "Mules, skeleton horses and zombie horses cannot have young, so it skips them instead of wasting golden carrots.",
+            "Food in a bucket, like the bucket of tropical fish an axolotl eats, isn't used, so the bucket isn't eaten along with it.",
+            "Named or leashed animals, saddled camels and other players' pets are not fed."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Both the food and the animals must be in range. A single heap of food only reaches the animals right next to it; spread it out with the [[farming/item_shuffler]].",
+            "Food is only used up when an animal actually falls in love; if something else prevents that, the food stays."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shearing_station",
+      "title": "{item:essentialcraft5:shearing_station}",
+      "icon": "essentialcraft5:shearing_station",
+      "summary": "Shear the flock",
+      "complete": "essentialcraft5:guide/farming/shearing_station",
+      "optional": true,
+      "items": [
+        "essentialcraft5:shearing_station"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:shearing_station}. Give it a redstone pulse and it shears every creature around it that can be sheared, and what comes off drops at their feet."
+        },
+        {
+          "type": "p",
+          "text": "Like the shuffler, it needs no MRU and has no screen, and each redstone pulse means one round of shearing. The rules the three redstone farm devices share, covering range, the gap between runs and what they leave alone, are at the start of [[farming/item_shuffler]]."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: seven {item:essentialcraft5:fortified_stone}, one {item:minecraft:redstone} and a pair of {item:minecraft:shears}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:shearing_station"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put it near the flock so the sheep are within 12 blocks of it, a 25×25×25 cube.",
+            "Send a pulse and everything in range that can be sheared gets sheared, 1–3 wool per sheep each time.",
+            "Sheep grow their wool back by eating grass. Keep the flock on grass, pulse the station now and then and collect the wool with a {item:minecraft:hopper} or a [[logistics/magical_hopper]], and you have an automatic wool farm."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Creatures per pulse",
+              "{cfg:machines.shearing_station.max_per_pulse}"
+            ],
+            [
+              "Minimum gap",
+              "{cfg:machines.shearing_station.pulse_interval|sec}"
+            ],
+            [
+              "Wool per sheep",
+              "1–3 wool"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "It uses invisible shears that never break or need replacing, and creatures from other mods that can be sheared usually work too. Freshly sheared sheep and lambs are skipped and don't use up the per-pulse limit."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is ticked as soon as you have a shearing station. Give it a pulse and the sheep are left bare, with wool all over the ground."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Wool drops at the sheep's feet and bounces out a little, so in a big pen it scatters where hoppers can't catch it. Keep the pen small, or use a Magical Hopper to pull in the wool around it."
+        },
+        {
+          "type": "h",
+          "text": "Who it does not shear"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Mooshrooms</em>: shearing turns them into plain cows.",
+            "<em>Snow golems</em>: they would lose their pumpkin.",
+            "Named or leashed creatures, and pets tamed by other players.",
+            "Creatures standing where its owner is not allowed to change things."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animal_separator",
+      "title": "Animal Separators",
+      "icon": "essentialcraft5:child_separator",
+      "summary": "Sort young and grown animals",
+      "complete": "essentialcraft5:guide/farming/animal_separator",
+      "optional": true,
+      "items": [
+        "essentialcraft5:child_separator",
+        "essentialcraft5:adult_separator"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:child_separator} or an {item:essentialcraft5:adult_separator} to sort your animals. The child separator moves nearby young animals onto its top and the adult one moves grown animals, so the young can go to a pen to grow up and the grown ones to the slaughterhouse."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: seven {item:essentialcraft5:fortified_stone} and one {item:minecraft:redstone}, plus a {item:minecraft:golden_apple} for the child separator or an {item:minecraft:apple} for the adult one. Unlike the other farm devices it runs on MRU, so you also need a {item:essentialcraft5:bound_gem} ([[crafting/bound_gem]])."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:child_separator",
+            "essentialcraft5:adult_separator"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Link the bound gem to a generator that holds MRU, such as the [[generators/heat_generator]], and put it in the separator's slot. It then tops itself up.",
+            "When a redstone signal turns on, it teleports the young or grown animals within {cfg:machines.animal_separator.radius|int} blocks onto its top, depending on its type, at {cfg:machines.animal_separator.mru_usage} MRU per animal.",
+            "Animals within {cfg:machines.animal_separator.ignore_radius|int} blocks of it are left alone, so the ones it just moved are not moved again.",
+            "Give them a way off the top, such as a water channel leading to the right pen."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU capacity",
+              "{cfg:machines.animal_separator.max_mru} MRU"
+            ],
+            [
+              "Per animal moved",
+              "{cfg:machines.animal_separator.mru_usage} MRU"
+            ],
+            [
+              "Range",
+              "a {cfg:machines.animal_separator.radius|mul:2|add:1|int}-block cube centered on it"
+            ],
+            [
+              "Left alone within",
+              "{cfg:machines.animal_separator.ignore_radius|int} blocks"
+            ],
+            [
+              "Animals per pulse",
+              "{cfg:machines.animal_separator.max_per_pulse}, nearest first"
+            ],
+            [
+              "Minimum gap",
+              "{cfg:machines.animal_separator.pulse_interval|sec}"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is ticked as soon as you have either separator. Give it a pulse and the young or grown animals around it appear on top of it at once, while its MRU goes down."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "If two separators cover the same ground, animals get bounced back and forth and each trip costs MRU. Keep their ranges apart, or pulse only one of them at a time."
+        },
+        {
+          "type": "h",
+          "text": "What it does not move"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Only animals</em>, so no villagers or wandering traders, and no hoglins, which attack on sight.",
+            "Named or leashed animals, anything riding or being ridden, and saddled camels stay where they are.",
+            "Horses, wolves and cats you tamed yourself are moved as usual; ones tamed by other players stay.",
+            "It only moves animals from places its owner may change, and the block on top of it must be one they may change too.",
+            {
+              "if": "cfg:general.protection.require_owner_online",
+              "text": "<em>While the player who placed it is offline, it does nothing</em>; its screen says so."
+            },
+            {
+              "if": "!cfg:general.protection.require_owner_online",
+              "text": "It keeps working while the player who placed it is offline."
+            },
+            "<em>Only if it fits on top</em>, judged by each animal's own size. With a solid block right above it nothing is moved, and with one block of headroom chickens and calves still go but grown cows don't. MRU is only spent when an animal really moves."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "p",
+          "text": "Once 23 creatures are crowded on top it stops for this pulse, because two more and they would start hurting each other. After the animals on top move off, the next pulse carries on."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book itself admitted that it would \"move animals up even when there is no room above\", and back then it took villagers along too."
+        }
+      ]
+    },
+    {
+      "id": "magical_cultivator",
+      "title": "{item:essentialcraft5:magical_cultivator}",
+      "icon": "essentialcraft5:magical_cultivator",
+      "summary": "Grow crops and trees inside a machine",
+      "complete": "essentialcraft5:guide/farming/magical_cultivator",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_cultivator"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:magical_cultivator}, put in a stack of seeds or saplings, and give it MRU and water. The plants grow inside the machine and the harvest goes straight to its output slots."
+        },
+        {
+          "type": "p",
+          "text": "The seeds you put in are only a sample and are never used up, and each seed in the stack is one plant. It doesn't till soil or cut trees, and it leaves every block around it alone."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: three {item:essentialcraft5:sun_imbued_glass}, four {item:essentialcraft5:pale_plate}, one {item:essentialcraft5:earth_focus} and one {item:essentialcraft5:magical_water}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_cultivator"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a {item:essentialcraft5:bound_gem} linked to an MRU source in the gem slot.",
+            "Put the sample in the leftmost of the three slots at the bottom left. The table below shows how many of each kind it grows at once, and any extra seeds just wait in the slot.",
+            "For plants that need water, put a {item:minecraft:water_bucket} in the middle one of those three slots, or have a water source touching one of the machine's four sides or its bottom. Neither the bucket nor the water gets used up.",
+            "Once it has MRU, has water if the plant needs it, and the output slots can hold the biggest harvest the round could give, a round starts, and you can watch the plants grow under the glass top. When time is up every plant is harvested once, the harvest goes into the nine slots on the right, and the next round begins."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Most crops",
+              "{cfg:machines.magical_cultivator.time_multiplier|mul:2400|sec} a round, {cfg:machines.magical_cultivator.mru_multiplier|mul:800|int} MRU per plant, up to 16 plants"
+            ],
+            [
+              "Trees, fungi, chorus",
+              "{cfg:machines.magical_cultivator.time_multiplier|mul:6000|sec} a round, {cfg:machines.magical_cultivator.mru_multiplier|mul:6000|int} MRU per plant, up to 4 plants"
+            ],
+            [
+              "A round with Bone Meal",
+              "round time × {cfg:machines.magical_cultivator.bonemeal_time_factor}, same total MRU"
+            ],
+            [
+              "MRU capacity",
+              "{cfg:machines.magical_cultivator.max_mru}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "MRU is paid as the plants grow, a little every tick, and a full round costs exactly the number of plants times the cost per plant. When MRU runs short the plants stop where they are and carry on once more arrives, without losing progress."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is ticked as soon as you have a cultivator. With a sample, MRU and water in place, the status on its screen reads \"{lang:gui.essentialcraft5.magical_cultivator.status.working}\"."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Before a round starts it checks that the output slots could hold the biggest harvest the round might give. With a full load of wheat, that means counting an extra seed from every plant. If it wouldn't fit, the round doesn't start and the status reads \"{lang:gui.essentialcraft5.magical_cultivator.status.output_full}\", so keep the output slots emptied with a hopper or pipe."
+        },
+        {
+          "type": "h",
+          "text": "What it grows"
+        },
+        {
+          "type": "p",
+          "text": "Vanilla crops, torchflowers, pitcher plants, sugar cane, cactus, bamboo, kelp, berries, cocoa beans, nether wart and mushrooms all work, and so do saplings, azaleas, crimson and warped fungi and chorus flowers. The list below shows what each one yields, whether it needs water and whether Bone Meal helps."
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:cultivator",
+          "compact": true
+        },
+        {
+          "type": "p",
+          "text": "Trees give logs, most of them with a few sticks, and fungi give stems. Now and then an apple, a cocoa bean or a shroomlight comes too, but never a sapling or leaves. Crops grown from seeds, such as wheat, beetroot and torchflowers, have a 25% chance per plant to give back an extra seed."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.magical_cultivator.generic_crops",
+          "text": "A crop from another mod with no recipe in the list above can still go in, as long as it grows on plain farmland. Each plant yields what the fully grown crop drops when broken, minus one item kept back as the replanted seed. It needs water, and Bone Meal helps. Crops that need special soil or a base block of their own won't grow in it."
+        },
+        {
+          "type": "kv",
+          "if": "cfg:machines.magical_cultivator.generic_crops",
+          "rows": [
+            {
+              "if": "cfg:machines.magical_cultivator.time_multiplier==1",
+              "cells": [
+                "Other mods' crops, per round",
+                "{cfg:machines.magical_cultivator.generic_ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.magical_cultivator.mru_multiplier==1",
+              "cells": [
+                "Per plant",
+                "{cfg:machines.magical_cultivator.generic_mru_per_plant} MRU"
+              ]
+            },
+            [
+              "Up to",
+              "{cfg:machines.magical_cultivator.generic_max_plants} plants"
+            ],
+            [
+              "Most items per plant",
+              "{cfg:machines.magical_cultivator.generic_max_items_per_plant}, the rest is discarded"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Taking the sample out partway, swapping it for something else or removing a few cancels the round, and the MRU already paid isn't refunded. Adding more doesn't affect the current round; the next round uses the new count.",
+            "{item:minecraft:bone_meal} goes in the rightmost of the three bottom-left slots, and one is used when a round starts. Sugar cane, cactus, nether wart and chorus flowers don't take it and grow no faster.",
+            "Cactus, nether wart, mushrooms, crimson and warped fungi and chorus flowers don't need water.",
+            "The water has to be a source block. Flowing water doesn't count, but waterlogged blocks such as slabs and fences do.",
+            "Hoppers and pipes can top up the sample slot with the same sample, put water buckets in the middle slot and Bone Meal in the right one, and pull the harvest from the output slots. Nothing else goes in or comes out that way.",
+            "A redstone signal pauses it; remove the signal and it carries on from where it stopped.",
+            {
+              "if": "cfg:machines.magical_cultivator.generate_corruption",
+              "text": "While working it leaks 0–{cfg:machines.magical_cultivator.max_corruption_gen} MRU per second into its surroundings ([[crafting/corruption]])."
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/cultivator/magical_cultivator.json — GGG/PFP/PWP：日光玻璃 ×3、淡青板 ×4、地之焦点、魔力水",
+        "menu/MagicalCultivatorMenu.java:50-60 — 宝石格 (116,5)；左下一排样本 (28,60)、水桶 (46,60)、骨粉 (64,60)；输出 3×3 在右边 (116,27) 起",
+        "blockentity/MagicalCultivatorBlockEntity.java:88-117 Config — max_mru 10000、time_multiplier 1.0、mru_multiplier 1.0、bonemeal_time_factor 0.5、generic_crops true、generic_ticks 2400、generic_mru_per_plant 800、generic_max_plants 16、generic_max_items_per_plant 8、generate_corruption、max_corruption_gen 1",
+        "tools/gen/cultivator_recipes.py — 31 个配方：作物 2400 刻 / 800 MRU / 16 株，树 6000 / 6000 / 4（西瓜、南瓜种子 3000 刻）；小麦、甜菜、火把花、瓶子草每株 25% 多出种子；树只出原木 / 菌柄、木棍、苹果 5% / 可可豆 10% / 菌光体 10%，不出树苗、树叶；不用水：仙人掌、下界疣、两种蘑菇、绯红菌、诡异菌、紫颂花；骨粉无效：甘蔗、仙人掌、下界疣、紫颂花",
+        "blockentity/MagicalCultivatorBlockEntity.java:377 stepCost — 每刻扣 ⌊total·(p+1)/T⌋ − ⌊total·p/T⌋，一轮合计正好 total；:385 roundCost = 每株 × 株数 × mru_multiplier；:390 roundTicks = 配方时长 × time_multiplier，用了骨粉再 × bonemeal_time_factor（总价不变）",
+        "kv 的 mul:2400|sec / mul:800|int / mul:6000 — 配方表默认值乘全局倍率；株数 16 / 4 是配方数据，不受倍率影响",
+        "blockentity/MagicalCultivatorBlockEntity.java:399 waterSourceAround — 四个水平邻格和下方，isSource 且是水（含含水方块）；:422 hasWater 水桶格有水桶也算；两者都不消耗",
+        "blockentity/MagicalCultivatorBlockEntity.java:445 tickRound — 样本换了或少于锁定株数 → 本轮作废、不退 MRU；红石 → PAUSED；MRU 不够 → NO_MRU 停在原处；每 LEAK_INTERVAL = 20 刻泄漏 0～max_corruption_gen",
+        "blockentity/MagicalCultivatorBlockEntity.java:504 startRound — 按 worstCase（每种产物取上限 × 株数，64 一格）塞得进 9 个输出格才开工，否则 OUTPUT_FULL；骨粉在开工时吃 1 份",
+        "recipe/CultivatorRecipe.java:236 genericEligible — CropBlock 子类且 mayPlaceOn(耕地) 为真；:277 rollGenericPlant 成熟状态的掉落表，减 1 个样本，每株最多 generic_max_items_per_plant 件；通用路线要水、可用骨粉",
+        "通用路线的 kv 两行带 time_multiplier==1 / mru_multiplier==1：倍率不是 1 时 generic_ticks / generic_mru_per_plant 不是实际值，直接藏掉",
+        "blockentity/MagicalCultivatorBlockEntity.java:274 canAutomationInsert — 样本格只收能种、且和格内相同的；水桶格只收水桶、骨粉格只收骨粉；:286 isOutputSlot 只有输出格能抽"
+      ]
+    }
+  ]
+}

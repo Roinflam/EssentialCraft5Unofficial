@@ -1,0 +1,270 @@
+[
+  {
+    "id": "demonic_pentacle",
+    "title": "{item:essentialcraft5:demonic_pentacle}",
+    "icon": "essentialcraft5:demonic_pentacle",
+    "summary": "7×7、五层高的阵，16 根水晶柱",
+    "complete": "essentialcraft5:guide/demons/pentacle",
+    "items": [
+      "essentialcraft5:demonic_pentacle"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：搭起一座恶魔五芒星。阵上的 16 根水晶柱替你攒 ESPE，攒够了就能召唤恶魔（[[demons/summoning]]）。"
+      },
+      {
+        "type": "h",
+        "text": "准备"
+      },
+      {
+        "type": "list",
+        "items": [
+          "五芒星本身：4 个{item:essentialcraft5:fire_focus}（[[essence/fuel_and_focus]]）、4 块{item:essentialcraft5:void_plating}、1 个{item:essentialcraft5:void_core}，后两样从海纳尔带回来（[[hoanna/void_plating]]、[[hoanna/relics]]）。",
+          "13 块{item:essentialcraft5:void_stone}（[[hoanna/void_stone]]）、20 块{item:essentialcraft5:pale_plating}（[[alloys/plating]]）、4 块{item:essentialcraft5:mithriline_plating}（[[mithriline/furnace]]）、4 块{item:minecraft:glowstone}。虚空石和护板的颜色随意。",
+          "16 根水晶柱：4 根哪种都行（[[mithriline/crystal_pillar]]），8 根要淡青或更高档的（[[pentacle/pale_crystal_pillar]]），4 根要虚空或更高档的（[[demons/void_crystal_pillar]]）。"
+        ]
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:demonic_pentacle"
+      },
+      {
+        "type": "h",
+        "text": "摆法"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:demonic_pentacle"
+      },
+      {
+        "type": "p",
+        "text": "最下面一层铺 13 块虚空石和 20 块淡青护板，五芒星放在正中那块虚空石上面。五芒星这一层，四个正方向隔两格各放一块荧石，四个斜角隔一格各放一块米斯莱护板。柱子插在下面这三种位置上："
+      },
+      {
+        "type": "table",
+        "header": [
+          "柱位",
+          "几根",
+          "至少要"
+        ],
+        "widths": [
+          5,
+          2,
+          4
+        ],
+        "rows": [
+          [
+            "米斯莱护板上",
+            "<t>4</t>",
+            "哪种水晶柱都行"
+          ],
+          [
+            "外圈的淡青护板上",
+            "<t>8</t>",
+            "淡青水晶柱"
+          ],
+          [
+            "荧石上",
+            "<t>4</t>",
+            "虚空水晶柱"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "柱子要露天才攒 ESPE。看得见天空时，每根每刻攒 {cfg:machines.mithriline_crystal_pillar.espe_generated}，在末地每刻攒 {cfg:machines.mithriline_crystal_pillar.espe_generated_end}。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "地上的符文从暗灰变成暗红、亮暗起伏着慢慢转起来，柱子上下飘着红色的光点。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作 1.12 版的五芒星配方把虚空核心的名字写错了一个字，那几年的版本里五芒星根本做不出来；1.10 和更早的版本配方写在代码里，没有这个问题。"
+      }
+    ],
+    "_src": [
+      "registry/ECDemon.java:116 — 16 个柱位照原作 TileDemonicPentacle.coords，前 4 根任意档、中间 8 根 ≥ 1 档（淡青）、最后 4 根 ≥ 2 档（虚空），PILLAR_RULES L152",
+      "registry/ECDemon.java:125 — 下面一层 13 块虚空石（L125）、20 块淡青护板（L136）；本层 4 块荧石（L130）、4 块米斯莱护板（L133）；Rule.block 不看颜色",
+      "data/essentialcraft5/recipes/demon/demonic_pentacle.json — FVF / VCV / FVF：火之焦点 ×4、虚空板 ×4、虚空核心（原作 recipes/demonic_pentacle.json 矿辞写成 core_void，没人登记）",
+      "blockentity/MithrilineCrystalPillarBlockEntity.java — 产能 espe_generated / espe_generated_end，看得见天空才产",
+      "client/render/DemonicPentacleRenderer.java — 成形：每 tick 转 1°、红色亮度 0.02~0.8 以 60 tick 为周期；没成形：不转的 0.2 灰",
+      "blockentity/DemonicPentacleBlockEntity.java:264 — 成形时柱子底座和 +2 处每 2 刻冒红色粒子",
+      "data/essentialcraft5/advancements/guide/demons/pentacle.json — structure_formed，结构 essentialcraft5:demonic_pentacle",
+      "tools/plan/batch7.md §0 第 1 条 — 原作 1.12 的配方笔误（b62e0f5）；1.10.2 及更早代码配方用 voidCore"
+    ]
+  },
+  {
+    "id": "summoning",
+    "title": "召唤",
+    "icon": "minecraft:soul_lantern",
+    "summary": "花 ESPE，把恶魔叫到阵上",
+    "complete": "essentialcraft5:guide/demons/summon",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：右键搭好的五芒星，从柱子里抽 {cfg:general.demon.summon_espe} ESPE，召出一只恶魔。"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "等柱子攒够：16 根加起来要有 {cfg:general.demon.summon_espe} ESPE。这里按柱子里的原数扣，不像灵魂五芒星那样打折（[[pentacle/cure]]）。",
+          "五芒星正上方留出两格空间，恶魔要站在那里。",
+          "右键五芒星。恶魔出现在符文中央，ESPE 按固定的顺序一根一根抽：先抽米斯莱护板上的 4 根，再抽淡青护板上的 8 根，最后才轮到荧石上的 4 根。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "召唤不成时",
+        "text": "快捷栏会写原因：结构哪一格不对、头顶被挡、阵上已经有一只恶魔、ESPE 还差多少。召唤不成时一点 ESPE 都不扣。"
+      },
+      {
+        "type": "list",
+        "items": [
+          "一个五芒星上同时只能有一只恶魔。",
+          "恶魔一直站在阵上不走动。阵被拆坏了，它过不了几秒就会离开（[[demons/demon]]）。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "一声低吼，符文中央站起一个长着翅膀、眼睛发光的身影，阵边升起缕缕黑烟。"
+      }
+    ],
+    "_src": [
+      "blockentity/DemonicPentacleBlockEntity.java:145 — summon：当场重判结构 → 交易池不空 → 周围一格往上两格没有恶魔（occupiedArea L209）→ 碰撞箱里没有方块（blocked L214）→ 原始 ESPE 合计 ≥ summon_espe；都满足才生成，再按 PILLAR_OFFSETS 顺序抽（drain L245）",
+      "registry/ECDemon.java:223 — general.demon.summon_espe 默认 666，原作 consumeEnderstarEnergy(666) 不折算",
+      "blockentity/DemonicPentacleBlockEntity.java:264 — 客户端每 20 刻查一次阵上有没有恶魔，有就冒烟",
+      "entity/DemonEntity.java:218 — 每 40 刻看一次脚下 3×3 的五芒星，坏了就离开",
+      "data/essentialcraft5/advancements/guide/demons/summon.json — minecraft:summoned_entity，实体类型 essentialcraft5:demon（summon 里 CriteriaTriggers.SUMMONED_ENTITY.trigger）"
+    ]
+  },
+  {
+    "id": "demon",
+    "title": "恶魔",
+    "icon": "essentialcraft5:demon_spawn_egg",
+    "summary": "守着阵、替你清怪、等你交易",
+    "items": [
+      "essentialcraft5:demon_spawn_egg"
+    ],
+    "blocks": [
+      {
+        "type": "entity",
+        "id": "essentialcraft5:demon"
+      },
+      {
+        "type": "p",
+        "text": "恶魔站在召唤它的五芒星上不动，转头看着身边的人。它不怕火、不吃药水，推不动、也拴不住。"
+      },
+      {
+        "type": "h",
+        "if": "cfg:general.demon.clear_radius>0",
+        "text": "它会清怪"
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.demon.clear_radius>0",
+        "text": "每 {cfg:general.demon.clear_interval|sec}，它挑一只周围 {cfg:general.demon.clear_radius} 格内的敌对怪，通常一下打死。被它打死的怪<b>不掉东西、也不给经验</b>。"
+      },
+      {
+        "type": "p",
+        "if": [
+          "cfg:general.demon.clear_radius>0",
+          "cfg:general.demon.explosion_power>0"
+        ],
+        "text": "打的同时在那只怪脚下炸一下，只伤它会打的那类怪：玩家、宠物、村民、动物和地上的掉落物都不受影响，也不会炸坏方块。"
+      },
+      {
+        "type": "list",
+        "if": "cfg:general.demon.clear_radius>0",
+        "items": [
+          "Boss（凋灵、末影龙）它不碰。",
+          "起了名字的、驯服的、拴着的、捡过东西的怪它也不碰。"
+        ]
+      },
+      {
+        "type": "h",
+        "text": "怎么让它走"
+      },
+      {
+        "type": "p",
+        "text": "别人打它、射它、炸它都没用。只有召唤它的人，或者创造模式的玩家，上去打它一下，它才会离开，召唤花的 ESPE 不退。"
+      },
+      {
+        "type": "p",
+        "text": "它每 2 秒看一次脚下的阵，五芒星的结构坏了也会离开。做成一笔交易之后，它同样会离开（[[demons/trade]]）。"
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "刷怪蛋",
+        "text": "创造模式物品栏里有{item:essentialcraft5:demon_spawn_egg}。蛋放出来的恶魔没有召唤者，谁都能和它交易；它不站在五芒星上的话，2 秒后就离开。"
+      }
+    ],
+    "_src": [
+      "entity/DemonEntity.java — 只有一个只转头的 LookAtPlayerGoal；fireImmune（registry/ECDemon.java DEMON）、canBeAffected / isAffectedByPotions 为假、isPushable / isPushedByFluid 为假、canBeLeashed 为假、ignoreExplosion 为真（L448）",
+      "entity/DemonEntity.java:265 — clearOnce：25³ 内随机挑一只，最大生命 × 1.6（CLEAR_DAMAGE_FACTOR L102），再在它脚下 safeExplode，过滤同一个判定；general.demon.clear_interval 默认 20、clear_radius 默认 12、explosion_power 默认 2（registry/ECDemon.java:230 / 233 / 236）",
+      "entity/DemonEntity.java:291 — isClearTarget：Enemy、活着、不在 #forge:bosses、不是 ECEntityRules.isSpared（名字、驯服、拴绳）、不持久（捡过东西）、不在 essentialcraft5:demon_immune",
+      "data/essentialcraft5/tags/damage_type/no_death_loot.json — essentialcraft5:demon 在里面，被它打死的不掉物品和经验（util/DeathLootEvents）",
+      "entity/DemonEntity.java:335 — hurt 一律无效，只有 bypasses_invulnerability 照常；skipAttackInteraction（L352）：召唤者或创造模式玩家近战的主目标是它时离开",
+      "entity/DemonEntity.java:98 — GUARD_INTERVAL 40 刻（2 秒）看一次脚下的阵；刷怪蛋出来的没有召唤者（canTrade L197：summoner 为 null 时谁都行）"
+    ]
+  },
+  {
+    "id": "trade",
+    "title": "交易",
+    "icon": "essentialcraft5:ackronite_ingot",
+    "summary": "给它要的东西，换阿克罗尼特锭",
+    "complete": "essentialcraft5:guide/demons/trade",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：和恶魔做成一笔交易，拿到第一批{item:essentialcraft5:ackronite_ingot}。阿克罗尼特只能从恶魔这里换来（[[demons/ackronite]]）。"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "右键恶魔打开交易界面。左边那格是它要的东西和数量，鼠标停在上面能看详细。只有召唤它的人（还有创造模式的玩家）能和它交易。",
+          "把东西放进右边那格。格子只收它要的那一种，最多收它要的数量，多出来的留在你手上。",
+          "放够的那一刻就成交：东西被收走，{cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 个阿克罗尼特锭直接进你的背包（背包满了掉在脚下），恶魔随之离开。"
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "它要的东西每只恶魔各不相同，从铁块、书架、末影之眼、下界之星，到本模组的机器、风之工具和枪都有可能。",
+          "会损坏的东西（工具、盔甲）要满耐久，界面上会注明；枪不看耐久。改过名、带附魔的照收。",
+          "要灵魂时，给它对应生物的{item:essentialcraft5:captured_soul}，灵魂用灵魂刻刀收（[[demons/soul_scriber]]）。",
+          "放了一半想反悔，关掉界面东西就退回来；恶魔中途离开了也一样退回。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "不想要这一单",
+        "text": "上去打它一下把它打发走，再召一只。召唤花的 ESPE 不退。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作研究书说，阿克罗尼特是只存在于地狱的金属，只有恶魔看得见、挖得到，这是从《被遗忘的死灵之书》里读来的；书里还叮嘱，千万别把地图这类关于你那个世界的东西交给恶魔。"
+      }
+    ],
+    "_src": [
+      "menu/DemonTradeMenu.java:110 — settle：投放格放够要的数量时先扣再成交；OfferSlot.mayPlace（L183）只收 DemonWant.matches，上限 = 要的数量（getMaxStackSize L189）",
+      "entity/DemonEntity.java:381 — completeTrade：报酬 reward_min~reward_max（registry/ECDemon.java:225 / 227，默认 3 / 8，原作 3 + nextInt(6)）个阿克罗尼特锭，ECItemEntities.giveOrDrop 给交易的人，然后消失",
+      "entity/DemonEntity.java:197 — canTrade：召唤者、创造模式玩家，没有召唤者时谁都行；只认真玩家",
+      "demon/DemonWant.java:51 — matches：会损坏的物品要满耐久（any_damage 例外），不比 NBT；灵魂只比 entity；needsFullDurability（L62）给界面注明",
+      "data/essentialcraft5/demon_trades/default.json — 45 条：3 条灵魂、12 条原版物品、30 条本模组物品，四种枪 any_damage",
+      "menu/DemonTradeMenu.java:140 — removed：关界面退回格子里剩下的；stillValid（L130）恶魔离开后变假，界面关掉东西退回",
+      "原作 en_US.lang L1102~1104（page.demonicPentacle_0~2）— 阿克罗尼特只存在于地狱、只有恶魔看得见挖得到，出自 Forgotten Necronomicon；别给恶魔地图（大意，重写）",
+      "data/essentialcraft5/advancements/guide/demons/trade.json — inventory_changed 阿克罗尼特锭"
+    ]
+  }
+]

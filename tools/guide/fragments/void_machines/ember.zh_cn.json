@@ -1,0 +1,292 @@
+[
+  {
+    "id": "ember_forge",
+    "title": "{item:essentialcraft5:ember_forge}",
+    "icon": "essentialcraft5:ember_forge",
+    "complete": "essentialcraft5:guide/void_machines/ember_forge",
+    "optional": true,
+    "items": [
+      "essentialcraft5:ember_forge"
+    ],
+    "summary": "把余烬和焦点锻成一把剑",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：搭起一座余烬锻炉，把 4 个余烬和 4 个元素焦点锻成一把{item:essentialcraft5:forged_elemental_sword}。"
+      },
+      {
+        "type": "h",
+        "text": "准备"
+      },
+      {
+        "type": "list",
+        "items": [
+          "锻炉本身：要海纳尔带回来的{item:essentialcraft5:void_plating}、{item:essentialcraft5:void_core}、{item:essentialcraft5:void_mru_reactor}，还要一块{item:essentialcraft5:matter_of_eternity}，配方在下面。",
+          "29 块{item:essentialcraft5:void_stone}（[[hoanna/void_stone]]）、4 块{item:essentialcraft5:pale_plating}、4 块{item:essentialcraft5:magic_plating}（[[alloys/plating]]），颜色都随意。",
+          "4 个余烬，海纳尔遗迹的箱子里开得到（[[hoanna/relics]]）。",
+          "4 个元素焦点（[[essence/fuel_and_focus]]），每次锻造整个用掉。"
+        ]
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:ember_forge"
+      },
+      {
+        "type": "h",
+        "text": "摆法"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:ember_forge"
+      },
+      {
+        "type": "p",
+        "text": "脚下铺一层 5×5 的虚空石，锻炉放在正中间那块的上面。锻炉这一层的四个角各放一块虚空石，前后左右隔一格各放一块淡青护板；再往上一层的四个角各放一块魔力护板，正好立在那四块虚空石上。"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "往四块淡青护板的顶上各扔一个余烬，往四块魔力护板的顶上各扔一个焦点。东西落上去会被摆正、托住，路过的人和怪都捡不走。",
+          {
+            "if": "cfg:machines.ember_forge.night_required",
+            "text": "等天黑。八样都齐了以后再过 {cfg:machines.ember_forge.ticks_required|sec}，剑就从锻炉顶上弹出来。"
+          },
+          {
+            "if": "!cfg:machines.ember_forge.night_required",
+            "text": "八样都齐了以后等 {cfg:machines.ember_forge.ticks_required|sec}，剑就从锻炉顶上弹出来。"
+          },
+          "剑是什么元素、带什么效果，看[[void_machines/ember_sword]]。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "锻炉一带飘起法术粒子，每样东西和锻炉之间连着一串红色或蓝色的光点；开始锻造后锻炉顶上冒岩浆火星，隔一会儿响一声传送门的声音。"
+      },
+      {
+        "type": "h",
+        "text": "规则"
+      },
+      {
+        "type": "list",
+        "items": [
+          "每次锻造每格只用 1 个：一整堆余烬扔在同一块护板上，一次只吃一个，剩下的接着锻下一把。焦点不看耐久，整个吃掉。",
+          {
+            "if": "cfg:machines.ember_forge.night_required",
+            "text": "只在夜里干活：白天八样齐了也不动。下界、末地这类看不到天的地方随时都行，雷暴天的白天也算夜里。"
+          },
+          "有红石信号就暂停，进度留着。少了一样、结构缺了一块，进度从头算。",
+          "空手右键锻炉，看它现在卡在哪儿：缺哪一格、还缺几样、要等天黑、进度多少。",
+          "潜行空手右键，把托着的东西全部放开，10 秒内不再托住。放错了、改主意了就这样取回。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "坑",
+        "text": "剑弹出来以后落在锻炉顶上。夜里周围的怪会把地上的剑捡走，把锻炉一带照亮、守在旁边等它出来。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作研究书给它的介绍只有一句：好亮……好暖……"
+      }
+    ],
+    "_src": [
+      "registry/ECEmberForge.java:71 — 结构：下一层 5×5 虚空石；锻炉层四角虚空石、正四向距离 2 的淡青护板；上一层四角魔力护板（虚空石 29、淡青护板 4、魔力护板 4，颜色随意）",
+      "blockentity/EmberForgeBlockEntity.java:115 — 余烬格在淡青护板正上方（EMBER_SLOTS）、焦点格在魔力护板正上方（FOCUS_SLOTS）；accepts 按物品本身认，焦点不看耐久",
+      "blockentity/EmberForgeBlockEntity.java:93 — night_required 默认开；L95 ticks_required 默认 500 刻（10~72 000）",
+      "blockentity/EmberForgeBlockEntity.java:281 — canForge：不要求夜里 / 维度没有天光 / 不是白天才推进；Level.isDay 在雷暴里为假",
+      "blockentity/EmberForgeBlockEntity.java:300 — 有红石暂停、进度留着；没成形、缺件、白天进度清零（scan）",
+      "blockentity/EmberForgeBlockEntity.java:456 — 托住：摆到格子水平正中，拾取延迟续到 HOLD_PICKUP_DELAY 20 刻、寿命续到年龄 + 6000",
+      "blockentity/EmberForgeBlockEntity.java:383 — 到点先记 8 件注册名再每格扣 1，剑在锻炉上方 2.1 格生成、竖直速度 0.2（SWORD_HEIGHT L139）",
+      "blockentity/EmberForgeBlockEntity.java:494 — 潜行空手右键 releaseHeld：拾取延迟清零，RELEASE_TICKS（L135）200 刻 = 10 秒内不再托住；L513 statusMessage 右键报状态",
+      "blockentity/EmberForgeBlockEntity.java:614 — 客户端粒子：法术粒子、红 / 蓝连线、锻造中岩浆；L360 起每 SOUND_INTERVAL（L137）50 刻一声传送门声",
+      "data/essentialcraft5/recipes/ember_forge/ember_forge.json — SRI / PCP / VEV：魔力屏幕、MRU 反应核、魔力纯化末影鳞合金、魔力强化板 ×2、虚空核心、虚空板 ×2、永恒物质",
+      "data/essentialcraft5/advancements/guide/void_machines/ember_forge.json — structure_formed，结构 essentialcraft5:ember_forge",
+      "原作 en_US.lang L625 — 研究书描述 So shiny... So warm..."
+    ]
+  },
+  {
+    "id": "ember_sword",
+    "title": "{item:essentialcraft5:forged_elemental_sword}",
+    "icon": "essentialcraft5:forged_elemental_sword",
+    "complete": "essentialcraft5:guide/void_machines/ember_sword",
+    "optional": true,
+    "items": [
+      "essentialcraft5:forged_elemental_sword"
+    ],
+    "summary": "焦点定元素，余烬配对加伤害和效果",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：在[[void_machines/ember_forge]]里锻出一把余烬元素剑。它的攻击力和特殊效果全看锻造时放进去的焦点和余烬，同样的材料每把也可能不一样。"
+      },
+      {
+        "type": "h",
+        "text": "主元素"
+      },
+      {
+        "type": "p",
+        "text": "四个焦点里，哪种元素比其余三种都多，它就是主元素；两两平手、四种各一，就是「复合」。主元素决定基础攻击力和命中时的效果，每次命中扣 <t>50</t> MRU。"
+      },
+      {
+        "type": "table",
+        "header": [
+          "主元素",
+          "攻击伤害",
+          "命中效果"
+        ],
+        "rows": [
+          [
+            "火",
+            "+7",
+            "目标着火 5 秒"
+          ],
+          [
+            "水",
+            "+3",
+            "目标虚弱、缓慢 2 秒"
+          ],
+          [
+            "地",
+            "+8",
+            "目标失明、挖掘疲劳 2 秒"
+          ],
+          [
+            "风",
+            "+8",
+            "自己迅捷、力量 2.5 秒"
+          ],
+          [
+            "复合",
+            "+5",
+            "没有（也不扣 MRU）"
+          ]
+        ]
+      },
+      {
+        "type": "h",
+        "text": "副元素"
+      },
+      {
+        "type": "p",
+        "text": "副元素从放进去的焦点里出现过的元素中随机挑一个。按下右键时触发，扣 <t>50</t> MRU；同时剑举起来，能像盾牌一样格挡。"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "火",
+            "自己抗火 2.5 秒，身边 2 格内的敌对生物着火 2 秒（村民、宠物、别的玩家不会）"
+          ],
+          [
+            "水",
+            "生命恢复 2.5 秒；身上已经有生命恢复时不生效、不扣"
+          ],
+          [
+            "地",
+            "抗性提升 2 秒"
+          ],
+          [
+            "风",
+            "迅捷、力量 1.5 秒"
+          ]
+        ]
+      },
+      {
+        "type": "h",
+        "text": "余烬组合"
+      },
+      {
+        "type": "p",
+        "text": "4 个余烬按种类两两配对：4 个同种一对都没有，4 种各一有 6 对。每一对查下表，伤害加成对对都算（最多 <t>+36</t>）；几对给出同一个效果也只算一次。"
+      },
+      {
+        "type": "p",
+        "text": "有命中效果时，每次命中另扣 <t>50</t> MRU，效果持续 3 秒；只有伤害加成的不扣。"
+      },
+      {
+        "type": "table",
+        "header": [
+          "组合",
+          "效果"
+        ],
+        "widths": [
+          2,
+          3
+        ],
+        "rows": [
+          ["酸蚀 + 混沌", "伤害 +4"],
+          ["酸蚀 + 阴燃", "伤害 +2"],
+          ["酸蚀 + 腐化", "目标缓慢"],
+          ["酸蚀 + 水晶", "伤害 +6"],
+          ["酸蚀 + 神圣", "目标中毒"],
+          ["酸蚀 + 魔力", "目标中毒 II"],
+          ["酸蚀 + 燃烧", "伤害 +8"],
+          ["混沌 + 阴燃", "伤害 +7，<b>反噬自身</b>"],
+          ["混沌 + 腐化", "目标缓慢 II"],
+          ["混沌 + 水晶", "伤害 +5"],
+          ["混沌 + 神圣", "引雷"],
+          ["混沌 + 魔力", "伤害 +6"],
+          ["混沌 + 燃烧", "伤害 +4"],
+          ["阴燃 + 腐化", "目标虚弱"],
+          ["阴燃 + 水晶", "伤害 +3"],
+          ["阴燃 + 神圣", "自己力量"],
+          ["阴燃 + 魔力", "自己迅捷"],
+          ["阴燃 + 燃烧", "伤害 +11"],
+          ["腐化 + 水晶", "吸血（回 1 点血）"],
+          ["腐化 + 神圣", "<b>反噬自身</b>，目标饥饿 II"],
+          ["腐化 + 魔力", "强效吸血（回 3 点血）"],
+          ["腐化 + 燃烧", "伤害 +5"],
+          ["水晶 + 神圣", "伤害 +9"],
+          ["水晶 + 魔力", "伤害 +7"],
+          ["水晶 + 燃烧", "自己迅捷 II"],
+          ["神圣 + 魔力", "没有"],
+          ["神圣 + 燃烧", "没有"],
+          ["魔力 + 燃烧", "伤害 +6"]
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "<em>引雷</em>：被砍的目标头上落下一道闪电，挨 <t>5</t> 点伤害、着火 8 秒，你自己得到 3 秒抗火 II。只劈那一个目标，不点燃方块、不会把村民和猪劈成别的东西；每 2 秒最多劈一次。",
+          "<em>反噬自身</em>：每次命中你自己挨 <t>2</t> 点伤害。",
+          "最好的四种是酸蚀、混沌、阴燃、燃烧：6 对加起来伤害 +36，代价是反噬。"
+        ]
+      },
+      {
+        "type": "h",
+        "text": "其它"
+      },
+      {
+        "type": "list",
+        "items": [
+          "不掉耐久，能附魔；挖东西、格挡都不掉。",
+          "自带 5000 MRU。扣费先扣身上的{item:essentialcraft5:soul_shard}这类储存物品（[[storage/soul_storage]]），不够再扣剑自己的；MRU 不够时效果没了，伤害照打。",
+          "格挡和盾牌一样，被斧头砍中会被打掉、冷却 5 秒。",
+          "创造模式物品栏里的那两把没锻造过，没有属性。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作的锻炉先把东西扣掉、再读它们的名字，焦点一扣就成了空气，所以原作锻出来的剑全是「复合 / 复合」，余烬也一个都没记下；效果表里还有三处笔误，腐化余烬的 7 对组合从来没生效过。这张表是第一次真正起作用。"
+      }
+    ],
+    "_src": [
+      "item/ember/ForgedSwordData.java:135 — forge：某种焦点严格多于其余三种才是主元素，否则复合；副元素在出现过的元素里用世界随机数挑",
+      "item/ember/ForgedSwordData.java:58 — 主元素攻击加成 火 7 / 水 3 / 地 8 / 风 8 / 复合 5；L189 余烬加成每对都算；L198 效果是集合",
+      "item/ForgedElementalSwordItem.java:217 — 主元素命中：火着火 5 秒、水虚弱 + 缓慢 40 刻、地失明 + 挖掘疲劳 40 刻、风自己迅捷 + 力量 50 刻，各扣 COST（L83）50",
+      "item/ForgedElementalSwordItem.java:198 — 余烬命中型效果合扣一次 50 MRU，没有命中型效果不扣；持续 EmberEffect.DURATION 60 刻（item/ember/EmberEffect.java:66）",
+      "item/ember/EmberEffect.java:102 — 28 对组合表（原作 ItemElementalSword L344~431，三处笔误已修：corruption → corrupted、Greater Slow、Damage +11）",
+      "item/ForgedElementalSwordItem.java:268 — 引雷：ECLightning.visual 视觉闪电、5 点闪电伤害带攻击者、着火 8 秒、自己抗火 II 60 刻，每名持剑人 LIGHTNING_COOLDOWN（L100）40 刻一次",
+      "item/ForgedElementalSwordItem.java:247 — 反噬：ember_backlash 2 点，不带攻击者（PvP 开关管不到）",
+      "item/ForgedElementalSwordItem.java:345 — 右键：火抗火 50 刻 + 点燃 igniteArea（L388，x/z ±2、y −1~+3）里的敌对生物 2 秒（ignites L393 跳过村民、驯服的、玩家）；水生命恢复 50 刻（已有不生效）；地抗性提升 40 刻；风迅捷 + 力量 30 刻",
+      "item/ForgedElementalSwordItem.java:325 — 剑的动作 + 盾的格挡；L144 canBeDepleted 为假（不掉耐久）；L123 自带 5000 MRU（MRUStaffItem.MAX_MRU）",
+      "mru/MRUDrain.java — playerUseMRU 先扣身上的储存物品，凑不够再扣物品自己的",
+      "data/essentialcraft5/advancements/guide/void_machines/ember_sword.json — inventory_changed 余烬元素剑"
+    ]
+  }
+]

@@ -1,0 +1,1197 @@
+{
+  "id": "wind",
+  "order": 80,
+  "group": "main",
+  "title": "Chapter 13 · The Wind",
+  "subtitle": "Imbuing, wind relation, Windbound",
+  "icon": "essentialcraft5:wind_gem",
+  "entries": [
+    {
+      "id": "wind_rune",
+      "title": "{item:essentialcraft5:wind_rune}",
+      "icon": "essentialcraft5:wind_rune",
+      "summary": "An altar that pours ESPE into items",
+      "complete": "essentialcraft5:guide/wind/wind_rune",
+      "items": [
+        "essentialcraft5:wind_rune"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "You've seen me before. When you stood on the hilltop getting your breath back, and when you hurried home through the rain, I was there. You never once turned around.",
+          "by": "Sayings of the Wind"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a Wind Rune altar. Its layout is recorded in Book IV of the Fragments, alongside the Green Sun and ESPE. Once the altar is complete, right-click the rune with something in hand and the ESPE saved in its 8 crystal pillars flows into that item and turns it into something else. This is called <em>imbuing</em>. The main thread of this chapter is imbuing a diamond into a Wind Crystal."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "What this chapter takes for Chapter 16",
+          "text": "Before Hoanna you need {cfg:general.wind.tablet_points} wind relation, 1 {item:essentialcraft5:wind_keeper} and 4 {item:essentialcraft5:air_focus}es. On potions alone the relation takes about {cfg:general.wind.tablet_points|div:10|int} Air Potions, and one Overworld altar needs about 6 hours to gather the ESPE for them. Only Archmages drop the Trapped Wind, and the focuses come from Chapter 9. All three are slow, so start as soon as the altar stands and work on them alongside Chapters 14 and 15 (see [[wind/air_potion]] and [[wind/wind_tablet]]).",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "What this chapter takes for Chapter 16",
+          "text": "Before Hoanna you need {cfg:general.wind.tablet_points} wind relation, 1 {item:essentialcraft5:wind_keeper} and 4 {item:essentialcraft5:air_focus}es. The relation comes from Air Potions imbued on the altar one at a time, only Archmages drop the Trapped Wind, and the focuses come from Chapter 9. All three are slow, so start as soon as the altar stands and work on them alongside Chapters 14 and 15 (see [[wind/air_potion]] and [[wind/wind_tablet]]).",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points!=3500||cfg:general.wind_affinity.base_coefficient!=0.1||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Rune",
+              "4 {item:essentialcraft5:mithriline_plating}, 4 {item:essentialcraft5:mithriline_plate}s, 1 magic core (an {item:essentialcraft5:elemental_core} or a {item:essentialcraft5:pale_core})"
+            ],
+            [
+              "Altar",
+              "13 Mithriline Plating, 12 {item:essentialcraft5:pale_plating}, 8 {item:essentialcraft5:magic_plating}, 8 crystal pillars (any kind)"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:wind_rune"
+        },
+        {
+          "type": "p",
+          "text": "The plating recipes are in [[alloys/plating]], and Pale Plating needs Pale Plates first ([[alloys/pale]]). Crystal pillars are covered in [[mithriline/crystal_pillar]]."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Pillars first",
+          "text": "The 8 crystal pillars and 33 plating blocks are the biggest bill in this chapter. A pillar starts gathering ESPE the moment it is placed, so stand them in their altar spots first and fill in the plating bit by bit. By the time the altar is done they will have saved up plenty."
+        },
+        {
+          "type": "h",
+          "text": "Layout"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:wind_rune"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "Pick a spot under the open sky so the pillars can gather ESPE. Glass and other see-through blocks overhead don't slow them down."
+            },
+            "Start with the bottom layer. Lay 5 Mithriline Plating in a cross through the middle, put Pale Plating on the cross's four diagonals and in the ring around them, and Magic Plating in the middle of each outer edge. The four outer corners aren't part of the structure, so anything can go there, which is handy for holding up the pillars above.",
+            "Next comes the rune's layer. Stand a crystal pillar in each of the four corners, put Magic Plating in the middle of each edge, and Mithriline Plating on the four diagonals right next to the rune.",
+            "Stack one more Mithriline Plating on each of those 4 diagonal platings, and stand a crystal pillar on top of each.",
+            "Last, place the rune in the middle, directly above the center of the cross."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The plating can be any color and the pillars any kind, as long as the marked spots hold the pillars' bases. Keep the 4 spots beside the rune clear, because a pattern lights up on the ground there when the altar is complete."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "A softly pulsing pattern lights up on the ground around the rune and green sparks bob beside the pillars. Right-click the rune empty-handed and the hotbar says \"Altar complete\" along with how much ESPE its pillars hold."
+        },
+        {
+          "type": "h",
+          "text": "Imbuing"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Right-click the rune with the input in your main hand. If the 8 pillars hold enough ESPE between them, the cost is drawn from them in turn and the item in your hand becomes the result.",
+            "If they do not, the hotbar says how much the pillars hold and how much this needs, and nothing is taken.",
+            "If the altar is incomplete, right-clicking the rune, empty-handed or not, tells you which spot is wrong.",
+            "Imbuing costs no ESPE in Creative."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Watch out"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Crystal pillars only gather ESPE while their chunk is loaded, so stay nearby while you wait ([[mithriline/crystal_pillar]]).",
+            "Pale, Void and Demonic pillars each fill faster than the tier before, so you wait less between imbuings ([[mithriline/crystal_pillar]] has the factors).",
+            "Breaking a crystal pillar and placing it again empties the ESPE it had saved.",
+            "The structure is checked again on every right-click, so taking away a single plating stops imbuing."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book says this rune is how you get the ancient wind to help you along the way."
+        }
+      ]
+    },
+    {
+      "id": "wind_gem",
+      "title": "{item:essentialcraft5:wind_gem}",
+      "icon": "essentialcraft5:wind_gem",
+      "summary": "Imbue a diamond into a Wind Crystal",
+      "complete": "essentialcraft5:main/wind_gem",
+      "items": [
+        "essentialcraft5:wind_gem"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: imbue a {item:minecraft:diamond} into a {item:essentialcraft5:wind_gem} on the altar. Wind tools and wind armor, in the side chapter [[wind_gear/wind_tools]], are made from them."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "The main line needs them again later. Chapters 18 to 21 use over fifty for Neuronic Enriched Plating and force parts ([[computer/force_parts]])."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Input",
+              "1 diamond"
+            ],
+            [
+              "ESPE",
+              "{cfg:general.wind.gem_espe|int}, drawn from the altar's 8 pillars"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:wind_gem"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Wait until the pillars hold enough ESPE. Right-clicking the rune empty-handed shows the total.",
+            "Right-click the rune with a diamond in your main hand, and each click gives one crystal."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold your first Wind Crystal and earn the advancement \"Gift of the Wind\"."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Get ready for Chapter 16",
+          "text": "Don't rush on once you have a Wind Crystal. Before Hoanna you still need {cfg:general.wind.tablet_points} wind relation and a finished Wind Tablet, both covered on the later pages of this chapter. Whenever the altar is free, imbue Air Potions so it never sits idle.",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "h",
+          "text": "How long it takes"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "8 pillars together",
+              "{cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160} a second in the open Overworld, {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160} a second in the End"
+            ],
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "cells": [
+                "Empty pillars to one crystal",
+                "about <t>42</t> minutes in the Overworld, about <t>10</t> in the End"
+              ]
+            },
+            [
+              "All 8 full",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:8|int} ESPE, and no more after that"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Full pillars stop gathering, so imbue a crystal whenever they fill up rather than leaving them idle. To go faster, <em>build more altars</em>. If you spend time in the End, an altar there gathers faster, though only while you are in the End."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.gem_espe==10000",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "title": "Expand early",
+          "text": "The 50 or so Wind Crystals the main line asks for later are the longest wait in the book. One Overworld altar needs about 35 hours of gathering for them, and one in the End about 9, provided you stay in the End the whole time. Swap all 8 pillars for {item:essentialcraft5:pale_crystal_pillar}s and it goes half again as fast, about 23 hours for one Overworld altar. Build two or three more altars now and you save days later on."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.gem_espe!=10000||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1"
+          ],
+          "title": "Expand early",
+          "text": "The 50 or so Wind Crystals the main line asks for later are the longest wait in the book. Higher-tier pillars such as the {item:essentialcraft5:pale_crystal_pillar} gather faster ([[mithriline/crystal_pillar]]). Build two or three more altars now and you will save a lot of time later on."
+        },
+        {
+          "type": "h",
+          "text": "What can be imbued"
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:wind_imbue",
+          "compact": true
+        },
+        {
+          "type": "p",
+          "text": "Wind gear eats Wind Crystals too. A full set of wind armor takes 25, and all five wind tools 11 between them ([[wind_gear/wind_armor]])."
+        }
+      ]
+    },
+    {
+      "id": "air_potion",
+      "title": "Air Potion and Wind Relation",
+      "icon": "essentialcraft5:air_potion",
+      "summary": "The wind is alive, and potions win it over",
+      "complete": "essentialcraft5:guide/wind/air_potion",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:air_potion",
+        "essentialcraft5:bottled_wind",
+        "essentialcraft5:imprisoned_wind",
+        "essentialcraft5:wind_keeper"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (needed before Chapter 16): make an {item:essentialcraft5:air_potion} and get to know <em>wind relation</em>, the measure of how well the wind knows you. Drink the potion and your step grows lighter, which is the wind drawing close to you.",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make an {item:essentialcraft5:air_potion} and get to know <em>wind relation</em>, the measure of how well the wind knows you. Drink the potion and your step grows lighter, which is the wind drawing close to you.",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Your wind relation has to reach {cfg:general.wind.tablet_points} before you can go to Hoanna, and the easiest way is to drink Air Potions one after another. This page covers how many that takes and how to speed it up."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Input",
+              "a water bottle, that is a {item:minecraft:glass_bottle} filled with water; no other potion works"
+            ],
+            [
+              "ESPE",
+              "250"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:air_potion"
+        },
+        {
+          "type": "h",
+          "text": "Drinking it"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Effect",
+              "Lightness, which adds 40% movement speed per level and gives the jump height and fall-damage cut of Jump Boost at the same level"
+            ],
+            [
+              "First bottle",
+              "Level I for 2 minutes"
+            ],
+            [
+              "More bottles",
+              "Each adds 2 minutes; the level goes up by one for every full 8 minutes left at the moment you drink"
+            ],
+            [
+              "Limit",
+              "Level {cfg:general.wind.lightness_max_level}, {cfg:general.wind.lightness_max_minutes} minutes"
+            ],
+            [
+              "Wind relation",
+              "{cfg:general.wind_affinity.base_coefficient|mul:100|int} points per bottle normally, from 100 raw times the multiplier (see below)"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind.lightness_max_level>=3",
+          "text": "Drink them back to back and you reach level II around the 6th bottle and level III around the 10th."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold an Air Potion."
+        },
+        {
+          "type": "h",
+          "text": "Wind relation"
+        },
+        {
+          "type": "p",
+          "text": "Wind relation only ever goes up. Each time it rises you get the Wind Touch effect for 50 seconds. It does nothing except tell you the wind came by."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Source",
+            "Raw value"
+          ],
+          "rows": [
+            [
+              "Drinking an {item:essentialcraft5:air_potion}",
+              "100"
+            ],
+            [
+              "Breaking a {item:essentialcraft5:bottled_wind}",
+              "10"
+            ],
+            [
+              "Breaking an {item:essentialcraft5:imprisoned_wind}",
+              "25"
+            ],
+            [
+              "Breaking a {item:essentialcraft5:wind_keeper}",
+              "100"
+            ],
+            [
+              "A visit from the wind (once Windbound, [[wind/windbound]])",
+              "1,000"
+            ],
+            {
+              "if": "cfg:general.wind_wish.enabled",
+              "cells": [
+                "Fulfilling one of the wind's wishes ([[wind/wishes]])",
+                "{cfg:general.wind_wish.points}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            1
+          ]
+        },
+        {
+          "type": "p",
+          "text": "What you actually get is the raw value times a multiplier, rounded down. The multiplier is only <t>{cfg:general.wind_affinity.base_coefficient}</t> to begin with, so a potion gives {cfg:general.wind_affinity.base_coefficient|mul:100|int} points. The three bottled winds all come from Wind Mages ([[wind_mage/bottled_winds]])."
+        },
+        {
+          "type": "p",
+          "text": "Wind Mage armor and a few special baubles change the multiplier. The table under What it is for has the numbers, and the baubles are in [[baubles/wind_corruption]]."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Don't mix them up",
+          "text": "The Wind Tablet takes a {item:essentialcraft5:wind_keeper}, which only Archmages drop and which gives 100 raw when broken. An {item:essentialcraft5:imprisoned_wind} or a {item:essentialcraft5:bottled_wind} won't do. Keep your first Trapped Wind and don't break it by accident."
+        },
+        {
+          "type": "h",
+          "text": "What it is for"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "At {cfg:general.wind.tablet_points} the [[wind/wind_tablet|Wind Tablet]] shows the wind's true name, and from then on it can [[hoanna/open_gate|open the gate to Hoanna]] for you."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "At {cfg:general.wind.tablet_points} the [[wind/wind_tablet|Wind Tablet]] shows the wind's true name."
+        },
+        {
+          "type": "table",
+          "if": [
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "header": [
+            "Route",
+            "What it takes",
+            "About how long"
+          ],
+          "rows": [
+            [
+              "Potions only",
+              "about {cfg:general.wind.tablet_points|div:10|int} bottles, {cfg:general.wind.tablet_points|mul:25|int} ESPE in all",
+              "about 6 hours on one Overworld altar, about 1.5 hours in the End"
+            ],
+            {
+              "if": "cfg:general.wind.windbound_espe==20000",
+              "cells": [
+                "Windbound first ([[wind/windbound]])",
+                "{cfg:general.wind.windbound_espe|int} ESPE up front, then keep sprinting with Lightness III",
+                "about 1.4 hours to imbue, then a push from the wind every 5–6 minutes worth 100 points; two to three hours of running and drinking is enough"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "cells": [
+                "Drinking with a {item:essentialcraft5:wind_mages_talisman}",
+                "a lucky find in a dungeon chest",
+                "+0.3 to the multiplier, so each potion gives {cfg:general.wind_affinity.base_coefficient|add:0.3|mul:100|int} points instead of {cfg:general.wind_affinity.base_coefficient|mul:100|int} ([[baubles/wind_corruption]])"
+              ]
+            },
+            [
+              "Drinking in Wind Mage armor",
+              "only Archmages drop it, with a 10% chance of one piece each",
+              "+0.23 per piece, so one piece makes each potion worth over 3 times as much and all four about 10 times as much ([[wind_mage/wind_mage_armor]])"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind.tablet_points!=3500||cfg:general.wind_affinity.base_coefficient!=0.1||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1",
+          "text": "Every potion has to be imbued on an altar, one at a time. Work out how many bottles you need from the points each one gives, and start early."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Build several altars so they gather at the same time, and if you spend time in the End, put one there too.",
+            "You can imbue potions ahead and drink them in a batch later. Relation is counted per bottle, so saving them up loses nothing."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book calls the wind something like a living creature that likes to watch people with an unusual fate. In the original, letting a Trapped Wind go earns you a very faint \"Thank you\"."
+        }
+      ]
+    },
+    {
+      "id": "windbound",
+      "title": "Windbound",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "Make the wind come to you",
+      "complete": "essentialcraft5:guide/wind/windbound",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: become Windbound. Both [[wind/wishes|wishes]] and the [[wind/wind_horn|Wind Horn]] need it. The wind has been around you all along, and once you are Windbound it starts coming to you on its own now and then. Each visit is worth 1,000 raw wind relation, {cfg:general.wind_affinity.base_coefficient|mul:1000|int} points normally, as much as 10 Air Potions.",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: become Windbound, which the [[wind/wind_horn|Wind Horn]] needs. The wind has been around you all along, and once you are Windbound it starts coming to you on its own now and then. Each visit is worth 1,000 raw wind relation, {cfg:general.wind_affinity.base_coefficient|mul:1000|int} points normally, as much as 10 Air Potions.",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): become Windbound, which [[wind/wishes|wishes]] need. The wind has been around you all along, and once you are Windbound it starts coming to you on its own now and then. Each visit is worth 1,000 raw wind relation, {cfg:general.wind_affinity.base_coefficient|mul:1000|int} points normally, as much as 10 Air Potions.",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): become Windbound. The wind has been around you all along, and once you are Windbound it starts coming to you on its own now and then. Each visit is worth 1,000 raw wind relation, {cfg:general.wind_affinity.base_coefficient|mul:1000|int} points normally, as much as 10 Air Potions.",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "!cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If you are saving up the {cfg:general.wind.tablet_points} wind relation for Chapter 16, do this step early. The routes are compared in the table on [[wind/air_potion]].",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Input",
+              "1 {item:essentialcraft5:soul_stone}, bound or not, which is not used up"
+            ],
+            [
+              "ESPE",
+              "{cfg:general.wind.windbound_espe|int} (8 full pillars hold {cfg:machines.mithriline_crystal_pillar.max_espe|mul:8|int})"
+            ],
+            {
+              "if": [
+                "cfg:general.wind.windbound_espe==20000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "cells": [
+                "Waiting",
+                "about 1.4 hours for 8 empty pillars in the Overworld, about 21 minutes in the End"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:soul_stone"
+          ],
+          "recipe_type": "essentialcraft5:wind_imbue",
+          "optional": true
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Wait until the altar's pillars hold {cfg:general.wind.windbound_espe|int} ESPE.",
+            "Right-click the rune with the Soul Stone in your main hand. The ESPE is drawn, and the stone stays in your hand."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Chat reads \"The wind whirls around you. What could it mean...\"."
+        },
+        {
+          "type": "h",
+          "text": "Visits from the wind"
+        },
+        {
+          "type": "p",
+          "text": "Once you are Windbound, the game rolls for you every second. \"Lightness level\" below means the level of your Air Potion effect, counted as 1 if you have none."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Event",
+            "Chance",
+            "You get"
+          ],
+          "rows": [
+            [
+              "The wind touches your hair",
+              "0.02% a second × Lightness level",
+              "+1,000 raw wind relation"
+            ],
+            [
+              "The wind pushes you from behind",
+              "0.1% a second while sprinting × Lightness level",
+              "+1,000, Speed XXXII for 1 second"
+            ],
+            [
+              "The wind lifts you up",
+              "0.03% per jump",
+              "+1,000, Jump Boost XIII for 5 seconds"
+            ]
+          ],
+          "widths": [
+            2,
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Without the potion the wind touches your hair about once every 83 minutes on average, and about once every 28 minutes with Lightness III. The fastest way to build relation is to keep sprinting with Lightness III, which earns a push every 5 to 6 minutes."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Mind your step",
+          "text": "A lift throws you very high, and a push carries you a long way in a single second. Don't sprint and jump around near cliffs or lava, and look where you'll land."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If you are already Windbound and try the Soul Stone again, you are told \"The wind already watches over you\" and nothing is taken.",
+            {
+              "if": "bauble:essentialcraft5:ring_of_resistance",
+              "text": "Wearing the {item:essentialcraft5:ring_of_resistance}, the wind can neither push nor lift you, though you still gain the relation."
+            },
+            {
+              "if": "bauble:essentialcraft5:beta_ring",
+              "text": "With the {item:essentialcraft5:beta_ring} on, the touch gives you a random elemental boon for 6 minutes instead, one of Strength II, Regeneration, Saturation or Haste II."
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "Wearing the {item:essentialcraft5:wind_catcher}, every gain has a 15% chance to catch a {item:essentialcraft5:wind_keeper}, but the multiplier drops by 0.1."
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_resistance||bauble:essentialcraft5:beta_ring||bauble:essentialcraft5:wind_catcher",
+              "text": "These baubles and where to find them are covered in [[baubles/wind_corruption]]."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original research book the section on the wind is called \"Magical Wind\", and its subtitle calls the wind a friend that helps you on your way. The book also says that imbuing a Soul Stone on the rune fills whoever does it with the strength of the wind."
+        }
+      ]
+    },
+    {
+      "id": "wishes",
+      "title": "The Wind's Wishes",
+      "icon": "minecraft:feather",
+      "summary": "Do the wind a favor",
+      "complete": "essentialcraft5:guide/wind/wish",
+      "if": "cfg:general.wind_wish.enabled",
+      "optional": "!cfg:general.hoanna.portal_enabled||!cfg:general.wind_wish.required>0",
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "<em>Goal</em>: fulfill one of the wind's wishes. The wind can go anywhere, but it likes company. Once you are Windbound it asks small favors of you, such as climbing high, running, or going to see somewhere far away. Do one and the wind thanks you, and your wind relation grows."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled||!cfg:general.wind_wish.required>0",
+          "text": "<em>Goal</em> (optional): fulfill one of the wind's wishes. The wind can go anywhere, but it likes company. Once you are Windbound it asks small favors of you, such as climbing high, running, or going to see somewhere far away. Do one and the wind thanks you, and your wind relation grows."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_wish.required>0",
+          "text": "In this world the {item:essentialcraft5:wind_tablet} needs no wishes. The wind only starts asking favors once its true name is fully revealed, and fulfilling them still raises your relation, which the Wind Mage pacts can put to use."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "Wishes take a while to add up. Besides your wind relation, the {item:essentialcraft5:wind_tablet} that opens the gate in Chapter 16 only answers once you have fulfilled <em>{cfg:general.wind_wish.required}</em> wishes ([[wind/wind_tablet]])."
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "Wishes take a while to add up. The {item:essentialcraft5:wind_tablet} only answers once you have fulfilled <em>{cfg:general.wind_wish.required}</em> wishes ([[wind/wind_tablet]]), and the Wind Mage pacts check the same count."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "You need",
+              "to be [[wind/windbound|Windbound]] and a complete [[wind/wind_rune|Wind Rune altar]]"
+            ],
+            [
+              "At a time",
+              "one wish only"
+            ],
+            [
+              "Time limit",
+              "{cfg:general.wind_wish.deadline_ticks|div:24000|round:1} in-game days; letting it run out costs nothing, but you have to wait {cfg:general.wind_wish.cooldown_ticks|sec} before asking again"
+            ],
+            [
+              "Each wish",
+              "+{cfg:general.wind_wish.points} raw wind relation"
+            ],
+            {
+              "if": "cfg:general.wind_affinity.base_coefficient==0.1",
+              "cells": [
+                "You get",
+                "{cfg:general.wind_wish.points|mul:0.1|int} points without bonuses, as much as {cfg:general.wind_wish.points|div:100|int} Air Potions"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "With both hands empty, sneak and right-click the Wind Rune in the middle of the altar.",
+            "The wind whispers a wish in chat, in a line of dark aqua italics.",
+            "Go and do it. The wind thanks you the moment you manage it, and you don't have to come back to the altar.",
+            "For the next one, ask at the rune again."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Chat says \"The wind circles you happily. Thank you!\"."
+        },
+        {
+          "type": "h",
+          "text": "The eight wishes"
+        },
+        {
+          "type": "p",
+          "text": "The wind only asks for what you can do right now. It won't ask you to glide unless you wear an elytra, or to listen to thunder unless a storm is on, and the biome it sends you to is never the kind you are standing in."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Wish",
+            "What to do",
+            "Notes"
+          ],
+          "rows": [
+            [
+              "Climb",
+              "Stay at Y 200 or above under the open sky for 30 seconds",
+              "Time adds up; only in dimensions with a sky"
+            ],
+            [
+              "Chase",
+              "Sprint 400 blocks",
+              "Horizontal distance, at most 20 blocks a second"
+            ],
+            [
+              "Travel",
+              "Walk into the kind of biome it names",
+              "One of badlands, jungle, deep ocean, mountains, taiga, savanna, snowy lands, cherry grove"
+            ],
+            [
+              "Feather",
+              "Fall from 25 blocks or more and land unhurt",
+              "Landing in water or with Slow Falling both count"
+            ],
+            [
+              "Moon",
+              "Jump 32 times in a row at night under the open sky",
+              "More than 5 seconds between jumps starts the count over; a thunderstorm by day counts as night"
+            ],
+            [
+              "Abroad",
+              "Spend 2 minutes in another dimension",
+              "The Nether is the easiest; time adds up"
+            ],
+            [
+              "Glide",
+              "Glide 200 blocks on an elytra without landing",
+              "Only while you wear an elytra; landing starts over"
+            ],
+            [
+              "Thunder",
+              "Stand under the open sky in a thunderstorm for 60 seconds",
+              "Only during a thunderstorm; time adds up"
+            ]
+          ],
+          "widths": [
+            2,
+            4,
+            4
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Asking for another"
+        },
+        {
+          "type": "p",
+          "text": "If you'd rather not do the current wish, sneak and right-click the rune holding an {item:essentialcraft5:air_potion}. The bottle is used up, the wind picks a different wish, and the time limit starts over."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Both hands must be empty when you ask. With a shield or torch in your off hand, sneaking and right-clicking doesn't reach the rune at all. If you aren't Windbound yet, doing this with an Air Potion just drinks it."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Asking again while you already have a wish shows it above the hotbar, with your progress and the time left.",
+            "A Feather fall is measured from the highest point you reached after leaving the ground. Riding a boat or horse, gliding, or climbing down a ladder doesn't count as falling.",
+            "Progress is kept on you and carries on after you log back in. The time limit runs on in-game time.",
+            {
+              "if": "cfg:general.wind_wish.required>0",
+              "text": "Once you have fulfilled {cfg:general.wind_wish.required}, the wind asks no more favors until its true name is fully revealed, and the hotbar tells you so when you ask. Until then the rest of your relation has to come from Air Potions and the wind's visits ([[wind/air_potion]]). After the true name you can ask again, and the wishes raise your relation as before."
+            },
+            {
+              "if": "!cfg:general.wind_wish.required>0",
+              "text": "You can keep asking after the wind's true name is revealed, and your relation keeps growing."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "Telling the legend of Hoanna, the original research book breaks off to remind you that you know that very wind, and have dealt with it a few times already."
+        }
+      ]
+    },
+    {
+      "id": "wind_horn",
+      "title": "{item:essentialcraft5:wind_horn}",
+      "icon": "essentialcraft5:wind_horn",
+      "summary": "A goat horn imbued with wind",
+      "complete": "essentialcraft5:guide/wind/wind_horn",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:wind_horn"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:wind_horn}. The {item:essentialcraft5:wind_keeper} the tablet needs only drops from Archmages, and they are hard to come across in the wild. Blow the horn and the wind brings one to you; the next page covers the fight."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Ingredient",
+              "1 {item:minecraft:goat_horn}, any tune"
+            ],
+            [
+              "ESPE",
+              "{cfg:general.wind_horn.espe}"
+            ],
+            [
+              "Requirement",
+              "being Windbound; otherwise the rune refuses and nothing is spent"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:wind_horn"
+          ],
+          "recipe_type": "essentialcraft5:wind_imbue",
+          "optional": true
+        },
+        {
+          "type": "h",
+          "text": "Where goat horns come from"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Goats in the mountains knock a horn off when they ram stone, logs, packed ice, or iron, coal, copper or emerald ore. Each goat has at most two.",
+            "Pillager outpost chests have them too."
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Wait until the altar's pillars hold {cfg:general.wind_horn.espe} ESPE.",
+            "Right-click the rune with the goat horn in your main hand. The ESPE is drawn off and the goat horn becomes a Wind Horn."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Wind Horn in your inventory. If you already have a {item:essentialcraft5:wind_keeper} or a {item:essentialcraft5:wind_tablet}, this step counts as done."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "One use only",
+          "text": "A Wind Horn is used up when you blow it, so every Archmage you call costs a fresh goat horn and another {cfg:general.wind_horn.espe} ESPE."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The legend of Hoanna, as copied into the original research book, says the man called the Wind and the Wind itself came to him."
+        }
+      ]
+    },
+    {
+      "id": "archmage",
+      "title": "Archmage",
+      "icon": "essentialcraft5:wind_keeper",
+      "summary": "Blow the horn, defeat the Archmage",
+      "complete": "essentialcraft5:guide/wind/archmage",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: defeat a red-robed Archmage and get the {item:essentialcraft5:wind_keeper} the tablet needs. One called with the horn counts, and so does one you meet in the wild."
+        },
+        {
+          "type": "p",
+          "text": "This step only checks whether you have a Trapped Wind, so one caught with a [[baubles/wind_corruption|Wind Catcher]] while drinking potions, or one handed over by a friend, counts too."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "When",
+              "At night, or by day in a thunderstorm; in Hoanna, also by day during a [[hoanna/events|Darkness calamity]]"
+            ],
+            [
+              "Where",
+              "The Overworld or Hoanna, under the open sky"
+            ],
+            [
+              "Who comes",
+              "1 Archmage and {cfg:general.wind_horn.escorts} apprentices or mages, landing {cfg:general.wind_horn.summon_min}-{cfg:general.wind_horn.summon_max} blocks away"
+            ],
+            [
+              "Cooldown",
+              "{cfg:general.wind_horn.cooldown_ticks|div:1200|round:1} minutes after each blow; the horn also stays silent while the last group is still around"
+            ],
+            [
+              "Drops",
+              "only from the ones you defeat yourself, and an Archmage always drops a Trapped Wind"
+            ]
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "After dark, find an open patch of ground under the sky.",
+            "Hold right-click to blow the horn for 3 seconds, like a vanilla goat horn.",
+            "About 5 seconds later the wind brings the mages close to you, and they attack no one but you.",
+            "Defeat the Archmage yourself and pick up the Trapped Wind."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Trapped Wind in your inventory, wherever it came from."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "An Archmage's arrow does about 15 damage, and its escorts shoot along with it. Bring a shield, wear good armor and pick a spot with cover. On Peaceful no mages come."
+        },
+        {
+          "type": "h",
+          "text": "Their rules"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The mages you call only fight you. Their arrows can't hurt bystanders, other players' pets or villagers.",
+            "If you go more than {cfg:general.wind_horn.leash_range} blocks away, log out or die, or nobody hits them for {cfg:general.wind_horn.despawn_ticks|div:1200|round:1} minutes, they blow away with the wind and drop nothing.",
+            "The Trapped Wind only goes to the summoner who defeats the Archmage. Mages killed by someone else or by your pets drop nothing and give no experience. One that burns, falls or ends up in lava within 5 seconds of your hit still counts as yours, so Fire Aspect and Flame are fine. One that nobody touched and that dies from a fall or fire drops nothing.",
+            "The wind only brings them where you could build. If everywhere nearby is someone else's claim or blocked in, the horn stays silent and isn't used up, and the reason shows above the hotbar."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The horn's cooldown is kept on you and survives logging out.",
+            "If you die, log out or get teleported away before the mages arrive, you get the horn back and the cooldown is cleared. Log out after they have arrived and they blow away, and the horn is not returned.",
+            "A naturally spawned Archmage counts for this step too, and still drops a Trapped Wind ([[wind_mage/wind_mages]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wind_tablet",
+      "title": "{item:essentialcraft5:wind_tablet}",
+      "icon": "essentialcraft5:wind_tablet",
+      "summary": "The wind's true name",
+      "complete": "essentialcraft5:guide/wind/wind_tablet",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:wind_tablet"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "<em>Goal</em> (needed for Chapter 16): make a {item:essentialcraft5:wind_tablet} and see what the wind is called. Since Hoanna burned, no one has been able to say that name. Once the whole name shows, the tablet can open the gate to Hoanna for you."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:wind_tablet} and see what the wind is called. Since Hoanna burned, no one has been able to say that name."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Materials",
+              "4 {item:essentialcraft5:air_focus}es, 4 {item:essentialcraft5:magic_fortified_plating}s, 1 {item:essentialcraft5:wind_keeper}"
+            ],
+            [
+              "Storage",
+              "holds up to 5,000 MRU and starts empty; charge it in a {item:essentialcraft5:charging_chamber}"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:wind_tablet"
+        },
+        {
+          "type": "h",
+          "text": "Two hard-to-get materials"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "Only the red-robed Archmage drops the {item:essentialcraft5:wind_keeper}, one every time. The surest way is to call one with a Wind Horn ([[wind/archmage]]). Naturally spawned ones drop it too, and the table below says where to meet them."
+            },
+            {
+              "if": [
+                "cfg:general.wind_mage.max_nearby>0",
+                "!cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "Only the red-robed Archmage drops the {item:essentialcraft5:wind_keeper}, one every time. Where and how to find them is in the table below and in [[wind_mage/wind_mages]]."
+            },
+            {
+              "if": [
+                "!cfg:general.wind_mage.max_nearby>0",
+                "!cfg:general.hoanna.portal_enabled",
+                "bauble:essentialcraft5:wind_catcher"
+              ],
+              "text": "Wind Mages never appear on their own in this world, so the Wind Catcher below is the only way to get a {item:essentialcraft5:wind_keeper}."
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "You may be lucky enough to find a {item:essentialcraft5:wind_catcher} in a dungeon chest. While you wear it, every wind relation gain, drinking Air Potions included, has a 15% chance to catch a {item:essentialcraft5:wind_keeper}, so one turns up every six or seven bottles on average. The price is 0.1 off your multiplier, and while it's on, your relation hardly grows."
+            }
+          ]
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "rows": [
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Where",
+                "The Overworld, except Mushroom Fields and the Deep Dark"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Where",
+                "The Overworld (except Mushroom Fields and the Deep Dark) and Hoanna"
+              ]
+            },
+            [
+              "When",
+              "At night or in the dark, like zombies and skeletons; daylight doesn't burn them and they stay put"
+            ],
+            [
+              "Spotting one",
+              "Archmages wear red robes; apprentices green, mages blue"
+            ],
+            [
+              "How many",
+              "The three ranks are equally common, so on average only one in about 800 naturally spawned hostile mobs is an Archmage"
+            ],
+            [
+              "Mob farms",
+              "A dark-room mob farm spawns them too, but no more spawn there while {cfg:general.wind_mage.max_nearby} Wind Mages are already within {cfg:general.wind_mage.nearby_radius} blocks"
+            ],
+            [
+              "Careful",
+              "They keep their distance and shoot MRU arrows from up to 15 blocks away, and an Archmage's arrow does about 15 damage, so bring a shield and decent armor"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "You need 4 {item:essentialcraft5:air_focus}es. Each takes one air elemental fuel, and the fuel is made from air essences drawn out of elemental crystals ([[essence/fuel_and_focus]]). A crystal's elements grow at random, and one low in air yields very little, so start early."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The wind's true name"
+        },
+        {
+          "type": "p",
+          "text": "Hover over the tablet and its tooltip shows \"Wind Name:\" followed by question marks. The higher your wind relation, the more letters appear, and at <em>{cfg:general.wind.tablet_points}</em> the whole name is revealed."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "Below the name is a \"Wind Marks\" line counting the [[wind/wishes|wishes]] you have fulfilled. The tablet only answers once the whole name shows and you have fulfilled {cfg:general.wind_wish.required} wishes."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold a Wind Tablet and its tooltip shows \"Wind Name:\"."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Once the whole name shows, right-click a lit Nether portal in the <em>Overworld</em> with the tablet and spend {cfg:general.wind.tablet_portal_mru} MRU to [[hoanna/open_gate|turn the whole portal into a Gate to Hoanna]]. In Hoanna the tablet can also fill an empty obsidian frame, [[hoanna/way_home|giving you a gate home]]."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Before the name is complete, right-clicking a portal only gets you \"The portal does not respond...\" and costs no MRU."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "If the name is complete but you are still short of wishes, right-clicking a portal gets you \"The wind is still waiting for you to fulfil its wishes\" instead, and costs no MRU either."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "Right-clicking a Nether portal with the tablet only gets \"The Gate to Hoanna does not respond\". No MRU is spent and the portal stays as it is. If you are already in Hoanna, nothing changes for you there. Its gates still take you home to the Overworld, and once the wind's name is revealed the tablet can still fill an empty obsidian frame there with a new gate."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book says this tablet has a single purpose, to translate the blowing of the wind into plain human speech."
+        }
+      ]
+    }
+  ]
+}

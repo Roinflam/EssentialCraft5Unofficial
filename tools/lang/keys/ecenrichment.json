@@ -1,0 +1,154 @@
+{
+ "gui.essentialcraft5.mrov": {
+  "en": "%s MROV",
+  "zh": "%s MROV"
+ },
+ "gui.essentialcraft5.enrichment.no_chamber": {
+  "en": "No chamber",
+  "zh": "未连接富集仓"
+ },
+ "message.essentialcraft5.ec_controller.formed": {
+  "en": "Enrichment Chamber formed: %s×%s×%s, %s Holding Blocks, %s / %s MRU",
+  "zh": "富集仓已成形：%s×%s×%s，存储方块 %s 个，存量 %s / %s MRU"
+ },
+ "message.essentialcraft5.ec_controller.over_capacity": {
+  "en": "Stored MRU is above the current capacity: the extra is kept, but nothing can be added until it drops below the limit.",
+  "zh": "存量超过了现在的上限：多出来的 MRU 留着，但取到上限以下之前加不进去。"
+ },
+ "message.essentialcraft5.ec_controller.size": {
+  "en": "Wrong shell size: each side must be %s to %s blocks long (if the controller's face merges with casing blocks outside it, they count as part of that face).",
+  "zh": "外壳大小不对：每条边要在 %s~%s 格之间（控制器所在的面和外面的外壳方块连成一片时，外面那些也会被算进这一面）。"
+ },
+ "message.essentialcraft5.ec_controller.gap": {
+  "en": "The shell has a gap at %s, %s, %s (that block can't be part of the shell).",
+  "zh": "外壳在 %s, %s, %s 处缺了一块（那里的方块不能做外壳）。"
+ },
+ "message.essentialcraft5.ec_controller.extra_controller": {
+  "en": "There is another controller in the shell at %s, %s, %s: a chamber can only have one.",
+  "zh": "外壳上还有一个控制器（%s, %s, %s）：一座富集仓只能有一个控制器。"
+ },
+ "message.essentialcraft5.ec_controller.no_shell": {
+  "en": "No complete hollow cuboid shell found. The controller must be part of the shell; check its face for gaps, and don't let that face merge with casing blocks outside it.",
+  "zh": "找不到完整的空心长方体外壳：控制器要是外壳的一格。看看控制器所在的那一面有没有缺块，这一面也不能和外面的外壳方块连成一片。"
+ },
+ "message.essentialcraft5.ec_controller.unknown": {
+  "en": "Part of the shell is in an unloaded chunk, so it can't be checked right now.",
+  "zh": "外壳有一部分在未加载的区块里，这次判断不了。"
+ },
+ "message.essentialcraft5.ec_controller.unknown.formed": {
+  "en": "Treating it as formed for now.",
+  "zh": "暂时按已成形处理。"
+ },
+ "message.essentialcraft5.ec_controller.unknown.not_formed": {
+  "en": "Treating it as not formed for now.",
+  "zh": "暂时按未成形处理。"
+ },
+ "message.essentialcraft5.ec_controller.kept": {
+  "en": "The controller still holds %s MRU; fix the shell to use it again.",
+  "zh": "控制器里还存着 %s MRU，补好外壳就能接着用。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.progress": {
+  "en": "Collapse progress: %s / %s s",
+  "zh": "坍缩进度：%s / %s 秒"
+ },
+ "message.essentialcraft5.ec_controller.collapse.progress_event": {
+  "en": "Collapse progress: %s / %s s (Hoanna event: +%s per second)",
+  "zh": "坍缩进度：%s / %s 秒（海纳尔天灾中，每秒 +%s）"
+ },
+ "message.essentialcraft5.ec_controller.collapse.disabled": {
+  "en": "MRUCU collapse is turned off.",
+  "zh": "聚集体坍缩没有开启。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.not_formed": {
+  "en": "Collapse paused: the shell is incomplete.",
+  "zh": "坍缩停着：外壳不完整。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.wrong_dimension": {
+  "en": "Collapse paused: MRUCUs don't collapse in this dimension.",
+  "zh": "坍缩停着：这个维度里聚集体不会坍缩。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.casing": {
+  "en": "Collapse paused: the shell has %s Void Stone, Void Glass and Demonic Plating blocks; it needs at least %s.",
+  "zh": "坍缩停着：外壳里虚空石、虚空玻璃、恶魔护板一共 %s 块，至少要 %s 块。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.no_stabilizer": {
+  "en": "Collapse paused: the shell needs an Enrichment Chamber Stabilizer.",
+  "zh": "坍缩停着：外壳上要砌一块富集仓稳定器。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.no_presence": {
+  "en": "Collapse paused: there is no MRUCU inside the chamber.",
+  "zh": "坍缩停着：仓里没有 MRU 聚集体。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.presence_low": {
+  "en": "Collapse paused: the MRUCU inside holds %s MRU; it must be full (%s).",
+  "zh": "坍缩停着：仓里的聚集体存着 %s MRU，要存满 %s。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.low_mru": {
+  "en": "Collapse paused: the chamber stores %s MRU; it needs at least %s.",
+  "zh": "坍缩停着：仓里存着 %s MRU，至少要 %s。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.balance": {
+  "en": "Collapse paused: the chamber's balance is %s; it must be at most %s (Void Core) or at least %s (MRU Reactor).",
+  "zh": "坍缩停着：仓的平衡值是 %s，要不高于 %s（凝出虚空核心）或不低于 %s（凝出 MRU 反应核）。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.frozen": {
+  "en": "Collapsing: the chamber is frozen, so it will condense a Void Core.",
+  "zh": "正在坍缩：仓是冰冻的，会凝出虚空核心。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.chaos": {
+  "en": "Collapsing: the chamber is chaotic, so it will condense an MRU Reactor.",
+  "zh": "正在坍缩：仓是混沌的，会凝出 MRU 反应核。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.output_full": {
+  "en": "Collapse paused: the product inside the chamber is already a full stack. Open up a shell block and take it out, and it carries on.",
+  "zh": "坍缩停着：仓里的产物满一组了，拆开一块外壳拿出来就接着坍缩。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.loading": {
+  "en": "Collapse paused: the chunks the shell spans aren't fully loaded yet.",
+  "zh": "坍缩停着：外壳所在的区块还没加载全。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.blocked": {
+  "en": "Collapse paused: the product was stopped from appearing in the chamber. The MRUCU and the stored MRU are untouched, and it tries again every second.",
+  "zh": "坍缩停着：产物没能出现在仓里，被拦下了。聚集体和仓里的 MRU 都没动，每秒再试一次。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.done": {
+  "en": "The MRUCU in the Enrichment Chamber collapsed and left a %s inside. Open up one shell block to fetch it, then put the block back.",
+  "zh": "富集仓里的聚集体坍缩了，仓里留下一个%s。拆开一块外壳进去拿，再补上。"
+ },
+ "message.essentialcraft5.ec_controller.collapse.kept": {
+  "en": "Collapse progress %s / %s s is kept; it resumes once the shell is fixed.",
+  "zh": "坍缩进度 %s / %s 秒还留着，外壳补好就接着走。"
+ },
+ "message.essentialcraft5.ec_redstone_controller.always": {
+  "en": "Redstone output: always on",
+  "zh": "红石输出：始终开启"
+ },
+ "message.essentialcraft5.ec_redstone_controller.above": {
+  "en": "Redstone output: on at %s%% MRU or more",
+  "zh": "红石输出：MRU 达到 %s%% 时开启"
+ },
+ "message.essentialcraft5.ec_redstone_controller.full": {
+  "en": "Redstone output: on when MRU is full",
+  "zh": "红石输出：MRU 存满时开启"
+ },
+ "message.essentialcraft5.ec_redstone_controller.unlinked": {
+  "en": " (not part of a formed Enrichment Chamber, so no output now)",
+  "zh": "（没有连着成形的富集仓，现在不输出）"
+ },
+ "advancements.essentialcraft5.mrucuec.title": {
+  "en": "Containment",
+  "zh": "收容"
+ },
+ "advancements.essentialcraft5.mrucuec.desc": {
+  "en": "Construct an MRUCU Enrichment Chamber",
+  "zh": "建成一座 MRUCU 富集仓"
+ },
+ "advancements.essentialcraft5.mrucuec_big.title": {
+  "en": "The Bigger the Better",
+  "zh": "越大越好"
+ },
+ "advancements.essentialcraft5.mrucuec_big.desc": {
+  "en": "Construct an Enrichment Chamber with at least 10 Holding Blocks",
+  "zh": "建成一座至少有 10 个存储方块的富集仓"
+ }
+}

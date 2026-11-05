@@ -1,0 +1,182 @@
+[
+  {
+    "id": "orbital_remote",
+    "title": "{item:essentialcraft5:orbital_remote}",
+    "icon": "essentialcraft5:orbital_remote",
+    "summary": "全息投影的稀有战利品：远程召下打击",
+    "complete": "essentialcraft5:main/hologram_remote",
+    "optional": true,
+    "items": [
+      "essentialcraft5:orbital_remote"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：打倒全息投影时，它有时会掉下一个{item:essentialcraft5:orbital_remote}（掉率见[[hologram/math_cores]]）。没有合成配方，只能从它身上拿。"
+      },
+      {
+        "type": "h",
+        "text": "怎么用"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "拿在主手或副手，准星对着 32 格内的地面：那里会立起一道品红色的光柱，这就是落点。对着天空或者够不着的地方没有光柱，也按不出去。",
+          "右键：花掉 {cfg:general.orbital_remote.mru_per_strike} MRU，落点立起真正的光柱，开始一点点收细。",
+          "3 秒后打击落下：以落点为中心 5×5×5 的范围里，每个生物挨 {cfg:general.orbital_remote.damage} 点伤害，挨到的还会着火 2 秒。"
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          ["每发", "{cfg:general.orbital_remote.mru_per_strike} MRU（先扣身上的储存物品，凑不够再扣遥控器自己的）"],
+          ["可存", "20000 MRU"],
+          ["伤害", "{cfg:general.orbital_remote.damage}"],
+          {
+            "if": "cfg:general.orbital_remote.player_damage_multiplier>0",
+            "cells": ["打玩家的伤害倍率", "{cfg:general.orbital_remote.player_damage_multiplier|x}"]
+          },
+          ["范围", "以落点为中心 5×5×5"],
+          ["落下", "右键后 3 秒"],
+          ["射程", "32 格"],
+          {
+            "if": "cfg:general.orbital_remote.cooldown_ticks>0",
+            "cells": ["冷却", "{cfg:general.orbital_remote.cooldown_ticks|sec}"]
+          }
+        ]
+      },
+      {
+        "type": "p",
+        "text": "落点总在方块的顶面：对着墙面按下去，打击落在那一格的正上方。静止的水面也算地面，草丛和花也挡准星。"
+      },
+      {
+        "type": "list",
+        "items": [
+          "不伤你自己、你驯服的动物、同一支队伍的玩家；",
+          "不伤村民、起了名字的、拴着绳的、别人驯服的生物和玩家造的傀儡，也不碰盔甲架；",
+          {
+            "if": "cfg:general.orbital_remote.player_damage_multiplier>0",
+            "text": "<b>别的玩家照样挨打</b>，能不能打照 PvP 和领地的规矩来；"
+          },
+          {
+            "if": "cfg:general.orbital_remote.player_damage_multiplier==0",
+            "text": "不伤别的玩家；"
+          },
+          "打死的生物算你杀的，照常掉东西、给经验。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "穿墙",
+        "text": "打击不看墙：落点 5×5×5 里的生物不论隔着几层方块都会挨打。护甲挡得住一部分，<w>抗性提升、保护附魔和盾都挡不住</w>。"
+      },
+      {
+        "type": "p",
+        "text": "落下时的爆炸只有声音和火光：不炸方块、不点燃地面、不把谁推开，地形一格都不会变。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作里这一击会先把落点附近的水、冰、雪蒸发掉，再把能烧的方块就地烧掉——沙子变玻璃、矿石变锭，产物撒一地，等于一台隔空的熔炉。这里只伤生物，不动地形。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到一个轨道打击遥控器。"
+      }
+    ],
+    "_src": [
+      "item/OrbitalRemoteItem.java:60 CAPACITY = 20000、:62 RANGE = 32、:64 STRIKE_DELAY = 60（3 秒）",
+      "item/OrbitalRemoteItem.java:141 aimFor — 按玩家这一刻的位置和朝向（不插值；右键结算和预览光柱共用）；:152 aim — ClipContext.Block.OUTLINE + Fluid.SOURCE_ONLY（静止水面、草和花都算）；:162 strikePoint — 打中那一格顶面正中",
+      "item/OrbitalRemoteItem.java:80 use、:115 strike — 只认真玩家、冷却中按不动、canAfford → 放下打击（被取消或在加入事件里被移除算没放成）→ MRUDrain.playerUseMRU（先扣储存物品）→ 冷却",
+      "item/OrbitalRemoteItem.java:178 isTarget — 跳过使用者、RayShot.isAlly（同队伍、自己驯服的）、旁观者、盔甲架；非玩家再跳过 ECEntityRules.isSpared",
+      "util/ECEntityRules.java:57 isSpared — 起名、村民、驯服（不论谁的）、拴绳、玩家造的傀儡、装鞍的骆驼",
+      "registry/ECHoloWeapons.java:142~153 — general.orbital_remote.mru_per_strike / damage / player_damage_multiplier / cooldown_ticks",
+      "entity/OrbitalStrikeEntity.java:62 REACH = 2.5（5×5×5）、:68 FIRE_SECONDS = 2；伤害真落下才着火、不击退、safeExplode 只出声光、不改方块；伤害记在使用者头上，打死照常掉落",
+      "data/essentialcraft5/damage_type/orbital_strike.json、data/minecraft/tags/damage_type/bypasses_effects.json、bypasses_shield.json — 护甲照算，抗性提升、保护附魔、盾不算",
+      "tools/plan/batch8.md §4.3、§7 — 原作删水冰雪、就地熔炼方块并掉产物，移植后不改方块；原作没有冷却"
+    ]
+  },
+  {
+    "id": "divider_gun",
+    "title": "{item:essentialcraft5:divider_gun}",
+    "icon": "essentialcraft5:divider_gun",
+    "summary": "全息投影的稀有战利品：敌人生命减半",
+    "complete": "essentialcraft5:main/hologram_gun",
+    "optional": true,
+    "items": [
+      "essentialcraft5:divider_gun"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：{item:essentialcraft5:divider_gun}也是全息投影的稀有战利品（掉率见[[hologram/math_cores]]），没有合成配方。"
+      },
+      {
+        "type": "h",
+        "text": "怎么用"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "按住右键拉弓，拉满 1 秒自动射出一颗二分弹。开始拉的时候 MRU 就得够一发，不够拉不起来；射出去时才扣。",
+          "二分弹像雪球一样走抛物线，打中方块或者生物就停在那里，放出一个品红色的小球。",
+          "2 秒后小球张开成半径 3 格的球：球里的敌对生物生命减半，再挂上下表的四种负面效果。"
+        ]
+      },
+      {
+        "type": "kv",
+        "rows": [
+          ["每发", "{cfg:general.divider_gun.mru_per_shot} MRU"],
+          ["可存", "20000 MRU"],
+          ["蓄力", "1 秒"],
+          ["张开", "落地 2 秒后"],
+          ["半径", "3 格"],
+          ["效果", "生命减半；虚弱 V、缓慢 V、挖掘疲劳 V 各 10 秒；失明 5 秒"]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "只对敌对生物",
+        "text": "玩家（包括你自己）、村民、动物、宠物、起了名字或拴着绳的生物都不受影响；你平时打不了的生物（比如别人领地里的）它也碰不到。减半<w>不会致死</w>，收尾还得自己动手。"
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.divider_gun.affect_bosses",
+        "text": "对凋灵这样的 Boss 也有效，一发削掉一半生命。末影龙和全息投影例外，二分场对它们一律无效。"
+      },
+      {
+        "type": "p",
+        "if": "!cfg:general.divider_gun.affect_bosses",
+        "text": "对凋灵、末影龙这样的 Boss 无效，对全息投影也无效。"
+      },
+      {
+        "type": "p",
+        "text": "二分弹 10 秒还没落地就自己消失。它不会踩响压力板、不会让标靶出信号，也不会把方块打坏。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "「除以二」：全息投影掉的加、减、乘、除四种数学核心是同一个梗，这把枪管的就是「除」。拿到它的进度叫「宇宙的数学」。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到一把二分枪。"
+      }
+    ],
+    "_src": [
+      "item/DividerGunItem.java:53 CAPACITY = 20000、:55 CHARGE_TICKS = 20（1 秒）、:57 SHOT_SPEED = 1.5",
+      "item/DividerGunItem.java:80 use — 开始拉就查 MRUDrain.canAfford，不够不拉；:125 fire — 拉满后弹丸进了世界才扣 mru_per_shot（被取消或在加入事件里被移除不扣）",
+      "item/DividerGunItem.java:152 isTarget — Enemy、活着、不是旁观者、不在 ECEntityRules.isSpared、不在 divider_immune；#forge:bosses 看 affect_bosses（末影龙过不了 0 伤害探测，打开也不受影响）",
+      "entity/DividerProjectileEntity.java:37 LIFETIME = 200（10 秒）、:39 FIELD_DELAY = 40（2 秒）、:75 onHitEntity / :83 onHitBlock / :88 deploy — 打中方块或生物就在命中点（接触点）展开；onHitBlock 不调方块的 onProjectileHit、:108 checkInsideBlocks 为空",
+      "entity/DividerFieldEntity.java:58 RADIUS = 3、:63 WEAKEN_TICKS = 200 / WEAKEN_AMPLIFIER = 4（V）、:66 BLIND_TICKS = 100；:173 probe — 0 伤害探测放行才生效（PvP、领地按射手问）；:180 apply — setHealth(一半)，不致死",
+      "registry/ECHoloWeapons.java:160~164 — general.divider_gun.mru_per_shot / affect_bosses",
+      "data/essentialcraft5/tags/entity_types/divider_immune.json — 全息投影一律不受二分场影响"
+    ]
+  }
+]

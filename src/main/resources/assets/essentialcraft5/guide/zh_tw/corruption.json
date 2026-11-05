@@ -1,0 +1,965 @@
+{
+  "id": "corruption",
+  "order": 88,
+  "group": "side",
+  "title": "支線 · 腐化效果",
+  "subtitle": "矩陣損傷積攢多了會凝成什麼",
+  "icon": "essentialcraft5:empty_matrix_projection",
+  "entries": [
+    {
+      "id": "matrix_damage",
+      "title": "矩陣損傷",
+      "icon": "essentialcraft5:magic_monocle",
+      "summary": "它從哪裡來、會變成什麼，又該怎樣防範",
+      "complete": "essentialcraft5:guide/corruption/matrix_damage",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "葬於此者，晚年手抖，逢雨便咳，夜裡常從夢中驚起，說看見世界成了一幅畫。我們沒能治好他。",
+          "by": "海納爾墓穴銘文"
+        },
+        {
+          "type": "p",
+          "text": "你身上籠著一層 <em>MRU 矩陣</em>，擊殺生物時吸來的 UBMRU 就存在裡面，見[[mru/ubmru]]。矩陣平時也替你擋著外面的 MRU，擋得多了，自己會受傷，積下的暗傷叫作<em>矩陣損傷</em>。它看不見，不會自行消退，死了也不清零。這一章不用做任何東西，什麼時候翻都行。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "損傷積攢多了會凝成<em>腐化效果</em>，這些毛病一旦染上就不會自己好，輕的偶爾手腳發軟，重的下雨天掉血，甚至憑空爆炸。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.effects_enabled",
+          "text": "在這個世界裡，矩陣損傷只會一直積攢下去，不會凝成任何效果。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "別弄混",
+          "text": "守在漏 MRU 的機器旁邊時疊上的「MRU 腐化」是另一回事，它是一種會到期消失的矩陣後遺症，不是藥水效果，見[[crafting/corruption]]。"
+        },
+        {
+          "type": "h",
+          "text": "從哪裡來"
+        },
+        {
+          "type": "table",
+          "header": [
+            "來源",
+            "增加多少"
+          ],
+          "rows": [
+            [
+              "存量在 1 萬 MRU 以上的 MRU 聚集體，見[[start/mrucu]]",
+              "每秒給 12 格內的每個玩家加 40 點，存滿 2 萬時加 80 點"
+            ],
+            {
+              "if": "cfg:general.guns.matrix_damage_per_damage",
+              "cells": [
+                "被[[guns/firing|魔力槍械的射線]]打中",
+                "每點槍械傷害增加 {cfg:general.guns.matrix_damage_per_damage} 點"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.inquisitorium.matrix_damage_per_hit"
+              ],
+              "cells": [
+                "被[[inquisitorium/sentinel|審判庭哨兵]]的招式打中",
+                "每次命中 +{cfg:general.inquisitorium.matrix_damage_per_hit}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:rewind_module",
+                "cfg:general.computer_modules.rewind.matrix_damage>0"
+              ],
+              "cells": [
+                "[[terminal/rewind|回溯模組]]救下你一次",
+                "+{cfg:general.computer_modules.rewind.matrix_damage}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:matrix_filter_module"
+              ],
+              "cells": [
+                "[[terminal/matrix_filter|矩陣過濾模組]]攔下一個有害效果",
+                "持續秒數 × 級數 × {cfg:general.computer_modules.matrix_filter.matrix_per_effect_second}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "module:essentialcraft5:matrix_shunt_module"
+              ],
+              "cells": [
+                "[[terminal/matrix_shunt|矩陣分流模組]]分走魔法傷害",
+                "每分走相當於最大生命 1% 的傷害，記 {cfg:general.computer_modules.matrix_shunt.matrix_per_max_health|div:100} 點"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "腐化效果{lang:corruption_effect.essentialcraft5.matrix_16}",
+                "偶爾 +1"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.trial.success_matrix_damage_per_rank>0"
+              ],
+              "cells": [
+                "在{item:essentialcraft5:matrix_crucible}上打贏試煉，見[[matrix/crucible]]",
+                "{cfg:general.matrix_rank.trial.success_matrix_damage_per_rank} × 新的階，按耐受打折"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.siphon.matrix_damage>0"
+              ],
+              "cells": [
+                "[[matrix/reservoir|矩陣虹吸]]抽一次聚集體",
+                "{cfg:general.matrix_rank.siphon.matrix_damage}，按耐受打折"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.mobs.matrix_wraith.matrix_damage_per_hit>0"
+              ],
+              "cells": [
+                "被[[bestiary/matrix_wraith|矩陣遊魂]]抓中",
+                "每抓中一下 +{cfg:general.mobs.matrix_wraith.matrix_damage_per_hit}，按耐受打折"
+              ]
+            },
+            {
+              "if": [
+                "!cfg:general.matrix_rank.enabled",
+                "cfg:general.mobs.matrix_wraith.matrix_damage_per_hit>0"
+              ],
+              "cells": [
+                "被[[bestiary/matrix_wraith|矩陣遊魂]]抓中",
+                "每抓中一下 +{cfg:general.mobs.matrix_wraith.matrix_damage_per_hit}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "平時真正要提防的只有第一種。基地裡的機器幹活時會漏出 MRU，飄在空中聚成一團，存量不到 1 萬時完全無害，創造模式的玩家則無論如何都不受影響。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.respect_claims",
+          "text": "聚集體要飄在你有權改動的地方才傷得到你，飄在別人領地裡的，你離得再近也不受影響。鄰居的機器漏出的 MRU 也不會匯進你領地裡的聚集體，野外的聚集體則照樣傷人。"
+        },
+        {
+          "type": "h",
+          "text": "怎樣防範"
+        },
+        {
+          "type": "table",
+          "header": [
+            "辦法",
+            "效果"
+          ],
+          "rows": [
+            [
+              "看見它",
+              "戴上{item:essentialcraft5:magic_monocle}，隔著牆也能看見聚集體，見[[gear/magic_monocle]]"
+            ],
+            [
+              "離遠一點",
+              "只有 12 格內的玩家受影響，太大的聚集體可以用{item:essentialcraft5:mru_mover}挪到不常去的角落"
+            ],
+            [
+              "隔一道牆",
+              "普通的牆擋不住，隔著下面這些方塊時，每秒受影響的機率降為{item:essentialcraft5:fortified_stone} 1/2、{item:essentialcraft5:fortified_glass} 1/3、{item:essentialcraft5:magic_plating} 1/5、{item:essentialcraft5:mithriline_plating} 1/7、{item:essentialcraft5:pale_plating} 1/10，護板的做法見[[alloys/plating]]"
+            ],
+            [
+              "穿防護",
+              "穿一整套[[gear/mhs_armor]]，每秒的 40 / 80 點會降到 1 / 3 點，穿一整套[[wind_gear/wind_armor]]能降到 0 / 1 點"
+            ],
+            [
+              "收進富集倉",
+              "在富集倉的外殼上裝好[[pentacle/ec_balancer]]，倉裡的聚集體就不會再傷人"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_wraith.spawn_weight>0",
+          "text": "存著 {cfg:general.mobs.matrix_wraith.min_presence_mru} MRU 以上、沒被穩定器壓著的聚集體，還會在 {cfg:general.mobs.matrix_wraith.presence_radius} 格內的暗處招來[[bestiary/matrix_wraith|矩陣遊魂]]，每來一隻就從那團裡抽走 {cfg:general.mobs.matrix_wraith.drain_mru} MRU。把它關進富集倉、用穩定器壓住，或者把附近照亮，就不會再來。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩陣階帶來的<em>耐受</em>（每階 {cfg:general.matrix_rank.tolerance_per_rank|pct}，七階起的矩陣穩固再打一次折）只抵試煉、虹吸、矩陣遊魂這些新來源，上面那些老來源一點不減，見[[matrix/tolerance]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.max_matrix_damage<2147483647",
+          "text": "矩陣損傷最多攢到 {cfg:general.corruption.max_matrix_damage|int}，到了上限就不再增加。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "怎樣凝成效果"
+        },
+        {
+          "type": "steps",
+          "if": "cfg:general.corruption.effects_enabled",
+          "items": [
+            "大約每 60 秒抽一次籤，抽中的機率是（損傷 + 1）÷ 36000，損傷 3600 點時為 10%，18000 點時為一半，36000 點起每次必中。",
+            "抽中以後，會從<em>門檻不超過當前損傷</em>、你身上又還沒有的效果裡隨機挑一個，身體類效果被挑中的機率是別的類別的三倍。每種效果的門檻是它成本的 {cfg:general.corruption.draw_threshold_multiplier} 倍。",
+            {
+              "if": "cfg:general.corruption.draw_requires_cure_tier",
+              "text": "能不能挑中，要看你有沒有<em>開啟過靈魂五芒星</em>。只要開啟過一座搭好的，哪怕只是 0 檔，各個類別的效果都可能被挑中，不再看檔位，見[[pentacle/pentacle]]。還一座都沒開啟過的話，損傷只會積攢下來，不會凝成任何效果。"
+            },
+            "挑中以後，這個效果的門檻會從損傷里扣掉，聊天欄隨即出現一行紅字「{lang:message.essentialcraft5.corruption.gained}」，但不告訴你是哪一個。",
+            {
+              "if": "cfg:general.corruption.draw_cooldown_minutes>1",
+              "text": "抽中一個效果以後，至少還要再線上 {cfg:general.corruption.draw_cooldown_minutes} 分鐘，才可能抽中下一個。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "門檻最低的是矩陣類的{lang:corruption_effect.essentialcraft5.matrix_16}，要 {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int}，身體類效果最低也要 {cfg:general.corruption.draw_threshold_multiplier|mul:6000|int}，所以損傷不到 {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int} 時什麼也不會發生。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "!cfg:general.corruption.matrix_effects_enabled||!cfg:general.hoanna.portal_enabled",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "身體類效果的門檻最低也要 {cfg:general.corruption.draw_threshold_multiplier|mul:6000|int}，所以損傷不到 {cfg:general.corruption.draw_threshold_multiplier|mul:6000|int} 時什麼也不會發生。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "你開啟過五芒星以後，身體類效果的門檻是 {cfg:general.corruption.draw_threshold_multiplier|mul:6000|int}，心智類從 {cfg:general.corruption.draw_threshold_multiplier|mul:8000|int} 起，損傷沒到這些門檻，什麼也不會發生。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "矩陣類效果也在其中，最便宜的{lang:corruption_effect.essentialcraft5.matrix_16}門檻只要 {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int}，成本 72000 的那三種門檻最高，要攢到 {cfg:general.corruption.draw_threshold_multiplier|mul:72000|int} 才會凝成。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "怎樣治療"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "腐化效果只能在[[pentacle/pentacle]]上花 ESPE 一個一個地治。ESPE 是水晶柱積攢的另一種能量，治一個效果要花的 ESPE 正好等於它的成本。身體類效果 0 檔就能治，心智類要 1 檔，見[[pentacle/tier_one]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "矩陣類效果要 2 檔才治得了，成本 72000 的那三種更要 3 檔，兩檔的搭法分別見[[pentacle/tier_two]]和[[pentacle/tier_three]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "還沒開啟過五芒星時，身上已有的效果會<em>潛伏</em>著，留在身上卻不發作，等你開啟第一座五芒星，它們就醒了。醒來以後，不管你這一檔治不治得了，它們都會發作，治不了的就得去搭更高檔的五芒星。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.effect_chance_multiplier>1"
+          ],
+          "text": "身上的效果發作得更勤，每種效果每秒發作的機率都要乘上 {cfg:general.corruption.effect_chance_multiplier|x}，乘完最高到 100%。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.effect_damage_multiplier>1"
+          ],
+          "text": "直接掉血的效果也更疼，各個效果扣血的比例都要乘上 {cfg:general.corruption.effect_damage_multiplier|x}，一下最多扣掉整條最大生命。守著漏 MRU 的機器疊上的「MRU 腐化」不受這個倍數影響。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "前期別讓損傷漲起來",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "矩陣類效果要 2 檔五芒星才治得了，那得等到第十六章去過海納爾以後。損傷超過 {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int} 就可能抽到它們，超過 {cfg:general.corruption.draw_threshold_multiplier|mul:20000|int} 時連{lang:corruption_effect.essentialcraft5.matrix_13}都可能抽到。前期儘量把損傷壓在 {cfg:general.corruption.draw_threshold_multiplier|mul:2000|int} 以下，可以戴上[[gear/magic_monocle]]把大聚集體找出來挪走，只穿一件[[gear/mhs_armor]]也能把每秒 40 點降到 6 點。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "title": "做出五芒星以前",
+          "text": "開啟第一座搭好的靈魂五芒星之前，損傷不會凝成任何效果，但也不會消退。一旦開啟，攢下的損傷就開始往外冒，哪一類效果都可能出現。所以前期照樣要離大聚集體遠一點，可以戴上[[gear/magic_monocle]]把它們找出來挪走，只穿一件[[gear/mhs_armor]]也能把每秒 40 點降到 6 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "五芒星只治效果，清不掉損傷。損傷每凝成一個效果就扣掉一截，除此之外不會自己減少。五芒星的介面裡能看到你現在攢了多少損傷，身上又有哪些效果。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.matrix_tuner.enabled"
+          ],
+          "text": "到了後期，可以站到[[corruption/matrix_tuner|矩陣調律器]]上，花 ESPE 和 MRU 把損傷一點點抹掉。"
+        },
+        {
+          "type": "p",
+          "text": "損傷攢到 {cfg:general.mobs.matrix_shade.min_matrix_damage|int} 以上時，還可以拿{item:essentialcraft5:matrix_conduit}在一檔以上的靈魂五芒星上召出[[bestiary/matrix_shade|矩陣之影]]，把身上最多 {cfg:general.mobs.matrix_shade.max_absorbed|int} 點損傷一次轉給它。打倒它，這些損傷就沒了；打輸了會原樣還給你。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "身上有了矩陣損傷。第一次被大聚集體或射線傷到時，這一步會自動打勾。"
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "title": "身體類",
+      "icon": "minecraft:fermented_spider_eye",
+      "summary": "成本 6000，0 檔五芒星就能治",
+      "complete": "essentialcraft5:guide/corruption/body",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "殘卷第二卷裡寫，矩陣損傷凝成的毛病，多半落在手和腿上。身體類效果共五種，成本都是 6000，五芒星 0 檔就能治，治法見[[pentacle/cure]]。下表的機率都按每秒算，還沒乘上[[corruption/matrix_damage]]裡說的倍數。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "效果",
+            "多久一次",
+            "發作時"
+          ],
+          "rows": [
+            [
+              "{lang:corruption_effect.essentialcraft5.body_0}",
+              "0.1%，平均約 17 分鐘一次",
+              "挖掘慢得和挖掘疲勞 II 一樣，揮手也變慢，持續 20 秒"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.body_1}",
+              "0.1%",
+              "攻擊傷害減半，持續 20 秒"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.body_2}",
+              "挖方塊、打東西這類揮手的時候 1%",
+              "扣除最大生命的 {cfg:general.corruption.hand_burn_health_percent|pct}"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.body_3}",
+              "0.1%",
+              "走路慢得和緩慢 II 一樣，持續 20 秒"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.body_4}",
+              "下落時每秒都會發作",
+              "摔落高度多算 1 格，落地摔得更疼"
+            ]
+          ],
+          "widths": [
+            2,
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "{lang:corruption_effect.essentialcraft5.body_2}扣的血按你的<em>最大生命</em>算，裝備和飾品加的生命也算在內，所以血再多也照樣疼，表裡的比例還要再乘 {cfg:general.corruption.effect_damage_multiplier|x}。"
+        },
+        {
+          "type": "p",
+          "text": "{lang:corruption_effect.essentialcraft5.body_0}、{lang:corruption_effect.essentialcraft5.body_1}、{lang:corruption_effect.essentialcraft5.body_3}留下的是<em>矩陣後遺症</em>，不是藥水效果。快捷欄左邊會多出一個紫框小圖示，上面寫著還剩多久，開啟物品欄把滑鼠停在上面能看到說明。牛奶、不死圖騰和淨化道具都去不掉它，只能等它過去，人死了它也會散。"
+        },
+        {
+          "type": "p",
+          "text": "除了{lang:corruption_effect.essentialcraft5.body_4}，每次發作前聊天欄都會先跳出一句暗紅色的話，比如「{lang:corruption_effect.essentialcraft5.body_0.message}」，看到它就知道是哪一個效果。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "身上有了任意一個身體類效果。抽中的那一刻，這一步會自動打勾。"
+        }
+      ],
+      "if": "cfg:general.corruption.effects_enabled"
+    },
+    {
+      "id": "mind",
+      "title": "心智類",
+      "icon": "minecraft:spider_eye",
+      "summary": "成本 8000～36000，1 檔五芒星能治",
+      "complete": "essentialcraft5:guide/corruption/mind",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "心智類效果共六種，五芒星 1 檔起就能治，見[[pentacle/tier_one]]。下表的機率都按每秒算，還沒乘上[[corruption/matrix_damage]]裡說的倍數。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "效果（成本）",
+            "多久一次",
+            "發作時"
+          ],
+          "rows": [
+            [
+              "{lang:corruption_effect.essentialcraft5.mind_5}（36000）",
+              "0.1%，約 17 分鐘一次",
+              "陷入 100 秒的[[corruption/paradox]]"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.mind_6}（36000）",
+              "0.08%",
+              "耳邊響起一句怪話，別的什麼也不發生"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.mind_7}（14400）",
+              "0.1%",
+              "同樣只是一句話"
+            ],
+            {
+              "if": "cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_8}（18000）",
+                "0.005%，約 5.6 小時一次",
+                "只把快捷欄的 9 格隨機換位，背包裡其餘的格子和盔甲、副手、飾品都不動"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_8}（18000）",
+                "0.005%，約 5.6 小時一次",
+                "把主物品欄連快捷欄在內的 36 格隨機打亂，盔甲、副手、飾品不動"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_9}（8000）",
+                "0.007%，約 4 小時一次",
+                "主手的那一組物品被挪進背包的其他格子，不會掉到地上"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_9}（8000）",
+                "0.007%，約 4 小時一次",
+                "把主手的那一組物品扔出去，就像按了 Ctrl+Q"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_10}（8000）",
+                "0.1%",
+                "手不聽使喚地抽一下，正在吃喝、拉弓或舉盾時會被打斷，但不會替你用掉任何東西"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.mind_10}（8000）",
+                "0.1%",
+                "替你對著空氣右鍵一下主手的物品"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "手裡拿什麼要小心",
+          "text": "{lang:corruption_effect.essentialcraft5.mind_10}和你親手右鍵一模一樣，末影珍珠會扔出去，桶裡的東西會倒出來，手裡拿著岩漿桶、末影珍珠這類東西時要格外小心。好在領地不許你做的事，它也做不了。主手空著時，{lang:corruption_effect.essentialcraft5.mind_9}和{lang:corruption_effect.essentialcraft5.mind_10}都不會發作。",
+          "if": "!cfg:general.corruption.gentle_effects"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.corruption.gentle_effects",
+          "title": "不會毀東西",
+          "text": "{lang:corruption_effect.essentialcraft5.mind_9}只是把東西挪進背包，{lang:corruption_effect.essentialcraft5.mind_10}只是讓你的手抽一下，兩個都不會扔掉或用掉你的東西，主手空著時也都不發作。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "身上有了任意一個心智類效果。抽中的那一刻，這一步會自動打勾。"
+        }
+      ],
+      "if": "cfg:general.corruption.effects_enabled"
+    },
+    {
+      "id": "matrix",
+      "title": "矩陣類",
+      "icon": "minecraft:wither_rose",
+      "summary": "成本 2000～72000，2 檔起才治得了",
+      "complete": "essentialcraft5:guide/corruption/matrix",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.draw_requires_cure_tier",
+          "text": "矩陣類效果共十四種，要 2 檔五芒星才治得了，成本 72000 的那三種要 3 檔，兩檔的搭法分別見[[pentacle/tier_two]]和[[pentacle/tier_three]]。你開啟過五芒星以後，它們就可能凝成，治不了的照樣發作。下表的機率都按每秒算，還沒乘上[[corruption/matrix_damage]]裡說的倍數。"
+        },
+        {
+          "type": "p",
+          "text": "矩陣類效果共十四種，要去過海納爾以後才治得了，治它們要 2 檔五芒星，成本 72000 的那三種要 3 檔，兩檔的搭法分別見[[pentacle/tier_two]]和[[pentacle/tier_three]]。下表的機率都按每秒算，還沒乘上[[corruption/matrix_damage]]裡說的倍數。",
+          "if": "!cfg:general.corruption.draw_requires_cure_tier"
+        },
+        {
+          "type": "h",
+          "text": "直接掉血的"
+        },
+        {
+          "type": "table",
+          "header": [
+            "效果（成本）",
+            "什麼時候",
+            "發作時"
+          ],
+          "rows": [
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_12}、{lang:corruption_effect.essentialcraft5.matrix_19}、{lang:corruption_effect.essentialcraft5.matrix_20}（各 72000）",
+              "分別在終界、地獄、主世界時 0.3%",
+              "以溺水傷害扣除最大生命的 {cfg:general.corruption.suffocation_health_percent|pct}"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_14}（4000）",
+              "0.1%",
+              "著火 8 秒，同時扣掉最大生命的 {cfg:general.corruption.burning_health_percent|pct}，有抗火效果時這一下不扣"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_15}（8000）",
+              "0.07%",
+              "一道閃電劈在你身上，扣掉最大生命的 {cfg:general.corruption.lightning_health_percent|pct}，人也著火 8 秒"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_17}（36000）",
+              "夜裡沒下雨且頭頂無遮擋時 1%",
+              "魔法傷害隨月相變化：滿月 {cfg:general.corruption.moonlight_health_percent|pct}，凸月 {cfg:general.corruption.moonlight_health_percent|mul:0.6|pct}，半月 {cfg:general.corruption.moonlight_health_percent|mul:0.4|pct}，蛾眉月 {cfg:general.corruption.moonlight_health_percent|mul:0.2|pct}，新月時沒有傷害"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_18}（14400）",
+              "身上有 MRU 腐化時 0.1%",
+              "以魔法傷害扣除最大生命的 {cfg:general.corruption.mru_failure_health_percent|pct}"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_21}（36000）",
+              "白天淋到雨時 10%",
+              "以凋零傷害扣除最大生命的 {cfg:general.corruption.withering_health_percent|pct}"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_22}（36000）",
+              "白天沒下雨且頭頂無遮擋時 0.3%",
+              "以凋零傷害扣除最大生命的 {cfg:general.corruption.withering_health_percent|pct}"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_23}（8000）",
+              "頭部浸在水裡時 3%",
+              "以凋零傷害扣除最大生命的 {cfg:general.corruption.acid_water_health_percent|pct}"
+            ],
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_24}（4000）",
+              "0.5%",
+              "以凋零傷害扣除最大生命的 {cfg:general.corruption.withering_health_percent|pct}"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這些傷害都按你的<em>最大生命</em>算，裝備和飾品加的生命也算在內，所以血再多也照樣疼，表裡的比例還要再乘 {cfg:general.corruption.effect_damage_multiplier|x}。抗性提升和保護附魔照常能減免。"
+        },
+        {
+          "type": "h",
+          "text": "其他"
+        },
+        {
+          "type": "table",
+          "header": [
+            "效果（成本）",
+            "什麼時候",
+            "發作時"
+          ],
+          "rows": [
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_11}（20000）",
+              "剛受到攻擊後的半秒內 3%",
+              "受傷後的無敵時間被清掉，緊接著的下一擊照樣打實"
+            ],
+            {
+              "if": "cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.matrix_13}（20000）",
+                "0.06%，約 28 分鐘一次",
+                "以你為中心炸一次，你自己最多損失一半生命，周圍別的生物照樣受傷"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.gentle_effects",
+              "cells": [
+                "{lang:corruption_effect.essentialcraft5.matrix_13}（20000）",
+                "0.06%，約 28 分鐘一次",
+                "以你為中心炸一次，威力和苦力怕一樣，你自己受到的傷害是最大生命的 {cfg:general.corruption.self_blast_health_percent|pct}，還要再乘 {cfg:general.corruption.effect_damage_multiplier|x}"
+              ]
+            },
+            [
+              "{lang:corruption_effect.essentialcraft5.matrix_16}（2000）",
+              "1%",
+              "矩陣損傷 +1"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            4
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "當心爆炸",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_13}是最危險的一個效果。你就站在爆心，普通難度下一次會損失最大生命的 {cfg:general.corruption.self_blast_health_percent|pct}，還要再乘 {cfg:general.corruption.effect_damage_multiplier|x}，困難難度再多一半，簡單難度約少一半，人還會被掀起來。護甲和爆炸保護能減免一部分，可殘血時基本扛不住，染上了要儘快去治。它不破壞方塊，也不點火，展示框、畫、盔甲架和地上的物品都不受影響，周圍的生物則照樣受傷，並算作你造成的傷害。",
+          "if": "!cfg:general.corruption.gentle_effects"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.corruption.gentle_effects",
+          "title": "爆炸炸不死你",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_13}發作時，你自己最多損失當前生命的一半，被掀起的高度也摔不死你。它不破壞方塊，也不點火，展示框、畫、盔甲架、地上的物品、馴服的動物和村民都不受影響，周圍別的生物則照樣受傷，並算作你造成的傷害。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "還要知道",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_21}的機率最高，不過在沙漠、雪地或玻璃頂下淋不到雨，它就不發作，雷雨天光線太暗，也不算白天。{lang:corruption_effect.essentialcraft5.matrix_15}劈下的閃電只是視覺效果，不會點燃方塊、傷到旁人，也不會把被劈中的村民和豬變成別的生物。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.inquisitorium.matrix_damage_per_hit"
+          ],
+          "title": "最貴的三種",
+          "text": "第十九章的審判庭哨兵每打中你一下，都會額外加 {cfg:general.inquisitorium.matrix_damage_per_hit} 點矩陣損傷，見[[inquisitorium/sentinel]]。那一章的最後一步就是 3 檔五芒星，成本 72000 的三種效果要靠它來治，見[[inquisitorium/purify]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "身上有了任意一個矩陣類效果。抽中的那一刻，這一步會自動打勾。"
+        }
+      ],
+      "if": [
+        "cfg:general.corruption.effects_enabled",
+        "cfg:general.corruption.matrix_effects_enabled",
+        "cfg:general.hoanna.portal_enabled"
+      ]
+    },
+    {
+      "id": "paradox",
+      "title": "心智悖論",
+      "icon": "minecraft:ender_eye",
+      "summary": "宇宙崩裂發作時的 100 秒",
+      "complete": "essentialcraft5:guide/corruption/paradox",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "{lang:corruption_effect.essentialcraft5.mind_5}發作時，你會陷入 100 秒的<em>心智悖論</em>。它傷不到你，只是這段時間裡，眼前和耳邊都不太對勁。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "起初耳朵裡嗡嗡作響，眼前的世界變成一幅油畫，持續約 20 秒。",
+            "從第 5 秒起，每隔 5 秒響一聲心跳，一直響到最後 5 秒之前。",
+            "15 秒以後，眼前會時不時一黑，平均隔 10 秒一次，接著是 10 秒的幻覺，每段都以一道白光收尾。你可能看到一幅鉛筆素描般的世界，裡面飄著黑紅色的粉塵，也可能看到整個世界褪盡顏色，或是滿眼殘影、天上不停落下爆炸，又或者上下顛倒、身子變輕，跳得更高、落得更慢。",
+            "最後 5 秒是安靜的。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "爆炸和粉塵都只在你自己眼裡，別人看不見，它們不傷人，也不會毀壞任何東西。"
+        },
+        {
+          "type": "h",
+          "text": "應對"
+        },
+        {
+          "type": "list",
+          "items": [
+            "心智悖論是矩陣後遺症，不是藥水效果，牛奶、{item:essentialcraft5:magic_water_bottle}和不死圖騰都解不了，只能熬過這 100 秒，人死了它也會散。",
+            "怕晃眼的話，可以在「{lang:options.title} → {lang:options.accessibility.title}」裡開啟「{lang:options.hideLightningFlashes}」，就不會再有黑屏和白閃，把「{lang:options.screenEffectScale}」拉到 0，畫面上也不會再疊濾鏡。",
+            "熬過去的只是這 100 秒，{lang:corruption_effect.essentialcraft5.mind_5}本身還在你身上，要去五芒星那裡治，見[[pentacle/tier_one]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "陷入過一次心智悖論。"
+        }
+      ],
+      "if": "cfg:general.corruption.effects_enabled"
+    },
+    {
+      "id": "matrix_tuner",
+      "title": "{item:essentialcraft5:matrix_tuner}",
+      "icon": "essentialcraft5:matrix_tuner",
+      "summary": "站上去，花 ESPE 和 MRU 抹掉矩陣損傷",
+      "complete": "essentialcraft5:guide/corruption/matrix_tuner",
+      "optional": true,
+      "items": [
+        "essentialcraft5:matrix_tuner"
+      ],
+      "if": [
+        "cfg:machines.matrix_tuner.enabled",
+        "cfg:general.hoanna.portal_enabled"
+      ],
+      "blocks": [
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "這是一台後期機器，材料裡的{item:essentialcraft5:void_plating}要去過海納爾才有，{item:essentialcraft5:demonic_core}要到第十七章才做得出來。"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:matrix_tuner}。矩陣損傷不會自己消退，站到調律器上，它每秒替你抹掉一些，按抹掉的點數收 ESPE 和 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "list",
+          "items": [
+            "四塊{item:essentialcraft5:demonic_plate}和一個{item:essentialcraft5:demonic_core}，見[[demons/ackronite]]；",
+            "一塊{item:essentialcraft5:void_plating}，見[[hoanna/void_plating]]；",
+            "兩顆{item:essentialcraft5:mru_resonating_crystal}，見[[alloys/resonating_crystal]]；",
+            "一座{item:essentialcraft5:player_pentacle}，配方會把它吃掉，再做一座不難，見[[pentacle/pentacle]]。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_tuner"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下調律器，在介面右邊的格子裡放一顆綁在 MRU 源上的{item:essentialcraft5:bound_gem}。",
+            "在和調律器同一高度、隔開一格的一圈位置上擺水晶柱，最多 8 根，它從這些柱子裡抽 ESPE，擺法見下圖。",
+            "站到它頂上的調律盤上。它每秒結算一次，每次最多抹掉 {cfg:machines.matrix_tuner.damage_per_second} 點，你一直站著它就一直抹，直到損傷清零，或者存的 ESPE、MRU 不夠付為止。"
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": [
+                "essentialcraft5:mithriline_crystal_pillar",
+                "essentialcraft5:pale_crystal_pillar",
+                "essentialcraft5:void_crystal_pillar",
+                "essentialcraft5:demonic_crystal_pillar"
+              ],
+              "label": "任意一種水晶柱"
+            },
+            "R": "essentialcraft5:matrix_tuner"
+          },
+          "anchor": "R",
+          "pattern": [
+            "C C C",
+            "     ",
+            "C R C",
+            "     ",
+            "C C C"
+          ],
+          "caption": "同一高度隔一格擺一圈，種類不限，擺不滿 8 根也能用。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "柱子的底座要和調律器在同一高度。",
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "柱頂上方保持無遮擋，柱子才能積攢 ESPE。"
+            },
+            "ESPE 是末影之星脈衝能量，由水晶柱積攢，和 MRU 不是一回事，見[[mithriline/crystal_pillar]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "價錢"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每秒最多抹掉",
+              "{cfg:machines.matrix_tuner.damage_per_second} 點"
+            ],
+            {
+              "if": "cfg:machines.matrix_tuner.espe_per_damage",
+              "cells": [
+                "每點 ESPE",
+                "{cfg:machines.matrix_tuner.espe_per_damage}"
+              ]
+            },
+            {
+              "if": "cfg:machines.matrix_tuner.mru_per_damage",
+              "cells": [
+                "每點 MRU",
+                "{cfg:machines.matrix_tuner.mru_per_damage}"
+              ]
+            },
+            [
+              "MRU 容量",
+              "{cfg:machines.matrix_tuner.max_mru} MRU"
+            ],
+            [
+              "ESPE 容量",
+              "{cfg:machines.matrix_tuner.max_espe} ESPE"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.matrix_tuner.espe_per_damage==0.5"
+          ],
+          "text": "真正卡速度的是 ESPE。全速一秒要 {cfg:machines.matrix_tuner.damage_per_second|mul:0.5} ESPE，8 根柱子一秒攢下的基礎量在主世界是 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160}，在終界是 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160}，每根柱子再按自己的檔位乘上倍率，倍率見[[mithriline/crystal_pillar]]。調律器和柱子裡存著的 ESPE 先用掉，之後就只能照柱子攢的速度來抹。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.matrix_tuner.damage_per_second==60",
+            "cfg:general.corruption.max_matrix_damage<2147483647"
+          ],
+          "text": "就算 ESPE 不缺，從滿條的 {cfg:general.corruption.max_matrix_damage|int} 點抹到 0 也要站 {cfg:general.corruption.max_matrix_damage|div:3600|int} 分鐘。"
+        },
+        {
+          "type": "h",
+          "text": "私人與公開"
+        },
+        {
+          "type": "p",
+          "text": "它預設是<em>私人</em>的，只給放下它的人調。介面下方的按鈕能切成<em>公開</em>，誰站上去都給調，主人和別人一起站著時先調主人。不管哪種模式，一次只調一個人，前一個人清零了才輪到下一個。"
+        },
+        {
+          "type": "p",
+          "text": "公開時別人花的是你攢下的 ESPE 和 MRU。這個按鈕只有主人按得動。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到調律器，這一步就打勾了。接好 MRU、擺好柱子再站上去，狀態條會顯示「{lang:gui.essentialcraft5.matrix_tuner.status.working}」，介面裡的剩餘矩陣損傷每秒往下掉一截。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "<w>它只減損傷，不治效果。</w>身上已經有的腐化效果一個也不會少，還得去[[pentacle/cure|靈魂五芒星]]治。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "text": "損傷低了，下一次抽中腐化效果的機率也跟著降，見[[corruption/matrix_damage]]。"
+            },
+            "站在上面的人沒有損傷時，狀態條顯示「{lang:gui.essentialcraft5.matrix_tuner.status.clean}」，什麼都不扣。旁觀模式下站上去不算。",
+            "寶石格只能手放，漏斗插不進，別的機器也抽不走它存的 ESPE。",
+            "明明是你放的，狀態條卻一直顯示「{lang:gui.essentialcraft5.matrix_tuner.status.not_allowed}」時，把它拆下來親手重新放一次。",
+            {
+              "if": "cfg:machines.matrix_tuner.generate_corruption",
+              "text": "工作時每秒向周圍洩漏 0～{cfg:machines.matrix_tuner.max_corruption_gen} MRU，詳見[[crafting/corruption]]。"
+            },
+            "想一口氣清掉一大截，可以去打[[bestiary/matrix_shade|矩陣之影]]。召喚時由五芒星的柱子按每點 {cfg:general.mobs.matrix_shade.espe_per_damage} 有效 ESPE 付錢，不收 MRU；打輸了，損傷和 ESPE 都原樣退回。"
+          ]
+        }
+      ]
+    }
+  ]
+}

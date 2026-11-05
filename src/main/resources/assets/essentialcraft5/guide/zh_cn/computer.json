@@ -1,0 +1,1450 @@
+{
+  "id": "computer",
+  "order": 104,
+  "group": "main",
+  "title": "第二十章 · 宅男套装",
+  "subtitle": "控制恶魔板的电脑与最后的盔甲",
+  "icon": "essentialcraft5:computer_helmet",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "force_parts",
+      "title": "基础力场零件",
+      "icon": "essentialcraft5:force_emitter",
+      "summary": "五种基础件，每次出 4 个",
+      "complete": "essentialcraft5:guide/computer/force_parts",
+      "items": [
+        "essentialcraft5:force_absorber",
+        "essentialcraft5:force_emitter",
+        "essentialcraft5:particle_catcher",
+        "essentialcraft5:particle_emitter",
+        "essentialcraft5:force_field_core"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "图都画好了，四件甲，一块板。缺一台能管住恶魔板的电脑，我造不出来，问遍了也没人造得出来。这套东西是给以后的人的。",
+          "by": "《工坊手记》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做出五种基础力场零件。宅男套装照的是工坊手记里的图。它是本章的终点，四件盔甲由十几种零件一层层拼起来，最底下的就是这五种。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "开工前先算账",
+          "text": "宅男套装是整个模组里最贵的东西，四件加起来要 287 块恶魔板、48 颗风之水晶、4 个 MRU 反应核和 2 个永恒物质，完整清单见[[computer/costs]]。最慢的是注风，从现在起就让五芒星和风之祭坛一直运转，人也留在附近。"
+        },
+        {
+          "type": "h",
+          "text": "五种基础件"
+        },
+        {
+          "type": "p",
+          "text": "五种零件摆法相同，四个角放一种材料，四条边放一种，中间放一个，每次合成出 <t>4</t> 个。"
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "header": [
+            "零件",
+            "四个角",
+            "四条边",
+            "中间"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:force_absorber}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:mithriline_crystal}",
+              "{item:essentialcraft5:wind_gem}"
+            ],
+            [
+              "{item:essentialcraft5:force_emitter}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:fading_crystal}",
+              "{item:essentialcraft5:wind_gem}"
+            ],
+            [
+              "{item:essentialcraft5:particle_catcher}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:fading_crystal}",
+              "{item:essentialcraft5:force_absorber}"
+            ],
+            [
+              "{item:essentialcraft5:particle_emitter}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:mru_resonating_crystal}",
+              "{item:essentialcraft5:force_emitter}"
+            ],
+            [
+              "{item:essentialcraft5:force_field_core}",
+              "{item:essentialcraft5:pale_plate}",
+              "{item:essentialcraft5:demonic_core}",
+              "{item:essentialcraft5:void_mru_reactor}"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:force_absorber",
+            "essentialcraft5:force_emitter",
+            "essentialcraft5:particle_catcher",
+            "essentialcraft5:particle_emitter",
+            "essentialcraft5:force_field_core"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>原料从哪来</em>：恶魔板和恶魔核心见[[demons/ackronite]]，风之水晶见[[wind/wind_gem]]，米斯莱水晶见[[mithriline/mithriline_ingot]]，黯淡水晶见[[pentacle/pale_crystal_pillar]]，MRU 共鸣水晶见[[alloys/resonating_crystal]]，淡青板见[[alloys/pale]]。MRU 反应核只能在海纳尔的遗迹箱子里找到，见[[hoanna/relics]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>原料从哪来</em>：恶魔板和恶魔核心见[[demons/ackronite]]，风之水晶见[[wind/wind_gem]]，米斯莱水晶见[[mithriline/mithriline_ingot]]，黯淡水晶见[[pentacle/pale_crystal_pillar]]，MRU 共鸣水晶见[[alloys/resonating_crystal]]，淡青板见[[alloys/pale]]。MRU 反应核可以在海纳尔的遗迹箱子里找到，见[[hoanna/relics]]，也可以让混沌的富集仓坍缩出来，见[[hoanna/collapse]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到这五种里的任意一种。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "反应核省着用",
+          "text": "每做一次力场核心要吃掉 1 个 MRU 反应核，四件套装要做 4 次力场核心，算上反重力板是 5 次，所以反应核最好一个都别挪去做别的机器。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/computer/{force_absorber,force_emitter,particle_catcher,particle_emitter,force_field_core}.json — #@# / @C@ / #@#，各出 4（batch8 D4 = A，原作 1）",
+        "registry/ECComputer.java FORCE_ABSORBER 等 — genitem 74 / 68 / 66 / 67 / 65，形状照 1.10.2 代码配方 RecipeRegistry L488~703",
+        "tools/gen/computer_bom.py — 四件：恶魔板 287、风之水晶 48、反应核 4、永恒物质 2；全套 + 反重力板：force_field_core 5 次、void_mru_reactor 5"
+      ]
+    },
+    {
+      "id": "force_field",
+      "title": "力场发生器与力场护板",
+      "icon": "essentialcraft5:force_field_generator",
+      "summary": "两种中间件，每次出 2 个",
+      "complete": "essentialcraft5:guide/computer/force_field",
+      "items": [
+        "essentialcraft5:force_field_generator",
+        "essentialcraft5:force_field_plating"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：用基础件拼出{item:essentialcraft5:force_field_generator}和{item:essentialcraft5:force_field_plating}。套装的每一件都要 1 个发生器和 2~3 块力场护板，反重力板也要 1 个发生器。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:force_field_generator",
+            "essentialcraft5:force_field_plating"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:force_field_generator}",
+              "四个角放力场发射器，四条边放力场核心，中间放一个{item:essentialcraft5:matter_of_eternity}，每次出 <t>2</t> 个"
+            ],
+            [
+              "{item:essentialcraft5:force_field_plating}",
+              "四个角放粒子捕捉器，四条边放粒子发射器，中间放一个力场核心，每次出 <t>2</t> 个"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一个力场发生器。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "永恒物质也是一块能存 MRU 的电池，<w>里面存的 MRU 会在合成时一起消失</w>，所以要用刚做出来、还没充过能的那块。四件套装要做 2 次发生器，共需 2 个永恒物质，要用掉 2 颗下界之星，永恒物质的做法见[[storage/soul_storage]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/computer/force_field_generator.json — #@# / @C@ / #@#：力场发射器 ×4、力场核心 ×4、永恒物质，出 2",
+        "data/essentialcraft5/recipes/computer/force_field_plating.json — 粒子捕捉器 ×4、粒子发射器 ×4、力场核心，出 2",
+        "data/essentialcraft5/recipes/magician_table/matter_of_eternity.json — 下界之星 + 大 MRU 晶块 ×4；永恒物质是 100 万 MRU 的储存物品（storage 章），原版有序合成不保留 NBT",
+        "tools/gen/computer_bom.py — 四件 force_field_generator 2 次、matter_of_eternity 2；全套 + 反重力板 3 次、3 个"
+      ]
+    },
+    {
+      "id": "drives",
+      "title": "稳定器、斥力与推进",
+      "icon": "essentialcraft5:thruster_engine",
+      "summary": "压力稳定器、斥力发生器、推进引擎",
+      "complete": "essentialcraft5:guide/computer/drives",
+      "items": [
+        "essentialcraft5:pressure_stabilizer",
+        "essentialcraft5:repulsion_generator",
+        "essentialcraft5:thruster_engine"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做出{item:essentialcraft5:thruster_engine}。它要用到{item:essentialcraft5:pressure_stabilizer}，{item:essentialcraft5:repulsion_generator}也顺手一起做好。套装的每一件都要压力稳定器，胸甲、护腿和反重力板还要斥力发生器和推进引擎。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:pressure_stabilizer",
+            "essentialcraft5:repulsion_generator",
+            "essentialcraft5:thruster_engine"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:pressure_stabilizer}",
+              "四个角放力场吸收器，十字形的五格放富神经元护板，每次出 <t>2</t> 个"
+            ],
+            [
+              "{item:essentialcraft5:repulsion_generator}",
+              "四个角放粒子发射器，四条边放力场发射器，中间放富神经元护板，每次出 <t>2</t> 个"
+            ],
+            [
+              "{item:essentialcraft5:thruster_engine}",
+              "力场发射器 ×4、粒子发射器、压力稳定器 ×2、富神经元护板 ×2，摆法见上面的图，每次出 <t>2</t> 个"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一个推进引擎。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "富神经元护板备足",
+          "text": "压力稳定器每次要吃掉 5 块富神经元护板，四件套装光这一样就要做六次，护板不够了就回到[[hologram/neuronic_plating]]接着做，每次出 4 块。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/computer/pressure_stabilizer.json — #@# / @@@ / #@#：力场吸收器 ×4、富神经元护板 ×5，出 2",
+        "data/essentialcraft5/recipes/computer/repulsion_generator.json — 粒子发射器 ×4、力场发射器 ×4、富神经元护板，出 2",
+        "data/essentialcraft5/recipes/computer/thruster_engine.json — #@# / $#$ / P#P：力场发射器 ×4、粒子发射器、压力稳定器 ×2、富神经元护板 ×2，出 2",
+        "tools/gen/computer_bom.py --json — 四件 pressure_stabilizer 6 次（全套 + 反重力板 7 次）"
+      ]
+    },
+    {
+      "id": "senses",
+      "title": "声音与视觉",
+      "icon": "essentialcraft5:speaker_plate",
+      "summary": "声音管理器、扬声器板、视觉透镜",
+      "complete": "essentialcraft5:guide/computer/senses",
+      "items": [
+        "essentialcraft5:sound_manager",
+        "essentialcraft5:speaker_plate",
+        "essentialcraft5:vision_lens"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做出头盔要用的{item:essentialcraft5:speaker_plate}和{item:essentialcraft5:vision_lens}。手记里那顶头盔的草图上，画着两只耳朵和一只眼睛。头盔要 2 块扬声器板和 1 个视觉透镜，扬声器板要先做出{item:essentialcraft5:sound_manager}才能合成，这三样东西只有头盔用得上。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:sound_manager",
+            "essentialcraft5:speaker_plate",
+            "essentialcraft5:vision_lens"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:sound_manager}",
+              "恶魔板 ×4、恶魔核心 ×2、力场吸收器 ×2，中间放压力稳定器，每次出 <t>1</t> 个"
+            ],
+            [
+              "{item:essentialcraft5:speaker_plate}",
+              "四个角放力场吸收器，四条边放富神经元护板，中间放声音管理器，每次出 <t>1</t> 个"
+            ],
+            [
+              "{item:essentialcraft5:vision_lens}",
+              "四个角放富神经元护板，上下放力场吸收器，左右放{item:essentialcraft5:sun_imbued_glass}，中间放{item:essentialcraft5:magic_purified_glass_alloy}，每次出 <t>1</t> 个"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一块扬声器板。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "日光玻璃第十章做过，见[[solar/sun_imbued_glass]]，玻璃合金在魔力工作台里做，见[[alloys/purified_alloys]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书给宅男套装写的副标题，只有短短一句「它来自未来！」"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/computer/sound_manager.json — #C# / 767 / #C#：恶魔板 ×4、恶魔核心 ×2、力场吸收器 ×2、压力稳定器",
+        "data/essentialcraft5/recipes/computer/speaker_plate.json — 力场吸收器 ×4、富神经元护板 ×4、声音管理器",
+        "data/essentialcraft5/recipes/computer/vision_lens.json — #@# / ACA / #@#：富神经元护板 ×4、力场吸收器 ×2、日光玻璃 ×2、玻璃合金",
+        "data/essentialcraft5/recipes/computer/computer_helmet.json — FCF / SLS / EOE：扬声器板 ×2、视觉透镜 ×1",
+        "tools/plan/batch8.md §0 第 2 条 — 原作 1.12 JSON 三处抄错（vision_lense.json：淡青板 / 恶魔核心 / 反应核 ×3，同力场核心；胸甲 F / S 对调；反重力板 S 写成力场护板），照 1.10.2 代码配方（b62e0f5^ RecipeRegistry L488~703）修；1.12 各版做不出五芒星见 batch7.md §0 第 1 条",
+        "原作 en_US.lang ec3book.discovery_redSuit.desc=It is from the future!"
+      ]
+    },
+    {
+      "id": "computer_engine",
+      "title": "{item:essentialcraft5:computer_engine}",
+      "icon": "essentialcraft5:computer_engine",
+      "summary": "控制恶魔板的电脑",
+      "complete": "essentialcraft5:guide/computer/computer_engine",
+      "items": [
+        "essentialcraft5:computer_engine",
+        "essentialcraft5:logic_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做出{item:essentialcraft5:computer_engine}，胸甲要用一个。它就是全息一章提到的那台控制恶魔板的电脑。画这套图的先辈到最后也没能把它造出来。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：一个{item:essentialcraft5:logic_core}和 4 块富神经元护板，逻辑核心的做法见下方，另外要加、减、乘、除四种数学核心各一个，它们由全息投影掉落，见[[hologram/math_cores]]。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:computer_engine",
+            "essentialcraft5:logic_core"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:logic_core}",
+              "四个角放恶魔板，上下放{item:minecraft:redstone}，左右放{item:minecraft:lapis_lazuli}，中间放{item:minecraft:quartz}，每次出 <t>1</t> 个"
+            ],
+            [
+              "{item:essentialcraft5:computer_engine}",
+              "四个角放富神经元护板，上、下、左、右依次放加法、减法、除法、乘法核心，中间放逻辑核心"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到电脑引擎。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "还差某一种核心",
+          "text": "四种核心每种只要一个，可数学核心没有合成配方，缺了哪种只能再打一场全息投影，在对应的那一招之后补刀，见[[hologram/math_cores]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/computer/computer_engine.json — #+# / /C* / #-#：富神经元护板 ×4、加 / 除 / 乘 / 减核心、逻辑核心",
+        "data/essentialcraft5/recipes/computer/logic_core.json — #R# / LQL / #R#：恶魔板 ×4、红石 ×2、青金石 ×2、石英（标签）",
+        "registry/ECComputer.java — 数学核心没有配方（gametest/ComputerPartsTests.computerNoCoreRecipeNoDisassembly）"
+      ]
+    },
+    {
+      "id": "suit",
+      "title": "宅男套装",
+      "icon": "essentialcraft5:computer_helmet",
+      "summary": "四件套装，下一章给它装模块",
+      "complete": "essentialcraft5:main/computer_armor",
+      "items": [
+        "essentialcraft5:computer_helmet",
+        "essentialcraft5:computer_chestplate",
+        "essentialcraft5:computer_leggings",
+        "essentialcraft5:computer_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做出{item:essentialcraft5:computer_helmet}、{item:essentialcraft5:computer_chestplate}、{item:essentialcraft5:computer_leggings}、{item:essentialcraft5:computer_boots}，把四件同时带在身上，穿着的也算。等下一章[[terminal/legend|终端与模块]]给它装上模块，主线才算走完。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:computer_helmet",
+            "essentialcraft5:computer_chestplate",
+            "essentialcraft5:computer_leggings",
+            "essentialcraft5:computer_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每件都要用到力场发生器、力场护板、富神经元护板和压力稳定器。头盔另要 2 块扬声器板和视觉透镜，胸甲另要电脑引擎、斥力发生器和推进引擎，护腿另要斥力发生器和 2 个推进引擎。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "按上面的配方把四件做出来。",
+            "放进{item:essentialcraft5:charging_chamber}充 MRU，见[[storage/charging_chamber]]，每件最多存 {cfg:general.computer_armor.max_mru}，不必充满，充上一部分就能用。",
+            "把四件都穿上。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "四件同时带在身上，完成进度「{lang:advancements.essentialcraft5.computer_armor.title}」。下一章[[terminal/legend|终端与模块]]给套装装上模块，主线在那之后还有两章。"
+        },
+        {
+          "type": "h",
+          "text": "一直都有的属性"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "护甲值",
+              "头盔 {cfg:general.computer_armor.armor_helmet}、胸甲 {cfg:general.computer_armor.armor_chestplate}、护腿 {cfg:general.computer_armor.armor_leggings}、靴子 {cfg:general.computer_armor.armor_boots}"
+            ],
+            [
+              "盔甲韧性",
+              "每件 {cfg:general.computer_armor.toughness}"
+            ],
+            [
+              "击退抗性",
+              "每件 {cfg:general.computer_armor.knockback_resistance|pct}"
+            ],
+            [
+              "生命上限",
+              "头盔、护腿、靴子各 +{cfg:general.computer_armor.max_health}，胸甲 +{cfg:general.computer_armor.chestplate_max_health}，每 2 点是一颗心"
+            ],
+            [
+              "耐久",
+              "16384，穿在身上时不会消耗"
+            ],
+            [
+              "附魔能力",
+              "127，钻石为 10，下界合金为 15"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这些属性有没有电都在。全套的护甲和韧性加起来超过游戏的上限时，超出的部分不算，上限是护甲 <t>30</t>、韧性 <t>20</t>。脱下以后，多出来的生命上限跟着去掉，血量也会降回去。"
+        },
+        {
+          "type": "h",
+          "text": "有电挡伤害"
+        },
+        {
+          "type": "p",
+          "text": "每件有电的盔甲会替你挡下它那一份伤害，头盔 3/20、胸甲 8/20、护腿 6/20、靴子 3/20，四件都有电时整下伤害全被挡住，一点血都不掉，只是击退照样会有。"
+        },
+        {
+          "type": "p",
+          "text": "物品提示里紫色的那一行写着，它挡的是物理和元素伤害，各种伤害挡不挡得住见下表。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "伤害",
+            "用 MRU 挡吗",
+            "其他防护"
+          ],
+          "rows": [
+            [
+              "近战、箭等弹射物",
+              "挡",
+              "—"
+            ],
+            [
+              "站在火里、岩浆里，爆炸、闪电",
+              "挡",
+              "—"
+            ],
+            [
+              "走出火以后身上着火的持续烧伤",
+              "不挡",
+              "护腿在你着火时自动补抗火"
+            ],
+            [
+              "溺水",
+              "不挡",
+              "头盔让氧气不会耗尽"
+            ],
+            [
+              "细雪冻伤",
+              "不挡",
+              "没有"
+            ],
+            [
+              "自己喝的伤害药水、中毒、凋零、饥饿",
+              "不挡",
+              "胸甲直接免疫"
+            ],
+            {
+              "if": "!module:essentialcraft5:matrix_shunt_module||!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "别人扔的喷溅伤害药水",
+                "不挡",
+                "没有"
+              ]
+            },
+            {
+              "if": [
+                "module:essentialcraft5:matrix_shunt_module",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "别人扔的喷溅伤害药水",
+                "不挡",
+                "胸甲装上[[terminal/matrix_shunt|矩阵分流模块]]后能把一部分改记为矩阵损伤"
+              ]
+            },
+            [
+              "轨道打击",
+              "不挡",
+              "护甲值照样能减免一部分"
+            ],
+            [
+              "二分场（生命直接减半）",
+              "不挡",
+              "没有"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "同调到 2 阶以后，护盾也挡怪物打来的魔法伤害，比如女巫扔来的伤害药水；4 阶起还挡一半无视护甲的伤害，见[[attunement/computer_armor]]。"
+        },
+        {
+          "type": "p",
+          "text": "每件盔甲挡一次都要花 MRU，它那一份伤害每 1 点耗 {cfg:general.computer_armor.mru_per_damage} MRU，点数向下取整，至少按 1 点算。电先从身上的{item:essentialcraft5:soul_shard}这类灵魂储存里扣，凑不够再扣这件盔甲自己存的。"
+        },
+        {
+          "type": "p",
+          "text": "打你的是别的玩家时，护盾一下最多挡 {cfg:general.computer_armor.pvp_shield_max_share|pct}，每挡 1 点的电费是平时的 {cfg:general.computer_armor.pvp_shield_cost_multiplier} 倍。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩阵二阶起，灵魂储存不够时先扣你的[[matrix/reservoir|矩阵容量]]，最后才扣盔甲自己存的。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.enabled",
+          "text": "戴在饰品栏里的储存物品被[[computer/seal_field|饰品封禁场]]封住时不付这笔电，背包里和身上别处的照常付。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "挨 8 点",
+              "头盔 1 点 + 胸甲 3 点 + 护腿 2 点 + 靴子 1 点，一共 {cfg:general.computer_armor.mru_per_damage|mul:7} MRU"
+            ],
+            [
+              "挨一下小伤害",
+              "四件各按 1 点算，一共 {cfg:general.computer_armor.mru_per_damage|mul:4} MRU"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>付不起电的那件，这一下就不挡</w>，那一份伤害照常挨，这件自己一点电都没有时也不挡。出远门前看一眼物品提示里的电量，背包里带几件充满的灵魂储存最省事。"
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:infinite_mru_crystal",
+          "text": "带着{item:essentialcraft5:infinite_mru_crystal}时这笔电全由它来付，只要每件盔甲自己存着一点电，套装就能一直挡下去。"
+        },
+        {
+          "type": "h",
+          "text": "每件自己的本事"
+        },
+        {
+          "type": "table",
+          "widths": [
+            1,
+            4
+          ],
+          "header": [
+            "部位",
+            "效果"
+          ],
+          "rows": [
+            {
+              "if": "!cfg:general.computer_armor.helmet_saturation",
+              "cells": [
+                "{item:essentialcraft5:computer_helmet}",
+                "氧气不会耗尽，饥饿值一直是满的，回血按吃饱时的速度。按 {keybind:key.essentialcraft5.computer_armor_night_vision} 可以开关夜视，戴着还能隔墙看见聚集体"
+              ]
+            },
+            {
+              "if": "cfg:general.computer_armor.helmet_saturation",
+              "cells": [
+                "{item:essentialcraft5:computer_helmet}",
+                "氧气不会耗尽，饥饿值和饱和度一直是满的，回血很快。按 {keybind:key.essentialcraft5.computer_armor_night_vision} 可以开关夜视，戴着还能隔墙看见聚集体"
+              ]
+            },
+            [
+              "{item:essentialcraft5:computer_chestplate}",
+              "免疫魔法、凋零和饥饿伤害，自己喝的伤害药水和中毒都算魔法，别人扔来的喷溅伤害药水却照样打得到"
+            ],
+            [
+              "{item:essentialcraft5:computer_leggings}",
+              "走路快 {cfg:general.computer_armor.leggings_speed|div:0.1|pct}，跳得更高，身上着火时每秒补上 5 秒抗火"
+            ],
+            [
+              "{item:essentialcraft5:computer_boots}",
+              "免疫摔落伤害，能直接迈上一格高的方块"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "穿齐四件"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.computer_armor.thorns_ratio>0",
+              "text": "受到近战、弹射物或爆炸伤害时，把这一下的 {cfg:general.computer_armor.thorns_ratio|pct} 以荆棘伤害反给攻击者，整下都挡掉了也照样会反。"
+            },
+            "按 {keybind:key.essentialcraft5.computer_armor_boost} 朝视线方向喷射推进，冷却 {cfg:general.computer_armor.dash_cooldown|sec}，骑乘或睡觉时用不了。",
+            {
+              "if": "cfg:general.computer_armor.dash_mru>0",
+              "text": "每次推进消耗 {cfg:general.computer_armor.dash_mru} MRU。"
+            },
+            {
+              "if": "cfg:general.computer_armor.swim_speed>0",
+              "text": "在水里游得快得多，能到 {cfg:general.computer_armor.swim_speed|add:1|x} 的速度。"
+            },
+            "聚集体造成的矩阵损伤和「MRU 腐化」效果的伤害全部免除，每件各挡四分之一。",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "在海纳尔不再积攒辐射，只有毒雾带来的那一份照旧，见[[hoanna/radiation]]。"
+            },
+            {
+              "if": "cfg:general.computer_seal.enabled",
+              "text": "按 {keybind:key.essentialcraft5.computer_terminal} 打开宅男终端，在里面开启[[computer/seal_field|饰品封禁场]]，周围罩得住的玩家，饰品会暂时失效。"
+            },
+            "四件盔甲上各有模块槽，能装上第二十一章的模块，给套装添上回溯、相位锚这类本事，见[[terminal/install]]。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "屏幕顶部有两个小圆，左边的是夜视，亮着就是开着，右边的是喷射推进，缺掉的那一块是剩下的冷却。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.enabled",
+          "text": "饰品封禁场开着时，夜视圆左边还会多出一个紫圆，亮着表示正在运转，暗着表示待机或电量不足。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "破法",
+          "text": "别人扔来的喷溅伤害药水这类魔法伤害、全息投影直接把生命减半的二分场，还有无视护甲的伤害，套装都挡不住。轨道打击既不算物理也不算元素，同样挡不住。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.computer_armor.thorns_ratio>0",
+              "text": "算出的反伤不到 0.5 点就不反，荆棘伤害本身不会再被反回去，轨道打击、射线枪这类隔空打来、没有东西真碰到你的伤害也不反。"
+            },
+            "夜视开没开记在你身上，重新登录或死亡以后都保持原样。",
+            "穿在身上时不掉耐久，挡伤害或被护甲破坏者打中时都改成扣电。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/computer/computer_{helmet,chestplate,leggings,boots}.json — 形状照 1.10.2 代码配方（胸甲 S = 压力稳定器、F = 力场护板）",
+        "data/essentialcraft5/advancements/main/computer_armor.json — inventory_changed 四个谓词各一件（要同时在物品栏里，穿着的也算），challenge 框",
+        "registry/ECComputer.java:128 MATERIAL 耐久 16384、附魔 127；Config :441~489 — max_mru 1000000、mru_per_damage 250、shield_scope（:447，枚举，默认 PHYSICAL_ELEMENTAL；条件写不了枚举，正文写默认、指向提示框）、armor 6/16/12/6、toughness 6、knockback_resistance 0.2、max_health 20、chestplate_max_health 40、leggings_speed 0.075（玩家基础 0.1）、thorns_ratio 0.5、swim_speed 2、dash_cooldown 20、dash_mru 0",
+        "item/ComputerArmorItem.java:86 share — 头 3 / 胸 8 / 腿 6 / 靴 3（二十分之几）；getDefaultAttributeModifiers 按配置给属性，不看电量；:143 damageItem 穿在玩家身上不掉耐久",
+        "item/armor/MRUShield.java:87 cost — max(1, ⌊伤害 × 份额 / 20⌋) × 单价；先扣储存物品；扣不起不挡；这件自己 MRU 为 0 不挡；bypasses_armor 不挡",
+        "registry/ECComputer.java:215 ShieldScope.PHYSICAL_ELEMENTAL — ECDamageKinds.isPhysical || (isElemental && !isMagic)；轨道打击没有直接实体也不带火 / 爆炸标签，不算",
+        "原版伤害类型标签 bypasses_armor — on_fire、freeze、drown、magic、indirect_magic 等无视护甲（护甲也不减）；orbital_strike 只带 bypasses_effects / bypasses_shield，护甲照算",
+        "blockentity/ChargingChamberBlockEntity.java serverTick — 给带 MRU_ITEM 能力的物品充电；套装的 MRU 来自 item/ComputerArmorItem.java:149 initCapabilities",
+        "item/ComputerArmorEvents.java:184 onComputerArmorAttack — 胸甲免疫 magic / wither / starve（不含 indirect_magic）、靴子免摔（#minecraft:is_fall）；:256 护腿起跳 + leggings_jump；:272 着火时每 20 刻给 100 刻抗火、头盔每 20 刻补氧气和饥饿值（饱和度看 helmet_saturation）",
+        "item/ComputerArmorEvents.java:204 onComputerArmorThorns / :226 reflects — 全套反伤 thorns_ratio，不到 0.5 不反，荆棘与饰品伤害不反，没有直接实体的（轨道打击、mru_ray）不反；反伤在 BaubleEffects.asReflectDamage 里打出，交手记录不算穿戴者动手、削减不叠；:411 tryDash — 视线 × dash_strength，冷却 dash_cooldown，骑乘 / 睡觉 / 旁观不行",
+        "item/ComputerArmorEvents.java:470 refreshSwimSpeed — forge:swim_speed + swim_speed（基础 1）；夜视开关记在 PlayerPersisted",
+        "registry/ECComputer.java:138 — 靴子登高 +0.6（到 1.2 格）；tools/tags/eccomputer.json — 头盔进 essentialcraft5:mru_vision",
+        "item/ComputerArmorItem.java:154 getResistance — 三种 MRU 抗性每件 1；api/MRUResistance.java 易伤 = 1 − 盔甲之和 / 4；用在 corruption/MRUCorruption.java、entity/MRUPresenceEntity.java:361、hoanna/Radiation.java:206（毒雾的额外辐射不看抗性）",
+        "mru/MRUDrain.java — 无尽 MRU 晶体付一切；item/armor/MRUShield.java absorb 先看这件自己的 MRU > 0 才挡（没充过电的那件带着晶体也不挡）；被 general.baubles.disabled 禁用的无尽晶体不算（MRUDrain.java:129 collect），所以这段带 bauble: 条件",
+        "client/ComputerClient.java:168 renderHud — 屏幕顶上中线 −108 / +105 两个小圆（:78 / :79）；按键默认 X（夜视）/ Z（推进）",
+        "tools/plan/batch8.md §10.3 D5 = B — 轨道打击、二分场、喷溅伤害药水、无视护甲的是破法",
+        "item/armor/MRUShield + util/ECDamageKinds — 物理 / 元素才挡；bypasses_armor 的不挡；胸甲免疫魔法、凋零、饥饿；护腿着火时补抗火；头盔氧气不耗尽",
+        "item/ComputerSealField.java、client/ComputerClient.java:101 — 封禁场开着时夜视圆左边的紫圆（运转亮、待机 / 电量不足暗）；compat/CuriosCompat.java:131 forEachEquipped 跳过被压制的饰品，MRUDrain 的储存不算饰品栏里被封的那些",
+        "item/module/ModuleConfig.java — 四件的模块槽（头 2 / 胸 2 / 腿 1 / 靴 1）；item/module/MatrixShuntEvents.java — 矩阵分流把魔法伤害的一部分改记矩阵损伤（第十批 10c）"
+      ]
+    },
+    {
+      "id": "antigravity_board",
+      "title": "{item:essentialcraft5:computer_board}",
+      "icon": "essentialcraft5:computer_board",
+      "summary": "戴在腰带槽里就能飞",
+      "complete": "essentialcraft5:guide/computer/antigravity_board",
+      "optional": true,
+      "if": "bauble:essentialcraft5:computer_board",
+      "items": [
+        "essentialcraft5:computer_board"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一块{item:essentialcraft5:computer_board}，戴在饰品栏的腰带槽里，就能像创造模式那样自在地飞。四件甲旁边画着的那块板，就是它。饰品栏在物品栏界面里，由饰品模组提供。板子不需要套装，也不耗电。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:computer_board"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：2 个压力稳定器、1 个力场发生器、3 块富神经元护板、2 个斥力发生器和 1 个推进引擎，前面几篇都讲过做法。单做这一块就要 68 块恶魔板和 14 颗风之水晶，见[[computer/costs]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一块反重力板。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "飞行速度",
+              "创造模式的 {cfg:general.computer_board.fly_speed|div:0.05|x}"
+            ],
+            [
+              "戴在",
+              "腰带槽，同时只能戴一块"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "飞的时候脚下会出现一块板子，旁人也看得见。摘下板子就飞不了了，别的来源给你的飞行不受影响。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.computer_seal.slow_fall_ticks>0"
+          ],
+          "text": "被[[computer/seal_field|饰品封禁场]]封住时板子会失效，飞不起来，那一刻人要是在空中，会得到几秒缓降，慢慢落回地面。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.computer_seal.slow_fall_ticks==0"
+          ],
+          "text": "被[[computer/seal_field|饰品封禁场]]封住时板子会失效，飞不起来，人在空中就会直接掉下去。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "和全息投影战斗时飞不起来，见[[hologram/summoning]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书夸它飞起来「还给你难以置信的速度」，原作里它也确实把飞行速度拔到了创造模式的 4 倍。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/computer/computer_board.json — SCS / EEE / RTR：压力稳定器 ×2、力场发生器、富神经元护板 ×3、斥力发生器 ×2、推进引擎（1.10.2，1.12 JSON 的 S 写成了力场护板）",
+        "tools/gen/computer_bom.py — computer_board 单做：恶魔板 68、风之水晶 14",
+        "item/ComputerBoardItem.java:61 onEquip / :69 onUnequip — Curios 腰带槽、同种只能戴一件（canEquip → CuriosCompat.onlyOneEquipped）、ECFlight.grant(FLIGHT_SOURCE, fly_speed)，摘下只撤自己的",
+        "registry/ECComputer.java:494 — general.computer_board.fly_speed 默认 0.1；util/ECFlight.java:54 VANILLA_FLY_SPEED 0.05 → 2 倍",
+        "util/ECFlight.java — 压制器（全息投影参战者）暂停本模组给的飞行",
+        "client/ComputerClient.java:230 renderBoard — 飞着时脚下画 board.obj；别人在不在用板子飞由 S2CBoardFlyingPacket 告诉客户端",
+        "data/essentialcraft5/advancements/guide/computer/antigravity_board.json — inventory_changed 拿到 computer_board（可选步骤）",
+        "原作 PlayerTickHandler L452~515 — 客户端 setFlySpeed(0.2)；en_US.lang redSuit_6",
+        "item/ComputerBoardItem.java:69 onUnequip — 压制开始时 Curios 调 onUnequip、撤掉板子给的飞行；item/ComputerSealField.java:731 压制开始那一刻在空中给 slow_fall_ticks 缓降"
+      ]
+    },
+    {
+      "id": "seal_field",
+      "title": "饰品封禁场",
+      "icon": "essentialcraft5:computer_chestplate",
+      "summary": "让身边玩家的饰品暂时失效",
+      "complete": "essentialcraft5:guide/computer/seal_field",
+      "optional": true,
+      "if": "cfg:general.computer_seal.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：穿齐宅男套装，按 {keybind:key.essentialcraft5.computer_terminal} 打开宅男终端，开启「饰品封禁场」。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "在终端里第一次开启饰品封禁场。身边没人时它只是待机，不过开启就算完成。"
+        },
+        {
+          "type": "h",
+          "text": "它做什么"
+        },
+        {
+          "type": "p",
+          "text": "场运转时，{cfg:general.computer_seal.radius} 格内被它罩住的玩家，饰品栏里的东西会全部失效，跟没戴一样，持续效果停下，附加的属性消失，别的东西也查不到它们。物品本身还在原处，不会掉落，也不会被挤出来。这里说的饰品栏，是物品栏界面里由饰品模组提供的那一栏。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.affects_self",
+          "text": "<w>场运转时你自己的饰品也会一起失效</w>，你的饰品格上同样会出现禁用图标，只有待机时它才放过你。这时不会弹出「饰品被封」的提示，紫圆亮着就说明它在运转。"
+        },
+        {
+          "type": "h",
+          "text": "罩住谁"
+        },
+        {
+          "type": "list",
+          "items": [
+            "和你在同一个世界、离你不到 {cfg:general.computer_seal.radius} 格的玩家，距离按两人脚下的直线距离算，隔着墙也算。",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "最近 {cfg:general.computer_seal.combat_window_ticks|sec}内和你交过手，你们之间只要有一次攻击没被拦下就算，打中了或被盔甲、盾牌整下挡掉都算，谁先动的手也不要紧。<em>场只罩住正在和你交手的人</em>，路过的人和受到互伤保护的人都罩不到。"
+            },
+            "你们之间能互相伤害，这要求玩家之间允许互相伤害，而且你们不在同一队。",
+            {
+              "if": "cfg:general.computer_seal.respect_claims",
+              "text": "对方站在你有权动方块的地方，别人的领地、出生点附近这类你动不了的地方，场都伸不进去。"
+            },
+            "处于生存或冒险模式的玩家，创造和旁观模式的玩家不受影响。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "已经被罩住的人要走到 {cfg:general.computer_seal.radius|add:2} 格以外才算离开。离开以后，或者你关掉场以后，饰品过一小会儿就会恢复，被罩住的时间至少有 {cfg:general.computer_seal.min_hold_ticks|sec}。"
+        },
+        {
+          "type": "h",
+          "text": "什么时候运转、耗多少电"
+        },
+        {
+          "type": "p",
+          "text": "范围内至少有一个罩得住的人，场才会运转，屏幕顶部夜视圆左边的紫圆随之亮起。没人可罩时它转入待机，紫圆变暗，不耗电，也不封你自己的饰品。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "运转时每秒",
+              "{cfg:general.computer_seal.mru_base} MRU，每罩住一个别的玩家再加 {cfg:general.computer_seal.mru_per_target} MRU"
+            ],
+            {
+              "if": "cfg:general.computer_seal.affects_self",
+              "cells": [
+                "从哪里扣",
+                "先扣身上的灵魂储存，不够再扣胸甲自己存的。饰品栏里的储存不算，运转时它们会和别的饰品一起失效"
+              ]
+            },
+            {
+              "if": "!cfg:general.computer_seal.affects_self",
+              "cells": [
+                "从哪里扣",
+                "先扣身上的灵魂储存，不够再扣胸甲自己存的，和喷射推进一样"
+              ]
+            },
+            [
+              "电不够时",
+              "这一秒谁都不罩，也一分不扣，并提示一次「电量不足」"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "宅男终端"
+        },
+        {
+          "type": "list",
+          "items": [
+            "戴着宅男头盔按 {keybind:key.essentialcraft5.computer_terminal} 就能打开，再按一次或按 Esc 关闭，开着终端时游戏不会暂停。",
+            "饰品封禁场的开关、当前状态、每秒耗电量，以及按当前耗电还能撑多久。",
+            "夜视开关，作用和按 {keybind:key.essentialcraft5.computer_armor_night_vision} 一样，还有喷射推进的冷却和四件盔甲各自的电量。",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "范围内你看得见的玩家和各自的状态，比如压制中、也被别人压制、没有交手、不能互相伤害、在你没有权限的地方，隐身的人不会列出来，但照样会被罩住。"
+            },
+            {
+              "if": "!cfg:general.computer_seal.require_recent_combat",
+              "text": "范围内你看得见的玩家和各自的状态，比如压制中、也被别人压制、不能互相伤害、在你没有权限的地方，隐身的人不会列出来，但照样会被罩住。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "被罩住的一方"
+        },
+        {
+          "type": "p",
+          "text": "被罩住的人每次进入游戏后第一次被封，聊天栏里会出现一句说明，告诉他是谁的封禁场、走开多远就能恢复。之后只在屏幕下方提示一行，刚恢复不久又被封时，连这一行也没有。"
+        },
+        {
+          "type": "p",
+          "text": "打开背包，能看到饰品格上蒙着一层暗紫和禁用图标，鼠标移到饰品上能看到是谁的场，快捷栏左边也有一个同样的小图标。"
+        },
+        {
+          "type": "h",
+          "text": "破法"
+        },
+        {
+          "type": "list",
+          "items": [
+            "走到 {cfg:general.computer_seal.radius|add:2} 格外，或者换到别的世界。",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "别和他交手，只要最近 {cfg:general.computer_seal.combat_window_ticks|sec}内你们谁都没打过谁，场就罩不到你，被盔甲、盾牌整下挡掉的攻击也算打过。"
+            },
+            {
+              "if": "cfg:general.computer_seal.respect_claims",
+              "text": "站进他动不了方块的地方，比如你自己的领地。"
+            },
+            "它只封饰品，盔甲、武器、药水都照常管用。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "饰品额外给的槽位，比如腰带多给的戒指槽，被封期间不会消失，里面的东西也不会被挤出来。",
+            "死亡掉落、存档、在背包里挪动饰品都不受影响，只是戴着不生效。被封时照样能戴上新的饰品，戴上的那一刻就是失效的，只许戴一件的饰品被封时也只能戴一件。",
+            "有些饰品会自己翻查饰品栏来判断，在场内可能照样生效，或者只失效一部分。",
+            "倒下的那一刻同样算作没戴，靠饰品免死或让死后东西不掉的效果，被封时通常都不起作用。",
+            "能增加饰品栏位的饰品，比如各种腰带、手套和披风，不受封禁场影响，戴着照常生效，多给的槽位也一直都在，放在这些槽位里的别的饰品照样被封。",
+            {
+              "if": "mod:enigmaticlegacy",
+              "text": "神秘遗物的七咒之戒不受封禁场影响，被封时诅咒照旧生效，佩戴时间也照常累计。"
+            },
+            {
+              "if": "cfg:general.computer_seal.slow_fall_ticks>0",
+              "text": "失效的那一刻人要是在空中，会得到 {cfg:general.computer_seal.slow_fall_ticks|sec}的缓降，飞行饰品失效时不至于摔死，靠饰品栏里的鞘翅滑翔的人，在滑翔停下时得到。"
+            },
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "两个穿戴者交过手、又都开着场时会互相封禁，各付各的电，几个人的场罩住同一个人时，各自只为自己罩住的人付电。"
+            },
+            {
+              "if": "!cfg:general.computer_seal.require_recent_combat",
+              "text": "两个穿戴者都开着场时就会互相封禁，各付各的电，几个人的场罩住同一个人时，各自只为自己罩住的人付电。"
+            },
+            "进出提示会合并，同一个人离开后不久又回来时不再重复提示。",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "打全息投影时，不同队又和你交过手的玩家也会被罩住，谁打中谁都算，组队打之前先关掉场。"
+            },
+            {
+              "if": "!cfg:general.computer_seal.require_recent_combat",
+              "text": "打全息投影时，不同队的玩家也会被罩住，组队打之前先关掉场。"
+            },
+            "有些世界里封禁场不起作用，在那里打开也不运转、不耗电，终端上会写着「这个世界里不起作用」，离开那个世界后就接着工作。",
+            {
+              "if": "cfg:general.computer_seal.respect_claims",
+              "text": "有人站在别人领地这类你动不了方块的地方时，场会替你问一声那里能不能动，所以你偶尔会收到领地的「没有权限」提示，不过同一个地方 5 分钟才问一次。刚被拒过的人走出领地以后，最多过 {cfg:general.protection.probe_cache_ticks|sec}就会被罩住，电不够时则不会去问。"
+            },
+            "创造模式下开场不耗电，你自己也不会被封。",
+            "开关状态记在你身上，重新登录或死亡以后都保持原样，再穿齐四件就会接着工作。"
+          ]
+        }
+      ],
+      "_src": [
+        "item/ComputerSealField.java:201 evaluate — 同一世界、球形 radius（:241 已在场内的人到 radius + 2 才算离开）；:247 创造 / 旁观不压 → :249 canHarmPlayer → :251 require_recent_combat 时 ECCombatTags.landedEither → :253 respect_claims 时以穿戴者身份 ECProtection.check 目标脚下那格；按这个顺序，前一步不过不做后一步",
+        "item/ComputerSealField.java:253 探测减量（policy §2.4）：场按格记结论，能动的 protection.probe_cache_ticks、不能动的 OwnerCellMemory.DENY_TICKS（6000 刻，:276）；:263 刚被拒的人 probe_cache_ticks 内换了格子沿用 NO_PERMISSION、不再探测（只沿用不能动）；:269 第一次真要探测时看付不付得起一人份，付不起不探测、记 UNPOWERED，没人过门时场转 NO_POWER；每次评估新探测最多 max_probes_per_tick（默认 4）格",
+        "item/ComputerSealField.java:333 先算后扣：MRUDrain.canAfford 够才 playerUseMRU（先身上储存、再胸甲自存；affects_self 时自己饰品栏里的储存不算，:227 selfPays）、才 CurioSeal.hold；不够这一秒谁都不压、一分不扣，SealNotifier.noPower 只在进入时提示一次（:196 powered 转回待机或连续运转 200 刻才再提）",
+        "item/ComputerSealField.java:350 affects_self 时运转才压自己，创造模式不压、不扣（MRUDrain 创造恒够、不扣）；待机（没人可压）不扣、不压自己",
+        "item/ComputerSealField.java:484 toggle — 打开要穿齐四件、功能可用，同一人 5 刻内只认一次；第一次打开发 guide/computer/seal_field（代码发，data/essentialcraft5/advancements/guide/computer/seal_field.json 是 minecraft:impossible）；开关记在 PlayerPersisted（死亡、重登保留）",
+        "item/ComputerSealField.java:731 onSealFieldSealed — 压制开始那一刻人在空中（不在地上、没滑翔、不在水里、没爬梯子、没骑乘）给 slow_fall_ticks 缓降，同一次压制只给一次；在滑翔、胸甲位又不是鞘翅的（:629 glidingOnCurio，可能靠饰品里的鞘翅，也可能靠别处的滑翔属性）先记下，:637 followUpGlide 在 5 刻内看到滑翔停了、人还在空中才给（压制撤不掉的滑翔不给，滑翔时有缓降会飞得更远）",
+        "tools/tags/eccomputer.json essentialcraft5:curio_seal_exempt — 默认带一枚戴着就带诅咒的戒指（datagen 对别的命名空间生成可选条目，没装那个模组时忽略）：被封等于诅咒解除，它所在的模组还按戴没戴累计比例，被封期间永久往下掉；另带各模组里能增加饰品栏位的物品（共 18 件，都是可选条目）：被遮罩成空会触发它们自己的卸下逻辑，有的会连带收回自己给的槽位；compat/curio/CurioSeal.java:100 EXEMPT",
+        "compat/curio/CurioSealConfig.java:174 DEFAULTS — radius 32、mru_base 200、mru_per_target 200、affects_self true、respect_claims true、slow_fall_ticks 160、min_hold_ticks 60、max_probes_per_tick 4、require_recent_combat false、combat_window_ticks 200、disabled_dimensions [zc]（不带冒号按路径比，Values.disabledIn；在名单里的维度 blockedState 给 DISABLED_WORLD，撤掉压制、不扣电）",
+        "util/ECCombatTags.java:233 onCombatTagDamage — LivingDamageEvent LOWEST、没被取消，两人都是真玩家；:247 onCombatTagHurt 纯 Forge 上放行了但整下挡掉（盾牌、MRU 盔甲挡满）、被取消、改成 0 的也记（收已取消的，当时没取消的本刻末 :280 flushPending 再看）；:176 countsAsAttack 反伤（荆棘、宅男全套反伤、σ 反弹）不算，:224 onCombatTagAttack hurt 原值是 0 的（雪球）不算；:137 landedEither 两个方向都算；被插件 / 领地模组拦下的伤害走不到这里",
+        "compat/curio/CurioSeal.java:284 最少保持 min_hold_ticks；死亡期间不解除；多个来源取并集，各自 hold / drop；:692 onCurioSealEquipCheck 装备校验在不过滤作用域里算 canEquip（同种只许一件的照样只许一件）；:436 unfilteredFn 「背包里有没有」平时不过滤，持有者血量 ≤ 0 时照样过滤（:460 shouldFilter 死亡时照样过滤，免死、死后保物的饰品查不到被封的那件）",
+        "compat/curio/SealSlotKeeper.java:47 额外槽位压制期间按真物品对账保留；batch10.md §4.1.4 死亡掉落、存档、界面挪物品、右键装备不拦；§4.1.7 第 1 条自己翻饰品栏的饰品拦不住",
+        "item/SealNotifier.java:94 进出提示 40 刻合并、离开后 200 刻内回来不提；:291 VictimDebounce 被压制方每次登录第一次聊天栏、之后动作栏，解除后 200 刻内又被压制不出字，只被自己的场压着（SELF）什么都不出；compat/curio/CurioSeal.java displayNames 发给本人的名单去掉自己",
+        "client/CurioSealClient.java:201 格子罩暗紫 + 禁用图标（z 310 / 320，压在物品和数量字上、手上物品和提示框下）；:250 物品提示两行（只有自己的场时写「你自己的饰品封禁场」）；:270 快捷栏左边图标；client/ComputerClient.java:101 夜视圆左边的紫圆（运转亮、待机 / 电量不足暗）",
+        "client/screen/ComputerTerminalScreen.java:71 终端：开关、状态、耗电、估时、夜视、推进冷却、四件电量、名单（item/ComputerSealField.java:407 visibleTo 只列追踪着、没隐身、不是旁观者的人）；client/ComputerClient.java:85 默认 Alt+C，戴头盔就能打开；不暂停",
+        "batch10.md §5.1.2 和全息 Boss 战：不同队、互伤开着的玩家会被压制（交手门开着时还要交过手）"
+      ]
+    },
+    {
+      "id": "force_dome",
+      "title": "{item:essentialcraft5:force_dome}",
+      "icon": "essentialcraft5:force_dome",
+      "summary": "让基地周围不再自然刷出怪物",
+      "complete": "essentialcraft5:guide/computer/force_dome",
+      "optional": true,
+      "if": "cfg:machines.force_dome.enabled",
+      "items": [
+        "essentialcraft5:force_dome"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一台{item:essentialcraft5:force_dome}，放在基地里接上 MRU，基地周围就清静了，不再自然刷出怪物。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:force_dome"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：1 个{item:essentialcraft5:force_field_generator}和 2 块{item:essentialcraft5:force_field_plating}，做法见[[computer/force_field]]，再加 2 块{item:essentialcraft5:neuronic_enriched_plating}和 4 块{item:essentialcraft5:void_stone}，分别见[[hologram/neuronic_plating]]和[[hoanna/void_stone]]。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "亲手放下穹顶，谁放下的，它就替谁干活。",
+            "往界面右上角的格子里放一颗记住了 MRU 源头的{item:essentialcraft5:bound_gem}，和别的机器一样接入 MRU，见[[crafting/bound_gem]]。",
+            "留意界面第一行的状态，刚接上时可能显示「MRU 不足！」或「正在确认领地」，过几秒变成「工作中」就说明接好了。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "界面状态显示「工作中」，穹顶第一次开始工作就算完成。"
+        },
+        {
+          "type": "h",
+          "text": "它拦什么"
+        },
+        {
+          "type": "p",
+          "text": "工作时，水平 {cfg:machines.force_dome.radius} 格内不再自然刷出怪物，夜里和洞里冒出的僵尸、骷髅、苦力怕，天上的幻翼，灾厄巡逻队，还有僵尸叫来的增援，都不会再出现。半径按水平距离算，从天到地整根柱子都在范围内。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "刷怪笼、刷怪蛋和指令召唤出来的怪物不拦，村庄袭击来的灾厄村民也不拦。",
+            "动物、村民、鱼等不属于怪物的生物不拦。",
+            "凋灵、末影龙、全息投影等首领不拦。",
+            "它只管怪物刷出这一环，已经在那里的怪不会消失，从外面走进来的也照样进得来。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "只罩你自己能动的地方"
+        },
+        {
+          "type": "p",
+          "text": "穹顶按区块计算，地面上 16 × 16 算一块。范围碰到的每一块区块，它都会替你问一声能不能在那里动方块，问的是区块正中、和穹顶同一高度的那一格。别人的领地、出生点附近这类你动不了的区块，它不管，那里照常刷怪。"
+        },
+        {
+          "type": "p",
+          "text": "你能动的区块，问出的结果保留 {cfg:machines.force_dome.claim_cache_ticks|div:1200} 分钟，你在线时快到期就重新问。你动不了的区块，结果保留 {cfg:machines.force_dome.claim_cache_ticks|div:12000} 小时，到期了才再问。你下线以后，它接着用你在线时问出的结果，到期时你还没上线的话，那些区块先不拦，等你上线再重新确认。"
+        },
+        {
+          "type": "h",
+          "text": "耗电"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "满负荷每秒",
+              "{cfg:machines.force_dome.mru_per_tick|mul:20} MRU，指范围碰到的区块全部可拦时"
+            ],
+            [
+              "只有一部分区块可拦",
+              "按比例少扣，一半可拦就只扣一半"
+            ],
+            [
+              "能存",
+              "{cfg:machines.force_dome.capacity} MRU"
+            ],
+            [
+              "MRU 不够时",
+              "这一秒不拦，也一分不扣，连一块区块一秒的费用都付不起时，也不会替你去问领地，补上 MRU 后就接着拦"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "界面"
+        },
+        {
+          "type": "list",
+          "items": [
+            "第三行统计范围碰到的区块，<g>可拦</g>是你能动方块、不会刷怪的区块，<w>未确认</w>是还没问过或结果已经到期的区块，暂时先不拦，<b>不可拦</b>是你动不了方块、照常刷怪的区块。",
+            "第四行显示半径和当前每秒扣除的 MRU。",
+            "显示「没有你能罩的区块」时，说明范围碰到的区块你全都动不了，穹顶不工作，也不扣 MRU。",
+            {
+              "if": "cfg:machines.force_dome.max_per_owner>0",
+              "text": "显示「排队：穹顶太多」时，说明同一个人同时工作的穹顶已经到了上限 {cfg:machines.force_dome.max_per_owner} 台，先放下的优先，拆掉一台更早的，或者用红石信号关掉它，后面这台就会接上。"
+            },
+            "受到红石信号时暂停工作。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "穹顶开始工作之前就在附近的怪物不会消失，最好先清一遍。自己的刷怪塔要留在范围以外，塔里才能照常刷怪。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "替你问领地时，你偶尔会收到领地的「没有权限」提示，你能动的区块每 {cfg:machines.force_dome.claim_cache_ticks|div:1200} 分钟问一次，动不了的区块要 {cfg:machines.force_dome.claim_cache_ticks|div:12000} 小时才再问一次。邻居后来给了你权限的话，把穹顶拆下重放，它就会马上重新问。",
+            "穹顶看区块正中、和穹顶同一高度的那一格，来决定从天到地的整块区块拦不拦。所以领地要是按立方体划的，只圈了某几层，或者边界和区块对不齐，穹顶就可能罩进邻居领地的一部分。放在别人领地正下方或正上方的野外时，它能罩住对方那一整列，比一块区块还小、又不含区块正中的领地，穹顶则看不见。",
+            "不是由玩家亲手放下的穹顶，比如用指令放置的，会显示「没有主人」，不会工作。",
+            "同一块区块被几台穹顶罩着时，只要有一台在工作就会拦截。",
+            "拆掉时只会掉出穹顶本身和绑定宝石，存着的 MRU 不会保留。",
+            "穹顶所在的地方离玩家太远、停止运转时，它不再付电，拦截也很快跟着停下。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/computer/force_dome.json — VPV / NGN / VPV：虚空石 ×4、力场护板 ×2、富神经元护板 ×2、力场发生器（「准备」一段的 1 / 2 / 2 / 4 是配方用量，不是配置）",
+        "blockentity/ForceDomeBlockEntity.java:388 evaluate — 每 20 刻判一次；工作时 :404 第一次开始工作给在线的主人发 guide/computer/force_dome（data/essentialcraft5/advancements/guide/computer/force_dome.json 是 minecraft:impossible）；MRU 不够 / 红石暂停 / 未确认只停付费（:233 TRANSIENT），其余状态撤掉索引登记",
+        "blockentity/ForceDomeBlockEntity.java:416 decide — 顺序：停用 → 没有主人 → 名额满（:580 limitReached，按放下的先后）→ 红石暂停（:438）→ 连一块区块一秒都付不起（:442，:340 oneChunkCostPerSecond = ⌈满负荷 ÷ 覆盖区块数⌉；不探测，全被拒 NO_CLAIM、其余 NO_MRU）→ 问领地 → 没有可拦的区块（全被拒 NO_CLAIM / 有没问过的 UNCONFIRMED）→ MRU 不够 → 工作；先算后扣，付不起不扣",
+        "blockentity/ForceDomeBlockEntity.java:325 costPerSecond — ⌈20 × mru_per_tick × 可拦 / 覆盖⌉；:107 Config.define：radius 32、mru_per_tick 10、max_per_owner 4、claim_cache_ticks 72000、capacity 100000、spawn_types NATURAL / CHUNK_GENERATION / PATROL / REINFORCEMENT（:89 ALLOWED_SPAWN_TYPES：只认这四种，:135 validEntry）",
+        "blockentity/ForceDomeBlockEntity.java:536 refreshCoverage — 半径内碰得到的区块（区块里离穹顶最近的方块中心 ≤ 半径），近的在前；:575 probePos 区块中心、穹顶那一层（只探这一格，拦的却是整块区块、整根柱子：按立方体划 / 不按区块对齐的领地会被罩进一部分，batch10.md §9.2 定为维持逐区块，进阶细节写明）",
+        "blockentity/ForceDomeBlockEntity.java:467 probe — 主人在线才问（单人房主永远在线）；能动的结论用到九成（:473 refreshAge）重问，不能动的记 claim_cache_ticks × 6（:220 DENIED_CACHE_MULTIPLIER，「6 小时」「6 倍」是代码常量）、有效期内不问；每次评估最多新问 4 块（MAX_NEW_PROBES）；ECProtection.check 以主人身份发破坏探测（混合端上被拒时领地插件给主人发提示）",
+        "blockentity/ForceDomeBlockEntity.java:500 count — 结论没过期才算可拦 / 不可拦（有效期按结论分开取），过期或没问过是未确认；主人离线不探测，只用没过期的",
+        "blockentity/ForceDomeBlockEntity.java:231 CLAIMING — 工作 / 未确认 / MRU 不够占名额，红石暂停、全被拒的不占；:610 claimStarted 开始占名额时叫后放的重判",
+        "util/ForceDomeIndex.java:233 forceDomeSpawnPlacement — SpawnPlacementCheck 对 MONSTER、spawn_types 里的类型 DENY；:249 forceDomeFinalizeSpawn — 巡逻队（PatrolSpawner）、幻翼（PhantomSpawner）不经过放置检查，在 FinalizeSpawn 里 setSpawnCancelled；:217 handles — #forge:bosses、#essentialcraft5:dome_exempt 不管；刷怪笼 SPAWNER、刷怪蛋 SPAWN_EGG、指令 COMMAND、袭击 EVENT 写不进名单",
+        "util/ForceDomeIndex.java:154 covers — 区块登记过、领地结论和这一秒的付费都没过期、水平距离 ≤ 半径（y 不看）；几台穹顶罩同一块区块时任一台在工作就拦；穹顶不 tick 了付费 1 秒后过期（PAID_GRACE 2 刻）",
+        "block/MachineBlock.java:115 onRemove — 拆掉掉出物品栏（绑定宝石）；方块只掉自己（BlockSpec 默认，loot_tables/blocks/force_dome.json 不带方块实体数据），MRU 和领地结论存在方块实体里不跟着走，所以拆了重放会重新问"
+      ]
+    },
+    {
+      "id": "costs",
+      "title": "全套要多少",
+      "icon": "essentialcraft5:demonic_plate",
+      "summary": "套装和反重力板的材料总账",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "宅男套装是整个模组里最贵的东西。下面是把零件一层层展开、全部合在一起做时的总数，一次合成多出来的零件会留给下一件用，所以比一件件单算要省一些。"
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            2
+          ],
+          "header": [
+            "材料",
+            "只做四件",
+            "四件 + 反重力板"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:demonic_plate}",
+              "287",
+              "329"
+            ],
+            [
+              "{item:essentialcraft5:wind_gem}",
+              "48",
+              "55"
+            ],
+            [
+              "{item:essentialcraft5:void_mru_reactor}",
+              "4",
+              "5"
+            ],
+            [
+              "{item:essentialcraft5:matter_of_eternity}",
+              "2",
+              "3"
+            ],
+            [
+              "{item:essentialcraft5:elemental_gem}（做恶魔核心）",
+              "80",
+              "96"
+            ],
+            [
+              "{item:essentialcraft5:mru_resonating_crystal}",
+              "48",
+              "56"
+            ],
+            [
+              "{item:essentialcraft5:fading_crystal}",
+              "48",
+              "56"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_crystal}",
+              "44",
+              "48"
+            ],
+            [
+              "{item:essentialcraft5:pale_plate}",
+              "16",
+              "20"
+            ],
+            [
+              "{item:essentialcraft5:combined_magical_alloys}",
+              "30",
+              "34"
+            ],
+            [
+              "{item:essentialcraft5:sun_imbued_glass}",
+              "2",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_glass_alloy}",
+              "1",
+              "1"
+            ],
+            [
+              "四种数学核心",
+              "各 1",
+              "各 1"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "折算成原料是下面这些，同样按全部合在一起做来算："
+        },
+        {
+          "type": "table",
+          "header": [
+            "原料",
+            "只做四件",
+            "四件 + 反重力板",
+            "用在哪"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mithriline_crystal}",
+              "92",
+              "104",
+              "其中 48 / 56 颗要在熔炉里转成黯淡水晶，在工作台上做的话每颗要 17 份米斯莱粉，也可以拿共鸣水晶一换一，见[[mithriline/conversions]]"
+            ],
+            [
+              "{item:minecraft:blaze_powder}",
+              "240",
+              "272",
+              "注魔合金里的烈焰合金"
+            ],
+            [
+              "{item:minecraft:ender_pearl}",
+              "240",
+              "272",
+              "注魔合金里的末影鳞合金，用淡青珍珠也可以"
+            ],
+            [
+              "{item:minecraft:diamond}、{item:minecraft:emerald}",
+              "各 48",
+              "各 56",
+              "用来做共鸣水晶，淡青宝石可以顶替其中任意一样，见[[gear/pale_gem]]"
+            ],
+            [
+              "{item:essentialcraft5:ackronite_ingot}",
+              "288",
+              "332",
+              "用来压成恶魔板，每笔交易给 {cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 个"
+            ],
+            [
+              "{item:essentialcraft5:fortified_stone}",
+              "238",
+              "273",
+              "每块压成一块魔力强化板，做这些强化石一共要用约 60 块铁锭"
+            ],
+            [
+              "{item:minecraft:lapis_block}、{item:minecraft:gold_ingot}",
+              "各 16",
+              "各 20",
+              "先在辐射仓里做淡青锭，一次出 4 块，再做成淡青板"
+            ],
+            [
+              "{item:minecraft:nether_star}",
+              "2",
+              "3",
+              "用来做永恒物质，全息投影台要用的 5~7 颗另算，见[[hologram/holopad]]"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "按每笔交易平均拿到 5~6 个锭算，只做四件要成交 50 笔左右，加上反重力板约 60 笔。",
+          "if": [
+            "cfg:general.demon.reward_min==3",
+            "cfg:general.demon.reward_max==8"
+          ]
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            2
+          ],
+          "header": [
+            "单做一件",
+            "恶魔板",
+            "风之水晶"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:computer_helmet}",
+              "126",
+              "20"
+            ],
+            [
+              "{item:essentialcraft5:computer_chestplate}",
+              "105",
+              "17"
+            ],
+            [
+              "{item:essentialcraft5:computer_leggings}",
+              "96",
+              "15"
+            ],
+            [
+              "{item:essentialcraft5:computer_boots}",
+              "83",
+              "11"
+            ],
+            {
+              "if": "bauble:essentialcraft5:computer_board",
+              "cells": [
+                "{item:essentialcraft5:computer_board}",
+                "68",
+                "14"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "最花时间的三样"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>风之水晶</em>：四件一共要 48 颗，注风一共要 {cfg:general.wind.gem_espe|mul:48} ESPE，一座祭坛的 8 根柱子在主世界每秒积攒 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160}，在末地每秒 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160}，见[[wind/wind_rune]]。",
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "text": "算下来，主世界一座祭坛要不停积攒约 33 小时，两座约 17 小时，末地三座则不到 3 小时。"
+            },
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "text": "8 根柱子全换成{item:essentialcraft5:pale_crystal_pillar}，积攒快一半：一座约 22 小时，两座约 11 小时，四座约 6 小时。"
+            },
+            {
+              "if": "cfg:general.wind.gem_espe!=10000||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1",
+              "text": "祭坛的柱子换成{item:essentialcraft5:pale_crystal_pillar}这类高档的柱子，积攒得更快，倍率见[[mithriline/crystal_pillar]]。"
+            },
+            "<em>阿克罗尼特</em>：每次用 4 个锭压出 4 块恶魔板，四件要的 287 块板得压 72 次，用掉 288 个锭，每笔交易拿得到 {cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 个，见[[demons/trade]]。遇到要价太高的恶魔，就让它离开，再召唤一只。",
+            {
+              "if": [
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025"
+              ],
+              "text": "<em>黯淡水晶</em>：48 颗都要在米斯莱熔炉里转化，一共约 1.15 万 ESPE，熔炉摆满 13 根柱子时，在主世界要转半个小时左右，见[[mithriline/conversions]]。"
+            },
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025",
+              "text": "<em>黯淡水晶</em>：48 颗都要在米斯莱熔炉里转化，一共约 1.15 万 ESPE，熔炉的柱子最好单独备一批，见[[mithriline/conversions]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎么省时间",
+          "text": "水晶柱要人在附近才积攒，把风之祭坛和恶魔五芒星都建在末地，人在旁边挂机，两边就能同时积攒。魔力工作台装上恶魔核心后速度提到 ×16，三十份注魔合金和七十多次压板就不再拖后腿。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.ley_condenser.enabled",
+          "text": "{item:essentialcraft5:matter_of_eternity}要的下界之星也可以用{item:essentialcraft5:ley_condenser}凝聚出来，不用再去打凋灵，见[[ley/condensing]]。"
+        }
+      ],
+      "_src": [
+        "tools/gen/computer_bom.py — 全部数字是它的输出（展开 recipes/computer/*.json 与 demonic/demonic_core.json，中间件合起来按整次合成取整）；gametest/ComputerCostTests 从 RecipeManager 再算一遍比对",
+        "data/essentialcraft5/recipes/demonic/demonic_plate.json — 魔术师台 4 锭 + 魔力强化板 → 4 块（287 块 → 72 次、288 锭）；entity/DemonEntity.java completeTrade — 报酬 general.demon.reward_min ~ reward_max",
+        "registry/ECWind.java Config.gemESPE — general.wind.gem_espe（默认 10000）每颗；祭坛 8 根柱 × machines.mithriline_crystal_pillar.espe_generated（0.025 / 刻，末地 0.1）× 20 = 4 /秒（末地 16）",
+        "tools/plan/progression.md「毕业时长」第 20 章 — 48 万 ESPE：一座主世界祭坛 33 小时、两座 17 小时、三座末地 2.8 小时",
+        "api/MagicianTableUpgrades.java:48 — 恶魔核心 16",
+        "blockentity/LeyCondenserBlockEntity.java Target.NETHER_STAR — 凝聚器能凝下界之星（MRU + ESPE）",
+        "按 data/essentialcraft5/recipes 逐层展开四件 / 五件（零头留给下一件）：米斯莱水晶 44 + 48（黯淡）= 92、烈焰粉 240、末影珍珠 240（#ender_pearls 含淡青珍珠）、共鸣水晶 48 → 钻石、绿宝石各 48（#diamonds / #emeralds 含淡青宝石）、魔力强化板 238、淡青锭 64 → 16 次、下界之星 2、阿克罗尼特 288；带反重力板 104 / 272 / 56 / 273 / 80 / 3 / 332",
+        "黯淡水晶 48 × 240 ESPE = 11520；13 根柱 × 0.025 × 20 = 6.5 ESPE/秒 → 约 30 分钟；交易数 288 ÷ 5.5 ≈ 52、332 ÷ 5.5 ≈ 60"
+      ]
+    },
+    {
+      "id": "epilogue",
+      "title": "宅男套装之后",
+      "icon": "essentialcraft5:computer_engine",
+      "summary": "还剩三章：模块、暗影、九阶",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "还剩三章"
+        },
+        {
+          "type": "p",
+          "text": "先辈的残卷写到海纳尔就快写完了，恶魔、审判庭和这身甲，残卷里都没有。从挖出第一块魔晶、积攒下第一份 MRU 起，你造过产能器和富集仓，炼过米斯莱，注过风，后来走进海纳尔，和恶魔做过交易，打倒了全息投影和审判庭哨兵，如今穿上了宅男套装。"
+        },
+        {
+          "type": "p",
+          "text": "主线还剩三章：第二十一章[[terminal/legend|终端与模块]]给套装装上模块，第二十二章去暗影腐化之地攒材料，第二十三章召出天灾之心。做空白模块要用第十九章哨兵掉的{item:essentialcraft5:inquisitorium_chip}，还没打过哨兵的话，先回去打一场。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书里，审判庭只是一句传闻，全息投影台向它发出信号，应答的却是全息投影。从回声往后的故事是这一版续写的。原作里档位最高的分类叫「有关暗影的知识」，登记在册，却一页也没写。"
+        }
+      ],
+      "_src": [
+        "原作 ResearchRegistry L2312~2347 — shade 分类（tier 4，en「Knowledges of SHADE」、zh_cn.lang L273「有关暗影的知识」）登记了、没有页面",
+        "原作 ResearchRegistry 全息投影台之前的几页 — 审判庭只有传闻（hologram/holopad 的 lore 照录）；第十九章 inquisitorium 是第十批 10c 加的（batch10.md §5.10）",
+        "assets/essentialcraft5/guide/zh_cn/terminal.json — 第二十一章「终端与模块」，空白模块的配方吃审判庭芯片（data/essentialcraft5/recipes/terminal/blank_module.json）",
+        "tools/plan/batch13.md §2.8 — 13e 起主线到第二十三章（shade、apex），第二十章之后还剩三章"
+      ]
+    }
+  ]
+}

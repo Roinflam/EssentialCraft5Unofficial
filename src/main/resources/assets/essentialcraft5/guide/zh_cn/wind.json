@@ -1,0 +1,1284 @@
+{
+  "id": "wind",
+  "order": 80,
+  "group": "main",
+  "title": "第十三章 · 风",
+  "subtitle": "注风、风之好感与风之眷顾",
+  "icon": "essentialcraft5:wind_gem",
+  "entries": [
+    {
+      "id": "wind_rune",
+      "title": "{item:essentialcraft5:wind_rune}",
+      "icon": "essentialcraft5:wind_rune",
+      "summary": "把 ESPE 注进物品的祭坛",
+      "complete": "essentialcraft5:guide/wind/wind_rune",
+      "items": [
+        "essentialcraft5:wind_rune"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "你早就见过我了。你在山顶上喘气的时候，你在雨里赶路的时候，我都在。你一次也没回过头。",
+          "by": "《风语抄》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：搭建一座风之符文祭坛。祭坛的摆法记在残卷第四卷，和绿太阳、ESPE 写在一处。祭坛搭完整以后，手持物品右键符文，8 根水晶柱里积攒的 ESPE 就会注进这件物品，把它变成别的东西，这叫作<em>注风</em>。本章的主线是把钻石注风成风之水晶。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "第十六章要备齐的三样，从本章开始积攒",
+          "text": "去海纳尔之前要备齐 {cfg:general.wind.tablet_points} 点风之好感、1 个{item:essentialcraft5:wind_keeper}和 4 个{item:essentialcraft5:air_focus}。只靠喝药水的话，好感约需 {cfg:general.wind.tablet_points|div:10|int} 瓶，一座主世界祭坛要为这些药水积攒 6 小时左右的 ESPE。受困之风只有大法师会掉，风之焦点要照第九章的方法制作。三样都很费时间，祭坛一搭好就该着手，可以和第十四、十五章同时推进，做法见[[wind/air_potion]]和[[wind/wind_tablet]]。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "第十六章要备齐的三样，从本章开始积攒",
+          "text": "去海纳尔之前要备齐 {cfg:general.wind.tablet_points} 点风之好感、1 个{item:essentialcraft5:wind_keeper}和 4 个{item:essentialcraft5:air_focus}。好感要靠祭坛一瓶一瓶注出风之药水来喝，受困之风只有大法师会掉，风之焦点要照第九章的方法制作。三样都很费时间，祭坛一搭好就该着手，可以和第十四、十五章同时推进，做法见[[wind/air_potion]]和[[wind/wind_tablet]]。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points!=3500||cfg:general.wind_affinity.base_coefficient!=0.1||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "符文",
+              "4 块{item:essentialcraft5:mithriline_plating}、4 块{item:essentialcraft5:mithriline_plate}和 1 个魔力核心，用{item:essentialcraft5:elemental_core}或{item:essentialcraft5:pale_core}都可以"
+            ],
+            [
+              "祭坛",
+              "13 块米斯莱护板、12 块{item:essentialcraft5:pale_plating}、8 块{item:essentialcraft5:magic_plating}和 8 根任意种类的水晶柱"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:wind_rune"
+        },
+        {
+          "type": "p",
+          "text": "护板的做法见[[alloys/plating]]，淡青护板要先做出淡青板，见[[alloys/pale]]，水晶柱的做法见[[mithriline/crystal_pillar]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先立柱子",
+          "text": "8 根水晶柱和 33 块护板是本章最大的一笔开销。柱子一放下就开始积攒 ESPE，可以先把它们立在祭坛上对应的位置，护板慢慢补齐，等祭坛完工，柱子里已经攒下不少了。"
+        },
+        {
+          "type": "h",
+          "text": "摆法"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:wind_rune"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "选择一块头顶无遮挡的空地，即可让柱子积攒 ESPE，玻璃等透光方块不会影响积攒效率。"
+            },
+            "先铺最下面一层，正中用 5 块米斯莱护板摆成十字，十字的四个斜角和再往外的一圈放淡青护板，外圈每条边的正中放魔力护板。最外侧的四个角不算在结构里，放什么都行，正好拿来托住上一层的柱子。",
+            "接着铺符文所在的那一层，四个角各立一根水晶柱，四条边的正中放魔力护板，紧挨符文的四个斜角放米斯莱护板。",
+            "斜角那 4 块米斯莱护板上各叠 1 块米斯莱护板，顶上再各立一根水晶柱。",
+            "最后把符文放在正中，正对十字中心那块护板的上方。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "护板染成什么颜色都可以，水晶柱也不限种类，图中标出的格子放柱子的底座就行。符文前后左右的 4 格最好留空，祭坛完整时，那里的地面会亮起图案。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "符文周围的地面亮起忽明忽暗的图案，柱子旁有绿色光点上下飘动。空手右键符文，快捷栏上方会显示「祭坛完整」和柱子里的 ESPE 总量。"
+        },
+        {
+          "type": "h",
+          "text": "怎么注风"
+        },
+        {
+          "type": "list",
+          "items": [
+            "主手拿着原料右键符文，8 根柱子里的 ESPE 加起来够用，祭坛就依次从柱子里抽走这次要的量，手里的原料随即变成产物。",
+            "ESPE 不够时，快捷栏上方会显示柱子里现有多少、这次要多少，原料和 ESPE 都不扣。",
+            "祭坛不完整时，空手或拿着原料右键符文，都会提示哪一格不对。",
+            "创造模式下注风不消耗 ESPE。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "要注意"
+        },
+        {
+          "type": "list",
+          "items": [
+            "水晶柱只在所在区块加载时积攒 ESPE，挂机等待时人要留在祭坛附近，详见[[mithriline/crystal_pillar]]。",
+            "换上高档的水晶柱积攒得更快，淡青、虚空、恶魔柱一档比一档快，注风要等的时间也跟着缩短，各档倍率见[[mithriline/crystal_pillar]]。",
+            "水晶柱挖下后再放回去，里面积攒的 ESPE 会清零。",
+            "每次右键符文都会当场重查结构，拆掉任何一块护板就注不了风。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书里写道，古老的风肯不肯在路上助你一程，就看这块符文。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/wind/wind_rune.json — MPM / PEP / MPM：米斯莱护板 ×4、米斯莱板 ×4、#essentialcraft5:cores/magic（generated tags/items/cores/magic.json：元素核心 / 淡青元素核心 / 恶魔核心）",
+        "registry/ECWind.java:148~160 RUNE_STRUCTURE — y=−1「 LGL / LLMLL / GMMMG / LLMLL / LGL 」、y=0「C G C /  M M  / G R G /  M M  / C G C」、y=1 斜角米斯莱、y=2 斜角水晶柱：米斯莱护板 13、淡青护板 12、魔力护板 8、柱 8；L140 RUNE_PILLAR = pillarRule 任意档柱子的底座",
+        "blockentity/WindRuneBlockEntity.java:132 serverTick（StructureCache 最多 20 tick 判一次）；L202 imbue：只看主手，空手报告状态（L304 message.essentialcraft5.wind_rune.status），不够时 no_espe 说有多少、要多少；L233 checkNow 右键当场重判；L255 创造模式不花 ESPE",
+        "blockentity/WindRuneBlockEntity.java:141 clientTick — 完整时符文上方一缕风、柱子旁绿色光点 60 tick 一个来回；client/render/WindRuneRenderer.java — 地上 3×3 的图案亮度 60 tick 呼吸，不完整不画",
+        "blockentity/MithrilineCrystalPillarBlockEntity.java:115 — 露天才攒；方块实体 tick 才攒；registry/ECMithriline.java 掉落表只掉方块本身",
+        "原作 lang en_US.lang L1090 page.windRune_0「If you want the ancient wind to help you out on your journey」"
+      ]
+    },
+    {
+      "id": "wind_gem",
+      "title": "{item:essentialcraft5:wind_gem}",
+      "icon": "essentialcraft5:wind_gem",
+      "summary": "钻石注风变成风之水晶",
+      "complete": "essentialcraft5:main/wind_gem",
+      "items": [
+        "essentialcraft5:wind_gem"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：在祭坛上把{item:minecraft:diamond}注风成{item:essentialcraft5:wind_gem}。支线里的风之工具和风之护甲都拿它做，见[[wind_gear/wind_tools]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "主线后面还要用它，第十八～二十一章的富神经元护板和力场零件一共要五十多颗，见[[computer/force_parts]]。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "原料",
+              "1 颗钻石"
+            ],
+            [
+              "ESPE",
+              "{cfg:general.wind.gem_espe|int}，从祭坛的 8 根柱子里抽取"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:wind_gem"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "等柱子里攒够 ESPE，空手右键符文可以看到现在的总量。",
+            "主手拿着钻石右键符文，每次右键换出一颗风之水晶。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到第一颗风之水晶，取得进度「风之馈赠」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "第十六章要先备好",
+          "text": "拿到风之水晶先别急着往下翻，去海纳尔之前还要攒够 {cfg:general.wind.tablet_points} 点风之好感、做好风之石板，做法都在本章后面几篇。祭坛一空下来就接着注风之药水，别让它闲着。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "h",
+          "text": "要等多久"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "8 根柱子合计",
+              "主世界露天每秒 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160}，末地每秒 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160}"
+            ],
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "cells": [
+                "从空柱子积攒出一颗",
+                "主世界约 <t>42</t> 分钟，末地约 <t>10</t> 分钟"
+              ]
+            },
+            [
+              "8 根全部存满",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:8|int} ESPE，存满后不再增加"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "柱子存满就不再增加，满了要及时来注一颗，别让它们白白等着。想快一些就<em>多搭几座祭坛</em>，常去末地的话，在那里也搭一座，积攒得更快，不过只有你待在末地时它才积攒。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.gem_espe==10000",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "title": "趁早扩建",
+          "text": "主线后面要用的约 50 颗风之水晶，是全书等得最久的一段。一座主世界祭坛要连续积攒 35 个小时左右，末地的一座约 9 小时，前提是你一直待在末地。祭坛的 8 根柱子全换成{item:essentialcraft5:pale_crystal_pillar}，积攒快一半，主世界一座约 23 小时。现在就多搭两三座祭坛，后面能省下好几天。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.gem_espe!=10000||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1"
+          ],
+          "title": "趁早扩建",
+          "text": "主线后面要用的约 50 颗风之水晶，是全书等得最久的一段。祭坛的柱子换成{item:essentialcraft5:pale_crystal_pillar}这类高档的柱子能攒得更快，倍率见[[mithriline/crystal_pillar]]。现在就多搭两三座祭坛，后面能省下不少时间。"
+        },
+        {
+          "type": "h",
+          "text": "能注风的东西"
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:wind_imbue",
+          "compact": true
+        },
+        {
+          "type": "p",
+          "text": "风之装备也很费风之水晶，一整套风之护甲要 25 颗，五件风之工具合计 11 颗，见[[wind_gear/wind_armor]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/wind/imbue/wind_gem.json — 钻石 → 风之水晶，espe 10000、espe_config gem_espe；registry/ECWind.java:197~199 general.wind.gem_espe",
+        "blockentity/MithrilineCrystalPillarBlockEntity.java:133 — 0.025/tick（主世界露天）、0.1/tick（末地）；8 根 = 4/秒、16/秒；10000 ÷ 4 = 2500 秒 ≈ 42 分钟，÷ 16 ≈ 10 分钟；上限 max_espe × 8；字面时长只在 gem_espe 与两项产速是默认值时显示（另一份不带时长的提示框接替）；柱子只在区块 tick 时攒，人要在末地",
+        "advancements main/wind_gem.json（inventory_changed 风之水晶）；标题 advancements.essentialcraft5.wind_gem.title「风之馈赠」",
+        "data/essentialcraft5/recipes/windgear/*.json — 风之水晶：头盔 5、胸甲 8、护腿 8、靴子 4（25）；剑 2、镐 3、斧 3、锹 1、锄 2（11）",
+        "tools/plan/progression.md「毕业时长」— 主线共 53~55 颗（第 13 章 1、第 18 章 2~4、第 19 章的信标和第 21 章的空白模块合计约 2、第 20 章 48）；50 颗 × 10000 = 50 万 ESPE，一座主世界祭坛 4/秒 ≈ 35 小时，末地 16/秒 ≈ 8.7 小时；data/essentialcraft5/recipes/computer/neuronic_enriched_plating.json、force_absorber.json、force_emitter.json"
+      ]
+    },
+    {
+      "id": "air_potion",
+      "title": "风之药水与风之好感",
+      "icon": "essentialcraft5:air_potion",
+      "summary": "风是活的，喝药水积攒好感",
+      "complete": "essentialcraft5:guide/wind/air_potion",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:air_potion",
+        "essentialcraft5:bottled_wind",
+        "essentialcraft5:imprisoned_wind",
+        "essentialcraft5:wind_keeper"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（第十六章之前要做完）：做一瓶{item:essentialcraft5:air_potion}，认识<em>风之好感</em>，它记的是风和你有多熟。喝下风之药水，脚步会轻上几分，那是风贴近了你。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一瓶{item:essentialcraft5:air_potion}，认识<em>风之好感</em>，它记的是风和你有多熟。喝下风之药水，脚步会轻上几分，那是风贴近了你。",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "去海纳尔之前，风之好感要攒到 {cfg:general.wind.tablet_points}，最省心的办法是一瓶接一瓶地喝风之药水。要喝多少、怎样攒得更快，本篇都会讲到。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "原料",
+              "一瓶水，就是装了水的{item:minecraft:glass_bottle}，别的药水代替不了"
+            ],
+            [
+              "ESPE",
+              "250"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:air_potion"
+        },
+        {
+          "type": "h",
+          "text": "喝下去"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "效果",
+              "获得「轻盈」效果，每级移速 +40%，跳跃高度和摔落减伤与同级的跳跃提升相同"
+            ],
+            [
+              "第一瓶",
+              "I 级，2 分钟"
+            ],
+            [
+              "接着喝",
+              "每瓶延长 2 分钟，喝下时剩余时长每满 8 分钟，等级就提高一级"
+            ],
+            [
+              "上限",
+              "{cfg:general.wind.lightness_max_level} 级、{cfg:general.wind.lightness_max_minutes} 分钟"
+            ],
+            [
+              "好感",
+              "每瓶原始值 100，平时实得 {cfg:general.wind_affinity.base_coefficient|mul:100|int} 点，算法见下文"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind.lightness_max_level>=3",
+          "text": "一瓶接一瓶连着喝，大约第 6 瓶升到 II 级，第 10 瓶前后达到 III 级。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一瓶风之药水。"
+        },
+        {
+          "type": "h",
+          "text": "风之好感"
+        },
+        {
+          "type": "p",
+          "text": "风之好感只增不减。每涨一次，你身上就会出现持续 50 秒的「风之触」效果，它没有任何实际作用，只是告诉你风来过。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "来源",
+            "原始值"
+          ],
+          "rows": [
+            [
+              "喝一瓶{item:essentialcraft5:air_potion}",
+              "100"
+            ],
+            [
+              "打碎{item:essentialcraft5:bottled_wind}",
+              "10"
+            ],
+            [
+              "打碎{item:essentialcraft5:imprisoned_wind}",
+              "25"
+            ],
+            [
+              "打碎{item:essentialcraft5:wind_keeper}",
+              "100"
+            ],
+            [
+              "受[[wind/windbound]]后风主动找上门",
+              "1000"
+            ],
+            {
+              "if": "cfg:general.wind_wish.enabled",
+              "cells": [
+                "替风完成一个[[wind/wishes|心愿]]",
+                "{cfg:general.wind_wish.points}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            1
+          ]
+        },
+        {
+          "type": "p",
+          "text": "实得的点数是原始值乘以系数，小数部分舍去。系数平时只有 <t>{cfg:general.wind_affinity.base_coefficient}</t>，一瓶药水实得 {cfg:general.wind_affinity.base_coefficient|mul:100|int} 点。三种装着风的瓶子都是风法师掉的，见[[wind_mage/bottled_winds]]。"
+        },
+        {
+          "type": "p",
+          "text": "风法师套装和几件特殊饰品都能改变系数，具体见下面「好感有什么用」那张表，饰品另见[[baubles/wind_corruption]]。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "别搞混",
+          "text": "风之石板要用的是{item:essentialcraft5:wind_keeper}，只有大法师会掉，打碎它得原始值 100，{item:essentialcraft5:imprisoned_wind}和{item:essentialcraft5:bottled_wind}都代替不了。拿到的第一个受困之风要留着，别顺手打碎。"
+        },
+        {
+          "type": "h",
+          "text": "好感有什么用"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "好感到了 {cfg:general.wind.tablet_points}，[[wind/wind_tablet|风之石板]]上就会显出风的真名，此后石板能[[hoanna/open_gate|替你打开通往海纳尔的门]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "好感到了 {cfg:general.wind.tablet_points}，[[wind/wind_tablet|风之石板]]上就会显出风的真名。"
+        },
+        {
+          "type": "table",
+          "if": [
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "header": [
+            "路线",
+            "要什么",
+            "大约多久"
+          ],
+          "rows": [
+            [
+              "只喝药水",
+              "约 {cfg:general.wind.tablet_points|div:10|int} 瓶，共 {cfg:general.wind.tablet_points|mul:25|int} ESPE",
+              "一座主世界祭坛挂机约 6 小时，末地约 1.5 小时"
+            ],
+            {
+              "if": "cfg:general.wind.windbound_espe==20000",
+              "cells": [
+                "先受[[wind/windbound]]",
+                "注风消耗 {cfg:general.wind.windbound_espe|int} ESPE，之后喝着 III 级轻盈持续疾跑",
+                "注风约需 1.4 小时，之后风平均 5~6 分钟推你一次，每次 100 点，边跑边喝，两三个小时就能攒够"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "cells": [
+                "戴{item:essentialcraft5:wind_mages_talisman}喝药水",
+                "在地牢箱子里碰运气",
+                "系数 +0.3，一瓶从 {cfg:general.wind_affinity.base_coefficient|mul:100|int} 点变成 {cfg:general.wind_affinity.base_coefficient|add:0.3|mul:100|int} 点，见[[baubles/wind_corruption]]"
+              ]
+            },
+            [
+              "穿风法师套装喝药水",
+              "只有大法师会掉，每只有一成几率掉一件",
+              "每件系数 +0.23，穿 1 件时一瓶药水就顶原来 3 瓶多，穿满 4 件约为 10 倍，见[[wind_mage/wind_mage_armor]]"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind.tablet_points!=3500||cfg:general.wind_affinity.base_coefficient!=0.1||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1",
+          "text": "药水全靠祭坛一瓶一瓶注出来，先按每瓶实得的点数算出要喝几瓶，再尽早动手。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "多搭几座祭坛同时积攒，常去末地的话在那里也搭一座。",
+            "药水可以先注好存着，攒够一批再一口气喝完，好感按瓶计算，一起喝也不会少算。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书说，风有几分像活物，喜欢在暗中打量命运不凡的人。原作里放出受困之风时，还能听见它很轻地道一声谢。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/wind/imbue/air_potion.json — forge:partial_nbt 水瓶（Potion: minecraft:water）→ 风之药水，250 ESPE",
+        "item/AirPotionItem.java:38 POINTS = 100；L50~51 喝完 drink + WindRelations.grant",
+        "effect/ParanormalLightnessEffect.java:36 移速 +0.4 × 等级（MULTIPLY_TOTAL）；L86 applyJump 同级跳跃提升；L95 reduceFall；L40 DRINK_TICKS 2 分钟、L42 TICKS_PER_LEVEL 8 分钟；L69 next：等级 = min(喝之前的剩余 ÷ 8 分钟, 上限 − 1)、时长 = min(剩余 + 2 分钟, 上限)；连喝每瓶至少隔 32 tick，第 k 瓶喝之前剩余约 2368 × (k − 1) tick：第 6 瓶（11840 ≥ 9600）到 II、第 10 瓶（21312 ≥ 19200）到 III",
+        "registry/ECWind.java:207~212 general.wind.lightness_max_level（3）/ lightness_max_minutes（60）",
+        "api/WindAffinity.java:123 add — 实得 = (int)(原始值 × 系数)；L133~136 给风之触 1000 tick（50 秒）；系数 = general.wind_affinity.base_coefficient（0.1）+ 盔甲与饰品加成；item/WindMageArmorItem.java:36 每件 +0.23；registry/ECBaubles.java:80~81 风法师护符 +0.3（loot_tables/inject/simple_dungeon.json）",
+        "registry/ECWind.java:98~105 — 瓶中之风 10、禁锢之风 25、受困之风 100；loot_tables/entities/wind_mage_apprentice.json / wind_mage.json / wind_mage_archmage.json 各掉一种；player/WindRelations.java:57 事件 1000",
+        "item/WindTabletItem.java:123 attuned — 好感 ≥ general.wind.tablet_points（3500）名字显全（L128 nameRevealed；第十批 10b 起还要心愿够数）；药水法：3500 ÷ 10 = 350 瓶 × 250 = 87500 ESPE（按基础系数 0.1 算），一座主世界祭坛 4/秒 ≈ 6.1 小时，末地 16/秒 ≈ 1.5 小时；这段只在四项都是默认值时显示（同 hoanna/wind_name），否则换成不带数的一句",
+        "原作 lang en_US.lang L287 page.wind_0「somewhat of a living creature, that likes to observe people with unique fate」；tools/lang/glossary.md 第 46 行：会害羞、会道谢",
+        "loot_tables/entities/wind_mage_archmage.json — 第二个池 random_chance_with_looting 0.1（每级抢夺 +0.025），四件风法师套装等概率；第一个池必掉受困之风（风之石板的材料）",
+        "api/WindAffinity.java — 实得 = 原始值 × 系数取整；路线表的时长按默认配置算：350 瓶 × 250 ESPE ÷ 8 根柱 × 0.5 ESPE/秒 ≈ 6 小时；眷顾后疾跑 III 级轻盈每秒 0.3% 被推一次（约 5.6 分钟）",
+        "data/essentialcraft5/loot_tables/entities/wind_mage_archmage.json — 受困之风必掉 1 个；套装 10% 一件",
+        "路线表「先受风之眷顾」一行：general.wind.windbound_espe（默认 20000，原作 40000）÷ 4/秒 = 5000 秒 ≈ 1.4 小时；字面时长只在它是默认值时显示（行级 if）"
+      ]
+    },
+    {
+      "id": "windbound",
+      "title": "风之眷顾",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "让风自己找上门来",
+      "complete": "essentialcraft5:guide/wind/windbound",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：受到风之眷顾，之后才能替风完成[[wind/wishes|风之心愿]]、制作[[wind/wind_horn|风之号角]]。风一直就在你身边，受了眷顾以后，它会时不时自己找上门来。每来一次，好感原始值 +1000，平时实得 {cfg:general.wind_affinity.base_coefficient|mul:1000|int} 点，相当于 10 瓶风之药水。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：受到风之眷顾，之后才能制作[[wind/wind_horn|风之号角]]。风一直就在你身边，受了眷顾以后，它会时不时自己找上门来。每来一次，好感原始值 +1000，平时实得 {cfg:general.wind_affinity.base_coefficient|mul:1000|int} 点，相当于 10 瓶风之药水。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：受到风之眷顾，之后才能替风完成[[wind/wishes|风之心愿]]。风一直就在你身边，受了眷顾以后，它会时不时自己找上门来。每来一次，好感原始值 +1000，平时实得 {cfg:general.wind_affinity.base_coefficient|mul:1000|int} 点，相当于 10 瓶风之药水。",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：受到风之眷顾。风一直就在你身边，受了眷顾以后，它会时不时自己找上门来。每来一次，好感原始值 +1000，平时实得 {cfg:general.wind_affinity.base_coefficient|mul:1000|int} 点，相当于 10 瓶风之药水。",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "!cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "要为第十六章攒 {cfg:general.wind.tablet_points} 点好感，最好先完成这一步，几条路线的对比见[[wind/air_potion]]里的路线表。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "原料",
+              "1 块{item:essentialcraft5:soul_stone}，绑没绑定都行，注风后也不会用掉"
+            ],
+            [
+              "ESPE",
+              "{cfg:general.wind.windbound_espe|int}，8 根柱子存满时共有 {cfg:machines.mithriline_crystal_pillar.max_espe|mul:8|int}"
+            ],
+            {
+              "if": [
+                "cfg:general.wind.windbound_espe==20000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "cells": [
+                "要等多久",
+                "8 根柱子从空开始积攒，主世界约 1.4 小时，末地约 21 分钟"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:soul_stone"
+          ],
+          "recipe_type": "essentialcraft5:wind_imbue",
+          "optional": true
+        },
+        {
+          "type": "steps",
+          "items": [
+            "等祭坛的柱子里积攒到 {cfg:general.wind.windbound_espe|int} ESPE。",
+            "主手拿着灵魂石右键符文，ESPE 被抽走，灵魂石原样留在手里。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "聊天栏出现「风在你身边盘旋。这意味着什么呢……」。"
+        },
+        {
+          "type": "h",
+          "text": "风找上门来"
+        },
+        {
+          "type": "p",
+          "text": "受眷顾以后，游戏每秒都会替你掷一次骰子。下表里的轻盈等级，指你身上风之药水效果的等级，没有这个效果按 1 算。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "事件",
+            "几率",
+            "得到"
+          ],
+          "rows": [
+            [
+              "风拂过头发",
+              "每秒 0.02% × 轻盈等级",
+              "好感原始值 +1000"
+            ],
+            [
+              "风在背后推你一把",
+              "疾跑时每秒 0.1% × 轻盈等级",
+              "好感 +1000，速度 XXXII 1 秒"
+            ],
+            [
+              "风把你托起来",
+              "每次起跳 0.03%",
+              "好感 +1000，跳跃提升 XIII 5 秒"
+            ]
+          ],
+          "widths": [
+            2,
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "不喝药水时，风平均约 83 分钟拂过一次头发，喝着 III 级轻盈时约 28 分钟一次。想最快攒好感，就喝着 III 级轻盈一直疾跑，风约 5～6 分钟就会推你一把。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "当心脚下",
+          "text": "风托起你时会让你一下跳得很高，推你一把时能让你在一秒内冲出很远。在悬崖和岩浆附近别疾跑乱跳，落地前先看清脚下。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "已经受了眷顾，再拿灵魂石注风，只会收到一句「风已经在眷顾你了」，什么都不扣。",
+            {
+              "if": "bauble:essentialcraft5:ring_of_resistance",
+              "text": "戴着{item:essentialcraft5:ring_of_resistance}时风不会推动或托起你，好感照样上涨。"
+            },
+            {
+              "if": "bauble:essentialcraft5:beta_ring",
+              "text": "戴着{item:essentialcraft5:beta_ring}时，风拂过头发会改为随机给你一种持续 6 分钟的元素增益，可能是力量 II、生命恢复、饱和或急迫 II。"
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "戴着{item:essentialcraft5:wind_catcher}时，每次好感上涨都有 15% 的几率捕到一个{item:essentialcraft5:wind_keeper}，代价是系数减少 0.1。"
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_resistance||bauble:essentialcraft5:beta_ring||bauble:essentialcraft5:wind_catcher",
+              "text": "这几件饰品的来源见[[baubles/wind_corruption]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书里讲风的那一节叫「魔力之风」，副标题是「良师益友！」。书里还说，在符文上给一块灵魂石注风，注风的人就会得到风之力。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/wind/imbue/windbound.json — 灵魂石 → 灵魂石，espe 20000、espe_config windbound_espe（general.wind.windbound_espe，原作 40000，主线一步等太久减半），grants_windbound；client/WindClient.java:33~39 配方图多写一行「授予风之眷顾（原料不消耗）」",
+        "blockentity/WindRuneBlockEntity.java:243~253 — 已受眷顾 → already_windbound，什么都不扣（原作照样抽走并换掉灵魂石，类注释 L64）；L269~273 受眷顾：setWindbound、聊天栏 message.essentialcraft5.wind_rune.windbound、发 guide/wind/windbound",
+        "20000 ÷ 4/秒 = 5000 秒 ≈ 1.4 小时；÷ 16/秒 = 1250 秒 ≈ 21 分钟（那一行只在 windbound_espe 和两项产速是默认值时显示）；8 根满柱 = max_espe × 8",
+        "player/WindRelations.java:51 PASSIVE_CHANCE 0.0002、L53 SPRINT_CHANCE 0.001、L55 JUMP_CHANCE 0.0003、L57 EVENT_POINTS 1000；L100 lightnessFactor = 轻盈 amplifier + 1，没有时 1；L106 每 20 tick 判一次；L61 BOON_TICKS 7200（6 分钟）、L63~67 速度 XXXII 20 tick、跳跃提升 XIII 100 tick",
+        "期望：0.0002/秒 → 5000 秒 ≈ 83 分钟；× 3 ≈ 28 分钟；疾跑 0.001 × 3 → 333 秒 ≈ 5.6 分钟",
+        "player/WindRelations.java:120~167 — β 指环（tag wind_boon）四选一、抗性指环（tag wind_resistant）不推不托、捕风挂坠（tag wind_catcher）15%；registry/ECBaubles.java:76 捕风挂坠系数 −0.1",
+        "原作 lang en_US.lang L271 disc.wind.desc「A friend to assist your journey!」、L1091 page.windRune_1「Infusing a Soul Stone will imbue the player with a strength of the wind」"
+      ]
+    },
+    {
+      "id": "wishes",
+      "title": "风之心愿",
+      "icon": "minecraft:feather",
+      "summary": "替风做一件它想做的事",
+      "complete": "essentialcraft5:guide/wind/wish",
+      "if": "cfg:general.wind_wish.enabled",
+      "optional": "!cfg:general.hoanna.portal_enabled||!cfg:general.wind_wish.required>0",
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "<em>目标</em>：替风完成一个心愿。风哪里都去得，却喜欢有人陪着。受眷顾以后，它会托你做些登高、疾跑、去远处看看之类的小事，做到了，它会向你道谢，好感也跟着上涨。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled||!cfg:general.wind_wish.required>0",
+          "text": "<em>目标</em>（可选）：替风完成一个心愿。风哪里都去得，却喜欢有人陪着。受眷顾以后，它会托你做些登高、疾跑、去远处看看之类的小事，做到了，它会向你道谢，好感也跟着上涨。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_wish.required>0",
+          "text": "这个世界的{item:essentialcraft5:wind_tablet}用不着心愿。风要等真名显全以后才会托付心愿，完成了照样涨好感，风法师支线的风之契约正好用得上这些好感。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "心愿要慢慢攒。第十六章开门用的{item:essentialcraft5:wind_tablet}除了好感，还要你完成过 <em>{cfg:general.wind_wish.required}</em> 个心愿才肯回应，见[[wind/wind_tablet]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "心愿要慢慢攒。你要完成过 <em>{cfg:general.wind_wish.required}</em> 个心愿，{item:essentialcraft5:wind_tablet}才肯回应，风法师支线的风之契约也照这个算，见[[wind/wind_tablet]]。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "准备",
+              "已受[[wind/windbound]]，并有一座完整的[[wind/wind_rune|风之符文祭坛]]"
+            ],
+            [
+              "同时",
+              "只能有一个心愿"
+            ],
+            [
+              "期限",
+              "{cfg:general.wind_wish.deadline_ticks|div:24000|round:1} 个游戏日，过期不会受罚，只是要等 {cfg:general.wind_wish.cooldown_ticks|sec}才能再问"
+            ],
+            [
+              "每完成一个",
+              "好感原始值 +{cfg:general.wind_wish.points}"
+            ],
+            {
+              "if": "cfg:general.wind_affinity.base_coefficient==0.1",
+              "cells": [
+                "实得",
+                "没有加成时为 {cfg:general.wind_wish.points|mul:0.1|int} 点，相当于 {cfg:general.wind_wish.points|div:100|int} 瓶风之药水"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "空着双手，潜行右键祭坛正中的风之符文。",
+            "风会在聊天栏里用一行深青色的斜体字，低声说出一个心愿。",
+            "去完成这个心愿，做到的那一刻风就会道谢，不用回祭坛交差。",
+            "想要下一个心愿，就回到符文前再问一次。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "聊天栏出现「风欢快地绕着你转了一圈：谢谢你！」。"
+        },
+        {
+          "type": "h",
+          "text": "八种心愿"
+        },
+        {
+          "type": "p",
+          "text": "风只托你做眼下办得到的事。你背着鞘翅时它才会要你滑翔，正在打雷时才会叫你去听雷，要你远行时，点名的也总是你此刻不在的那类群系。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "心愿",
+            "要做的",
+            "说明"
+          ],
+          "rows": [
+            [
+              "登高",
+              "在 Y 200 以上、头顶无遮挡的地方待满 30 秒",
+              "累计计时，只在有天空的维度里托付"
+            ],
+            [
+              "追风",
+              "疾跑 400 格",
+              "按水平距离计算，每秒最多计 20 格"
+            ],
+            [
+              "远行",
+              "走进风点名的那类群系",
+              "恶地、丛林、深海、山地、针叶林、热带草原、雪原、樱花树林之一"
+            ],
+            [
+              "落羽",
+              "从 25 格以上的高处落下且不受伤",
+              "落进水里或靠缓降效果落地都算"
+            ],
+            [
+              "月下",
+              "夜里在头顶无遮挡的地方连跳 32 次",
+              "两次起跳间隔 5 秒以上就从头计数，雷雨天的白天也算夜里"
+            ],
+            [
+              "他乡",
+              "到另一个维度待满 2 分钟",
+              "累计计时，去下界最省事"
+            ],
+            [
+              "乘风",
+              "用鞘翅连续滑翔 200 格",
+              "背着鞘翅时才会托付，中途落地就从头计算"
+            ],
+            [
+              "听雷",
+              "雷雨中在头顶无遮挡的地方站满 60 秒",
+              "正在打雷时才会托付，累计计时"
+            ]
+          ],
+          "widths": [
+            2,
+            4,
+            4
+          ]
+        },
+        {
+          "type": "h",
+          "text": "换一个"
+        },
+        {
+          "type": "p",
+          "text": "不想做眼下这个心愿，可以手拿一瓶{item:essentialcraft5:air_potion}潜行右键符文，这瓶药水用掉，风就换一个心愿，期限也重新算。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "问心愿时两只手都要空着，副手拿着盾牌、火把等东西时，潜行右键点不到符文。还没受眷顾就拿着风之药水这样点，只会把药水喝掉。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "已有心愿时再问一次，快捷栏上方会提示当前的心愿、进度和剩余时间。",
+            "落羽的高度从你离地后到达的最高点算起，坐船、骑马、用鞘翅滑翔或顺着梯子往下爬都不算下落。",
+            "心愿进度记在你身上，下线再上线会接着算，期限按游戏内的时间走。",
+            {
+              "if": "cfg:general.wind_wish.required>0",
+              "text": "攒够 {cfg:general.wind_wish.required} 个心愿以后，风要等真名显全才接着托付新的心愿，在这之前去问，快捷栏上方会告诉你原因。这段时间的好感只能靠风之药水和风主动上门来攒，见[[wind/air_potion]]。真名显全以后再完成心愿，好感照样上涨。"
+            },
+            {
+              "if": "!cfg:general.wind_wish.required>0",
+              "text": "风之真名显全以后仍然可以问心愿，完成后好感照样上涨。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书讲海纳尔传说时，特意插了一句，说传说里的那阵风你其实认得，你们早就打过好几回交道。"
+        }
+      ],
+      "_src": [
+        "player/WindWishes.java:455 ask — 受眷顾才给（not_windbound）、同时只有一个（已有时只提醒）、过期后冷却中不给、心愿数 ≥ required() 而真名没显全时不给（RESTING，message.essentialcraft5.wind_wish.resting）；L500 swap — 风之药水换一个别的种类、药水扣一瓶（创造也扣，同喝药水）",
+        "blockentity/WindRuneBlockEntity.java:205~228 — 潜行、主手空着右键完整的符文问心愿，拿着风之药水潜行右键换心愿；祭坛不完整时报哪一格不对",
+        "player/WindWishes.java:864 windWishSwapClick — 受眷顾、潜行、主手风之药水点符文时放行方块交互（原版潜行拿着东西不调方块的 use、会去喝药水）；ServerPlayerGameMode.useItemOn — 潜行时任一只手拿着东西就不调方块的 use",
+        "player/WindWishes.java:917~920 — general.wind_wish 默认 required 7、points 1000、deadline_ticks 72000（3 个游戏日）、cooldown_ticks 2400（120 秒）",
+        "条目 optional「门关着或 required = 0 时可选」：required = 0 时 ask 在真名显全之前一律 RESTING（心愿数 0 ≥ 0），必做的话首页会指向一件做不了的事",
+        "player/WindWishes.java:680 complete — 风道谢（message.essentialcraft5.wind_wish.done）、心愿数 +1、发 guide/wind/wish、查风之真名；完成前的心愿数 < required() 或真名已显全才 WindRelations.grant(points)；L694 expire — 过期只开始冷却，不扣好感、不扣心愿数",
+        "实得：points × 系数，系数 0.1 时 1000 → 100；风之药水原始 100（item/AirPotionItem.java:38），100 实得 = 10 瓶（那一行只在基础系数是 0.1 时显示）",
+        "player/WindWishes.java:384 options — 登高要有天空、建筑高度够；月下要有昼夜；乘风要胸甲格是能飞的鞘翅；听雷要正在打雷；远行只点这个世界还有、玩家不在的类别（L202~209：恶地、丛林、深海、山地、针叶林、热带草原、雪原 forge:is_snowy、樱花树林）",
+        "player/WindWishes.java:129~142 — 登高 Y 200 / 30 秒、追风 400 格（每秒最多 20 格）、落羽 25 格、月下 32 次（间隔 100 刻重数）、他乡 120 秒、乘风 200 格、听雷 60 秒；L542 secondTick 每秒判，L618 featherTick 离地后记最高点、落地 / 入水时比高度差，挨过摔落伤害（LivingDamageEvent）不算，飞行 / 鞘翅 / 骑乘 / 爬梯子从头记；L660 onJump 夜里露天才数（夜里 = 原版 Level.isNight，skyDarken ≥ 4，雷雨天的白天也算）",
+        "player/WindWishes.java:542 — 进度每秒存进玩家数据（不发包），下线重进接着算；期限按游戏刻",
+        "原作 lang en_US.lang L601 page.hoanna_2「You KNOW that exact wind, and you've interacted with it couple of times already」"
+      ]
+    },
+    {
+      "id": "wind_horn",
+      "title": "{item:essentialcraft5:wind_horn}",
+      "icon": "essentialcraft5:wind_horn",
+      "summary": "注过风的山羊角",
+      "complete": "essentialcraft5:guide/wind/wind_horn",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:wind_horn"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做一支{item:essentialcraft5:wind_horn}。做石板要用的{item:essentialcraft5:wind_keeper}只有大法师会掉，野外很难碰上，吹响号角，风就会把一只大法师带到你面前，怎么打见下一篇。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "原料",
+              "1 支任意曲调的{item:minecraft:goat_horn}"
+            ],
+            [
+              "ESPE",
+              "{cfg:general.wind_horn.espe}"
+            ],
+            [
+              "要求",
+              "已受风之眷顾，没受眷顾时注风会被拒绝，什么都不扣"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:wind_horn"
+          ],
+          "recipe_type": "essentialcraft5:wind_imbue",
+          "optional": true
+        },
+        {
+          "type": "h",
+          "text": "山羊角从哪来"
+        },
+        {
+          "type": "list",
+          "items": [
+            "山地里的山羊撞到石头、原木、浮冰或铁、煤、铜、绿宝石矿石时会掉下一支角，每只山羊最多掉两支。",
+            "掠夺者前哨站的箱子里也能找到。"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "等祭坛的柱子里积攒到 {cfg:general.wind_horn.espe} ESPE。",
+            "主手拿着山羊角右键符文，ESPE 被抽走后，山羊角就会变成风之号角。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "背包里有了一支风之号角。已经拿到{item:essentialcraft5:wind_keeper}或{item:essentialcraft5:wind_tablet}的话，这一步直接算作完成。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "吹一次就没了",
+          "text": "号角吹一次就用掉了，每召一次大法师都要一支新的山羊角，再花 {cfg:general.wind_horn.espe} ESPE 注风。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书抄下的海纳尔传说里有一句，说那人呼唤了风，风便亲自来到他身边。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/wind/imbue/wind_horn.json — 山羊角 → 风之号角，espe_config horn_espe（general.wind_horn.espe，默认 20000，item/WindHornItem.java:339），requires_windbound",
+        "blockentity/WindRuneBlockEntity.java:236~240 — requires_windbound 的配方：没受眷顾在扣 ESPE 之前拒绝（message.essentialcraft5.wind_rune.needs_windbound），什么都不扣；client/WindClient.java 配方图多写一行「要已受风之眷顾」",
+        "原版 Goat：撞 #minecraft:snaps_goat_horn（原木、石头、浮冰、铁矿石、煤矿石、铜矿石、绿宝石矿石，VanillaBlockTagsProvider L180）掉角，每只最多两支；掠夺者前哨站箱子 loot_tables/chests/pillager_outpost 含山羊角",
+        "data/essentialcraft5/advancements/guide/wind/wind_horn.json — inventory_changed：风之号角、受困之风、风之石板任一样（requirements 一组三选一）",
+        "item/WindHornItem.java:153 blow — 召唤成功才 stack.shrink(1)（创造模式不扣），每次一支",
+        "原作 lang en_US.lang L600 page.hoanna_1「The man called the Wind, and the Wind itself came to the man」"
+      ]
+    },
+    {
+      "id": "archmage",
+      "title": "大法师",
+      "icon": "essentialcraft5:wind_keeper",
+      "summary": "吹响号角，亲手打倒大法师",
+      "complete": "essentialcraft5:guide/wind/archmage",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：打倒一只穿红袍的大法师，拿到做石板要用的{item:essentialcraft5:wind_keeper}，号角召来的和野外自然生成的都算。"
+        },
+        {
+          "type": "p",
+          "text": "这一步只看受困之风到没到手，戴着[[baubles/wind_corruption|捕风挂坠]]喝药水捕到的、队友送的都算。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "什么时候",
+              "夜里，雷雨天的白天也算，在海纳尔遇上[[hoanna/events|黑暗天灾]]时白天也可以"
+            ],
+            [
+              "在哪",
+              "主世界或海纳尔头顶无遮挡的地方"
+            ],
+            [
+              "来的是",
+              "1 只大法师和 {cfg:general.wind_horn.escorts} 只学徒或法师，出现在 {cfg:general.wind_horn.summon_min}～{cfg:general.wind_horn.summon_max} 格外"
+            ],
+            [
+              "冷却",
+              "吹过以后要等 {cfg:general.wind_horn.cooldown_ticks|div:1200|round:1} 分钟才能再吹，上一批法师还在时也吹不响"
+            ],
+            [
+              "掉落",
+              "只有你亲手打倒的才会掉落，大法师必掉一个受困之风"
+            ]
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "天黑以后，找一片头顶无遮挡的空地。",
+            "按住右键，像吹原版山羊角那样把号角吹满 3 秒。",
+            "大约 5 秒后，风会把法师带到你附近，它们只会盯着你攻击。",
+            "亲手打倒大法师，捡起掉落的受困之风。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "背包里有了受困之风，来源不限。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "大法师一箭约 15 点伤害，身边的随从也会一起放箭，最好带上盾牌、穿好护甲，找有掩体的地方迎战。和平难度下法师不会来。"
+        },
+        {
+          "type": "h",
+          "text": "它们的规矩"
+        },
+        {
+          "type": "list",
+          "items": [
+            "召来的法师只攻击你，旁人、别人的宠物和村民都不会被它们的箭伤到。",
+            "你走出 {cfg:general.wind_horn.leash_range} 格、下线、死亡，或者 {cfg:general.wind_horn.despawn_ticks|div:1200|round:1} 分钟内没有人攻击它们时，它们就会随风散去，什么都不掉。",
+            "受困之风只给亲手打倒大法师的召唤者，被别人或你的宠物打倒的法师不掉东西，也不给经验。你打中它以后 5 秒内，它被烧死、摔死或掉进岩浆，也算你打倒的，火焰附加、火矢照样能用。没人碰过、自己摔死或烧死的法师什么都不掉。",
+            "风只会把它们带到你能动手的地方，附近全是别人的领地或者被方块堵死时，号角吹不响，也不会用掉，快捷栏上方会显示原因。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "号角的冷却记录在你身上，下线后再上线也不会清除。",
+            "法师赶到之前你死亡、下线或被传送走的话，号角会退还给你，冷却也一并清除。法师到场以后你再下线，它们会随风散去，号角不会退还。",
+            "野外自然生成的大法师打倒后同样会掉受困之风，也算完成这一步，见[[wind_mage/wind_mages]]。"
+          ]
+        }
+      ],
+      "_src": [
+        "item/WindHornItem.java:175 refusal — 受眷顾 → 不是和平 → 主世界或海纳尔 → 头顶露天 → 夜里（night，雷雨天的白天也算）或海纳尔黑暗天灾（HoannaEvents.isActive DARKNESS）→ 冷却（玩家数据 wind_horn_cooldown）→ 没有一批在场；L72 USE_TICKS 60（按住 3 秒）、L74 SUMMON_DELAY 100（5 秒后到）",
+        "item/WindHornItem.java:339~344 — general.wind_horn 默认 escorts 2、leash_range 64、summon_min 12、summon_max 20、despawn_ticks 6000（5 分钟）、cooldown_ticks 12000（10 分钟）",
+        "entity/WindMageSummons.java:157 plan — 最多探测 16 个点（L90），以召唤者身份 ECProtection.check，要求能站（L178：无碰撞、不在液体、头顶露天、脚下能刷怪）、高度差 ≤ 12（L94）；都不行 → NO_SPACE、号角不消耗（message.essentialcraft5.wind_horn.no_space）",
+        "entity/WindMageSummons.java:214 spawn — 第一只大法师、其余学徒 / 法师随机；L420 windSummonTarget 只盯召唤者；L430 windSummonAttack 打召唤者以外的一律取消；L338 checkMage 召唤者下线 / 死 / 换维度 / 出 leash_range、整批 despawn_ticks 没挨打实（L439）→ 散去（discard，不掉东西）",
+        "entity/WindMageSummons.java:384 killedBySummoner、L451 / L476 — 致命一击的来源实体不是召唤者本人（箭算射手）就不掉落、不给经验（同 util/DeathLootEvents 的写法）；没有来源实体（烧死、摔死、岩浆）时看 getLastHurtByMob 是不是召唤者、离 getLastHurtByMobTimestamp 不超过 SELF_KILL_WINDOW 100 刻（L96，代码常量，手册写 5 秒）；loot_tables/entities/wind_mage_archmage.json 必掉受困之风",
+        "entity/WindMageSummons.java:274 tickPending — 法师赶来时召唤者死了、换了维度、离生成点超过 leash_range，或者落不下：WindHornItem.refund 还号角、清冷却（item/WindHornItem.java:267）；L488 windSummonLogout — 还在赶来（due ≥ 0）时召唤者下线：取消这一批、退号角（PlayerList.remove 先发 PlayerLoggedOutEvent 再存盘）",
+        "item/WindHornItem.java:255 startCooldown — 冷却记在玩家数据里（下线不清），另给原版物品冷却；WindHornEvents 登录 / 重生 / 换维度（L307 / L313 / L319）按玩家数据补回物品冷却",
+        "item/WindHornItem.java:239 night — 照 Level.updateSkyBrightness 现算 skyDarken ≥ 4（同 Level.isNight：正午雷暴 (1 − 0.6875²) × 11 ≈ 5.8 取 5 算夜里，只下雨约 3.4 不算）；客户端 clientRefusal（L209）也用它",
+        "data/essentialcraft5/advancements/guide/wind/archmage.json — inventory_changed：受困之风或风之石板（requirements 一组二选一）；受困之风从哪来都算（号角召来的、自然生成的大法师、捕风挂坠、别人给的）",
+        "entity/WindMageEntity.java — 大法师箭伤 ⌈1.6 × 9⌉ = 15（同 wind_tablet 那篇）"
+      ]
+    },
+    {
+      "id": "wind_tablet",
+      "title": "{item:essentialcraft5:wind_tablet}",
+      "icon": "essentialcraft5:wind_tablet",
+      "summary": "风的真名",
+      "complete": "essentialcraft5:guide/wind/wind_tablet",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:wind_tablet"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "<em>目标</em>（第十六章要用）：做一块{item:essentialcraft5:wind_tablet}，看看风叫什么名字。海纳尔烧了以后，世上再没有人叫得出这个名字。等名字完全显现，石板就能替你打开通往海纳尔的门。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "<em>目标</em>（可选）：做一块{item:essentialcraft5:wind_tablet}，看看风叫什么名字。海纳尔烧了以后，世上再没有人叫得出这个名字。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "4 个{item:essentialcraft5:air_focus}、4 块{item:essentialcraft5:magic_fortified_plating}和 1 个{item:essentialcraft5:wind_keeper}"
+            ],
+            [
+              "储存",
+              "可储存 5000 MRU，刚做出来时是空的，需要放进{item:essentialcraft5:charging_chamber}里充能"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:wind_tablet"
+        },
+        {
+          "type": "h",
+          "text": "两样难凑的材料"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "{item:essentialcraft5:wind_keeper}只有穿红袍的大法师会掉，每只必掉一个。最稳妥的办法是吹响风之号角把大法师召来，见[[wind/archmage]]。野外自然生成的大法师也会掉，在哪能碰上见下表。"
+            },
+            {
+              "if": [
+                "cfg:general.wind_mage.max_nearby>0",
+                "!cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "{item:essentialcraft5:wind_keeper}只有穿红袍的大法师会掉，每只必掉一个，在哪刷、怎么刷见下表，也可以翻看[[wind_mage/wind_mages]]。"
+            },
+            {
+              "if": [
+                "!cfg:general.wind_mage.max_nearby>0",
+                "!cfg:general.hoanna.portal_enabled",
+                "bauble:essentialcraft5:wind_catcher"
+              ],
+              "text": "这个世界里风法师不会自然生成，{item:essentialcraft5:wind_keeper}只能靠下面介绍的捕风挂坠捕获。"
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "运气好的话，能在地牢箱子里翻到{item:essentialcraft5:wind_catcher}。戴着它，每次好感上涨都有 15% 的几率捕到一个{item:essentialcraft5:wind_keeper}，喝风之药水也算，平均六七瓶就能出一个。代价是系数减少 0.1，戴着它时好感基本不再涨。"
+            }
+          ]
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "rows": [
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "在哪",
+                "主世界，蘑菇岛和深暗之域除外"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "在哪",
+                "主世界和海纳尔，主世界的蘑菇岛和深暗之域除外"
+              ]
+            },
+            [
+              "什么时候",
+              "和僵尸、骷髅一样在夜里或黑暗处生成，但它不怕阳光，天亮后也不会离开"
+            ],
+            [
+              "认人",
+              "大法师穿红袍，学徒穿绿袍，法师穿蓝袍"
+            ],
+            [
+              "要打多少",
+              "三个等级各占三分之一，平均约 800 只自然生成的敌对生物里才有一只大法师"
+            ],
+            [
+              "刷怪塔",
+              "依靠黑暗刷怪的刷怪塔也能刷出它，不过 {cfg:general.wind_mage.nearby_radius} 格内已有 {cfg:general.wind_mage.max_nearby} 只风法师时，那里就不会再生成"
+            ],
+            [
+              "小心",
+              "它会在 15 格内远远地射出 MRU 箭，大法师一箭约 15 点伤害，最好带上盾牌、穿好护甲再打"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:air_focus}要 4 个，每个耗一份风元素燃料，燃料又要用从元素水晶里抽出的狂风精华来做，见[[essence/fuel_and_focus]]。水晶的元素是随机长的，风元素少的水晶抽不出几份精华，最好早点准备。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "风的真名"
+        },
+        {
+          "type": "p",
+          "text": "鼠标停在石板上，提示里会显示「风之真名：」和一串问号。风之好感越高，显出的字越多，到 <em>{cfg:general.wind.tablet_points}</em> 时全部显现。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "名字下面还有一行「风之印记」，记着你完成过几个[[wind/wishes|风之心愿]]。名字全部显现、心愿也攒够 {cfg:general.wind_wish.required} 个以后，石板才会回应。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到风之石板，提示里出现「风之真名：」。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "名字全部显现以后，拿石板右键<em>主世界</em>里点燃的下界传送门，花费 {cfg:general.wind.tablet_portal_mru} MRU 就能把整扇门[[hoanna/open_gate|换成海纳尔之门]]。到了海纳尔，还能右键空的黑曜石框[[hoanna/way_home|补出一扇回家的门]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "名字没有显全时右键传送门，只会收到一句「传送门没有回应……」，不会花费 MRU。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "名字已经显全但心愿还没积攒够时右键传送门，只会收到一句「风还在等你替它完成心愿」，同样不会花费 MRU。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "拿石板右键下界传送门，只会收到一句「海纳尔之门没有回应」，不花 MRU，门也不变。你要是已经身在海纳尔，那边一切照常，门照样能送你回主世界，风之真名显全后，也能拿石板右键那边的空黑曜石框补出一扇门。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书说，这块石板只有一个用处，就是把风的呼啸译成人话。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/wind/wind_tablet.json — MPM / PEP / MPM：风之焦点 ×4、魔力强化板 ×4、受困之风",
+        "item/WindTabletItem.java:71 MAX_MRU = 5000；L99 MRUItemStorage 读物品 NBT，合成出来是 0（只有创造栏的满电版 L275 预充）；L106~119 revealed / revealedName：按好感逐字显出，到 general.wind.tablet_points 全显；L243~253 提示「风之真名：」+ 名字",
+        "item/WindTabletItem.java useOn / classify — 主世界点燃的下界门整扇换门（general.wind.tablet_portal_mru）、海纳尔补空框；没显全 message.essentialcraft5.wind_tablet.no_response；门关着时 message.essentialcraft5.hoanna.disabled",
+        "registry/ECHoannaPortal.java:168 portalEnabledIn — 门关着只挡主世界那头，海纳尔里计时、过门回主世界、石板补空框照常",
+        "loot_tables/entities/wind_mage_archmage.json — 每只必掉一个受困之风；tools/plan/progression.md 机器速率表：大法师约占主世界敌对生物 0.12%（约 800 只一只）",
+        "player/WindRelations.java:79~87 grant — 戴捕风挂坠时每次加好感（含喝风之药水，item/AirPotionItem.java:51）15% 给受困之风，与实得多少无关；registry/ECBaubles.java:77~78 捕风挂坠系数 −0.1（基础 0.1 时实得 0）；loot_tables/inject/simple_dungeon.json 捕风挂坠在地牢注入池",
+        "tools/plan/progression.md「拖沓、不合理」第 4 条 — 新水晶四元素从 0 开始随机突变，风之焦点要培育",
+        "原作 lang en_US.lang L603 page.hoanna_4「This tablet serves the only purpose - to translate the blows of wind into normal human language」",
+        "data/essentialcraft5/forge/biome_modifier/wind_mage_spawns.json — #minecraft:is_overworld 权重 2、每群 1~6；wind_mage_spawns_hoanna.json 海纳尔同样",
+        "entity/WindMageEntity.java:54、103、128-135、270 — 三种等概率；排除蘑菇岛、深暗之域；原版怪物判定 + 附近 max_nearby 只上限；不怕阳光（Monster，非亡灵）",
+        "800 只：主世界怪物总权重约 517，风法师 2 → 约 1/260 的敌对生物是风法师，× 1/3 大法师 ≈ 1/780",
+        "entity/WindMageEntity.java:57-59 — 大法师箭伤 ⌈1.6 × 9⌉ = 15，射程 15 格",
+        "item/WindTabletItem.java:123 attuned — 第十批 10b：真名显全（只看好感）而且心愿数 ≥ WindWishes.required()（general.wind_wish.required，功能关掉时 0）；L257 提示多一行 tooltip.essentialcraft5.wind_tablet.wishes「风之印记」；L200 真名显全、心愿不够时 message.essentialcraft5.wind_tablet.need_wishes，不改不扣",
+        "item/WindHornItem.java、entity/WindMageSummons.java — 风之号角召来的大法师只有召唤者亲手打倒才掉受困之风（见 wind/archmage）"
+      ]
+    }
+  ]
+}

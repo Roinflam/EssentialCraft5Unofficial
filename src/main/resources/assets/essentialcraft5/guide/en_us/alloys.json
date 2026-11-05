@@ -1,0 +1,696 @@
+{
+  "id": "alloys",
+  "order": 60,
+  "group": "main",
+  "title": "Chapter 6 · Intermediate Materials",
+  "subtitle": "Alloys that speed up the Magician Table",
+  "icon": "essentialcraft5:combined_magical_alloys",
+  "entries": [
+    {
+      "id": "magical_essence",
+      "title": "{item:essentialcraft5:magical_essence}",
+      "icon": "essentialcraft5:magical_essence",
+      "summary": "The first mid-game material",
+      "complete": "essentialcraft5:guide/alloys/magical_essence",
+      "items": [
+        "essentialcraft5:magical_essence"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Pour enough MRU into a thing and it turns pale, and in the right places it can pass for something it is not. That trick is paid for with a great deal of MRU.",
+          "by": "Fragments of Essence, Book III"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make {item:essentialcraft5:magical_essence} in the [[crafting/radiating_chamber]]. Everything in this chapter starts from it. You refine it into Crystal Dust, make a few alloys, and finish with the alloy that makes your Magician Table <t>5</t> times faster."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "What this chapter takes",
+          "text": "The main line needs about <t>14</t> Blaze Powder and <t>8</t> Ender Pearls, so make a trip to a Nether Fortress first. The Magician Table work comes to about 18,000 points of progress, or {cfg:machines.magician_table.mru_usage_modifier|mul:18000|int} MRU, which takes roughly 5 minutes with an {item:essentialcraft5:eye_of_absorption} installed. The Solar Prism in the Sunlight chapter needs 4 more Combined Magical Alloys, another 32 Blaze Powder and 32 pearls, so hunt a few extra Blazes while you are there."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_essence"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put Redstone in the Radiating Chamber's top slot and Blaze Powder in the bottom slot.",
+            "Hook the chamber up to MRU. Any Balance will do.",
+            "Each one takes <t>100</t> ticks, or 5 seconds, at {cfg:machines.radiating_chamber.mru_usage_modifier|int} MRU per tick, for {cfg:machines.radiating_chamber.mru_usage_modifier|mul:100|int} MRU in all."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You've made your first Magical Essence."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Don't mix them up",
+          "text": "The {item:essentialcraft5:common_fire_essence}, {item:essentialcraft5:common_water_essence} and the rest that the Crystal Extractor draws out in Chapter 9 are <em>elemental essences</em>, which are something else. Magical Essence is just a material from the Radiating Chamber, and for now its only use is Crystal Dust."
+        },
+        {
+          "type": "p",
+          "text": "Keep any spare Magical Essence. It later goes into the [[tesla/mru_magnet]] and into the [[decorations/patterns|runic patterns]] on decorative blocks."
+        }
+      ]
+    },
+    {
+      "id": "crystal_dust",
+      "title": "{item:essentialcraft5:crystal_dust}",
+      "icon": "essentialcraft5:crystal_dust",
+      "summary": "The base of the next few machines",
+      "complete": "essentialcraft5:guide/alloys/crystal_dust",
+      "items": [
+        "essentialcraft5:crystal_dust"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: refine Magical Essence into {item:essentialcraft5:crystal_dust} in the [[crafting/magician_table]]."
+        },
+        {
+          "type": "p",
+          "text": "The machines the forebears used to make and tend their crystals all need this dust. On the main line, the {item:essentialcraft5:crystal_former} and the {item:essentialcraft5:crystal_extractor} take <t>2</t> each, and the optional {item:essentialcraft5:crystal_controller} takes 2 more. A full set of [[gear/mhs_armor]] needs 10 across its four pieces."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_dust"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the Magical Essence in the table's <em>center slot</em> and leave the corners empty.",
+            "Hook the table up to MRU. Each one costs {cfg:machines.magician_table.mru_usage_modifier|mul:3000|int} MRU whatever upgrade is installed. The upgrade only changes the speed, as the table below shows."
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Table upgrade",
+            "Time per dust"
+          ],
+          "rows": [
+            [
+              "None",
+              "2 min 30 s"
+            ],
+            [
+              "{item:essentialcraft5:eye_of_absorption} (×3)",
+              "50 s"
+            ],
+            [
+              "{item:essentialcraft5:combined_magical_alloys} (×5)",
+              "30 s"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You've made your first Crystal Dust."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Save time",
+          "text": "Make 1 to check off this step and leave the rest until you install the Combined Magical Alloys later in this chapter. They cost the same MRU and come out several times faster."
+        }
+      ]
+    },
+    {
+      "id": "purified_alloys",
+      "title": "The Four Alloys",
+      "icon": "essentialcraft5:magic_purified_blaze_alloy",
+      "summary": "Four basic alloys from the table",
+      "complete": "essentialcraft5:guide/alloys/purified_alloys",
+      "items": [
+        "essentialcraft5:magic_purified_blaze_alloy",
+        "essentialcraft5:magic_purified_glass_alloy",
+        "essentialcraft5:magic_purified_redstone_alloy",
+        "essentialcraft5:magic_purified_gold_alloy"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:magic_purified_blaze_alloy} and a {item:essentialcraft5:magic_purified_glass_alloy}. The people of Hoanna were the first to make alloys. Blaze Alloy goes into the Combined Magical Alloys next, and Glass Alloy later goes into Holding Blocks and Sun Imbued Glass."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: a few {item:essentialcraft5:magic_fortified_plating}, plus Blaze Powder and glass. One Magical Fortified Stone in the center of the table makes a plate."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_purified_blaze_alloy",
+            "essentialcraft5:magic_purified_glass_alloy"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a Magic Fortified Plate in the center of the Magician Table.",
+            "Put 4 of the same material in the corners. Blaze Powder gives Blaze Alloy and glass gives Glass Alloy, and stained or tinted glass works just as well.",
+            "When the table finishes, take the alloy out of the output slot."
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Alloy",
+            "Center",
+            "Corners",
+            "MRU",
+            "Used later in"
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magic_purified_blaze_alloy}",
+              "Magic Fortified Plate",
+              "Blaze Powder",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:500|int}",
+              "Combined Magical Alloys"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_glass_alloy}",
+              "Magic Fortified Plate",
+              "Glass",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:1000|int}",
+              "Holding Blocks, Sun Imbued Glass"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_redstone_alloy}",
+              "Magic Fortified Plate",
+              "Redstone",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:1000|int}",
+              "Redstone Controller, Magical Jukebox"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_gold_alloy}",
+              "Gold Ingot",
+              "Gold Nuggets",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:250|int}",
+              "Charms, Golden Orb, Magical Monocle"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have both a Blaze Alloy and a Glass Alloy."
+        },
+        {
+          "type": "h",
+          "text": "The other two"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_purified_redstone_alloy",
+            "essentialcraft5:magic_purified_gold_alloy"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "You won't need Redstone Alloy or the Magical Golden Ingot in this chapter, so make them when the time comes. Redstone Alloy goes into the [[enrichment/monitoring|Enrichment Chamber Redstone Controller]] and the [[devices/magical_jukebox]], and the golden ingot into [[charms/charms|charms]], the [[staffs/golden_orb]] and the [[gear/magic_monocle]]."
+        }
+      ]
+    },
+    {
+      "id": "combined_magical_alloys",
+      "title": "{item:essentialcraft5:combined_magical_alloys}",
+      "icon": "essentialcraft5:combined_magical_alloys",
+      "summary": "The ×5 table upgrade",
+      "complete": "essentialcraft5:guide/alloys/combined_magical_alloys",
+      "items": [
+        "essentialcraft5:combined_magical_alloys"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make {item:essentialcraft5:combined_magical_alloys} and <em>install it in your Magician Table</em>, which then works <t>5</t> times faster. Of all the things the forebears set into their tables, this alloy was the most common. Recipes costing ten thousand MRU or more are everywhere from here on, so installing it early saves a lot of time."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 1 Magic Fortified Plate, 2 Blaze Alloys and 2 {item:essentialcraft5:magic_purified_ender_scale_alloy}. Ender Scale Alloy is a Magic Fortified Plate plus 4 Ender Pearls, laid out like Blaze Alloy. All told, that comes to 8 Blaze Powder and 8 Ender Pearls."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:combined_magical_alloys"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the Magic Fortified Plate in the center of the Magician Table.",
+            "The two Blaze Alloys go on one diagonal and the two Ender Scale Alloys on the other. It doesn't matter which is which.",
+            "Wait for it to finish. One costs {cfg:machines.magician_table.mru_usage_modifier|mul:10000|int} MRU in total and takes about 8 minutes without an upgrade, or about 3 with an Eye of Absorption.",
+            "Right-click the table holding the alloy to install it. If another upgrade is already in, sneak-right-click the table with an empty hand to take it out first. An installed upgrade always comes back out as it went in ([[storage/upgrades]])."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have the Combined Magical Alloys. Remember to install it."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Keep the MRU coming",
+          "text": "An upgrade only makes the table faster. Its MRU use per tick is 5 times higher too, {cfg:machines.magician_table.mru_usage_modifier|mul:5} MRU per tick, while the total per item stays the same. If your source can't keep up, the table stops and starts, and the upgrade gains you nothing."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A table holds one upgrade at a time. [[storage/upgrades]] lists them all with their multipliers, among them Elemental Core ×1.2, Ender Scale Alloy ×2.5, Eye of Absorption ×3, MRU Resonating Crystal ×4 and Combined Magical Alloys ×5.",
+            "Combined Magical Alloys is also an ingredient. On the main line the Crystal Extractor needs 1 and the Solar Prism 4, and side gear such as the Magmatic Smeltery, the MHS armor and the Magical Shield uses it too.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "In Chapters 18 to 21, each craft of [[hologram/neuronic_plating]] takes 2 Combined Magical Alloys and makes 4 plating. Those chapters use over thirty alloys between them, and by then you'll want a faster table upgrade."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Next",
+          "text": "That's all the required steps in this chapter. The main line goes on in the next one with [[enrichment/controller]]. The rest of this chapter is optional ([[alloys/resonating_crystal]], [[alloys/pale]], [[alloys/plating]], [[alloys/crystal_lamps]]), but the Wind Rune altar in Chapter 13 needs Pale Plating and Magic Plating, so those pages are worth a look."
+        }
+      ]
+    },
+    {
+      "id": "resonating_crystal",
+      "title": "{item:essentialcraft5:mru_resonating_crystal}",
+      "icon": "essentialcraft5:mru_resonating_crystal",
+      "summary": "A ×4 upgrade from the chamber",
+      "complete": "essentialcraft5:guide/alloys/resonating_crystal",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mru_resonating_crystal"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional for now, needed from Chapter 17): make an {item:essentialcraft5:mru_resonating_crystal} in the Radiating Chamber. It's another table upgrade, ×4, and needs no Blaze Powder or Ender Pearls, so if you have diamonds and emeralds to spare it makes a good stopgap.",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make an {item:essentialcraft5:mru_resonating_crystal} in the Radiating Chamber. It's another table upgrade, ×4, and needs no Blaze Powder or Ender Pearls, so if you have diamonds and emeralds to spare it makes a good stopgap.",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_resonating_crystal"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Top slot",
+              "Diamond"
+            ],
+            [
+              "Bottom slot",
+              "Emerald"
+            ],
+            [
+              "Balance",
+              "Any"
+            ],
+            [
+              "Time",
+              "100 ticks (5 s)"
+            ],
+            [
+              "Cost per tick",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:50|int} MRU"
+            ],
+            [
+              "Total",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:5000|int} MRU"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Power hungry",
+          "text": "It wants far more MRU per tick than a Heat Generator makes. When the chamber doesn't hold enough for the next tick it waits, keeping its progress, and carries on once enough MRU has built up. The chamber itself holds at most {cfg:machines.radiating_chamber.max_mru} MRU."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You've made a Resonating Crystal."
+        },
+        {
+          "type": "p",
+          "text": "It has plenty of uses later. [[gear/elemental_tools]], the [[tesla/mru_coil|Tesla coil]] and the [[tesla/reactor|reactor]] all need it. Once you have a Mithriline Furnace, one crystal can be turned into a {item:essentialcraft5:mithriline_crystal}, which saves well over a dozen Mithriline Dust ([[mithriline/conversions]])."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "From Chapter 17 on it becomes a main-line material too. The recipes for the {item:essentialcraft5:demonic_core} and the Computer Guy's Suit's {item:essentialcraft5:particle_emitter} both call for it (see [[demons/ackronite]] and [[computer/force_parts]]), and the whole suit takes some forty to fifty. If you're short on diamonds, a [[gear/pale_gem]] can stand in."
+        }
+      ]
+    },
+    {
+      "id": "pale",
+      "title": "Pale Materials",
+      "icon": "essentialcraft5:pale_ingot",
+      "summary": "Stand-ins for pearls, gold and plates",
+      "complete": "essentialcraft5:guide/alloys/pale",
+      "items": [
+        "essentialcraft5:pale_pearl",
+        "essentialcraft5:pale_ingot",
+        "essentialcraft5:pale_core",
+        "essentialcraft5:pale_plate"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (the Wind Rune altar in Chapter 13 needs them): get to know the pale materials. They have been \"bleached\" with a great deal of MRU, and in EssentialCraft recipes they can stand in for a few common materials."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Pale material",
+            "Stands in for",
+            "How to make it"
+          ],
+          "widths": [
+            3,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:pale_pearl}",
+              "Ender Pearl",
+              "Radiating Chamber: Lapis Lazuli on top, Glowstone Dust below"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "Gold Ingot",
+              "Radiating Chamber: Lapis Block on top, Gold Ingot below; makes 4"
+            ],
+            [
+              "{item:essentialcraft5:pale_core}",
+              "{item:essentialcraft5:elemental_core}",
+              "Radiating Chamber: Stone on top, {item:essentialcraft5:elemental_gem} below"
+            ],
+            [
+              "{item:essentialcraft5:pale_plate}",
+              "{item:essentialcraft5:magic_plate}",
+              "Magician Table: Magic Fortified Plate in the center, Pale Ingots in the corners"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "EssentialCraft recipes only",
+          "text": "They only fit slots in EssentialCraft recipes that accept both, and in the recipe picture such a slot cycles between the two. Vanilla recipes and other mods' recipes won't take them."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:pale_pearl",
+            "essentialcraft5:pale_ingot"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:pale_core",
+            "essentialcraft5:pale_plate"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Recipe",
+            "Time",
+            "Cost per tick",
+            "Total MRU"
+          ],
+          "rows": [
+            [
+              "Pale Pearl",
+              "250 ticks",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:20|int}",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:5000|int}"
+            ],
+            [
+              "Pale Ingot (4)",
+              "100 ticks",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:80|int}",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:8000|int}"
+            ],
+            [
+              "Pale Elemental Core",
+              "100 ticks",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:10|int}",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:1000|int}"
+            ],
+            [
+              "Pale Plate",
+              "Magician Table",
+              "—",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:100|int}"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You've made any pale material."
+        },
+        {
+          "type": "h",
+          "text": "When they come in handy"
+        },
+        {
+          "type": "list",
+          "items": [
+            "When Ender Pearls run short, Pale Pearls can go into Ender Scale Alloy and Mithriline Crystal Pillars, which saves some Enderman hunting.",
+            "Pale Plates make {item:essentialcraft5:pale_plating} ([[alloys/plating]]). The Wind Rune altar in Chapter 13 needs 12, and 4 Pale Plates make 16.",
+            "Pale Plates also go into the {item:essentialcraft5:pale_magmatic_furnace} ([[magmatic/furnace_upgrades]]).",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "Later on, Pale Plates also go into the force field core ([[computer/force_parts]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book calls this process making an item \"pale\". Give an item enough MRU, it says, and it can pass for something else in certain situations, at the price of an enormous amount of MRU."
+        }
+      ]
+    },
+    {
+      "id": "plating",
+      "title": "Plating and Fences",
+      "icon": "essentialcraft5:magic_plating",
+      "summary": "Blocks that hold back MRU",
+      "complete": "essentialcraft5:guide/alloys/plating",
+      "items": [
+        "essentialcraft5:magic_plating",
+        "essentialcraft5:pale_plating",
+        "essentialcraft5:fortified_stone_fence",
+        "essentialcraft5:magic_fence"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (the Wind Rune altar in Chapter 13 needs it): make some {item:essentialcraft5:magic_plating}. In a crafting grid, 4 {item:essentialcraft5:magic_plate} give 16 plating and 4 {item:essentialcraft5:pale_plate} give 16 {item:essentialcraft5:pale_plating}."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_plating",
+            "essentialcraft5:pale_plating"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "MRU goes straight through ordinary walls, so the forebears had to build special plates into theirs to keep it out. Plating is a building block that holds back MRU. Its main jobs are the shell of the Enrichment Chamber in the next chapter, shielding you from the matrix damage of [[start/mrucu|MRUCUs]], and the Wind Rune altar in Chapter 13, which takes 8 Magic Plating and 12 Pale Plating."
+        },
+        {
+          "type": "h",
+          "text": "Shielding you from MRUCUs"
+        },
+        {
+          "type": "p",
+          "text": "When an MRUCU within 12 blocks is about to hurt you, it checks the best shielding block on the straight line between you. The table below gives the chance that the damage still reaches you."
+        },
+        {
+          "type": "table",
+          "header": [
+            "In between",
+            "Chance it reaches you"
+          ],
+          "rows": [
+            [
+              "Nothing that shields",
+              "Every time"
+            ],
+            [
+              "{item:essentialcraft5:fortified_stone}",
+              "1/2"
+            ],
+            [
+              "{item:essentialcraft5:fortified_glass}",
+              "1/3"
+            ],
+            [
+              "{item:essentialcraft5:magic_plating}",
+              "1/5"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_plating}",
+              "1/7"
+            ],
+            [
+              "{item:essentialcraft5:pale_plating}",
+              "1/10"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_glass}",
+                "1/15"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_stone}",
+                "1/18"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_plating}",
+                "1/36"
+              ]
+            },
+            [
+              "Enrichment Chamber parts such as the controller, acceptor and holding blocks",
+              "1/100"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Dyeing"
+        },
+        {
+          "type": "p",
+          "text": "Like Magical Fortified Stone, plating can be dyed by right-clicking it with a dye, and the dye isn't used up. Sneak-right-click to dye every block of the same kind within 5×5×5, except where you aren't allowed to build, such as someone else's claim. Color doesn't affect shielding, and broken plating always drops white."
+        },
+        {
+          "type": "h",
+          "text": "Fences"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fortified_stone_fence",
+            "essentialcraft5:magic_fence"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "6 Magical Fortified Stone or 6 Magic Plating, laid out in two rows of three, make 16 fences. They join up with stone-type fences like the Nether Brick Fence but not with wooden ones, and the fences themselves don't hold back MRU."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You've made Magic Plating or Pale Plating."
+        }
+      ]
+    },
+    {
+      "id": "crystal_lamps",
+      "title": "Crystal Lamps",
+      "icon": "essentialcraft5:fire_crystal_lamp",
+      "summary": "Light in six colors",
+      "complete": "essentialcraft5:guide/alloys/crystal_lamps",
+      "optional": true,
+      "items": [
+        "essentialcraft5:fire_crystal_lamp",
+        "essentialcraft5:water_crystal_lamp",
+        "essentialcraft5:earth_crystal_lamp",
+        "essentialcraft5:air_crystal_lamp",
+        "essentialcraft5:elemental_crystal_lamp",
+        "essentialcraft5:mithriline_crystal_lamp"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a few crystal lamps to light your base. They give light level <t>15</t>, as bright as Glowstone."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put Cobblestone in the four corners of a crafting grid and a Torch in the middle.",
+            "Fill the four sides with the same material, which decides the color. {item:essentialcraft5:fire_drops}, {item:essentialcraft5:water_drops}, {item:essentialcraft5:earth_drops}, {item:essentialcraft5:air_drops} and {item:essentialcraft5:elemental_gem} each give their own lamp, and {item:essentialcraft5:mithriline_dust} gives the Mithriline Crystal Lamp.",
+            "Once placed, it has to be broken with a pickaxe, or it drops nothing."
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_crystal_lamp",
+            "essentialcraft5:water_crystal_lamp",
+            "essentialcraft5:earth_crystal_lamp"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:air_crystal_lamp",
+            "essentialcraft5:elemental_crystal_lamp",
+            "essentialcraft5:mithriline_crystal_lamp"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You've made any crystal lamp."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book says the drops are very clear and not much use on their own. Someone once wrapped a plain torch in them and braced it with cobblestone, and the result was a lamp that does nothing but decorate, though it looks rather fine."
+        }
+      ]
+    }
+  ]
+}

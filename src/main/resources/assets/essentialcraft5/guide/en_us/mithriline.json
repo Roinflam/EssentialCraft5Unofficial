@@ -1,0 +1,527 @@
+{
+  "id": "mithriline",
+  "order": 78,
+  "group": "main",
+  "title": "Chapter 11 · Mithriline and ESPE",
+  "subtitle": "A second kind of energy: ESPE",
+  "icon": "essentialcraft5:mithriline_furnace",
+  "entries": [
+    {
+      "id": "mithriline_ingot",
+      "title": "{item:essentialcraft5:mithriline_ingot}",
+      "icon": "essentialcraft5:mithriline_ingot",
+      "summary": "Your dust stash finally pays off",
+      "complete": "essentialcraft5:guide/mithriline/mithriline_ingot",
+      "items": [
+        "essentialcraft5:mithriline_ingot",
+        "essentialcraft5:mithriline_crystal"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "The Green Sun lies on another plane, out of sight and out of reach. By the time its pulses cross this world they are too weak to hurt anyone, but they swept up a few MRU rays on the way, and some of the stone turned to mithriline.",
+          "by": "Fragments of Essence, Book IV"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: turn {item:essentialcraft5:mithriline_dust} into {item:essentialcraft5:mithriline_ingot}s and a {item:essentialcraft5:mithriline_crystal}. This chapter ends with the {item:essentialcraft5:mithriline_furnace}, which burns a new kind of energy, <em>ESPE</em>, and turns one thing into another, such as 8 Iron Ingots into a Gold Ingot or Glowstone Dust into Mithriline Dust."
+        },
+        {
+          "type": "p",
+          "text": "The forebears called the Green Sun's pulse ESPE, Ender Star Pulse Energy. It is not MRU. Crystal pillars gather it bit by bit from the open sky, and structures like the furnace draw it straight out of the pillars, with no generators or Bound Gems involved."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "What this chapter takes",
+          "text": "The furnace, its 24 plating and one crystal pillar need about 178 Mithriline Dust and 55 Iron Ingots in total, but surprisingly little MRU. The next two chapters take more. The Soul Pentacle in Chapter 12 and the Wind Rune altar in Chapter 13 each need 8 crystal pillars and 13 Mithriline Plating, about 740 dust in all up to Chapter 13 (full tally in [[mithriline/crystal_pillar]]). Mine plenty while you're at it; a Fortune pickaxe saves more than half the work."
+        },
+        {
+          "type": "p",
+          "text": "Mithriline Dust comes from {item:essentialcraft5:mithriline_ore}, found in Overworld stone, the Nether and the End. Each ore drops 3 to 10 dust, and every level of Fortune adds a good bit more, about 18 on average with Fortune III. Without Fortune you'll need around 27 or 28 ores; with Fortune III, about ten."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_ingot"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "On a crafting table, surround 1 {item:essentialcraft5:magical_ingot} with 4 Mithriline Dust to make 1 Mithriline Ingot.",
+            "Then surround 1 Mithriline Dust with 4 Mithriline Ingots to make 1 Mithriline Crystal. The crystal pillar and the furnace need one each."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_crystal"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Mithriline Ingot."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Don't mix them up",
+          "text": "The {item:essentialcraft5:mithriline_crystal_pillar} on the next page is a block three tall. It is a different thing from the {item:essentialcraft5:mithriline_crystal}, which is a crafting material."
+        },
+        {
+          "type": "p",
+          "text": "Once the furnace is built there are cheaper routes. It turns 1 dust and 60 ESPE into 1 ingot with no Magical Ingot needed, and 1 {item:essentialcraft5:mru_resonating_crystal} and 120 ESPE into 1 Mithriline Crystal, saving 17 dust ([[mithriline/conversions]])."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original research book the Enderstar is also called \"the Green Sun\", and the book admits it knows little about it except that its pulses are chaotic bursts of destructive energy. The MRU rays those pulses carried in barely changed the world. Only some of the elemental ore was touched, and it became Mithriline Ore."
+        }
+      ]
+    },
+    {
+      "id": "crystal_pillar",
+      "title": "Mithriline Crystal Pillar",
+      "icon": "essentialcraft5:mithriline_crystal_pillar",
+      "summary": "Gathers ESPE from the open sky",
+      "complete": "essentialcraft5:guide/mithriline/crystal_pillar",
+      "items": [
+        "essentialcraft5:mithriline_crystal_pillar",
+        {
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:shade_crystal_pillar"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: place a {item:essentialcraft5:mithriline_crystal_pillar}. It is your source of ESPE. Once a second it stores what it gathered in that second, which works out to the per-tick rate below, and holds it until the furnace draws it out. It does nothing else."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Overworld, Nether",
+              "{cfg:machines.mithriline_crystal_pillar.espe_generated} ESPE per tick ({cfg:machines.mithriline_crystal_pillar.espe_generated|mul:20} per second)"
+            ],
+            [
+              "The End",
+              "{cfg:machines.mithriline_crystal_pillar.espe_generated_end} ESPE per tick ({cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:20} per second)"
+            ],
+            [
+              "By tier",
+              "Mithriline, Pale, Void, Demonic, Shade: ×{cfg:machines.mithriline_crystal_pillar.tier_multipliers|list}"
+            ],
+            [
+              "Holds up to",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe} ESPE"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 6 Mithriline Dust, 1 Mithriline Crystal, 1 {item:minecraft:ender_eye} and 1 Ender Pearl, which can be swapped for a Pale Pearl."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_crystal_pillar"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "The pillar is three blocks tall, so it needs the two blocks above it free. Inside it floats a slowly turning crystal.",
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "Keep the space above the top clear and it gathers ESPE. Glass and carpet don't block it, but Tinted Glass, leaves, water and ordinary blocks do, and so do slabs, stairs, farmland, snow layers and the like. In the Nether the bedrock ceiling blocks it, but on top of the bedrock it works."
+            },
+            {
+              "if": "!cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "What's above it doesn't matter. It gathers just as well indoors."
+            },
+            "To feed a furnace, stand the pillar on one of the furnace's pillar spots, covered on the next page."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have placed a crystal pillar."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<em>A pillar only gathers while its chunk is loaded.</em> Go far away and it stops, so the pillars at home gain nothing while you're out hunting or exploring. Breaking any of its three blocks breaks the whole pillar, which drops just one pillar and only when mined with a pickaxe. The ESPE inside is lost."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Place them early",
+          "text": "One pillar is slow. A Mithriline Ingot from the furnace takes 60 ESPE, which a single Overworld pillar needs 2 minutes to gather. Pillars start gathering as soon as they're placed, so the sooner the better. The furnace has 13 pillar spots, and the more you fill the faster it goes; the End is much faster still. Later on, imbuing one Wind Crystal at the Wind Rune altar takes {cfg:general.wind.gem_espe} ESPE, and ESPE is the biggest bottleneck of the late game."
+        },
+        {
+          "type": "h",
+          "text": "How many pillars you will need"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Structure",
+            "Crystal pillars",
+            "Chapter"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mithriline_furnace}",
+              "1–13, the more the faster",
+              "This one"
+            ],
+            [
+              "{item:essentialcraft5:player_pentacle} (tier 0)",
+              "8",
+              "12"
+            ],
+            [
+              "{item:essentialcraft5:wind_rune} altar",
+              "8 each; two or three altars are best",
+              "13"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_pentacle}",
+                "16, of which 12 become pale pillars (and 4 of those void pillars)",
+                "17"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each pillar takes 6 Mithriline Dust, 1 Mithriline Crystal, 1 Eye of Ender and 1 Ender Pearl, and a Mithriline Crystal made on a crafting table costs 17 dust."
+        },
+        {
+          "type": "p",
+          "text": "Up to Chapter 13 that is 17 pillars, 54 Mithriline Plating (furnace 24, pentacle 13, altar 13, rune 4) and the rune's 4 Mithriline Plates. That comes to about 740 dust if every ingot is crafted, or about 400 once the furnace makes your ingots at 1 dust and 60 ESPE each ([[mithriline/conversions]])."
+        },
+        {
+          "type": "p",
+          "text": "Leave every structure's pillars standing so they keep gathering, because breaking and replacing one empties it. Give each structure its own pillars rather than borrowing from another."
+        },
+        {
+          "type": "h",
+          "text": "The five crystal pillars"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Pillar",
+            "Tier",
+            "Enchanting bonus",
+            "Where from"
+          ],
+          "widths": [
+            3,
+            1,
+            1,
+            4
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mithriline_crystal_pillar}",
+              "0",
+              "7.5",
+              "This chapter"
+            ],
+            [
+              "{item:essentialcraft5:pale_crystal_pillar}",
+              "1",
+              "15",
+              "[[pentacle/pale_crystal_pillar]]"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_crystal_pillar}",
+                "2",
+                "30",
+                "[[demons/void_crystal_pillar]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_crystal_pillar}",
+                "3",
+                "60",
+                "After Chapter 17; recipe in [[pentacle/tier_three]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:shade_crystal_pillar}",
+                "4",
+                "120",
+                "Chapter 22; recipe in [[shade/shade_pillar]]"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:shade_crystal_pillar}",
+                "4",
+                "120",
+                "Made from Hoanna materials, so it can't be made in this world"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Higher tiers gather faster. The rates above are for a mithriline pillar, and Pale, Void, Demonic and Shade pillars multiply them by the factors in the table, while all five hold the same amount. The tier also decides which pentacle pillar spots will take a pillar, and the enchanting bonus of the base differs from tier to tier. Waiting times elsewhere in this book, such as \"8 pillars take ...\", assume mithriline pillars, so higher tiers are quicker."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Placed where a bookshelf would go, a pillar's base adds enchanting power to an Enchanting Table. A mithriline pillar counts as 7.5, like seven and a half bookshelves, and a vanilla Enchanting Table only uses up to 15.",
+            "Pistons can't push it.",
+            "Anything can draw ESPE from a pillar. The furnace, the Wind Rune altar and the pentacles all take from it."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "furnace",
+      "title": "{item:essentialcraft5:mithriline_furnace}",
+      "icon": "essentialcraft5:mithriline_furnace",
+      "summary": "A green flame",
+      "complete": "essentialcraft5:main/mithriline_furnace",
+      "items": [
+        "essentialcraft5:mithriline_furnace",
+        "essentialcraft5:mithriline_plate",
+        "essentialcraft5:mithriline_plating",
+        "essentialcraft5:creative_espe_storage"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: put the {item:essentialcraft5:mithriline_furnace} structure together so it draws ESPE from your crystal pillars and starts converting items."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 8 {item:essentialcraft5:mithriline_plate}, which make 32 plating, 24 of them for the structure. The furnace itself needs 2 Mithriline Dust, 1 Mithriline Crystal, 2 {item:essentialcraft5:emerald_plate}, 1 {item:minecraft:furnace}, 2 Mithriline Ingots and 1 {item:essentialcraft5:heating_rod}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_plate"
+        },
+        {
+          "type": "p",
+          "text": "Mithriline Plates are made on the Magician Table from 1 Magic Fortified Plate and 4 Mithriline Ingots, for {cfg:machines.magician_table.mru_usage_modifier|mul:400|int} MRU. They count as a kind of Magical Plate, so most recipes that ask for a Magical Plate accept them."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_plating"
+        },
+        {
+          "type": "p",
+          "text": "4 Mithriline Plates make 16 {item:essentialcraft5:mithriline_plating}. It can be dyed like Magic Plating ([[alloys/plating]]), the furnace doesn't care about color, and it also works as Enrichment Chamber shell."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_furnace"
+        },
+        {
+          "type": "h",
+          "text": "Layout"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:mithriline_furnace"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Lay 12 plating on the layer below the furnace. The block right under the furnace can be anything.",
+            "On the furnace's own layer, place 8 around the outer ring, at the four corners and the middle of each side.",
+            "Stack 1 more on top of each of the four outer corners.",
+            "The 13 spots marked \"optional\" are pillar spots, where crystal pillar bases stand. The structure counts as complete without any pillars, but then no ESPE comes in."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You get the advancement \"Green Flame\". Every player within 16 blocks gets it when the structure first comes together, and opening the furnace later grants it too."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the input in the lower slot, and the result appears in the upper slot with the crystal frame.",
+            "The furnace holds {cfg:machines.mithriline_furnace.max_espe} ESPE. While the structure is complete it draws from the pillars on its pillar spots every tick until it's full.",
+            "As soon as there's enough ESPE for one batch of input, it makes one output, and with enough stored that takes a single tick. The real speed is set by how fast ESPE comes in: 13 pillars in the Overworld bring in {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:260} ESPE per second, about 9 seconds per Mithriline Ingot."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "ESPE only goes into the furnace, and no machine or pipe can take it back out. Switching to an input that matches a different recipe starts the progress over."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The top-left of the screen shows the furnace's status. Hover over it to see which block of the structure is wrong, how many ESPE sources are connected, and how many items and how much ESPE the current input takes per conversion.",
+            "The structure is checked once a second.",
+            "Hoppers only put in items that can be converted, and they take from the output slot.",
+            "Other kinds of crystal pillar, and the Creative-only {item:essentialcraft5:creative_espe_storage}, also count as ESPE sources when placed on a pillar spot."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conversions",
+      "title": "Conversion Table",
+      "icon": "minecraft:gold_ingot",
+      "summary": "Even trades only",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Fragments say ESPE makes nothing; it only exchanges. Every conversion in the furnace is <em>even</em>, so going round in a circle never leaves you with more than you started with. ESPE doesn't come easily, so here are the most useful ones."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Input",
+            "Output",
+            "ESPE",
+            "Why"
+          ],
+          "widths": [
+            3,
+            3,
+            1,
+            4
+          ],
+          "rows": [
+            [
+              "1 {item:minecraft:glowstone_dust}",
+              "1 {item:essentialcraft5:mithriline_dust}",
+              "32",
+              "Mithriline Dust becomes renewable"
+            ],
+            [
+              "1 {item:essentialcraft5:mithriline_dust}",
+              "1 {item:essentialcraft5:mithriline_ingot}",
+              "60",
+              "No Magical Ingot needed"
+            ],
+            [
+              "1 {item:essentialcraft5:mru_resonating_crystal}",
+              "1 {item:essentialcraft5:mithriline_crystal}",
+              "120",
+              "Saves 17 Mithriline Dust"
+            ],
+            [
+              "1 {item:essentialcraft5:mithriline_crystal}",
+              "1 {item:essentialcraft5:fading_crystal}",
+              "240",
+              "For the Pale Crystal Pillar ([[pentacle/pale_crystal_pillar]])"
+            ],
+            [
+              "1 {item:essentialcraft5:fading_crystal}",
+              "8 {item:essentialcraft5:fading_dust}",
+              "480",
+              "Same"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Mithriline Crystals and Fading Crystals also go into the force field parts later on ([[computer/force_parts]])."
+        },
+        {
+          "type": "h",
+          "text": "Swapping vanilla materials"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Either way",
+            "ESPE"
+          ],
+          "rows": [
+            [
+              "8 {item:minecraft:iron_ingot} ⇄ 1 {item:minecraft:gold_ingot}",
+              "64"
+            ],
+            [
+              "2 {item:minecraft:diamond} ⇄ 1 {item:minecraft:emerald}",
+              "512"
+            ],
+            [
+              "64 {item:minecraft:redstone} ⇄ 1 {item:minecraft:ghast_tear}",
+              "1,024"
+            ],
+            [
+              "3 {item:minecraft:ender_pearl} ⇄ 2 {item:minecraft:blaze_rod}",
+              "128"
+            ],
+            [
+              "3 {item:minecraft:wheat} ⇄ 1 {item:minecraft:leather}",
+              "128"
+            ],
+            [
+              "12 {item:minecraft:clay_ball} ⇄ 1 {item:minecraft:gunpowder}",
+              "32"
+            ],
+            [
+              "3 {item:minecraft:sugar} ⇄ 4 {item:minecraft:slime_ball}",
+              "16"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Where to spend ESPE first",
+          "text": "ESPE builds up slowly, so be choosy. Fading Crystals can only be made here, so put them first when ESPE is tight. Glowstone into Mithriline Dust is for topping up once your ore runs out, and swapping Ender Pearls and Blaze Rods covers whichever one your Combined Magical Alloys are short of."
+        },
+        {
+          "type": "h",
+          "text": "The full table"
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:mithriline_furnace",
+          "compact": true
+        },
+        {
+          "type": "p",
+          "text": "Most of the rest are cycles. Planks, saplings, logs and leaves cycle through the wood types, mangrove and cherry included. Flowers, mushrooms, raw meat, cooked meat, fish, music discs and heads each cycle among themselves, and there is one loop of ice → grass block → dirt → podzol → glass → ice. The table above lists how many go in and come out for each."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Worth a detour",
+          "text": "The next chapter, Corruption and the Soul Pentacle, is over the page. Side paths such as the [[gear/magic_monocle]], which lets you see MRUCUs, and the ore-doubling [[magmatic/fortified_furnace]] are there whenever you want to look."
+        }
+      ]
+    }
+  ]
+}

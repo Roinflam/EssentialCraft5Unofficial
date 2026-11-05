@@ -1,0 +1,677 @@
+{
+  "id": "essence",
+  "order": 70,
+  "group": "main",
+  "title": "第九章 · 精华与焦点",
+  "subtitle": "长大的水晶能榨出什么",
+  "icon": "essentialcraft5:crystal_extractor",
+  "entries": [
+    {
+      "id": "crystal_extractor",
+      "title": "{item:essentialcraft5:crystal_extractor}",
+      "icon": "essentialcraft5:crystal_extractor",
+      "summary": "从长大的水晶里抽精华",
+      "complete": "essentialcraft5:guide/essence/crystal_extractor",
+      "items": [
+        "essentialcraft5:crystal_extractor"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "古时的水晶碎了，会落下一层粉，那粉就是精华。如今的水晶舍不得打碎，我们学会了从它身上一点一点地抽。",
+          "by": "《源质残卷·卷三》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：在长大的{item:essentialcraft5:elemental_crystal}旁边放一台{item:essentialcraft5:crystal_extractor}，用 MRU 从水晶里抽出元素精华。水晶本身不会被消耗，可以一直抽下去。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "这一章要准备什么",
+          "text": "提取器抽一轮要花 10 万 MRU。长满的水晶某种元素有 3 点时，平均一轮抽出的精华够做 1 个这种元素的焦点，2 点约两轮够一个，只有 1 点要五六轮。所以最好早点动手，多种几颗水晶，挑元素高的来抽，再趁水晶还在生长时用[[essence/crystal_controller]]把想要的元素推上去。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "主线后面，开海纳尔之门的风之石板要用 4 个{item:essentialcraft5:air_focus}，恶魔五芒星要用 4 个{item:essentialcraft5:fire_focus}，风、火两种元素最好提前多养一些。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：{item:essentialcraft5:combined_magical_alloys}、2 份水晶粉、2 个 MRU 转换矩阵、2 块黑曜石板、1 块魔力屏幕和 1 个元素核心，元素核心也可以换成淡青元素核心。它每刻要耗 {cfg:machines.crystal_extractor.mru_usage} MRU，一台热力产能器远远供不上，最好从富集仓取。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_extractor"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "提取器放在水晶东南西北任意一侧，和水晶<em>紧挨着、在同一高度</em>。",
+            "放进一颗绑向 MRU 源的绑定宝石。",
+            "12 个产物格<em>全空着</em>时它才开工，每刻耗 {cfg:machines.crystal_extractor.mru_usage} MRU，一轮要 {cfg:machines.crystal_extractor.required_ticks} 刻，合 {cfg:machines.crystal_extractor.required_ticks|sec}。",
+            "每轮结束时 12 个格子各抽一次，抽到的精华留在格子里，格子取空了才开始下一轮，底下接个漏斗就能让它一直转下去。"
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": "essentialcraft5:elemental_crystal",
+            "X": "essentialcraft5:crystal_extractor"
+          },
+          "anchor": "X",
+          "pattern": [
+            "XC"
+          ],
+          "caption": "提取器紧贴着水晶，东南西北哪一面都行，和水晶同一高度。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "提取器的产物格里出现了精华。鼠标指着进度箭头，还能看到它的状态和旁边水晶的数值。"
+        },
+        {
+          "type": "h",
+          "text": "能抽出什么"
+        },
+        {
+          "type": "p",
+          "text": "每格先从 4 种元素、4 个稀有度组成的 16 种精华里等概率挑一种，再按这种精华的元素算出货几率。"
+        },
+        {
+          "type": "formula",
+          "text": "几率（%）= 水晶大小 × 这种元素的值 × 系数"
+        },
+        {
+          "type": "table",
+          "header": [
+            "稀有度",
+            "系数",
+            "大小 100、元素 3",
+            "大小 100、元素 50"
+          ],
+          "rows": [
+            [
+              "普通",
+              "0.08",
+              "24%",
+              "400%"
+            ],
+            [
+              "罕见",
+              "0.06",
+              "18%",
+              "300%"
+            ],
+            [
+              "稀有",
+              "0.04",
+              "12%",
+              "200%"
+            ],
+            [
+              "卓越",
+              "0.02",
+              "6%",
+              "100%"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "抽中时数量在 1 到「几率 ÷ 4」之间随机，一格最多 64 个。几率可以超过 100%，比如大小 100、火元素 50 的水晶，一挑中普通火焰精华就是一大把。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "放提取器之前，先在物品提示里看一眼水晶的四种元素。哪种元素是 0，这种精华就永远抽不到，大小为 1、元素全是 0 的<em>刚成型的水晶</em>更是一个也抽不出来。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一颗水晶四周可以围上好几台提取器，各抽各的。一台提取器旁边有几颗水晶时，按北、南、西、东的顺序认第一颗。",
+            "还在生长的水晶也能抽，只是个头小，出货的几率也低。",
+            "收到红石信号时停机，进度保留，退出存档也不会丢。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书说，简单的机器有元素核心就能让 MRU 带上元素，更高级的器械却要一样更专门的东西，就是元素焦点。书里正是为了做焦点，才去找古时的水晶和它们身上的精华。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/essence/crystal_extractor.json — SDA/XCX/FDF：魔力屏幕、水晶粉 ×2、注魔合金、MRU 转换矩阵 ×2、#cores/magic、黑曜石板 ×2",
+        "blockentity/CrystalExtractorBlockEntity.java:27-44（类注释）— 贴在水晶旁（东南西北，同一高度）；12 个产物格全空、无红石时开工；每格随机 16 种之一；不消耗水晶；进度存盘",
+        "blockentity/CrystalExtractorBlockEntity.java:55-59 — max_mru 5000、mru_usage 100、required_ticks 1000",
+        "blockentity/CrystalExtractorBlockEntity.java:99、153-155 — 几率% = ⌊大小 × 3000 × 元素 / {37500, 50000, 75000, 150000}⌋ = 大小 × 元素 × {0.08, 0.06, 0.04, 0.02}",
+        "blockentity/CrystalExtractorBlockEntity.java:165-174 — random(100) < 几率 才出；数量 random(1 + 几率 / 4)，夹在 1~最大堆叠（64）",
+        "blockentity/AdjacentCrystal.java — 四面都有水晶时按北、南、西、东的顺序取",
+        "tools/plan/progression.md「按章节」第 9 章、「拖沓」第 4 条 — 随机长成的水晶每种元素平均 2~3 点，一轮只出零星精华，凑一个焦点约 5~10 轮",
+        "data/essentialcraft5/recipes/wind/wind_tablet.json — 4 个风之焦点；demon/demonic_pentacle.json — 4 个火之焦点（都在海纳尔之门开着时的主线上）",
+        "原作 en_US.lang essentialcraft.page.crystals_2 — 打碎水晶掉出精华的说法（小知识）",
+        "按 roll() 算期望：大小 100、元素 v，每格 1/16 挑中某元素某稀有度，几率 = 100·v·{0.08,0.06,0.04,0.02}%，数量 max(1, random(1 + 几率/4))；燃料按 4 普通→1、4 罕见→4、4 稀有→8、4 卓越→16 折算，12 格合计每轮：v=3 约 0.93 份燃料，v=2 约 0.5，v=1 约 0.19"
+      ]
+    },
+    {
+      "id": "essences",
+      "title": "精华",
+      "icon": "essentialcraft5:common_fire_essence",
+      "summary": "四种元素，四种稀有度",
+      "complete": "essentialcraft5:guide/essence/essences",
+      "items": [
+        "essentialcraft5:common_fire_essence",
+        "essentialcraft5:common_water_essence",
+        "essentialcraft5:common_earth_essence",
+        "essentialcraft5:common_air_essence",
+        "essentialcraft5:uncommon_fire_essence",
+        "essentialcraft5:uncommon_water_essence",
+        "essentialcraft5:uncommon_earth_essence",
+        "essentialcraft5:uncommon_air_essence",
+        "essentialcraft5:rare_fire_essence",
+        "essentialcraft5:rare_water_essence",
+        "essentialcraft5:rare_earth_essence",
+        "essentialcraft5:rare_air_essence",
+        "essentialcraft5:exceptional_fire_essence",
+        "essentialcraft5:exceptional_water_essence",
+        "essentialcraft5:exceptional_earth_essence",
+        "essentialcraft5:exceptional_air_essence"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：从提取器里拿出第一个精华，学会看它的元素和稀有度。"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:common_fire_essence",
+            "essentialcraft5:common_water_essence",
+            "essentialcraft5:common_earth_essence",
+            "essentialcraft5:common_air_essence"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "提取器抽出的是{item:essentialcraft5:common_fire_essence}、{item:essentialcraft5:common_water_essence}、{item:essentialcraft5:common_earth_essence}和{item:essentialcraft5:common_air_essence}四种元素的精华，元素燃料和焦点都用它们做，也能拿去喂水晶控制器。"
+        },
+        {
+          "type": "p",
+          "text": "每种精华分四个稀有度，名字都一样，要看名字的颜色和提示里的「稀有度」一行来分，普通、罕见、稀有、卓越依次是白、黄、青、紫。精华一组 64 个。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "稀有度",
+            "提取器里的系数",
+            "4 个做几份燃料",
+            "控制器每刻吃一个的几率",
+            "喂水晶每个加"
+          ],
+          "rows": [
+            [
+              "普通",
+              "0.08",
+              "1",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|pct}",
+              "0~1"
+            ],
+            [
+              "罕见",
+              "0.06",
+              "4",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|mul:2|pct}",
+              "0~3"
+            ],
+            [
+              "稀有",
+              "0.04",
+              "8",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|mul:3|pct}",
+              "0~5"
+            ],
+            [
+              "卓越",
+              "0.02",
+              "16",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|mul:4|pct}",
+              "0~7"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "稀有度越高越难抽到，也越值钱，4 个卓越精华能做 16 份燃料，顶得上 64 个普通精华。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有任意一种精华。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "别搞混",
+          "text": "{item:essentialcraft5:magical_essence}是辐射仓用红石和烈焰粉做的材料，做法见[[alloys/magical_essence]]，它和水晶没有关系，也不是元素精华。"
+        }
+      ],
+      "_src": [
+        "registry/ECEssence.java:98-113 — 16 种精华：稀有度 0~3 × 火水地风，注册名 <稀有度>_<元素>_essence；物品默认堆叠 64",
+        "item/EssenceItem.java:26-31 — 稀有度名与颜色：普通 WHITE、罕见 YELLOW、稀有 AQUA、卓越 LIGHT_PURPLE（名字颜色走原版 Rarity COMMON / UNCOMMON / RARE / EPIC，L28）",
+        "blockentity/CrystalExtractorBlockEntity.java:99、153-155 — 提取器系数 0.08 / 0.06 / 0.04 / 0.02",
+        "data/essentialcraft5/recipes/essence/elemental_fuel_<元素>_<0~3>.json — 4 个精华出 1 / 4 / 8 / 16 份燃料",
+        "blockentity/CrystalControllerBlockEntity.java:155-161 — 每刻吃一个的几率 = mutation_chance_modifier × (稀有度 + 1)；每个加 random(2 × (稀有度 + 1)) 即 0~1 / 0~3 / 0~5 / 0~7",
+        "data/essentialcraft5/recipes/radiating_chamber/magical_essence.json — 魔力精华是辐射仓材料"
+      ]
+    },
+    {
+      "id": "fuel_and_focus",
+      "title": "燃料与焦点",
+      "icon": "essentialcraft5:fire_focus",
+      "summary": "把精华凝成焦点",
+      "complete": "essentialcraft5:guide/essence/focus",
+      "items": [
+        "essentialcraft5:fire_elemental_fuel",
+        "essentialcraft5:water_elemental_fuel",
+        "essentialcraft5:earth_elemental_fuel",
+        "essentialcraft5:air_elemental_fuel",
+        "essentialcraft5:fire_focus",
+        "essentialcraft5:water_focus",
+        "essentialcraft5:earth_focus",
+        "essentialcraft5:air_focus"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：用精华做出{item:essentialcraft5:fire_elemental_fuel}这类元素燃料，再把燃料做成{item:essentialcraft5:fire_focus}这类焦点。先辈造的随身器物，芯子里多半嵌着一个焦点。后面的护符、法杖和好几样器械也都拿它当核心材料。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：同一元素、同一稀有度的精华 4 个，做焦点还要 4 个金锭和 4 个铁锭，金锭可以换成淡青锭。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_elemental_fuel",
+            "essentialcraft5:water_elemental_fuel",
+            "essentialcraft5:earth_elemental_fuel",
+            "essentialcraft5:air_elemental_fuel"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在工作台里把 4 个精华摆成十字，中间按元素放东西，火放煤或木炭，水放雪球，地放小麦种子，风空着。",
+            "普通精华出 1 份燃料，罕见出 4 份，稀有 8 份，卓越 16 份。燃料一组 16 个。",
+            "燃料放中间，四角放金锭，四边放铁锭，做出来的就是对应元素的焦点。焦点不能堆叠。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_focus",
+            "essentialcraft5:water_focus",
+            "essentialcraft5:earth_focus",
+            "essentialcraft5:air_focus"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有任意一种焦点。"
+        },
+        {
+          "type": "h",
+          "text": "焦点要攒多少"
+        },
+        {
+          "type": "list",
+          "items": [
+            "这一章可选的[[essence/magical_lantern]]要火、风焦点各 2 个。",
+            "支线里的护符、魔力之翼、法杖和盾，每件要 1~4 个，见[[charms/charms]]、[[charms/magical_wings]]、[[staffs/magmatic_staff]]等篇。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "开海纳尔之门用的[[wind/wind_tablet]]要 4 个{item:essentialcraft5:air_focus}，[[demons/demonic_pentacle]]要 4 个{item:essentialcraft5:fire_focus}。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "去过海纳尔以后，在[[void_machines/ember_forge]]里锻一把剑要用掉整整 4 个焦点。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "省精华",
+          "text": "一个焦点用掉一份燃料，所以要按燃料算账，4 个罕见精华能做 4 份燃料，够做 4 个焦点，4 个普通精华却只够做 1 个。罕见以上的精华拿去喂水晶之前，先算算焦点够不够。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/essence/elemental_fuel_fire_0~3.json — 十字 4 精华 + 中间 #minecraft:coals，出 1 / 4 / 8 / 16；water 中间雪球、earth 小麦种子、air 空着",
+        "data/essentialcraft5/recipes/essence/fire_focus.json 等 — GIG/IEI/GIG：#essentialcraft5:gold_ingots（含淡青锭）×4、#forge:ingots/iron ×4、燃料",
+        "registry/ECEssence.java:171、177 — 燃料堆叠 16；焦点 durability(3000)（不能堆叠）",
+        "焦点用量：essence/magical_lantern.json 火、风各 2；charms/*.json、staffs/*.json、charms/magical_wings.json 每件 1~4；wind/wind_tablet.json 风 ×4；demon/demonic_pentacle.json 火 ×4",
+        "blockentity/EmberForgeBlockEntity.java:54-55、128 — 四块魔力护板上各放一个焦点，锻一把剑用掉 4 个"
+      ]
+    },
+    {
+      "id": "crystal_controller",
+      "title": "{item:essentialcraft5:crystal_controller}",
+      "icon": "essentialcraft5:crystal_controller",
+      "summary": "定向培育水晶",
+      "complete": "essentialcraft5:guide/essence/bred_crystal",
+      "items": [
+        "essentialcraft5:crystal_controller"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：趁水晶<em>还在生长</em>，用{item:essentialcraft5:crystal_controller}喂它精华，把一种元素推到 {cfg:machines.crystal_controller.bred_threshold} 以上。元素越高，提取器抽出的这种精华越多。长满的水晶每次挑中这种精华，元素 3 点时只有约 24% 的几率出货，平均出 3 个，13 点起次次出货，到 20 点平均一次能出 20 个左右。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：2 份水晶粉、魔力屏幕、MRU 收集器、1 块魔力板、2 块{item:essentialcraft5:magic_fortified_plating}、MRU 转换矩阵和元素核心，再备好一颗刚放下、还在生长的水晶和一些精华。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_controller"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "新水晶一放下，就把控制器放在紧挨着它、同一高度的位置。",
+            "接上 MRU，把想推高的元素对应的精华放进右边的格子。",
+            "控制器里存着不少于 {cfg:machines.crystal_controller.mru_usage|mul:10} MRU 时，每刻都有一定几率吃掉 1 个精华和 {cfg:machines.crystal_controller.mru_usage|mul:10} MRU，给水晶对应的元素加上几点，几率和点数见[[essence/essences]]里的表。",
+            "盯着界面上的元素读数，喂到 {cfg:machines.crystal_controller.bred_threshold} 以上为止。"
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": "essentialcraft5:elemental_crystal",
+            "K": "essentialcraft5:crystal_controller"
+          },
+          "anchor": "K",
+          "pattern": [
+            "KC"
+          ],
+          "caption": "控制器紧贴着水晶，东南西北哪一面都行，和水晶同一高度。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "某一次喂完，喂的那种元素到了 {cfg:machines.crystal_controller.bred_threshold}，控制器 16 格内的人这一步就会打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>只有生长中的水晶能改</em>，长到大小 100 元素就定型了，控制器也跟着停下，所以精华要在水晶刚放下时就备好。水晶长满约需 41 分钟，这段时间里普通精华大约能给一种元素加 25 点，要吃掉约 50 个精华和约 5 万 MRU，卓越精华则能把它加满。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎么起步",
+          "text": "控制器要精华，精华又得从有元素的水晶里抽。先让第一颗水晶自己长满，抽出一些精华，拿去喂第二颗刚种下的水晶。第二颗的那种元素推上去以后，抽出的精华就多得多，再拿去喂第三颗，这样两三代就能推到 {cfg:machines.crystal_controller.bred_threshold}。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一颗水晶四面都能贴控制器，几台一起喂同一种元素会快得多，水晶长满以后再把其中一台换成[[essence/crystal_extractor]]。",
+            "某种元素到了 100，控制器就不再吃这种精华。",
+            "旁边有生长中的水晶时，控制器平时也会偶尔耗一点 MRU，每刻有 {cfg:machines.crystal_controller.use_mru_chance|pct} 的几率耗掉 {cfg:machines.crystal_controller.mru_usage} MRU，旁边没有水晶或水晶已经长满时不耗。",
+            "收到红石信号时停机。",
+            "打勾只看喂的那种元素，别的元素自己长到多少都不算。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "这一章必做的步骤到这里就做完了，主线接着进入「日光」一章的[[solar/sun_imbued_glass]]。缺哪种元素的精华，可以用下一篇的[[essence/elemental_decomposer]]拿杂物专门攒。想要一盏随身的灯，看[[essence/magical_lantern]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/essence/crystal_controller.json — SMP/DCD/FXF：魔力屏幕、MRU 收集器、#plates/magic、水晶粉 ×2、#cores/magic、魔力强化板 ×2、MRU 转换矩阵",
+        "blockentity/CrystalControllerBlockEntity.java:27-45（类注释）— 贴在水晶旁、只对生长中的水晶起作用；存着 ≥ mru_usage × 10 时每 tick 以 mutation_chance_modifier × (稀有度 + 1) 的几率吃 1 个精华和 mru_usage × 10 MRU；元素夹在 0~100，到 100 不再吃",
+        "blockentity/CrystalControllerBlockEntity.java:57-66 — mru_usage 100、use_mru_chance 0.05、mutation_chance_modifier 0.001；L219-221 空转只在旁边有生长中的水晶时；L209 红石停机",
+        "menu/CrystalControllerMenu.java:48-49 — 宝石格 (108,5)、精华格 (140,41) 在右边",
+        "估算：生长 49 500 tick；普通 0.1%/tick 约吃 49.5 个、每个平均 +0.5 ≈ 25 点，每个扣 mru_usage × 10 = 1000 MRU，合计约 5 万；卓越 0.4%/tick 约 198 个、每个平均 +3.5，封顶 100",
+        "blockentity/CrystalControllerBlockEntity.java:117 DEFAULT_BRED_THRESHOLD = 20（machines.crystal_controller.bred_threshold）；:222 isBred 只看喂的那种元素；:269 feedOne 喂完到门槛就给 GUIDE_RADIUS（:119，16 格）内的玩家打 guide/essence/bred_crystal",
+        "blockentity/CrystalExtractorBlockEntity.java:153 chancePercent = 大小 × 3000 × 元素 / 37500（普通）→ 长满（100）时 8 × 元素：3 点 24%、20 点 160%；:164 roll 先 nextInt(16) 挑种类，出货数 nextInt(1 + 几率 / 4)、至少 1：3 点平均约 3.1、20 点平均约 20；13 点 104% 起次次出货。正文的「20 点」「13 点」是举例的元素值，不是 bred_threshold",
+        "data/essentialcraft5/advancements/guide/essence/bred_crystal.json — 只有代码发的条件 awarded_by_code"
+      ]
+    },
+    {
+      "id": "elemental_decomposer",
+      "title": "{item:essentialcraft5:elemental_decomposer}",
+      "icon": "essentialcraft5:elemental_decomposer",
+      "summary": "把杂物拆成四种元素的精华",
+      "complete": "essentialcraft5:guide/essence/elemental_decomposer",
+      "optional": true,
+      "items": [
+        "essentialcraft5:elemental_decomposer"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一台{item:essentialcraft5:elemental_decomposer}，把圆石、腐肉、羽毛这类平时攒下的杂物喂给它，换成你想要的那种元素的精华。"
+        },
+        {
+          "type": "p",
+          "text": "MRU 落下来时穿进了岩石和活物，寻常的石头、骨头和羽毛里也沾着一星半点的元素。分解器出得不多，但元素由你来挑，想用[[essence/crystal_controller]]把水晶的某种元素推高、手上又缺这种精华时，可以拿它专门攒。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：四块{item:essentialcraft5:pale_plate}，{item:essentialcraft5:fire_focus}、{item:essentialcraft5:water_focus}、{item:essentialcraft5:earth_focus}、{item:essentialcraft5:air_focus}各一个，再加一个{item:essentialcraft5:fortified_frame}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:elemental_decomposer"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在宝石槽里放一颗绑在 MRU 源上的{item:essentialcraft5:bound_gem}。",
+            "把杂物放进左边 3×3 的输入格，漏斗和管道也能往里送。它只收下表这四类里的东西，别的放不进去。",
+            "它每次拿 1 件、扣一份 MRU，给这件东西所属的元素记 1 点，界面上能看到四种元素各攒了多少点。",
+            "某种元素的点数攒够了，就出 1 颗这种元素的精华，放进右边对应的格子。右边每行是一种元素，左列放普通精华，右列放罕见精华。",
+            {
+              "if": "cfg:machines.elemental_decomposer.uncommon_every>0",
+              "text": "每种元素每出 {cfg:machines.elemental_decomposer.uncommon_every} 颗，最后那颗的稀有度是罕见。"
+            }
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每件间隔",
+              "{cfg:machines.elemental_decomposer.ticks_per_item|sec}"
+            ],
+            [
+              "每件 MRU",
+              "{cfg:machines.elemental_decomposer.mru_per_item}"
+            ],
+            [
+              "几件出一颗精华",
+              "{cfg:machines.elemental_decomposer.points_per_essence}"
+            ],
+            {
+              "if": "cfg:machines.elemental_decomposer.uncommon_every>0",
+              "cells": [
+                "每几颗出一颗罕见",
+                "{cfg:machines.elemental_decomposer.uncommon_every}"
+              ]
+            },
+            [
+              "MRU 容量",
+              "{cfg:machines.elemental_decomposer.max_mru}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "元素",
+            "收哪些东西（举例）"
+          ],
+          "rows": [
+            [
+              "火",
+              "{item:minecraft:netherrack}、{item:minecraft:blackstone}、{item:minecraft:basalt}、{item:minecraft:soul_sand}、{item:minecraft:magma_block}、{item:minecraft:gunpowder}"
+            ],
+            [
+              "水",
+              "{item:minecraft:kelp}、{item:minecraft:seagrass}、{item:minecraft:lily_pad}、{item:minecraft:ink_sac}、{item:minecraft:snowball}、{item:minecraft:clay_ball}"
+            ],
+            [
+              "地",
+              "{item:minecraft:cobblestone}、{item:minecraft:dirt}、{item:minecraft:sand}、{item:minecraft:gravel}、{item:minecraft:flint}、{item:minecraft:bone}、{item:minecraft:rotten_flesh}"
+            ],
+            [
+              "风",
+              "{item:minecraft:feather}、{item:minecraft:string}、{item:minecraft:stick}、{item:minecraft:wheat_seeds}、{item:minecraft:grass}、{item:minecraft:vine}，以及各种树叶和树苗"
+            ]
+          ],
+          "widths": [
+            1,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "if": "mod:jei",
+          "text": "完整的清单在 JEI 的元素分解器分类里，每种元素一页。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.elemental_decomposer.ticks_per_item==10",
+            "cfg:machines.elemental_decomposer.points_per_essence==32"
+          ],
+          "text": "MRU 跟得上时，一台每小时能吃掉 7200 件杂物，出 225 颗左右的精华，一箱 1728 个圆石大约换 54 颗{item:essentialcraft5:common_earth_essence}。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到分解器，这一步就打勾了。放进一组圆石、接上 MRU 以后，界面上地元素的点数会一点点往上涨。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "某种元素的普通格和罕见格里只要有一格满了，它就不再拿这种元素的杂物，别的元素照常分解，所以要用漏斗把右边的格子及时抽空。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "攒下的点数存在机器里，拆掉机器就没了。",
+            "一样东西同时算在几类里时，按火、水、地、风的顺序归到第一类。",
+            "罕见精华喂给水晶控制器时，每刻被吃掉的几率是普通精华的两倍，每个加的点数也更多，见[[essence/essences]]。",
+            "漏斗和管道只能往输入格放东西、从精华格往外抽。",
+            "收到红石信号时暂停。",
+            {
+              "if": "cfg:machines.elemental_decomposer.generate_corruption",
+              "text": "工作时每秒向周围泄漏 0～{cfg:machines.elemental_decomposer.max_corruption_gen} MRU，见[[crafting/corruption]]。"
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/decomposer/elemental_decomposer.json — PFP/AXW/PEP：淡青板 ×4、火 / 风 / 水 / 地之焦点各 1、魔力强化框架",
+        "menu/ElementalDecomposerMenu.java — 输入 3×3 在左边；精华格两列（x 134 普通、152 罕见）× 四行（火、水、地、风）；宝石格 (112,5)，在状态字右边",
+        "blockentity/ElementalDecomposerBlockEntity.java:60-79 Config — max_mru 10000、ticks_per_item 10、mru_per_item 30、points_per_essence 32、uncommon_every 16（0 = 不出罕见）、generate_corruption、max_corruption_gen 1",
+        "blockentity/ElementalDecomposerBlockEntity.java:291 processOne — 从输入格往后找第一件元素已定、且这种元素两个精华格都有空的；MRU 够才拿 1 件；:333 addPoint 点数到 points_per_essence 出 1 颗，第 uncommon_every 的倍数颗出罕见（:247 isUncommon）",
+        "blockentity/ElementalDecomposerBlockEntity.java:185 elementOf — 按火 → 水 → 地 → 风取第一个标签；点数、计数存方块实体 NBT，拆了就没了（掉落物不带 NBT）",
+        "tools/tags/ecdecomposer.json — 四个标签的默认内容（表里只列一部分）；风含 #minecraft:leaves、#minecraft:saplings",
+        "估算（ticks_per_item 10、points_per_essence 32 时）：72000 / 10 = 7200 件 / 小时，/ 32 = 225 颗；1728 / 32 = 54",
+        "blockentity/CrystalControllerBlockEntity.java — 喂精华的几率 = mutation_chance_modifier × (稀有度 + 1)，罕见（1）是普通（0）的 2 倍",
+        "blockentity/ElementalDecomposerBlockEntity.java:276 — WORKING 时每 LEAK_INTERVAL = 20 刻泄漏 0～max_corruption_gen；红石 → PAUSED"
+      ]
+    },
+    {
+      "id": "magical_lantern",
+      "title": "{item:essentialcraft5:magical_lantern}",
+      "icon": "essentialcraft5:magical_lantern",
+      "summary": "走到哪亮到哪",
+      "complete": "essentialcraft5:guide/essence/magical_lantern",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_lantern"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一盏{item:essentialcraft5:magical_lantern}，拿在手上能照亮脚下，也能在墙上、地上放下永久的隐形光源。先辈走夜路时，提的就是这种灯。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：火之焦点、风之焦点各 2 个，1 个{item:essentialcraft5:red_soul_matter}，2 块魔力板和 2 个{item:essentialcraft5:magical_slag}。炉渣是[[generators/heat_generator]]烧剩下的，每烧一份燃料留下 1 个。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_lantern"
+        },
+        {
+          "type": "p",
+          "text": "灯笼自己能存 5000 MRU，刚做出来时是空的，放进[[storage/charging_chamber]]就能充满。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>拿在主手或副手上</em>时，脚下是空气、亮度又不到 12，那里就会自动亮起来，人走开约 1 秒后熄灭，不耗 MRU。走路时大约每隔几格亮一处，已经够亮的地方和鞘翅滑翔时不亮。",
+            "<em>右键方块的某一面</em>，只要那一面外侧是空气，就会用掉 1 个魔力炉渣和 100 MRU，在那里放下一个永久的{block:essentialcraft5:magic_light}，低头右键脚下的地面也行。",
+            "MRU 先从身上带着的[[storage/soul_storage]]里扣，不够再扣灯笼自己的，创造模式下什么都不扣。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "手里有魔力灯笼。"
+        },
+        {
+          "type": "h",
+          "text": "魔力光源"
+        },
+        {
+          "type": "p",
+          "text": "魔力光源亮度为 15，看不见也摸不着，人可以直接穿过去。戴着[[gear/magic_monocle]]这类能看见 MRU 的东西，能看到它周围闪着品红色的火花。要拆掉它，就对准正中间那一小块空间打一下，拆下来什么也不掉。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/essence/magical_lantern.json — AFM/SPF/PSA：风之焦点 ×2、火之焦点 ×2、鲜红灵魂物质、魔力炉渣 ×2、#plates/magic ×2",
+        "item/MagicalLanternItem.java:37-60（类注释）、64-68 — 自带 5000 MRU；拿着时脚下是空气且亮度 < 12 才放临时光源（鞘翅滑翔时不放）；右键一面放永久光源，扣 1 个炉渣和 100 MRU（先扣灵魂储存物品，见 MRUDrain；创造模式不扣）；副手也算",
+        "block/MagicLightBlock.java:27-48（类注释）— 亮度 15、无碰撞；临时光源 20 tick 后消失（站着不动续期）；永久光源选取框 0.2~0.8（L60），硬度 0、什么都不掉；品红尘埃粒子只给 MRUVision.canSee 的玩家看",
+        "blockentity/HeatGeneratorBlockEntity.java:130-137、149-155 — 每开始烧一份燃料出 1 个魔力炉渣"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "id": "crystal",
+  "order": 66,
+  "group": "main",
+  "title": "第八章 · 元素水晶",
+  "subtitle": "培育水晶，建起月亮井",
+  "icon": "essentialcraft5:crystal_former",
+  "entries": [
+    {
+      "id": "crystal_former",
+      "title": "{item:essentialcraft5:crystal_former}",
+      "icon": "essentialcraft5:crystal_former",
+      "summary": "水、玻璃、鑽石，外加大量 MRU",
+      "complete": "essentialcraft5:guide/crystal/crystal_former",
+      "items": [
+        "essentialcraft5:crystal_former"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "從前 MRU 濃得化不開的地方，會自己長出水晶，一夜就成。世界變過一回，它們一顆也不剩了。我們照舊法子造出來的，生下來很小，要種下去慢慢養大。",
+          "by": "《源質殘卷·卷三》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：造一台{item:essentialcraft5:crystal_former}，做出第一顆{item:essentialcraft5:elemental_crystal}。元素水晶是會自己慢慢長大的方塊，月亮井要用它，下一章的幾台機器也都圍著它轉。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "本章要準備什麼",
+          "text": "做一顆水晶要 10 萬 MRU 和一顆鑽石，一台四面都是岩漿的熱力產能器約 5 分鐘就能攢夠。最慢的是月亮井要用的魔力矩陣投影，輻射倉要做約 17 分鐘，而且只認平衡值在 0.5~1.5 之間的 MRU，最好讓它先開工。水晶長滿約需 41 分鐘，這段時間可以去忙別的。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：2 份{item:essentialcraft5:crystal_dust}，做法見[[alloys/crystal_dust]]，再加上幾樣前面做過的零件，魔力螢幕、MRU 收集器、魔力板、元素核心和 MRU 轉換矩陣各 1 個，以及 2 塊{item:essentialcraft5:obsidian_plate}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_former"
+        },
+        {
+          "type": "h",
+          "text": "擺法"
+        },
+        {
+          "type": "items",
+          "items": [
+            "minecraft:water_bucket",
+            "minecraft:glass",
+            "minecraft:diamond",
+            "essentialcraft5:elemental_crystal"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "介面右半邊是 3×3 的材料區，最下面一排放 3 桶{item:minecraft:water_bucket}。",
+            "中間一排左右兩格各放一塊{item:minecraft:glass}，染色玻璃、遮光玻璃等都可以，正中留空。",
+            "最上面一排正中放一顆{item:minecraft:diamond}。",
+            "最左上角是綁定寶石格，做好的水晶出現在寶石格和材料區中間的那一格。"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把綁定寶石綁到 MRU 源上，最好綁上一章富集倉的輸出器，然後放進寶石格。",
+            "材料齊全、產物格空著、又沒有紅石訊號時，它每刻消耗 {cfg:machines.crystal_former.mru_usage} MRU，做滿 {cfg:machines.crystal_former.ticks_required} 刻，歷時{cfg:machines.crystal_former.ticks_required|sec}，出一顆大小為 1 的元素水晶。",
+            "做好時 3 個水桶變成空桶留在原格，兩格玻璃和鑽石各用掉 1 個。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "產物格里出現一顆元素水晶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "它自己只存得下 {cfg:machines.crystal_former.max_mru} MRU，源頭每刻供不上 {cfg:machines.crystal_former.mru_usage} MRU 就會做做停停，總耗能不變，只是慢一些，接在富集倉上最省心。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.crystal_former.generate_corruption",
+          "text": "它工作時每刻往周圍漏 0~{cfg:machines.crystal_former.max_corruption_gen} MRU，附近會聚出一團 MRU 聚集體，見[[start/mrucu]]，最好放得離你常待的地方遠一些。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "進度會存下來，中途拿走材料也不丟，補齊後接著做。",
+            "漏斗能往這幾格補材料，兩格玻璃輪流補，也能抽走做好的水晶和用過的空桶，裝著水的桶抽不走。",
+            "滑鼠停在介面的進度箭頭上，能看到它眼下卡在哪一步。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書說，古時的水晶是 MRU 的主要來源，像磁石一樣把世上的 MRU 往身邊吸。照殘存的知識重造的頭一顆幾乎當場就碎了，後來才有了成型器，用鑽石、水、玻璃和大量 MRU 造出最小、卻相當結實的一顆。"
+        }
+      ]
+    },
+    {
+      "id": "elemental_crystal",
+      "title": "{item:essentialcraft5:elemental_crystal}",
+      "icon": "essentialcraft5:elemental_crystal",
+      "summary": "種下去，慢慢長大",
+      "complete": "essentialcraft5:guide/crystal/elemental_crystal",
+      "items": [
+        "essentialcraft5:elemental_crystal"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：把剛做出來的{item:essentialcraft5:elemental_crystal}放下，讓它長大。月亮井只要一顆水晶，大小不限，剛做出來的也行，下一章的水晶提取器卻要用長大的水晶，所以最好多做幾顆。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把水晶貼在任意方塊的任意一個完整面上，它就從那一面往外長。",
+            "剛放下時大小只有 1，小得幾乎看不見，之後每刻長 {cfg:machines.elemental_crystal.growth_modifier|mul:0.002} 點，從 1 長到 100 約要 41 分鐘。",
+            "它越長越亮，長滿時亮度為 15。生長期間頂上飄著附魔台那樣的字元粒子，粒子不再冒出來，就是長滿了。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "身上有一顆任意大小的元素水晶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>一定要用鎬挖</em>，空手或用別的工具挖什麼也不掉，長了半小時的水晶就白費了。它只在所在區塊載入時生長，人走遠了就會停下。"
+        },
+        {
+          "type": "h",
+          "text": "元素"
+        },
+        {
+          "type": "p",
+          "text": "每顆水晶都帶著火、水、地、風四種元素，每種在 0~100 之間，剛做出來時全是 0。生長期間每刻有 {cfg:machines.elemental_crystal.mutation_chance|pct} 的機率突變，隨機挑一種元素變動 −2~+2，結果總在 0~100 之間，長滿以後就不再變了。"
+        },
+        {
+          "type": "p",
+          "text": "任它自己長的話，長滿時每種元素一般只有兩三點，有時某一種還是 0。下一章的提取器能抽出什麼由元素決定，想讓哪種元素高一些，就要趁水晶還在生長時用[[essence/crystal_controller]]餵它精華。"
+        },
+        {
+          "type": "p",
+          "text": "物品的顏色偏向數值最高的那種元素，火偏暗紅，水偏藍，地偏深綠，風偏灰。物品提示裡寫著大小和四種元素的數值。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "省時間",
+          "text": "最好一次多做幾顆一起養。月亮井要用掉一顆，下一章的提取器和控制器各要守著一顆，元素又是隨機的，多幾顆才挑得出最好的。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "用鎬挖下來以後，大小和四種元素都留在物品裡，放回去還能接著長。",
+            "支撐它的方塊被拆掉時，水晶會掉成物品，資料同樣保留。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "moon_well",
+      "title": "{item:essentialcraft5:moon_well}",
+      "icon": "essentialcraft5:moon_well",
+      "summary": "越深越好",
+      "complete": "essentialcraft5:guide/crystal/moon_well",
+      "items": [
+        "essentialcraft5:moon_well"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：造一台{item:essentialcraft5:moon_well}，它每天夜裡借月光產出 MRU，不用燃料，平衡值是 {cfg:machines.moon_well.balance}。先輩夜裡取 MRU，用的就是這樣一口井。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：一顆大小不限的{item:essentialcraft5:elemental_crystal}和一個{item:essentialcraft5:magic_matrix_projection}，再加 2 塊魔力板，以及魔力螢幕、MRU 收集器、元素核心、MRU 轉換矩陣、世界互動器各 1 個。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:moon_well"
+        },
+        {
+          "type": "h",
+          "text": "魔力矩陣投影"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "先在輻射倉裡拿靈魂石做一個{item:essentialcraft5:empty_matrix_projection}，做法見[[generators/projections]]。",
+            "再用平衡值在 0.5~1.5 之間的 MRU 照它 2 萬刻，約 17 分鐘。",
+            {
+              "if": "cfg:machines.heat_generator.balance<0",
+              "text": "熱力產能器放下時平衡值是隨機的，大約一半的機率落在 0.5~1.5 之間，挑出這樣的一台，單獨給它接一台輻射倉。"
+            },
+            "也可以拿{item:essentialcraft5:intersector}把一路冰凍、一路混沌的 MRU 混成中間的平衡值，見[[enrichment/intersector]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "平衡值會混",
+          "text": "機器裡存著的 MRU 會和新拉進來的按量混合，輻射倉之前吃過混沌或冰凍的 MRU，平衡值就可能落到範圍外。用一台空的輻射倉最穩妥，存著的 MRU 用光以後，平衡值也會完全換成新源頭的。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "聚集體會被喂大",
+          "text": "照這塊投影要 2 萬刻，輻射倉這期間一直在漏 MRU，會往 32 格內的聚集體裡灌進約 1 萬，正好到傷人的界線。最好把輻射倉放在離你常待的地方 13 格以外，或者照完後用{item:essentialcraft5:mru_mover}把聚集體挪走，見[[start/mrucu]]。",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen==1"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "聚集體會被喂大",
+          "text": "照這塊投影要 2 萬刻，輻射倉這期間一直在漏 MRU，附近的聚集體會越長越大。最好把輻射倉放在離你常待的地方 13 格以外，或者照完後用{item:essentialcraft5:mru_mover}把聚集體挪走，見[[start/mrucu]]。",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen!=1"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼放"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放在主世界裡<em>正上方看得到天空</em>的地方，玻璃不會擋住天空，遮光玻璃、樹葉和水則會擋住。",
+            "放得越低越好，在 y=0 及以下滿產，每往上 1 格少產 1/{cfg:machines.moon_well.max_height}，到 y={cfg:machines.moon_well.max_height} 就完全不產。",
+            "把用 MRU 的機器或富集倉接收器的綁定寶石綁到它身上就行，它自己最多存 {cfg:machines.moon_well.max_mru} MRU。"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "月相",
+            "每刻產量（y=0 以下）"
+          ],
+          "rows": [
+            [
+              "滿月",
+              "{cfg:machines.moon_well.max_mru_generated} MRU"
+            ],
+            [
+              "虧凸月、盈凸月",
+              "{cfg:machines.moon_well.max_mru_generated|mul:0.75} MRU"
+            ],
+            [
+              "上弦月、下弦月",
+              "{cfg:machines.moon_well.max_mru_generated|mul:0.5} MRU"
+            ],
+            [
+              "殘月、蛾眉月",
+              "{cfg:machines.moon_well.max_mru_generated|mul:0.25} MRU"
+            ],
+            [
+              "新月",
+              "不產"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "夜裡它存著的 MRU 在往上漲。介面上的產量只按月相和高度算，白天或頭頂被擋住時也照樣顯示，要看存量漲沒漲才準。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "實用擺法",
+          "text": "挖一口豎井直到 y=0 以下，把月亮井放在井底，井口蓋上玻璃擋怪，就能滿產。它白天和新月時不產，地獄和終界沒有天空也不產，收到紅石訊號時會停機。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書說，光子本身不帶 MRU，月光穿過空氣時卻會順路捎上一些，走得越遠捎得越多，捎多少還要看月相，沒有月亮的夜裡就什麼也捎不來。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1862 @@
+{
+  "id": "start",
+  "order": 5,
+  "group": "start",
+  "title": "Getting Started",
+  "subtitle": "What MRU is and how to use this book",
+  "icon": "essentialcraft5:research_book",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "Overview",
+      "icon": "essentialcraft5:research_book",
+      "summary": "How this book and the main line work",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Scattered through all things, the radiance harms no one. The people of Hoanna gathered it and drove it to work, and then Hoanna burned. We gather it as well, and we drive it. These books set down how it is done. Where to stop, we have not yet learned.",
+          "by": "Fragments of Essence, Preface"
+        },
+        {
+          "type": "p",
+          "text": "The forebears called it <hl>MRU</hl>, the Magical Radiation Unit. It once burned a whole world; now it is shut up in crystals and coils, and it drives machines. EssentialCraft is about using machines to gather and store MRU, then spending it to run other machines and make magic gear. Think of MRU as this mod's electricity; see [[start/mru]]."
+        },
+        {
+          "type": "h",
+          "text": "Three parts to this book"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<t>Getting Started</t>: the basic ideas and some quick-reference tables. Look here first when a word is new to you.",
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "text": "<t>Main line</t>: fifteen chapters that take you from digging up drops to moving items around, one step at a time. Most pages are steps and get a ✓ when done. A few are reference pages, with tables, rules or background, and have nothing to check off."
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "<t>Main line</t>: twenty-three chapters that take you from digging up drops all the way to the Inquisitorium, the Computer Guy's Suit and its modules, and finally to the Heart of Calamity, one step at a time. Most pages are steps and get a ✓ when done. A few are reference pages, with tables, rules or background, and have nothing to check off."
+            },
+            "<t>Side chapters</t>: gear, devices, baubles, guns and more. They don't have to be read in order; build them whenever your main-line progress allows."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The main line at a glance"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Chapters",
+            "What you do"
+          ],
+          "widths": [
+            2,
+            2,
+            7
+          ],
+          "rows": [
+            [
+              "Early",
+              "1–5",
+              "Mine drops, turn your own matrix into your first MRU, build the Radiating Chamber and Magician Table, set up generators, make portable MRU batteries"
+            ],
+            [
+              "Middle",
+              "6–11",
+              "Alloys and pale materials, the Enrichment Chamber, elemental crystals and essences (breeding a crystal), sunlight, mithriline and the second energy, ESPE"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Late",
+                "12–15",
+                "Cure corruption effects with the Soul Pentacle, start building wind relation and fulfilling the wind's wishes in the wind chapter to get ready for Chapter 16, then set up automation and logistics for an assembly line"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Late",
+                "12–15",
+                "Cure corruption effects with the Soul Pentacle, get through the wind chapter, then set up automation and logistics for an assembly line"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "16–21",
+                "Step through the Gate to Hoanna, collapse an MRUCU, summon demons to trade with and raise the pentacle to tier 2, fight the Holographic Projection; decode a Glitchy Core, defeat the Inquisitorium Sentinel and raise the pentacle to tier 3, build the Computer Guy's Suit and finally fit it with modules"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "On a first playthrough, following the book, Chapters 1 to 15 take twenty-odd to thirty hours. The first real hurdle is the Nether, because from Chapter 2 on, soul sand, quartz and blaze powder all come from there."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "The six chapters from Hoanna on take another seventy to a hundred hours, most of it spent waiting for ESPE to build up. The Inquisitorium chapter takes fifteen to twenty hours and comes right before the Computer Guy's Suit, so you have something to do while you wait. The machines that gather ESPE only work while their chunk is loaded, so stay nearby while they run. The whole main line comes to a little over a hundred hours; players who know the way need thirty-odd."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Where to start",
+          "text": "Skim these Getting Started pages and read [[start/faq]] closely. Then turn to [[elements/book]] and follow the main line from there."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Played the original?",
+          "text": "If you played EssentialCraft on 1.12, read [[from_ec4/overview|the appendix on changes from EC4]] first. Everything that was renamed, reworked or removed is listed there."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "EssentialCraft began with Modbder and was later carried on by TheLMiffy1111 and others as \"EssentialCraft 4 Unofficial\". The mod this book belongs to is its port to 1.20.1."
+        }
+      ]
+    },
+    {
+      "id": "mru",
+      "title": "MRU and Balance",
+      "icon": "essentialcraft5:mru_crystal",
+      "summary": "Magical Radiation Units",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<hl>MRU</hl> stands for Magical Radiation Unit. The people of Hoanna called its light radiance; the forebears renamed it MRU when they came to write it down, and the Fragments use both words. Every machine in this mod runs on it, and the table below shows where it comes from, how it moves and where it goes."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "What it is",
+            "See"
+          ],
+          "widths": [
+            2,
+            6,
+            3
+          ],
+          "rows": [
+            [
+              "Making",
+              "<em>Generators</em> are machines that make MRU on their own. First you trade your own matrix for it, then you burn fuel, burn plants or draw on the cold",
+              "[[mru/matrix_absorber]], [[generators/heat_generator]]"
+            ],
+            [
+              "Moving",
+              "No pipes or wires. Put a <em>Bound Gem</em> in a machine that uses MRU and it pulls MRU through the air from a source within 16 blocks",
+              "[[crafting/bound_gem]]"
+            ],
+            [
+              "Using",
+              "Machines like the Radiating Chamber and Magician Table use it up as they work",
+              "[[crafting/radiating_chamber]]"
+            ],
+            [
+              "Carrying",
+              "<em>Soul storage</em> items are batteries you carry; staffs, charms and magic gear draw from them",
+              "[[storage/soul_storage]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Balance"
+        },
+        {
+          "type": "p",
+          "text": "Every bit of MRU carries a <em>Balance</em> between 0 and 2, shown in machine screens. It tells you whether that MRU runs \"cold\" or \"wild\"."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Balance",
+            "Called"
+          ],
+          "widths": [
+            3,
+            5
+          ],
+          "rows": [
+            [
+              "Exactly 1.0",
+              "{balance:pure}: the most stable"
+            ],
+            [
+              "Below 1.0",
+              "{balance:frozen}: colder the closer to 0"
+            ],
+            [
+              "Above 1.0",
+              "{balance:chaos}: wilder the closer to 2"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Most machines ignore Balance. The ones that care are mainly a few Radiating Chamber recipes, such as [[generators/projections]], which only run while the Balance sits in a certain range."
+        },
+        {
+          "type": "h",
+          "text": "Where Balance comes from"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:matrix_absorber}",
+              "Always {cfg:machines.matrix_absorber.balance}"
+            ],
+            {
+              "if": "cfg:machines.heat_generator.balance<0",
+              "cells": [
+                "{item:essentialcraft5:heat_generator}",
+                "Random 0–2 when placed; breaking and replacing rolls again"
+              ]
+            },
+            {
+              "if": "cfg:machines.heat_generator.balance>=0",
+              "cells": [
+                "{item:essentialcraft5:heat_generator}",
+                "Always {cfg:machines.heat_generator.balance}"
+              ]
+            },
+            {
+              "if": "cfg:machines.natural_furnace.balance<0",
+              "cells": [
+                "{item:essentialcraft5:natural_furnace}",
+                "Random 0–2 when placed; breaking and replacing rolls again"
+              ]
+            },
+            {
+              "if": "cfg:machines.natural_furnace.balance>=0",
+              "cells": [
+                "{item:essentialcraft5:natural_furnace}",
+                "Always {cfg:machines.natural_furnace.balance}"
+              ]
+            },
+            [
+              "{item:essentialcraft5:cold_distillator}",
+              "Always {cfg:machines.cold_distillator.balance}"
+            ],
+            [
+              "{item:essentialcraft5:sun_ray_absorber}",
+              "Always {cfg:machines.sun_ray_absorber.balance}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Mixing"
+        },
+        {
+          "type": "p",
+          "text": "MRU that a machine pulls in mixes with what it already holds, weighted by amount, so the more a machine holds, the harder it is for new MRU to shift its Balance."
+        },
+        {
+          "type": "formula",
+          "text": "A machine holding 4,000 MRU (1.0) pulls in 1,000 MRU (0.2)\nNew Balance = (4,000 × 1.0 + 1,000 × 0.2) ÷ 5,000 = 0.84"
+        },
+        {
+          "type": "p",
+          "text": "The easiest way to get a machine onto a different Balance is to start with an empty one."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original mod's research book describes MRU as a particle smaller than an electron, hidden in everything. It passes through matter like gamma rays, hence \"radiation\", and it can change what matter is, hence \"magic\". The book adds that MRU scattered through the world is calm and harmless, and stops being calm once it is gathered, compressed and driven."
+        },
+        {
+          "type": "image",
+          "texture": "essentialcraft5:textures/special/bookicons/mru_lowest.png",
+          "width": 256,
+          "height": 256,
+          "caption": "A lithium atom as imagined in the original research book: the nucleus in the middle, electrons in cyan, and the even tinier purple particle is MRU"
+        }
+      ]
+    },
+    {
+      "id": "mrucu",
+      "title": "MRUCUs and Corruption",
+      "icon": "essentialcraft5:mru_mover",
+      "summary": "The MRU machines leak",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "An <em>MRUCU</em> (MRU cluster) is a floating clump of MRU, a ball of light shining in every direction. It grows as it fills, and its color follows its Balance: cyan for Pure, blue for Frozen, red for Chaos. One holds at most 20,000 MRU, and two that end up in the same block merge into one."
+        },
+        {
+          "type": "image",
+          "texture": "essentialcraft5:textures/special/bookicons/mru_pressence.png",
+          "width": 256,
+          "height": 256,
+          "caption": "A perfectly pure MRUCU"
+        },
+        {
+          "type": "h",
+          "text": "Three names that are easy to mix up"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Name",
+            "Where it comes from",
+            "What it does",
+            "How it goes away"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.corruption.respect_claims",
+              "cells": [
+                "The MRU Corruption effect",
+                "Standing within 6 blocks of your own leaking machine, one layer per leak; other people's machines never stack it on you",
+                "From level II on, now and then {cfg:general.corruption.mru_corruption_health_percent|pct} of your max health",
+                "Walk away and it runs out (see below)"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.respect_claims",
+              "cells": [
+                "The MRU Corruption effect",
+                "Standing within 6 blocks of a leaking machine; one layer per leak",
+                "From level II on, now and then {cfg:general.corruption.mru_corruption_health_percent|pct} of your max health",
+                "Walk away and it runs out (see below)"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.mru_corruption_lethal",
+              "cells": [
+                "",
+                "",
+                "Like Poison it can't kill, and at worst leaves you half a heart",
+                ""
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "cells": [
+                "Matrix damage",
+                "Added every second by an MRUCU holding 10,000+ to anyone within 12 blocks",
+                "Doesn't hurt by itself, but enough of it turns into corruption effects",
+                "Never wears off"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.effects_enabled",
+              "cells": [
+                "Matrix damage",
+                "Added every second by an MRUCU holding 10,000+ to anyone within 12 blocks",
+                "Just keeps adding up",
+                "Never wears off"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.draw_requires_cure_tier"
+              ],
+              "cells": [
+                "Corruption effects",
+                "Matrix damage that has built up, once you have opened a Soul Pentacle",
+                "Stay until cured, kept even when you die",
+                "Only the [[pentacle/pentacle]] cures them"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "!cfg:general.corruption.draw_requires_cure_tier"
+              ],
+              "cells": [
+                "Corruption effects",
+                "Matrix damage that has built up",
+                "Permanent little ailments, kept even when you die",
+                "Only the [[pentacle/pentacle]] cures them"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Where they come from"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Machine leaks</em>: machines like the Radiating Chamber and Magician Table leak MRU while they work. It flows into the nearest MRUCU within 32 blocks across and 16 up or down, or forms a new one beside the machine ([[crafting/corruption]]).",
+            "<em>The diamond ritual</em>: see below.",
+            "<em>Ancient ruins</em>: generated with the world; see below."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Past 10,000"
+        },
+        {
+          "type": "p",
+          "text": "Once an MRUCU holds 10,000 MRU, every second it adds <em>matrix damage</em> to players within 12 blocks, 40 points while it holds 10,000 to 20,000 and 80 points when it is full at 20,000. Creative mode is unaffected. Below 10,000 it is completely harmless."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Matrix damage doesn't wear off. Enough of it turns into <em>corruption effects</em> ([[corruption/matrix_damage]]), and only the [[pentacle/pentacle]] can cure them. Until you open your first finished pentacle the damage just builds up and forms nothing. After that every kind of effect can form, though it takes a lot of damage to make one."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "Matrix damage doesn't wear off. Enough of it turns into permanent <em>corruption effects</em> ([[corruption/matrix_damage]]), and only the [[pentacle/pentacle]] can cure them."
+        },
+        {
+          "type": "h",
+          "text": "Seeing, blocking and containing them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>See</em>: hold or wear a {item:essentialcraft5:magic_monocle} to see MRUCUs through walls ([[gear/magic_monocle]]).",
+            "<em>Gauge it</em>: an MRUCU shows no number, only rays whose length grows with what it holds. The longest ray reaches about 1 block out at 5,000, about 2 at 10,000 and about 4 when full at 20,000.",
+            "<em>Move</em>: use the {item:essentialcraft5:mru_mover} to carry one off to a corner you seldom visit ([[crafting/corruption]]).",
+            "<em>Wall off</em>: blocks between the MRUCU and you stop part of the damage, as the table below shows.",
+            "<em>Armor up</em>: a full set of MHS (Magical Hazmat Suit) armor cuts the damage per second from 40 / 80 to 1 / 3 ([[gear/mhs_armor]]).",
+            "<em>Contain</em>: the MRU stored in an Enrichment Chamber never hurts anyone. MRUCUs floating inside its shell, whether grown by leaky machines shut in there or moved in, stop hurting anyone once an {item:essentialcraft5:ec_balancer} is built into the shell ([[pentacle/ec_balancer]])."
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Block in between",
+            "Chance to hit you"
+          ],
+          "widths": [
+            5,
+            3
+          ],
+          "rows": [
+            [
+              "Nothing",
+              "Every time"
+            ],
+            [
+              "{item:essentialcraft5:fortified_stone}",
+              "1/2"
+            ],
+            [
+              "{item:essentialcraft5:fortified_glass}",
+              "1/3"
+            ],
+            [
+              "{item:essentialcraft5:magic_plating}",
+              "1/5"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_plating}",
+              "1/7"
+            ],
+            [
+              "{item:essentialcraft5:pale_plating}",
+              "1/10"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_glass}",
+                "1/15"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_stone}",
+                "1/18"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_plating}",
+                "1/36"
+              ]
+            },
+            [
+              "Enrichment Chamber parts such as the controller, acceptor and holding blocks",
+              "1/100"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Only the strongest block on the line between the MRUCU and you counts, so stacking layers doesn't help. Platings are made in [[alloys/plating]]."
+        },
+        {
+          "type": "h",
+          "text": "The MRU Corruption effect"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.respect_claims",
+          "text": "This is the first one in the table at the top. Each time a machine leaks, <em>the machine's owner</em> gets one more layer of \"{lang:effect.essentialcraft5.mru_corruption}\" if within 6 blocks across and 3 up or down. Only whoever placed the machine gets it; teammates, passers-by and neighbors never do."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.respect_claims",
+          "text": "This is the first one in the table at the top. Each time a machine leaks, players within 6 blocks across and 3 up or down get one more layer of \"{lang:effect.essentialcraft5.mru_corruption}\"."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The first layer gives level I for 10 seconds; each layer after that adds 0.1 seconds.",
+            "When a layer is added, every full 100 seconds of remaining time is one more level.",
+            "From level II on, each second has a (level − 1)/16 chance of a magic hit worth {cfg:general.corruption.mru_corruption_health_percent|pct} of your max health, and MHS armor softens it.",
+            "It isn't a status effect, so instead of the top-right corner it shows as a purple-framed icon left of your hotbar, and milk, totems and cleansing can't remove it. It fades when you die."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Standing by one machine, the remaining time grows by about 1 second each second, reaching level II after about 90 seconds and level III after about 190. Once you leave, the level stays where it is and the effect ends when the time runs out."
+        },
+        {
+          "type": "h",
+          "text": "The diamond ritual"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:emerald_block",
+            "R": "minecraft:soul_sand"
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:diamond"
+        },
+        {
+          "type": "p",
+          "text": "Drop a {item:minecraft:diamond} on the same layout as the Soul Stone ritual and no item comes out. Each one instead has a 60% chance to pour 5,000 MRU into the nearest MRUCU within 32 blocks, or to form a new one right there if there is none. Two diamonds can bring one up to 10,000, so think it through before you drop diamonds here."
+        },
+        {
+          "type": "h",
+          "text": "Ancient ruins"
+        },
+        {
+          "type": "p",
+          "text": "Ancient ruins are rare, about one per two or three hundred chunks, and most lie buried in Overworld stone between y 0 and 127. Each is a stone brick cage walled with iron bars, holding four dungeon chests and four spawners, with an MRUCU hanging in the middle. The forebears built these cages the way the people of Hoanna did, to hold MRUCUs that kept on growing. The occasional one out on the surface or in a cave is a stone brick platform, sometimes with chests."
+        },
+        {
+          "type": "p",
+          "text": "The MRUCU in a ruin holds 5,000–10,000 MRU, just under the harmful line, but don't run machines next to it or their leaks will push it past 10,000. The chests hold the same loot as vanilla dungeons and may also turn up [[baubles/finding|special baubles]]."
+        },
+        {
+          "type": "p",
+          "text": "An MRU Golem guards the MRUCU. It wakes when you get within {cfg:general.mobs.mru_golem.trigger_radius} blocks and appears on the ground above the ruin. Early gear won't beat it ([[bestiary/mru_golem]]). Ruins generated before this update have no golem.",
+          "if": "cfg:general.mobs.mru_golem.trigger_radius>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_wraith.spawn_weight>0",
+          "text": "MRUCUs holding {cfg:general.mobs.matrix_wraith.min_presence_mru} MRU or more also draw [[bestiary/matrix_wraith|Matrix Wraiths]] into the dark around them, and the one in a ruin is big enough ([[corruption/matrix_damage]])."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "In Hoanna, ancient ruins are far more common, about one every thirty-odd chunks ([[hoanna/lands]])."
+        }
+      ]
+    },
+    {
+      "id": "glossary",
+      "title": "Glossary",
+      "icon": "minecraft:book",
+      "summary": "Common terms, one line each",
+      "blocks": [
+        {
+          "type": "table",
+          "header": [
+            "Term",
+            "Meaning",
+            "See"
+          ],
+          "widths": [
+            2,
+            5,
+            3
+          ],
+          "rows": [
+            [
+              "MRU",
+              "Magical Radiation Unit, this mod's electricity. It is what machines gather, store and use up",
+              "[[start/mru]]"
+            ],
+            [
+              "Tick",
+              "The game's unit of time: 20 ticks = 1 second. \"Per tick\" in this book means every 1/20 of a second",
+              "—"
+            ],
+            [
+              "Balance",
+              "A number from 0 to 2 carried by all MRU: {balance:pure} is exactly 1.0, {balance:frozen} below 1.0, {balance:chaos} above 1.0",
+              "[[start/mru]]"
+            ],
+            [
+              "Generator",
+              "A machine that produces MRU on its own",
+              "[[generators/heat_generator]]"
+            ],
+            [
+              "Bound Gem",
+              "A gem that remembers a source; put it in a machine and MRU flows through the air, no pipes or wires",
+              "[[crafting/bound_gem]]"
+            ],
+            [
+              "Drops",
+              "Grains of the four elements, fire, water, earth and air, mined from infused ores",
+              "[[elements/ores]]"
+            ],
+            [
+              "MRU Matrix",
+              "An invisible layer of MRU around every living thing that shields you from MRU",
+              "[[mru/soul_stone]]"
+            ],
+            [
+              "UBMRU",
+              "The energy stored in your matrix; gained by killing creatures yourself, lost on death",
+              "[[mru/ubmru]]"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "Matrix rank",
+                "Your matrix has nine ranks; each takes a won trial at the Matrix Crucible and gives you a new ability",
+                "[[matrix/overview]]"
+              ]
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "Matrix Codex",
+                "Which kinds of hostile mob you have killed yourself, each counted once; ranks need enough of them",
+                "[[matrix/codex]]"
+              ]
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "Alignment",
+                "The passive your matrix type gives you from rank 3",
+                "[[matrix/alignment]]"
+              ]
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "Matrix Reservoir",
+                "MRU you can hold in yourself from rank 2; lost on death",
+                "[[matrix/reservoir]]"
+              ]
+            },
+            [
+              "MRUCU (MRU cluster)",
+              "A floating clump of MRU, usually leaked by machines; harmful once it holds 10,000",
+              "[[start/mrucu]]"
+            ],
+            [
+              "The MRU Corruption effect",
+              "A harmful effect that builds up while you stand by leaking machines and wears off once you leave",
+              "[[start/mrucu]]"
+            ],
+            [
+              "Matrix damage",
+              "Hidden damage an MRUCU holding 10,000+ adds to your matrix; it doesn't wear off",
+              "[[corruption/matrix_damage]]"
+            ],
+            {
+              "if": [
+                "cfg:general.computer_seal.enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "Curio Seal Field",
+                "A field built into the full Computer Guy's Suit: players it covers lose the effect of everything in their accessory bar for a while",
+                "[[computer/seal_field]]"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "cells": [
+                "Corruption effects",
+                "Ailments that built-up matrix damage turns into; they stay until the Soul Pentacle cures them",
+                "[[pentacle/pentacle]]"
+              ]
+            },
+            [
+              "Matrix projection",
+              "A \"matrix negative\" made from a Soul Stone, in frozen, chaos and magic kinds",
+              "[[generators/projections]]"
+            ],
+            [
+              "{item:essentialcraft5:magic_plate}, {item:essentialcraft5:magic_fortified_plating}, {item:essentialcraft5:magic_plating}",
+              "The Magical Plate is a part, made from a Magic Fortified Plate and 4 Magical Ingots, and the Magic Fortified Plate is one Magical Fortified Stone worked in the Magician Table. Magic Plating is a building block, 16 from 4 Magical Plates",
+              "[[crafting/magician_crafts]]"
+            ],
+            [
+              "{item:essentialcraft5:iron_support}, {item:essentialcraft5:fortified_frame}",
+              "Two different parts. The Iron Frame is crafted from iron and Elemental Gems in Chapter 1, the Magic Fortified Frame from Magical Fortified Stone and Glass in Chapter 3",
+              "[[crafting/fortified]]"
+            ],
+            [
+              "Material families",
+              "Recipe slots that ask for a magic plate or a magic core usually take the better ones of the same family too, such as Pale, Mithriline and Demonic Plates or the Pale Elemental Core and Demonic Core. The recipe picture cycles through what fits",
+              "[[alloys/pale]]"
+            ],
+            [
+              "Soul storage",
+              "Carryable items that store MRU and power your gear like batteries",
+              "[[storage/soul_storage]]"
+            ],
+            [
+              "Enrichment Chamber",
+              "A big MRU battery built from shell blocks",
+              "[[enrichment/controller]]"
+            ],
+            [
+              "ESPE",
+              "Ender Star Pulse Energy, the second kind of energy. Crystal pillars gather it, and the Mithriline Furnace and Wind Rune altars use it",
+              "[[mithriline/mithriline_ingot]]"
+            ],
+            [
+              "Pillar spot, tier",
+              "A spot in a structure that takes a crystal pillar is a pillar spot. Crystal pillars and the Soul Pentacle both come in tiers, and a higher-tier spot needs a pillar of high enough tier",
+              "[[mithriline/crystal_pillar]]"
+            ],
+            [
+              "Imbuing",
+              "Pouring the ESPE in a Wind Rune altar's pillars into the item in your hand to turn it into something else, such as a diamond into a Wind Crystal",
+              "[[wind/wind_rune]]"
+            ],
+            [
+              "Wind Relation",
+              "How much the wind likes you. Air Potions and a few other things raise it",
+              "[[wind/air_potion]]"
+            ],
+            [
+              "Windbound",
+              "The state you get by imbuing your Soul Stone with wind on a Wind Rune",
+              "[[wind/windbound]]"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.wind_wish.enabled"
+              ],
+              "cells": [
+                "Wind wishes, Wind Marks",
+                "Small tasks the wind gives you once you are Windbound; each one done adds a Wind Mark, and the Wind Tablet only opens the gate once you have enough",
+                "[[wind/wishes]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Wind Horn",
+                "A goat horn imbued with wind; blown at night it calls an Archmage to you",
+                "[[wind/wind_horn]]"
+              ]
+            },
+            [
+              "Wind Mage, Archmage",
+              "Ranged monsters that show up at night in the Overworld, in three ranks; the red-robed Archmage drops the Trapped Wind for the Wind Tablet",
+              "[[wind_mage/wind_mages]]"
+            ],
+            {
+              "if": "mod:curios",
+              "cells": [
+                "Accessory slots",
+                "The ring, necklace and belt slots on your inventory screen (added by the Curios mod); soul storage and special baubles can be worn there",
+                "[[baubles/finding]]"
+              ]
+            },
+            [
+              "MHS armor",
+              "The Magical Hazmat Suit: armor that shields you from MRUCU matrix damage, the usual protection early on",
+              "[[gear/mhs_armor]]"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "The first world ruined by MRU, reached through a gate made with a Wind Tablet",
+                "[[hoanna/legend]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Relics",
+                "What Hoanna's ruin chests hold: titanite, Void Plating, Void Cores, MRU Reactors, embers and more",
+                "[[hoanna/relics]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Embers",
+                "A kind of relic in eight varieties, used to forge Ember Elemental Swords",
+                "[[hoanna/relics]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Calamity",
+                "A sun array, poison fumes, darkness or an earthquake that strikes Hoanna now and then",
+                "[[hoanna/events]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Ackronite",
+                "A metal you can only get by trading with demons; the main material of Chapters 18 and 20",
+                "[[demons/trade]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.demon.standing.enabled"
+              ],
+              "cells": [
+                "Demonic Renown",
+                "+1 for every completed trade with a demon; enough of it gets you better terms",
+                "[[demons/standing]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Holographic Projection",
+                "The boss of Chapter 18, summoned in Hoanna with a Holopad; beating it is the only way to get math cores",
+                "[[hologram/hologram]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Math cores",
+                "Addition, subtraction, multiplication and division cores; only the Holographic Projection drops them, and the Computer Engine needs all four",
+                "[[hologram/math_cores]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Glitchy Core",
+                "A core every Holographic Projection drops, carrying a target balance; a Radiating Chamber decodes it into Inquisitorium Coordinates",
+                "[[inquisitorium/glitchy_core]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Inquisitorium Sentinel",
+                "The boss of Chapter 19, an advanced Holographic Projection; its attacks echo, and its hits add matrix damage",
+                "[[inquisitorium/sentinel]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.inquisitorium.echo_ratio"
+              ],
+              "cells": [
+                "Echo",
+                "The Sentinel's trick: once an attack ends, a weaker copy of it joins the next one",
+                "[[inquisitorium/sentinel]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Dreadlands",
+                "Parts of Hoanna covered in dark brown Dread Dirt, with nothing but dead bushes and mushrooms on it",
+                "[[hoanna/lands]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Magical fruit",
+                "Fruit growing on the grass of Hoanna's magically corrupted lands; very filling",
+                "[[hoanna/flora]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "cells": [
+                "Hoanna radiation",
+                "Radiation you build up by staying in Hoanna, which lowers your max health; not the same as the Radiating Chamber's \"MRU radiation\"",
+                "[[hoanna/radiation]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.collapse.enabled"
+              ],
+              "cells": [
+                "Collapse",
+                "An MRUCU shut in a Hoanna Enrichment Chamber slowly condensing into a Void Core or an MRU Reactor",
+                "[[hoanna/collapse]]"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0",
+              "cells": [
+                "Corrosion",
+                "A status effect: while it lasts you cannot heal. Not the same as MRU Corruption or corruption effects",
+                "[[guns/lens_effects]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.divider_gun.affect_bosses",
+                "cfg:general.divider_gun.boss_mode_ticks>0"
+              ],
+              "cells": [
+                "Bisected",
+                "A status effect: the creature deals half damage and receives half healing; the Divider Gun puts it on bosses",
+                "[[hologram/divider_gun]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Module",
+                "An add-on for the Computer Guy's Suit that gives it one ability; blank modules are their base",
+                "[[terminal/install]]"
+              ]
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "cells": [
+                "Attunement",
+                "Gear builds points in real fights and rises stage by stage; not the same as your own matrix rank",
+                "[[attunement/overview]]"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "materials",
+      "title": "Materials at a Glance",
+      "icon": "essentialcraft5:mithriline_ore",
+      "summary": "Where common materials come from",
+      "items": [
+        "essentialcraft5:mithriline_ore",
+        "essentialcraft5:nether_mithriline_ore",
+        "essentialcraft5:end_mithriline_ore",
+        "essentialcraft5:mithriline_dust",
+        "essentialcraft5:mithriline_dust_block"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The table below lists where the most common early and mid-game materials come from. Click a name to jump to the page about it."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Material",
+            "Comes from",
+            "See"
+          ],
+          "widths": [
+            4,
+            5,
+            3
+          ],
+          "rows": [
+            [
+              "The four drops",
+              "Mining infused ores, or ground rituals",
+              "[[elements/ores]]"
+            ],
+            [
+              "{item:essentialcraft5:elemental_gem}",
+              "Crafted from the four drops, or mined from Elemental Infused Ore",
+              "[[elements/elemental_gem]]"
+            ],
+            [
+              "{item:essentialcraft5:soul_stone}",
+              "The emerald ritual",
+              "[[mru/soul_stone]]"
+            ],
+            [
+              "{item:essentialcraft5:fortified_stone}, {item:essentialcraft5:fortified_glass}",
+              "Stone and glass in the Radiating Chamber",
+              "[[crafting/fortified]]"
+            ],
+            [
+              "{item:essentialcraft5:magical_ingot}, {item:essentialcraft5:magical_water}",
+              "Magician Table",
+              "[[crafting/magician_crafts]]"
+            ],
+            [
+              "MRU Shard up to Large MRU Chunk",
+              "Quartz refined step by step in the Magician Table",
+              "[[storage/crystals]]"
+            ],
+            [
+              "{item:essentialcraft5:magical_slag}",
+              "Byproduct of the Heat Generator burning fuel",
+              "[[generators/heat_generator]]"
+            ],
+            [
+              "{item:essentialcraft5:magical_essence}",
+              "Radiating Chamber: redstone dust + blaze powder",
+              "[[alloys/magical_essence]]"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "Radiating Chamber: lapis block + gold ingot",
+              "[[alloys/pale]]"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_dust}",
+              "Mining Mithriline Ore, see below",
+              "—"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_ingot}",
+              "Crafted from Mithriline Dust and a Magical Ingot, or made in the Mithriline Furnace",
+              "[[mithriline/mithriline_ingot]]"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Void Core, MRU Reactor",
+                "Chests in Hoanna's ruins",
+                "[[hoanna/relics]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ackronite_ingot}",
+                "Trading with demons",
+                "[[demons/ackronite]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:glitchy_core}",
+                "Always dropped by the Holographic Projection and the Inquisitorium Sentinel",
+                "[[inquisitorium/glitchy_core]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:inquisitorium_chip}",
+                "Defeat the Inquisitorium Sentinel",
+                "[[inquisitorium/chip]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Mithriline Ore"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:mithriline_ore",
+            "essentialcraft5:nether_mithriline_ore",
+            "essentialcraft5:end_mithriline_ore",
+            "essentialcraft5:mithriline_dust",
+            "essentialcraft5:mithriline_dust_block"
+          ],
+          "per_row": 5
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:mithriline_ore} turns up in the Overworld, the Nether and the End, in the same rock as infused ores, and any pickaxe mines it. Each block gives 3–10 {item:essentialcraft5:mithriline_dust}, or 3–34 with Fortune III, and Silk Touch gives the ore itself."
+        },
+        {
+          "type": "p",
+          "text": "Nine Mithriline Dust pack into a block and unpack back into nine. From Chapter 11 on you'll go through a lot of it, so dig up what you find whenever you're mining, with Fortune if you can."
+        },
+        {
+          "type": "h",
+          "text": "Vanilla materials for Chapters 1–5"
+        },
+        {
+          "type": "p",
+          "text": "This is roughly what the required steps of Chapters 1–5 use up between them. Optional machines come on top."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Material",
+            "About",
+            "Mostly for"
+          ],
+          "rows": [
+            [
+              "{item:minecraft:iron_ingot}",
+              "150",
+              "Magical Ingots, Elemental Cores, assorted plates and eyes"
+            ],
+            [
+              "{item:minecraft:diamond}",
+              "9",
+              "the Radiating Chamber's 4 Diamond Plates, the Red Soul Matter"
+            ],
+            [
+              "{item:minecraft:emerald}",
+              "about 20",
+              "the ritual's emerald block, Soul Stones, Emerald Plates"
+            ],
+            [
+              "{item:minecraft:ender_pearl}",
+              "9",
+              "Eyes of Absorption, MRU Collecting Devices, Matrix Links"
+            ],
+            [
+              "{item:minecraft:gold_ingot}",
+              "8",
+              "MRU Collecting Devices, Matrix Links"
+            ],
+            [
+              "{item:minecraft:quartz}",
+              "8",
+              "Bound Gems, MRU crystals"
+            ],
+            [
+              "{item:minecraft:obsidian}",
+              "8",
+              "2 Obsidian Plates"
+            ],
+            [
+              "{item:minecraft:soul_sand}",
+              "4",
+              "the Soul Stone ritual"
+            ],
+            [
+              "{item:minecraft:ice}, {item:minecraft:snow_block}, {item:minecraft:glowstone}",
+              "8, 8 and 2",
+              "the 2 Cold Stones in the Cold Distillator recipe; the ice and snow around it come on top"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faq",
+      "title": "Common Mistakes",
+      "icon": "minecraft:writable_book",
+      "summary": "The traps new players fall into",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "MRU and UBMRU"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Dying loses all your UBMRU</em>, so turn it into MRU as soon as you have some ([[mru/ubmru]]).",
+            "<em>Only your own kills give UBMRU</em>. Arrows count; kills by pets or machines don't.",
+            "<em>The Matrix Destructor only works while the Soul Stone's owner is online</em>, so never hand a stone bound to you to someone else ([[mru/matrix_absorber]])."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Machines"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Bound Gems have a range</em>. The source must be in the same dimension, within 16 blocks along each axis, in a loaded chunk ([[crafting/bound_gem]]).",
+            "<em>Every machine fills itself up first</em>, so when several machines share one source, whichever pulls first hoards it.",
+            "<em>Breaking a machine loses the MRU stored in it</em>, though its items drop out.",
+            "<em>A Heat Generator with air on any one side makes nothing</em> ([[generators/heat_generator]]).",
+            "<em>Old MRU in a Radiating Chamber holds its Balance back</em>, so use an empty chamber for frozen and chaos projections ([[generators/projections]]).",
+            "<em>A full output slot on the Magician Table resets its progress</em>, so empty it in time.",
+            "<em>Early machines stop when they get a redstone signal</em>. That goes for the Matrix Destructor, Radiating Chamber, Magician Table, Heat Generator, Natural Furnace, Cold Distillator and Charging Chamber. If a machine sits idle, look for redstone nearby.",
+            "<em>Machines in this mod never mine or place blocks for you</em>, and never light fires ([[automation/rules]])."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Safety"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+              "text": "<em>Don't hang around a working Radiating Chamber or Magician Table</em>, or you'll build up the MRU Corruption effect ([[crafting/corruption]])."
+            },
+            "<em>Don't let an MRUCU grow past 10,000</em>. Past that it damages the matrix of players within 12 blocks ([[start/mrucu]]).",
+            "<em>Only one bauble of each kind takes effect</em> ([[baubles/finding]])."
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "Curios"
+        },
+        {
+          "type": "list",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "items": [
+            "<em>Curios suddenly stop working and the slots show a sealed icon</em>. Someone nearby is wearing the whole Computer Guy's Suit with the Curio Seal Field on; get more than {cfg:general.computer_seal.radius|add:2} blocks away and they work again ([[computer/seal_field]])."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Coming from the original"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Old habits can trip you up</em>. Many things were renamed, reworked or removed, so read [[from_ec4/overview|the appendix on changes from EC4]] first."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "title": "Numbers at a Glance",
+      "icon": "minecraft:comparator",
+      "summary": "Key numbers for common machines",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "Generators"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Machine",
+            "Output",
+            "Holds"
+          ],
+          "widths": [
+            4,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:matrix_absorber}",
+              "{cfg:machines.matrix_absorber.ubmru_usage} UBMRU → {cfg:machines.matrix_absorber.mru_generated} MRU per tick",
+              "{cfg:machines.matrix_absorber.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:heat_generator}",
+              "{cfg:machines.heat_generator.mru_generated} × the four side factors per tick ({cfg:machines.heat_generator.mru_generated|mul:0.81450625|add:-0.499999|int} with lava on all sides)",
+              "{cfg:machines.heat_generator.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:natural_furnace}",
+              "{cfg:machines.natural_furnace.mru_generated} per tick while burning a plant",
+              "{cfg:machines.natural_furnace.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:cold_distillator}",
+              "Sum of nearby cold values (rounded down) × {cfg:machines.cold_distillator.mru_gen_modifier} per tick",
+              "{cfg:machines.cold_distillator.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:sun_ray_absorber}",
+              "{cfg:machines.sun_ray_absorber.mru_generated} per tick while a beam hits it",
+              "{cfg:machines.sun_ray_absorber.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:ender_generator}",
+              "{cfg:machines.ender_generator.mru_generated} per hit on an Enderman",
+              "{cfg:machines.ender_generator.max_mru}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Early machine capacity"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:radiating_chamber}",
+              "{cfg:machines.radiating_chamber.max_mru} MRU"
+            ],
+            [
+              "{item:essentialcraft5:magician_table}",
+              "{cfg:machines.magician_table.max_mru} MRU"
+            ],
+            [
+              "{item:essentialcraft5:charging_chamber}",
+              "{cfg:machines.charging_chamber.max_mru} MRU"
+            ],
+            [
+              "{item:essentialcraft5:ray_tower}",
+              "{cfg:machines.ray_tower.max_mru} MRU"
+            ],
+            [
+              "Bound Gem range",
+              "16 blocks along each axis"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "MRUCUs"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Most one can hold",
+              "20,000 MRU"
+            ],
+            [
+              "Starts hurting",
+              "From 10,000, within 12 blocks"
+            ],
+            [
+              "Matrix damage per second",
+              "10,000–20,000: 40; full at 20,000: 80"
+            ],
+            [
+              "See",
+              "[[start/mrucu]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "Matrix ranks"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.matrix_rank.enabled",
+          "rows": [
+            [
+              "Tolerance per rank",
+              "+{cfg:general.matrix_rank.tolerance_per_rank|pct}"
+            ],
+            [
+              "Matrix Reservoir",
+              "{cfg:general.matrix_rank.pool_per_rank} × (rank − 1)"
+            ],
+            [
+              "Filling the reservoir",
+              "Up to {cfg:general.matrix_rank.pool_absorb_per_second} MRU a second, reserve line {cfg:general.matrix_rank.pool_absorb_reserve} UBMRU"
+            ],
+            [
+              "Matrix Siphon",
+              "Up to {cfg:general.matrix_rank.siphon.amount} MRU, {cfg:general.matrix_rank.siphon.matrix_damage} matrix damage to you, {cfg:general.matrix_rank.siphon.cooldown_ticks|sec} cooldown"
+            ],
+            [
+              "Trial won",
+              "{cfg:general.matrix_rank.trial.success_matrix_damage_per_rank} × new rank matrix damage"
+            ],
+            [
+              "Trial lost",
+              "{cfg:general.matrix_rank.trial.fail_cooldown_seconds} s cooldown; moving more than {cfg:general.matrix_rank.trial.leave_radius} blocks away loses it"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Matrix Fortitude (rank 7)",
+                "× {cfg:general.matrix_rank.stability.matrix_damage_multiplier} more"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.matrix_rank.gates.calamity_beacon>0"
+              ],
+              "cells": [
+                "Calamity Beacon",
+                "Needs matrix rank {cfg:general.matrix_rank.gates.calamity_beacon}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Enrichment Chamber"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Shell size per side",
+              "{cfg:machines.enrichment_chamber.min_size}–{cfg:machines.enrichment_chamber.max_size} blocks"
+            ],
+            [
+              "Controller base capacity",
+              "{cfg:machines.enrichment_chamber.max_mru} MRU"
+            ],
+            [
+              "Each Holding Block adds",
+              "{cfg:machines.enrichment_chamber.mru_per_storage} MRU"
+            ],
+            [
+              "Shell re-checked",
+              "Every {cfg:machines.enrichment_chamber.recheck_interval|sec}"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.collapse.enabled"
+              ],
+              "cells": [
+                "MRUCU collapse (Hoanna)",
+                "1 per {cfg:machines.enrichment_chamber.collapse.seconds} seconds of progress, {cfg:machines.enrichment_chamber.collapse.mru} MRU each, ×{cfg:machines.enrichment_chamber.collapse.event_multiplier} during an event ([[hoanna/collapse]])"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "{item:essentialcraft5:mru_coil}"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Max range",
+              "{cfg:machines.mru_coil.max_radius} blocks"
+            ],
+            [
+              "Per target hit",
+              "{cfg:machines.mru_coil.mru_per_hit} MRU"
+            ],
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "cells": [
+                "Damage to monsters",
+                "{cfg:machines.mru_coil.monster_damage} per hit"
+              ]
+            },
+            {
+              "if": "cfg:machines.mru_coil.hurt_players",
+              "cells": [
+                "Damage to players",
+                "{cfg:machines.mru_coil.player_damage} + {cfg:machines.mru_coil.player_health_percent|pct} of max health per hit"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Wind wishes and the Wind Horn"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            {
+              "if": [
+                "cfg:general.wind_wish.enabled",
+                "cfg:general.wind_wish.required>0"
+              ],
+              "cells": [
+                "Wishes the Wind Tablet wants",
+                "{cfg:general.wind_wish.required}"
+              ]
+            },
+            {
+              "if": "cfg:general.wind_wish.enabled",
+              "cells": [
+                "Each wish",
+                "Raw relation +{cfg:general.wind_wish.points}, {cfg:general.wind_wish.deadline_ticks|div:24000|round:1} in-game days to do it ([[wind/wishes]])"
+              ]
+            },
+            [
+              "Wind Horn",
+              "Imbued with {cfg:general.wind_horn.espe} ESPE; used up when blown, {cfg:general.wind_horn.cooldown_ticks|div:1200|round:1} minute cooldown"
+            ],
+            [
+              "What it calls",
+              "1 Archmage + {cfg:general.wind_horn.escorts} escorts; they leave after {cfg:general.wind_horn.despawn_ticks|div:1200|round:1} minutes with nobody fighting them ([[wind/wind_horn]])"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "Hoanna radiation"
+        },
+        {
+          "type": "kv",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "rows": [
+            [
+              "Per level",
+              "10,000 dose"
+            ],
+            [
+              "Max health",
+              "From 10,000 on, {cfg:general.radiation.cap_loss_percent_per_level|pct} of max health per level (Radiation II takes {cfg:general.radiation.cap_loss_percent_per_level|mul:2|pct}), at most {cfg:general.radiation.max_cap_loss_percent|pct}, never below 1"
+            ],
+            [
+              "Fading",
+              "1 per second in Hoanna, 5 per second elsewhere"
+            ],
+            [
+              "See",
+              "[[hoanna/radiation]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Demons"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "Summoning one",
+              "{cfg:general.demon.summon_espe} ESPE (taken at face value from the pillars)"
+            ],
+            [
+              "Each deal pays",
+              "{cfg:general.demon.reward_min}–{cfg:general.demon.reward_max} {item:essentialcraft5:ackronite_ingot}"
+            ],
+            {
+              "if": "cfg:general.demon.clear_radius>0",
+              "cells": [
+                "Monster clearing",
+                "One every {cfg:general.demon.clear_interval|sec}, within {cfg:general.demon.clear_radius} blocks"
+              ]
+            },
+            [
+              "See",
+              "[[demons/summoning]], [[demons/trade]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Holographic Projection"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "Health",
+              "{cfg:general.hologram.max_health}"
+            ],
+            {
+              "if": "cfg:general.hologram.max_damage_per_hit>0",
+              "cells": [
+                "Max damage per hit",
+                "{cfg:general.hologram.max_damage_per_hit}"
+              ]
+            },
+            [
+              "Summoning",
+              "A {item:essentialcraft5:holopad} under open sky; only one within 64 blocks"
+            ],
+            [
+              "Leaving the fight",
+              "Get beyond {cfg:general.hologram.escape_range} blocks in one go, change dimension or log out (past 24 blocks you are pulled back); it vanishes after {cfg:general.hologram.abandon_ticks|sec} with nobody fighting"
+            ],
+            [
+              "See",
+              "[[hologram/summoning]], [[hologram/hologram]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "The Inquisitorium"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "Decoding",
+              "The chamber's balance within {cfg:general.inquisitorium.decode_tolerance} of the core's target, for {cfg:general.inquisitorium.decode_ticks|sec}, {cfg:general.inquisitorium.decode_mru} MRU in total"
+            ],
+            [
+              "Coordinates",
+              "Within {cfg:general.inquisitorium.arrive_radius} blocks counts as arrived; the beacon must be that close too"
+            ],
+            [
+              "Sentinel health",
+              "{cfg:general.inquisitorium.max_health}"
+            ],
+            {
+              "if": "cfg:general.inquisitorium.echo_ratio",
+              "cells": [
+                "Echo",
+                "The previous attack repeats at {cfg:general.inquisitorium.echo_ratio|pct} strength"
+              ]
+            },
+            {
+              "if": "cfg:general.inquisitorium.matrix_damage_per_hit",
+              "cells": [
+                "Per hit that lands",
+                "Matrix damage +{cfg:general.inquisitorium.matrix_damage_per_hit}"
+              ]
+            },
+            [
+              "More",
+              "[[inquisitorium/decoding]], [[inquisitorium/sentinel]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Holographic Decoy"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "Per use",
+              "{cfg:general.holo_decoy.mru_per_use} MRU, cooldown {cfg:general.holo_decoy.cooldown_ticks|sec}"
+            ],
+            [
+              "Lure",
+              "{cfg:general.holo_decoy.radius} blocks around the double, for {cfg:general.holo_decoy.lifetime_ticks|sec}"
+            ],
+            {
+              "if": "cfg:general.holo_decoy.boss_ticks",
+              "cells": [
+                "Bosses fooled for",
+                "{cfg:general.holo_decoy.boss_ticks|sec}"
+              ]
+            },
+            [
+              "More",
+              "[[hologram/decoy]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.force_dome.enabled"
+          ],
+          "text": "{item:essentialcraft5:force_dome}"
+        },
+        {
+          "type": "kv",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.force_dome.enabled"
+          ],
+          "rows": [
+            [
+              "Range",
+              "{cfg:machines.force_dome.radius} blocks horizontally, the whole column from bedrock to sky"
+            ],
+            [
+              "Per second at full load",
+              "{cfg:machines.force_dome.mru_per_tick|mul:20} MRU, less when only some chunks are protected"
+            ],
+            {
+              "if": "cfg:machines.force_dome.max_per_owner>0",
+              "cells": [
+                "Running at once",
+                "At most {cfg:machines.force_dome.max_per_owner} per player"
+              ]
+            },
+            [
+              "Claim answers kept",
+              "{cfg:machines.force_dome.claim_cache_ticks|div:1200} min where you may build, {cfg:machines.force_dome.claim_cache_ticks|div:12000} h where you may not"
+            ],
+            [
+              "More",
+              "[[computer/force_dome]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "module:essentialcraft5:rewind_module||module:essentialcraft5:matrix_filter_module||module:essentialcraft5:matrix_shunt_module||module:essentialcraft5:accumulator_module||module:essentialcraft5:shred_module||module:essentialcraft5:phase_anchor_module"
+          ],
+          "text": "Computer Guy's Suit modules"
+        },
+        {
+          "type": "kv",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "module:essentialcraft5:rewind_module||module:essentialcraft5:matrix_filter_module||module:essentialcraft5:matrix_shunt_module||module:essentialcraft5:accumulator_module||module:essentialcraft5:shred_module||module:essentialcraft5:phase_anchor_module"
+          ],
+          "rows": [
+            {
+              "if": "module:essentialcraft5:rewind_module",
+              "cells": [
+                "Rewind",
+                "{cfg:general.computer_modules.rewind.mru_cost} MRU + {cfg:general.computer_modules.rewind.matrix_damage} matrix damage per rewind, cooldown {cfg:general.computer_modules.rewind.cooldown_ticks|div:1200|round:1} minutes, [[terminal/rewind]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "cells": [
+                "Matrix Filter",
+                "{cfg:general.computer_modules.matrix_filter.mru_per_effect} MRU per newly blocked effect; matrix damage = seconds × level × {cfg:general.computer_modules.matrix_filter.matrix_per_effect_second}, [[terminal/matrix_filter]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "cells": [
+                "Matrix Shunt",
+                "{cfg:general.computer_modules.matrix_shunt.ratio|pct} of magic damage, {cfg:general.computer_modules.matrix_shunt.matrix_per_max_health|div:100} matrix damage per 1% of max health, [[terminal/matrix_shunt]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "cells": [
+                "Accumulator",
+                "Swallowed damage adds up to {cfg:general.computer_modules.accumulator.max_ratio|mul:100|round:0|pctv} of the next hit, lost after {cfg:general.computer_modules.accumulator.forget_ticks|sec} idle, [[terminal/accumulator]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:shred_module",
+              "cells": [
+                "Shred",
+                "Armor −{cfg:general.computer_modules.shred.armor_per_level} and toughness −{cfg:general.computer_modules.shred.toughness_per_level} per level, up to {cfg:general.computer_modules.shred.max_level} levels, {cfg:general.computer_modules.shred.duration_ticks|sec}, [[terminal/shred]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "cells": [
+                "Phase Anchor",
+                "{cfg:general.computer_modules.phase_anchor.mru_per_second} MRU per second, {cfg:general.computer_modules.phase_anchor.radius|mul:2|add:1|int}-block cube, [[terminal/phase_anchor]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.wind.steadfast_points||cfg:general.wind.deflect_points",
+          "text": "Wind Pact"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.wind.steadfast_points||cfg:general.wind.deflect_points",
+          "rows": [
+            {
+              "if": "cfg:general.wind.steadfast_points",
+              "cells": [
+                "Steadfast",
+                "Wind relation {cfg:general.wind.steadfast_points} (after the true name), [[wind_mage/steadfast]]"
+              ]
+            },
+            {
+              "if": "cfg:general.wind.deflect_points",
+              "cells": [
+                "Wind Deflection",
+                "Wind relation {cfg:general.wind.deflect_points}, one deflected every {cfg:general.wind.deflect_cooldown_ticks|sec}, [[wind_mage/deflect]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.attunement.enabled",
+          "text": "Attunement"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.attunement.enabled",
+          "rows": [
+            [
+              "Points per stage",
+              "Stages 1–5: {cfg:general.attunement.thresholds}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "Matrix rank per stage",
+                "Stages 1–5: {cfg:general.attunement.rank_gate}"
+              ]
+            },
+            [
+              "Armor, per hit taken",
+              "{cfg:general.attunement.points_hit}, or {cfg:general.attunement.points_boss_hit} from a boss"
+            ],
+            [
+              "Budget",
+              "{cfg:general.attunement.budget_per_hour} an hour, up to {cfg:general.attunement.budget_cap}"
+            ],
+            [
+              "Health per stage",
+              "+{cfg:general.attunement.health_per_stage} per piece"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Weapon, per hit",
+                "{cfg:general.attunement.points_hit}; a kill {cfg:general.attunement.points_kill}, a boss {cfg:general.attunement.points_boss_kill}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Attack per stage",
+                "+{cfg:general.attunement.damage_per_stage|pct} for weapons"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

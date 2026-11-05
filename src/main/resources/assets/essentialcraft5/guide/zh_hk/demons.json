@@ -1,0 +1,936 @@
+{
+  "id": "demons",
+  "order": 100,
+  "group": "main",
+  "title": "第十七章 · 惡魔",
+  "subtitle": "召來惡魔，換取阿克羅尼特",
+  "icon": "essentialcraft5:demonic_pentacle",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "void_crystal_pillar",
+      "title": "{item:essentialcraft5:void_crystal_pillar}",
+      "icon": "essentialcraft5:void_crystal_pillar",
+      "summary": "比淡青柱高一檔的水晶柱",
+      "complete": "essentialcraft5:guide/demons/void_crystal_pillar",
+      "items": [
+        "essentialcraft5:void_crystal_pillar"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "阿克羅尼特只生在地獄，唯有惡魔看得見、挖得到。想要它，就得把惡魔請上來做買賣。它們要的東西稀奇古怪，給了，就一定換得回來，換多少卻全憑它們高興。",
+          "by": "《被遺忘的死靈之書》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出第一根{item:essentialcraft5:void_crystal_pillar}。這一章要搭一座惡魔五芒星，把惡魔召到陣上，再和它交易換取{item:essentialcraft5:ackronite_ingot}，後面兩章幾乎處處離不開阿克羅尼特。"
+        },
+        {
+          "type": "p",
+          "text": "先輩對惡魔所知不多，只在一部他們自己也不全信的舊書裏讀到過它們。五芒星上要立 4 根虛空水晶柱，這是本章最難湊的材料，所以先從它做起。"
+        },
+        {
+          "type": "h",
+          "text": "整章的備料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "材料",
+            "需要多少",
+            "來源"
+          ],
+          "widths": [
+            4,
+            2,
+            5
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:void_core}",
+              "<t>5</t>",
+              "從海納爾遺蹟的箱子裏開出，見[[hoanna/relics]]"
+            ],
+            [
+              "{item:essentialcraft5:void_mru_reactor}",
+              "<t>4</t>",
+              "同上"
+            ],
+            [
+              "{item:essentialcraft5:void_plating}",
+              "<t>28</t>",
+              "在魔力工作台裏用一塊虛空石壓出一塊，見[[hoanna/void_plating]]"
+            ],
+            [
+              "{item:essentialcraft5:void_stone}",
+              "<t>41</t>",
+              "13 塊鋪地，28 塊用來壓虛空板，一次合成可得 16 塊，見[[hoanna/void_stone]]"
+            ],
+            [
+              "{item:essentialcraft5:fire_focus}",
+              "<t>4</t>",
+              "[[essence/fuel_and_focus]]"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_crystal_pillar}",
+              "<t>16</t>",
+              "其中 12 根要升級成淡青柱，見[[pentacle/pale_crystal_pillar]]"
+            ],
+            [
+              "{item:essentialcraft5:pale_plating}",
+              "<t>20</t>",
+              "[[alloys/plating]]"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_plating}",
+              "<t>4</t>",
+              "[[mithriline/furnace]]"
+            ],
+            [
+              "{item:minecraft:glowstone}",
+              "<t>4</t>",
+              "地獄"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_crystal}",
+              "<t>49</t>",
+              "33 顆轉成黯淡水晶，16 顆做柱子。全用工作台合成約需 830 份米斯萊粉，改在熔爐裏做錠約需 250 份，也可以拿共鳴水晶一換一，見[[mithriline/conversions]]"
+            ],
+            [
+              "{item:minecraft:ender_eye}、{item:minecraft:ender_pearl}",
+              "各 <t>16</t>",
+              "用來做 16 根米斯萊柱，柱子本身另需 96 份米斯萊粉"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "風之祭壇和靈魂五芒星上的柱子以後還要接着攢風之水晶、治腐化，最好原樣留着，這 16 根另做一批。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+          "title": "最難湊的是核心",
+          "text": "虛空核心和 MRU 反應核只能從遺蹟箱子裏開出來，大約每 5 個箱子才各出 1 個。湊齊 5 個核心要翻二十五個左右的箱子，差不多是兩座城鎮的量，4 個反應核順路就夠了。翻遺蹟時把它們留着，已經當升級裝在工作台上的，做柱子之前要先取下來，見[[storage/upgrades]]。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "title": "最難湊的是核心",
+          "text": "虛空核心和 MRU 反應核來得最慢，遺蹟箱子大約每 5 個才各開出 1 個，富集倉裏的聚集體[[hoanna/collapse|坍縮]]一次要 {cfg:machines.enrichment_chamber.collapse.seconds|div:60|round:1} 分鐘，也只出 1 個。要湊齊 5 個核心和 4 個反應核，最好兩頭一起來，翻遺蹟時把它們留着，在海納爾也開一兩座富集倉坍縮。已經當升級裝在工作台上的，做柱子之前要先取下來，見[[storage/upgrades]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "淡青柱也要早點準備",
+          "text": "12 根淡青柱要用 33 顆{item:essentialcraft5:fading_crystal}，24 顆直接用，剩下 9 顆放進熔爐變成 72 份{item:essentialcraft5:fading_dust}。米斯萊熔爐前後一共要抽約 1.2 萬 ESPE，見[[mithriline/conversions]]，所以出發去翻遺蹟之前，就先讓熔爐開工。"
+        },
+        {
+          "type": "h",
+          "text": "製作虛空水晶柱"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:void_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "用 6 塊{item:essentialcraft5:void_plating}、1 個{item:essentialcraft5:void_core}和 1 個{item:essentialcraft5:void_mru_reactor}圍住一根{item:essentialcraft5:pale_crystal_pillar}，當原料的這根淡青柱會被用掉。"
+        },
+        {
+          "type": "p",
+          "text": "它和別的水晶柱一樣有三格高，會積攢 ESPE，拆掉任意一格都會整根掉下來，詳見[[mithriline/crystal_pillar]]。檔位越高攢得越快，米斯萊、淡青、虛空、惡魔一檔比一檔快，倍率也在那一篇裏。結構裏要求「虛空以上」的柱位，只認虛空柱和惡魔柱。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一根虛空水晶柱。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "靈魂五芒星升到 2 檔需要 4 根虛空柱，見[[pentacle/tier_two]]。",
+            "虛空柱加上阿克羅尼特錠和惡魔核心，可以升級成惡魔水晶柱，靈魂五芒星升 3 檔時要用，見[[pentacle/tier_three]]。",
+            "放在{item:essentialcraft5:magical_enchanter}旁邊時，一根柱子抵得上 <t>30</t> 個書架，只算底座那一格，魔力附魔台最高能到 {cfg:machines.magical_enchanter.max_enchant_level} 級，見[[devices/magical_enchanter]]。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demonic_pentacle",
+      "title": "{item:essentialcraft5:demonic_pentacle}",
+      "icon": "essentialcraft5:demonic_pentacle",
+      "summary": "7×7、五層高的陣，16 根水晶柱",
+      "complete": "essentialcraft5:guide/demons/pentacle",
+      "items": [
+        "essentialcraft5:demonic_pentacle"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：搭起一座惡魔五芒星。惡魔和 MRU 毫無瓜葛。陣上的 16 根水晶柱會替你積攢 ESPE，攢夠了就能召喚一隻惡魔，ESPE 是水晶柱朝着天空積攢的能量，詳見[[start/glossary]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_pentacle"
+        },
+        {
+          "type": "p",
+          "text": "五芒星本身是用 4 個{item:essentialcraft5:fire_focus}和 4 塊{item:essentialcraft5:void_plating}圍住 1 個{item:essentialcraft5:void_core}做成的。"
+        },
+        {
+          "type": "h",
+          "text": "擺法"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:demonic_pentacle"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "選一塊你平時常待的平地，頭頂要無遮擋，柱子才能積攢 ESPE，玻璃等透光方塊不會影響積攢。為什麼要選常待的地方，見下面的「坑」。"
+            },
+            {
+              "if": "!cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "選一塊你平時常待的平地，原因見下面的「坑」。"
+            },
+            "最下面一層鋪 13 塊{item:essentialcraft5:void_stone}和 20 塊{item:essentialcraft5:pale_plating}，顏色不限。",
+            "把五芒星放在正中那塊虛空石上，再在同一層四個正方向上隔兩格各放一塊{item:minecraft:glowstone}，四個斜角方向上隔一格各放一塊{item:essentialcraft5:mithriline_plating}。",
+            "按下表立起 16 根水晶柱，底座放在圖中標出的格子上。",
+            "五芒星所在的這一格和它上面一格要空着，惡魔會站在那裏。"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "柱位",
+            "數量",
+            "最低檔位"
+          ],
+          "widths": [
+            5,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "米斯萊護板上",
+              "<t>4</t>",
+              "任意水晶柱"
+            ],
+            [
+              "外圈的淡青護板上",
+              "<t>8</t>",
+              "淡青水晶柱"
+            ],
+            [
+              "熒石上",
+              "<t>4</t>",
+              "虛空水晶柱"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "地上的符文由暗灰轉為暗紅，明暗起伏着緩緩旋轉，柱子周圍有紅色光點上下飄動。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "柱子要有人在附近才會積攢 ESPE，詳見[[mithriline/crystal_pillar]]。你去海納爾翻遺蹟的時候，陣也就停了，所以最好建在家門口，或者你常待的地方附近。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:general.demon.clear_radius>0",
+          "title": "別建在刷怪塔旁邊",
+          "text": "召出來的惡魔會打死 {cfg:general.demon.clear_radius} 格內的敵對生物，被它打死的怪什麼也不掉，見[[demons/demon]]。"
+        },
+        {
+          "type": "h",
+          "text": "積攢速度"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "一根每秒",
+              "主世界 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:20}，終界 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:20}"
+            ],
+            [
+              "16 根每秒",
+              "主世界 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:320}，終界 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:320}"
+            ],
+            [
+              "一根最多存",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe}"
+            ],
+            [
+              "召喚一次",
+              "{cfg:general.demon.summon_espe} ESPE"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.demon.summon_espe==666",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "柱子從空攢到夠召喚一次，主世界要一分半鐘左右，終界只要二十來秒。你在附近忙別的時，柱子照樣在攢，每根都存得下很多，攢久了能一口氣連召好幾次。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "想快一點",
+          "text": "上表裏終界攢得快得多。後面兩章要和惡魔做很多筆交易，玩得久的人常把五芒星連同風之祭壇一起搬到終界，人就在那邊掛機。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書給惡魔五芒星的副標題沒頭沒尾，只有一句「它們在尋找靈魂，還有國王……很平常。」"
+        }
+      ]
+    },
+    {
+      "id": "summoning",
+      "title": "召喚",
+      "icon": "minecraft:soul_lantern",
+      "summary": "花費 ESPE，把惡魔召到陣上",
+      "complete": "essentialcraft5:guide/demons/summon",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：右鍵搭好的五芒星，從柱子裏抽出 {cfg:general.demon.summon_espe} ESPE，召來一隻惡魔。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "text": "等 16 根柱子合計攢夠 {cfg:general.demon.summon_espe} ESPE。這裏按柱子裏的原始數值扣，不像靈魂五芒星那樣打折，靈魂五芒星的算法見[[pentacle/cure]]。"
+            },
+            {
+              "if": "!cfg:general.corruption.effects_enabled",
+              "text": "等 16 根柱子合計攢夠 {cfg:general.demon.summon_espe} ESPE，這裏按柱子裏的原始數值扣，不打折。"
+            },
+            "確認五芒星所在的這一格和上方一格都是空的。",
+            "親手右鍵五芒星。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "一聲低吼過後，符文中央站起一個生着翅膀、雙眼發光的身影，面朝着你，陣邊飄着一縷縷黑煙。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "召喚不成時",
+          "text": "快捷欄上方會顯示原因，可能是結構哪一格不對、頭頂被擋住、陣上已經有一隻惡魔，或者柱子裏的 ESPE 不夠，這時還會寫明現有多少、要多少。召喚失敗不扣任何 ESPE。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "一座五芒星上同時只能站一隻惡魔，它想要什麼，召出來才知道。不想給的話，上前打它一下，它就會離開，再召一隻新的，見[[demons/demon]]。打發走的那隻花掉的 ESPE 不會退還。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "ESPE 按固定順序一根一根地抽，先抽米斯萊護板上的 4 根，再抽外圈的 8 根，最後才輪到熒石上的 4 根。",
+            "必須由玩家親手右鍵，機器和其他模組的自動化工具去點它都沒有反應。",
+            "惡魔會一直站在陣上不動，等你來[[demons/trade|交易]]。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demon",
+      "title": "惡魔",
+      "icon": "essentialcraft5:demon_spawn_egg",
+      "summary": "守在陣上替你清怪，等你前來交易",
+      "items": [
+        "essentialcraft5:demon_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:demon"
+        },
+        {
+          "type": "p",
+          "text": "惡魔從地獄上來，為的是做買賣，至少看上去是這樣。它立在召喚它的五芒星上一步也不挪，只會轉過頭盯着身邊的人。它不怕火，不受藥水影響，推不動、拴不住，也不會自己消失，只要你不打發它走，它就一直等着交易。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.demon.clear_radius>0",
+          "text": "它會清怪"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.demon.clear_radius>0",
+          "text": "每隔 {cfg:general.demon.clear_interval|sec}，它會挑一隻周圍 {cfg:general.demon.clear_radius} 格內的敵對生物，一擊打掉對方最大生命 1.6 倍的血量，幾乎沒有活得下來的。<b>被它打死的怪不掉東西，也不給經驗</b>。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.demon.clear_radius>0",
+            "cfg:general.demon.explosion_power>0"
+          ],
+          "text": "出手時它還會在那隻怪腳下引發一次爆炸，只傷得到它會攻擊的那類怪，玩家、寵物、村民、動物和地上的掉落物都不受影響，方塊也炸不壞。"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.demon.clear_radius>0",
+          "items": [
+            "凋零怪、終界龍等 Boss 它不會碰。",
+            "起了名字、被馴服、拴着繩或撿過東西的怪，它也不會碰。",
+            "它只清召喚者有權改動的地方的怪，範圍伸進別人的領地時，那邊的怪它不碰。召喚者不在線時，它只清召喚者在線時確認過的地方，這份記錄最多留一小時。世界重新打開，或者這一片沒人、區塊卸載以後，要等召喚者上線重新確認。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎樣讓它離開"
+        },
+        {
+          "type": "list",
+          "items": [
+            "召喚者或創造模式的玩家上前打它一下，它就會離開，別人打它、射它、炸它都沒有用。",
+            "五芒星的結構被破壞後，它幾秒內就會離開。",
+            "做成一筆[[demons/trade|交易]]後，它拿了東西就走。",
+            "不管它怎麼離開，召喚時花的 ESPE 都不退還。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "生成蛋",
+          "text": "創造模式物品欄裏有{item:essentialcraft5:demon_spawn_egg}。用蛋放出來的惡魔沒有召喚者，誰都能和它交易，可在多人遊戲裏它不清怪，因為沒法判斷該按誰有權改動的地方來算。它沒站在五芒星上的話，2 秒內就會離開。"
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "title": "交易",
+      "icon": "essentialcraft5:ackronite_ingot",
+      "summary": "交出它想要的東西，換取阿克羅尼特錠",
+      "complete": "essentialcraft5:guide/demons/trade",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：和惡魔做成一筆交易，拿到第一批{item:essentialcraft5:ackronite_ingot}。阿克羅尼特只能這樣換來，後面兩章要用掉好幾百個。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "右鍵惡魔打開交易界面，左邊寫着它要什麼、要幾個，下面寫着報酬。只有召喚者和創造模式的玩家能和它交易。",
+            "把東西放進右邊的格子，這一格只收它要的東西，也只收到它要的數量為止，多出來的留在你手上。",
+            "數量一放夠就成交，東西被收走，{cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 個阿克羅尼特錠直接進背包，背包滿了就掉在腳下，惡魔隨後離開。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裏多出了阿克羅尼特錠，並取得進度「{lang:advancements.essentialcraft5.demon_trade.title}」。"
+        },
+        {
+          "type": "h",
+          "text": "它會要什麼"
+        },
+        {
+          "type": "p",
+          "text": "每隻惡魔被召出來時，都會隨機定下自己想要的一樣東西，有便宜的，也有貴的。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.demon.standing.enabled",
+          "text": "你的契約之譽到了熟客以後，它會同時開兩樣，交哪樣都行，見[[demons/standing]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "類別",
+            "它會要的"
+          ],
+          "widths": [
+            2,
+            7
+          ],
+          "rows": [
+            [
+              "靈魂",
+              "村民、終界使者或風法師的{item:essentialcraft5:captured_soul} <t>1~7</t> 個，或者煉獄小鬼、遺民拾荒者的 <t>2</t> 個，見[[demons/soul_scriber]]"
+            ],
+            [
+              "原版材料",
+              "{item:minecraft:iron_block} ×8、{item:minecraft:diamond_block} ×2、{item:minecraft:ender_eye} ×32、{item:minecraft:bookshelf} ×64、{item:minecraft:tnt} ×64、{item:minecraft:enchanting_table} ×16"
+            ],
+            [
+              "原版稀有物",
+              "{item:minecraft:beacon}、{item:minecraft:enchanted_golden_apple}、{item:minecraft:nether_star}、{item:minecraft:filled_map}、{item:minecraft:player_head}、{item:minecraft:music_disc_11}，各 1"
+            ],
+            [
+              "本模組機器",
+              "{item:essentialcraft5:heat_generator} ×3、{item:essentialcraft5:magical_teleporter} ×2，以及{item:essentialcraft5:magical_enchanter}、{item:essentialcraft5:magical_repairer}、{item:essentialcraft5:mru_coil}、{item:essentialcraft5:ultra_heat_generator}各 1"
+            ],
+            [
+              "水晶柱與方塊",
+              "{item:essentialcraft5:mithriline_crystal_pillar} ×12、{item:essentialcraft5:pale_crystal_pillar} ×6、{item:essentialcraft5:void_crystal_pillar} ×3、{item:essentialcraft5:elemental_drops_block} ×32"
+            ],
+            [
+              "裝備與道具",
+              "風之工具 5 種、風之護甲 4 件、四種槍，以及{item:essentialcraft5:magical_shield}、{item:essentialcraft5:spiky_shield}、{item:essentialcraft5:emerald_heart}、{item:essentialcraft5:magic_water_bottle}、{item:essentialcraft5:magical_porkchop}、{item:essentialcraft5:chaos_fork}、{item:essentialcraft5:research_book}，每樣各 1 件，風之裝備見[[wind_gear/wind_tools]]，槍見[[guns/weapon_maker]]"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "挑着收",
+          "text": "幾個靈魂、8 個鐵塊、3 台熱力產能器、一本研究手冊這類便宜的要求，直接給它就好。要是一開口就要 64 個書架、16 個附魔台或 12 根米斯萊柱，打發走再召一隻往往更划算，召喚一次只要 {cfg:general.demon.summon_espe} ESPE。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "工具、盔甲、盾牌這類有耐久的東西必須是滿耐久，界面上會註明，槍不看耐久。改過名或帶附魔的物品照樣收。",
+            "放到一半想反悔，關掉界面東西就會退回來，惡魔中途離開時也會退回。",
+            "離惡魔超過 8 格時，交易界面會自動關閉，格子裏的東西也會退回。",
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "每做成一筆交易，[[demons/standing|契約之譽]] +1，攢多了惡魔會給你更好的條件。"
+            },
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "交易界面標題右邊寫着你現在的契約之譽，滑鼠移上去能看到各檔給什麼。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書説，翻遍了別的書都找不到答案，只有一本《被遺忘的死靈之書》講到阿克羅尼特，説它是隻存在於地獄的金屬，只有惡魔看得見，也只有惡魔挖得到。研究書接着提醒，惡魔只顧自己，總想着騙你。"
+        }
+      ]
+    },
+    {
+      "id": "standing",
+      "title": "契約之譽",
+      "icon": "essentialcraft5:ackronite_ingot",
+      "summary": "交易做得越多，惡魔越好説話",
+      "if": "cfg:general.demon.standing.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "你和惡魔每做成一筆交易，<hl>契約之譽</hl>就 +1。打發走的不扣也不加，死了、換維度都不掉。交易界面上寫着你現在的契約之譽，比如「契約之譽 23（契主）」。"
+        },
+        {
+          "type": "p",
+          "text": "攢到一定數，惡魔就給你更好的條件，後面的檔包含前面的："
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "熟客 · {cfg:general.demon.standing.regular}",
+              "召出來的惡魔同時開兩樣要價，交哪樣都算。第二樣貴一些，數量是平時的 {cfg:general.demon.standing.premium_multiplier|x}，挑的都是乘完還放得進一個投放格的東西（{item:minecraft:filled_map}、{item:minecraft:player_head} 這類每件都不一樣、疊不到一起的，永遠只要 1 件，不會當第二樣）；一樣都挑不出來時，改要 2 個同一種生物的{item:essentialcraft5:captured_soul}"
+            ],
+            [
+              "契主 · {cfg:general.demon.standing.patron}",
+              "每做成一筆，另給 {cfg:general.demon.standing.patron_xp} 點經驗"
+            ],
+            [
+              "血契 · {cfg:general.demon.standing.blood}",
+              "每隻召出來的惡魔能用一回，潛行時手持一個被俘靈魂右鍵它，交出這個靈魂，兩樣要價重新抽"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "摯契 · {cfg:general.demon.standing.oath}",
+                "潛行時手持{item:essentialcraft5:umbral_crystal}右鍵你自己召出來的惡魔，交出 {cfg:general.demon.standing.oath_cost} 個影晶，向它立誓，換一個{item:essentialcraft5:demon_oath}，見[[shade/oath]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "被俘靈魂怎麼來，見[[demons/soul_scriber]]。契約之譽不多給阿克羅尼特，只讓你少召幾次、少白跑幾趟。"
+        }
+      ]
+    },
+    {
+      "id": "soul_scriber",
+      "title": "靈魂刻刀與被俘靈魂",
+      "icon": "essentialcraft5:soul_scriber",
+      "summary": "收取村民、終界使者、風法師和煉獄小鬼的靈魂",
+      "complete": "essentialcraft5:guide/demons/soul",
+      "optional": true,
+      "items": [
+        "essentialcraft5:soul_scriber",
+        "essentialcraft5:captured_soul"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：用{item:essentialcraft5:soul_scriber}收取一個{item:essentialcraft5:captured_soul}。惡魔有時想要的是某種生物的靈魂，只有這把刻刀才收得到。它們拿靈魂去做什麼，那部舊書裏也沒寫。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:soul_scriber"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：把 1 塊地獄巖、1 顆地獄石英和 1 根木棍從上到下豎着擺成一列。"
+        },
+        {
+          "type": "h",
+          "text": "怎樣收取"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿着刻刀親手攻擊村民、終界使者、[[wind_mage/wind_mages|風法師]]、[[bestiary/nether_imp|煉獄小鬼]]或[[bestiary/hoanna_scavenger|遺民拾荒者]]。",
+            "這一擊過後它剩下的生命要是不到 1.5 顆心，刻刀就會收走它的靈魂，它當場倒下，什麼也不掉，只在原地留下一個被俘靈魂。",
+            "這一擊直接把它打死也行，它會照常掉東西，還會多掉一個靈魂。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一個被俘靈魂。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "收魂也是殺",
+          "text": "收走靈魂的那一擊就等於殺了它，村民的牀和工作站會空出來，附近的鐵人和其他村民也都會記下這筆賬。在別人的領地這類你打不了它的地方，也收不了它的靈魂。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "靈魂按生物種類區分，同一種可以堆疊到 64 個，物品名後面的括號裏寫着這是誰的靈魂。",
+            "刻刀打中生物不耗耐久，攻擊力只有 2，比木劍的 4 還低，正好拿來慢慢磨血。",
+            "只有玩家親手攻擊才算數，機器或橫掃攻擊打到的都不會收取，喪屍村民和流浪商人也不算村民。",
+            "終界使者在終界最多。惡魔要靈魂時一次要 1~7 個，煉獄小鬼和遺民拾荒者的只要 2 個，可以先攢幾個備着。",
+            "煉獄小鬼只在地獄荒地和靈魂沙峽谷裏有。它的精英小鬼頭目收不了靈魂。",
+            "遺民拾荒者在恐懼之地和海納爾沙漠裏，白天也有。它的精英遺民隊長，還有隊長叫來的拾荒者，都收不了靈魂。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ackronite",
+      "title": "阿克羅尼特",
+      "icon": "essentialcraft5:ackronite_ingot",
+      "summary": "錠 → 惡魔板 → 惡魔核心",
+      "complete": "essentialcraft5:guide/demons/ackronite",
+      "items": [
+        "essentialcraft5:ackronite_ingot",
+        "essentialcraft5:demonic_plate",
+        "essentialcraft5:demonic_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：把惡魔給的{item:essentialcraft5:ackronite_ingot}壓成{item:essentialcraft5:demonic_plate}，後面兩章的材料幾乎都從惡魔板開始。工坊手記裏畫的那套甲始終沒造出來，圖上用的就是惡魔板。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:demonic_plate",
+            "essentialcraft5:demonic_core"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在{item:essentialcraft5:magician_table}中間放 1 塊{item:essentialcraft5:magic_fortified_plating}，四個角放 4 個阿克羅尼特錠，花 2000 MRU 得到 4 塊惡魔板，見[[crafting/magician_table]]。",
+            "再用 4 塊惡魔板和 4 顆{item:essentialcraft5:elemental_gem}圍住 1 顆{item:essentialcraft5:mru_resonating_crystal}，做出{item:essentialcraft5:demonic_core}。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一塊惡魔板。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "第一個惡魔核心裝進工作台",
+          "text": "拿着惡魔核心右鍵魔力工作台，就能把它裝上，速度提升到 <t>×16</t>，見[[storage/upgrades]]，要拿它去合成時再取下來。後面要壓七十多次惡魔板、做三十份注魔合金，先做一個裝上，能省下好幾個小時。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "要積攢很多",
+          "text": "宅男套裝四件一共要 287 塊惡魔板，得壓 72 次、用掉 288 個錠，而每筆交易只給 {cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 個。從現在起就讓五芒星一直攢着 ESPE，有空就召一隻，詳細用量見[[computer/costs]]。"
+        },
+        {
+          "type": "h",
+          "text": "用途"
+        },
+        {
+          "type": "list",
+          "items": [
+            "凡是收「魔力板」一類材料的配方，都能用惡魔板代替，收「魔力核心」一類的都能用惡魔核心代替，[[guns/weapon_maker|武器工作台]]的核心格也認惡魔核心。",
+            "它是富神經元護板和宅男零件的主料，見[[hologram/neuronic_plating]]和[[computer/force_parts]]。",
+            "4 塊惡魔板能做出 16 塊{item:essentialcraft5:demonic_plating}，見[[demons/demonic_plating]]。",
+            "6 個錠、2 個惡魔核心加上一根虛空柱能做出惡魔水晶柱，靈魂五芒星升到 3 檔時要用，見[[pentacle/tier_three]]。",
+            "阿克羅尼特錠當槍械材料時，傷害 26，彈量 20，沒有後坐力，做成狙擊鏡能放大 16 倍，見[[guns/parts]]。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "purge",
+      "title": "淨化：2 檔五芒星",
+      "icon": "essentialcraft5:void_crystal_pillar",
+      "summary": "升到 2 檔，治矩陣類腐化",
+      "complete": "essentialcraft5:guide/pentacle/tier2",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：把第十二章的靈魂五芒星升到 2 檔，見[[pentacle/tier_two]]。這一章本來就在做虛空石和虛空水晶柱，材料都是現成的。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "從這裏往後，矩陣損傷會攢得很快，身邊養着一團存滿的聚集體時每秒加 80 點，被別人的魔力槍打中也會加，見[[corruption/matrix_damage]]。2 檔能治 14 種[[corruption/matrix|矩陣類效果]]裏的 11 種，矩陣損傷凝出來的毛病總算有地方治了。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "打開過任何一座搭好的五芒星以後，矩陣損傷就可能凝成矩陣類效果，2 檔起才治得了，其中成本 72000 的三種要到 3 檔。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "虛空石",
+              "8 塊，顏色不限，見[[hoanna/void_stone]]"
+            ],
+            [
+              "虛空水晶柱",
+              "4 根，惡魔水晶柱也可以，見[[demons/void_crystal_pillar]]"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這 4 根柱子要另做，把惡魔五芒星上那 4 根挪過來的話，惡魔五芒星就不成形了。每根要用 6 塊虛空板、1 根淡青水晶柱、1 個虛空核心和 1 個 MRU 反應核。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "核心和反應核不夠時，就讓海納爾的富集倉多[[hoanna/collapse|坍縮]]幾次。"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier2"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "1 檔的結構要保持完整，每一格都要在原位。",
+            "從五芒星所在的這一層起，在外圈的四個角上各疊兩塊虛空石，正好疊在護板菱形缺掉的那四個角的正上方。",
+            "在每摞虛空石上立一根虛空水晶柱，然後右鍵五芒星打開界面。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "符文變成紫色，界面上顯示「2 檔」。第一次打開 2 檔界面時這一步會打勾，要是第十二章就已經升過 2 檔，這一步早就勾上了。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "text": "2 檔從 16 根柱子抽 ESPE，全部存滿時能用 {cfg:machines.mithriline_crystal_pillar.max_espe|mul:5.76|int}，14 種矩陣類效果裏有 11 種的成本在這個範圍內。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ],
+          "title": "2 檔治不了的",
+          "text": "{lang:corruption_effect.essentialcraft5.matrix_12}、{lang:corruption_effect.essentialcraft5.matrix_19}和{lang:corruption_effect.essentialcraft5.matrix_20}這三種的成本是 72000，2 檔的柱子全部存滿也不夠，要到 3 檔才治得了，見[[pentacle/tier_three]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.effects_enabled||!cfg:general.corruption.matrix_effects_enabled",
+          "text": "2 檔多了 4 根柱子，能用的 ESPE 更多，3 檔也要在它的基礎上搭，見[[pentacle/tier_three]]。"
+        }
+      ]
+    },
+    {
+      "id": "rank_6",
+      "title": "六階 · 契約",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "相性 II",
+      "complete": "essentialcraft5:guide/matrix/rank_6",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.gates.holopad==6",
+          "text": "<em>目標</em>：升到矩陣六階「契約」。下一章的全息投影台要六階才召得出全息投影。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.gates.holopad!=6",
+          "text": "<em>目標</em>：升到矩陣六階「契約」，相性升到 II。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "一共 24 種，其中至少 4 種是在海納爾殺的、2 種是海納爾的本地怪"
+            ],
+            [
+              "站點",
+              "2 檔靈魂五芒星，上一篇剛搭好"
+            ],
+            [
+              "祭品",
+              "2 個{item:essentialcraft5:condensed_matrix}、1 個{item:essentialcraft5:void_mru_reactor}、4 塊{item:essentialcraft5:ackronite_ingot}、4 個同一種[[hoanna_explore/specialties|海納爾特產]]"
+            ],
+            [
+              "能量",
+              "台子裏 6 萬 MRU，五芒星的柱子裏 6000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 7 只，同時最多 3 只；每隻 80 點生命，打你一下 9 點；限時 120 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "站着不動 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:60} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "海納爾的怪單獨記一份，主世界殺過的種類到海納爾再殺一次也算。",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "MRU 反應核可以從海納爾的遺蹟裏開，也可以讓富集倉坍縮出來，見[[hoanna/collapse]]。"
+            },
+            "把祭品放進淬鍊台的祭品格，台子裏的 MRU 用綁定寶石備夠。",
+            "站在台子 3 格內，主手拿着綁定你的靈魂石，打開界面，右邊全打勾以後點「開始淬鍊」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒夠數的矩陣迴響，別離開台子太遠。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁邊不動，也別受傷，等引導走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "屏幕正中出現「六階 · 契約」，靈魂石的物品提示裏寫着矩陣六階。"
+        },
+        {
+          "type": "p",
+          "text": "六階的回報是相性 II，效果比 I 強一截，帶矩陣特性的武器也跟着變強，見[[matrix/alignment]]。矩陣容量漲到 {cfg:general.matrix_rank.pool_per_rank|mul:5}。"
+        }
+      ]
+    },
+    {
+      "id": "demonic_plating",
+      "title": "{item:essentialcraft5:demonic_plating}",
+      "icon": "essentialcraft5:demonic_plating",
+      "summary": "阻擋 MRU 效果最好的護板，共 16 色",
+      "items": [
+        "essentialcraft5:demonic_plating"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "用 4 塊{item:essentialcraft5:demonic_plate}無序合成 16 塊{item:essentialcraft5:demonic_plating}，這是擋 MRU 擋得最好的一種護板。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_plating"
+        },
+        {
+          "type": "list",
+          "items": [
+            "隔着它時，聚集體造成的矩陣損傷 36 次裏只有 1 次落到你身上，淡青護板是 10 次裏 1 次，見[[alloys/plating]]。",
+            "它可以用作[[enrichment/controller|富集倉]]的外殼方塊，也能鋪成[[tesla/mru_coil|MRU 特斯拉線圈]]的底座。",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "海納爾的富集倉[[hoanna/collapse|坍縮]]聚集體時，它和虛空石、虛空玻璃一樣，都算在需要湊齊的那幾塊外殼裏。"
+            },
+            "靈魂五芒星升到 3 檔需要 4 塊，見[[pentacle/tier_three]]。",
+            "它和別的護板一樣能染色，拿着染料右鍵換顏色，潛行右鍵能染一片，挖下來以後總是白色。",
+            "用[[decorations/magical_chisel|魔力鑿]]能在它上面鑿出 16 種花紋。",
+            "硬度 3，爆炸抗性 60，需要用鎬開採。"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,484 @@
+{
+  "id": "solar",
+  "order": 74,
+  "group": "main",
+  "title": "Chapter 10 · Sunlight",
+  "subtitle": "Catch the midday sun",
+  "icon": "essentialcraft5:solar_prism",
+  "entries": [
+    {
+      "id": "sun_imbued_glass",
+      "title": "{item:essentialcraft5:sun_imbued_glass}",
+      "icon": "essentialcraft5:sun_imbued_glass",
+      "summary": "The lens for sunlight",
+      "complete": "essentialcraft5:guide/solar/sun_imbued_glass",
+      "items": [
+        "essentialcraft5:sun_imbued_glass"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "I held a magnifying glass over a piece of MRU metal and let the sun sit on it all day. It gave me about ten MRU. So I built a very, very large magnifying glass, filled it with MRU, and waited for a clear noon.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:sun_imbued_glass}. The great magnifying glass in the notebook is the Solar Prism, and its lenses are this glass. Everything in this chapter needs it: the Sun Ray Absorber takes 1 and the Solar Prism 5, for 6 in total."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "What this chapter takes",
+          "text": "This is the most expensive chapter yet: its 6 Sun Imbued Glass and 4 Combined Magical Alloys come to about 24 diamonds, 24 emeralds, 32 Blaze Powder, 33 Ender Pearls and over 130 Iron Ingots. The Magician Table has about 120,000 points of progress to work through ({cfg:machines.magician_table.mru_usage_modifier|mul:120000|int} MRU), about 20 minutes with Combined Magical Alloys installed and 100 without. If you're short on diamonds or emeralds, go mining or trade with villagers while the table works away at home, or use [[gear/pale_gem|Pale Gems]] instead. One diamond makes four, and both kinds of plate accept them."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 1 {item:essentialcraft5:magic_purified_glass_alloy}, 2 {item:essentialcraft5:diamond_plate} and 2 {item:essentialcraft5:emerald_plate}. Each plate is made on a crafting table from 2 diamonds or emeralds, 4 Iron Ingots and 1 {item:essentialcraft5:elemental_gem}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:sun_imbued_glass"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the Glass Alloy in the middle of the Magician Table.",
+            "The two Diamond Plates and two Emerald Plates go in the corners, each pair on its own diagonal. It doesn't matter which pair takes which diagonal.",
+            "Each one costs {cfg:machines.magician_table.mru_usage_modifier|mul:10000|int} MRU and takes about 1 min 40 s with Combined Magical Alloys installed."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold a Sun Imbued Glass."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Upgrade first",
+          "text": "Before you start, make sure the table has {item:essentialcraft5:combined_magical_alloys} installed and your MRU source can supply {cfg:machines.magician_table.mru_usage_modifier|mul:5} MRU per tick, or this chapter will mean well over an hour of waiting on the table. Combined Magical Alloys are covered in [[alloys/combined_magical_alloys]]."
+        }
+      ]
+    },
+    {
+      "id": "sun_ray_absorber",
+      "title": "{item:essentialcraft5:sun_ray_absorber}",
+      "icon": "essentialcraft5:sun_ray_absorber",
+      "summary": "Turns sunbeams into chaos MRU",
+      "complete": "essentialcraft5:guide/solar/sun_ray_absorber",
+      "items": [
+        "essentialcraft5:sun_ray_absorber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:sun_ray_absorber}. Sunlight carries MRU too, but too thinly to collect until it is gathered into a beam. The absorber produces nothing by itself and waits for a Solar Prism overhead to fire a beam down at it. Every tick it is lit it makes {cfg:machines.sun_ray_absorber.mru_generated} MRU, and a beam lasts 1 second, {cfg:machines.sun_ray_absorber.mru_generated|mul:20} MRU in all."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 1 Sun Imbued Glass and 1 {item:essentialcraft5:chaos_matrix_projection}, plus the usual set of generator parts, one each of Magical Screen, MRU Collecting Device, World Interacting Device, Elemental Core and MRU Conversion Matrix, and 2 Magical Plates."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:sun_ray_absorber"
+        },
+        {
+          "type": "h",
+          "text": "Getting a chaos matrix projection"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Irradiate an {item:essentialcraft5:empty_matrix_projection} in a Radiating Chamber with MRU of balance 1.5 or more for 10,000 ticks, about 8 minutes ([[generators/projections]]).",
+            {
+              "if": "cfg:machines.heat_generator.balance<0",
+              "text": "A {item:essentialcraft5:heat_generator} gets a random balance from 0 to 2 when placed. Check its screen, and if it's under 1.5, break it and place it again until you get one at 1.5 or more, about a 1 in 4 chance each time."
+            },
+            "Give that generator a Radiating Chamber of its own, and an empty one. MRU already stored in the chamber mixes with the new MRU and can drag the balance too low."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the absorber in the open with a clear column of air above it, since the prism on the next page goes straight above it.",
+            "Bind the machines that use MRU to it, ideally an Enrichment Chamber Acceptor, so its MRU is drained as it comes in. It holds {cfg:machines.sun_ray_absorber.max_mru} MRU and has no item slots."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Sun Ray Absorber."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Its MRU is chaotic",
+          "text": "The MRU it makes has balance {cfg:machines.sun_ray_absorber.balance}, and 2.0 means {balance:chaos}. Some Radiating Chamber recipes care about balance, such as the Magic Matrix Projection at 0.5 to 1.5, so bind the machines making those to another source."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The balance a machine holds is the amount-weighted mix of everything it has pulled in, so switching one machine between several sources mixes them too. Only once its stored MRU runs out does its balance become entirely the new source's.",
+            "A redstone signal stops it."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solar_prism",
+      "title": "{item:essentialcraft5:solar_prism}",
+      "icon": "essentialcraft5:solar_prism",
+      "summary": "Focuses the midday sun into a beam",
+      "complete": "essentialcraft5:guide/solar/solar_prism",
+      "items": [
+        "essentialcraft5:solar_prism"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: mount a {item:essentialcraft5:solar_prism} straight above the absorber. At midday on a clear day it gathers the sunlight into a beam and drives it straight down onto the absorber."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 4 Combined Magical Alloys and 5 Sun Imbued Glass, the most expensive thing so far, plus any 4 blocks to use as supports."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:solar_prism"
+        },
+        {
+          "type": "h",
+          "text": "The prism's layer"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:solar_prism"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Pick a height straight above the absorber with at least one block of air between them. More is fine.",
+            "On the prism's layer, first place a support block <em>two blocks away</em> to the north, south, east and west. Any block will do, but the 8 blocks right around the prism must stay empty.",
+            "A prism floating in mid-air is awkward to place. Put a temporary block right under it, place the prism, then remove the temporary block.",
+            "It checks its layout every second and drops off if anything is wrong, so build the supports before you place the prism."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Above and below"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "S": "essentialcraft5:solar_prism",
+            "R": "essentialcraft5:sun_ray_absorber",
+            "B": {
+              "block": "minecraft:stone",
+              "label": "structure.essentialcraft5.rule.any_block"
+            },
+            "A": "air"
+          },
+          "layers": [
+            {
+              "pattern": [
+                "     ",
+                "     ",
+                "  R  ",
+                "     ",
+                "     "
+              ],
+              "label": "absorber (straight below, at least one block of air from the prism)"
+            },
+            {
+              "pattern": [
+                "     ",
+                "     ",
+                "  A  ",
+                "     ",
+                "     "
+              ],
+              "label": "air (at least one block, more is fine)"
+            },
+            {
+              "pattern": [
+                "  B  ",
+                " AAA ",
+                "BASAB",
+                " AAA ",
+                "  B  "
+              ],
+              "label": "prism"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The beam lands on <em>the first non-air block</em> below the prism, so everything between the prism and the absorber must be air. If anything sits in the block directly under the prism, no beam comes out at all, so don't put the absorber right underneath it."
+        },
+        {
+          "type": "h",
+          "text": "When it fires"
+        },
+        {
+          "type": "p",
+          "text": "While all of the following hold, the prism has a {cfg:machines.solar_prism.solar_beam_chance|pct} chance each tick to fire a beam."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.solar_prism.requires_unobstructed_sky",
+              "text": "The prism can see the sky. Ordinary glass doesn't block it, but Tinted Glass does."
+            },
+            {
+              "if": "!cfg:machines.solar_prism.ignore_rain",
+              "text": "It isn't raining."
+            },
+            {
+              "if": "cfg:machines.solar_prism.requires_midday",
+              "text": "It's around midday, from about an in-game hour before noon to an hour after, while the sun is near the top of the sky (time of day 5,000–7,000 ticks). That's only about 100 seconds a day."
+            },
+            {
+              "if": "!cfg:machines.solar_prism.requires_midday",
+              "text": "Any time of day or night will do."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each beam lasts 1 second, or 20 ticks, and the absorber makes {cfg:machines.sun_ray_absorber.mru_generated} MRU on each of those ticks. Several beams hitting one absorber at once don't add up."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.solar_prism.requires_midday",
+          "text": "On average there is a beam for about 40% of that midday window, roughly 400,000 MRU per clear day. The absorber only holds {cfg:machines.sun_ray_absorber.max_mru}, so machines or an Enrichment Chamber have to keep draining it."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "On a clear midday a yellow pillar of light comes down from the sky onto the absorber, and the absorber's MRU climbs."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "The beam burns monsters",
+          "text": "When a beam lands, <em>hostile mobs</em> within 6 blocks horizontally, from 6 blocks below to 134 blocks above the landing point, catch fire for 5 seconds and take 3 damage every half second while the beam lasts. Players, animals and villagers aren't affected, so it's safe to watch from right next to the absorber.",
+          "if": "!cfg:machines.solar_prism.burn_players"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Careful",
+          "text": "When a beam lands, hostile mobs and players within 6 blocks horizontally, from 6 blocks below to 134 blocks above the landing point, catch fire for 5 seconds and take 3 damage every half second while the beam lasts. Animals and villagers aren't affected. If you want to watch, stand well away from the absorber.",
+          "if": "cfg:machines.solar_prism.burn_players"
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each beam feeds one absorber only. If it lands on an absorber, that one gets it; if it lands on another block, the nearest absorber within one block of the landing point, and up to two blocks higher, gets it.",
+            "To light one absorber more often, mount several prisms at staggered heights, one straight above it and the others over the columns right next to it, so all their beams land beside it. Two prisms light it about 60% of the time and three about 80%, but output never goes above one beam's worth per tick.",
+            "The beam never burns animals, villagers, pets, or monsters that are name-tagged or leashed, and it leaves dropped items and armor stands alone. However close the landing point is to a neighbor's claim, their livestock is safe.",
+            "The beam never sets blocks on fire."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book recalls focusing sunlight onto MRU metal with a magnifying glass for a whole day and getting only about 10 MRU for it. Then came a huge, MRU-infused magnifying glass, which on a cloudless midday can focus a beam that melts through metal."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Next",
+          "text": "For one more kind of generator, see the optional next page, [[solar/ender_generator]]. The main line continues in the next chapter with [[mithriline/mithriline_ingot]]."
+        }
+      ]
+    },
+    {
+      "id": "rank_3",
+      "title": "Rank 3 · Temper",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "Your matrix type starts to matter",
+      "complete": "essentialcraft5:guide/matrix/rank_3",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: reach matrix rank 3, Temper. From here your matrix type gives you a passive, and weapons with Matrix Traits start working."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "13 kinds in all, 3 from the Nether"
+            ],
+            [
+              "Matrix type",
+              "Anything but Neutral: absorb a chaos, frozen, magic or shade matrix projection first ([[gear/projection_use]])"
+            ],
+            [
+              "Offerings",
+              "4 [[essence/essences|essences]] from Chapter 9, all of one kind and stacked in one slot (any element, any rarity, but not mixed), 1 {item:essentialcraft5:combined_magical_alloys}, 1 {item:essentialcraft5:sun_imbued_glass}"
+            ],
+            [
+              "Energy",
+              "10,000 MRU in the Crucible"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "4 in all, up to 3 at once; 44 health each, 6 damage a hit; 90 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "Stand still for {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:30} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Pick a matrix type and absorb that projection. The type you choose is the way you will fight; [[matrix/alignment]] compares all four.",
+            "Place the offerings in the Crucible's offering slots and fill it with enough MRU through a Bound Gem.",
+            "Stand within 3 blocks with your bound Soul Stone in your main hand, open the screen, and once everything on the right is ticked, start the trial.",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Defeat enough Matrix Echoes, and don't stray far from the Crucible."
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Stay next to the Crucible without moving or getting hurt until the channel finishes."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "\"Rank 3 · Temper\" appears in the middle of the screen, and your Soul Stone's tooltip shows matrix rank 3."
+        },
+        {
+          "type": "p",
+          "text": "Rank 3 gives you [[matrix/alignment|Alignment]] I: Chaos hits harder, Frozen shrugs off melee and freezes attackers, Magic saves MRU, and Shade only gets one at rank 8. Weapons with Matrix Traits add one more effect, based on your type, when they hit. Your reservoir grows to {cfg:general.matrix_rank.pool_per_rank|mul:2}."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "If you change type later, absorb another projection at the usual cost. Your Alignment level carries over."
+        }
+      ]
+    },
+    {
+      "id": "ender_generator",
+      "title": "{item:essentialcraft5:ender_generator}",
+      "icon": "essentialcraft5:ender_generator",
+      "summary": "Power from Endermen, one hit at a time",
+      "complete": "essentialcraft5:guide/solar/ender_generator",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ender_generator"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build an {item:essentialcraft5:ender_generator}. It drags nearby Endermen on top of itself and hits them over and over, making {cfg:machines.ender_generator.mru_generated} MRU for every hit that lands."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: 1 {item:essentialcraft5:magic_purified_ender_scale_alloy}, 1 Magic Fortified Frame and 2 MRU Conversion Matrices, plus one each of Magical Screen, MRU Collecting Device, Elemental Core, World Interacting Device and Magical Plate."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ender_generator"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put it where Endermen are plentiful, such as the End. With no redstone signal it runs on its own.",
+            "Endermen within {cfg:machines.ender_generator.radius} blocks are pulled on top of it, and those within 2 blocks take 1 magic damage per tick. Name-tagged or leashed Endermen are left alone.",
+            "An Enderman is invulnerable for half a second after each hit, so one Enderman yields at most twice a second. Hit Endermen usually teleport away. If they land within {cfg:machines.ender_generator.radius} blocks they get pulled back; if not, they're gone.",
+            "Bind the machines that use MRU to it."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Per hit",
+              "{cfg:machines.ender_generator.mru_generated} MRU"
+            ],
+            [
+              "One Enderman, start to finish",
+              "About {cfg:machines.ender_generator.mru_generated|mul:40} MRU, counting 40 health"
+            ],
+            [
+              "Capacity",
+              "{cfg:machines.ender_generator.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.ender_generator.balance<0",
+              "cells": [
+                "Balance",
+                "Random from 0 to 2 when placed, like the Heat Generator"
+              ]
+            },
+            {
+              "if": "cfg:machines.ender_generator.balance>=0",
+              "cells": [
+                "Balance",
+                "{cfg:machines.ender_generator.balance}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The MRU on its screen is rising."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "It keeps hitting even when full, so Endermen still die. A redstone signal stops it, and then it neither pulls nor hits."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original mod's reason for this machine is a simple one: Endermen keep stealing your blocks, and it's time they learned a lesson."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mithriline_plating": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essentialcraft5:mithriline_plating"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "essentialcraft5:wind/wind_rune"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mithriline_plating",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "essentialcraft5:wind/wind_rune"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,1197 @@
+{
+  "id": "wind",
+  "order": 80,
+  "group": "main",
+  "title": "第十三章 · 風",
+  "subtitle": "注風、風之好感與風之眷顧",
+  "icon": "essentialcraft5:wind_gem",
+  "entries": [
+    {
+      "id": "wind_rune",
+      "title": "{item:essentialcraft5:wind_rune}",
+      "icon": "essentialcraft5:wind_rune",
+      "summary": "把 ESPE 注進物品的祭壇",
+      "complete": "essentialcraft5:guide/wind/wind_rune",
+      "items": [
+        "essentialcraft5:wind_rune"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "你早就見過我了。你在山頂上喘氣的時候，你在雨裏趕路的時候，我都在。你一次也沒回過頭。",
+          "by": "《風語抄》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：搭建一座風之符文祭壇。祭壇的擺法記在殘卷第四卷，和綠太陽、ESPE 寫在一處。祭壇搭完整以後，手持物品右鍵符文，8 根水晶柱裏積攢的 ESPE 就會注進這件物品，把它變成別的東西，這叫作<em>注風</em>。本章的主線是把鑽石注風成風之水晶。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "第十六章要備齊的三樣，從本章開始積攢",
+          "text": "去海納爾之前要備齊 {cfg:general.wind.tablet_points} 點風之好感、1 個{item:essentialcraft5:wind_keeper}和 4 個{item:essentialcraft5:air_focus}。只靠喝藥水的話，好感約需 {cfg:general.wind.tablet_points|div:10|int} 瓶，一座主世界祭壇要為這些藥水積攢 6 小時左右的 ESPE。受困之風只有大法師會掉，風之焦點要照第九章的方法制作。三樣都很費時間，祭壇一搭好就該着手，可以和第十四、十五章同時推進，做法見[[wind/air_potion]]和[[wind/wind_tablet]]。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "第十六章要備齊的三樣，從本章開始積攢",
+          "text": "去海納爾之前要備齊 {cfg:general.wind.tablet_points} 點風之好感、1 個{item:essentialcraft5:wind_keeper}和 4 個{item:essentialcraft5:air_focus}。好感要靠祭壇一瓶一瓶注出風之藥水來喝，受困之風只有大法師會掉，風之焦點要照第九章的方法制作。三樣都很費時間，祭壇一搭好就該着手，可以和第十四、十五章同時推進，做法見[[wind/air_potion]]和[[wind/wind_tablet]]。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points!=3500||cfg:general.wind_affinity.base_coefficient!=0.1||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "符文",
+              "4 塊{item:essentialcraft5:mithriline_plating}、4 塊{item:essentialcraft5:mithriline_plate}和 1 個魔力核心，用{item:essentialcraft5:elemental_core}或{item:essentialcraft5:pale_core}都可以"
+            ],
+            [
+              "祭壇",
+              "13 塊米斯萊護板、12 塊{item:essentialcraft5:pale_plating}、8 塊{item:essentialcraft5:magic_plating}和 8 根任意種類的水晶柱"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:wind_rune"
+        },
+        {
+          "type": "p",
+          "text": "護板的做法見[[alloys/plating]]，淡青護板要先做出淡青板，見[[alloys/pale]]，水晶柱的做法見[[mithriline/crystal_pillar]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先立柱子",
+          "text": "8 根水晶柱和 33 塊護板是本章最大的一筆開銷。柱子一放下就開始積攢 ESPE，可以先把它們立在祭壇上對應的位置，護板慢慢補齊，等祭壇完工，柱子裏已經攢下不少了。"
+        },
+        {
+          "type": "h",
+          "text": "擺法"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:wind_rune"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "選擇一塊頭頂無遮擋的空地，即可讓柱子積攢 ESPE，玻璃等透光方塊不會影響積攢效率。"
+            },
+            "先鋪最下面一層，正中用 5 塊米斯萊護板擺成十字，十字的四個斜角和再往外的一圈放淡青護板，外圈每條邊的正中放魔力護板。最外側的四個角不算在結構裏，放什麼都行，正好拿來托住上一層的柱子。",
+            "接着鋪符文所在的那一層，四個角各立一根水晶柱，四條邊的正中放魔力護板，緊挨符文的四個斜角放米斯萊護板。",
+            "斜角那 4 塊米斯萊護板上各疊 1 塊米斯萊護板，頂上再各立一根水晶柱。",
+            "最後把符文放在正中，正對十字中心那塊護板的上方。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "護板染成什麼顏色都可以，水晶柱也不限種類，圖中標出的格子放柱子的底座就行。符文前後左右的 4 格最好留空，祭壇完整時，那裏的地面會亮起圖案。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "符文周圍的地面亮起忽明忽暗的圖案，柱子旁有綠色光點上下飄動。空手右鍵符文，快捷欄上方會顯示「祭壇完整」和柱子裏的 ESPE 總量。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼注風"
+        },
+        {
+          "type": "list",
+          "items": [
+            "主手拿着原料右鍵符文，8 根柱子裏的 ESPE 加起來夠用，祭壇就依次從柱子裏抽走這次要的量，手裏的原料隨即變成產物。",
+            "ESPE 不夠時，快捷欄上方會顯示柱子裏現有多少、這次要多少，原料和 ESPE 都不扣。",
+            "祭壇不完整時，空手或拿着原料右鍵符文，都會提示哪一格不對。",
+            "創造模式下注風不消耗 ESPE。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "要注意"
+        },
+        {
+          "type": "list",
+          "items": [
+            "水晶柱只在所在區塊載入時積攢 ESPE，掛機等待時人要留在祭壇附近，詳見[[mithriline/crystal_pillar]]。",
+            "換上高檔的水晶柱積攢得更快，淡青、虛空、惡魔柱一檔比一檔快，注風要等的時間也跟着縮短，各檔倍率見[[mithriline/crystal_pillar]]。",
+            "水晶柱挖下後再放回去，裏面積攢的 ESPE 會清零。",
+            "每次右鍵符文都會當場重查結構，拆掉任何一塊護板就注不了風。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書裏寫道，古老的風肯不肯在路上助你一程，就看這塊符文。"
+        }
+      ]
+    },
+    {
+      "id": "wind_gem",
+      "title": "{item:essentialcraft5:wind_gem}",
+      "icon": "essentialcraft5:wind_gem",
+      "summary": "鑽石注風變成風之水晶",
+      "complete": "essentialcraft5:main/wind_gem",
+      "items": [
+        "essentialcraft5:wind_gem"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在祭壇上把{item:minecraft:diamond}注風成{item:essentialcraft5:wind_gem}。支線裏的風之工具和風之護甲都拿它做，見[[wind_gear/wind_tools]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "主線後面還要用它，第十八～二十一章的富神經元護板和力場零件一共要五十多顆，見[[computer/force_parts]]。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "原料",
+              "1 顆鑽石"
+            ],
+            [
+              "ESPE",
+              "{cfg:general.wind.gem_espe|int}，從祭壇的 8 根柱子裏抽取"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:wind_gem"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "等柱子裏攢夠 ESPE，空手右鍵符文可以看到現在的總量。",
+            "主手拿着鑽石右鍵符文，每次右鍵換出一顆風之水晶。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到第一顆風之水晶，取得進度「風之饋贈」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "第十六章要先備好",
+          "text": "拿到風之水晶先別急着往下翻，去海納爾之前還要攢夠 {cfg:general.wind.tablet_points} 點風之好感、做好風之石板，做法都在本章後面幾篇。祭壇一空下來就接着注風之藥水，別讓它閒着。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "h",
+          "text": "要等多久"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "8 根柱子合計",
+              "主世界露天每秒 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160}，終界每秒 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160}"
+            ],
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "cells": [
+                "從空柱子積攢出一顆",
+                "主世界約 <t>42</t> 分鐘，終界約 <t>10</t> 分鐘"
+              ]
+            },
+            [
+              "8 根全部存滿",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe|mul:8|int} ESPE，存滿後不再增加"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "柱子存滿就不再增加，滿了要及時來注一顆，別讓它們白白等着。想快一些就<em>多搭幾座祭壇</em>，常去終界的話，在那裏也搭一座，積攢得更快，不過只有你待在終界時它才積攢。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.gem_espe==10000",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "title": "趁早擴建",
+          "text": "主線後面要用的約 50 顆風之水晶，是全書等得最久的一段。一座主世界祭壇要連續積攢 35 個小時左右，終界的一座約 9 小時，前提是你一直待在終界。祭壇的 8 根柱子全換成{item:essentialcraft5:pale_crystal_pillar}，積攢快一半，主世界一座約 23 小時。現在就多搭兩三座祭壇，後面能省下好幾天。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.gem_espe!=10000||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1"
+          ],
+          "title": "趁早擴建",
+          "text": "主線後面要用的約 50 顆風之水晶，是全書等得最久的一段。祭壇的柱子換成{item:essentialcraft5:pale_crystal_pillar}這類高檔的柱子能攢得更快，倍率見[[mithriline/crystal_pillar]]。現在就多搭兩三座祭壇，後面能省下不少時間。"
+        },
+        {
+          "type": "h",
+          "text": "能注風的東西"
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:wind_imbue",
+          "compact": true
+        },
+        {
+          "type": "p",
+          "text": "風之裝備也很費風之水晶，一整套風之護甲要 25 顆，五件風之工具合計 11 顆，見[[wind_gear/wind_armor]]。"
+        }
+      ]
+    },
+    {
+      "id": "air_potion",
+      "title": "風之藥水與風之好感",
+      "icon": "essentialcraft5:air_potion",
+      "summary": "風是活的，喝藥水積攢好感",
+      "complete": "essentialcraft5:guide/wind/air_potion",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:air_potion",
+        "essentialcraft5:bottled_wind",
+        "essentialcraft5:imprisoned_wind",
+        "essentialcraft5:wind_keeper"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（第十六章之前要做完）：做一瓶{item:essentialcraft5:air_potion}，認識<em>風之好感</em>，它記的是風和你有多熟。喝下風之藥水，腳步會輕上幾分，那是風貼近了你。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一瓶{item:essentialcraft5:air_potion}，認識<em>風之好感</em>，它記的是風和你有多熟。喝下風之藥水，腳步會輕上幾分，那是風貼近了你。",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "去海納爾之前，風之好感要攢到 {cfg:general.wind.tablet_points}，最省心的辦法是一瓶接一瓶地喝風之藥水。要喝多少、怎樣攢得更快，本篇都會講到。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "原料",
+              "一瓶水，就是裝了水的{item:minecraft:glass_bottle}，別的藥水代替不了"
+            ],
+            [
+              "ESPE",
+              "250"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:air_potion"
+        },
+        {
+          "type": "h",
+          "text": "喝下去"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "效果",
+              "獲得「輕盈」效果，每級移速 +40%，跳躍高度和摔落減傷與同級的跳躍提升相同"
+            ],
+            [
+              "第一瓶",
+              "I 級，2 分鐘"
+            ],
+            [
+              "接着喝",
+              "每瓶延長 2 分鐘，喝下時剩餘時長每滿 8 分鐘，等級就提高一級"
+            ],
+            [
+              "上限",
+              "{cfg:general.wind.lightness_max_level} 級、{cfg:general.wind.lightness_max_minutes} 分鐘"
+            ],
+            [
+              "好感",
+              "每瓶原始值 100，平時實得 {cfg:general.wind_affinity.base_coefficient|mul:100|int} 點，算法見下文"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind.lightness_max_level>=3",
+          "text": "一瓶接一瓶連着喝，大約第 6 瓶升到 II 級，第 10 瓶前後達到 III 級。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一瓶風之藥水。"
+        },
+        {
+          "type": "h",
+          "text": "風之好感"
+        },
+        {
+          "type": "p",
+          "text": "風之好感只增不減。每漲一次，你身上就會出現持續 50 秒的「風之觸」效果，它沒有任何實際作用，只是告訴你風來過。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "來源",
+            "原始值"
+          ],
+          "rows": [
+            [
+              "喝一瓶{item:essentialcraft5:air_potion}",
+              "100"
+            ],
+            [
+              "打碎{item:essentialcraft5:bottled_wind}",
+              "10"
+            ],
+            [
+              "打碎{item:essentialcraft5:imprisoned_wind}",
+              "25"
+            ],
+            [
+              "打碎{item:essentialcraft5:wind_keeper}",
+              "100"
+            ],
+            [
+              "受[[wind/windbound]]後風主動找上門",
+              "1000"
+            ],
+            {
+              "if": "cfg:general.wind_wish.enabled",
+              "cells": [
+                "替風完成一個[[wind/wishes|心願]]",
+                "{cfg:general.wind_wish.points}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            1
+          ]
+        },
+        {
+          "type": "p",
+          "text": "實得的點數是原始值乘以係數，小數部分捨去。係數平時只有 <t>{cfg:general.wind_affinity.base_coefficient}</t>，一瓶藥水實得 {cfg:general.wind_affinity.base_coefficient|mul:100|int} 點。三種裝着風的瓶子都是風法師掉的，見[[wind_mage/bottled_winds]]。"
+        },
+        {
+          "type": "p",
+          "text": "風法師套裝和幾件特殊飾品都能改變係數，具體見下面「好感有什麼用」那張表，飾品另見[[baubles/wind_corruption]]。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "別搞混",
+          "text": "風之石板要用的是{item:essentialcraft5:wind_keeper}，只有大法師會掉，打碎它得原始值 100，{item:essentialcraft5:imprisoned_wind}和{item:essentialcraft5:bottled_wind}都代替不了。拿到的第一個受困之風要留着，別順手打碎。"
+        },
+        {
+          "type": "h",
+          "text": "好感有什麼用"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "好感到了 {cfg:general.wind.tablet_points}，[[wind/wind_tablet|風之石板]]上就會顯出風的真名，此後石板能[[hoanna/open_gate|替你打開通往海納爾的門]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "好感到了 {cfg:general.wind.tablet_points}，[[wind/wind_tablet|風之石板]]上就會顯出風的真名。"
+        },
+        {
+          "type": "table",
+          "if": [
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "header": [
+            "路線",
+            "要什麼",
+            "大約多久"
+          ],
+          "rows": [
+            [
+              "只喝藥水",
+              "約 {cfg:general.wind.tablet_points|div:10|int} 瓶，共 {cfg:general.wind.tablet_points|mul:25|int} ESPE",
+              "一座主世界祭壇掛機約 6 小時，終界約 1.5 小時"
+            ],
+            {
+              "if": "cfg:general.wind.windbound_espe==20000",
+              "cells": [
+                "先受[[wind/windbound]]",
+                "注風消耗 {cfg:general.wind.windbound_espe|int} ESPE，之後喝着 III 級輕盈持續疾跑",
+                "注風約需 1.4 小時，之後風平均 5~6 分鐘推你一次，每次 100 點，邊跑邊喝，兩三個小時就能攢夠"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "cells": [
+                "戴{item:essentialcraft5:wind_mages_talisman}喝藥水",
+                "在地牢箱子裏碰運氣",
+                "係數 +0.3，一瓶從 {cfg:general.wind_affinity.base_coefficient|mul:100|int} 點變成 {cfg:general.wind_affinity.base_coefficient|add:0.3|mul:100|int} 點，見[[baubles/wind_corruption]]"
+              ]
+            },
+            [
+              "穿風法師套裝喝藥水",
+              "只有大法師會掉，每隻有一成幾率掉一件",
+              "每件係數 +0.23，穿 1 件時一瓶藥水就頂原來 3 瓶多，穿滿 4 件約為 10 倍，見[[wind_mage/wind_mage_armor]]"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind.tablet_points!=3500||cfg:general.wind_affinity.base_coefficient!=0.1||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1",
+          "text": "藥水全靠祭壇一瓶一瓶注出來，先按每瓶實得的點數算出要喝幾瓶，再儘早動手。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "多搭幾座祭壇同時積攢，常去終界的話在那裏也搭一座。",
+            "藥水可以先注好存着，攢夠一批再一口氣喝完，好感按瓶計算，一起喝也不會少算。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書説，風有幾分像活物，喜歡在暗中打量命運不凡的人。原作裏放出受困之風時，還能聽見它很輕地道一聲謝。"
+        }
+      ]
+    },
+    {
+      "id": "windbound",
+      "title": "風之眷顧",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "讓風自己找上門來",
+      "complete": "essentialcraft5:guide/wind/windbound",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：受到風之眷顧，之後才能替風完成[[wind/wishes|風之心願]]、製作[[wind/wind_horn|風之號角]]。風一直就在你身邊，受了眷顧以後，它會時不時自己找上門來。每來一次，好感原始值 +1000，平時實得 {cfg:general.wind_affinity.base_coefficient|mul:1000|int} 點，相當於 10 瓶風之藥水。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：受到風之眷顧，之後才能製作[[wind/wind_horn|風之號角]]。風一直就在你身邊，受了眷顧以後，它會時不時自己找上門來。每來一次，好感原始值 +1000，平時實得 {cfg:general.wind_affinity.base_coefficient|mul:1000|int} 點，相當於 10 瓶風之藥水。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：受到風之眷顧，之後才能替風完成[[wind/wishes|風之心願]]。風一直就在你身邊，受了眷顧以後，它會時不時自己找上門來。每來一次，好感原始值 +1000，平時實得 {cfg:general.wind_affinity.base_coefficient|mul:1000|int} 點，相當於 10 瓶風之藥水。",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：受到風之眷顧。風一直就在你身邊，受了眷顧以後，它會時不時自己找上門來。每來一次，好感原始值 +1000，平時實得 {cfg:general.wind_affinity.base_coefficient|mul:1000|int} 點，相當於 10 瓶風之藥水。",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "!cfg:general.wind_wish.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "要為第十六章攢 {cfg:general.wind.tablet_points} 點好感，最好先完成這一步，幾條路線的對比見[[wind/air_potion]]裏的路線表。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.tablet_points==3500",
+            "cfg:general.wind_affinity.base_coefficient==0.1",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "原料",
+              "1 塊{item:essentialcraft5:soul_stone}，綁沒綁定都行，注風后也不會用掉"
+            ],
+            [
+              "ESPE",
+              "{cfg:general.wind.windbound_espe|int}，8 根柱子存滿時共有 {cfg:machines.mithriline_crystal_pillar.max_espe|mul:8|int}"
+            ],
+            {
+              "if": [
+                "cfg:general.wind.windbound_espe==20000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "cells": [
+                "要等多久",
+                "8 根柱子從空開始積攢，主世界約 1.4 小時，終界約 21 分鐘"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:soul_stone"
+          ],
+          "recipe_type": "essentialcraft5:wind_imbue",
+          "optional": true
+        },
+        {
+          "type": "steps",
+          "items": [
+            "等祭壇的柱子裏積攢到 {cfg:general.wind.windbound_espe|int} ESPE。",
+            "主手拿着靈魂石右鍵符文，ESPE 被抽走，靈魂石原樣留在手裏。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "聊天欄出現「風在你身邊盤旋。這意味着什麼呢……」。"
+        },
+        {
+          "type": "h",
+          "text": "風找上門來"
+        },
+        {
+          "type": "p",
+          "text": "受眷顧以後，遊戲每秒都會替你擲一次骰子。下表裏的輕盈等級，指你身上風之藥水效果的等級，沒有這個效果按 1 算。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "事件",
+            "幾率",
+            "得到"
+          ],
+          "rows": [
+            [
+              "風拂過頭髮",
+              "每秒 0.02% × 輕盈等級",
+              "好感原始值 +1000"
+            ],
+            [
+              "風在背後推你一把",
+              "疾跑時每秒 0.1% × 輕盈等級",
+              "好感 +1000，速度 XXXII 1 秒"
+            ],
+            [
+              "風把你托起來",
+              "每次起跳 0.03%",
+              "好感 +1000，跳躍提升 XIII 5 秒"
+            ]
+          ],
+          "widths": [
+            2,
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "不喝藥水時，風平均約 83 分鐘拂過一次頭髮，喝着 III 級輕盈時約 28 分鐘一次。想最快攢好感，就喝着 III 級輕盈一直疾跑，風約 5～6 分鐘就會推你一把。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "當心腳下",
+          "text": "風托起你時會讓你一下跳得很高，推你一把時能讓你在一秒內衝出很遠。在懸崖和巖漿附近別疾跑亂跳，落地前先看清腳下。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "已經受了眷顧，再拿靈魂石注風，只會收到一句「風已經在眷顧你了」，什麼都不扣。",
+            {
+              "if": "bauble:essentialcraft5:ring_of_resistance",
+              "text": "戴着{item:essentialcraft5:ring_of_resistance}時風不會推動或托起你，好感照樣上漲。"
+            },
+            {
+              "if": "bauble:essentialcraft5:beta_ring",
+              "text": "戴着{item:essentialcraft5:beta_ring}時，風拂過頭髮會改為隨機給你一種持續 6 分鐘的元素增益，可能是力量 II、生命恢復、飽和或挖掘加速 II。"
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "戴着{item:essentialcraft5:wind_catcher}時，每次好感上漲都有 15% 的幾率捕到一個{item:essentialcraft5:wind_keeper}，代價是係數減少 0.1。"
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_resistance||bauble:essentialcraft5:beta_ring||bauble:essentialcraft5:wind_catcher",
+              "text": "這幾件飾品的來源見[[baubles/wind_corruption]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書裏講風的那一節叫「魔力之風」，副標題是「良師益友！」。書裏還説，在符文上給一塊靈魂石注風，注風的人就會得到風之力。"
+        }
+      ]
+    },
+    {
+      "id": "wishes",
+      "title": "風之心願",
+      "icon": "minecraft:feather",
+      "summary": "替風做一件它想做的事",
+      "complete": "essentialcraft5:guide/wind/wish",
+      "if": "cfg:general.wind_wish.enabled",
+      "optional": "!cfg:general.hoanna.portal_enabled||!cfg:general.wind_wish.required>0",
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "<em>目標</em>：替風完成一個心願。風哪裏都去得，卻喜歡有人陪着。受眷顧以後，它會託你做些登高、疾跑、去遠處看看之類的小事，做到了，它會向你道謝，好感也跟着上漲。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled||!cfg:general.wind_wish.required>0",
+          "text": "<em>目標</em>（可選）：替風完成一個心願。風哪裏都去得，卻喜歡有人陪着。受眷顧以後，它會託你做些登高、疾跑、去遠處看看之類的小事，做到了，它會向你道謝，好感也跟着上漲。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_wish.required>0",
+          "text": "這個世界的{item:essentialcraft5:wind_tablet}用不着心願。風要等真名顯全以後才會託付心願，完成了照樣漲好感，風法師支線的風之契約正好用得上這些好感。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "心願要慢慢攢。第十六章開門用的{item:essentialcraft5:wind_tablet}除了好感，還要你完成過 <em>{cfg:general.wind_wish.required}</em> 個心願才肯回應，見[[wind/wind_tablet]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "心願要慢慢攢。你要完成過 <em>{cfg:general.wind_wish.required}</em> 個心願，{item:essentialcraft5:wind_tablet}才肯回應，風法師支線的風之契約也照這個算，見[[wind/wind_tablet]]。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "準備",
+              "已受[[wind/windbound]]，並有一座完整的[[wind/wind_rune|風之符文祭壇]]"
+            ],
+            [
+              "同時",
+              "只能有一個心願"
+            ],
+            [
+              "期限",
+              "{cfg:general.wind_wish.deadline_ticks|div:24000|round:1} 個遊戲日，過期不會受罰，只是要等 {cfg:general.wind_wish.cooldown_ticks|sec}才能再問"
+            ],
+            [
+              "每完成一個",
+              "好感原始值 +{cfg:general.wind_wish.points}"
+            ],
+            {
+              "if": "cfg:general.wind_affinity.base_coefficient==0.1",
+              "cells": [
+                "實得",
+                "沒有加成時為 {cfg:general.wind_wish.points|mul:0.1|int} 點，相當於 {cfg:general.wind_wish.points|div:100|int} 瓶風之藥水"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "空着雙手，潛行右鍵祭壇正中的風之符文。",
+            "風會在聊天欄裏用一行深青色的斜體字，低聲説出一個心願。",
+            "去完成這個心願，做到的那一刻風就會道謝，不用回祭壇交差。",
+            "想要下一個心願，就回到符文前再問一次。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "聊天欄出現「風歡快地繞着你轉了一圈：謝謝你！」。"
+        },
+        {
+          "type": "h",
+          "text": "八種心願"
+        },
+        {
+          "type": "p",
+          "text": "風只託你做眼下辦得到的事。你揹着鞘翅時它才會要你滑翔，正在打雷時才會叫你去聽雷，要你遠行時，點名的也總是你此刻不在的那類羣系。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "心願",
+            "要做的",
+            "説明"
+          ],
+          "rows": [
+            [
+              "登高",
+              "在 Y 200 以上、頭頂無遮擋的地方待滿 30 秒",
+              "累計計時，只在有天空的維度裏託付"
+            ],
+            [
+              "追風",
+              "疾跑 400 格",
+              "按水平距離計算，每秒最多計 20 格"
+            ],
+            [
+              "遠行",
+              "走進風點名的那類羣系",
+              "惡地、叢林、深海、山地、針葉林、熱帶草原、雪原、櫻花樹林之一"
+            ],
+            [
+              "落羽",
+              "從 25 格以上的高處落下且不受傷",
+              "落進水裏或靠緩降效果落地都算"
+            ],
+            [
+              "月下",
+              "夜裏在頭頂無遮擋的地方連跳 32 次",
+              "兩次起跳間隔 5 秒以上就從頭計數，雷雨天的白天也算夜裏"
+            ],
+            [
+              "他鄉",
+              "到另一個維度待滿 2 分鐘",
+              "累計計時，去地獄最省事"
+            ],
+            [
+              "乘風",
+              "用鞘翅連續滑翔 200 格",
+              "揹着鞘翅時才會託付，中途落地就從頭計算"
+            ],
+            [
+              "聽雷",
+              "雷雨中在頭頂無遮擋的地方站滿 60 秒",
+              "正在打雷時才會託付，累計計時"
+            ]
+          ],
+          "widths": [
+            2,
+            4,
+            4
+          ]
+        },
+        {
+          "type": "h",
+          "text": "換一個"
+        },
+        {
+          "type": "p",
+          "text": "不想做眼下這個心願，可以手拿一瓶{item:essentialcraft5:air_potion}潛行右鍵符文，這瓶藥水用掉，風就換一個心願，期限也重新算。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "問心願時兩隻手都要空着，副手拿着盾牌、火把等東西時，潛行右鍵點不到符文。還沒受眷顧就拿着風之藥水這樣點，只會把藥水喝掉。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "已有心願時再問一次，快捷欄上方會提示當前的心願、進度和剩餘時間。",
+            "落羽的高度從你離地後到達的最高點算起，坐船、騎馬、用鞘翅滑翔或順着梯子往下爬都不算下落。",
+            "心願進度記在你身上，下線再上線會接着算，期限按遊戲內的時間走。",
+            {
+              "if": "cfg:general.wind_wish.required>0",
+              "text": "攢夠 {cfg:general.wind_wish.required} 個心願以後，風要等真名顯全才接着託付新的心願，在這之前去問，快捷欄上方會告訴你原因。這段時間的好感只能靠風之藥水和風主動上門來攢，見[[wind/air_potion]]。真名顯全以後再完成心願，好感照樣上漲。"
+            },
+            {
+              "if": "!cfg:general.wind_wish.required>0",
+              "text": "風之真名顯全以後仍然可以問心願，完成後好感照樣上漲。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書講海納爾傳説時，特意插了一句，説傳説裏的那陣風你其實認得，你們早就打過好幾回交道。"
+        }
+      ]
+    },
+    {
+      "id": "wind_horn",
+      "title": "{item:essentialcraft5:wind_horn}",
+      "icon": "essentialcraft5:wind_horn",
+      "summary": "注過風的山羊角",
+      "complete": "essentialcraft5:guide/wind/wind_horn",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:wind_horn"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做一支{item:essentialcraft5:wind_horn}。做石板要用的{item:essentialcraft5:wind_keeper}只有大法師會掉，野外很難碰上，吹響號角，風就會把一隻大法師帶到你面前，怎麼打見下一篇。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "原料",
+              "1 支任意曲調的{item:minecraft:goat_horn}"
+            ],
+            [
+              "ESPE",
+              "{cfg:general.wind_horn.espe}"
+            ],
+            [
+              "要求",
+              "已受風之眷顧，沒受眷顧時注風會被拒絕，什麼都不扣"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:wind_horn"
+          ],
+          "recipe_type": "essentialcraft5:wind_imbue",
+          "optional": true
+        },
+        {
+          "type": "h",
+          "text": "山羊角從哪來"
+        },
+        {
+          "type": "list",
+          "items": [
+            "山地裏的山羊撞到石頭、原木、浮冰或鐵、煤、銅、綠寶石礦石時會掉下一支角，每隻山羊最多掉兩支。",
+            "掠奪者前哨站的箱子裏也能找到。"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "等祭壇的柱子裏積攢到 {cfg:general.wind_horn.espe} ESPE。",
+            "主手拿着山羊角右鍵符文，ESPE 被抽走後，山羊角就會變成風之號角。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裏有了一支風之號角。已經拿到{item:essentialcraft5:wind_keeper}或{item:essentialcraft5:wind_tablet}的話，這一步直接算作完成。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "吹一次就沒了",
+          "text": "號角吹一次就用掉了，每召一次大法師都要一支新的山羊角，再花 {cfg:general.wind_horn.espe} ESPE 注風。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書抄下的海納爾傳説裏有一句，説那人呼喚了風，風便親自來到他身邊。"
+        }
+      ]
+    },
+    {
+      "id": "archmage",
+      "title": "大法師",
+      "icon": "essentialcraft5:wind_keeper",
+      "summary": "吹響號角，親手打倒大法師",
+      "complete": "essentialcraft5:guide/wind/archmage",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：打倒一隻穿紅袍的大法師，拿到做石板要用的{item:essentialcraft5:wind_keeper}，號角召來的和野外自然生成的都算。"
+        },
+        {
+          "type": "p",
+          "text": "這一步只看受困之風到沒到手，戴着[[baubles/wind_corruption|捕風掛墜]]喝藥水捕到的、隊友送的都算。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "什麼時候",
+              "夜裏，雷雨天的白天也算，在海納爾遇上[[hoanna/events|黑暗天災]]時白天也可以"
+            ],
+            [
+              "在哪",
+              "主世界或海納爾頭頂無遮擋的地方"
+            ],
+            [
+              "來的是",
+              "1 只大法師和 {cfg:general.wind_horn.escorts} 只學徒或法師，出現在 {cfg:general.wind_horn.summon_min}～{cfg:general.wind_horn.summon_max} 格外"
+            ],
+            [
+              "冷卻",
+              "吹過以後要等 {cfg:general.wind_horn.cooldown_ticks|div:1200|round:1} 分鐘才能再吹，上一批法師還在時也吹不響"
+            ],
+            [
+              "掉落",
+              "只有你親手打倒的才會掉落，大法師必掉一個受困之風"
+            ]
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "天黑以後，找一片頭頂無遮擋的空地。",
+            "按住右鍵，像吹原版山羊角那樣把號角吹滿 3 秒。",
+            "大約 5 秒後，風會把法師帶到你附近，它們只會盯着你攻擊。",
+            "親手打倒大法師，撿起掉落的受困之風。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裏有了受困之風，來源不限。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "大法師一箭約 15 點傷害，身邊的隨從也會一起放箭，最好帶上盾牌、穿好護甲，找有掩體的地方迎戰。和平難度下法師不會來。"
+        },
+        {
+          "type": "h",
+          "text": "它們的規矩"
+        },
+        {
+          "type": "list",
+          "items": [
+            "召來的法師只攻擊你，旁人、別人的寵物和村民都不會被它們的箭傷到。",
+            "你走出 {cfg:general.wind_horn.leash_range} 格、下線、死亡，或者 {cfg:general.wind_horn.despawn_ticks|div:1200|round:1} 分鐘內沒有人攻擊它們時，它們就會隨風散去，什麼都不掉。",
+            "受困之風只給親手打倒大法師的召喚者，被別人或你的寵物打倒的法師不掉東西，也不給經驗。你打中它以後 5 秒內，它被燒死、摔死或掉進巖漿，也算你打倒的，火焰附加、火矢照樣能用。沒人碰過、自己摔死或燒死的法師什麼都不掉。",
+            "風只會把它們帶到你能動手的地方，附近全是別人的領地或者被方塊堵死時，號角吹不響，也不會用掉，快捷欄上方會顯示原因。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "號角的冷卻記錄在你身上，下線後再上線也不會清除。",
+            "法師趕到之前你死亡、下線或被傳送走的話，號角會退還給你，冷卻也一併清除。法師到場以後你再下線，它們會隨風散去，號角不會退還。",
+            "野外自然生成的大法師打倒後同樣會掉受困之風，也算完成這一步，見[[wind_mage/wind_mages]]。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wind_tablet",
+      "title": "{item:essentialcraft5:wind_tablet}",
+      "icon": "essentialcraft5:wind_tablet",
+      "summary": "風的真名",
+      "complete": "essentialcraft5:guide/wind/wind_tablet",
+      "optional": "!cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:wind_tablet"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "<em>目標</em>（第十六章要用）：做一塊{item:essentialcraft5:wind_tablet}，看看風叫什麼名字。海納爾燒了以後，世上再沒有人叫得出這個名字。等名字完全顯現，石板就能替你打開通往海納爾的門。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "<em>目標</em>（可選）：做一塊{item:essentialcraft5:wind_tablet}，看看風叫什麼名字。海納爾燒了以後，世上再沒有人叫得出這個名字。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "材料",
+              "4 個{item:essentialcraft5:air_focus}、4 塊{item:essentialcraft5:magic_fortified_plating}和 1 個{item:essentialcraft5:wind_keeper}"
+            ],
+            [
+              "儲存",
+              "可儲存 5000 MRU，剛做出來時是空的，需要放進{item:essentialcraft5:charging_chamber}裏充能"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:wind_tablet"
+        },
+        {
+          "type": "h",
+          "text": "兩樣難湊的材料"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "{item:essentialcraft5:wind_keeper}只有穿紅袍的大法師會掉，每隻必掉一個。最穩妥的辦法是吹響風之號角把大法師召來，見[[wind/archmage]]。野外自然生成的大法師也會掉，在哪能碰上見下表。"
+            },
+            {
+              "if": [
+                "cfg:general.wind_mage.max_nearby>0",
+                "!cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "{item:essentialcraft5:wind_keeper}只有穿紅袍的大法師會掉，每隻必掉一個，在哪刷、怎麼刷見下表，也可以翻看[[wind_mage/wind_mages]]。"
+            },
+            {
+              "if": [
+                "!cfg:general.wind_mage.max_nearby>0",
+                "!cfg:general.hoanna.portal_enabled",
+                "bauble:essentialcraft5:wind_catcher"
+              ],
+              "text": "這個世界裏風法師不會自然生成，{item:essentialcraft5:wind_keeper}只能靠下面介紹的捕風掛墜捕獲。"
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "運氣好的話，能在地牢箱子裏翻到{item:essentialcraft5:wind_catcher}。戴着它，每次好感上漲都有 15% 的幾率捕到一個{item:essentialcraft5:wind_keeper}，喝風之藥水也算，平均六七瓶就能出一個。代價是係數減少 0.1，戴着它時好感基本不再漲。"
+            }
+          ]
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "rows": [
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "在哪",
+                "主世界，蘑菇地和深暗之域除外"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "在哪",
+                "主世界和海納爾，主世界的蘑菇地和深暗之域除外"
+              ]
+            },
+            [
+              "什麼時候",
+              "和喪屍、骷髏一樣在夜裏或黑暗處生成，但它不怕陽光，天亮後也不會離開"
+            ],
+            [
+              "認人",
+              "大法師穿紅袍，學徒穿綠袍，法師穿藍袍"
+            ],
+            [
+              "要打多少",
+              "三個等級各佔三分之一，平均約 800 只自然生成的敵對生物裏才有一隻大法師"
+            ],
+            [
+              "刷怪塔",
+              "依靠黑暗刷怪的刷怪塔也能刷出它，不過 {cfg:general.wind_mage.nearby_radius} 格內已有 {cfg:general.wind_mage.max_nearby} 只風法師時，那裏就不會再生成"
+            ],
+            [
+              "小心",
+              "它會在 15 格內遠遠地射出 MRU 箭，大法師一箭約 15 點傷害，最好帶上盾牌、穿好護甲再打"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:air_focus}要 4 個，每個耗一份風元素燃料，燃料又要用從元素水晶裏抽出的狂風精華來做，見[[essence/fuel_and_focus]]。水晶的元素是隨機長的，風元素少的水晶抽不出幾份精華，最好早點準備。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "風的真名"
+        },
+        {
+          "type": "p",
+          "text": "滑鼠停在石板上，提示裏會顯示「風之真名：」和一串問號。風之好感越高，顯出的字越多，到 <em>{cfg:general.wind.tablet_points}</em> 時全部顯現。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "名字下面還有一行「風之印記」，記着你完成過幾個[[wind/wishes|風之心願]]。名字全部顯現、心願也攢夠 {cfg:general.wind_wish.required} 個以後，石板才會回應。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到風之石板，提示裏出現「風之真名：」。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "名字全部顯現以後，拿石板右鍵<em>主世界</em>裏點燃的地獄傳送門，花費 {cfg:general.wind.tablet_portal_mru} MRU 就能把整扇門[[hoanna/open_gate|換成海納爾之門]]。到了海納爾，還能右鍵空的黑曜石框[[hoanna/way_home|補出一扇回家的門]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "名字沒有顯全時右鍵傳送門，只會收到一句「傳送門沒有回應……」，不會花費 MRU。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "名字已經顯全但心願還沒積攢夠時右鍵傳送門，只會收到一句「風還在等你替它完成心願」，同樣不會花費 MRU。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "拿石板右鍵地獄傳送門，只會收到一句「海納爾之門沒有回應」，不花 MRU，門也不變。你要是已經身在海納爾，那邊一切照常，門照樣能送你回主世界，風之真名顯全後，也能拿石板右鍵那邊的空黑曜石框補出一扇門。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書説，這塊石板只有一個用處，就是把風的呼嘯譯成人話。"
+        }
+      ]
+    }
+  ]
+}

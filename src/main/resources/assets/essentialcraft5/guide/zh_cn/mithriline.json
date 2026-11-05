@@ -1,0 +1,566 @@
+{
+  "id": "mithriline",
+  "order": 78,
+  "group": "main",
+  "title": "第十一章 · 米斯莱与 ESPE",
+  "subtitle": "第二种能量：ESPE",
+  "icon": "essentialcraft5:mithriline_furnace",
+  "entries": [
+    {
+      "id": "mithriline_ingot",
+      "title": "{item:essentialcraft5:mithriline_ingot}",
+      "icon": "essentialcraft5:mithriline_ingot",
+      "summary": "积攒的粉终于派上了用场",
+      "complete": "essentialcraft5:guide/mithriline/mithriline_ingot",
+      "items": [
+        "essentialcraft5:mithriline_ingot",
+        "essentialcraft5:mithriline_crystal"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "绿太阳远在另一个位面，看不见，也摸不着。它的脉冲穿过这个世界时早已弱得伤不了谁，却顺路捎上了几道 MRU 射线，把一些石头染成了米斯莱。",
+          "by": "《源质残卷·卷四》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把{item:essentialcraft5:mithriline_dust}做成{item:essentialcraft5:mithriline_ingot}和{item:essentialcraft5:mithriline_crystal}。这一章的终点是{item:essentialcraft5:mithriline_furnace}，它烧的是一种新的能量 <em>ESPE</em>，能把一种东西变成另一种，比如 8 块铁锭换 1 块金锭、萤石粉换米斯莱粉。"
+        },
+        {
+          "type": "p",
+          "text": "先辈管绿太阳的脉冲叫 ESPE，全称末影之星脉冲能量。它和 MRU 不是一回事，由水晶柱朝着天空一点一点攒起来，再由熔炉这样的结构直接从柱子里抽，用不着产能器和绑定宝石。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "这一章要准备什么",
+          "text": "熔炉、24 块护板和 1 根水晶柱一共要约 178 份米斯莱粉和 55 块铁锭，MRU 反倒用得不多。后两章更费材料，第十二章的灵魂五芒星和第十三章的风之祭坛各要 8 根水晶柱和 13 块米斯莱护板，到第十三章为止一共约需 740 份粉，总账见[[mithriline/crystal_pillar]]。矿石最好一次多挖些，用时运镐能省下一大半。"
+        },
+        {
+          "type": "p",
+          "text": "米斯莱粉来自{item:essentialcraft5:mithriline_ore}，主世界的石头层、下界和末地都有，每块掉 3~10 份粉，时运每高一级还会再多一截，时运 III 平均约 18 份。不带时运要挖二十七八块，时运 III 十块左右就够了。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_ingot"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在普通工作台里拿 4 份米斯莱粉围住 1 块{item:essentialcraft5:magical_ingot}，合出 1 块米斯莱锭。",
+            "再拿 4 块米斯莱锭围住 1 份米斯莱粉，合出 1 颗米斯莱水晶。水晶柱和熔炉各要 1 颗。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_crystal"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到米斯莱锭。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "别拿错",
+          "text": "下一篇的{item:essentialcraft5:mithriline_crystal_pillar}是三格高的方块，和合成材料{item:essentialcraft5:mithriline_crystal}是两样东西。"
+        },
+        {
+          "type": "p",
+          "text": "熔炉建好以后还有更省的做法，1 份粉加 60 ESPE 就能直接换 1 块锭，用不着魔力锭，1 颗{item:essentialcraft5:mru_resonating_crystal}加 120 ESPE 能换 1 颗米斯莱水晶，省下 17 份粉，详见[[mithriline/conversions]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书里，末影之星又叫「绿太阳」，书里承认对它知道得很少，只知道它的脉冲本是一股乱窜、带着破坏力的能量。脉冲捎来的 MRU 射线几乎没让世界变样，变了的只有一部分元素矿石，它们成了米斯莱矿石。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/mithriline/mithriline_ingot.json — 普通工作台 · I · / ISI / · I ·：I = 米斯莱粉 ×4、S = 魔力锭",
+        "data/essentialcraft5/recipes/mithriline/mithriline_crystal.json — I = 米斯莱锭 ×4、S = 米斯莱粉",
+        "src/generated/resources/data/essentialcraft5/loot_tables/blocks/mithriline_ore.json（下界、末地同）— fortune_scaled_count min 3、spread 8：3 + random[0, 8 × (时运 + 1))，不开时运 3~10（平均 6.5），时运 III 平均 18.5；精准采集掉矿石",
+        "data/essentialcraft5/worldgen/configured_feature/mithriline_ore.json（stone_ore_replaceables）、nether_mithriline_ore.json、end_mithriline_ore.json（末地石）",
+        "data/essentialcraft5/recipes/mithriline/furnace/mithriline_dust_to_mithriline_ingot.json（60 ESPE）、mru_resonating_crystal_to_mithriline_crystal.json（120 ESPE）",
+        "tools/plan/progression.md「按章节」第 11、13 章 — 米斯莱粉 178、铁 55；祭坛米斯莱粉 289",
+        "原作 en_US.lang essentialcraft.page.enderstar_0~2、mithriline_0~1 — 末影之星与米斯莱矿的来历（小知识）"
+      ]
+    },
+    {
+      "id": "crystal_pillar",
+      "title": "米斯莱水晶柱",
+      "icon": "essentialcraft5:mithriline_crystal_pillar",
+      "summary": "朝着天空积攒 ESPE",
+      "complete": "essentialcraft5:guide/mithriline/crystal_pillar",
+      "items": [
+        "essentialcraft5:mithriline_crystal_pillar",
+        {
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:shade_crystal_pillar"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：放下一根{item:essentialcraft5:mithriline_crystal_pillar}。它是 ESPE 的来源，每秒把这一秒攒下的 ESPE 一次存进柱子里，折合下面表里的每刻产量，存着等熔炉来抽，别的什么也不做。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "主世界、下界",
+              "每刻 {cfg:machines.mithriline_crystal_pillar.espe_generated} ESPE（每秒 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:20}）"
+            ],
+            [
+              "末地",
+              "每刻 {cfg:machines.mithriline_crystal_pillar.espe_generated_end} ESPE（每秒 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:20}）"
+            ],
+            [
+              "按档位",
+              "米斯莱、淡青、虚空、恶魔、暗渎依次 ×{cfg:machines.mithriline_crystal_pillar.tier_multipliers|list}"
+            ],
+            [
+              "最多存",
+              "{cfg:machines.mithriline_crystal_pillar.max_espe} ESPE"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：6 份米斯莱粉、1 颗米斯莱水晶、1 个{item:minecraft:ender_eye}和 1 颗末影珍珠，末影珍珠可以换成淡青珍珠。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_crystal_pillar"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "柱子有三格高，上面两格空着才放得下，柱身里浮着一颗慢慢转动的水晶。",
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "柱顶上方没有遮挡，柱子就能积攒 ESPE。玻璃和地毯不挡光，遮光玻璃、树叶、水和普通方块会挡，台阶、楼梯、耕地、雪层这类方块也一样。下界头顶是基岩，在基岩屋顶下面攒不到，放到基岩顶上才行。"
+            },
+            {
+              "if": "!cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "头顶挡不挡都没关系，放在屋里也照样攒。"
+            },
+            "要给熔炉供 ESPE，就把柱子立在熔炉的柱位上，下一篇细讲。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "放下了一根水晶柱。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>柱子只在区块加载时积攒</em>，你走远了它就停下，出门打怪、探险时，家里的柱子一点也不涨。拆掉任意一格都会拆下整根柱子，用镐挖才会掉落，而且只掉一根，里面攒的 ESPE 也一起没了。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "早放早攒",
+          "text": "一根柱子攒得很慢，熔炉做一块米斯莱锭要 60 ESPE，一根主世界的柱子得攒 2 分钟。柱子一放下就开始攒，越早放越好。熔炉周围有 13 个柱位，摆得越满越快，放在末地还要快得多。以后风之祭坛注一颗风之水晶要 {cfg:general.wind.gem_espe} ESPE，ESPE 是后期最大的瓶颈。"
+        },
+        {
+          "type": "h",
+          "text": "一共要立多少根"
+        },
+        {
+          "type": "table",
+          "header": [
+            "结构",
+            "水晶柱",
+            "哪一章"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mithriline_furnace}",
+              "1~13 根，越多越快",
+              "本章"
+            ],
+            [
+              "{item:essentialcraft5:player_pentacle}（0 档）",
+              "8 根",
+              "第十二章"
+            ],
+            [
+              "{item:essentialcraft5:wind_rune}祭坛",
+              "每座 8 根，最好搭两三座",
+              "第十三章"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_pentacle}",
+                "16 根，其中 12 根升成淡青柱，再从中挑 4 根升成虚空柱",
+                "第十七章"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每根柱子要 6 份米斯莱粉、1 颗米斯莱水晶、1 个末影之眼和 1 颗末影珍珠，米斯莱水晶要是用工作台做，得花 17 份粉。"
+        },
+        {
+          "type": "p",
+          "text": "到第十三章一共要 17 根柱子、54 块米斯莱护板，再加符文的 4 块米斯莱板，护板分给熔炉 24 块、五芒星 13 块、祭坛 13 块、符文 4 块。锭全用工作台做约要 740 份粉，熔炉建好后改在熔炉里做，每块 1 份粉加 60 ESPE，能压到约 400 份，见[[mithriline/conversions]]。"
+        },
+        {
+          "type": "p",
+          "text": "每座结构的柱子都要一直立着攒，拆下再放，里面的 ESPE 就清零了，所以每座结构最好各配各的柱子，别拆一座的柱子去凑另一座。"
+        },
+        {
+          "type": "h",
+          "text": "五种水晶柱"
+        },
+        {
+          "type": "table",
+          "header": [
+            "柱子",
+            "档位",
+            "附魔加成",
+            "怎么来"
+          ],
+          "widths": [
+            3,
+            1,
+            1,
+            4
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mithriline_crystal_pillar}",
+              "0",
+              "7.5",
+              "本章"
+            ],
+            [
+              "{item:essentialcraft5:pale_crystal_pillar}",
+              "1",
+              "15",
+              "[[pentacle/pale_crystal_pillar]]"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_crystal_pillar}",
+                "2",
+                "30",
+                "[[demons/void_crystal_pillar]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_crystal_pillar}",
+                "3",
+                "60",
+                "第十七章以后，配方见[[pentacle/tier_three]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:shade_crystal_pillar}",
+                "4",
+                "120",
+                "第二十二章，配方见[[shade/shade_pillar]]"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:shade_crystal_pillar}",
+                "4",
+                "120",
+                "要用海纳尔的材料做，这个世界里做不出来"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "档位越高攒得越快，上面写的产速是米斯莱柱的，淡青、虚空、恶魔、暗渎柱依次乘上表里的倍数，五种柱子最多能存的量都一样。档位还决定五芒星的柱位收不收它，底座给附魔台的加成也各不相同。手册别处写的「8 根柱子要等多久」都按米斯莱柱算，换成高档柱子会更快。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "柱子的底座立在书架该放的位置上，能给附魔台加附魔能力，米斯莱柱算 7.5，相当于七个半书架，原版附魔台最多只认到 15。",
+            "活塞推不动它。",
+            "柱子里的 ESPE 谁都能抽，熔炉、风之祭坛和五芒星都从这里取。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/mithriline/mithriline_crystal_pillar.json — IGI/ICI/IPI：米斯莱粉 ×6、末影之眼、米斯莱水晶、#essentialcraft5:ender_pearls（含淡青珍珠）",
+        "blockentity/MithrilineCrystalPillarBlockEntity.java:59-67 — espe_generated 0.025、espe_generated_end 0.1、requires_unobstructed_sky、max_espe 10000；L133 末地用 espe_generated_end",
+        "blockentity/MithrilineCrystalPillarBlockEntity.java:28-47（类注释）、143-160 — 柱顶上一格（底座 +3）往上没有挡天空光的方块才产出；玻璃、地毯不挡（遮光玻璃 getLightBlock 15，挡），树叶、水、台阶、楼梯、耕地、雪层挡；下界基岩屋顶下看不见天空",
+        "block/MithrilineCrystalPillarBlock.java:74-82、181-183 — 档位与附魔加成 7.5 / 15 / 30 / 60 / 120，只在底座；L24-65（类注释）五种产能、上限一样",
+        "block/TripleTallBlock.java:24-42（类注释）— 三格高，上面两格要空；拆哪一格都拆整根、只掉一根；推不动；registry/ECMithriline.java:103 pushReaction(BLOCK)",
+        "方块实体只在区块 tick 时运行：tools/plan/progression.md「拖沓」第 9 条（水晶柱只在区块加载时攒 ESPE）",
+        "config general.wind.gem_espe（10000）— 注风一颗风之水晶的 ESPE；progression.md「结论」— 53~55 颗风之水晶是主线最大的瓶颈",
+        "registry/ECCrystalPillars.java、data/essentialcraft5/recipes/pentacle/pale_crystal_pillar.json、crystal_pillars/void_crystal_pillar.json、demonic_crystal_pillar.json — 各柱来源；暗渎水晶柱 13e 起有生存配方（魔力工作台：恶魔水晶柱 + 暗影核心 + 影晶 ×3，shade/shade_pillar）",
+        "data/essentialcraft5/recipes/mithriline/*.json — 柱子 6 粉 + 水晶 + 末影之眼 + 珍珠；水晶 4 锭 + 1 粉；锭 4 粉 + 魔力锭；米斯莱板 = 魔力强化板 + 4 锭；4 板 → 16 护板",
+        "第十一~十三章合计：柱子 17 × 23 粉 = 391；护板 54 块 → 16 块米斯莱板 + 符文 4 块 = 20 块板 × 16 粉 = 320；熔炉 27 粉；五芒星 4 粉 → 约 742。熔炉建好后的 112 块锭改走熔炉：约 406 粉 + 6720 ESPE",
+        "registry/ECCrystalPillars — 暗渎水晶柱 13e 起从创造栏专属改成普通方块物品（13e-C5）；海纳尔之门关着时做不出来（暗影核心要海纳尔）",
+        "blockentity/MithrilineCrystalPillarBlockEntity.java tierMultiplier — machines.mithriline_crystal_pillar.tier_multipliers（默认 1 / 1.5 / 2 / 3 / 4，按档位 0~4，少写的档按最后一个）；generation(level, tier) = 基础产量 × 倍率；上限 max_espe 不分档。原作五种一样快"
+      ]
+    },
+    {
+      "id": "furnace",
+      "title": "{item:essentialcraft5:mithriline_furnace}",
+      "icon": "essentialcraft5:mithriline_furnace",
+      "summary": "绿色的火焰",
+      "complete": "essentialcraft5:main/mithriline_furnace",
+      "items": [
+        "essentialcraft5:mithriline_furnace",
+        "essentialcraft5:mithriline_plate",
+        "essentialcraft5:mithriline_plating",
+        "essentialcraft5:creative_espe_storage"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把{item:essentialcraft5:mithriline_furnace}的结构搭起来，让它从水晶柱里抽 ESPE，开始转化物品。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：8 块{item:essentialcraft5:mithriline_plate}，能做出 32 块护板，结构用其中 24 块。熔炉本身要 2 份米斯莱粉、1 颗米斯莱水晶、2 块{item:essentialcraft5:emerald_plate}、1 个{item:minecraft:furnace}、2 块米斯莱锭和 1 根{item:essentialcraft5:heating_rod}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_plate"
+        },
+        {
+          "type": "p",
+          "text": "米斯莱板在魔力工作台里用 1 块魔力强化板加 4 块米斯莱锭做，耗 {cfg:machines.magician_table.mru_usage_modifier|mul:400|int} MRU。它和魔力板算同一类，大多数要「魔力板」的配方也收它。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_plating"
+        },
+        {
+          "type": "p",
+          "text": "4 块米斯莱板能做出 16 块{item:essentialcraft5:mithriline_plating}。它也能像魔力护板那样[[alloys/plating|染色]]，熔炉不挑颜色，它还能拿来砌富集仓的外壳。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mithriline_furnace"
+        },
+        {
+          "type": "h",
+          "text": "摆法"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:mithriline_furnace"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "熔炉下面一层铺 12 块护板，熔炉正下方那一格放什么都行。",
+            "熔炉这一层的外圈放 8 块，放在四个角和四条边的正中。",
+            "外圈四个角上再各叠 1 块。",
+            "标着「可选」的 13 个位置是柱位，水晶柱的底座就立在这些格子上。一根柱子都不放，结构也算完整，只是没有 ESPE 进来。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到进度「绿焰」。结构第一次搭成时，16 格内的玩家都会拿到，之后打开熔炉界面也会补发。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "原料放进下面的格子，产物出现在上面带水晶框的那一格。",
+            "熔炉能存 {cfg:machines.mithriline_furnace.max_espe} ESPE，结构完整时每刻都从柱位上的水晶柱里抽，一直抽到存满。",
+            "一份原料要的 ESPE 一凑够就出一份产物，存量充足时一刻就能做完，所以实际速度全看 ESPE 进账多快。主世界摆满 13 根柱子时每秒进账 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:260} ESPE，一块米斯莱锭大约要 9 秒。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "熔炉里的 ESPE 只进不出，别的机器和管道都抽不走。换一种原料、对上另一条配方时，进度从头算。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "界面左上角是熔炉的状态，鼠标指上去，能看到结构哪一格不对、接上了几处 ESPE 源，还有当前原料每份要几个、要多少 ESPE。",
+            "结构每秒检查一次。",
+            "漏斗只往原料格里塞能转化的东西，从产物格往外取。",
+            "柱位上放别种水晶柱，或者创造模式的{item:essentialcraft5:creative_espe_storage}，同样算 ESPE 源。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/mithriline/mithriline_plate.json — 魔力工作台：魔力强化板 + 4 米斯莱锭，mru 400；mithriline_plating.json — 4 块米斯莱板出 16；mithriline_furnace.json — DGD/PFP/IHI：米斯莱粉 ×2、米斯莱水晶、绿宝石板 ×2、熔炉、米斯莱锭 ×2、加热棒",
+        "src/generated/resources/data/essentialcraft5/tags/items/plates/magic.json — 含米斯莱板；blocks/mrucuec_casing.json — 含米斯莱护板",
+        "registry/ECMithriline.java:155-173 — 结构：下层 12 块护板（正下方随意），熔炉层外圈 8 块，再上一层四角 4 块；C = 13 个可选柱位",
+        "blockentity/MithrilineFurnaceBlockEntity.java:48-70（类注释）— 存 10000 ESPE；结构完整时每 tick 从 13 个位置的 ESPE 源抽满；取「还差多少」，够了一 tick 出一份；换配方进度清零；ESPE 只进不出；结构至多每 20 tick 重算；漏斗只塞对得上配方的；第一次成形给 16 格内玩家发「绿焰」，打开界面补发",
+        "blockentity/MithrilineFurnaceBlockEntity.java:80 — max_espe；L119-120、menu/MithrilineFurnaceMenu.java:49-50 — 原料格 (80,64) 在下、产物格 (80,21) 在上；L133 SOURCES；L143 进度 main/mithriline_furnace",
+        "估算：13 根 × 0.025 × 20 = 6.5 ESPE/秒（= espe_generated × 260），60 / 6.5 ≈ 9 秒",
+        "lang：advancements.essentialcraft5.mithriline_furnace.title「绿焰」"
+      ]
+    },
+    {
+      "id": "conversions",
+      "title": "转化表",
+      "icon": "minecraft:gold_ingot",
+      "summary": "等量互换",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "残卷里说，ESPE 不生东西，只换东西。熔炉里的转化都是<em>等量</em>的，转上一圈回来，数量也不会多出一点。ESPE 来得不易，下面先列最有用的几条。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "原料",
+            "产物",
+            "ESPE",
+            "用处"
+          ],
+          "widths": [
+            3,
+            3,
+            1,
+            4
+          ],
+          "rows": [
+            [
+              "1 {item:minecraft:glowstone_dust}",
+              "1 {item:essentialcraft5:mithriline_dust}",
+              "32",
+              "米斯莱粉从此可以再生"
+            ],
+            [
+              "1 {item:essentialcraft5:mithriline_dust}",
+              "1 {item:essentialcraft5:mithriline_ingot}",
+              "60",
+              "不用魔力锭"
+            ],
+            [
+              "1 {item:essentialcraft5:mru_resonating_crystal}",
+              "1 {item:essentialcraft5:mithriline_crystal}",
+              "120",
+              "省下 17 份米斯莱粉"
+            ],
+            [
+              "1 {item:essentialcraft5:mithriline_crystal}",
+              "1 {item:essentialcraft5:fading_crystal}",
+              "240",
+              "淡青水晶柱的材料，见[[pentacle/pale_crystal_pillar]]"
+            ],
+            [
+              "1 {item:essentialcraft5:fading_crystal}",
+              "8 {item:essentialcraft5:fading_dust}",
+              "480",
+              "同上"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "米斯莱水晶和黯淡水晶以后还要拿来做力场零件，见[[computer/force_parts]]。"
+        },
+        {
+          "type": "h",
+          "text": "原版材料互换"
+        },
+        {
+          "type": "table",
+          "header": [
+            "两边",
+            "ESPE"
+          ],
+          "rows": [
+            [
+              "8 {item:minecraft:iron_ingot} ⇄ 1 {item:minecraft:gold_ingot}",
+              "64"
+            ],
+            [
+              "2 {item:minecraft:diamond} ⇄ 1 {item:minecraft:emerald}",
+              "512"
+            ],
+            [
+              "64 {item:minecraft:redstone} ⇄ 1 {item:minecraft:ghast_tear}",
+              "1024"
+            ],
+            [
+              "3 {item:minecraft:ender_pearl} ⇄ 2 {item:minecraft:blaze_rod}",
+              "128"
+            ],
+            [
+              "3 {item:minecraft:wheat} ⇄ 1 {item:minecraft:leather}",
+              "128"
+            ],
+            [
+              "12 {item:minecraft:clay_ball} ⇄ 1 {item:minecraft:gunpowder}",
+              "32"
+            ],
+            [
+              "3 {item:minecraft:sugar} ⇄ 4 {item:minecraft:slime_ball}",
+              "16"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "ESPE 先花在哪",
+          "text": "ESPE 攒得慢，转化时要挑着来。黯淡水晶只能在这里做，ESPE 紧张时先紧着它。萤石换米斯莱粉适合在矿挖完以后补货，注魔合金缺末影珍珠或烈焰棒时，可以拿另一样换过来补上。"
+        },
+        {
+          "type": "h",
+          "text": "整张表"
+        },
+        {
+          "type": "recipe",
+          "recipe_type": "essentialcraft5:mithriline_furnace",
+          "compact": true
+        },
+        {
+          "type": "p",
+          "text": "其余的大多是轮换。木板、树苗、原木和树叶按木种轮换，红树林和樱花木也在里面，花、蘑菇、生肉、熟肉、鱼、唱片、头颅各自轮换，还有冰 → 草方块 → 泥土 → 灰化土 → 玻璃 → 冰这一圈。每条要几个原料、出几个产物，上面的表里都写着。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "顺路看看",
+          "text": "翻过这一页就是下一章「腐化与灵魂五芒星」。能看见 MRU 聚集体的[[gear/magic_monocle]]、让矿石翻倍的[[magmatic/fortified_furnace]]这些支线，什么时候想看都可以翻过去。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/mithriline/furnace/*.json — 112 条；本篇列的：glowstone_dust_to_mithriline_dust 32、mithriline_dust_to_mithriline_ingot 60、mru_resonating_crystal_to_mithriline_crystal 120、mithriline_crystal_to_fading_crystal 240、fading_crystal_to_fading_dust（出 8）480",
+        "data/essentialcraft5/recipes/mithriline/furnace/iron_ingot_to_gold_ingot（8 → 1）/ gold_ingot_to_iron_ingot 64、diamond_to_emerald（2 → 1）/ emerald_to_diamond 512、redstone_to_ghast_tear（64 → 1）/ ghast_tear_to_redstone 1024、ender_pearl_to_blaze_rod（3 → 2）/ blaze_rod_to_ender_pearl 128、wheat_to_leather（3 → 1）/ leather_to_wheat 128、clay_ball_to_gunpowder（12 → 1）/ gunpowder_to_clay_ball 32、sugar_to_slime_ball（3 → 4）/ slime_ball_to_sugar 16",
+        "data/essentialcraft5/recipes/pentacle/pale_crystal_pillar.json — 黯淡水晶 ×2、黯淡水晶粉 ×6；computer/force_absorber.json（米斯莱水晶）、force_emitter.json / particle_catcher.json（黯淡水晶）",
+        "轮换：*_planks / *_sapling / *_log / *_leaves（含 mangrove、cherry）、花、蘑菇、生熟肉、鱼、唱片、头颅；ice_to_grass_block → grass_block_to_dirt → dirt_to_podzol → podzol_to_glass → glass_to_ice",
+        "tools/plan/progression.md「按章节」第 17 章、「挂机」— 熔炉做黯淡水晶的 ESPE 用量"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "tier_two",
+    "title": "2 档五芒星",
+    "icon": "essentialcraft5:void_crystal_pillar",
+    "summary": "治矩阵类效果",
+    "complete": "essentialcraft5:guide/pentacle/tier2",
+    "optional": true,
+    "if": "cfg:general.hoanna.portal_enabled",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：把五芒星升到 2 档，治矩阵类效果（[[corruption/matrix]]）。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：8 块{item:essentialcraft5:void_stone}（见[[hoanna/void_stone]]）、4 根{item:essentialcraft5:void_crystal_pillar}（见[[demons/void_crystal_pillar]]）。"
+      },
+      {
+        "type": "h",
+        "text": "2 档结构"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:player_pentacle_tier2"
+      },
+      {
+        "type": "p",
+        "text": "在完整的 1 档结构上：外圈四个角各叠两块虚空石（颜色随意），每摞上面立一根虚空水晶柱；恶魔水晶柱也算。1 档的部分一格都不能少。"
+      },
+      {
+        "type": "h",
+        "text": "能治什么"
+      },
+      {
+        "type": "p",
+        "text": "搭好以后符文变成紫色。2 档从 16 根柱子抽 ESPE，全满是 57600，矩阵类 14 种里有 11 种在这以内。"
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "2 档治不了的",
+        "text": "{lang:corruption_effect.essentialcraft5.matrix_12}、{lang:corruption_effect.essentialcraft5.matrix_19}、{lang:corruption_effect.essentialcraft5.matrix_20}三种的成本是 72000，2 档攒满也不够，要 3 档（[[pentacle/tier_three]]）。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "打开一次 2 档的五芒星界面。"
+      }
+    ],
+    "_src": [
+      "registry/ECPentacle.java:203 VOID_STONE_OFFSETS（外圈四角两层 8 块）、PILLAR_OFFSETS 第 2 段（四角高 2 格）；pillarRule(2, …) 认档位 ≥ 2 的柱子底座",
+      "blockentity/PlayerPentacleBlockEntity.java effectiveESPE — 16 根 × 10000 × 0.36 = 57600；TIER_COLORS 第 3 项紫色",
+      "api/CorruptionEffects.java:148 起 — 矩阵类 14 种，matrix_12 / 19 / 20 成本 72000，其余 ≤ 36000；category MATRIX minPentacleTier 2",
+      "blockentity/PlayerPentacleBlockEntity.java createMenu — 档位 ≥ 2 时给 guide/pentacle/tier2 打勾"
+    ]
+  },
+  {
+    "id": "tier_three",
+    "title": "3 档五芒星",
+    "icon": "essentialcraft5:demonic_crystal_pillar",
+    "summary": "每点 ESPE 顶两点，什么都治得了",
+    "complete": "essentialcraft5:guide/pentacle/tier3",
+    "optional": true,
+    "if": "cfg:general.hoanna.portal_enabled",
+    "items": [
+      "essentialcraft5:demonic_crystal_pillar"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：把五芒星升到最高的 3 档。它能治所有腐化效果，柱子里的每点 ESPE 还按两点算。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：4 块{item:essentialcraft5:demonic_plating}（见[[demons/demonic_plating]]）、4 根{item:essentialcraft5:demonic_crystal_pillar}。恶魔水晶柱用 6 个{item:essentialcraft5:ackronite_ingot}、2 个{item:essentialcraft5:demonic_core}围住一根虚空水晶柱，原来那根虚空柱会被吃掉（阿克罗尼特见[[demons/ackronite]]）。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:demonic_crystal_pillar"
+      },
+      {
+        "type": "h",
+        "text": "3 档结构"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:player_pentacle_tier3"
+      },
+      {
+        "type": "p",
+        "text": "在完整的 2 档结构上：五芒星下面那一层，正东、正南、正西、正北各隔一格放一块恶魔护板（颜色随意）；四个方向同样隔一格、比五芒星高 3 格的地方各立一根恶魔水晶柱。"
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "柱子悬在半空",
+        "text": "恶魔柱的底座下面是空的，直接放不上去：先在下面垫几块方块，柱子放好以后再把垫的拆掉。"
+      },
+      {
+        "type": "h",
+        "text": "怎么用"
+      },
+      {
+        "type": "p",
+        "text": "搭好以后符文变成红色。3 档从 20 根柱子抽 ESPE，每点按两点算，全满是 144000：成本 72000 的三种矩阵类也治得了，治一个只从柱子里抽走 10 万点。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "打开一次 3 档的五芒星界面，同时拿到进度「灵魂净化」。"
+      }
+    ],
+    "_src": [
+      "registry/ECPentacle.java:207 DEMONIC_OFFSETS（脚下一层四个正方向隔一格）、PILLAR_OFFSETS 第 3 段 (±2, 3, 0) / (0, 3, ±2)；pillarRule(3, …)",
+      "blockentity/PlayerPentacleBlockEntity.java multiplier — 3 档每点 ESPE ×2；20 根 × 10000 × 2 × 0.36 = 144000；consumeESPE 抽 rawCost ÷ 2",
+      "data/essentialcraft5/recipes/crystal_pillars/demonic_crystal_pillar.json — IGI / ICI / IGI：阿克罗尼特锭 ×6、恶魔核心 ×2、虚空水晶柱",
+      "blockentity/PlayerPentacleBlockEntity.java createMenu — 档位 ≥ 3 时给 guide/pentacle/tier3 打勾、发 main/player_pentacle；TIER_COLORS 第 4 项红色"
+    ]
+  }
+]

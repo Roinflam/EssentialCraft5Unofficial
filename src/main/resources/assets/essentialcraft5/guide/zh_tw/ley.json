@@ -1,0 +1,707 @@
+{
+  "id": "ley",
+  "order": 83,
+  "group": "side",
+  "title": "支線 · 地脈投影",
+  "subtitle": "掛機產礦，後期按需凝聚",
+  "icon": "essentialcraft5:ley_projector",
+  "if": "cfg:machines.ley_projector.enabled||cfg:machines.ley_condenser.enabled",
+  "entries": [
+    {
+      "id": "ley_projector",
+      "title": "{item:essentialcraft5:ley_projector}",
+      "icon": "essentialcraft5:ley_projector",
+      "summary": "不動一格方塊，用 MRU 掛機產礦",
+      "complete": "essentialcraft5:guide/ley/ley_projector",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ley_projector"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "採石場把腳下挖空了一層又一層，挖完這片還得搬家。後來我想，石頭記得自己身上有過什麼礦，只讀它的影子就夠了，用不著動它。",
+          "by": "《工坊手記》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：造一台{item:essentialcraft5:ley_projector}。接上 MRU 以後放著不管，它會慢慢攢出礦來，世界裡的方塊一格也不動，不用挖坑，也不用搬家。它的配方要一把魔力挖掘器，到<em>第九章</em>做出焦點以後才湊得齊。"
+        },
+        {
+          "type": "p",
+          "text": "岩層裡的礦脈會在石頭上留下影像，這些影像就是「地脈」。投影儀一格一格地讀取所在維度的地脈，再用 MRU 把讀到的影像凝成實物。MRU、綁定寶石這些詞還不熟悉的話，可以先翻一翻[[start/glossary]]。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "p",
+          "text": "最難湊的是一把{item:essentialcraft5:magical_digger}，做法見[[gear/magical_digger]]。它要兩個{item:essentialcraft5:earth_focus}和兩個{item:essentialcraft5:fire_focus}，焦點又得先培育元素水晶、抽出精華才做得出來，見[[essence/fuel_and_focus]]。想早點用上投影儀，就先把焦點備好。"
+        },
+        {
+          "type": "p",
+          "text": "其餘都是常見零件：兩塊{item:essentialcraft5:magic_fortified_plating}、兩個{item:essentialcraft5:world_interactor}，{item:essentialcraft5:fortified_frame}、{item:essentialcraft5:magical_screen}和{item:essentialcraft5:mru_catcher}各一個，再加一個{item:essentialcraft5:elemental_core}，用{item:essentialcraft5:pale_core}代替也行。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ley_projector"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "合成前",
+          "text": "挖掘器裡存的 MRU 會跟著挖掘器一起消耗掉，最好先把它用空再拿去合成。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把投影儀放在哪裡都可以，身下是什麼方塊、離地面多深都沒有關係。",
+            "在寶石槽裡放一顆綁在 MRU 源上的{item:essentialcraft5:bound_gem}，它就會自己從源頭抽取 MRU，綁定寶石的用法見[[crafting/bound_gem]]。",
+            "想多出一點，就在透鏡格里放 1 顆{item:essentialcraft5:pale_gem}，產出的礦會按幸運 I 掉落，詳見[[ley/ley_lens]]。",
+            "它每 {cfg:machines.ley_projector.ticks_per_block|sec}投影一格岩層，每格開始時一次扣掉 {cfg:machines.ley_projector.mru_per_block} MRU，這一格里有礦的話，礦會落進右邊的 9 個輸出格。",
+            "漏斗、管道從任意一面都能把輸出格里的東西抽走。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU 容量",
+              "{cfg:machines.ley_projector.max_mru} MRU"
+            ],
+            [
+              "每格用時",
+              "{cfg:machines.ley_projector.ticks_per_block|sec}"
+            ],
+            [
+              "每格 MRU",
+              "{cfg:machines.ley_projector.mru_per_block}"
+            ],
+            [
+              "1000 格",
+              "約 {cfg:machines.ley_projector.ticks_per_block|mul:1000|div:1200|int} 分鐘、{cfg:machines.ley_projector.mru_per_block|mul:1000} MRU"
+            ],
+            {
+              "if": [
+                "cfg:machines.ley_projector.ticks_per_block==20",
+                "cfg:machines.ley_projector.mru_per_block==60"
+              ],
+              "cells": [
+                "平均耗電",
+                "每刻 {cfg:machines.ley_projector.mru_per_block|div:20} MRU，一台四面圍著岩漿的熱力產能器每刻產出 16 MRU，帶得動 5 台"
+              ]
+            },
+            [
+              "同一區塊裡每人幾台",
+              "{cfg:machines.ley_projector.max_per_owner_per_chunk}"
+            ],
+            {
+              "if": "cfg:machines.ley_projector.generate_corruption",
+              "cells": [
+                "每格洩漏",
+                "0～{cfg:machines.ley_projector.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到投影儀時這一步就會打勾。放下並接好 MRU 以後，介面的狀態條顯示「{lang:gui.essentialcraft5.ley_projector.status.working}」，機器裡有一道光束向下投射，輸出格里陸續出現礦。"
+        },
+        {
+          "type": "h",
+          "text": "要注意的"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>同一個區塊裡，你自己的投影儀只有最早放下的 {cfg:machines.ley_projector.max_per_owner_per_chunk} 台會工作。</em>後放的顯示「{lang:gui.essentialcraft5.ley_projector.status.duplicate}」，滑鼠移到狀態條上能看到名額被哪一台佔了，別人的投影儀不佔你的名額。",
+            "想多開幾台，就分散放到不同的區塊裡，拆掉重放的那台會排到最後。",
+            "它不會自己載入區塊，你走遠、區塊卸載以後它就跟著停下。放它的人不線上時，它照常工作。",
+            "終界等沒有地脈的維度裡它不工作，狀態條會顯示「{lang:gui.essentialcraft5.ley_projector.status.no_ley}」。",
+            "收到紅石訊號時它會暫停，進度不丟，輸出格滿了也會停下，取走東西后它自己接著投影。",
+            {
+              "if": "cfg:machines.ley_projector.generate_corruption",
+              "text": "每投影一格，它會向周圍洩漏 0～{cfg:machines.ley_projector.max_corruption_gen} MRU，附近的 MRU 聚集體會慢慢長大，詳見[[crafting/corruption]]，所以別把它放在你常待的地方。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "狀態條顯示「{lang:gui.essentialcraft5.owner.none}」時，把它拆下來親手重新放一次。",
+            "漏斗、管道只能往寶石槽裡送綁定寶石，透鏡要親手放，漏斗也抽不走它。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "後期",
+          "text": "打倒全息投影以後，可以把投影儀升級成{item:essentialcraft5:ley_condenser}，點名要哪一種礦物，詳見[[ley/ley_condenser]]。",
+          "if": [
+            "cfg:machines.ley_condenser.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "投影儀的前身是原作的「魔力採石場」，研究書給那一頁起的副標題是「走開，Buildcraft！」。投影儀每格的用時和 MRU，和沒裝升級的採石場一樣。"
+        }
+      ],
+      "if": "cfg:machines.ley_projector.enabled"
+    },
+    {
+      "id": "ley_lens",
+      "title": "透鏡與產出",
+      "icon": "essentialcraft5:pale_gem",
+      "summary": "淡青寶石透鏡，以及能投影出什麼",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "這一篇是投影儀的速查，講透鏡怎麼用、各個維度能投影出什麼，還有「保留岩石」開關。"
+        },
+        {
+          "type": "h",
+          "text": "透鏡"
+        },
+        {
+          "type": "p",
+          "text": "在寶石槽右邊的透鏡格里放 1 顆{item:essentialcraft5:pale_gem}，投影出的礦就按<t>幸運 I</t> 掉落，和拿幸運 I 的鎬挖出來一樣。透鏡不會消耗，一格只放得下 1 顆，淡青寶石的做法見[[gear/pale_gem]]。"
+        },
+        {
+          "type": "h",
+          "text": "主世界能投影出什麼"
+        },
+        {
+          "type": "table",
+          "header": [
+            "產物",
+            "每千格約",
+            "每格幾個",
+            "帶透鏡"
+          ],
+          "rows": [
+            [
+              "{item:minecraft:raw_copper}",
+              "3.09",
+              "2～5",
+              "平均 ×1.33"
+            ],
+            [
+              "{item:minecraft:raw_iron}",
+              "2.82",
+              "1",
+              "平均 ×1.33"
+            ],
+            [
+              "{item:minecraft:redstone}",
+              "1.20",
+              "4～5",
+              "多 0～1 個"
+            ],
+            [
+              "{item:minecraft:raw_gold}",
+              "0.86",
+              "1",
+              "平均 ×1.33"
+            ],
+            [
+              "{item:minecraft:lapis_lazuli}",
+              "0.84",
+              "4～9",
+              "平均 ×1.33"
+            ],
+            [
+              "{item:minecraft:diamond}",
+              "0.52",
+              "1",
+              "平均 ×1.33"
+            ],
+            [
+              "{item:essentialcraft5:elemental_gem}",
+              "0.27",
+              "1～2",
+              "1～4"
+            ],
+            [
+              "{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}、{item:essentialcraft5:air_drops}",
+              "各 0.08",
+              "1～2",
+              "1～4"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_dust}",
+              "0.08",
+              "3～10",
+              "3～18"
+            ]
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每 1000 格里大約有 10 格是礦，其餘都是岩石。投影 1000 格約需 {cfg:machines.ley_projector.ticks_per_block|mul:1000|div:1200|int} 分鐘，花掉 {cfg:machines.ley_projector.mru_per_block|mul:1000} MRU。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.ley_projector.ticks_per_block==20",
+          "text": "投影儀每秒投影一格，掛機一小時約 3600 格。不帶透鏡時，一小時大約出粗銅 39、鐵原礦 10、紅石 19、青金石 20、粗金 3、鑽石 2，另有一兩顆元素晶石和 2 份左右的米斯萊粉。"
+        },
+        {
+          "type": "h",
+          "text": "別的維度"
+        },
+        {
+          "type": "p",
+          "text": "地獄同樣有地脈，產出以{item:minecraft:quartz}和{item:minecraft:gold_nugget}為主，每千格分別約 6.15 和 2.15，金粒每格出 2～6 個。元素晶石、四種魔晶和米斯萊粉出得大約是主世界的兩倍。"
+        },
+        {
+          "type": "p",
+          "text": "海納爾也有地脈，產出和主世界差不多，銅和鐵略少一點。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "終界沒有地脈，投影儀在那裡不工作。"
+        },
+        {
+          "type": "h",
+          "text": "保留岩石"
+        },
+        {
+          "type": "p",
+          "text": "介面上寶石槽和透鏡格右邊的圓石按鈕就是「保留岩石」開關，按鈕右下角的小方塊綠色是開，紅色是關。投影儀剛放下時這個開關是關著的，沒出礦的格子什麼也不出。想順便攢些圓石、地獄岩當建材，就把它開啟，這些格子會各出 1 塊岩石："
+        },
+        {
+          "type": "table",
+          "header": [
+            "維度",
+            "出的岩石"
+          ],
+          "rows": [
+            [
+              "主世界",
+              "{item:minecraft:cobbled_deepslate}、{item:minecraft:cobblestone}各一半"
+            ],
+            [
+              "地獄",
+              "九成{item:minecraft:netherrack}、一成{item:minecraft:basalt}"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海納爾",
+                "{item:minecraft:cobbled_deepslate}、{item:minecraft:cobblestone}各約一半"
+              ]
+            }
+          ],
+          "widths": [
+            1,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "岩石不擋礦",
+          "text": "每種岩石只佔一個輸出格，只往自己那格里堆，所有岩石加起來最多佔 2 格。自己那格堆滿了，或者 2 格都被別的岩石佔了，新出的岩石就直接丟掉。始終至少有 7 格留給礦，所以開著「保留岩石」，投影儀也不會被岩石堵停。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "不出燃料",
+          "text": "投影儀不出煤和任何能當燃料燒的東西，也不出礦石方塊。燃料能在產能器裡燒回更多的 MRU，礦石方塊能在冶煉爐裡翻倍，出了它們，投影儀就成了白賺的買賣。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "想多出錠",
+          "text": "粗礦放進[[magmatic/smeltery]]，一個能出 2 個錠。"
+        }
+      ],
+      "if": "cfg:machines.ley_projector.enabled"
+    },
+    {
+      "id": "ley_condenser",
+      "title": "{item:essentialcraft5:ley_condenser}",
+      "icon": "essentialcraft5:ley_condenser",
+      "summary": "按需凝聚指定的礦物",
+      "complete": "essentialcraft5:guide/ley/ley_condenser",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ley_condenser"
+      ],
+      "if": [
+        "cfg:machines.ley_condenser.enabled",
+        "cfg:general.hoanna.portal_enabled"
+      ],
+      "blocks": [
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "這是一台後期機器，要先在第十八章打倒一隻全息投影，拿到一個[[hologram/math_cores|數學核心]]。"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：把一台{item:essentialcraft5:ley_projector}升級成{item:essentialcraft5:ley_condenser}。投影儀讀到什麼就出什麼，凝聚器可以從[[ley/condensing|價格表]]裡點名要哪一種原版礦物，它同樣不動世界裡的任何一格方塊。"
+        },
+        {
+          "type": "p",
+          "text": "它還能凝出{item:minecraft:nether_star}。每塊{item:essentialcraft5:matter_of_eternity}都要用掉一顆地獄之星，[[hologram/holopad|全息投影台]]和[[computer/force_field|力場發生器]]又都離不開永恆物質，掛機凝星比刷凋零怪骷髏省事得多。",
+          "if": "cfg:machines.ley_condenser.nether_star.ticks>0"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "list",
+          "items": [
+            "四塊{item:essentialcraft5:demonic_plate}，見[[demons/ackronite]]；",
+            "一塊{item:essentialcraft5:neuronic_enriched_plating}，見[[hologram/neuronic_plating]]；",
+            "一個{item:essentialcraft5:void_core}，見[[hoanna/relics]]；",
+            "一塊{item:essentialcraft5:matter_of_eternity}，這是用一顆地獄之星做成的大電池，見[[storage/soul_storage]]；",
+            "一台{item:essentialcraft5:ley_projector}；",
+            "任意一種[[hologram/math_cores|數學核心]]，湊{item:essentialcraft5:computer_engine}時多出來的核心正好用在這裡。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ley_condenser"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "合成前",
+          "text": "{item:essentialcraft5:matter_of_eternity}裡存的 MRU 會在合成時一起用掉，最好先把它抽空。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把凝聚器放在哪裡都可以，身下是什麼方塊也沒有關係。",
+            "在寶石槽裡放一顆綁在 MRU 源上的{item:essentialcraft5:bound_gem}，源頭最好是[[enrichment/controller|富集倉]]這樣的大倉庫。",
+            "點一下介面中間的礦物圖示選定目標，它每刻扣一點 MRU、進度前進一格，進度走滿就凝出一個，放進右邊的 9 個輸出格。",
+            "漏斗、管道從任意一面都能把輸出格里的東西抽走。"
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": [
+                "essentialcraft5:mithriline_crystal_pillar",
+                "essentialcraft5:pale_crystal_pillar",
+                "essentialcraft5:void_crystal_pillar",
+                "essentialcraft5:demonic_crystal_pillar"
+              ],
+              "label": "任意一種水晶柱"
+            },
+            "R": "essentialcraft5:ley_condenser"
+          },
+          "anchor": "R",
+          "pattern": [
+            "C C C",
+            "     ",
+            "C R C",
+            "     ",
+            "C C C"
+          ],
+          "caption": "只有凝地獄之星時才需要，在同一高度隔一格擺一圈 8 根水晶柱，種類不限。",
+          "if": "cfg:machines.ley_condenser.nether_star.ticks>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            "柱子的底座要和凝聚器在同一高度。",
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.requires_unobstructed_sky",
+              "text": "柱頂上方保持無遮擋，柱子才能積攢 ESPE。"
+            },
+            "柱子只在區塊載入期間積攢 ESPE，你走遠以後，柱子和凝聚器都會停下。",
+            "ESPE 即末影之星脈衝能量，是水晶柱積攢的另一種能量，見[[mithriline/crystal_pillar]]。"
+          ],
+          "if": "cfg:machines.ley_condenser.nether_star.ticks>0"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU 容量",
+              "{cfg:machines.ley_condenser.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "cells": [
+                "ESPE 容量",
+                "{cfg:machines.ley_condenser.max_espe} ESPE"
+              ]
+            },
+            [
+              "同一區塊裡每人幾台",
+              "{cfg:machines.ley_condenser.max_per_owner_per_chunk}"
+            ],
+            {
+              "if": "cfg:machines.ley_condenser.max_per_owner>0",
+              "cells": [
+                "每人同時工作幾台",
+                "{cfg:machines.ley_condenser.max_per_owner}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.generate_corruption",
+              "cells": [
+                "每工作 1 秒洩漏",
+                "0～{cfg:machines.ley_condenser.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到凝聚器時這一步就會打勾。選好目標、接好 MRU 以後，狀態條顯示「{lang:gui.essentialcraft5.ley_condenser.status.working}」，頭頂的影像開始旋轉，輸出格里的產物一個接一個地多起來。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>它非常吃 MRU。</w>選目標時把滑鼠指著圖示，提示裡會寫出凝的時候每刻大約用多少 MRU，遠比一台熱力產能器的產量多。最好接上[[solar/sun_ray_absorber]]、[[void_machines/ultra_heat_generator]]這樣的大產能器，或者先把富集倉灌滿再開工。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.ley_condenser.raw_copper.ticks==10",
+            "cfg:machines.ley_condenser.nether_star.ticks==2400"
+          ],
+          "text": "最便宜的{item:minecraft:raw_copper}凝的時候每刻也要約 {cfg:machines.ley_condenser.raw_copper.mru|div:10|int} MRU，得約 {cfg:machines.ley_condenser.raw_copper.mru|div:160|int} 台四面圍著岩漿的熱力產能器才供得上。{item:minecraft:nether_star}每刻約 {cfg:machines.ley_condenser.nether_star.mru|div:2400|int} MRU，要約 {cfg:machines.ley_condenser.nether_star.mru|div:38400|int} 台。"
+        },
+        {
+          "type": "h",
+          "text": "要注意的"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>換目標會清空進度</em>，已經花掉的 MRU 和 ESPE 不退。再點一次已選中的圖示，就會取消目標。",
+            "收到紅石訊號時它會暫停，進度不丟，輸出格滿了也會停下，取走東西后它自己接著凝。",
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "text": "終界等沒有地脈的維度裡只能凝{item:minecraft:nether_star}，其他圖示右上角會多出一個紅點。"
+            },
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks==0",
+              "text": "在終界等沒有地脈的維度裡它不工作。"
+            },
+            "同一個區塊裡，你自己的凝聚器只有最早放下的 {cfg:machines.ley_condenser.max_per_owner_per_chunk} 台會工作，後放的顯示「{lang:gui.essentialcraft5.ley_condenser.status.duplicate}」。凝聚器和投影儀的名額分開算。",
+            {
+              "if": "cfg:machines.ley_condenser.max_per_owner>0",
+              "text": "你所有的凝聚器裡，最多同時有 {cfg:machines.ley_condenser.max_per_owner} 台在工作，只算區塊載入著的。多出來的顯示「{lang:gui.essentialcraft5.ley_condenser.status.owner_limit}」，拆掉一台正在工作的，或者取消它的目標，幾秒內就會輪到等著的那台。"
+            },
+            "它不會自己載入區塊，區塊卸載後就跟著停下。放它的人不線上時，它照常工作。",
+            {
+              "if": "cfg:machines.ley_condenser.generate_corruption",
+              "text": "工作時每秒向周圍洩漏 0～{cfg:machines.ley_condenser.max_corruption_gen} MRU，詳見[[crafting/corruption]]。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "狀態條顯示「{lang:gui.essentialcraft5.owner.none}」時，把它拆下來親手重新放一次。",
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "text": "凝地獄之星時，它每半秒從 8 根柱子裡抽一次 ESPE，凝其他東西時則不碰柱子。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裡沒有凝聚器，這台機器是後來添上的。它借數學核心的算力，從地脈裡挑出你點名的那一種，不像投影儀那樣讀到哪一格算哪一格。地獄之星本不在岩層裡，凝聚器索性拿 ESPE 壓出一顆來。"
+        }
+      ]
+    },
+    {
+      "id": "condensing",
+      "title": "凝聚什麼、要多少",
+      "icon": "minecraft:diamond",
+      "summary": "每種礦物的價格與用時",
+      "if": [
+        "cfg:machines.ley_condenser.enabled",
+        "cfg:general.hoanna.portal_enabled"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "凝聚器一次只凝一種，一個接一個地來。下表是每凝一個要付的 MRU、ESPE 和用時，這些消耗在凝的過程中每刻扣一點，進度走滿才出貨，中途停下的話進度會保留。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "產物",
+            "每個 MRU",
+            "每個 ESPE",
+            "每個用時"
+          ],
+          "rows": [
+            {
+              "if": "cfg:machines.ley_condenser.raw_copper.ticks>0",
+              "cells": [
+                "{item:minecraft:raw_copper}",
+                "{cfg:machines.ley_condenser.raw_copper.mru}",
+                "{cfg:machines.ley_condenser.raw_copper.espe}",
+                "{cfg:machines.ley_condenser.raw_copper.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.raw_iron.ticks>0",
+              "cells": [
+                "{item:minecraft:raw_iron}",
+                "{cfg:machines.ley_condenser.raw_iron.mru}",
+                "{cfg:machines.ley_condenser.raw_iron.espe}",
+                "{cfg:machines.ley_condenser.raw_iron.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.raw_gold.ticks>0",
+              "cells": [
+                "{item:minecraft:raw_gold}",
+                "{cfg:machines.ley_condenser.raw_gold.mru}",
+                "{cfg:machines.ley_condenser.raw_gold.espe}",
+                "{cfg:machines.ley_condenser.raw_gold.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.redstone.ticks>0",
+              "cells": [
+                "{item:minecraft:redstone}",
+                "{cfg:machines.ley_condenser.redstone.mru}",
+                "{cfg:machines.ley_condenser.redstone.espe}",
+                "{cfg:machines.ley_condenser.redstone.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.lapis_lazuli.ticks>0",
+              "cells": [
+                "{item:minecraft:lapis_lazuli}",
+                "{cfg:machines.ley_condenser.lapis_lazuli.mru}",
+                "{cfg:machines.ley_condenser.lapis_lazuli.espe}",
+                "{cfg:machines.ley_condenser.lapis_lazuli.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.quartz.ticks>0",
+              "cells": [
+                "{item:minecraft:quartz}",
+                "{cfg:machines.ley_condenser.quartz.mru}",
+                "{cfg:machines.ley_condenser.quartz.espe}",
+                "{cfg:machines.ley_condenser.quartz.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.diamond.ticks>0",
+              "cells": [
+                "{item:minecraft:diamond}",
+                "{cfg:machines.ley_condenser.diamond.mru}",
+                "{cfg:machines.ley_condenser.diamond.espe}",
+                "{cfg:machines.ley_condenser.diamond.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.emerald.ticks>0",
+              "cells": [
+                "{item:minecraft:emerald}",
+                "{cfg:machines.ley_condenser.emerald.mru}",
+                "{cfg:machines.ley_condenser.emerald.espe}",
+                "{cfg:machines.ley_condenser.emerald.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.ancient_debris.ticks>0",
+              "cells": [
+                "{item:minecraft:ancient_debris}",
+                "{cfg:machines.ley_condenser.ancient_debris.mru}",
+                "{cfg:machines.ley_condenser.ancient_debris.espe}",
+                "{cfg:machines.ley_condenser.ancient_debris.ticks|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "cells": [
+                "{item:minecraft:nether_star}",
+                "{cfg:machines.ley_condenser.nether_star.mru}",
+                "{cfg:machines.ley_condenser.nether_star.espe}",
+                "{cfg:machines.ley_condenser.nether_star.ticks|sec}"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "凝的時候每刻用的 MRU = 每個 MRU ÷ 用時（以刻計，1 秒 = 20 刻）"
+        },
+        {
+          "type": "h",
+          "text": "挑哪一種"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.ley_condenser.nether_star.ticks>0",
+              "text": "{item:minecraft:nether_star}要用 ESPE，從周圍 8 根水晶柱裡抽，擺法見[[ley/ley_condenser]]。8 根柱子每小時一共積攢 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:576000|int} ESPE，在終界是 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:576000|int}，一顆星要 {cfg:machines.ley_condenser.nether_star.espe}。柱子存滿時，頭幾顆星凝得很快，往後就看柱子積攢得多快了。"
+            },
+            {
+              "if": "cfg:machines.ley_condenser.raw_gold.ticks>0||cfg:machines.ley_condenser.emerald.ticks>0",
+              "text": "金和綠寶石也能拿鐵和鑽石在[[mithriline/conversions|米斯萊熔爐]]裡換，8 塊鐵錠換 1 塊金錠，2 顆鑽石換 1 顆綠寶石，可以對照上表算算哪邊划算。綠寶石找村民交易通常最便宜。"
+            },
+            {
+              "if": "cfg:machines.ley_condenser.ancient_debris.ticks>0",
+              "text": "{item:minecraft:ancient_debris}放進熔爐或高爐能燒成{item:minecraft:netherite_scrap}，[[magmatic/smeltery|礦石加工]]的機器不收它。"
+            },
+            "它不凝煤和任何能當燃料燒的東西，這些東西放進產能器燒回的 MRU，比凝的時候花掉的多得多。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "和投影儀比",
+          "text": "凝聚器比投影儀貴，出貨卻快得多，只出你點名的那一種。投影儀勝在便宜，什麼礦都能慢慢出一點。兩台可以一起用，同一個區塊裡它們的名額分開算。",
+          "if": "cfg:machines.ley_projector.enabled"
+        }
+      ]
+    }
+  ]
+}

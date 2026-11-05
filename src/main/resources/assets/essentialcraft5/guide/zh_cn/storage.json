@@ -1,0 +1,581 @@
+{
+  "id": "storage",
+  "order": 50,
+  "group": "main",
+  "title": "第五章 · 储存与升级",
+  "subtitle": "把 MRU 存起来、带在身上",
+  "icon": "essentialcraft5:soul_sphere",
+  "entries": [
+    {
+      "id": "crystals",
+      "title": "MRU 晶体",
+      "icon": "essentialcraft5:mru_crystal",
+      "summary": "一级级提炼石英",
+      "complete": "essentialcraft5:guide/mru_shard",
+      "items": [
+        "essentialcraft5:mru_shard",
+        "essentialcraft5:mru_crystal",
+        "essentialcraft5:mru_gem",
+        "essentialcraft5:mru_chunk",
+        "essentialcraft5:mru_large_chunk"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "石英提得越纯，装得下的 MRU 越多。装满一颗揣在身上，出门在外，法杖和护符就有了着落。",
+          "by": "《源质残卷·卷三》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：在魔力工作台里把下界石英一级一级提炼成 <em>MRU 晶体</em>。下一篇的灵魂储存就用它们来做，灵魂储存越高档，要的晶体级别越高。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "产物",
+            "中间放",
+            "MRU",
+            "从石英算起共"
+          ],
+          "widths": [
+            4,
+            4,
+            2,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mru_shard}",
+              "{item:minecraft:quartz}",
+              "10",
+              "10"
+            ],
+            [
+              "{item:essentialcraft5:mru_crystal}",
+              "{item:essentialcraft5:mru_shard}",
+              "100",
+              "110"
+            ],
+            [
+              "{item:essentialcraft5:mru_gem}",
+              "{item:essentialcraft5:mru_crystal}",
+              "200",
+              "310"
+            ],
+            [
+              "{item:essentialcraft5:mru_chunk}",
+              "{item:essentialcraft5:mru_gem}",
+              "500",
+              "810"
+            ],
+            [
+              "{item:essentialcraft5:mru_large_chunk}",
+              "{item:essentialcraft5:mru_chunk}",
+              "1000",
+              "1810"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每一级都只用中间一格，一份换一份，最适合拿漏斗送料，见[[crafting/magician_table]]。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:mru_shard",
+            "essentialcraft5:mru_crystal"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:mru_gem",
+            "essentialcraft5:mru_chunk"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_large_chunk"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "做出第一块 MRU 碎片。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "这一章要多少",
+          "text": "这一章少不了的是充能仓配方里那块鲜红灵魂物质，它要 4 块 MRU 晶块，从石英算起一共 3000 多 MRU。备上 10 颗左右的石英，热力产能器转着的话，几分钟就攒得出来。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/magician_table/mru_shard.json — #forge:gems/quartz 中间，10；mru_crystal.json 100；mru_gem.json 200；mru_chunk.json 500；mru_large_chunk.json 1000",
+        "累计：碎片 10、水晶 110、宝石 310、晶块 810、大晶块 1810",
+        "鲜红灵魂物质：250 + 4 × 810 = 3490，石英 4；灵魂碎片 100 + 4 × 10 = 140，石英 5；热力产能器四面岩浆 16 MRU/刻，3490 / 16 ≈ 218 秒"
+      ]
+    },
+    {
+      "id": "soul_storage",
+      "title": "灵魂储存",
+      "icon": "essentialcraft5:matter_of_eternity",
+      "summary": "随身携带的 MRU",
+      "complete": "essentialcraft5:guide/soul_storage",
+      "items": [
+        "essentialcraft5:soul_shard",
+        "essentialcraft5:soul_sphere",
+        "essentialcraft5:dark_soul_matter",
+        "essentialcraft5:red_soul_matter",
+        "essentialcraft5:matter_of_eternity"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做一件<em>灵魂储存</em>物品，把 MRU 存进去随身带着。灵魂储存这个名字是先辈起的，他们最早往里装的，是从自己矩阵里换出来的 MRU。这些东西像电池一样，后面的法杖、护符和魔力装备要用 MRU 时，都从你身上的灵魂储存里扣。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "物品",
+            "能存",
+            "原料（中间 + 四角）",
+            "工作台 MRU"
+          ],
+          "widths": [
+            4,
+            2,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:soul_shard}",
+              "500",
+              "石英 + 4 块 MRU 碎片",
+              "100"
+            ],
+            [
+              "{item:essentialcraft5:soul_sphere}",
+              "5000",
+              "绿宝石 + 4 块 MRU 水晶",
+              "500"
+            ],
+            [
+              "{item:essentialcraft5:dark_soul_matter}",
+              "3 万",
+              "末影珍珠 + 4 颗 MRU 宝石",
+              "100"
+            ],
+            [
+              "{item:essentialcraft5:red_soul_matter}",
+              "12 万",
+              "钻石 + 4 块 MRU 晶块",
+              "250"
+            ],
+            [
+              "{item:essentialcraft5:matter_of_eternity}",
+              "100 万",
+              "下界之星 + 4 块大 MRU 晶块",
+              "500"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:soul_shard",
+            "essentialcraft5:soul_sphere"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:dark_soul_matter",
+            "essentialcraft5:red_soul_matter"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matter_of_eternity"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "p",
+          "text": "放在背包、副手或饰品栏的戒指位都行，饰品栏是饰品模组加的，在物品栏界面里就能找到。扣 MRU 时先扣饰品栏里的，再扣背包和副手里的，而且要身上所有灵魂储存加起来够数才会扣，创造模式下不扣。",
+          "if": "mod:curios"
+        },
+        {
+          "type": "p",
+          "text": "放在背包或副手都行。扣 MRU 时先扣背包里的，再扣副手里的，而且要身上所有灵魂储存加起来够数才会扣，创造模式下不扣。",
+          "if": "!mod:curios"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "做出任意一种灵魂储存。它刚做出来是空的，下一篇的充能仓能把它充满。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先做哪个",
+          "text": "下一篇的充能仓本身就要一块{item:essentialcraft5:red_soul_matter}，先做这一种最合适。{item:essentialcraft5:matter_of_eternity}要一颗下界之星，等打败凋灵以后再做。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "后面做[[hologram/holopad]]还要用永恒物质，下界之星最好早点攒起来。"
+        }
+      ],
+      "_src": [
+        "registry/ECItems.java:31 — 容量：灵魂碎片 500、灵魂球 5000（L32）、暗黑灵魂物质 30000（L33）、鲜红灵魂物质 120000（L34）、永恒物质 1000000（L35）",
+        "data/essentialcraft5/recipes/magician_table/soul_shard.json — 石英 + 碎片 ×4，100；soul_sphere.json — #emeralds + 水晶 ×4，500；dark_soul_matter.json — #ender_pearls + 宝石 ×4，100；red_soul_matter.json — #diamonds + 晶块 ×4，250；matter_of_eternity.json — #forge:nether_stars + 大晶块 ×4，500",
+        "mru/MRUDrain.java:108 — 扣的顺序：饰品栏 → 盔甲（L109）→ 背包（L110）→ 副手（L111）；合计够才扣；创造模式不扣（L80）",
+        "item/MRUStorageItem.java:21 — curios:ring 标签进戒指位",
+        "data/essentialcraft5/recipes/materials/charging_chamber.json — 要一块鲜红灵魂物质",
+        "data/essentialcraft5/recipes/hologram/holopad.json — 永恒物质",
+        "mru/MRUDrain.java:108 — 先 CuriosCompat.forEachEquipped，再背包、副手；curios/tags/items/ring.json 收灵魂碎片、灵魂之球、两种灵魂物质、永恒物质"
+      ]
+    },
+    {
+      "id": "charging_chamber",
+      "title": "{item:essentialcraft5:charging_chamber}",
+      "icon": "essentialcraft5:charging_chamber",
+      "summary": "给灵魂储存充能",
+      "complete": "essentialcraft5:guide/charging_chamber",
+      "items": [
+        "essentialcraft5:charging_chamber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：造一台{item:essentialcraft5:charging_chamber}，给灵魂储存充能。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：一块{item:essentialcraft5:red_soul_matter}，空的也行，2 块{item:essentialcraft5:magic_plate}，再加{item:essentialcraft5:magical_screen}、{item:essentialcraft5:mru_conversion_matrix}、{item:essentialcraft5:matrix_link}、{item:essentialcraft5:fortified_frame}、{item:essentialcraft5:mru_catcher}、{item:essentialcraft5:elemental_core}各一个。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:charging_chamber"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放下充能仓，放进一颗绑着产能器的绑定宝石。",
+            "把要充能的物品放进物品格。",
+            "等物品提示里的 MRU 涨满，就取出来带在身上。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "容量",
+              "{cfg:machines.charging_chamber.max_mru} MRU"
+            ],
+            [
+              "充多快",
+              "每刻最多充入物品容量的 1/20，速度不会超过源头的供给"
+            ],
+            [
+              "损耗",
+              "物品每充入 1 MRU，充能仓自身扣除 {cfg:machines.charging_chamber.charge_cost_modifier} MRU"
+            ],
+            [
+              "能充什么",
+              "所有能存 MRU 的物品，包括灵魂储存和后面的法杖、魔力工具"
+            ],
+            [
+              "红石信号",
+              "停机"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "充能仓到手，放进灵魂储存以后，物品提示里的 MRU 开始往上涨。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "充得多快，归根到底看源头产得多快，一台四面岩浆的热力产能器，充满一块鲜红灵魂物质大约要 6 分钟。给大件充能，可以多绑几台产能器，或者趁着干别的事慢慢充。"
+        },
+        {
+          "type": "p",
+          "text": "漏斗和管道能往物品格里送东西，也能往外抽，可<w>它们抽的时候不管充没充满</w>，底下接一个普通漏斗，东西刚放进去就会被抽走。"
+        },
+        {
+          "type": "h",
+          "text": "给身上的盔甲充电",
+          "if": "cfg:machines.charging_chamber.charge_worn_armor"
+        },
+        {
+          "type": "p",
+          "text": "放下充能仓的人站在它正上方时，它会给这个人身上能存 MRU 的盔甲充电。物品格和身上几件轮流来，一刻只充一样，每次充多少、耗多少都和物品格里的一样。身子中间要落在这一格上，重心挪到旁边那格就不算。两台叠在一起时，站在顶上只算上面那一台。别人站上去不充。",
+          "if": "cfg:machines.charging_chamber.charge_worn_armor"
+        },
+        {
+          "type": "p",
+          "text": "这样充盔甲不用脱下来。",
+          "if": "cfg:machines.charging_chamber.charge_worn_armor"
+        },
+        {
+          "type": "p",
+          "text": "穿着靠 MRU 挡伤害的盔甲时，快捷栏左边有一个小方框，显示这几件一共还剩多少电，见[[gear/mhs_armor]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/materials/charging_chamber.json — #cores/magic、收集器、框架、魔力屏幕、鲜红灵魂物质、转换矩阵、#plates/magic ×2、连接器",
+        "blockentity/ChargingChamberBlockEntity.java:32 — max_mru；L33 charge_cost_modifier；L81 每刻最多充上限的 1/20，受自身存量限制",
+        "blockentity/ChargingChamberBlockEntity.java:64 — 红石停机；L58 物品格对漏斗是输出槽，抽取不看充没充满（blockentity/MRUBlockEntity.java:632 只看 isOutputSlot）",
+        "blockentity/ChargingChamberBlockEntity.java:71 — 任何带 MRU_ITEM 能力的物品都能充",
+        "120000 / 16 MRU/刻 = 7500 刻 ≈ 6 分钟（热力产能器四面岩浆）",
+        "tools/plan/batch13.md §4.7 — 每 10 刻看正上方 1 × 2 × 1 范围里是否站着机器主人，有就按物品格的规则轮流给他穿着的可充能盔甲充电，只认主人（blockentity/ChargingChamberBlockEntity）；电量条 client/ArmorChargeHud，挨着矩阵后遗症图标（client/AfflictionHud）",
+        "blockentity/ChargingChamberBlockEntity.java — 每 10 刻认一次站在正上方的主人（1 × 2 × 1，身子中线落在这一格）；物品格和四件盔甲轮流，每刻只充一样，花费和只充物品格时一样；machines.charging_chamber.charge_worn_armor 关掉时只充物品格",
+        "blockentity/ChargingChamberBlockEntity.java standsOn — 脚在正上方 1 × 2 × 1、中线落在这一格；第二格只在正上方那格碰撞箱不到整格高时算（两台叠放只算上面那台，gametest/ArmorChargeTests.chamberStackedOnlyUpperCharges）"
+      ]
+    },
+    {
+      "id": "rank_2",
+      "title": "二阶 · 汲取",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "体内也能存 MRU",
+      "complete": "essentialcraft5:guide/matrix/rank_2",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：升到矩阵二阶「汲取」。从这一阶起，你自己身上就能存 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "一共 8 种，其中 2 种是下界的怪"
+            ],
+            [
+              "祭品",
+              "2 块{item:essentialcraft5:mru_shard}、2 块{item:essentialcraft5:obsidian_plate}、4 块{item:essentialcraft5:magical_ingot}"
+            ],
+            [
+              "能量",
+              "2 万 UBMRU，台子里另要 2000 MRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 3 只，同时最多 2 只；每只 32 点生命，打你一下 5 点；限时 80 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "站着不动 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:20} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "去一趟下界，杀 2 种下界的怪。僵尸猪灵、猪灵、岩浆怪、恶魂、烈焰人、凋灵骷髅都算，全部九种见[[matrix/codex]]。",
+            "照一阶那样把 UBMRU 一点点存进试炼储备，存够 2 万。",
+            "把祭品放进淬炼台的祭品格，台子里的 MRU 用绑定宝石备够。",
+            "站在台子 3 格内，主手拿着绑定你的灵魂石，打开界面，右边全打勾以后点「开始淬炼」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒够数的矩阵回响，别离开台子太远。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁边不动，也别受伤，等引导走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "屏幕正中出现「二阶 · 汲取」，灵魂石的物品提示里写着矩阵二阶。"
+        },
+        {
+          "type": "p",
+          "text": "二阶的回报是[[matrix/reservoir|矩阵容量]]：你身上能直接存 {cfg:general.matrix_rank.pool_per_rank|mul:1} MRU。身上的 UBMRU 会自己慢慢换进去，本模组的随身物品缺电时先扣灵魂储存、再扣它。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "够不着的怪",
+          "text": "恶魂、烈焰人常飘在半空，近战够不着。用弓箭就行，也可以去支线「魔力枪械」做一把[[guns/pistol]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.3 九阶表、§3.1.2 试炼；进度 essentialcraft5:guide/matrix/rank_<n> 由代码在升阶成功时发（同 guide/hoanna/radiation）",
+        "tools/plan/batch13.md §3.1.3 二阶 — 图谱总数 8、下界 ≥ 2；祭品 MRU 碎片 ×2 + 黑曜石板 ×2 + 魔力锭 ×4；UBMRU 2 万 + MRU 2 000；回响 3 / 2 / 32 / 5 / 80 秒；回报容量 pool_per_rank × 1",
+        "tools/plan/batch13.md §2.8 — storage 末尾指手枪"
+      ]
+    },
+    {
+      "id": "upgrades",
+      "title": "工作台升级",
+      "icon": "essentialcraft5:magic_purified_ender_scale_alloy",
+      "summary": "让魔力工作台快起来",
+      "items": [
+        "essentialcraft5:magic_purified_ender_scale_alloy"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：给魔力工作台装上一个升级，让它合成得更快。先辈嫌工作台慢，常在台面上嵌一块合金或晶体。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "手持升级物品右键工作台，手里的一个就装进了工作台。",
+            "工作台同时只能装一个升级，想换别的要先取下旧的。空手潜行右键就能取下，升级会原样弹到工作台上方，没有损耗。",
+            "装上以后，工作台界面上会显示现在的速度倍数。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "升级让工作台每刻推进的进度成倍增加，每刻耗的 MRU 也照同样的倍数增加，<em>做一件东西总共花的 MRU 不变，只是做得更快</em>，前提是源头供得上。"
+        },
+        {
+          "type": "p",
+          "text": "装上的升级随时能原样取回，手头珍贵的核心可以先装上当升级用，要拿去合成时再取下来。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升级",
+            "速度",
+            "从哪来"
+          ],
+          "widths": [
+            4,
+            1,
+            4
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:elemental_core}",
+              "×1.2",
+              "第一章的零件"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_ender_scale_alloy}",
+              "×2.5",
+              "做法见下方"
+            ],
+            [
+              "{item:essentialcraft5:eye_of_absorption}",
+              "×3",
+              "第三章的零件，用铁、元素晶石和一颗末影珍珠做"
+            ],
+            [
+              "{item:essentialcraft5:mru_resonating_crystal}",
+              "×4",
+              "[[alloys/resonating_crystal]]"
+            ],
+            [
+              "{item:essentialcraft5:combined_magical_alloys}",
+              "×5",
+              "[[alloys/combined_magical_alloys]]"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_plating}",
+                "×6",
+                "[[hoanna/void_plating]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_core}",
+                "×7.5",
+                "[[hoanna/relics]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_mru_reactor}",
+                "×10",
+                "[[hoanna/relics]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_core}",
+                "×16",
+                "[[demons/ackronite]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "现在装哪个",
+          "text": "眼下装<em>吸收之眼</em>最合适，它比末影鳞合金快，还便宜得多。末影鳞合金照样要做，第六章的注魔合金拿它当原料。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magic_purified_ender_scale_alloy"
+        },
+        {
+          "type": "p",
+          "text": "末影鳞合金是中间一块{item:essentialcraft5:magic_fortified_plating}、四角各一颗末影珍珠，花 1000 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "前期到这里告一段落"
+        },
+        {
+          "type": "p",
+          "text": "下一章开始做中期材料，工作台的活一下子多起来，光是第六章就要近 2 万点进度。动身之前，多放一两台产能器，再给工作台装上吸收之眼。"
+        },
+        {
+          "type": "p",
+          "text": "MRU、平衡值、聚集体和腐化这些基础知识，都整理在入门的[[start/mru]]和[[start/mrucu]]两篇里。"
+        }
+      ],
+      "_src": [
+        "api/MagicianTableUpgrades.java:40 — 元素核心 1.2、注魔合金 5（L41）、末影鳞合金 2.5（L42）、吸收之眼 3（L43）、虚空板 6（L44）、虚空核心 7.5（L45）、反应核 10（L46）、共鸣水晶 4（L47）、恶魔核心 16（L48）",
+        "block/MagicianTableBlock.java:60 — 手持升级、工作台没装时右键装上（创造模式不扣）；L46 潜行、手里不是升级时取下，弹到上方 1.5 格",
+        "blockentity/MagicianTableBlockEntity.java:192 — 每刻进度 += 速度，耗 速度 × 配置 MRU：总量不变",
+        "data/essentialcraft5/recipes/magician_table/magic_purified_ender_scale_alloy.json — 中间魔力强化板、四角 #ender_pearls，1000",
+        "data/essentialcraft5/recipes/alloys/combined_magical_alloys_a.json — 用末影鳞合金",
+        "tools/plan/progression.md「按章节」— 第六章工作台进度约 1.76 万",
+        "block/MagicianTableBlock.java:46-62 — 装：手里扣 1 放进工作台；潜行空手右键：removeUpgrade 原物掉在方块上方 1.5 格"
+      ]
+    }
+  ]
+}

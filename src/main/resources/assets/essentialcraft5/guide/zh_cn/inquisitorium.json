@@ -1,0 +1,886 @@
+{
+  "id": "inquisitorium",
+  "order": 103,
+  "group": "main",
+  "title": "第十九章 · 审判庭",
+  "subtitle": "循着回声找到审判庭",
+  "icon": "essentialcraft5:inquisitorium_chip",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "legend",
+      "title": "审判庭：循着回声",
+      "icon": "minecraft:echo_shard",
+      "summary": "本章去哪、做什么、要备什么",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "本庭即日起不再应答。此后凡有呼唤，一律遣投影迎之。投影若被击毁，留回声一段，指明本庭所在。能循声走到这里的，再行裁定。",
+          "by": "审判庭残档"
+        },
+        {
+          "type": "p",
+          "text": "审判庭里早已没有活人。全息投影台朝整个海纳尔发出信号，应声而来的是全息投影，打倒它以后掉下的{item:essentialcraft5:glitchy_core}里还留着一段<em>回声</em>，指向审判庭真正的所在。这一章要把这段回声解读出来，循着它找到审判庭，打倒守在那里的<em>审判庭哨兵</em>。"
+        },
+        {
+          "type": "h",
+          "text": "这一章怎么走"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "打倒一只全息投影，拿到它掉下的故障核心，见[[inquisitorium/glitchy_core]]。",
+            "把故障核心放进辐射仓，给它接上平衡值对得上的 MRU，解出{item:essentialcraft5:inquisitorium_coordinates}，见[[inquisitorium/decoding]]。",
+            "带着坐标走到海纳尔里它所指的那片暗影腐化之地，见[[inquisitorium/journey]]。",
+            "用坐标做一个{item:essentialcraft5:inquisitorium_beacon}，到了那里把它点亮，召出审判庭哨兵，见[[inquisitorium/beacon]]。",
+            "打倒哨兵，再把五芒星升到 3 档，这两步分别见[[inquisitorium/sentinel]]和[[inquisitorium/purify]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "要备什么"
+        },
+        {
+          "type": "list",
+          "items": [
+            "平衡值调得动的 MRU，至少要有两路产能器，一路平衡值偏低、一路偏高，再用一台{item:essentialcraft5:intersector}把它们混在一起，见[[enrichment/intersector]]。",
+            "做信标用的 5 个{item:essentialcraft5:twinkling_titanite}、1 个{item:essentialcraft5:void_core}和 2 块{item:essentialcraft5:neuronic_enriched_plating}。",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "在海纳尔走远路的行头，食物、床和船都要带上，还得防着辐射和天灾，见[[hoanna/radiation]]。"
+            },
+            {
+              "if": "!cfg:general.radiation.enabled",
+              "text": "在海纳尔走远路的行头，食物、床和船都要带上，还得防着天灾，见[[hoanna/events]]。"
+            },
+            "打哨兵的装备和打全息投影时一样，回血的东西要多带一些，见[[inquisitorium/sentinel]]。",
+            "升 3 档五芒星用的 4 块恶魔护板和 4 根恶魔水晶柱，见[[inquisitorium/purify]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书在全息投影台前面记了几段传闻，说神秘的「审判」组织就藏在海纳尔某处，可谁也找不到它，又说要造出控制恶魔板的电脑，也许得靠它帮忙。审判庭后来怎样，原作没有再提。"
+        }
+      ],
+      "_src": [
+        "原作 en_US.lang L1107~1110（page.hologram_0~3）— 研究书只写了审判庭的传闻、缺一台电脑、信号、露天放置；原作再没有审判庭的内容（ItemsCore 里只有审判庭套装）",
+        "registry/ECInquisitorium.java 类注释 — 本章的五步：故障核心 → 解码 → 坐标 → 信标 → 哨兵；registry/ECInquisitorium.java:328 Rules.DEFAULTS",
+        "data/essentialcraft5/recipes/inquisitorium/inquisitorium_beacon.json — TVT / NCN / TTT：闪耀榍石 ×5、虚空核心、富神经元护板 ×2、审判庭坐标（正中，nbt_source）",
+        "data/essentialcraft5/recipes/enrichment/intersector.json；blockentity/IntersectorBlockEntity.java — 两个宝石槽，平衡值按量混合（mru/MRUStorage.java:117 pullFrom）",
+        "data/essentialcraft5/recipes/crystal_pillars/demonic_crystal_pillar.json；registry/ECPentacle.java DEMONIC_OFFSETS — 3 档要 4 块恶魔护板、4 根恶魔水晶柱",
+        "tools/plan/batch10.md §5.10 — 这一章的条目与顺序"
+      ]
+    },
+    {
+      "id": "glitchy_core",
+      "title": "{item:essentialcraft5:glitchy_core}",
+      "icon": "essentialcraft5:glitchy_core",
+      "summary": "全息投影必掉，上面写着目标平衡值",
+      "complete": "essentialcraft5:guide/inquisitorium/glitchy_core",
+      "items": [
+        "essentialcraft5:glitchy_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：拿到一个故障核心。玩家每打倒一次全息投影，它都会掉一个，和数学核心、遗物一起落在原地，打法见[[hologram/hologram]]。"
+        },
+        {
+          "type": "p",
+          "text": "审判庭什么都按平衡值记，连回声也是按平衡值锁上的。每个故障核心都写着一个<hl>目标平衡值</hl>，物品提示里有「目标平衡值：0.73」这样一行，数值保留两位小数，在 {cfg:general.inquisitorium.balance_min} 到 {cfg:general.inquisitorium.balance_max} 之间随机。下一步解码时，辐射仓里的平衡值要对准它。"
+        },
+        {
+          "type": "p",
+          "text": "目标越接近代表{balance:pure}的 1 越好调，平衡值固定在 1 的产能器现成就有，靠近两头的目标则要专门配一路冰冻或混沌的源。实在调不顺手，再打一场全息投影换一个核心就好。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "背包里有了一个故障核心。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "没写目标的核心",
+          "text": "从创造模式物品栏里拿出来的故障核心没有目标平衡值，放进背包时会随机补上一个。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只有被玩家打倒时才会掉，几个人一起打也只掉一个。",
+            "每个核心的目标都是各自随机的，只有目标相同的两个才叠得起来。",
+            "[[inquisitorium/sentinel]]被打倒时也会再掉一个。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/loot_tables/entities/hologram_*.json（tools/gen/hoanna_loot.py 生成）— 最后一池 glitchy_core：必掉 1 个、random_target_balance、killed_by_player",
+        "loot/RandomTargetBalance.java — 写 NBT TargetBalance；item/GlitchyCoreItem.java:56 rollTarget — balance_min ~ balance_max 均匀随机、两位小数（registry/ECInquisitorium.java:328 默认 0.15 / 1.85）",
+        "item/GlitchyCoreItem.java:74 inventoryTick — 服务端发现没有目标平衡值时补一个",
+        "item/GlitchyCoreItem.java appendHoverText — 提示行「目标平衡值：x.xx」，按冰冻 / 纯净 / 混沌着色（tools/lang/keys/ecinquisitorium.json）",
+        "registry/ECGenerators / blockentity/MatrixAbsorberBlockEntity、MoonWellBlockEntity — 平衡值固定 1.0 的产能器（tools/check_progression.py FIXED_BALANCE）",
+        "data/essentialcraft5/loot_tables/entities/inquisitorium_sentinel.json — 哨兵也掉一个带目标的故障核心",
+        "entity/HologramEntity.java — 只走一次原版掉落，几个人一起打也只掉一份"
+      ]
+    },
+    {
+      "id": "decoding",
+      "title": "解码：对准目标平衡值",
+      "icon": "essentialcraft5:radiating_chamber",
+      "summary": "辐射仓把故障核心解成审判庭坐标",
+      "complete": "essentialcraft5:guide/inquisitorium/decoded",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把故障核心放进{item:essentialcraft5:radiating_chamber}，把仓里的平衡值调到核心上写的目标，解出一份{item:essentialcraft5:inquisitorium_coordinates}。辐射仓的用法见[[crafting/radiating_chamber]]。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "放哪",
+              "上、下两个原料格任选一格，另一格留空"
+            ],
+            [
+              "平衡值",
+              "和目标相差不超过 <t>{cfg:general.inquisitorium.decode_tolerance}</t>"
+            ],
+            [
+              "时间",
+              "{cfg:general.inquisitorium.decode_ticks|sec}，只计平衡值对准的时间"
+            ],
+            [
+              "MRU",
+              "共 {cfg:general.inquisitorium.decode_mru}，平摊到每一刻扣除"
+            ],
+            [
+              "输出格",
+              "要空着"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把故障核心放进辐射仓的上格或下格，另一格空着。",
+            "把鼠标停在界面中间那一条上，「所需平衡值」显示的是这次的窗口，范围是目标前后各 {cfg:general.inquisitorium.decode_tolerance}。",
+            "照下文的办法调节仓里的平衡值，直到界面上的平衡值读数落进这个窗口。",
+            "条上显示「解码中」，百分比一点点往上涨，涨满以后会显示一小会儿「定位中」，接着输出格里出现审判庭坐标，故障核心被用掉。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么调平衡值"
+        },
+        {
+          "type": "p",
+          "text": "辐射仓的 MRU 来自绑定宝石连着的那台机器，每拉进来一点，都会按数量和仓里原有的 MRU 混在一起，所以仓里的平衡值会慢慢靠向源头的平衡值。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "目标正好落在某台产能器的平衡值附近时，把宝石直接绑到它身上就行，平衡值固定在 1 的有{item:essentialcraft5:matrix_absorber}和{item:essentialcraft5:moon_well}。",
+            "要 0.73 这样不整的数时，让{item:essentialcraft5:intersector}的两个宝石槽各接一路，一路比目标低，一路比目标高，再把辐射仓绑到汇流器上，汇出来的平衡值会落在两路之间，按两边送来的量混合。",
+            "读数偏了就微调，给其中一路产能器接一根拉杆，用红石让它时停时开，汇流器里的比例就会跟着变，见[[generators/heat_generator]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "输出格里出现一份审判庭坐标。当时在辐射仓 16 格内的人，以及之后把坐标拿进背包的人，这一步都会打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "仓里已经存着的 MRU 也算进平衡值，辐射仓里装满别的平衡值的 MRU 时，读数要过好一阵才靠得过来。最快的办法是用一台刚放下的空辐射仓，第一次拉进来的 MRU 是什么平衡值，仓里就是什么平衡值。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "平衡值跑出窗口时解码会暂停，进度保留，也不扣 MRU，回到窗口里就接着解。",
+            "换核心、把核心挪到另一格或者拿走，进度都会清零，用红石信号让辐射仓停机则会保留进度。",
+            "解码时辐射仓和平时一样，会往周围漏一点 MRU，见[[crafting/corruption]]。",
+            "漏斗和管道塞不进故障核心，只能手动放进去。",
+            "在同一个地方解出的坐标总是指向同一处，用同一台辐射仓解第二个核心，指的还是上次那里。"
+          ]
+        }
+      ],
+      "_src": [
+        "blockentity/RadiatingChamberBlockEntity.java:249 serverTick — 上下两格只有一个带目标的故障核心、另一格空着时走解码分支（blockentity/GlitchyCoreDecoder.java:123 input）",
+        "blockentity/GlitchyCoreDecoder.java:186 inWindow — |平衡值 − 目标| ≤ decode_tolerance（registry/ECInquisitorium.java:328 默认 0.02）；:195 tick — 输出格不空停（:198），平衡值不对停、不扣、不清零，扣不起停；每推进一刻扣 costAt（:136，均摊，合计正好 decode_mru 默认 5000），decode_ticks 默认 1000（50 秒）",
+        "blockentity/GlitchyCoreDecoder.java:214 — 工作时照普通配方泄漏（RadiatingChamberBlockEntity.Config generate_corruption / max_corruption_gen）",
+        "blockentity/GlitchyCoreDecoder.java:436 SiteSearch.advance — 进度满了按刻找坐标（:278 takeBudget：所有辐射仓全服每刻合计最多 256 个点、2 ms，几台仓同一刻排队用；默认最坏 8649 个点约 34 刻），这几刻状态 LOCATING；找到后故障核心扣 1、输出格放坐标（维度写海纳尔），:289 awardNearby 给 16 格内（GUIDE_RADIUS :75）的玩家发 guide/inquisitorium/decoded；data/essentialcraft5/advancements/guide/inquisitorium/decoded.json 另有 has_coordinates（inventory_changed 审判庭坐标），两条满足其一；block/InquisitoriumBeaconBlock.java:219 召出哨兵时也补发",
+        "blockentity/GlitchyCoreDecoder.java track / reset — 换核心、换格、拿走清零；RadiatingChamberBlockEntity.java serverTick 红石时只 track，进度保留",
+        "menu/RadiatingChamberMenu.java extras / client/screen/RadiatingChamberScreen.java — 解码时进度条、「所需平衡值」窗口（目标 ± 容差，两位小数）、耗能照用；条上写「解码中 x%」「定位中」（gui.essentialcraft5.radiating_chamber.decoding_percent / locating）",
+        "mru/MRUStorage.java:117 pullFrom — 拉进来的 MRU 按量加权平均平衡值；仓里空着时第一次拉的就是源头的平衡值",
+        "blockentity/IntersectorBlockEntity.java — 两个宝石槽各拉一路；HeatGeneratorBlockEntity 等 hasNeighborSignal 停机",
+        "recipe/PositionalInsertRule.java — 漏斗只按配方表放原料，故障核心不是任何配方的原料",
+        "blockentity/GlitchyCoreDecoder.java SiteSearch — 从解码处螺旋找，群系源确定，同一处起点结果相同；找不到时 :262 fallback 的方向由 :269 fallbackRandom（世界种子 + 解码处 x / z）定，同样每次相同",
+        "「做成的标志」里的 16 是代码常量 GlitchyCoreDecoder.GUIDE_RADIUS（不是配置），碰巧等于别的配置默认值时 validate 的警告可以不管"
+      ]
+    },
+    {
+      "id": "journey",
+      "title": "{item:essentialcraft5:inquisitorium_coordinates}",
+      "icon": "essentialcraft5:inquisitorium_coordinates",
+      "summary": "拿着它走到那片暗影腐化之地",
+      "complete": "essentialcraft5:guide/inquisitorium/arrived",
+      "items": [
+        "essentialcraft5:inquisitorium_coordinates"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：带着审判庭坐标，走到它所指地点的 {cfg:general.inquisitorium.arrive_radius} 格以内。"
+        },
+        {
+          "type": "p",
+          "text": "坐标指向的是海纳尔里离你解码那台辐射仓最近的一片<em>暗影腐化之地</em>，那里草叶灰黑，空中飘着灰烬，见[[hoanna/lands]]。距离按辐射仓的 X、Z 计算，在主世界解的码，就到海纳尔同一个 X、Z 附近去找，确切的坐标写在物品提示上。",
+          "if": "!cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "p",
+          "text": "坐标多半指着离你解码那台辐射仓最近的一座[[hoanna_explore/inquisitorium_outpost|审判庭前哨]]，那是<em>暗影腐化之地</em>里一片被毁的平地。附近没有前哨，才指向最近的一片暗影腐化之地，见[[hoanna/lands]]。距离按辐射仓的 X、Z 计算，在主世界解的码，就到海纳尔同一个 X、Z 附近去找，确切的坐标写在物品提示上。",
+          "if": "cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "穿过海纳尔之门，见[[hoanna/crossing]]。",
+            "把坐标拿在主手或副手里，快捷栏上方会一直显示审判庭在哪个方向、还剩多少格。",
+            "跟着提示走，进到 {cfg:general.inquisitorium.arrive_radius} 格以内时，提示会变成「就在这附近」，这一步随之打勾。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "快捷栏上方显示「审判庭：就在这附近」。要是你先做好了信标再过来，一路上没拿着坐标，在这里召出哨兵时这一步也会补上，见[[inquisitorium/beacon]]。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "路可能很远，要穿过几百上千格的海纳尔荒野和海洋，一路都要提防辐射和天灾，见[[hoanna/radiation]]和[[hoanna/events]]。带上床和船，路上也可以找个安全的地方睡一觉。",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "路可能很远，要穿过几百上千格的海纳尔荒野和海洋，一路都要提防天灾，见[[hoanna/events]]。带上床和船，路上也可以找个安全的地方睡一觉。",
+          "if": "!cfg:general.radiation.enabled"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "坐标要拿在手里才算，放在背包里既不会打勾，也不显示方位。",
+            "坐标只在海纳尔里指路，在别的维度拿着时，提示显示的是它指向海纳尔的哪个位置。",
+            {
+              "if": "!cfg:general.inquisitorium_outpost.decoder_targets_outpost",
+              "text": "附近 {cfg:general.inquisitorium.search_radius} 格内都没有暗影腐化之地时，坐标会落在 {cfg:general.inquisitorium.fallback_distance} 格外的一处，方向由解码的位置决定，在同一处解码，每次得到的都是这一点。"
+            },
+            {
+              "if": "cfg:general.inquisitorium_outpost.decoder_targets_outpost",
+              "text": "附近 {cfg:general.inquisitorium.search_radius} 格内既没有前哨、也没有暗影腐化之地时，坐标会落在 {cfg:general.inquisitorium.fallback_distance} 格外的一处，方向由解码的位置决定，在同一处解码，每次得到的都是这一点。"
+            },
+            "做[[inquisitorium/beacon]]时，这份坐标会被用掉。"
+          ]
+        }
+      ],
+      "_src": [
+        "item/InquisitoriumCoordinatesItem.java — 根标签 Dim / X / Z；:98 checkArrival：人在坐标的维度、水平距离 ≤ arrive_radius（registry/ECInquisitorium.java:328 默认 32）发 guide/inquisitorium/arrived；:127 inventoryTick 主手或副手、每 20 刻（:42 ARRIVAL_INTERVAL）查一次",
+        "client/InquisitoriumClient.java headingLine — 主手或副手拿着时每 10 刻在动作栏写八方位和水平距离、到了写「就在这附近」、不在那个维度写指向哪（message.essentialcraft5.inquisitorium_coordinates.*）；:113 heading",
+        "blockentity/GlitchyCoreDecoder.java SiteSearch — 以辐射仓的 x / z 为中心在海纳尔的群系源上找 #essentialcraft5:inquisitorium_sites（data/essentialcraft5/tags/worldgen/biome/inquisitorium_sites.json：shadow_corruption）；dimension_type/hoanna.json coordinate_scale 1（同一个 X、Z）",
+        "blockentity/GlitchyCoreDecoder.java:262 fallback — 半径 search_radius（默认 3000）内没有时 fallback_distance（默认 1500）格外，方向由 :269 fallbackRandom（世界种子 + 解码处 x / z）定",
+        "tools/gen/hoanna_biomes.py:75 / :88 — 暗影腐化之地：灰黑草叶、ash 粒子；dimension_type/hoanna.json bed_works true",
+        "tools/plan/batch13.md §6.4 — 解码器先用 StructureForecast 在 search_radius 内找最近一座预测前哨，找不到照旧找暗影群系点，再找不到退回 fallback_distance 外（13e-S3）；general.inquisitorium_outpost.decoder_targets_outpost 关掉时照旧只找暗影群系点，两份写"
+      ]
+    },
+    {
+      "id": "beacon",
+      "title": "{item:essentialcraft5:inquisitorium_beacon}",
+      "icon": "essentialcraft5:inquisitorium_beacon",
+      "summary": "在坐标处点亮，召出审判庭哨兵",
+      "complete": "essentialcraft5:guide/inquisitorium/beacon",
+      "items": [
+        "essentialcraft5:inquisitorium_beacon"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：做一个审判庭信标，带到坐标所指的地方，在夜里点亮。信标会唤醒沉睡在那里的回声，自己随之消失，现身的就是审判庭哨兵。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:inquisitorium_beacon"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：5 个{item:essentialcraft5:twinkling_titanite}、1 个{item:essentialcraft5:void_core}、2 块{item:essentialcraft5:neuronic_enriched_plating}，外加上一步解出的审判庭坐标，坐标放在正中。坐标会被做进信标，做出来的信标记着这处坐标，物品提示上看得到。"
+        },
+        {
+          "type": "h",
+          "text": "放在哪、什么时候"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只能在海纳尔点亮，还要放在它记着的坐标 {cfg:general.inquisitorium.arrive_radius} 格以内。",
+            "信标头顶要<hl>露天</hl>，正上方一整列都要空着，挡路的方块和水都算遮挡，哨兵会出现在上方 5 格处，那里也要留出空间。",
+            "要在<hl>夜里</hl>点亮，雷雨天的白天也算，海纳尔正闹黑暗天灾时也行，见[[hoanna/events]]。",
+            "64 格内要没有别的全息投影或审判庭哨兵。",
+            "要在你有权改动方块的地方，以生存或冒险模式右键点亮，别人的领地这类没有权限的地方点不亮，和平难度下也不会有回应。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "信标消失，上方出现审判庭哨兵，屏幕顶端亮起紫色的 Boss 血条。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "条件不满足时，右键什么也不扣，快捷栏上会写明缺什么。条件一旦齐了，哨兵当场就会出现，所以先读完[[inquisitorium/sentinel]]、备好装备再点。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "打输了不丢信标",
+          "text": "所有人都退出战斗以后再过 {cfg:general.hologram.abandon_ticks|sec}，哨兵会自己消失，信标掉回原处，照旧记着坐标，掉在地上也不会消失，切到和平难度时也是这样。放好的信标空手就能敲下来，敲下来的照样记着坐标。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "谁算参战、跑远了会怎样，规则都和全息投影相同，见[[hologram/summoning]]。",
+            "召出哨兵时，解码和到达这两步要是还没打勾，也会一起打上，因为信标只能用解出来的坐标做，点得亮就说明人已经到了。",
+            "信标会微微发光，夜里也找得到它放在哪。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/inquisitorium/inquisitorium_beacon.json — essentialcraft5:crafting_shaped_keep_nbt，nbt_source 审判庭坐标（recipe/KeepNbtRecipes：整份 NBT 带进产物）",
+        "block/InquisitoriumBeaconBlock.java:159 summon — 判定顺序：真玩家 → 生存 / 冒险 → 不是和平 → 维度（:225 dimensionAllowed，summon_dimensions 默认只有海纳尔）→ 记着坐标 → 同一维度且水平距离 ≤ arrive_radius → 露天（HolopadBlock.openSky，MOTION_BLOCKING）→ 夜里或黑暗天灾（:237 night：item/WindHornItem.night，雷雨天的白天也算；HoannaEvents.isActive DARKNESS）→ 生成点无碰撞（HolopadBlock.spawnPoint，y + 5）→ 64 格内没有全息投影或哨兵（HologramEntity.anyNearby，UNIQUE_RANGE 64）→ ECProtection.canEdit；任何一条不满足都不扣；先生成后删方块、触发 summoned_entity（guide/inquisitorium/beacon.json），:219~220 给召唤者补 guide/inquisitorium/decoded、arrived",
+        "entity/InquisitoriumSentinelEntity.java:70 — 紫色血条（BossBarColor.PURPLE）",
+        "entity/HologramEntity.java:842 shutDown / InquisitoriumSentinelEntity.java:178 returnedSummoningItem — 放弃（general.hologram.abandon_ticks 默认 600）、和平难度时掉回带坐标的信标，setUnlimitedLifetime",
+        "block/InquisitoriumBeaconBlock.java:124 setPlacedBy、blockentity/InquisitoriumBeaconBlockEntity — 放下读坐标；registry/ECInquisitorium.java:123 掉落表 copy_nbt Dim / X / Z、硬度 1（不要求工具）、亮度 5（InquisitoriumBeaconBlock.java:65 LIGHT）",
+        "entity/HologramEntity.java:597 tickRoster — 名单、拉回、脱战同全息投影"
+      ]
+    },
+    {
+      "id": "sentinel",
+      "title": "{lang:entity.essentialcraft5.inquisitorium_sentinel}",
+      "icon": "essentialcraft5:inquisitorium_sentinel_spawn_egg",
+      "summary": "全息投影的进阶型，多了回声和矩阵损伤",
+      "complete": "essentialcraft5:main/inquisitorium",
+      "items": [
+        "essentialcraft5:inquisitorium_sentinel_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:inquisitorium_sentinel"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：打倒审判庭哨兵。循着回声找到这里的人，由它来裁定。它是全息投影的进阶型，同样悬在半空一动不动，轮流放出四种招式，也<hl>只在两招之间的休息时间打得动</hl>，打法见[[hologram/hologram]]。不同的是它有 <t>{cfg:general.inquisitorium.max_health}</t> 点生命，还多了两样本事。"
+        },
+        {
+          "type": "h",
+          "text": "回声",
+          "if": "cfg:general.inquisitorium.echo_ratio"
+        },
+        {
+          "type": "p",
+          "text": "它每放完一招，到下一招出招时，上一招会以 <t>{cfg:general.inquisitorium.echo_ratio|pct}</t> 的强度跟着再来一遍，你得同时躲开叠在一起的两招。它头顶除了这一招的核心，还有一个小一圈的核心绕着转，那就是回声的招式。",
+          "if": "cfg:general.inquisitorium.echo_ratio"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.inquisitorium.echo_ratio",
+          "header": [
+            "回声的招式",
+            "变成什么样"
+          ],
+          "widths": [
+            3,
+            7
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:addition_core}加法",
+              "影子按强度减少，至少一只，在这一招的前半段就会冒出来"
+            ],
+            [
+              "{item:essentialcraft5:subtraction_core}减法",
+              "护甲破坏者按强度射得稀一些"
+            ],
+            [
+              "{item:essentialcraft5:multiplication_core}乘法",
+              "轨道打击照样十发，伤害按强度打折，落在本招的两发之间"
+            ],
+            [
+              "{item:essentialcraft5:division_core}除法",
+              "二分场按强度减少，至少一个，落在本招的两轮之间"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "下一招和上一招相同时，这一轮没有回声。回声带来的影子、破坏者和二分场与本招的合在一起算，不会超过全息投影的上限。",
+          "if": "cfg:general.inquisitorium.echo_ratio"
+        },
+        {
+          "type": "h",
+          "text": "矩阵损伤",
+          "if": "cfg:general.inquisitorium.matrix_damage_per_hit"
+        },
+        {
+          "type": "p",
+          "text": "轨道打击和影子每<em>打中</em>你一下，都会另外记上 <t>{cfg:general.inquisitorium.matrix_damage_per_hit}</t> 点[[corruption/matrix_damage]]。被盾牌或盔甲整下挡掉的不算，二分场和护甲破坏者也不附加损伤。",
+          "if": "cfg:general.inquisitorium.matrix_damage_per_hit"
+        },
+        {
+          "type": "p",
+          "text": "一场打下来攒的损伤，多半够凝出矩阵类的腐化效果，其中成本 72000 的三种最贵，只有 3 档五芒星治得了，见[[inquisitorium/purify]]。",
+          "if": [
+            "cfg:general.inquisitorium.matrix_damage_per_hit",
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "带什么去"
+        },
+        {
+          "type": "list",
+          "items": [
+            "装备和打全息投影时一样，带上近战武器、坏了不心疼的盔甲、食物和回血的东西、抗火药水和一组方块，见[[hologram/hologram]]。",
+            {
+              "if": "cfg:general.hologram.max_damage_per_hit>0",
+              "text": "还要多些耐心。和全息投影一样，每次休息一般只打得掉 40 点左右，大约要熬过 {cfg:general.inquisitorium.max_health|div:40|int} 轮招式，全息投影只要 {cfg:general.hologram.max_health|div:40|int} 轮。"
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled"
+              ],
+              "text": "打完要治腐化，得备好五芒星和攒满 ESPE 的水晶柱，见[[pentacle/cure]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "哨兵熄灭，原地掉下一个{item:essentialcraft5:inquisitorium_chip}、一个{item:essentialcraft5:glitchy_core}、一堆遗物和 50 点经验，参战的人都会获得进度「{lang:advancements.essentialcraft5.inquisitorium.title}」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "[[hologram/divider_gun]]和[[hologram/orbital_remote]]对它都不起作用，箭、枪这类非近战伤害照样只算四分之一。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "谁算参战、怎样被拉回来、跑远了怎样脱战，规则都和全息投影相同，见[[hologram/summoning]]。",
+            "只有被玩家打倒时才掉东西，几个人一起打也只掉一份。",
+            {
+              "if": "cfg:general.ancient_scrolls.enabled",
+              "text": "被玩家打倒时，它还必定掉下[[scrolls/scrolls|源质残卷]]的卷六，几个人一起打也只掉一卷。"
+            },
+            "遗物和全息投影的出自同一张清单，每次二十份上下，见[[hoanna/relics]]。",
+            "创造模式物品栏里有{item:essentialcraft5:inquisitorium_sentinel_spawn_egg}，刷怪蛋放出的哨兵同样只能出现在海纳尔，64 格内只能有一只，没人打它就会消失。"
+          ]
+        }
+      ],
+      "_src": [
+        "entity/InquisitoriumSentinelEntity.java — 继承 HologramEntity：休息期才打得动、只吃真玩家、不是近战 ÷ 4、单次封顶 general.hologram.max_damage_per_hit（entity/HologramEvents.java 最后一道照认）、名单 / 拉回、对轨道打击免疫（HologramEntity.java:736 hurt）、不吃状态效果（:1025 canBeAffected）",
+        "entity/InquisitoriumSentinelEntity.java:91 configuredMaxHealth — general.inquisitorium.max_health（registry/ECInquisitorium.java:328 默认 800）；800 ÷ 40 = 20 轮。40 是 entity/HologramEntity.java:177 EARLY_ATTACK_THRESHOLD（休息期累计超过 40 就提前出招，不是配置）：先打 39、再打一下封顶的 40，一轮最多约 79，所以写「大约」不写「至少」",
+        "entity/InquisitoriumSentinelEntity.java:112 onAttackStart — 上一招和这一招不同、echo_ratio > 0 时成为回声；:121 echoStep — 加法剩 60 刻（ECHO_CLONE_TICK :54）出 scaled(cloneCount)、减法每 echoDestroyerInterval（:166，0.5 → 10 刻）一发、乘法剩余 % 10 == 5 时一发 strikeDamage × 强度、除法剩余 % 20 == 10 时 scaled(dividerCount)（:161 至少 1）；克隆体 / 破坏者 / 二分场和本招共用 HologramEntity 的上限（spawnClones :448 等）",
+        "client/render/InquisitoriumSentinelRenderer.java — 头顶当前招式的核心，回声那一招的核心小一圈绕着转（同步数据 echoAttack）",
+        "entity/InquisitoriumEvents.java:35 onSentinelHitLanded — LivingDamageEvent LOWEST、没被取消、数值 > 0、被打的人在名单里；:48 sentinelBehind：轨道打击（伤害记在哨兵头上、没有直接实体）、克隆体的近战，拉回（直接实体是哨兵）不算；+ matrix_damage_per_hit（默认 1000）走 CorruptionEffects.addMatrixDamage",
+        "entity/DividerFieldEntity.java apply — 二分场直接减半生命（不是伤害事件）；entity/ArmorDestroyerEntity.java wear — 不造成伤害",
+        "api/CorruptionEffects.java — matrix_12 / 19 / 20 成本 72000；corruption/CorruptionGate — 打开过成形的五芒星才抽",
+        "data/essentialcraft5/tags/entity_types/divider_immune.json 加了哨兵；HologramEntity.hurt 拒 orbital_strike",
+        "data/essentialcraft5/loot_tables/entities/inquisitorium_sentinel.json — 芯片 1、故障核心 1（random_target_balance）、遗物 19~21 抽，全部 killed_by_player；HologramEntity.java:187 XP_REWARD 50；InquisitoriumSentinelEntity.java:172 awardVictory 发 main/inquisitorium",
+        "entity/HologramEvents.java onHologramFinalizeSpawn — 刷怪蛋按 InquisitoriumSentinelEntity.allowedIn（summon_dimensions）和 64 格判；HologramEntity serverStep 名单空了到点消失",
+        "data/essentialcraft5/loot_tables/entities/inquisitorium_sentinel.json — 残卷池只有 killed_by_player，必掉 1 张卷 6（batch12.md §4.1）"
+      ]
+    },
+    {
+      "id": "purify",
+      "title": "净化：3 档五芒星",
+      "icon": "essentialcraft5:demonic_crystal_pillar",
+      "summary": "升到 3 档，治最贵的三种矩阵类腐化",
+      "complete": "essentialcraft5:guide/pentacle/tier3",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把第十二章的灵魂五芒星升到 3 档，柱子里的每点 ESPE 都按两点算，做法见[[pentacle/tier_three]]。再往上的 4 档在第二十二章，见[[shade/tier4]]。"
+        },
+        {
+          "type": "p",
+          "text": "审判庭哨兵留下的矩阵损伤又多又快，{lang:corruption_effect.essentialcraft5.matrix_12}、{lang:corruption_effect.essentialcraft5.matrix_19}、{lang:corruption_effect.essentialcraft5.matrix_20}三种的成本是 72000，2 档攒满了也治不了，要 3 档才行。",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这三种要积到 {cfg:general.corruption.draw_threshold_multiplier|mul:72000|int} 点损伤才会凝成，一旦凝成，只有 3 档的五芒星治得了。",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "恶魔护板",
+              "4 块，颜色随意，见[[demons/demonic_plating]]"
+            ],
+            [
+              "恶魔水晶柱",
+              "4 根"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "每根恶魔水晶柱要 6 个{item:essentialcraft5:ackronite_ingot}、2 个{item:essentialcraft5:demonic_core}和 1 根{item:essentialcraft5:void_crystal_pillar}，那根虚空柱会被用掉。四根合计要 24 锭阿克罗尼特、8 个恶魔核心和 4 根虚空柱，每个恶魔核心又要 4 块恶魔板，见[[demons/ackronite]]。"
+        },
+        {
+          "type": "p",
+          "text": "虚空柱要另做 4 根，2 档上原有的 4 根得留在原处。每根要 1 个虚空核心和 1 个 MRU 反应核，不够就让海纳尔的富集仓多坍缩几回，见[[hoanna/collapse]]。",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled"
+        },
+        {
+          "type": "p",
+          "text": "虚空柱要另做 4 根，2 档上原有的 4 根得留在原处。每根要 1 个虚空核心和 1 个 MRU 反应核，来源见[[hoanna/relics]]。",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier3"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "2 档的结构保持完整，一格也不能少。",
+            "在五芒星下面一层，正东、正南、正西、正北四个方向各隔一格放一块恶魔护板。",
+            "同样在这四个方向隔一格、比五芒星高 3 格的地方，各立一根恶魔水晶柱，底下可以先垫方块，放好后再拆掉。",
+            "右键五芒星打开界面。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "符文变成红色，界面上显示「3 档」。第一次打开 3 档界面时这一步会打勾，要是在第十二章就升过 3 档，这一步早就打上了。"
+        },
+        {
+          "type": "p",
+          "text": "3 档治同一个效果时，从柱子里抽的只有低档时的一半，成本 72000 的三种效果每个要抽 10 万点 ESPE。",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ]
+        }
+      ],
+      "_src": [
+        "blockentity/PlayerPentacleBlockEntity.java onMenuOpened — 档位 ≥ 3 时给 guide/pentacle/tier3 打勾（本篇复用这个进度，第十二章升过的早就打上了）；TIER_COLORS 第 5 项红色",
+        "registry/ECPentacle.java DEMONIC_OFFSETS（(±2, −1, 0)、(0, −1, ±2)）、PILLAR_OFFSETS 第 3 段 (±2, 3, 0) / (0, 3, ±2)",
+        "api/CorruptionEffects.java — matrix_12 / 19 / 20 成本 72000，其余矩阵类 ≤ 36000；corruption/CorruptionGate — draw_requires_cure_tier 开着时打开过成形的五芒星才抽",
+        "data/essentialcraft5/recipes/crystal_pillars/demonic_crystal_pillar.json — 阿克罗尼特锭 ×6、恶魔核心 ×2、虚空水晶柱；demonic/demonic_core.json — 恶魔板 ×4 + 元素魔晶 ×4 + MRU 共鸣水晶；demonic/demonic_plate.json — 4 锭阿克罗尼特出 4 块",
+        "data/essentialcraft5/recipes/crystal_pillars/void_crystal_pillar.json — 虚空板 ×6、虚空核心、淡青水晶柱、MRU 反应核",
+        "blockentity/PlayerPentacleBlockEntity.java multiplier / consumeESPE — 3 档每点 ESPE ×2，按 rawCost ÷ 2 抽：72000 → 100000（同 pentacle/tier_three）",
+        "tools/plan/batch10.md §5.10.6 — 3 档是这一章的必做步骤（D6 A）",
+        "tools/plan/batch13.md §7.5 — 13e 起五芒星最高 4 档（ECPentacle.MAX_TIER 4），第十九章的步骤仍是 3 档"
+      ]
+    },
+    {
+      "id": "rank_7",
+      "title": "七阶 · 审视",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "矩阵稳固",
+      "complete": "essentialcraft5:guide/matrix/rank_7",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：升到矩阵七阶「审视」。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "图谱",
+              "一共 27 种，其中首领至少 2 种：全息投影、审判庭哨兵、凋灵都算"
+            ],
+            [
+              "站点",
+              "3 档灵魂五芒星，上一篇刚搭好"
+            ],
+            [
+              "祭品",
+              "2 个{item:essentialcraft5:condensed_matrix}、2 个{item:essentialcraft5:demonic_core}、1 个[[hologram/math_cores|数学核心]]（加、减、乘、除哪一种都行）"
+            ],
+            [
+              "能量",
+              "台子里 8 万 MRU，五芒星的柱子里 8000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "回响",
+                "共 8 只，同时最多 4 只；每只 92 点生命，打你一下 10 点；限时 130 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引导",
+                "站着不动 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:70} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把祭品放进淬炼台的祭品格，台子里的 MRU 用绑定宝石备够。",
+            "站在台子 3 格内，主手拿着绑定你的灵魂石，打开界面，右边全打勾以后点「开始淬炼」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒够数的矩阵回响，别离开台子太远。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁边不动，也别受伤，等引导走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "屏幕正中出现「七阶 · 审视」，灵魂石的物品提示里写着矩阵七阶。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.stability.matrix_damage_multiplier==0.8",
+          "text": "七阶的回报是[[matrix/tolerance|矩阵稳固]]：试炼、虹吸这些矩阵阶带来的矩阵损伤再打八折。矩阵容量涨到 {cfg:general.matrix_rank.pool_per_rank|mul:6}。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.stability.matrix_damage_multiplier!=0.8",
+          "text": "七阶的回报是[[matrix/tolerance|矩阵稳固]]：试炼、虹吸这些矩阵阶带来的矩阵损伤再乘 {cfg:general.matrix_rank.stability.matrix_damage_multiplier}。矩阵容量涨到 {cfg:general.matrix_rank.pool_per_rank|mul:6}。"
+        },
+        {
+          "type": "p",
+          "text": "八阶要 4 档五芒星和暗影核心，在第二十二章，见[[shade/rank_8]]。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §3.1.3 九阶表、§3.1.2 试炼；进度 essentialcraft5:guide/matrix/rank_<n> 由代码在升阶成功时发（同 guide/hoanna/radiation）",
+        "tools/plan/batch13.md §3.1.3 七阶 — 图谱总数 27、首领 ≥ 2；3 档五芒星；祭品凝结矩阵 ×2 + 恶魔核心 ×2 + 任一数学核心；MRU 8 万 + ESPE 8 000；回响 8 / 4 / 92 / 10 / 130 秒；回报矩阵稳固（stability.matrix_damage_multiplier 0.8）、容量 × 6",
+        "放在 inquisitorium/purify（3 档五芒星）之后；八、九阶（第二十二、二十三章）在 13e",
+        "tools/plan/batch13.md §3.1.3 — 八阶在第二十二章（4 档站点、暗影核心）"
+      ]
+    },
+    {
+      "id": "chip",
+      "title": "{item:essentialcraft5:inquisitorium_chip}",
+      "icon": "essentialcraft5:inquisitorium_chip",
+      "summary": "哨兵掉的芯片，做空白模块和审判庭套装",
+      "items": [
+        "essentialcraft5:inquisitorium_chip"
+      ],
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:inquisitorium_chip"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "审判庭芯片是哨兵存放记录的零件，可审判庭审过谁、记下过什么，如今已经读不出来了。玩家每打倒一次审判庭哨兵，它都会掉一个审判庭芯片。芯片是第二十一章制作{item:essentialcraft5:blank_module}的材料，一个芯片能做两块空白模块，正好够主线要装的两块，见[[terminal/blank_module]]。"
+        },
+        {
+          "type": "p",
+          "text": "[[inquisitorium/armor|审判庭套装]]的每一件也要一个芯片。想多做几块模块或几件盔甲，就再打几场，每场要备一个故障核心、解一次码、做一个信标，故障核心哨兵自己也会掉一个。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "再打一场",
+          "text": "用同一台辐射仓解出的坐标总是指向同一处，下次把信标带回上次那个地方点亮就行，不用再去找新的地点。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/loot_tables/entities/inquisitorium_sentinel.json — 芯片必掉 1 个、killed_by_player；item/InquisitoriumChipItem.java 提示行",
+        "data/essentialcraft5/recipes/terminal/blank_module.json（第十批 10c-F）— 审判庭芯片 ×1 + 富神经元护板 ×2 + 逻辑核心 + 恶魔核心 ×2 + 虚空板 ×2 → 空白模块 ×2（tools/plan/batch10.md §9.1 D8 A）",
+        "data/essentialcraft5/recipes/inquisitorium/inquisitorium_{helmet,chestplate,leggings,boots}.json — 每件 1 个芯片（D22 A）",
+        "blockentity/GlitchyCoreDecoder.java SiteSearch — 起点相同，找到的点相同；找不到时的退回点也由解码处定（fallbackRandom）；InquisitoriumBeaconBlock.summon 每次召唤用掉信标"
+      ]
+    },
+    {
+      "id": "armor",
+      "title": "审判庭套装",
+      "icon": "essentialcraft5:inquisitorium_helmet",
+      "summary": "不靠 MRU 的重甲，每件一个芯片",
+      "complete": "essentialcraft5:guide/inquisitorium/armor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:inquisitorium_helmet",
+        "essentialcraft5:inquisitorium_chestplate",
+        "essentialcraft5:inquisitorium_leggings",
+        "essentialcraft5:inquisitorium_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：用审判庭芯片做一套审判庭盔甲。这套甲不用 MRU，护甲和韧性都很高，穿在身上也不掉耐久，不想给盔甲充电的话就穿它。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:inquisitorium_helmet",
+            "essentialcraft5:inquisitorium_chestplate",
+            "essentialcraft5:inquisitorium_leggings",
+            "essentialcraft5:inquisitorium_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每件要 1 个芯片，外加{item:essentialcraft5:void_plating}和{item:essentialcraft5:ackronite_ingot}，头盔、胸甲、护腿还要一块{item:essentialcraft5:neuronic_enriched_plating}。整套共要 4 个芯片，也就得打 4 场哨兵。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每件护甲",
+              "<t>{cfg:general.inquisitorium_armor.armor}</t>"
+            ],
+            [
+              "每件韧性",
+              "<t>{cfg:general.inquisitorium_armor.toughness}</t>"
+            ],
+            [
+              "每件击退抗性",
+              "<t>{cfg:general.inquisitorium_armor.knockback_resistance|pct}</t>"
+            ],
+            [
+              "胸甲",
+              "最大生命 +{cfg:general.inquisitorium_armor.chest_health}"
+            ],
+            [
+              "靴子",
+              "移动速度 +{cfg:general.inquisitorium_armor.boots_speed|mul:10|pct}"
+            ],
+            [
+              "MRU 抗性",
+              "四件穿齐后，MRU 腐化、腐化辐射和海纳尔辐射都伤不到你，戴着头盔还能看见 MRU"
+            ],
+            [
+              "耐久",
+              "头盔 5120、胸甲 15360、护腿 10240、靴子 5120，穿在身上时不掉耐久"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "全套的护甲和韧性已经顶到原版计算的上限，也就是护甲 30、韧性 20，但它没法像[[gear/void_armor]]、[[computer/suit]]那样花 MRU 把一下伤害整个挡掉。"
+        },
+        {
+          "type": "h",
+          "text": "全套：审判庭之律"
+        },
+        {
+          "type": "list",
+          "items": [
+            "抗魔：有攻击者的魔法伤害少受 {cfg:general.inquisitorium_armor.magic_resistance|pct}。腐化、「MRU 腐化」这类没有攻击者的伤害不减。",
+            "首领打来的伤害少受 {cfg:general.inquisitorium_armor.boss_resistance|pct}。",
+            "律令：身上的有害效果，持续时间大约只剩 {cfg:general.inquisitorium_armor.edict_reduction|mul:-1|add:1|pct}。",
+            "定罪：打中你的活物被定罪 {cfg:general.inquisitorium_armor.conviction_ticks|sec}，同一时间最多记 {cfg:general.inquisitorium_armor.conviction_max_targets|raw} 个。你亲手打被定罪的目标多 {cfg:general.inquisitorium_armor.conviction_bonus|pct} 伤害（反伤、饰品打出的伤害不加），打在玩家身上时多出来的只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "同调升阶以后，抗魔和定罪都会变强，3 阶起还能削平特别重的一下，见[[attunement/inquisitorium_armor]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "做出任意一件审判庭盔甲。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作里的审判庭套装画好了贴图，胸甲的说明里还写着一句「安静点，多米尼克！」，却没有配方，也不在任何箱子里，生存模式下一件也拿不到。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/inquisitorium/inquisitorium_helmet.json（ANA / PCP）、chestplate（P P / ACA / ANA）、leggings（ANA / PCP / P P）、boots（P P / ACA）— A 阿克罗尼特锭、P 虚空板、N 富神经元护板、C 审判庭芯片",
+        "registry/ECInquisitorium.java Config — general.inquisitorium_armor：护甲 10、韧性 5、击退抗性 0.2、胸甲 +30 生命、靴子 +0.1 移速（玩家基础 0.1，×10 = 100%）；item/InquisitoriumArmorItem.java piece",
+        "item/InquisitoriumArmorItem.java getResistance — MRU 抗性每件 1（gametest/InquisitoriumArmorTests.inquisitoriumMruResistance：四件全免）；tools/tags/ecinquisitorium.json — 头盔进 mru_vision",
+        "registry/ECInquisitorium.java:87 MATERIAL — 耐久 5120 / 15360 / 10240 / 5120；穿在玩家身上不掉耐久（tools/plan/batch13.md §4.3、§8.1 D14 A）",
+        "原版 CombatRules / Attributes — 护甲最多算 30、韧性最多算 20",
+        "原作 ItemsCore L468~471、en_US.lang L1310 前后（armor 台词）；原作没有审判庭套装的配方和战利品",
+        "tools/plan/batch10.md §9.1 D22 A — 生存可得、第十九章可选步骤",
+        "tools/plan/batch13.md §4.3 审判庭之律 — 抗魔：isMagic 且有攻击者、不在 unshieldable ×0.65（带不带 bypasses_armor 都算）；首领 ×0.85；律令有害效果时长约 ×0.6；定罪：活物打实你记 200 刻、每人 ≤ 8 个，打被定罪的 +20%（对玩家 × pvp_effect_scale）（general.inquisitorium_armor.*）"
+      ]
+    }
+  ]
+}

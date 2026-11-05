@@ -1,0 +1,23 @@
+{
+  "_src": "MatrixWraithModel.createLayer + pose() 静止姿势（ageInTicks=0、不走动）",
+  "texture": [64, 64],
+  "parts": [
+    {"name": "wraith", "parent": null, "offset": [0, -2, 0], "rot": [0, 0, 0], "boxes": []},
+    {"name": "head", "parent": "wraith", "offset": [0, 0, 0], "rot": [0, 0, 0],
+     "boxes": [{"uv": [0, 0], "from": [-4, -8, -4], "size": [8, 8, 8]}]},
+    {"name": "hood", "parent": "head", "offset": [0, 0, 0], "rot": [0, 0, 0],
+     "boxes": [{"uv": [32, 0], "from": [-4, -8, -4], "size": [8, 8, 8], "inflate": 0.5}]},
+    {"name": "body", "parent": "wraith", "offset": [0, 0, 0], "rot": [0, 0, 0],
+     "boxes": [{"uv": [16, 16], "from": [-4, 0, -2], "size": [8, 12, 4]}]},
+    {"name": "core", "parent": "body", "offset": [0, 5, -2], "rot": [0, 0, 0],
+     "boxes": [{"uv": [44, 34], "from": [-1, -1, -1], "size": [2, 2, 2]}]},
+    {"name": "right_arm", "parent": "wraith", "offset": [-5, 2, 0], "rot": [-0.55, 0, 0.08],
+     "boxes": [{"uv": [40, 16], "from": [-3, -2, -2], "size": [4, 14, 4]}]},
+    {"name": "left_arm", "parent": "wraith", "offset": [5, 2, 0], "rot": [-0.55, 0, -0.08],
+     "boxes": [{"uv": [40, 16], "from": [-1, -2, -2], "size": [4, 14, 4], "mirror": true}]},
+    {"name": "robe", "parent": "wraith", "offset": [0, 12, 0], "rot": [0, 0, 0],
+     "boxes": [{"uv": [0, 34], "from": [-4, 0, -3], "size": [8, 10, 6]}]},
+    {"name": "robe_tail", "parent": "robe", "offset": [0, 8, 2], "rot": [0.9, 0, 0],
+     "boxes": [{"uv": [28, 34], "from": [-3, 0, 0], "size": [6, 8, 1]}]}
+  ]
+}

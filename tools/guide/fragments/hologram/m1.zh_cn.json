@@ -1,0 +1,299 @@
+[
+  {
+    "id": "holopad",
+    "title": "{item:essentialcraft5:holopad}",
+    "icon": "essentialcraft5:holopad",
+    "summary": "向整个海纳尔发出信号的台子",
+    "complete": "essentialcraft5:guide/hologram/holopad",
+    "items": [
+      "essentialcraft5:holopad"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：做一台全息投影台。这一章从它开始：在海纳尔启动它，会召来全息投影（[[hologram/summoning]]），打倒它才拿得到做电脑的数学核心。"
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:holopad"
+      },
+      {
+        "type": "p",
+        "text": "要 6 个{item:essentialcraft5:twinkling_titanite}、1 个{item:essentialcraft5:void_core}（都从海纳尔的遗迹箱子里来，见[[hoanna/relics]]）、1 个{item:essentialcraft5:matter_of_eternity}，再加 1 块{item:essentialcraft5:neuronic_enriched_plating}（[[hologram/neuronic_plating]]）。"
+      },
+      {
+        "type": "h",
+        "text": "放在哪儿"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "if": "!cfg:general.hologram.other_dimensions",
+            "text": "只能在<hl>海纳尔</hl>启动；在别的维度右键，快捷栏会提示不行。"
+          },
+          {
+            "if": "cfg:general.hologram.other_dimensions",
+            "text": "哪个维度都能启动。"
+          },
+          "台子头顶要<hl>露天</hl>：这一列往上不能有挡路的方块（花草、火把不算）。",
+          "台子上方 <t>5</t> 格是投影出现的地方，那里不能有东西挡着。",
+          "<t>64</t> 格内不能已经有一个全息投影。",
+          "要用生存或冒险模式右键；和平难度下信号没有回应。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "条件不满足时右键什么都不扣，快捷栏会写清缺什么。条件都满足时台子会立刻消失，没有退路：先读完[[hologram/summoning]]、备好装备再动手。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作研究书在这台装置之前写了几段传闻：海纳尔某处藏着神秘的「审判庭」，可谁也找不到它。要让恶魔板真正运转，还缺一台电脑，凭你的技术造不出来——也许审判庭帮得上忙。这台装置会向整个海纳尔发出强烈的信号，审判庭要是真的存在，就一定会收到。"
+      }
+    ],
+    "_src": [
+      "data/essentialcraft5/recipes/hologram/holopad.json — TVT / TET / THT：闪耀榍石 ×6、虚空核心、永恒物质（正中）、富神经元护板（下面）；照原作 1.10.2 代码配方 L88~95（1.12 recipes/holopad.json 把 E、H 两格对调了）",
+      "block/HolopadBlock.java:108 — summon 的判定顺序：真玩家 → 生存 / 冒险 → 不是和平 → 维度（HologramEntity.dimensionAllowed：海纳尔或 general.hologram.other_dimensions）→ 露天（openSky L158，MOTION_BLOCKING 高度图）→ 生成点 0.6 × 1.8 无碰撞（spawnPoint L163，y + 5）→ 64 格内没有（HologramEntity.UNIQUE_RANGE）→ canEdit；任何一条不满足都不扣",
+      "block/HolopadBlock.java:152 — 投影加进世界成功以后才 removeBlock（不掉落）",
+      "registry/ECHologram.java:94 — 方块：硬度 1、抗爆 1，下半台阶的模型和碰撞箱",
+      "原作 ResearchRegistry L1767~1775、en_US.lang L1107~1110 — 研究书的四段前言（审判庭的传闻、缺一台电脑、信号、露天放置）"
+    ]
+  },
+  {
+    "id": "summoning",
+    "title": "召唤：没有退路",
+    "icon": "essentialcraft5:glitchy_core",
+    "summary": "谁算参战、跑远了会怎样",
+    "complete": "essentialcraft5:guide/hologram/summon",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "在台子上右键：台子消失，头顶 <t>5</t> 格出现半透明的全息投影，响起战斗音乐。它悬在半空一动不动，一轮接一轮地出招，直到被打倒，或者所有人都离开。"
+      },
+      {
+        "type": "h",
+        "text": "谁算参战"
+      },
+      {
+        "type": "list",
+        "items": [
+          "召唤它的人。",
+          "之后真正打掉它血的生存或冒险模式玩家。朋友想加入，就先上去打它一下。",
+          "在旁边看着的、路过的、旁观模式的都不算：不会被它的招式盯上，也不会被拉回来。"
+        ]
+      },
+      {
+        "type": "h",
+        "text": "参战以后"
+      },
+      {
+        "type": "list",
+        "items": [
+          "离它超过 <t>24</t> 格，会被拉回台子原来的位置，扣 <t>5</t> 点生命（简单难度少一些，困难多一些）。",
+          "跑出 <t>{cfg:general.hologram.escape_range}</t> 格、换了维度、死了、下线，或者改成创造 / 旁观模式，就算退出战斗：不再拉你回来，招式也不再追着你。",
+          "拉回去的地方被方块堵住、底下是岩浆之类伤人的东西，或者传送被拦下时，不拉、不扣血，但你仍在战斗中，招式照样追着你；跑出 <t>{cfg:general.hologram.escape_range}</t> 格才算退出。",
+          "参战时不能飞：飞行能力会被关掉（反重力板给的也一样）；鞘翅照常能用。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "没人打了会怎样",
+        "text": "所有人都退出以后过 {cfg:general.hologram.abandon_ticks|sec}，投影自己关闭，台子掉回原来的位置（不会自己消失），可以重新来过。切到和平难度时投影也会关闭，台子同样掉回来。"
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "它和它的招式都不破坏方块；但招式会打到附近的敌对生物，也会打到每一个参战的人，包括你的同伴。"
+      }
+    ],
+    "_src": [
+      "block/HolopadBlock.java:144 — 投影生成在 spawnPoint（台子上方 5 格正中）；召唤者进名单（HologramEntity.prepareSummon）",
+      "entity/HologramEntity.java:693 — hurt：生命真的掉了才 addParticipant；addParticipant 只收生存 / 冒险的真玩家",
+      "entity/HologramEntity.java:554 — tickRoster（每 10 刻）：下线、死了、换维度、改创造 / 旁观、超过 general.hologram.escape_range（默认 64，registry/ECHologram.java:230）→ 移出名单；24~64 格（PULL_RANGE L162）→ pullBack（L583）：ECTeleport.check(null, …, 投影台位置.below(), null) 不安全或传送被取消就不拉、不扣血，人留在名单里（只有超过 escape_range 才移出）；传成了 mobAttack(Boss) 扣 5（PULL_DAMAGE L164，随难度缩放）",
+      "entity/HologramEvents.java — onHologramFighterDeath（LivingDeathEvent，LOWEST）：玩家死亡当场从所有全息投影的名单里移出（HologramEntity.forgetFighter）；开了立即重生时 10 刻一次的检查会漏掉",
+      "entity/HologramEntity.java:554 — 参战者 abilities.flying 关掉并 onUpdateAbilities；本模组给的飞行由 ECFlight 的压制器 isEngaged（L675）暂停；鞘翅是 fallFlying，不受影响",
+      "entity/HologramEntity.java:326 — serverStep：和平难度 shutDown；名单空了每刻 abandonTicks + 1，到 general.hologram.abandon_ticks（默认 600，registry/ECHologram.java:233）shutDown（L794）：投影台召出来、没死的在原位掉回一个投影台物品（setUnlimitedLifetime，不会消失）",
+      "entity/HologramEntity.java:507 — isSkillTarget：名单里生存 / 冒险的玩家 + 敌对生物（跳过 isSpared、#forge:bosses、全息投影）；技能实体不改方块（OrbitalStrikeEntity / DividerFieldEntity 类注释）"
+    ]
+  },
+  {
+    "id": "hologram",
+    "title": "{lang:entity.essentialcraft5.hologram}",
+    "icon": "essentialcraft5:hologram_spawn_egg",
+    "summary": "四种招式怎么躲、什么时候打",
+    "complete": "essentialcraft5:main/hologram",
+    "items": [
+      "essentialcraft5:hologram_spawn_egg",
+      "essentialcraft5:player_clone_spawn_egg"
+    ],
+    "blocks": [
+      {
+        "type": "entity",
+        "id": "essentialcraft5:hologram"
+      },
+      {
+        "type": "p",
+        "text": "<em>目标</em>：打倒全息投影。它有 <t>{cfg:general.hologram.max_health}</t> 点生命，一招接一招地放，<hl>只在两招之间的休息时间打得动</hl>，出招时打上去没有反应。血越少，休息越短：满血时约 5 秒，快死时只剩 1 秒。"
+      },
+      {
+        "type": "h",
+        "text": "四种招式"
+      },
+      {
+        "type": "table",
+        "header": [
+          "头顶的核心",
+          "招式",
+          "怎么应付"
+        ],
+        "widths": [
+          4,
+          5,
+          7
+        ],
+        "rows": [
+          [
+            "{item:essentialcraft5:addition_core}",
+            "加法：在每个参战者身边变出你的影子（{lang:entity.essentialcraft5.player_clone}），长着你的样子、拿着你的武器",
+            "影子一碰就碎，活 10 秒；攻击最多 <t>{cfg:general.hologram.clone_max_attack_damage}</t> 点（简单难度少一些，困难多一半）。它血越少，变出来的越多"
+          ],
+          [
+            "{item:essentialcraft5:subtraction_core}",
+            "减法：朝每个参战者连射{lang:entity.essentialcraft5.armor_destroyer}",
+            "不伤人，但每打中一发，手里的东西和每件盔甲各掉 <t>5</t> 点耐久；靠 MRU 挡伤害的盔甲（虚空、宅男套装）改扣电。别穿舍不得的"
+          ],
+          [
+            "{item:essentialcraft5:multiplication_core}",
+            "乘法：在随机一个参战者脚下召下轨道打击，一共 10 发",
+            "看见品红光柱就挪开：光柱收细后落下，5 × 5 × 5 内都会挨打、着火。一直走动"
+          ],
+          [
+            "{item:essentialcraft5:division_core}",
+            "除法：在参战者脚下放品红色的二分场",
+            "看见品红球就跑：2 秒后张开，3 格内的生命直接减半，再挂上虚弱、缓慢、挖掘疲劳和失明"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.hologram.orbital_max_damage<512",
+        "text": "轨道打击一发比一发疼：从 1 点起每发翻倍，翻到 <t>{cfg:general.hologram.orbital_max_damage}</t> 点不再涨。护甲挡得住一部分；抗性提升、保护附魔、盾都挡不住。"
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.hologram.orbital_max_damage>=512",
+        "text": "轨道打击一发比一发疼：从 1 点起每发翻倍，第 10 发是 <t>512</t> 点，几乎什么都挡不住。护甲挡得住一部分；抗性提升、保护附魔、盾都挡不住。"
+      },
+      {
+        "type": "h",
+        "text": "打它"
+      },
+      {
+        "type": "list",
+        "items": [
+          "近战算全额；箭、枪、爆炸这类不是近战的只算四分之一。",
+          {
+            "if": "cfg:general.hologram.max_damage_per_hit>0",
+            "text": "一下最多掉 <t>{cfg:general.hologram.max_damage_per_hit}</t> 点，再重的武器也一样。"
+          },
+          "一下打出 <t>40</t> 点上下（远程按打出去的伤害算，不是掉的血），或者一次休息里累计打出 40 点上下，它会马上出下一招。",
+          "只有玩家亲手打得动它：宠物、机器、别的生物都伤不到它，它自己的轨道打击也伤不到它。",
+          "离它超过 <t>24</t> 格就打不动它：得站近了打，远远射一下就跑行不通。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "投影熄灭，原地掉下一个数学核心、一堆遗物和 <t>50</t> 点经验（[[hologram/math_cores]]）；参战的人都拿到进度「幻影斗士」。"
+      }
+    ],
+    "_src": [
+      "registry/ECHologram.java:211 — general.hologram.max_health 默认 400（原作 400）；HologramEntity.applyConfiguredHealth 召出时设",
+      "entity/HologramEntity.java:693 — hurt：bypasses_invulnerability 照常；orbital_strike 一律拒绝；攻击者要是真玩家；非创造模式出招时（attackId != REST）拒绝；非创造模式离它超过 24 格（PULL_RANGE L162）或不在同一个世界拒绝；不是近战（ECDamageKinds.isMelee 为假）÷ 4（RANGED_DIVISOR L172）；单次封顶 general.hologram.max_damage_per_hit（默认 40，0 = 不封顶，registry/ECHologram.java:214），最终掉血在 entity/HologramEvents.java onHologramDamageCap（LivingDamageEvent，LOWEST）再夹一次；生命真掉了才累计，单次或累计 > 40（EARLY_ATTACK_THRESHOLD L170）休息时间设成 1",
+      "entity/HologramEntity.java:520 — restTicks：100 − ⌊80 − 80h⌋，满血 100 刻（5 秒）、见底 20 刻（1 秒）",
+      "entity/HologramEntity.java:352 — tickCombat：加法剩 20 刻时每人 cloneCount（L525：1 + 3 − ⌊3h⌋）只克隆体；减法每 5 刻每人一发护甲破坏者；乘法每 10 刻一发轨道打击（10 发），伤害 strikeDamage（L540：2^n，封顶 general.hologram.orbital_max_damage，默认 32，registry/ECHologram.java:217）；除法每 20 刻 dividerCount（L535）个二分场，延迟 40 刻（DIVIDER_DELAY L160）",
+      "entity/PlayerCloneEntity.java:57 — 寿命 200 刻；attackDamageFor（L135）：3 + 主手攻击加成 + 锋利类加成，封顶 general.hologram.clone_max_attack_damage（默认 10，registry/ECHologram.java:220）",
+      "entity/ArmorDestroyerEntity.java:115 — wear：主副手、普通盔甲 hurtAndBreak(5)；IMRUShieldArmor 改扣 5 × mruPerDamage MRU（虚空 4 000、宅男 1 250），扣不起不动；不造成伤害",
+      "entity/OrbitalStrikeEntity.java — 立方 ±2.5（5 × 5 × 5）、伤害落下后着火 2 秒；伤害类型 orbital_strike 带 bypasses_effects / bypasses_shield（护甲照算）",
+      "entity/DividerFieldEntity.java — 半径 3、延迟后 setHealth(一半)、虚弱 / 缓慢 / 挖掘疲劳 V 200 刻、失明 I 100 刻",
+      "entity/HologramEntity.java:747 — awardFighters：名单里在线、同维度的玩家发 main/hologram",
+      "client/render/HologramRenderer.java — 头顶的核心：出招时对应的数学核心，休息时故障核心"
+    ]
+  },
+  {
+    "id": "math_cores",
+    "title": "数学核心",
+    "icon": "essentialcraft5:addition_core",
+    "summary": "想要哪种，就在那一招之后补刀",
+    "items": [
+      "essentialcraft5:addition_core",
+      "essentialcraft5:subtraction_core",
+      "essentialcraft5:multiplication_core",
+      "essentialcraft5:division_core"
+    ],
+    "blocks": [
+      {
+        "type": "items",
+        "items": [
+          "essentialcraft5:addition_core",
+          "essentialcraft5:subtraction_core",
+          "essentialcraft5:multiplication_core",
+          "essentialcraft5:division_core"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "全息投影被打倒时掉一个数学核心，掉哪一种看它<hl>最后放完的是哪一招</hl>：加法掉{item:essentialcraft5:addition_core}，减法掉{item:essentialcraft5:subtraction_core}，乘法掉{item:essentialcraft5:multiplication_core}，除法掉{item:essentialcraft5:division_core}。还没放完过一招就被打倒的，随机掉一种。"
+      },
+      {
+        "type": "p",
+        "text": "它头顶转着的核心就是提示：出招时是这一招的核心，休息时是{item:essentialcraft5:glitchy_core}。想要哪一种，就等它放完那一招，在接下来的休息里补上最后一下。四种核心都要用来做电脑引擎（[[computer/computer_engine]]），会挑时机的话打四次就能凑齐。"
+      },
+      {
+        "type": "h",
+        "text": "另外会掉的"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "{item:essentialcraft5:orbital_remote}",
+            "<t>25%</t>（[[hologram/orbital_remote]]）"
+          ],
+          [
+            "{item:essentialcraft5:divider_gun}",
+            "<t>25%</t>（[[hologram/divider_gun]]）"
+          ],
+          [
+            "{item:essentialcraft5:music_disc_ropocalypse}",
+            "<t>30%</t>"
+          ],
+          [
+            "海纳尔遗物",
+            "<t>18~20</t> 份，和城镇塔顶的箱子同一张清单（[[hoanna/relics]]）"
+          ],
+          [
+            "经验",
+            "<t>50</t> 点"
+          ]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "text": "只有被玩家打倒才掉东西。几个人一起打也只掉一份；进度「幻影斗士」发给打倒它时还在战斗里的每一个人。"
+      }
+    ],
+    "_src": [
+      "entity/HologramEntity.java:775 — getDefaultLootTable：按 prevAttackId 选表（lootTableFor：0 加法、1 减法、2 乘法、3 除法），还没放完过一招时随机挑一张（原作 EntityHologram L58~62）",
+      "client/render/HologramRenderer.java — coreFor：休息 = 故障核心，0~3 = 加 / 减 / 乘 / 除法核心（原作 RenderHologram L56~78）",
+      "data/essentialcraft5/loot_tables/entities/hologram_*.json（tools/gen/hoanna_loot.py 生成）— 核心 1 个；遥控器、二分枪各 25%；唱片 30%；遗物 18~20 抽，清单同 chests/town_tower（24 条、总权重 343）；每个池都带 killed_by_player",
+      "entity/HologramEntity.java:747 — awardFighters：只走一次原版掉落；进度发给名单里在线、同维度的玩家（打出最后一下的人在 die 里先加进名单）",
+      "entity/HologramEntity.java:219 — 构造器 xpReward = XP_REWARD（50，同凋灵；原作 0）；原版 LivingEntity.dropExperience 只在玩家 100 刻内打过它时掉，/kill 不掉"
+    ]
+  }
+]

@@ -1,0 +1,380 @@
+{
+  "id": "scrolls",
+  "order": 107,
+  "group": "side",
+  "title": "支線 · 古卷",
+  "subtitle": "先輩留下的七卷書",
+  "icon": "essentialcraft5:ancient_scroll",
+  "if": "cfg:general.ancient_scrolls.enabled",
+  "entries": [
+    {
+      "id": "scrolls",
+      "title": "{lang:item.essentialcraft5.ancient_scroll}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "去哪找、怎麼讀",
+      "items": [
+        "essentialcraft5:ancient_scroll"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "這幾卷是我一捲一捲找齊的。紙已經發脆，有幾處字缺了，我沒有替先輩補上，抄進這本書時，缺的地方照樣空着。",
+          "by": "編者按"
+        },
+        {
+          "type": "p",
+          "text": "先輩把學問寫成了書，傳到今天的只剩七卷，就是這些{lang:item.essentialcraft5.ancient_scroll}，散在各處。七卷是序和卷一至卷六，你讀過哪一卷，這一章就打開哪一篇。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "先輩把學問寫成了書，傳到今天的只剩七卷，就是這些{lang:item.essentialcraft5.ancient_scroll}，散在各處。主世界能找到其中五卷，是序和卷一至卷四，你讀過哪一卷，這一章就打開哪一篇。",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "h",
+          "text": "去哪找"
+        },
+        {
+          "type": "list",
+          "items": [
+            "上古遺蹟裏的箱子，每個有 35% 的幾率壓着一卷，開出來的只會是序或卷一至卷四。",
+            "主世界、地獄和終界的箱子，像村莊、廢棄礦井、要塞、地獄要塞、堡壘遺蹟、終界城裏的，別的模組建築裏的箱子也算。你親手打開時每個有 10% 的幾率出一卷，只出序和卷一至卷四里你還沒有的：讀過的、開到過的都不會再出，五卷都有了就不再出。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "海納爾城鎮廢墟里塔頂的箱子，每個有 10% 的幾率，開出來的是序或卷一至卷五。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "海納爾古代墓穴出口房間裏的那個箱子，有 40% 的幾率，開出來的只會是卷五。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "[[inquisitorium/sentinel|審判庭哨兵]]被玩家打倒時必定掉下卷六，幾個人一起打也只掉一卷。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "上古遺蹟和海納爾的箱子開出殘卷時，只要這個箱子能出的卷裏還有你沒讀過、也沒開到過的，開出來的這一卷至少有四分之三的幾率是你缺的。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼讀"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把殘卷拿在手裏，按住右鍵{cfg:general.ancient_scrolls.read_ticks|sec}。",
+            {
+              "if": "cfg:general.ancient_scrolls.consume_on_read",
+              "text": "讀完以後這張殘卷就用掉了，動作欄上會提示你讀完了哪一卷，手冊裏多了一篇。"
+            },
+            {
+              "if": "!cfg:general.ancient_scrolls.consume_on_read",
+              "text": "讀完以後殘卷還留在手裏，動作欄上會提示你讀完了哪一卷，手冊裏多了一篇。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "物品提示上寫着「{lang:tooltip.essentialcraft5.ancient_scroll.unread}」的殘卷才讀得了，讀過的卷右鍵讀不了，可以送給還沒讀過的人。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "各讀各的",
+          "text": "讀沒讀過是各人算各人的，別人讀過的卷，你還得自己再讀一遍。"
+        },
+        {
+          "type": "p",
+          "text": "全部讀完還有一份獎勵，見[[scrolls/complete_set]]。",
+          "if": "cfg:general.ancient_scrolls.set_resistance>0"
+        }
+      ]
+    },
+    {
+      "id": "preface",
+      "title": "{lang:lore.essentialcraft5.scroll.v0.label} · {lang:lore.essentialcraft5.scroll.v0.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "為什麼寫下這幾卷",
+      "complete": "essentialcraft5:guide/scrolls/preface",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/preface",
+      "locked_hint": "這一卷壓在上古遺蹟或主世界、地獄、終界的箱子裏，讀過以後這一篇才會打開。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "輻光散在萬物裏時，從不傷人。海納爾人把它聚起來，趕着它幹活，後來海納爾燒了。"
+        },
+        {
+          "type": "p",
+          "text": "我們也在聚，也在趕。這裏頭的手藝，有的是從海納爾傳過來的，有的是我們自己一回一回試出來的。這幾卷不出自一人之手，各人記下各人弄懂的，前後説法不一的地方，照原樣留着。只有卷五不同，抄的是我們最老的一個故事。"
+        },
+        {
+          "type": "p",
+          "text": "這幾卷記的是做法，該在哪裏停手，我們還沒弄清。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "殘卷裏説的輻光就是 MRU，見[[start/mru]]。"
+        }
+      ]
+    },
+    {
+      "id": "book_1",
+      "title": "{lang:lore.essentialcraft5.scroll.v1.label} · {lang:lore.essentialcraft5.scroll.v1.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "元素、魔晶、靈魂石與飾品",
+      "complete": "essentialcraft5:guide/scrolls/book_1",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_1",
+      "locked_hint": "這一卷壓在上古遺蹟或主世界、地獄、終界的箱子裏，讀過以後這一篇才會打開。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "這個世界本來沒有輻光。輻光是化作千萬道射線落下來的，穿過了這個世界的每一層巖石，有些石頭把它留在了裏面。鑿開這樣的石頭，裏面是凝成顆粒的地、水、火、風。"
+        },
+        {
+          "type": "p",
+          "text": "不鑿石頭也有法子。地上擺對了方塊，丟下對的東西，同一種元素便會聚成一簇，敲碎了一樣能用。後面幾卷的做法，大多從這四樣顆粒起步。"
+        },
+        {
+          "type": "p",
+          "text": "靈魂石是我們用來看清矩陣的頭一樣東西。矩陣是什麼，見卷二。"
+        },
+        {
+          "type": "p",
+          "text": "舊箱子裏常能翻出比我們更早的人留下的飾品。這些指環、護身符和腰帶，做法已經失傳，箱子裏翻到一件就是一件，世上不會再多出來。戴之前先讀上面的字，有的給你一樣，也要拿走一樣。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "魔晶從[[elements/ores]]講起，飾品見[[baubles/finding]]。"
+        }
+      ]
+    },
+    {
+      "id": "book_2",
+      "title": "{lang:lore.essentialcraft5.scroll.v2.label} · {lang:lore.essentialcraft5.scroll.v2.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "MRU、矩陣與聚集體",
+      "complete": "essentialcraft5:guide/scrolls/book_2",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_2",
+      "locked_hint": "這一卷壓在上古遺蹟或主世界、地獄、終界的箱子裏，讀過以後這一篇才會打開。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "落進萬物裏的這股光，海納爾人叫它輻光。我們要稱它、記它，就按份數來算，叫作 MRU，意思是魔法輻射單位。剛落下來的 MRU 是平衡的，聚得多了、趕得急了就會偏，偏了的又會把身邊的也帶偏。"
+        },
+        {
+          "type": "p",
+          "text": "凡活物身上都罩着一層矩陣，是心神看管着的一小片 MRU。頭一份能拿來驅動機器的 MRU，我們是從自己身上取下來的。後來才學會從殺死的活物身上取。"
+        },
+        {
+          "type": "p",
+          "text": "MRU 聚在一處不散，就成了聚集體。小的不傷人，長滿了，站在近旁的人矩陣就要受傷。聚集體藏在牆後、地下的時候最危險，等你發覺，它多半已經長滿了。先做一片能隔牆看見它的鏡片，再做一身擋得住它的衣服。"
+        },
+        {
+          "type": "p",
+          "text": "矩陣傷得多了，會落下病根，有的在手腳上，有的在心神裏。怎麼治，見卷四。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "矩陣和第一份 MRU 從[[mru/soul_stone]]講起，聚集體見[[start/mrucu]]。"
+        }
+      ]
+    },
+    {
+      "id": "book_3",
+      "title": "{lang:lore.essentialcraft5.scroll.v3.label} · {lang:lore.essentialcraft5.scroll.v3.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "機器、水晶、精華與日光",
+      "complete": "essentialcraft5:guide/scrolls/book_3",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_3",
+      "locked_hint": "這一卷壓在上古遺蹟或主世界、地獄、終界的箱子裏，讀過以後這一篇才會打開。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "機器幹一刻活，就往外漏一刻 MRU。漏出來的走不遠，聚在近旁，越聚越亮，亮到一定地步，站在旁邊的人就要受傷。造機器的地方，離睡覺的地方要遠一些。"
+        },
+        {
+          "type": "p",
+          "text": "石英提得越純，裝得下的 MRU 越多。裝滿一顆揣在身上，出門在外，法杖和護符就有了着落。東西灌夠了 MRU，就會褪成淡青色，到了某些場合，能冒名頂替別的東西。頂替的本事，是拿大量 MRU 換來的。"
+        },
+        {
+          "type": "p",
+          "text": "從前 MRU 濃得化不開的地方，會自己長出水晶，一夜就成。世界變過一回，它們一顆也不剩了。我們照舊法子造出來的，生下來很小，要種在地上慢慢養大。古時的水晶碎了，會落下一層粉，那粉就是精華。如今的水晶捨不得打碎，我們學會了從它身上一點一點地抽。"
+        },
+        {
+          "type": "p",
+          "text": "日光裏也夾着一點 MRU，散得很開，要用透鏡聚起來才派得上用場。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "機器漏 MRU 的事見[[crafting/corruption]]，水晶從[[crystal/crystal_former]]講起。"
+        }
+      ]
+    },
+    {
+      "id": "book_4",
+      "title": "{lang:lore.essentialcraft5.scroll.v4.label} · {lang:lore.essentialcraft5.scroll.v4.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "綠太陽、ESPE 與五芒星",
+      "complete": "essentialcraft5:guide/scrolls/book_4",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_4",
+      "locked_hint": "這一卷壓在上古遺蹟或主世界、地獄、終界的箱子裏，讀過以後這一篇才會打開。",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "綠太陽遠在另一個位面，看不見，也摸不着。它的脈衝穿過這個世界時早已弱得傷不了誰，卻順路捎上了幾道 MRU 射線，把一些石頭染成了米斯萊。"
+        },
+        {
+          "type": "p",
+          "text": "綠太陽，我們也叫它末影之星。拿米斯萊做成柱子，朝着天立起來，柱子就會一點一點地攢下這種脈衝，攢下來的叫 ESPE。ESPE 和 MRU 是兩回事。"
+        },
+        {
+          "type": "p",
+          "text": "矩陣受了傷落下的病根，拿 MRU 去治只會更糟。治得好它的只有綠太陽的脈衝，萬物能活着，靠的就是這個。五芒星便是為此而畫，借柱子裏攢下的脈衝去治那些病根。"
+        },
+        {
+          "type": "p",
+          "text": "風之符文也吃這種脈衝。拿着東西去碰符文，脈衝注進去，東西就換了一副樣子。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "米斯萊和水晶柱見[[mithriline/crystal_pillar]]，五芒星見[[pentacle/pentacle]]。"
+        }
+      ]
+    },
+    {
+      "id": "book_5",
+      "title": "{lang:lore.essentialcraft5.scroll.v5.label} · {lang:lore.essentialcraft5.scroll.v5.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "抄下的《海納爾傳説》",
+      "complete": "essentialcraft5:guide/scrolls/book_5",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_5",
+      "locked_hint": "這一卷壓在海納爾塔頂或墓穴出口的箱子裏，讀過以後這一篇才會打開。",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "海納爾傳説"
+        },
+        {
+          "type": "p",
+          "text": "那是科技與魔法交融的世界，一切都運轉得好好的。它□□□□……"
+        },
+        {
+          "type": "p",
+          "text": "那人呼喚了風，風便親自來到他身邊，帶他去往夢幻的大陸，去往海納爾，一個有無限可能的世界。"
+        },
+        {
+          "type": "p",
+          "text": "他看見灰石鋪成的大路，從城中心一直伸到望不見的地方。他看見比山還高的塔，樓房的牆角埋着能把重物託在半空的器物。那裏的人管一種光叫輻光，他們把輻光聚起來，趕着它□□□□，夜裏的城和白天一樣亮。"
+        },
+        {
+          "type": "p",
+          "text": "他在海納爾住了很久，學會了那裏的法子。後來風又把他送了回來，他便把學到的教給了這邊的人。"
+        },
+        {
+          "type": "p",
+          "text": "再往後，沒有人叫得出風的名字了，去往海納爾的門便關上了。"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "海納爾本身從[[hoanna/legend]]講起。"
+        }
+      ]
+    },
+    {
+      "id": "book_6",
+      "title": "{lang:lore.essentialcraft5.scroll.v6.label} · {lang:lore.essentialcraft5.scroll.v6.title}",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "只有卷名和一句話",
+      "complete": "essentialcraft5:guide/scrolls/book_6",
+      "optional": true,
+      "advancement": "essentialcraft5:guide/scrolls/book_6",
+      "locked_hint": "這一卷在審判庭哨兵身上，打倒它、讀過以後這一篇才會打開。",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "黑暗降臨……"
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "p",
+          "text": "這一卷只有卷名和上面這一句，往後都是白頁。"
+        },
+        {
+          "type": "p",
+          "text": "它是從[[inquisitorium/sentinel|審判庭哨兵]]身上掉下來的。"
+        }
+      ]
+    },
+    {
+      "id": "complete_set",
+      "title": "讀完全部殘卷",
+      "icon": "essentialcraft5:ancient_scroll",
+      "summary": "全部讀完的獎勵",
+      "complete": "essentialcraft5:guide/scrolls/complete",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：讀完全部七卷殘卷，序和卷一至卷六。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：讀完主世界能找到的五卷殘卷，序和卷一至卷四。",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "讀完最後一卷，你的 MRU 腐化抗性永久增加 {cfg:general.ancient_scrolls.set_resistance|pct}，和飾品給的抗性加在一起算，「MRU 腐化」效果的傷害和聚集體造成的矩陣損傷都按它打折扣。",
+          "if": "cfg:general.ancient_scrolls.set_resistance>0"
+        },
+        {
+          "type": "p",
+          "text": "海納爾輻射抗性也永久增加同樣多，在海納爾裏輻射漲得慢一些。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled",
+            "cfg:general.ancient_scrolls.set_resistance>0"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "讀完最後一卷時，聊天欄裏出現一行字，同時響起挑戰完成的音效。"
+        }
+      ]
+    }
+  ]
+}

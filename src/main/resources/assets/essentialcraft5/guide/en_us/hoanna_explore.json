@@ -1,0 +1,1398 @@
+{
+  "id": "hoanna_explore",
+  "order": 111,
+  "group": "side",
+  "title": "Side Chapter · Hoanna Exploration",
+  "subtitle": "Specialties, calamities and nests",
+  "icon": "essentialcraft5:ley_crystal",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "Going Farther",
+      "icon": "minecraft:compass",
+      "summary": "Specialties, calamities, maps and nests",
+      "blocks": [
+        {
+          "type": "quote",
+          "by": "Tower inscription, Hoanna",
+          "text": "On the nights around the full moon, shining buds came up in the grass east of the city. The children went out in crowds to break them off, and we never stopped them. After the city burned, the buds kept growing."
+        },
+        {
+          "type": "p",
+          "text": "Chapter 16 got you into Hoanna and through its ruins. This chapter heads out into the wilds, and the table lists what each entry covers."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Entry",
+            "What it covers"
+          ],
+          "rows": [
+            [
+              "[[hoanna_explore/tide]]",
+              "The tide follows the moon; some specialties only grow at spring tide, and more monsters come"
+            ],
+            [
+              "[[hoanna_explore/specialties]]",
+              "Each of the seven lands grows one thing; where it is and how to gather it"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "[[hoanna_explore/ley_storm]]",
+                "A fifth calamity that only comes on spring-tide nights and drops crystals from the sky"
+              ]
+            },
+            [
+              "[[hoanna_explore/calamity_windows]]",
+              "Which calamity speeds up what"
+            ],
+            [
+              "[[hoanna_explore/hotspots]]",
+              "The chunks with the strongest radiation, where radiant crystals grow"
+            ],
+            [
+              "[[hoanna_explore/survey]]",
+              "Where survey maps come from and how to use them, plus the milestones by the road"
+            ],
+            [
+              "[[hoanna_explore/survey_trip]]",
+              "Walking to the place the map marks"
+            ],
+            [
+              "[[hoanna_explore/abyssal_salt]]",
+              "A salt that clears part of your radiation"
+            ],
+            [
+              "[[hoanna_explore/midscapes]]",
+              "Frozen camps, chaos fissures and fallout craters"
+            ],
+            [
+              "[[hoanna_explore/nests]]",
+              "The nests guarding those three, with a share for everyone who clears one"
+            ],
+            [
+              "[[hoanna_explore/sealed_vault]]",
+              "Vaults under the desert and the Dreadlands that open only if you read the stele"
+            ],
+            [
+              "[[hoanna_explore/sunken_district]]",
+              "An air dome on the seabed whose altar calls up the Abyssal Tidelord"
+            ],
+            [
+              "[[hoanna_explore/inquisitorium_outpost]]",
+              "A ruined Inquisitorium ground in the Shadow Corrupted Land"
+            ]
+          ],
+          "widths": [
+            3,
+            7
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every step in this chapter is optional, and the main line doesn't wait on any of them."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "The main line takes two things from here: each piece of the [[attunement/computer_armor|Computer Guy's Suit]] needs 2 {item:essentialcraft5:tide_crystal}s to reach stage 2, and Chapter 22 needs a pile of {item:essentialcraft5:umbral_crystal}s. [[hoanna_explore/specialties]] says how to gather both."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.attunement.enabled",
+          "text": "The main line takes just one thing from here: Chapter 22 needs a pile of {item:essentialcraft5:umbral_crystal}s ([[hoanna_explore/specialties]] says how to gather them)."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Specialties, camps and milestones all appear when a chunk is first generated. In an old save, ground you have already walked won't get them, so head somewhere you haven't been."
+        }
+      ]
+    },
+    {
+      "id": "tide",
+      "title": "The Mana Tide",
+      "icon": "minecraft:clock",
+      "summary": "Read the moon to know the tide",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Hoanna's MRU rises and falls with the moon. This is the <em>Mana Tide</em>, and how high it stands is the tide level. It peaks at 1 on the night of the full moon, drops by a quarter each night after, reaches 0 at the new moon, then climbs back night by night.",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "Hoanna's MRU would normally rise and fall with the moon, which is called the Mana Tide. In this world it stands still at a tide level of 0.5, so there are no spring tides and ley storms never come. {item:essentialcraft5:tide_bud}s grow every night instead, a little slower than on a spring-tide night.",
+          "if": "!cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "formula",
+          "text": "tide level = 1 − (nights away from the full moon) ÷ 4",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Moon that night",
+            "Tide level"
+          ],
+          "rows": [
+            [
+              "Full moon",
+              "1"
+            ],
+            [
+              "One night either side of full",
+              "0.75"
+            ],
+            [
+              "Half moon",
+              "0.5"
+            ],
+            [
+              "One night either side of new",
+              "0.25"
+            ],
+            [
+              "New moon",
+              "0"
+            ]
+          ],
+          "widths": [
+            3,
+            2
+          ],
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Which moon to watch",
+          "text": "Watch the large moon, which goes through the same phases as the Overworld's. If a small moon hangs beside it, that is the companion moon. It is always half a cycle off, so the night it is full is the new moon; don't mix the two up. Nights you sleep through still count, and the phase moves on as usual.",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "h",
+          "text": "Spring tides",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "The three nights with a tide level of 0.75 or more are <em>spring tides</em>, the full moon and one night on either side of it, three days in eight.",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:tide_bud}s only grow on spring-tide nights ([[hoanna_explore/specialties]]).",
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0"
+              ],
+              "text": "A [[hoanna_explore/ley_storm|ley storm]] can only come at dusk on a spring-tide night."
+            },
+            {
+              "if": "cfg:general.mobs.hoanna_spawns.tide_weights",
+              "text": "How often native monsters spawn follows the tide: the usual rate at a tide level of 0.5, a quarter more at the full moon and a quarter less at the new moon."
+            },
+            "The MRU aurora in the sky brightens with the tide. It is brightest around the full moon and faintest at the new moon.",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "[[hoanna/collapse|MRUCU collapse]] speeds up too, normal at the new moon and half again as fast at the full moon. During a calamity the calamity's speed-up applies instead, and the two don't stack."
+            }
+          ],
+          "if": "cfg:general.hoanna_tide.enabled"
+        }
+      ]
+    },
+    {
+      "id": "specialties",
+      "title": "Specialties of the Seven Lands",
+      "icon": "essentialcraft5:ley_crystal",
+      "summary": "One for each kind of land",
+      "complete": "essentialcraft5:guide/hoanna_explore/specialty",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ley_crystal",
+        "essentialcraft5:radiant_crystal",
+        "essentialcraft5:tide_crystal",
+        "essentialcraft5:umbral_crystal",
+        "essentialcraft5:frost_marrow",
+        "essentialcraft5:ley_vent",
+        "essentialcraft5:titanite_ore",
+        "essentialcraft5:radiant_cluster",
+        "essentialcraft5:tide_bud",
+        "essentialcraft5:umbral_cluster"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): gather one of Hoanna's specialties. Each kind of land grows something found nowhere else, and the table shows where and how."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Land",
+            "Specialty",
+            "How to gather it"
+          ],
+          "rows": [
+            [
+              "Frozen Corrupted Land",
+              "{item:essentialcraft5:frost_marrow}",
+              "Set in ice spikes; mine it with a Silk Touch pickaxe"
+            ],
+            [
+              "Magic Corrupted Land",
+              "{item:essentialcraft5:tide_crystal}",
+              "Right-click a fully grown {item:essentialcraft5:tide_bud}"
+            ],
+            [
+              "Chaos Corrupted Land",
+              "{item:essentialcraft5:ley_crystal}",
+              "Right-click a charged {item:essentialcraft5:ley_vent} with an empty hand; a few stand on other land too"
+            ],
+            [
+              "Dreadlands",
+              "{item:essentialcraft5:radiant_crystal}",
+              "{item:essentialcraft5:radiant_cluster}s grow in the chunks with the strongest radiation, in the desert too; mine them with a pickaxe"
+            ],
+            [
+              "Hoanna Desert",
+              "{item:essentialcraft5:titanite}, {item:essentialcraft5:twinkling_titanite}",
+              "Mine {item:essentialcraft5:titanite_ore} with an iron pickaxe or better"
+            ],
+            [
+              "Shadow Corrupted Land",
+              "{item:essentialcraft5:umbral_crystal}",
+              "Right-click a ripe {item:essentialcraft5:umbral_cluster}; you get more at night"
+            ],
+            [
+              "Hoanna Sea",
+              "{item:essentialcraft5:abyssal_salt}",
+              "Dig the {item:essentialcraft5:abyssal_salt_crust} on the seabed with a shovel"
+            ]
+          ],
+          "widths": [
+            3,
+            3,
+            6
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have any one of {item:essentialcraft5:ley_crystal}, {item:essentialcraft5:radiant_crystal}, {item:essentialcraft5:tide_crystal}, {item:essentialcraft5:frost_marrow}, {item:essentialcraft5:umbral_crystal} or {item:essentialcraft5:abyssal_salt}. Titanite doesn't count."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "Together these six are the <em>Hoanna specialties</em>. The offerings for [[matrix/ranks|matrix rank 6]] take 4 of any one of them."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.matrix_rank.enabled",
+          "text": "Together these six are the <em>Hoanna specialties</em>."
+        },
+        {
+          "type": "p",
+          "text": "Vents, tide buds and umbral clusters only give their crystals to your own right-click; a machine doing the clicking doesn't count. They also only grow and charge while someone is nearby, and stand still when nobody is around."
+        },
+        {
+          "type": "h",
+          "text": "Frost marrow"
+        },
+        {
+          "type": "p",
+          "text": "Packed-ice spikes up to nine blocks tall stand in the Frozen Corrupted Land, with {item:essentialcraft5:frost_marrow} set into them and glowing faintly. Only a pickaxe with <b>Silk Touch</b> drops it. Mined any other way it leaves nothing behind."
+        },
+        {
+          "type": "p",
+          "text": "Placed, frost marrow is as slippery as packed ice and gives off a little light, so it works as a decoration. It doesn't count as a cold block for the {item:essentialcraft5:cold_distillator}."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Leave frost marrow alone until you have Silk Touch. Broken without it, it drops nothing, and that spike has one fewer."
+        },
+        {
+          "type": "h",
+          "text": "Tide crystals"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:tide_bud}s grow on open-sky grass and stone in the Magic Corrupted Land, in four stages, each bigger than the last. They only grow on <em>spring-tide</em> nights while they can see the sky, and stay put the rest of the time (spring tides are explained in [[hoanna_explore/tide]]). Hoanna shares its days and nights with the Overworld, so a night skipped by sleeping in the Overworld is skipped here too, and the buds miss that night.",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:tide_bud}s grow on open-sky grass and stone in the Magic Corrupted Land, in four stages, each bigger than the last. This world has no spring tides, so they grow every night instead while they can see the sky, a little slower than on a spring-tide night. Hoanna shares its days and nights with the Overworld, so a night skipped by sleeping in the Overworld is skipped here too, and the buds miss that night.",
+          "if": "!cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Right-click one at its largest stage to collect 1–2 {item:essentialcraft5:tide_crystal}s. The bud drops back to its smallest stage and stays where it is to grow again. Before it is full grown, right-clicking gets you nothing.",
+            "If you mine one, a full-grown bud drops 1 tide crystal and a smaller one drops nothing.",
+            "With Silk Touch you get the bud itself and can replant it, but it only grows in the Magic Corrupted Land.",
+            {
+              "if": [
+                "cfg:general.hoanna_tide.enabled",
+                "cfg:general.hoanna_world.tide_bud.growth_chance==0.5"
+              ],
+              "text": "If you stay nearby, over one spring-tide night most buds grow from smallest to largest, so one spring tide gives about three harvests."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Ley crystals"
+        },
+        {
+          "type": "p",
+          "text": "A {item:essentialcraft5:ley_vent} is a small dark-purple vent in the ground. They are commonest in the Chaos Corrupted Land, with the odd one on the other five kinds of land. It slowly builds up charge, at most {cfg:general.hoanna_world.vent.max_charge}, and from 2 up it puffs lilac dust from the top. Vents placed when the land was generated start with 2."
+        },
+        {
+          "type": "p",
+          "text": "Right-click a charged vent with an empty main hand to get {cfg:general.hoanna_world.vent.crystals_per_charge} {item:essentialcraft5:ley_crystal} per point of charge. The vent empties and starts building up again. Holding {item:essentialcraft5:ley_crystal} in your main hand works too; anything else does nothing."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "By day",
+              "each random tick has a {cfg:general.hoanna_world.vent.charge_chance_day|pct} chance to add 1 charge"
+            ],
+            [
+              "At night",
+              "{cfg:general.hoanna_world.vent.charge_chance_night|pct}"
+            ],
+            {
+              "if": "cfg:general.hoanna_events.earthquake_enabled",
+              "cells": [
+                "During an earthquake",
+                "{cfg:general.hoanna_world.vent.charge_chance_calamity|pct}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "During a ley storm",
+                "{cfg:general.hoanna_world.vent.charge_chance_calamity|pct}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_world.vent.charge_chance_day==0.08",
+            "cfg:general.hoanna_world.vent.charge_chance_night==0.16"
+          ],
+          "text": "A block gets a random tick a little over once a minute on average, so 1 charge takes about fourteen minutes by day and about seven at night."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "You can't take a vent with you. Mined, even with Silk Touch, it is simply gone. Leave it be, keep busy nearby and come back to it now and then."
+        },
+        {
+          "type": "h",
+          "text": "Radiant crystals"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:radiant_cluster}s only grow in the chunks with the strongest radiation, in both the Dreadlands and the Hoanna Desert, some on the ground and some on cave walls ([[hoanna_explore/hotspots]] tells you how to find them). Mine one with a pickaxe for 1–2 {item:essentialcraft5:radiant_crystal}s, more with Fortune. Silk Touch gets you the cluster itself. Only clusters you mine by hand drop anything. Explosions and machines leave nothing behind, and pistons can't push them."
+        },
+        {
+          "type": "p",
+          "text": "Each one you mine in Hoanna adds {cfg:general.hoanna_world.radiant_mining_dose} to your radiation, and armor's radiation resistance blocks at most half of it. Mining 10 unprotected adds {cfg:general.hoanna_world.radiant_mining_dose|mul:10} ([[hoanna/radiation]]).",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "h",
+          "text": "Titanite"
+        },
+        {
+          "type": "p",
+          "text": "Boulders of sandstone and smooth sandstone lie about the Hoanna Desert with a few {item:essentialcraft5:titanite_ore} set into their surface. Mined with an iron pickaxe or better, the ore drops 1 {item:essentialcraft5:titanite}, more with Fortune, plus an 8% chance of 1 {item:essentialcraft5:twinkling_titanite}. Silk Touch gets you the ore itself."
+        },
+        {
+          "type": "p",
+          "text": "During a [[hoanna/events|sun array]], mine ore with open sky above it and the chance of twinkling titanite rises to 40% ([[hoanna_explore/calamity_windows]]).",
+          "if": "cfg:general.hoanna_events.sun_array_enabled"
+        },
+        {
+          "type": "h",
+          "text": "Umbral crystals"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:umbral_cluster}s grow on the ground in the Shadow Corrupted Land. Right-click a ripe one to harvest it. It shrinks to a dull <em>spent cluster</em> that stays put and slowly grows back. The clusters give off a faint glow, just enough to spot them up close in the dark."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "Right-click at night or in Darkness",
+                "1–2 {item:essentialcraft5:umbral_crystal}s"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "Right-click at night",
+                "1–2 {item:essentialcraft5:umbral_crystal}s"
+              ]
+            },
+            [
+              "Right-click by day",
+              "a {cfg:general.hoanna_world.umbral.day_chance|pct} chance of 1"
+            ],
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "Growing back",
+                "only in the Shadow Corrupted Land, at night or in Darkness; about one in-game day"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "Growing back",
+                "only in the Shadow Corrupted Land at night; about one in-game day"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Don't mine a ripe umbral cluster with a pickaxe. It drops the same as a right-click, but then the cluster is gone for good. When you play with others this matters even more, since whoever comes later has to walk farther."
+        },
+        {
+          "type": "list",
+          "items": [
+            "With Silk Touch you get the cluster itself, ripe or spent as it was. Moved out of the Shadow Corrupted Land, a spent cluster never grows back.",
+            "A spent cluster drops nothing when mined."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Abyssal salt"
+        },
+        {
+          "type": "p",
+          "text": "Patches of {item:essentialcraft5:abyssal_salt_crust} cover the floor of the Hoanna Sea. Dig them with a shovel for {item:essentialcraft5:abyssal_salt} ([[hoanna_explore/abyssal_salt]])."
+        },
+        {
+          "type": "h",
+          "text": "What they are for"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:ley_crystal}: [[attunement/wind_armor|Wind Armor]] stage 3, and [[hoanna_explore/survey|survey maps]]."
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:ley_crystal}: [[hoanna_explore/survey|survey maps]]."
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:radiant_crystal}: [[attunement/void_armor|Void Armor]] stage 2."
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:tide_crystal}: [[attunement/computer_armor|Computer Guy's Suit]] stage 2, a step on the main line."
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:frost_marrow}: [[attunement/inquisitorium_armor|Inquisitorium Armor]] stage 2, 4 per piece. It also makes a decoration."
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "{item:essentialcraft5:frost_marrow}: decoration."
+            },
+            "{item:essentialcraft5:umbral_crystal}: a main-line material for Chapter 22, needed for Shade Cores, shade pillars and the oath ([[shade/umbral]]).",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "{item:essentialcraft5:umbral_crystal}: also an offering for [[matrix/ranks|matrix rank 6]], and part of the rank 8 offerings."
+            },
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "{item:essentialcraft5:abyssal_salt}: eat it to clear radiation ([[hoanna_explore/abyssal_salt]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original, Hoanna had only ruins and chests. The specialties, vents and clusters in this chapter are new in this version."
+        }
+      ]
+    },
+    {
+      "id": "ley_storm",
+      "title": "Ley Storms",
+      "icon": "minecraft:amethyst_shard",
+      "summary": "Crystals falling on spring-tide nights",
+      "complete": "essentialcraft5:guide/hoanna_explore/starfall",
+      "optional": true,
+      "if": [
+        "cfg:general.hoanna_events.ley_storm_enabled",
+        "cfg:general.hoanna_events.ley_storm_chance>0",
+        "cfg:general.hoanna_tide.enabled"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): pick up a ley starfall during a ley storm. The ley storm is Hoanna's fifth calamity. It only comes on spring-tide nights, and glowing crystals fall from the sky."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "When",
+              "on the three [[hoanna_explore/tide|spring-tide]] nights, with a {cfg:general.hoanna_events.ley_storm_chance|pct} chance at the moment night falls; not if another calamity is already under way or nobody is in Hoanna"
+            ],
+            [
+              "Lasts",
+              "about 5 minutes, ending at dawn at the latest. Hoanna shares its nights with the Overworld, so skipping the night by sleeping in the Overworld ends the storm too"
+            ],
+            [
+              "Warning",
+              "like the other calamities, red text in chat and a bar at the top of the screen"
+            ],
+            [
+              "Looks like",
+              "the sky turns dark purple and lilac motes drift down around you; there are no flashes"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Starfall"
+        },
+        {
+          "type": "p",
+          "text": "While you stand under open sky in the storm, every {cfg:general.hoanna_events.ley_storm_starfall_interval|sec} there is a six-in-ten chance that a <em>ley starfall</em> comes down 12–40 blocks from you. It drifts slowly down and hangs glowing one block above the ground. Walk into it to collect 1 {item:essentialcraft5:ley_crystal}, or 2 on the night of the full moon."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each player has at most {cfg:general.hoanna_events.ley_storm_starfall_per_player} at a time, and uncollected ones vanish after 2 minutes.",
+            "None fall for you while something is over your head, and they only land in loaded areas.",
+            "Starfalls aren't saved. Leave the game and come back, and the ones you left are gone.",
+            "Every ley vent charges very fast during the storm ([[hoanna_explore/calamity_windows]])."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You walk into your first ley starfall and collect its ley crystal."
+        },
+        {
+          "type": "h",
+          "text": "Radiation under open sky",
+          "if": [
+            "cfg:general.radiation.enabled",
+            "cfg:general.hoanna_events.ley_storm_radiation>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The storm doesn't hurt you, but as long as you stand under open sky your radiation rises by {cfg:general.hoanna_events.ley_storm_radiation} a second, and armor blocks at most half of it. Under a roof it stops ([[hoanna/radiation]]).",
+          "if": [
+            "cfg:general.radiation.enabled",
+            "cfg:general.hoanna_events.ley_storm_radiation>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Monsters"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.hoanna_spawns.storm_prism_weight>0",
+              "text": "[[bestiary/mana_prism|Mana Prisms]] spawn on all land, at most {cfg:general.mobs.hoanna_spawns.storm_prism_max_nearby} around each player."
+            },
+            {
+              "if": "cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier>1",
+              "text": "Native monsters are {cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier} times as likely to be elites ([[bestiary/overview]])."
+            },
+            "Like the other calamities, the storm leaves every block as it is."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Stay out or take cover",
+          "text": "To collect starfalls you have to stand under open sky and take the radiation. Once you have enough, get indoors or dig into the ground and wait for the storm to pass.",
+          "if": "cfg:general.radiation.enabled"
+        }
+      ]
+    },
+    {
+      "id": "calamity_windows",
+      "title": "What Calamities Bring",
+      "icon": "minecraft:clock",
+      "summary": "Which calamity speeds up what",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Hoanna's [[hoanna/events|calamities]] hurt, but some of them also make a specialty come faster. When one arrives, use the table to pick where to go."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Calamity",
+            "Where",
+            "What changes"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.hoanna_events.sun_array_enabled",
+              "cells": [
+                "Sun array",
+                "Open sky in the Hoanna Desert",
+                "Mining {item:essentialcraft5:titanite_ore} gives {item:essentialcraft5:twinkling_titanite} 40% of the time instead of 8%, and exposed ore sparkles"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "Darkness",
+                "Shadow Corrupted Land",
+                "Ripe {item:essentialcraft5:umbral_cluster}s give the night-time yield even by day, spent clusters grow back by day, and ripe ones give off dark purple dust"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.earthquake_enabled",
+                "cfg:general.hoanna_world.vent.charge_chance_calamity==1",
+                "cfg:general.hoanna_world.vent.max_charge==3"
+              ],
+              "cells": [
+                "Earthquake",
+                "Chaos Corrupted Land",
+                "{item:essentialcraft5:ley_vent}s gain a charge on every random tick and fill up in about three and a half minutes"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.earthquake_enabled",
+                "!cfg:general.hoanna_world.vent.charge_chance_calamity==1||!cfg:general.hoanna_world.vent.max_charge==3"
+              ],
+              "cells": [
+                "Earthquake",
+                "Chaos Corrupted Land",
+                "{item:essentialcraft5:ley_vent}s gain a charge on {cfg:general.hoanna_world.vent.charge_chance_calamity|pct} of their random ticks"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "Ley storm",
+                "Anywhere under open sky",
+                "Ley starfalls come down ([[hoanna_explore/ley_storm]]), and vents charge as fast as in an earthquake"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.fumes_enabled",
+                "cfg:general.hoanna_events.fumes_max_nearby>0"
+              ],
+              "cells": [
+                "Poison fumes",
+                "Anywhere",
+                "Nothing extra to gather"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            3,
+            6
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.hoanna_events.darkness_enabled",
+                "cfg:general.mobs.hoanna_spawns.darkness_patroller_weight>0"
+              ],
+              "text": "In Darkness, [[bestiary/inquisitorium_patroller|Inquisitorium Patrollers]] spawn on all land whatever the light, at most {cfg:general.mobs.hoanna_spawns.darkness_patroller_max_nearby} within 64 blocks."
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.fumes_enabled",
+                "cfg:general.hoanna_events.fumes_max_nearby>0",
+                "cfg:general.mobs.hoanna_spawns.fumes_scavenger_multiplier>1"
+              ],
+              "text": "During poison fumes, [[bestiary/hoanna_scavenger|Remnant Scavengers]] spawn {cfg:general.mobs.hoanna_spawns.fumes_scavenger_multiplier} times as often."
+            },
+            {
+              "if": "cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier>1",
+              "text": "During any calamity, native monsters are {cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier} times as likely to be elites."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Mining under open sky in a sun array means burning, 1 point a second and catching fire. Drink a Fire Resistance potion first ([[hoanna/events]]).",
+          "if": "cfg:general.hoanna_events.sun_array_enabled"
+        }
+      ]
+    },
+    {
+      "id": "hotspots",
+      "title": "Radiation Hotspots",
+      "icon": "essentialcraft5:radiant_cluster",
+      "summary": "Scorch marks and gray-green dust",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Every chunk in Hoanna has a fixed radiation strength between 0 and 5. Chunks at 4 and 5 are <em>radiation hotspots</em>, with gray-green dust drifting in the air. In the Dreadlands and the Hoanna Desert, hotspots also have patches of scorched ground, and the ones at 5 grow {item:essentialcraft5:radiant_cluster}s."
+        },
+        {
+          "type": "list",
+          "items": [
+            "A speck of gray-green dust rises near you about every half second. When you see it, the chunk underfoot is at 4 or more.",
+            "Fallout craters only form in Dreadlands chunks of strength 3 or more ([[hoanna_explore/midscapes]]).",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "Unprotected, your radiation rises by 9–10 a second in a Dreadlands hotspot and by 5–6 in a desert hotspot, much faster than elsewhere ([[hoanna/radiation]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Finding one",
+          "text": "Open your inventory or chat and hover over the radiation icon left of the hotbar to see how fast it rises where you stand. Walk the way it climbs fastest and you will find a hotspot.",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "p",
+          "text": "Check your dose before mining radiant clusters, since each one adds a chunk of it ([[hoanna_explore/specialties]]).",
+          "if": "cfg:general.radiation.enabled"
+        }
+      ]
+    },
+    {
+      "id": "survey",
+      "title": "Survey Maps",
+      "icon": "essentialcraft5:hoanna_survey_map",
+      "summary": "Three torn maps make one",
+      "complete": "essentialcraft5:guide/hoanna_explore/survey_map",
+      "optional": true,
+      "items": [
+        "essentialcraft5:torn_survey_map",
+        "essentialcraft5:hoanna_survey_map",
+        "essentialcraft5:ruin_milestone"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): put together a {item:essentialcraft5:hoanna_survey_map}. Most of the survey maps the people of Hoanna drew have rotted away. What is left in their chests are {item:essentialcraft5:torn_survey_map}s, and it takes three of them to make one that works."
+        },
+        {
+          "type": "p",
+          "text": "The chests at the top of ruined town towers and in catacomb exit rooms each have a 12% chance of holding a torn survey map, about one and a half per town on average ([[hoanna/ruins]])."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 3 torn survey maps and 1 {item:essentialcraft5:ley_crystal}, anywhere in a crafting grid."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:hoanna_survey_map"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You craft your first Hoanna survey map."
+        },
+        {
+          "type": "h",
+          "text": "Using it"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It only knows its way in Hoanna. Right-click it anywhere else and it just tells you it doesn't recognize the place.",
+            "In Hoanna, right-click it and after a short search it marks the nearest place of the kind it is looking for within {cfg:general.hoanna_survey.search_radius} blocks, or tells you there is none.",
+            "While it is in your main hand or offhand, the action bar shows which way the target lies and how far.",
+            "At night or in Darkness, when the target is 32–512 blocks away, a pale purple beam stands in that direction. Only you, holding the map, can see it, and it neither flashes nor pulses.",
+            "Sneak and right-click to change what it looks for: [[hoanna_explore/sealed_vault|sealed vaults]], [[hoanna_explore/sunken_district|sunken districts]], [[hoanna_explore/inquisitorium_outpost|Inquisitorium outposts]] and town ruins, in that order, and the action bar says which one you switched to. A new map starts with sealed vaults."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Milestones"
+        },
+        {
+          "type": "p",
+          "text": "Now and then a pillar four blocks tall stands on Hoanna's six kinds of land, three blocks of {item:essentialcraft5:fortified_stone} with a glowing {item:essentialcraft5:ruin_milestone} on top. Right-click the milestone and the action bar shows the direction and distance to the nearest ruined town within 1024 blocks."
+        },
+        {
+          "type": "p",
+          "text": "Before you have a survey map, follow the way any milestone you pass points."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original had no survey maps or milestones. To find a town you climbed something high and looked around."
+        }
+      ]
+    },
+    {
+      "id": "survey_trip",
+      "title": "Following the Map",
+      "icon": "minecraft:compass",
+      "summary": "Walk to the place the map marks",
+      "complete": "essentialcraft5:guide/hoanna_explore/survey_arrive",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): carry a {item:essentialcraft5:hoanna_survey_map} that has a place marked and walk to the place it points at."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Get within {cfg:general.hoanna_survey.arrive_radius} blocks of the target with the map in hand and you have arrived. The map remembers the place, and the next right-click looks for one you haven't visited.",
+            "A map remembers up to 16 places you have reached. Past that it forgets the oldest.",
+            "When looking for towns, very rarely you arrive to find only a few roads. That town never got built, and the map still counts it."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You come within {cfg:general.hoanna_survey.arrive_radius} blocks of the target with the map in hand."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Next",
+          "text": "Town tower chests, vault cores and the chests of sunken districts can all hold more torn survey maps, so at a town, climb the tower first."
+        }
+      ]
+    },
+    {
+      "id": "abyssal_salt",
+      "title": "{item:essentialcraft5:abyssal_salt}",
+      "icon": "essentialcraft5:abyssal_salt",
+      "summary": "Eat it to clear some radiation",
+      "items": [
+        "essentialcraft5:abyssal_salt",
+        "essentialcraft5:abyssal_salt_crust"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Patches of {item:essentialcraft5:abyssal_salt_crust} cover the floor of the Hoanna Sea. Dig one with a shovel for 2–4 {item:essentialcraft5:abyssal_salt}, more with Fortune. Silk Touch gets you the crust itself."
+        },
+        {
+          "type": "p",
+          "text": "You eat abyssal salt like food, even when you are full, and it doesn't fill you up. It clears part of your [[hoanna/radiation|radiation]], and works just as well in the Overworld.",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Clears",
+              "{cfg:general.abyssal_salt.purge_ratio|pct} of your current dose, at least {cfg:general.abyssal_salt.purge_min} and at most {cfg:general.abyssal_salt.purge_max}, never below 0"
+            ],
+            [
+              "Cooldown",
+              "{cfg:general.abyssal_salt.cooldown_ticks|div:1200} minutes, and leaving the game doesn't reset it"
+            ],
+            [
+              "Side effect",
+              "Hunger I for 30 seconds"
+            ]
+          ],
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "p",
+          "text": "For example, at a dose of 50,000 one salt clears 10,000. At 8,000 a fifth would be only 1,600, below the floor, so it clears {cfg:general.abyssal_salt.purge_min}. At 2,000 it takes you straight to 0.",
+          "if": [
+            "cfg:general.radiation.enabled",
+            "cfg:general.abyssal_salt.purge_ratio==0.2",
+            "cfg:general.abyssal_salt.purge_min==3000",
+            "cfg:general.abyssal_salt.purge_max==12000"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "When to eat it",
+          "text": "Eat one every {cfg:general.abyssal_salt.cooldown_ticks|div:1200} minutes in ordinary places and the desert, and radiation never builds up. The Dreadlands are too fast for that; salt only slows the climb, so leave early.",
+          "if": [
+            "cfg:general.radiation.enabled",
+            "cfg:general.abyssal_salt.purge_ratio==0.2",
+            "cfg:general.abyssal_salt.purge_min==3000",
+            "cfg:general.abyssal_salt.purge_max==12000",
+            "cfg:general.abyssal_salt.cooldown_ticks==12000"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "While it is cooling down, the salt in your inventory is grayed out, like an ender pearl's cooldown.",
+            "It clears Hoanna radiation only. MRU radiation and matrix damage are untouched.",
+            {
+              "if": "bauble:essentialcraft5:lambda_ring",
+              "text": "It works alongside the {item:essentialcraft5:lambda_ring}; each does its own job."
+            }
+          ],
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "p",
+          "text": "This world has no Hoanna radiation, so eating abyssal salt does nothing. It still counts as a [[hoanna_explore/specialties|Hoanna specialty]].",
+          "if": "!cfg:general.radiation.enabled"
+        }
+      ]
+    },
+    {
+      "id": "midscapes",
+      "title": "Camps, Fissures and Craters",
+      "icon": "essentialcraft5:frost_marrow",
+      "summary": "Guarded spots in the wilds",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Out in the wilds of the Frozen Corrupted Land, the Chaos Corrupted Land and the Dreadlands there is one of these every two hundred blocks or so. None is large, and each has a [[hoanna_explore/nests|nest]] at its center."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Place",
+            "Where",
+            "What it looks like"
+          ],
+          "rows": [
+            [
+              "<hl>Frozen camp</hl>",
+              "Frozen Corrupted Land",
+              "A ring of ice spikes set with {item:essentialcraft5:frost_marrow} around a patch of snow"
+            ],
+            [
+              "<hl>Chaos fissure</hl>",
+              "Chaos Corrupted Land",
+              "A crack in the ground 3 blocks wide, 18 long and 6 deep, floored with magma blocks, with 4–6 fully charged {item:essentialcraft5:ley_vent}s along its sides"
+            ],
+            [
+              "<hl>Fallout crater</hl>",
+              "Dreadlands chunks of radiation strength 3 or more",
+              "A shallow pit roughly 8–11 blocks in radius with scorch marks and 3–5 {item:essentialcraft5:radiant_cluster}s on the floor"
+            ]
+          ],
+          "widths": [
+            2,
+            3,
+            6
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "In the Frozen and Chaos Corrupted Lands there is about one every 220 blocks, in the Dreadlands half as many, and any two are at least 8 chunks apart.",
+            "They never generate on top of a ruined town.",
+            "The vents along a fissure start out full, so an empty-handed right-click gets you a handful of {item:essentialcraft5:ley_crystal}s.",
+            "The radiant clusters in a crater are there whatever the chunk's radiation strength."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The magma blocks at the bottom of a fissure burn you when you walk on them, unless you sneak. If you fall in, pile up a few blocks to climb out; there is no lava down there."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Finding them",
+          "text": "Pick a direction in the Frozen or Chaos Corrupted Land and keep walking; you will come across one within a couple of hundred blocks. The vents beside a fissure puff lilac dust you can see from far off."
+        }
+      ]
+    },
+    {
+      "id": "nests",
+      "title": "Nests",
+      "icon": "essentialcraft5:nest_core",
+      "summary": "Beat the whole wave, everyone gets a share",
+      "complete": "essentialcraft5:guide/hoanna_explore/nest",
+      "optional": true,
+      "items": [
+        "essentialcraft5:nest_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): clear a nest and get your share of the reward. At the center of every camp, fissure and crater sits a {item:essentialcraft5:nest_core}, and when someone comes near it lets out a whole wave of native monsters at once."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Nest at",
+            "The wave",
+            "Each share"
+          ],
+          "rows": [
+            [
+              "Frozen camp",
+              "4 [[bestiary/frostbitten|Frostbitten]] + 1 {lang:entity.essentialcraft5.frostbitten.elite}",
+              "1 {item:essentialcraft5:aberrant_heart}, 2–4 {item:essentialcraft5:aberrant_residue}, and 1 draw of [[hoanna/relics|ruin relics]]"
+            ],
+            [
+              "Chaos fissure",
+              "3 [[bestiary/chaos_aberrant|Chaos Aberrations]] + 1 {lang:entity.essentialcraft5.chaos_aberrant.elite}",
+              "The same"
+            ],
+            [
+              "Fallout crater",
+              "4 [[bestiary/hoanna_scavenger|Remnant Scavengers]] + 1 {lang:entity.essentialcraft5.hoanna_scavenger.elite}",
+              "The same, plus 2–4 {item:essentialcraft5:radiant_crystal}"
+            ]
+          ],
+          "widths": [
+            2,
+            5,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How it works"
+        },
+        {
+          "type": "list",
+          "items": [
+            "When a player in Survival or Adventure comes within 16 blocks of the core, it releases the whole wave at once, led by an elite. On Peaceful it releases nothing.",
+            "Once the whole wave is dead, everyone within 16 blocks of the core who dealt damage to that wave gets a share, straight into their inventory, or at their feet if it is full. Anyone who stood by without fighting gets nothing.",
+            "The guards drop their own loot as usual, just like wild ones.",
+            "After it is cleared, the core sleeps for {cfg:general.hoanna_nests.recharge_ticks|div:24000} in-game days, after which it lets out a new wave when someone comes near.",
+            "If everyone leaves partway and nobody is within 48 blocks for {cfg:general.hoanna_nests.reset_ticks|div:1200} minutes, the surviving guards disperse. If any guard of that wave was already killed, the core still sleeps for {cfg:general.hoanna_nests.recharge_ticks|div:24000} in-game days, just with no reward; if none were, the core starts over.",
+            "At most {cfg:general.hoanna_nests.max_active_per_player} nests can be active around one player. Walk up to another core and it waits until one of those is done."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You clear a nest and get a share of its reward."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "A {item:essentialcraft5:nest_core} is very hard to break, drops nothing, and the nest is gone for good once it is. Leave it if you want to come back."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the guards fail to appear, for example where spawning isn't allowed, the core tries again after 1 minute.",
+            "In someone else's claim you can't break the core.",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "The guards count as wild native monsters, and killing them yourself records them in the [[matrix/codex|Matrix Codex]]."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sealed_vault",
+      "title": "Sealed Vaults",
+      "icon": "essentialcraft5:elder_stele",
+      "summary": "Read the stele and set down four drops in order",
+      "items": [
+        "essentialcraft5:elder_stele",
+        "essentialcraft5:vault_pedestal",
+        "essentialcraft5:vault_keyhole",
+        "essentialcraft5:vault_core",
+        "essentialcraft5:elder_remnant"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Here and there on the ground of the Hoanna Desert and the Dreadlands stands an {item:essentialcraft5:elder_stele} five blocks tall on a three-by-three platform. Under the platform a spiral stairwell leads down to an antechamber, and behind it is a sealed door."
+        },
+        {
+          "type": "p",
+          "text": "Behind the door is the vault room, with a {item:essentialcraft5:vault_core} in the middle holding an {item:essentialcraft5:elder_remnant} and some relics, a share for everyone who opens the seal."
+        },
+        {
+          "type": "p",
+          "text": "Elder Remnants are used to raise attunement stages; the Computer Guy's Suit and the Verdict Blade both need one for stage 3 ([[attunement/stage_up]]).",
+          "if": "cfg:general.attunement.enabled"
+        },
+        {
+          "type": "h",
+          "text": "Opening it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Right-click the Elder Stele. Four lines appear in chat, each naming an element and where it comes in the order.",
+            "Go down to the antechamber. The four {item:essentialcraft5:vault_pedestal}s, north, south, east and west, are each carved with one element.",
+            "Put 1 {item:essentialcraft5:ley_crystal} into the {item:essentialcraft5:vault_keyhole} in the middle of the room. It is the key for this attempt, and it stays there, right answer or wrong.",
+            "Following the order on the stele, put {cfg:general.sealed_vault.crystals_per_pedestal} drop of the matching element on each pedestal: {item:essentialcraft5:fire_drops}, {item:essentialcraft5:water_drops}, {item:essentialcraft5:earth_drops} or {item:essentialcraft5:air_drops}.",
+            "With all four right, the seal door opens for {cfg:general.sealed_vault.door_open_ticks|sec}. Everyone standing in the antechamber at that moment counts as having opened the seal.",
+            "Walk into the vault room and right-click the Vault Core for your share."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Only those standing in the antechamber the moment the last drop goes in count. If you came as a group, get everyone inside first. Anyone who comes in after the door opens, or digs round into the vault room, gets nothing from the core."
+        },
+        {
+          "type": "h",
+          "text": "Getting it wrong"
+        },
+        {
+          "type": "p",
+          "text": "A mistake means putting drops on a pedestal before its turn. Right-clicking a pedestal with another element's drop only gives you a hint; it isn't a mistake and nothing is taken."
+        },
+        {
+          "type": "list",
+          "items": [
+            "You get back half the drops you put in this time, rounded down; the Ley Crystal in the keyhole is not returned.",
+            {
+              "if": "cfg:general.sealed_vault.backlash_fraction>0",
+              "text": "The seal backlashes on whoever made the mistake, for {cfg:general.sealed_vault.backlash_fraction|pct} of their current maximum health."
+            },
+            {
+              "if": "cfg:general.sealed_vault.guard_count>0",
+              "text": "A mistake also calls up {cfg:general.sealed_vault.guard_count} [[bestiary/catacomb_revenant|Catacomb Revenants]]. For {cfg:general.sealed_vault.guard_cooldown_ticks|sec} after that, further mistakes call up no more guards. Nothing is called up on Peaceful."
+            },
+            {
+              "if": "cfg:general.sealed_vault.lockout_failures>0",
+              "text": "Get it wrong {cfg:general.sealed_vault.lockout_failures} times in a row and this vault shuts you out for {cfg:general.sealed_vault.lockout_ticks|div:24000|round:1} in-game days; right-clicking it tells you how long is left. One right answer resets the count."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What the core gives"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:elder_remnant} ×1, in every share",
+            "Two rounds of [[hoanna/relics|relics]], 6–17 each, the same kind of things as in the ruin tower chests",
+            "{item:essentialcraft5:ley_crystal} ×4–8",
+            "A three-in-ten chance of a {item:essentialcraft5:torn_survey_map}"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each player can claim once per vault. It doesn't matter if the door has shut again: anyone who opened the seal can right-click a Seal Stone to open it for another {cfg:general.sealed_vault.door_open_ticks|sec}, and their share at the core keeps waiting."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each vault has its own stele lines, pedestal elements and order, so read the stele again at every new one.",
+            "The Elder Stele, pedestals, keyhole, Seal Stones and Vault Core can't be mined or pushed by pistons. The walls can be dug, but digging in gets you nothing.",
+            "Shut inside the vault room? Right-click a Seal Stone to open the door and leave.",
+            "Try to set a drop on a pedestal before the keyhole has its Ley Crystal and you are told to fill the keyhole first.",
+            "A survey map can find vaults ([[hoanna_explore/survey]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sunken_district",
+      "title": "Sunken Districts",
+      "icon": "essentialcraft5:sunken_altar",
+      "summary": "An air dome on the seabed, and an altar",
+      "items": [
+        "essentialcraft5:sunken_altar"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Whole districts lie sunk beneath the Hoanna Sea: a dome of Void Glass in the middle, still dry inside, with three to five drowned houses and fallen tower sections around it."
+        },
+        {
+          "type": "h",
+          "text": "What is inside"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The dome holds 2 chests, and the drowned houses often have one each, with {item:essentialcraft5:abyssal_salt}, relics and sometimes a torn survey map.",
+            "A [[hoanna_explore/nests|nest]] guards each side of the dome, with 3 [[bestiary/catacomb_revenant|Catacomb Revenants]] and their leader. Clear one and everyone gets a share, with 4–8 more Abyssal Salt than other nests give.",
+            "In the very middle of the dome stands a {item:essentialcraft5:sunken_altar}."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The sunken altar"
+        },
+        {
+          "type": "p",
+          "text": "Right-click the altar with a {item:essentialcraft5:tide_crystal} in either hand and hand over {cfg:general.sunken_district.altar_tide_crystals} Tide Crystals and {cfg:general.sunken_district.altar_aberrant_hearts} {item:essentialcraft5:aberrant_heart} to call up the [[bestiary/abyss_tyrant|Abyssal Tidelord]]. Each altar works once per in-game day. That page covers summoning, fighting and rewards.",
+          "if": [
+            "cfg:general.sunken_district.altar_tide_crystals>0",
+            "cfg:general.sunken_district.altar_aberrant_hearts>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Right-click the altar with a {item:essentialcraft5:tide_crystal} in either hand and hand over {cfg:general.sunken_district.altar_tide_crystals} Tide Crystals to call up the [[bestiary/abyss_tyrant|Abyssal Tidelord]]. Each altar works once per in-game day. That page covers summoning, fighting and rewards.",
+          "if": [
+            "cfg:general.sunken_district.altar_tide_crystals>0",
+            "!cfg:general.sunken_district.altar_aberrant_hearts>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Right-click the altar and hand over {cfg:general.sunken_district.altar_aberrant_hearts} {item:essentialcraft5:aberrant_heart} to call up the [[bestiary/abyss_tyrant|Abyssal Tidelord]]. Each altar works once per in-game day. That page covers summoning, fighting and rewards.",
+          "if": [
+            "!cfg:general.sunken_district.altar_tide_crystals>0",
+            "cfg:general.sunken_district.altar_aberrant_hearts>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Right-click the altar to call up the [[bestiary/abyss_tyrant|Abyssal Tidelord]]; it takes nothing. Each altar works once per in-game day. That page covers summoning, fighting and rewards.",
+          "if": [
+            "!cfg:general.sunken_district.altar_tide_crystals>0",
+            "!cfg:general.sunken_district.altar_aberrant_hearts>0"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The dome is sealed all round and has no door. To get in, break one glass block in its side, slip through and patch the hole straight away; while it stays open, the sea keeps pouring in."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Where the sea is shallow, the top of the dome breaks the surface and can be seen from afar.",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "Sea water doesn't block radiation. It keeps climbing underwater and inside the dome, so don't linger."
+            },
+            "Bring Water Breathing, or catch your breath inside the dome before going out again.",
+            "A survey map can find sunken districts ([[hoanna_explore/survey]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquisitorium_outpost",
+      "title": "Inquisitorium Outposts",
+      "icon": "essentialcraft5:inquisitorium_dais",
+      "summary": "A ruined ground in the shadow land",
+      "items": [
+        "essentialcraft5:inquisitorium_dais"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "In the Shadow Corrupted Land a few patches of ground have been cut perfectly flat: a round field ringed by 8 pillars of Void Stone, some of them broken, with a five-by-five floor of {item:essentialcraft5:inquisitorium_dais} in the middle. What the Inquisitorium did here, its records do not say."
+        },
+        {
+          "type": "h",
+          "text": "What is there"
+        },
+        {
+          "type": "list",
+          "items": [
+            "26–30 blocks from the center, a little way beyond the edge of the field, are 2 camps, each with a [[hoanna_explore/nests|nest]] and a chest. Each nest wave is 4 [[bestiary/inquisitorium_patroller|Inquisitorium Patrollers]] and their leader.",
+            "Each camp chest holds 2–3 [[hoanna/relics|relics]] and 1–3 {item:essentialcraft5:umbral_crystal}s, and one chest in four also has a {item:essentialcraft5:torn_survey_map}.",
+            "The dais is only for show; right-clicking it does nothing."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "And Chapter 19"
+        },
+        {
+          "type": "p",
+          "text": "The Inquisitorium Coordinates you decode in Chapter 19 most likely point to the outpost nearest you ([[inquisitorium/journey]]). The field is flat, open and under the sky, a good place to light the [[inquisitorium/beacon|Inquisitorium Beacon]] and fight the Sentinel.",
+          "if": "cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "p",
+          "text": "The field is flat, open and under the sky, a good place to light the [[inquisitorium/beacon|Inquisitorium Beacon]] and fight the Chapter 19 Sentinel.",
+          "if": "!cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Inquisitorium Patrollers spawn in the Shadow Corrupted Land whatever the light, and each camp holds a wave of its own. Clear the area before lighting the beacon."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The field was cut flat when it was generated: natural blocks such as stone, dirt, sand and trees up to 16 blocks above the floor were cleared, and a foundation was filled in 8 blocks down. Taller peaks and deeper cliffs are left as they were.",
+            "Outposts don't generate right next to towns or sealed vaults.",
+            "A survey map can find outposts ([[hoanna_explore/survey]])."
+          ]
+        }
+      ]
+    }
+  ]
+}

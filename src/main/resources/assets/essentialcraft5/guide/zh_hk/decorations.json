@@ -1,0 +1,614 @@
+{
+  "id": "decorations",
+  "order": 96,
+  "group": "side",
+  "title": "支線 · 裝飾",
+  "subtitle": "魔力鑿與花紋方塊",
+  "icon": "essentialcraft5:magical_chisel",
+  "entries": [
+    {
+      "id": "magical_chisel",
+      "title": "{item:essentialcraft5:magical_chisel}",
+      "icon": "essentialcraft5:magical_chisel",
+      "summary": "把建材鑿成花紋方塊",
+      "complete": "essentialcraft5:guide/decorations/magical_chisel",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_chisel"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "活幹完了，剩下的石料拿來鑿花。牆總得好看一點，人在裏面待久了，看着也舒坦。",
+          "by": "《工坊手記》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一把{item:essentialcraft5:magical_chisel}，把幾種建材鑿成帶花紋的裝飾方塊。這一章的手藝只為好看，和別的玩法互不相干，什麼時候來都行，有了第一章的元素晶石就能做鑿子。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：4 顆{item:essentialcraft5:elemental_gem}和 1 根{item:minecraft:stick}，在工作台裏怎麼擺都行，元素晶石的做法見[[elements/elemental_gem]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_chisel"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把鑿子和一塊底材一起放進工作台，擺在哪格都行。",
+            "取出 4 塊<em>大方磚</em>，鑿子留在原來的格子裏，耐久少 1 點。",
+            "再放底材接着鑿，一把鑿子正好能用 <t>256</t> 次，一共鑿得出 1024 塊大方磚。",
+            "大方磚還能合成別的花紋，見[[decorations/patterns]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "工作台裏出現 4 塊大方磚，鑿子還在原來的格子裏。"
+        },
+        {
+          "type": "h",
+          "text": "可以鑿的底材"
+        },
+        {
+          "type": "table",
+          "header": [
+            "底材",
+            "從哪來",
+            "花紋方塊的特點"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_slag}",
+              "[[generators/heat_generator]]每燒一份燃料出一個，[[magmatic/smeltery]]每加工一份也出一個",
+              "底色會流動，鑿出來的方塊名字帶「MRU」"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:concrete}",
+                "海納爾的城鎮和墓穴，見[[hoanna/ruins]]",
+                "要用鎬挖"
+              ]
+            },
+            [
+              "{item:essentialcraft5:fortified_stone}",
+              "[[crafting/fortified]]",
+              "要用鎬挖"
+            ],
+            [
+              "{item:essentialcraft5:cold_stone}",
+              "[[generators/cold_distillator]]",
+              "空手就能挖，放在冷凝器周圍和霜凍石一樣算冷源，每塊 <t>0.5</t>，上面不刷怪"
+            ],
+            [
+              "{item:essentialcraft5:magic_plating}",
+              "[[alloys/plating]]",
+              "要用鎬挖"
+            ],
+            [
+              "{item:essentialcraft5:pale_plating}",
+              "[[alloys/plating]]",
+              "要用鎬挖"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_stone}",
+                "[[hoanna/void_stone]]",
+                "要用鎬挖"
+              ]
+            },
+            [
+              "{item:essentialcraft5:mithriline_plating}",
+              "[[mithriline/furnace]]",
+              "要用鎬挖"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_plating}",
+                "[[demons/demonic_plating]]",
+                "要用鎬挖"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            4,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "擬態方塊也能鑿，鑿出來的是擋得住人的花紋擬態，見[[decorations/fancy_mimic]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "算料",
+          "text": "一塊底材鑿出 4 塊大方磚，後面的花紋大多是 4 換 4、8 換 8、9 換 9 的等量合成，一組 64 塊底材大約能鋪 256 塊花紋方塊。要鋪大片地面，就先把底材一口氣鑿完。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "注意",
+          "text": "配方書自動擺放時只挑沒磨損過的鑿子，<w>用過的</w>它不認，得自己放進格子。\n鑿子不能修理，兩把也合不成一把，用完再做一把就好。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "table",
+          "header": [
+            "花紋方塊",
+            "硬度",
+            "抗爆"
+          ],
+          "rows": [
+            [
+              "MRU（魔力爐渣）",
+              "1",
+              "60"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "混凝土",
+                "1",
+                "3"
+              ]
+            },
+            [
+              "強化石",
+              "1.5",
+              "4.8"
+            ],
+            [
+              "霜凍石",
+              "0.7",
+              "0.7"
+            ],
+            [
+              "魔力護板",
+              "2",
+              "4.8"
+            ],
+            [
+              "淡青護板",
+              "2",
+              "4.8"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "虛空石",
+                "3",
+                "16.8"
+              ]
+            },
+            [
+              "米斯萊護板",
+              "3",
+              "60"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "惡魔護板",
+                "3",
+                "60"
+              ]
+            }
+          ],
+          "widths": [
+            4,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "花紋方塊大多比底材本身好挖一些，有的也更不耐炸。要擋爆炸，就選抗爆 60 的 MRU 花紋或米斯萊護板花紋。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書給裝飾這一節題的副標題是「Fancy it all up!」，中文版譯作「讓一切都變得酷炫起來」。"
+        }
+      ]
+    },
+    {
+      "id": "patterns",
+      "title": "花紋合成樹",
+      "icon": "essentialcraft5:fancy_fortified_stone_temple",
+      "summary": "大方磚一路合出 16 種花紋",
+      "complete": "essentialcraft5:guide/decorations/patterns",
+      "optional": true,
+      "items": [
+        "essentialcraft5:fancy_mru_ancient_tile",
+        "essentialcraft5:fancy_mru_big_tile",
+        "essentialcraft5:fancy_mru_brick",
+        "essentialcraft5:fancy_mru_fancy_tile",
+        "essentialcraft5:fancy_mru_pressured_tile",
+        "essentialcraft5:fancy_mru_small_tiles",
+        "essentialcraft5:fancy_mru_temple",
+        "essentialcraft5:fancy_mru_tiles",
+        "essentialcraft5:fancy_mru_futuristic_tile",
+        "essentialcraft5:fancy_mru_machine",
+        "essentialcraft5:fancy_mru_runic",
+        "essentialcraft5:fancy_mru_nether_star",
+        "essentialcraft5:fancy_mru_plate",
+        "essentialcraft5:fancy_mru_packed_plate",
+        "essentialcraft5:fancy_mru_double_plate",
+        "essentialcraft5:fancy_mru_gem",
+        "essentialcraft5:fancy_fortified_stone_ancient_tile",
+        "essentialcraft5:fancy_fortified_stone_big_tile",
+        "essentialcraft5:fancy_fortified_stone_brick",
+        "essentialcraft5:fancy_fortified_stone_fancy_tile",
+        "essentialcraft5:fancy_fortified_stone_pressured_tile",
+        "essentialcraft5:fancy_fortified_stone_small_tiles",
+        "essentialcraft5:fancy_fortified_stone_temple",
+        "essentialcraft5:fancy_fortified_stone_tiles",
+        "essentialcraft5:fancy_fortified_stone_futuristic_tile",
+        "essentialcraft5:fancy_fortified_stone_machine",
+        "essentialcraft5:fancy_fortified_stone_runic",
+        "essentialcraft5:fancy_fortified_stone_nether_star",
+        "essentialcraft5:fancy_fortified_stone_plate",
+        "essentialcraft5:fancy_fortified_stone_packed_plate",
+        "essentialcraft5:fancy_fortified_stone_double_plate",
+        "essentialcraft5:fancy_fortified_stone_gem",
+        "essentialcraft5:fancy_cold_stone_ancient_tile",
+        "essentialcraft5:fancy_cold_stone_big_tile",
+        "essentialcraft5:fancy_cold_stone_brick",
+        "essentialcraft5:fancy_cold_stone_fancy_tile",
+        "essentialcraft5:fancy_cold_stone_pressured_tile",
+        "essentialcraft5:fancy_cold_stone_small_tiles",
+        "essentialcraft5:fancy_cold_stone_temple",
+        "essentialcraft5:fancy_cold_stone_tiles",
+        "essentialcraft5:fancy_cold_stone_futuristic_tile",
+        "essentialcraft5:fancy_cold_stone_machine",
+        "essentialcraft5:fancy_cold_stone_runic",
+        "essentialcraft5:fancy_cold_stone_nether_star",
+        "essentialcraft5:fancy_cold_stone_plate",
+        "essentialcraft5:fancy_cold_stone_packed_plate",
+        "essentialcraft5:fancy_cold_stone_double_plate",
+        "essentialcraft5:fancy_cold_stone_gem",
+        "essentialcraft5:fancy_magic_plating_ancient_tile",
+        "essentialcraft5:fancy_magic_plating_big_tile",
+        "essentialcraft5:fancy_magic_plating_brick",
+        "essentialcraft5:fancy_magic_plating_fancy_tile",
+        "essentialcraft5:fancy_magic_plating_pressured_tile",
+        "essentialcraft5:fancy_magic_plating_small_tiles",
+        "essentialcraft5:fancy_magic_plating_temple",
+        "essentialcraft5:fancy_magic_plating_tiles",
+        "essentialcraft5:fancy_magic_plating_futuristic_tile",
+        "essentialcraft5:fancy_magic_plating_machine",
+        "essentialcraft5:fancy_magic_plating_runic",
+        "essentialcraft5:fancy_magic_plating_nether_star",
+        "essentialcraft5:fancy_magic_plating_plate",
+        "essentialcraft5:fancy_magic_plating_packed_plate",
+        "essentialcraft5:fancy_magic_plating_double_plate",
+        "essentialcraft5:fancy_magic_plating_gem",
+        "essentialcraft5:fancy_pale_plating_ancient_tile",
+        "essentialcraft5:fancy_pale_plating_big_tile",
+        "essentialcraft5:fancy_pale_plating_brick",
+        "essentialcraft5:fancy_pale_plating_fancy_tile",
+        "essentialcraft5:fancy_pale_plating_pressured_tile",
+        "essentialcraft5:fancy_pale_plating_small_tiles",
+        "essentialcraft5:fancy_pale_plating_temple",
+        "essentialcraft5:fancy_pale_plating_tiles",
+        "essentialcraft5:fancy_pale_plating_futuristic_tile",
+        "essentialcraft5:fancy_pale_plating_machine",
+        "essentialcraft5:fancy_pale_plating_runic",
+        "essentialcraft5:fancy_pale_plating_nether_star",
+        "essentialcraft5:fancy_pale_plating_plate",
+        "essentialcraft5:fancy_pale_plating_packed_plate",
+        "essentialcraft5:fancy_pale_plating_double_plate",
+        "essentialcraft5:fancy_pale_plating_gem",
+        "essentialcraft5:fancy_mithriline_plating_ancient_tile",
+        "essentialcraft5:fancy_mithriline_plating_big_tile",
+        "essentialcraft5:fancy_mithriline_plating_brick",
+        "essentialcraft5:fancy_mithriline_plating_fancy_tile",
+        "essentialcraft5:fancy_mithriline_plating_pressured_tile",
+        "essentialcraft5:fancy_mithriline_plating_small_tiles",
+        "essentialcraft5:fancy_mithriline_plating_temple",
+        "essentialcraft5:fancy_mithriline_plating_tiles",
+        "essentialcraft5:fancy_mithriline_plating_futuristic_tile",
+        "essentialcraft5:fancy_mithriline_plating_machine",
+        "essentialcraft5:fancy_mithriline_plating_runic",
+        "essentialcraft5:fancy_mithriline_plating_nether_star",
+        "essentialcraft5:fancy_mithriline_plating_plate",
+        "essentialcraft5:fancy_mithriline_plating_packed_plate",
+        "essentialcraft5:fancy_mithriline_plating_double_plate",
+        "essentialcraft5:fancy_mithriline_plating_gem",
+        {
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:fancy_concrete_ancient_tile",
+            "essentialcraft5:fancy_concrete_big_tile",
+            "essentialcraft5:fancy_concrete_brick",
+            "essentialcraft5:fancy_concrete_fancy_tile",
+            "essentialcraft5:fancy_concrete_pressured_tile",
+            "essentialcraft5:fancy_concrete_small_tiles",
+            "essentialcraft5:fancy_concrete_temple",
+            "essentialcraft5:fancy_concrete_tiles",
+            "essentialcraft5:fancy_concrete_futuristic_tile",
+            "essentialcraft5:fancy_concrete_machine",
+            "essentialcraft5:fancy_concrete_runic",
+            "essentialcraft5:fancy_concrete_nether_star",
+            "essentialcraft5:fancy_concrete_plate",
+            "essentialcraft5:fancy_concrete_packed_plate",
+            "essentialcraft5:fancy_concrete_double_plate",
+            "essentialcraft5:fancy_concrete_gem",
+            "essentialcraft5:fancy_void_stone_ancient_tile",
+            "essentialcraft5:fancy_void_stone_big_tile",
+            "essentialcraft5:fancy_void_stone_brick",
+            "essentialcraft5:fancy_void_stone_fancy_tile",
+            "essentialcraft5:fancy_void_stone_pressured_tile",
+            "essentialcraft5:fancy_void_stone_small_tiles",
+            "essentialcraft5:fancy_void_stone_temple",
+            "essentialcraft5:fancy_void_stone_tiles",
+            "essentialcraft5:fancy_void_stone_futuristic_tile",
+            "essentialcraft5:fancy_void_stone_machine",
+            "essentialcraft5:fancy_void_stone_runic",
+            "essentialcraft5:fancy_void_stone_nether_star",
+            "essentialcraft5:fancy_void_stone_plate",
+            "essentialcraft5:fancy_void_stone_packed_plate",
+            "essentialcraft5:fancy_void_stone_double_plate",
+            "essentialcraft5:fancy_void_stone_gem",
+            "essentialcraft5:fancy_demonic_plating_ancient_tile",
+            "essentialcraft5:fancy_demonic_plating_big_tile",
+            "essentialcraft5:fancy_demonic_plating_brick",
+            "essentialcraft5:fancy_demonic_plating_fancy_tile",
+            "essentialcraft5:fancy_demonic_plating_pressured_tile",
+            "essentialcraft5:fancy_demonic_plating_small_tiles",
+            "essentialcraft5:fancy_demonic_plating_temple",
+            "essentialcraft5:fancy_demonic_plating_tiles",
+            "essentialcraft5:fancy_demonic_plating_futuristic_tile",
+            "essentialcraft5:fancy_demonic_plating_machine",
+            "essentialcraft5:fancy_demonic_plating_runic",
+            "essentialcraft5:fancy_demonic_plating_nether_star",
+            "essentialcraft5:fancy_demonic_plating_plate",
+            "essentialcraft5:fancy_demonic_plating_packed_plate",
+            "essentialcraft5:fancy_demonic_plating_double_plate",
+            "essentialcraft5:fancy_demonic_plating_gem"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：用大方磚合出另外 15 種花紋。每種底材的合成樹都一樣，只是用的是各自的方塊，下面的配方拿魔力爐渣鑿出的「MRU」花紋舉例。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "花紋",
+            "怎麼合",
+            "一次出"
+          ],
+          "rows": [
+            [
+              "大方磚",
+              "底材 + 鑿子，無序",
+              "4"
+            ],
+            [
+              "遠古磚",
+              "4 塊大方磚放在四個角",
+              "4"
+            ],
+            [
+              "磚塊",
+              "2×2 大方磚",
+              "4"
+            ],
+            [
+              "回紋磚",
+              "3×3 大方磚",
+              "9"
+            ],
+            [
+              "方磚",
+              "4 塊磚塊擺在上下左右圍成菱形，中間留空",
+              "4"
+            ],
+            [
+              "壓紋磚",
+              "8 塊磚塊圍成一圈，中間留空",
+              "8"
+            ],
+            [
+              "小方磚",
+              "2×2 方磚",
+              "4"
+            ],
+            [
+              "苦力怕紋磚",
+              "上下兩排放大方磚，中間一排依次是回紋磚、遠古磚、回紋磚",
+              "9"
+            ],
+            [
+              "未來紋磚",
+              "4 塊遠古磚擺成菱形，中間放 1 塊回紋磚",
+              "4"
+            ],
+            [
+              "機械紋磚",
+              "8 塊未來紋磚圍住 1 個{item:minecraft:redstone}",
+              "8"
+            ],
+            [
+              "符文磚",
+              "8 塊大方磚圍住 1 份{item:essentialcraft5:magical_essence}",
+              "8"
+            ],
+            [
+              "星紋磚",
+              "8 塊大方磚圍住 1 個{item:essentialcraft5:mru_shard}",
+              "8"
+            ],
+            [
+              "鍍面磚",
+              "8 塊大方磚圍住 1 塊{item:minecraft:iron_ingot}",
+              "8"
+            ],
+            [
+              "包邊鍍面磚",
+              "8 塊大方磚圍住 1 塊{item:minecraft:leather}",
+              "8"
+            ],
+            [
+              "雙層鍍面磚",
+              "2×2 包邊鍍面磚",
+              "4"
+            ],
+            [
+              "鑲寶石磚",
+              "2×2 鍍面磚",
+              "4"
+            ]
+          ],
+          "widths": [
+            2,
+            5,
+            1
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fancy_mru_ancient_tile",
+            "essentialcraft5:fancy_mru_big_tile",
+            "essentialcraft5:fancy_mru_brick",
+            "essentialcraft5:fancy_mru_fancy_tile",
+            "essentialcraft5:fancy_mru_pressured_tile",
+            "essentialcraft5:fancy_mru_small_tiles",
+            "essentialcraft5:fancy_mru_temple",
+            "essentialcraft5:fancy_mru_tiles",
+            "essentialcraft5:fancy_mru_futuristic_tile",
+            "essentialcraft5:fancy_mru_machine",
+            "essentialcraft5:fancy_mru_runic",
+            "essentialcraft5:fancy_mru_nether_star",
+            "essentialcraft5:fancy_mru_plate",
+            "essentialcraft5:fancy_mru_packed_plate",
+            "essentialcraft5:fancy_mru_double_plate",
+            "essentialcraft5:fancy_mru_gem"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裏有了第一塊帶花紋的方塊。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "挑花紋",
+          "text": "最省事的是符文磚、星紋磚、鍍面磚和包邊鍍面磚，8 塊大方磚圍住 1 個材料就出 8 塊。最費料的是機械紋磚，要先合出遠古磚和回紋磚，再拿它們合成未來紋磚。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "注意",
+          "text": "花紋方塊<w>拆不回底材</w>，也不能頂替底材用在別的配方或多方塊結構裏，[[enrichment/controller|富集倉]]的外殼和[[tesla/mru_coil]]的底座都不認，鑿之前先留夠要用的底材。"
+        },
+        {
+          "type": "p",
+          "text": "花紋方塊挖下來掉的就是它自己，石質的要用鎬，花紋霜凍石空手就能挖。放在哪裏、誰能挖掉，都和普通方塊一樣。"
+        }
+      ]
+    },
+    {
+      "id": "fancy_mimic",
+      "title": "花紋擬態",
+      "icon": "essentialcraft5:fancy_mimic_big_tile",
+      "summary": "帶花紋、能擋人的擬態方塊",
+      "complete": "essentialcraft5:guide/decorations/fancy_mimic",
+      "optional": true,
+      "items": [
+        "essentialcraft5:fancy_mimic_ancient_tile",
+        "essentialcraft5:fancy_mimic_big_tile",
+        "essentialcraft5:fancy_mimic_brick",
+        "essentialcraft5:fancy_mimic_fancy_tile",
+        "essentialcraft5:fancy_mimic_pressured_tile",
+        "essentialcraft5:fancy_mimic_small_tiles",
+        "essentialcraft5:fancy_mimic_temple",
+        "essentialcraft5:fancy_mimic_tiles",
+        "essentialcraft5:fancy_mimic_futuristic_tile",
+        "essentialcraft5:fancy_mimic_machine",
+        "essentialcraft5:fancy_mimic_runic",
+        "essentialcraft5:fancy_mimic_nether_star",
+        "essentialcraft5:fancy_mimic_plate",
+        "essentialcraft5:fancy_mimic_packed_plate",
+        "essentialcraft5:fancy_mimic_double_plate",
+        "essentialcraft5:fancy_mimic_gem"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做出花紋擬態。它是<em>有碰撞箱</em>的[[automation/mimic]]，偽裝以後，被模仿的方塊表面會疊上一層花紋。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：把{item:essentialcraft5:mimic}和鑿子一起放進工作台，能得到 4 個{item:essentialcraft5:fancy_mimic_big_tile}，別的花紋照[[decorations/patterns]]去合。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:fancy_mimic_big_tile"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿一個方塊右鍵它，它就變成那個方塊的樣子，上面疊着花紋，手裏的方塊不會少。",
+            "想換個樣子，就拿別的方塊再右鍵一次。",
+            "兩隻手都空着時潛行右鍵，它會變回原樣。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "偽裝以後花紋出現在被模仿方塊的表面，走過去會被擋住。"
+        },
+        {
+          "type": "h",
+          "text": "和擬態方塊的區別"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>擋人</em>：人和怪都穿不過去，碰撞箱隨偽裝變化，偽裝成半磚就只有半格高，沒偽裝時是一整格，看着像梯子也爬不上去。",
+            "偽裝出來的表面上總畫着花紋，一眼就能看出不是真方塊。",
+            "其餘規則和擬態方塊一樣，它不能模仿擬態方塊和花紋擬態，也模仿不了箱子等帶方塊實體的方塊、液體和屏障，偽裝成什麼都不透光，裏面和上面都不刷怪，冒險模式下改不了偽裝。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "選哪種",
+          "text": "做暗門、藏機器用普通的擬態方塊，它沒有碰撞箱，看着是牆，人卻能穿過去。花紋擬態擋得住人，適合借別的方塊的樣子拼圖案，砌一面一看就是裝飾的牆。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書只在擬態方塊那一頁順帶提了一句，普通的擬態方塊沒有碰撞箱，花紋的有。"
+        }
+      ]
+    }
+  ]
+}

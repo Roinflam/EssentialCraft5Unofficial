@@ -1,0 +1,177 @@
+[
+  {
+    "id": "advanced_filters",
+    "title": "Advanced Filters",
+    "icon": "essentialcraft5:advanced_whitelist_filter",
+    "summary": "Ignore durability or NBT, or sort by tag",
+    "complete": "essentialcraft5:guide/logistics/advanced_filter",
+    "optional": true,
+    "if": "cfg:general.hoanna.portal_enabled",
+    "items": [
+      "essentialcraft5:advanced_whitelist_filter",
+      "essentialcraft5:advanced_blacklist_filter"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em> (optional): upgrade an item filter into an {item:essentialcraft5:advanced_whitelist_filter} or an {item:essentialcraft5:advanced_blacklist_filter}. It has three extra switches: ignore durability, ignore enchantments and names, or take a whole group of items by tag, such as every iron ore or wool of every color."
+      },
+      {
+        "type": "p",
+        "text": "<em>Prepare</em>: a plain item filter (see [[logistics/filters]]) and 4 {item:essentialcraft5:void_plating} (see [[hoanna/void_plating]]). Put the filter in the middle and the plates above, below, left and right of it: a whitelist becomes an advanced whitelist, a blacklist an advanced blacklist."
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:advanced_whitelist_filter",
+          "essentialcraft5:advanced_blacklist_filter"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Upgrading <em>keeps your samples</em>, so there is nothing to set up again."
+      },
+      {
+        "type": "h",
+        "text": "The three switches"
+      },
+      {
+        "type": "p",
+        "text": "Open the advanced filter: three buttons run down its left side; click one to toggle it. A green tick on a button means \"this is compared\", a red cross means \"this is ignored\". All three start off, so right after the upgrade it takes exactly what the plain filter took."
+      },
+      {
+        "type": "table",
+        "header": [
+          "Switch",
+          "When on"
+        ],
+        "rows": [
+          [
+            "<t>Ignore durability</t>",
+            "wear does not matter: with a worn iron sword as the sample, fresh iron swords match too"
+          ],
+          [
+            "<t>Ignore NBT</t>",
+            "only the kind of item matters: enchantments, names and contents are ignored"
+          ],
+          [
+            "<t>Match by tag</t>",
+            "each sample takes a whole group of items by its chosen tag (see below)"
+          ]
+        ],
+        "widths": [
+          1,
+          3
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Hover over a button to see whether it is on. While you hold an advanced filter, its tooltip also lists the switches that are on."
+      },
+      {
+        "type": "h",
+        "text": "Match by tag"
+      },
+      {
+        "type": "p",
+        "text": "Tags are the groups the game sorts items into, such as \"all iron ores\" or \"all logs\". With <t>Match by tag</t> on, each sample slot compares by the tag chosen for it: an item in that tag counts as the same as the sample."
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Set your samples, then click the third button to turn on <t>Match by tag</t>.",
+          "Each sample picks a \"kind/material\" tag by itself: an iron ingot picks <t>forge:ingots/iron</t>, iron ore picks <t>forge:ores/iron</t> (deepslate iron ore matches too, gold ore does not). A slot with a chosen tag shows a cyan <t>#</t> in its top-left corner.",
+          "To pick another tag, point at the sample slot and scroll: you cycle through all of that item's tags and \"by item\". The item tooltip shows the tag in use and how many items it holds.",
+          "Samples with no automatic tag, such as logs and wool, compare by item at first: scroll to <t>minecraft:logs</t> to take every log, or use a piece of wool as the sample and scroll to <t>minecraft:wool</t> to take wool of every color."
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "Matching by tag still compares enchantments and names unless <t>Ignore NBT</t> is on too; durability likewise follows <t>Ignore durability</t>.",
+          "Putting a different sample in a slot clears the tag chosen for that slot; with Match by tag on, the new sample picks one by itself.",
+          "Turning <t>Match by tag</t> off keeps the tags you chose; turn it back on and they are all still there.",
+          "A filter used as a sample does not match by tag; it follows its own switches."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "A tag that is too broad lets in things you did not want: scroll to <t>forge:ingots</t> and every ingot goes through. The automatic choice is always the narrowest kind tag of the item, so check the item count in the tooltip before you change it."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "With an iron ore sample and Match by tag on, the magical hopper picks up iron ore from stone and from deepslate and leaves gold ore on the ground."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "In the original mod the third switch was \"Ignore Ore Dictionary\" and started off, which means a fresh advanced filter compared by ore dictionary (the item groups of version 1.12). Here it is the other way round: Match by tag starts off and you turn it on yourself, so an upgrade never quietly lets in more than before. The original upgrade also wiped the samples."
+      }
+    ]
+  },
+  {
+    "id": "void_chest",
+    "title": "{item:essentialcraft5:void_chest}",
+    "icon": "essentialcraft5:void_chest",
+    "summary": "117 slots in a single block",
+    "complete": "essentialcraft5:guide/logistics/void_chest",
+    "optional": true,
+    "if": "cfg:general.hoanna.portal_enabled",
+    "items": [
+      "essentialcraft5:void_chest"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em> (optional): make a {item:essentialcraft5:void_chest}. Like the magical chest it takes up a single block, but it holds more than twice as much."
+      },
+      {
+        "type": "p",
+        "text": "<em>Prepare</em>: 8 {item:essentialcraft5:void_stone} (see [[hoanna/void_stone]]), laid in a ring on a crafting table with the middle left empty."
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:void_chest"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "Capacity",
+            "<t>117</t> slots (9 rows of 13)"
+          ],
+          [
+            "Hoppers and pipes",
+            "can put items in and take them out from any side"
+          ],
+          [
+            "Redstone comparator",
+            "the fuller it is, the stronger the signal"
+          ],
+          [
+            "When broken",
+            "everything inside spills onto the ground and the chest you pick up is empty; needs a pickaxe"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "When placed, its front faces you. Right-click to open it; sneaking and right-clicking does not open it."
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "text": "Its screen is a size larger than a vanilla chest's. At the largest GUI scale (including Auto) the top and bottom edges of the frame may be cut off slightly, but every slot stays visible; lower \"GUI Scale\" in Video Settings by one step if that bothers you."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "Opening it shows 9 rows of 13 slots."
+      }
+    ]
+  }
+]

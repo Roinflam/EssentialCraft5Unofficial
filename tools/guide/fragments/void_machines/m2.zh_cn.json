@@ -1,0 +1,245 @@
+[
+  {
+    "id": "magical_furnace",
+    "title": "{item:essentialcraft5:magical_furnace}",
+    "icon": "essentialcraft5:magical_furnace",
+    "complete": "essentialcraft5:guide/void_machines/magical_furnace",
+    "optional": true,
+    "items": [
+      "essentialcraft5:magical_furnace"
+    ],
+    "summary": "往顶上扔东西，熔完落在四个角",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：搭起一座魔力熔炉，往它顶上扔原木、沙子、粗矿这类能进熔炉的东西，它一件一件地熔，偶尔多出一份。"
+      },
+      {
+        "type": "h",
+        "text": "准备"
+      },
+      {
+        "type": "list",
+        "items": [
+          "机器本身：要海纳尔带回来的{item:essentialcraft5:void_plating}、{item:essentialcraft5:void_core}和{item:essentialcraft5:void_mru_reactor}，配方在下面。",
+          "29 块{item:essentialcraft5:void_stone}，颜色随意（[[hoanna/void_stone]]）。",
+          "4 台普通的{item:essentialcraft5:heat_generator}（[[generators/heat_generator]]），终极热力产能器不算。",
+          "一颗连着 MRU 源的{item:essentialcraft5:bound_gem}（[[crafting/bound_gem]]）。"
+        ]
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:magical_furnace"
+      },
+      {
+        "type": "h",
+        "text": "摆法"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:magical_furnace"
+      },
+      {
+        "type": "p",
+        "text": "脚下铺一层 5×5 的虚空石，熔炉放在正中间那块的上面；熔炉这一层的四个角各放一块虚空石，再往上一层的四个角各放一台热力产能器。热力产能器在这里只是架子，不用点火。"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "右键熔炉，把绑定宝石放进唯一的格子里供能。",
+          "站在旁边，把要熔的东西扔到熔炉顶上，一整组扔上去也行。",
+          "每 {cfg:machines.magical_furnace.ticks_required|sec}熔好一件，产物和{item:essentialcraft5:magical_slag}落在四个角的热力产能器顶上。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "界面上的状态条写着「熔炼中」，扔上去的东西一件件变少，东南角出现产物、东北角出现魔力炉渣。"
+      },
+      {
+        "type": "h",
+        "text": "数值"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "熔一件",
+            "{cfg:machines.magical_furnace.ticks_required|sec}"
+          ],
+          [
+            "耗能",
+            "每刻 {cfg:machines.magical_furnace.mru_usage} MRU"
+          ],
+          [
+            "多出一份产物",
+            "{cfg:machines.magical_furnace.double_output_chance|pct}，落在西北角"
+          ],
+          [
+            "魔力炉渣",
+            "每件 1 个，落在东北角；{cfg:machines.magical_furnace.double_slag_chance|pct}再多 1 个，落在西南角"
+          ],
+          [
+            "经验",
+            "没有"
+          ]
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "MRU 半路不够时进度停住，补上 MRU 接着熔，花掉的不会白花；换了一种东西才从头算。",
+          "有红石信号就停机。",
+          "某个角上已经堆了 8 个以上的掉落物时会暂停（状态写「出口堆满了」），拿走就接着熔。产物会先并进旁边同种的那一堆，记得常来捡。",
+          "湿海绵和各种粉不会多出产物（炉渣照常），免得「熔完再泡水」「磨成粉再熔」凭空多出东西。",
+          "指定了拾取人的掉落物、展示用的掉落物它不碰。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "坑",
+        "text": "别把它和{item:essentialcraft5:magic_magmatic_furnace}搞混，那是岩浆熔炉的一档。加工矿石和粗矿，最划算的还是{item:essentialcraft5:magmatic_smeltery}（[[magmatic/smeltery]]）；魔力熔炉胜在什么都能熔、不用岩浆。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作研究书介绍它只有一句「不是地狱里那种」：同时代另一个魔法模组里也有一座吃掉落物的大熔炉，作者特意撇清了关系。"
+      }
+    ],
+    "_src": [
+      "registry/ECVoidMachines.java:122 — 结构：下一层 5×5 虚空石、同层四角虚空石、上一层四角普通热力产能器（终极热力产能器不算，L101）",
+      "blockentity/MagicalFurnaceBlockEntity.java:105 — ticks_required 默认 20 刻；L103 mru_usage 默认每刻 25；L108 / L110 两个几率默认 0.3 / 0.1",
+      "blockentity/MagicalFurnaceBlockEntity.java:284 — 有红石停机、进度留着；L311 MRU 不够进度冻结；L288~301 没成形 / 没输入 / 换种类清零",
+      "blockentity/MagicalFurnaceBlockEntity.java:426 — 输入跳过永远捡不起来的和指定了别人拾取的；输入范围照原作：从机器本格起往上两格高，下半格是机器本身，实际只吃顶面上那一格（findInput，L398）",
+      "blockentity/MagicalFurnaceBlockEntity.java:156 — 四个落点：产物 (+2,+2,+2) 东南、多出的产物 (−2,+2,−2) 西北、炉渣 (+2,+2,−2) 东北、多出的炉渣 (−2,+2,+2) 西南",
+      "blockentity/MagicalFurnaceBlockEntity.java:360 — 这件东西可能落到的角（几率为 0 的不看）1 格内 ≥ 8 个掉落物（OUTPUT_LIMIT，L147）就暂停，先看角再掷骰；产物先并进附近同种掉落物（drop）",
+      "blockentity/MagicalFurnaceBlockEntity.java:343 — 输入在 essentialcraft5:magical_furnace_no_bonus 里不多出产物；标签默认成员 tools/tags/ecvoidmachines.json（湿海绵、#forge:dusts）",
+      "data/essentialcraft5/recipes/void_machines/magical_furnace.json — SRI / PCP / VEV，P = 魔力强化板",
+      "recipe/OreSmeltingRecipe.java:45 / blockentity/MagmaticFurnaceBlockEntity.java:41 — 岩浆熔炉粗矿 1 倍、矿石 2 倍；冶炼炉 4 / 2 倍（batch6b.md §2.2）",
+      "data/essentialcraft5/advancements/guide/void_machines/magical_furnace.json — structure_formed，结构 essentialcraft5:magical_furnace"
+    ]
+  },
+  {
+    "id": "magical_teleporter",
+    "title": "{item:essentialcraft5:magical_teleporter}",
+    "icon": "essentialcraft5:magical_teleporter",
+    "complete": "essentialcraft5:guide/void_machines/magical_teleporter",
+    "optional": true,
+    "items": [
+      "essentialcraft5:magical_teleporter"
+    ],
+    "summary": "站上去，传到宝石记下的方块上",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：搭起一座魔力传送器，站上去蓄满能，就被传到一颗绑定宝石记下的方块顶上：同一个世界里多远都行，还能去别的维度。"
+      },
+      {
+        "type": "h",
+        "text": "准备"
+      },
+      {
+        "type": "list",
+        "items": [
+          "机器本身：配方和魔力熔炉一样，只是两侧的魔力强化板换成{item:essentialcraft5:magic_plate}（淡青板、米斯莱板也行），配方在下面。",
+          "36 块{item:essentialcraft5:void_stone}、4 块{item:essentialcraft5:magic_plating}，颜色都随意（[[hoanna/void_stone]]、[[alloys/plating]]）。",
+          "两颗{item:essentialcraft5:bound_gem}（[[crafting/bound_gem]]）：一颗连着 MRU 源，一颗绑在目的地的方块上。"
+        ]
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:magical_teleporter"
+      },
+      {
+        "type": "h",
+        "text": "摆法"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:magical_teleporter"
+      },
+      {
+        "type": "p",
+        "text": "传送器这一层是 5×5：正东、正南、正西、正北隔一格的四块是魔力护板，其余全是虚空石。往上两层，每层在四条边上各放两块虚空石，围成四对柱子；四角和正中间空着，传送器正上方要留出两格给人站。"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "拿绑定宝石右键目的地的那个方块，记下落点（会落在它的顶上；点在草或薄雪上时落在下面那块地上）。",
+          "右键传送器：左边的格子放连着 MRU 源的宝石，右边的格子放记着落点的宝石。",
+          "站到传送器正上方，别动。状态条从「就绪」变成「蓄能中」，蓄满 {cfg:machines.magical_teleporter.ticks_required|sec}就传过去。",
+          "到了以后先走下来（哪怕落在另一台传送器上），再站上去才会重新蓄能。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "一声烟花爆炸，你站在了那个方块的顶上；传送器扣掉了这一趟的 MRU。"
+      },
+      {
+        "type": "h",
+        "text": "费用"
+      },
+      {
+        "type": "formula",
+        "text": "同一个世界：{cfg:machines.magical_teleporter.mru_usage} × 东西、上下、南北三个方向的距离之和 ÷ 3 MRU，最多 {cfg:machines.magical_teleporter.max_mru}"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "蓄能",
+            "{cfg:machines.magical_teleporter.ticks_required|sec}"
+          ],
+          [
+            "容量",
+            "{cfg:machines.magical_teleporter.max_mru} MRU"
+          ],
+          {
+            "if": "cfg:machines.magical_teleporter.allow_dimensional",
+            "cells": [
+              "去别的维度",
+              "存满才走，一次扣光 {cfg:machines.magical_teleporter.max_mru} MRU"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "MRU 不够这一趟时进度停住，补上接着蓄；中途换了人、拿走宝石、结构被拆就从头算。",
+          "有红石信号时进度停住。",
+          "骑着东西、身上驮着别的生物都传不了，先下来。",
+          "放在别人领地里的传送器，只有在那里有权限的人站上去才会蓄能。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "坑",
+        "text": "到点时会检查落点：脚下要有能站的方块，落脚处两格高的空间要空着，不能有岩浆、火、仙人掌、细雪这类会伤人的方块，还得是你自己能动方块的地方（别人的领地进不去）；下界的基岩顶上传不过去。不合格就不传、不扣 MRU，界面上写着原因；走下来改好再站上去。落点所在的区块没加载时它会等几秒，还等不到也算这一趟没成。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作研究书管它叫「传送门」，还用一串感叹号强调它能去<em>别的维度</em>。"
+      }
+    ],
+    "_src": [
+      "registry/ECVoidMachines.java:107 — 结构：机器层 5×5，正四向距离 2 是魔力护板、其余虚空石；上两层各 8 块虚空石",
+      "blockentity/MagicalTeleporterBlockEntity.java:116 — ticks_required 默认 250 刻；L114 mru_usage 默认 500；L111 max_mru 默认 50000；L118 allow_dimensional 默认开",
+      "blockentity/MagicalTeleporterBlockEntity.java:363 — 费用：跨维度 = 容量；同维度 (int)(mru_usage × 三轴距离和 / 3)，封顶容量",
+      "blockentity/MagicalTeleporterBlockEntity.java:603 — 站上去：脚在机器正上方那格的真玩家，不是旁观；L428 骑乘或有乘客不蓄能；L414 换人清零",
+      "blockentity/MagicalTeleporterBlockEntity.java:445 — 开始蓄能前要能动传送器自己那格（三态，UNKNOWN 下一刻再试）",
+      "teleport/ECTeleport.java:120 — 落点：脚下要有碰撞形状（L137；点在草、薄雪上时看下面那格）、有天花板的维度不高过逻辑高度（L145，下界顶传不上去）、站立碰撞箱无碰撞（L150）、没有会伤人的方块（L154，hurts：岩浆、火、仙人掌、细雪等）、落脚格和脚下格都要有权限（L161 / L165）",
+      "blockentity/MagicalTeleporterBlockEntity.java:495 — 到点检查（之前先立即复查一次结构）；没加载 / 权限没结论最多再等 100 刻（MAX_WAIT，L202），超时失败；L517 成功才扣",
+      "blockentity/MagicalTeleporterBlockEntity.java:527 — 传成以后、任何失败以后都要先走下来（L541）；落到另一台传送器上那台也要求（L531，按落地后脚下那格认；活板门这类会掉下去的靠到达记录）",
+      "blockentity/MagicalTeleporterBlockEntity.java:455 — MRU 不够费用进度冻结；L433 有红石冻结",
+      "data/essentialcraft5/recipes/void_machines/magical_teleporter.json — SRI / PCP / VEV，P = #essentialcraft5:plates/magic",
+      "data/essentialcraft5/advancements/guide/void_machines/magical_teleporter.json — structure_formed，结构 essentialcraft5:magical_teleporter"
+    ]
+  }
+]

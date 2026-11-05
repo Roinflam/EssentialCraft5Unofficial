@@ -1,0 +1,392 @@
+{
+  "id": "wind_gear",
+  "order": 91,
+  "group": "side",
+  "title": "支線 · 風之裝備",
+  "subtitle": "會自己變形的工具，能染色的護甲",
+  "icon": "essentialcraft5:wind_elemental_pickaxe",
+  "entries": [
+    {
+      "id": "wind_tools",
+      "title": "風之工具",
+      "icon": "essentialcraft5:wind_elemental_pickaxe",
+      "summary": "一把工具，五個形態",
+      "complete": "essentialcraft5:guide/wind_gear/wind_tools",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_elemental_pickaxe",
+        "essentialcraft5:wind_elemental_axe",
+        "essentialcraft5:wind_elemental_shovel",
+        "essentialcraft5:wind_elemental_hoe",
+        "essentialcraft5:wind_elemental_sword"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "你要挖石頭，我就做鎬；你要砍樹，我就做斧。用不着謝我，往後多陪我跑幾趟就好。",
+          "by": "《風語抄》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：用第十三章的風之水晶做一把風之工具。風沒有固定的形狀，風之水晶做成的工具也一樣。{item:essentialcraft5:wind_elemental_pickaxe}、{item:essentialcraft5:wind_elemental_axe}、{item:essentialcraft5:wind_elemental_shovel}、{item:essentialcraft5:wind_elemental_hoe}、{item:essentialcraft5:wind_elemental_sword}是<em>同一把工具的五個形態</em>，做出任意一件，它就會照你的用法自己變形，不必五件都做。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:wind_elemental_pickaxe",
+            "essentialcraft5:wind_elemental_axe",
+            "essentialcraft5:wind_elemental_shovel",
+            "essentialcraft5:wind_elemental_hoe",
+            "essentialcraft5:wind_elemental_sword"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：{item:essentialcraft5:wind_gem}和木棍，擺法和原版工具一樣，鍬用 1 顆，鋤和劍用 2 顆，鎬和斧用 3 顆。風之水晶是在風之符文祭壇上給鑽石注入 {cfg:general.wind.gem_espe} ESPE 得來的，ESPE 是水晶柱積攢的另一種能量，見[[wind/wind_gem]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "要攢多久",
+          "text": "一座 8 根柱子的風之祭壇在主世界每秒積攢約 4 ESPE，一顆風之水晶要等四十來分鐘，同樣的祭壇搭在終界快 4 倍。柱子只在區塊載入時積攢，人要待在附近。最省的做法是先做只用 1 顆的鍬，挖到石頭它自己就會變成鎬。全套護甲和主線後期還要多少顆，見[[wind_gear/wind_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "自己變形"
+        },
+        {
+          "type": "table",
+          "header": [
+            "你在做什麼",
+            "它變成"
+          ],
+          "rows": [
+            [
+              "開始挖石頭、礦石",
+              "{item:essentialcraft5:wind_elemental_pickaxe}"
+            ],
+            [
+              "開始挖木頭",
+              "{item:essentialcraft5:wind_elemental_axe}"
+            ],
+            [
+              "開始挖泥土、沙子",
+              "{item:essentialcraft5:wind_elemental_shovel}"
+            ],
+            [
+              "開始挖樹葉、乾草塊",
+              "{item:essentialcraft5:wind_elemental_hoe}"
+            ],
+            [
+              "開始挖蜘蛛網，或者打中生物",
+              "{item:essentialcraft5:wind_elemental_sword}"
+            ]
+          ],
+          "widths": [
+            3,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它會變成挖這個方塊最快的形態，花草、火把等一碰就碎的方塊和挖不動的方塊不會讓它變形。創造模式下挖方塊不變形，打中生物照樣會變成劍。"
+        },
+        {
+          "type": "p",
+          "text": "不管是哪個形態，右鍵方塊都是鋤地，碰上鋤不了的方塊，斧形態照樣能剝樹皮，鍬形態照樣能剷出土徑。"
+        },
+        {
+          "type": "h",
+          "text": "附魔與耐久"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>每個形態的附魔是分開的</em>，給鎬形態附上幸運、劍形態附上鋒利，它變成鎬時帶幸運，變成劍時帶鋒利。鐵砧的累計花費也按形態分開算，物品提示裏會列出其他形態身上的附魔。",
+            "五個形態<em>共用一份耐久</em>，改過的名字也是共用的。",
+            "它不能在鐵砧上用材料修，只能把兩把同一形態的工具合成一把，或者靠經驗修補。合併前要先讓兩把變成同一形態，經驗修補也只在附了它的那個形態上起作用。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "數值"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "耐久",
+              "15684，元素工具為 3568"
+            ],
+            [
+              "挖掘速度",
+              "15，和元素工具一樣，鑽石為 8、地獄合金為 9"
+            ],
+            [
+              "挖掘等級",
+              "比元素工具還高，元素工具能挖的它都能挖"
+            ],
+            [
+              "附魔能力",
+              "42，元素工具為 36"
+            ],
+            [
+              "攻擊力",
+              "劍 10、斧 12、鎬 8、鍬 8.5、鋤 1"
+            ],
+            [
+              "攻擊速度",
+              "劍 1.6、鎬 1.2、斧和鍬 1.0、鋤 7"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "劍形態每打中一下扣 1 點耐久，鎬、斧、鍬、鋤形態打中生物不扣耐久。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到過其中任意一個形態。"
+        }
+      ]
+    },
+    {
+      "id": "wind_armor",
+      "title": "風之護甲",
+      "icon": "essentialcraft5:wind_chestplate",
+      "summary": "跑得快、跳得高，還擋得住 MRU",
+      "complete": "essentialcraft5:guide/wind_gear/wind_armor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:wind_helmet",
+        "essentialcraft5:wind_chestplate",
+        "essentialcraft5:wind_leggings",
+        "essentialcraft5:wind_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一套風之護甲，由{item:essentialcraft5:wind_helmet}、{item:essentialcraft5:wind_chestplate}、{item:essentialcraft5:wind_leggings}、{item:essentialcraft5:wind_boots}四件組成。它的護甲值比地獄合金還高，每件各有一樣本事，聚集體帶來的矩陣損傷也能被它擋掉絕大部分。四件穿齊還有御風，能偏開飛來的箭，在空中再跳一次。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:wind_helmet",
+            "essentialcraft5:wind_chestplate",
+            "essentialcraft5:wind_leggings",
+            "essentialcraft5:wind_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：{item:essentialcraft5:wind_gem}，頭盔 5 顆、胸甲 8 顆、護腿 8 顆、靴子 4 顆，全套 25 顆。擺法和原版盔甲一樣，只有護腿不同，它的上面兩排擺滿，第三排兩頭各放一顆。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "要攢多久",
+          "text": "25 顆就是 25 顆鑽石加 25 萬 ESPE，一座 8 根柱子的主世界風之祭壇要積攢約 17 小時，搭在終界要 4 個多小時。柱子只在區塊載入時積攢，人得待在附近。可以先做胸甲和靴子，跑得快、上台階不用跳，是最先用得上的兩樣。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "先留夠主線的",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.wind.gem_espe==10000",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+            "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "主線後面的全息、審判庭、宅男套裝和模塊幾章還要五十多顆風之水晶，是這一整套的兩倍，一座主世界祭壇要掛機 30 多個小時，終界也要 8～9 小時，詳見[[computer/costs]]。想做這套護甲，最好先在終界再建一座祭壇。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "先留夠主線的",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "!cfg:general.wind.gem_espe==10000||!cfg:machines.mithriline_crystal_pillar.espe_generated==0.025||!cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+          ],
+          "text": "主線後面的全息、審判庭、宅男套裝和模塊幾章還要五十多顆風之水晶，是這一整套的兩倍，詳見[[computer/costs]]。想做這套護甲，最好先在終界再建一座祭壇。"
+        },
+        {
+          "type": "h",
+          "text": "護甲與本事"
+        },
+        {
+          "type": "table",
+          "header": [
+            "部位",
+            "護甲",
+            "耐久",
+            "本事"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:wind_helmet}",
+              "4",
+              "624",
+              "戴着能隔牆看見 MRU 聚集體，和{item:essentialcraft5:magic_monocle}一樣"
+            ],
+            [
+              "{item:essentialcraft5:wind_chestplate}",
+              "10",
+              "1248",
+              "移動速度 +75%，即在基礎速度 0.1 上加 0.075"
+            ],
+            [
+              "{item:essentialcraft5:wind_leggings}",
+              "7",
+              "936",
+              "起跳時多一股向上的力，能跳約兩格半高"
+            ],
+            [
+              "{item:essentialcraft5:wind_boots}",
+              "4",
+              "624",
+              "不用跳就能走上一格高的方塊"
+            ]
+          ],
+          "widths": [
+            3,
+            1,
+            2,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "text": "全套合計 25 點護甲，比地獄合金的 20 點還高，每件還有 2.5 點盔甲韌性，全套 10 點，挨多重的一下都比地獄合金套傷得輕。附魔能力為 40。鐵砧上沒有能修它的材料，可以在鐵砧上把兩件同樣的合在一起（右邊那件會被吃掉），也可以靠經驗修補，或者放進[[devices/magical_repairer]]修。工作台和砂輪合不了它。"
+        },
+        {
+          "type": "h",
+          "text": "全套：御風"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0>0"
+              ],
+              "text": "每 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:0|sec}偏開一個飛來的彈射物，它會從你身上穿過去。"
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.deflect",
+                "cfg:general.wind_armor.deflect_cooldown_ticks|stage:0==0"
+              ],
+              "text": "飛來的彈射物每一個都會從你身上穿過去。"
+            },
+            {
+              "if": [
+                "cfg:general.wind_armor.air_jump_velocity>0",
+                "cfg:general.wind_armor.air_jumps|stage:0>0"
+              ],
+              "text": "在空中再按一下跳躍鍵，能再跳 {cfg:general.wind_armor.air_jumps|stage:0} 次。"
+            },
+            {
+              "if": "cfg:general.wind_armor.fall_damage_multiplier<1",
+              "text": "摔落傷害只剩 {cfg:general.wind_armor.fall_damage_multiplier|pct}。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind.deflect_points",
+            "cfg:general.wind_armor.deflect"
+          ],
+          "text": "已經立了[[wind_mage/deflect|風之偏轉]]契約的話，兩邊的冷卻取短的那個再減半。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:2>0"
+          ],
+          "text": "同調升階以後，偏轉的間隔更短，空中還能多跳一次，見[[attunement/wind_armor]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "!cfg:general.wind_armor.air_jump_velocity>0 || !cfg:general.wind_armor.air_jumps|stage:2>0"
+          ],
+          "text": "同調升階以後，偏轉的間隔更短，見[[attunement/wind_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "MRU 抗性"
+        },
+        {
+          "type": "p",
+          "text": "每件都帶 50% 的 MRU 腐化抗性，物品提示裏看得到，是[[gear/mhs_armor]]的兩倍。幾件一起穿時按四個部位的平均值算，穿齊一套，「MRU 腐化」每次造成的傷害會從最大生命的 {cfg:general.corruption.mru_corruption_health_percent|pct} 降到 {cfg:general.corruption.mru_corruption_health_percent|mul:0.5|pct}。"
+        },
+        {
+          "type": "p",
+          "text": "對大聚集體每秒加給你的矩陣損傷，它更管用。下表斜線兩側分別是聚集體存有 1 萬和存滿 2 萬時的數值。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "穿了幾件",
+            "每秒的矩陣損傷"
+          ],
+          "rows": [
+            [
+              "沒穿",
+              "40 / 80"
+            ],
+            [
+              "1 件",
+              "3 / 6"
+            ],
+            [
+              "2 件",
+              "1 / 3"
+            ],
+            [
+              "3 件",
+              "1 / 2"
+            ],
+            [
+              "一整套",
+              "0 / 1"
+            ]
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "[[hoanna/radiation|海納爾輻射]]也是這樣，穿齊一套後，在海納爾積攢輻射的速度只剩一半。"
+        },
+        {
+          "type": "h",
+          "text": "染色"
+        },
+        {
+          "type": "p",
+          "text": "風之護甲能像皮革盔甲一樣染色，在工作台裏和染料放在一起就行，幾種染料一起放會混出新的顏色，拿着它右鍵裝了水的煉藥鍋就能洗掉顏色。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到過其中任意一件。"
+        }
+      ]
+    }
+  ]
+}

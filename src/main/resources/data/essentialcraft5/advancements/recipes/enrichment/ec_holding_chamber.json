@@ -1,0 +1,41 @@
+{
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "essentialcraft5:magic_purified_glass_alloy"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dark_soul_matter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essentialcraft5:dark_soul_matter"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "essentialcraft5:enrichment/ec_holding_chamber"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dark_soul_matter",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "essentialcraft5:enrichment/ec_holding_chamber"
+    ]
+  },
+  "sends_telemetry_event": false
+}

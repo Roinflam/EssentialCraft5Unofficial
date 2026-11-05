@@ -1,0 +1,643 @@
+{
+  "id": "elements",
+  "order": 10,
+  "group": "main",
+  "title": "第一章 · 元素",
+  "subtitle": "挖魔晶，做出第一批零件",
+  "icon": "essentialcraft5:elemental_gem",
+  "entries": [
+    {
+      "id": "book",
+      "title": "翻開這本手冊",
+      "icon": "essentialcraft5:research_book",
+      "summary": "怎麼讀、怎麼查、怎麼打勾",
+      "items": [
+        "essentialcraft5:research_book"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "輻光是化作千萬道射線落下來的，穿過了這個世界的每一層巖石，有些石頭把它留在了裏面。鑿開這樣的石頭，裏面是凝成顆粒的地、水、火、風。",
+          "by": "《源質殘卷·卷一》"
+        },
+        {
+          "type": "p",
+          "text": "這本手冊整理自先輩留下的殘卷和手記，編成了一份<em>流程教程</em>。主線的每一章是一個階段，章裏的每一篇是一步，照着從頭做下去，就能從掌心裏的幾顆魔晶起步，一直做到一整座魔法工坊。"
+        },
+        {
+          "type": "p",
+          "text": "每一步大致照同一個順序寫，依次是<em>目標</em> → <em>準備</em>什麼 → <em>怎麼做</em> → <em>做成的標誌</em> → 容易踩的<em>坑</em>，邊角的規則放在篇末，初讀時可以跳過。"
+        },
+        {
+          "type": "h",
+          "text": "打勾與「下一步」"
+        },
+        {
+          "type": "p",
+          "text": "每做成一步，左欄裏那一篇就會打上 ✓，標題下方顯示「✓ 已完成」。首頁底部一直寫着你的下一步，點一下就翻過去。"
+        },
+        {
+          "type": "p",
+          "text": "標着「可選」的步驟做不做都行，也不會被排進下一步。打勾只是個記號，不鎖住任何內容，後面的章節隨時可以先翻來看。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼讀"
+        },
+        {
+          "type": "table",
+          "header": [
+            "想做什麼",
+            "怎麼做"
+          ],
+          "widths": [
+            2,
+            5
+          ],
+          "rows": [
+            [
+              "往下讀",
+              "滾輪、↑↓、PgUp / PgDn 或空格"
+            ],
+            [
+              "讀下一篇",
+              "篇末的「下一篇」卡片，一章讀完會接到下一章"
+            ],
+            [
+              "返回上一層",
+              "右鍵、退格鍵或滑鼠側鍵"
+            ],
+            [
+              "搜尋",
+              "直接打字，也可以按 Tab 或 Ctrl+F"
+            ],
+            [
+              "關閉",
+              "Esc，下次打開會回到你讀到的地方"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "字的顏色"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<c:C8B6F2>丁香紫、帶點線下劃線</c>的是物品名，滑鼠停在上面會出提示，點一下就翻到介紹它的那一篇，配方圖裏的物品格也一樣。",
+            "<c:E7A3F0>淡品紅、帶點線下劃線</c>的是通往別的篇目的連結，點一下就翻過去。",
+            "<t>冰藍色</t>是數值和界面上的名字，<w>杏橙色</w>是要注意的地方。",
+            "綠框是「做成的標誌」，橙框是坑，藍框放補充説明和下一步。米白色的「源質小知識」講的是原作的來歷，跳過也不影響遊玩。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "隨手查閲"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在物品欄、箱子或機器界面裏，滑鼠指着一個物品<em>按住 Ctrl</em>，Mac 上按住 Cmd，等提示框裏那一行的小圓圈轉滿，手冊就會翻到介紹它的那一篇，關掉手冊又回到原來的界面。",
+            "在世界裏手持手冊<em>潛行右鍵</em>，對着方塊就查這個方塊，對着地上的物品就查那個物品。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "兩種查法都要把手冊帶在身上。習慣用按鍵的話，可以在「選項 → 控制 → 按鍵綁定」裏給「查閲研究手冊」綁一個鍵。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:research_book"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.give_research_book_on_first_join",
+          "text": "第一次進入世界時，手冊已經放進了你的背包，弄丟了就照上面的配方再合成一本。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.give_research_book_on_first_join",
+          "text": "照上面的配方合成一本，隨時帶在身上。"
+        },
+        {
+          "type": "p",
+          "text": "書裏的配方圖是從遊戲裏現查出來的，別的模組或數據包改了配方，書裏的圖也跟着變。"
+        }
+      ]
+    },
+    {
+      "id": "ores",
+      "title": "藴魔礦石",
+      "icon": "essentialcraft5:fire_infused_ore",
+      "summary": "挖出四種元素魔晶",
+      "complete": "essentialcraft5:main/root",
+      "items": [
+        "essentialcraft5:fire_drops",
+        "essentialcraft5:water_drops",
+        "essentialcraft5:earth_drops",
+        "essentialcraft5:air_drops",
+        "essentialcraft5:elemental_infused_ore",
+        "essentialcraft5:fire_infused_ore",
+        "essentialcraft5:water_infused_ore",
+        "essentialcraft5:earth_infused_ore",
+        "essentialcraft5:air_infused_ore",
+        "essentialcraft5:nether_elemental_infused_ore",
+        "essentialcraft5:nether_fire_infused_ore",
+        "essentialcraft5:nether_water_infused_ore",
+        "essentialcraft5:nether_earth_infused_ore",
+        "essentialcraft5:nether_air_infused_ore",
+        "essentialcraft5:end_elemental_infused_ore",
+        "essentialcraft5:end_fire_infused_ore",
+        "essentialcraft5:end_water_infused_ore",
+        "essentialcraft5:end_earth_infused_ore",
+        "essentialcraft5:end_air_infused_ore"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：把{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}和{item:essentialcraft5:air_drops}四種都挖到手，它們統稱<em>魔晶</em>，是這個模組最基礎的材料。"
+        },
+        {
+          "type": "p",
+          "text": "<em>藴魔礦石</em>是把落下的 MRU 留在了身上的巖石。它和原版礦石一樣嵌在石頭裏，並不稀有，下礦或鑽洞時稍加留意就能碰到。"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:elemental_infused_ore",
+            "essentialcraft5:fire_infused_ore",
+            "essentialcraft5:water_infused_ore",
+            "essentialcraft5:earth_infused_ore",
+            "essentialcraft5:air_infused_ore",
+            "essentialcraft5:nether_elemental_infused_ore",
+            "essentialcraft5:nether_fire_infused_ore",
+            "essentialcraft5:nether_water_infused_ore",
+            "essentialcraft5:nether_earth_infused_ore",
+            "essentialcraft5:nether_air_infused_ore",
+            "essentialcraft5:end_elemental_infused_ore",
+            "essentialcraft5:end_fire_infused_ore",
+            "essentialcraft5:end_water_infused_ore",
+            "essentialcraft5:end_earth_infused_ore",
+            "essentialcraft5:end_air_infused_ore"
+          ],
+          "per_row": 5
+        },
+        {
+          "type": "h",
+          "text": "去哪挖"
+        },
+        {
+          "type": "table",
+          "header": [
+            "維度",
+            "嵌在",
+            "高度"
+          ],
+          "widths": [
+            2,
+            4,
+            3
+          ],
+          "rows": [
+            [
+              "主世界",
+              "石頭、花崗巖、閃長巖、安山巖",
+              "y 0 以上，深板巖層裏沒有"
+            ],
+            [
+              "地獄",
+              "地獄巖",
+              "上下都有"
+            ],
+            [
+              "終界",
+              "終界石",
+              "上下都有"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每個維度有五種，四種元素各一種，第五種是元素藴魔礦石，直接掉{item:essentialcraft5:elemental_gem}，碰上了一定要挖，能省下合成它要用的魔晶。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "海納爾的地下也有主世界這幾種礦，數量和主世界差不多，見[[hoanna/lands]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼挖"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "工具",
+              "任何鎬都行，木鎬也可以，空手挖什麼也不掉"
+            ],
+            [
+              "掉落",
+              "1～2 顆對應的魔晶，外加 0～2 點經驗"
+            ],
+            [
+              "幸運",
+              "每級多掉一些，幸運 III 是 1～8 顆"
+            ],
+            [
+              "絲綢之觸",
+              "掉礦石本身"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到第一顆魔晶時這一步就會打勾，但目標是四種都要，還得接着挖。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "火之魔晶用得最快",
+          "text": "一根{item:essentialcraft5:heating_rod}就要 6 顆{item:essentialcraft5:fire_drops}，前四章至少要做 5 根。到第五章為止，火之魔晶大約要 40 顆，另外三種各要十來顆，看到火之藴魔礦石就挖，最好帶着幸運。"
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.mobs.elemental_wisp.max_nearby>0",
+          "style": "info",
+          "title": "洞裏的元素遊靈",
+          "text": "主世界 y {cfg:general.mobs.elemental_wisp.max_y} 以下的洞穴裏會飄出<em>元素遊靈</em>，它是哪種元素，看它在什麼羣系出生。自己動手打死它，有一半的幾率掉那種魔晶。沙漠、惡地底下的是火之遊靈。見[[bestiary/elemental_wisp]]。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "四種湊齊後去做[[elements/elemental_gem]]。哪一種總也挖不到，或者不想下礦，可以先看[[elements/rituals]]，用幾樣原版材料就能凝出魔晶。"
+        }
+      ]
+    },
+    {
+      "id": "rituals",
+      "title": "地面儀式",
+      "icon": "essentialcraft5:fire_drops_cluster",
+      "summary": "不下礦也能凝聚魔晶",
+      "items": [
+        "essentialcraft5:fire_drops_cluster",
+        "essentialcraft5:water_drops_cluster",
+        "essentialcraft5:earth_drops_cluster",
+        "essentialcraft5:air_drops_cluster"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>另一條路</em>：把一樣原版物品丟到擺好的方塊上，那一格會凝出一塊<em>魔晶簇</em>，敲碎它就得到魔晶，四種元素各有一種儀式。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "元素",
+            "中間",
+            "東西南北四格",
+            "丟什麼"
+          ],
+          "widths": [
+            1,
+            3,
+            3,
+            3
+          ],
+          "rows": [
+            [
+              "火",
+              "{block:minecraft:netherrack}",
+              "{block:minecraft:lava}，流動的也算",
+              "{item:minecraft:blaze_powder}"
+            ],
+            [
+              "水",
+              "{block:minecraft:ice}",
+              "{block:minecraft:water}，流動的也算",
+              "{item:minecraft:clay_ball}"
+            ],
+            [
+              "地",
+              "{block:minecraft:slime_block}",
+              "{block:minecraft:grass_block}",
+              "{item:minecraft:slime_ball}"
+            ],
+            [
+              "風",
+              "{block:minecraft:quartz_block}，鏨制石英塊和石英柱也算",
+              "{block:minecraft:sand}，紅沙也算",
+              "{item:minecraft:gunpowder}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "中心方塊放在正中，東西南北四個相鄰格放外圈方塊，斜角不用管，中心方塊正上方那一格保持空着。",
+            "站在離它 2 格左右以內，按 Q 把物品丟到中心方塊正上方。",
+            "儀式大約每秒判定一次，每次吃掉一個物品，成不成都吃，成功率 80%，成功時那一格變成一塊魔晶簇。",
+            "魔晶簇不用工具，一敲就碎，掉出 1～6 顆對應的魔晶。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "魔晶簇佔着那一格時，儀式就停下來，剩下的物品原樣留着，一組丟下去也只出一塊，最好守在旁邊，出一塊敲一塊。平均每個物品能換來 2.8 顆魔晶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "物品要<em>你自己按 Q 丟出去</em>，而且只在你能放置方塊的地方才會成功。發射器、投擲器或漏斗吐出來的、冒險模式下丟的、在別人領地裏丟的都不算，這時物品也不會被吃掉。"
+        },
+        {
+          "type": "h",
+          "text": "火元素儀式"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:netherrack",
+            "R": {
+              "block": "minecraft:lava",
+              "label": "流動的也算"
+            }
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:blaze_powder",
+          "result": "essentialcraft5:fire_drops_cluster",
+          "chance": 0.8
+        },
+        {
+          "type": "p",
+          "text": "烈焰粉和地獄巖都要去地獄取。火之魔晶用得最多，找到烈焰人刷怪點以後，這個儀式就是最省事的來源。"
+        },
+        {
+          "type": "h",
+          "text": "水元素儀式"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:ice",
+            "R": {
+              "block": "minecraft:water",
+              "label": "流動的也算"
+            }
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:clay_ball",
+          "result": "essentialcraft5:water_drops_cluster",
+          "chance": 0.8
+        },
+        {
+          "type": "h",
+          "text": "地元素儀式"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:slime_block",
+            "R": "minecraft:grass_block"
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:slime_ball",
+          "result": "essentialcraft5:earth_drops_cluster",
+          "chance": 0.8
+        },
+        {
+          "type": "h",
+          "text": "風元素儀式"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": {
+              "block": [
+                "minecraft:quartz_block",
+                "minecraft:chiseled_quartz_block",
+                "minecraft:quartz_pillar"
+              ],
+              "label": "鏨制石英塊、石英柱也算"
+            },
+            "R": {
+              "block": [
+                "minecraft:sand",
+                "minecraft:red_sand"
+              ],
+              "label": "紅沙也算"
+            }
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:gunpowder",
+          "result": "essentialcraft5:air_drops_cluster",
+          "chance": 0.8
+        },
+        {
+          "type": "p",
+          "text": "石英塊要用地獄石英合成。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "石英磚、平滑石英塊、可疑的沙子、靈魂土都不算。",
+            "同樣的擺法換成{block:minecraft:emerald_block}和{block:minecraft:soul_sand}，丟綠寶石能變出[[mru/soul_stone]]，丟鑽石會喂大附近的[[start/mrucu|MRU 聚集體]]，這兩種儀式不管東西是誰丟的。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elemental_gem",
+      "title": "{item:essentialcraft5:elemental_gem}",
+      "icon": "essentialcraft5:elemental_gem",
+      "summary": "幾乎每個配方都要它",
+      "complete": "essentialcraft5:guide/elemental_gem",
+      "items": [
+        "essentialcraft5:elemental_gem",
+        "essentialcraft5:fire_drops_block",
+        "essentialcraft5:water_drops_block",
+        "essentialcraft5:earth_drops_block",
+        "essentialcraft5:air_drops_block",
+        "essentialcraft5:elemental_drops_block"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：合成一批{item:essentialcraft5:elemental_gem}，它是四種元素凝成的結晶，幾乎每台機器、每個零件都要用到。"
+        },
+        {
+          "type": "p",
+          "text": "<em>怎麼做</em>：四種魔晶各取一顆，在工作台裏隨意擺放，就能合成 4 顆元素晶石。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:elemental_gem"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裏有了元素晶石。"
+        },
+        {
+          "type": "p",
+          "text": "<em>要多少</em>：光是下一篇的零件就要 9 顆，到第五章為止一共要四五十顆，每次合成時多做幾份備着。"
+        },
+        {
+          "type": "h",
+          "text": "壓成塊"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:fire_drops_block",
+            "essentialcraft5:water_drops_block",
+            "essentialcraft5:earth_drops_block",
+            "essentialcraft5:air_drops_block",
+            "essentialcraft5:elemental_drops_block"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "九顆同種魔晶或九顆元素晶石在工作台裏能壓成一塊，放回工作台又能拆回九顆，存起來省地方。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:elemental_drops_block",
+          "caption": "以元素晶石塊為例，四種魔晶塊同理"
+        }
+      ]
+    },
+    {
+      "id": "parts",
+      "title": "機器零件",
+      "icon": "essentialcraft5:elemental_core",
+      "summary": "為第一台機器備料",
+      "complete": "essentialcraft5:guide/absorber_parts",
+      "items": [
+        "essentialcraft5:elemental_core",
+        "essentialcraft5:iron_support",
+        "essentialcraft5:mru_catcher",
+        "essentialcraft5:matrix_link",
+        "essentialcraft5:heating_rod"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出第一台機器{item:essentialcraft5:matrix_absorber}要用的五種零件。這個模組裏的機器都是先做零件、再拿零件組裝的，原材料不能直接拼成機器。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "table",
+          "header": [
+            "零件",
+            "換能器要幾個",
+            "一次出幾個"
+          ],
+          "widths": [
+            4,
+            2,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:iron_support}",
+              "4",
+              "4"
+            ],
+            [
+              "{item:essentialcraft5:mru_catcher}",
+              "1",
+              "8"
+            ],
+            [
+              "{item:essentialcraft5:matrix_link}",
+              "1",
+              "8"
+            ],
+            [
+              "{item:essentialcraft5:elemental_core}",
+              "1",
+              "1"
+            ],
+            [
+              "{item:essentialcraft5:heating_rod}",
+              "2",
+              "1"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "原材料一共是 9 顆元素晶石、15 個鐵錠、8 個金錠、4 顆末影珍珠、2 顆綠寶石和 4 塊石頭，另加 12 顆{item:essentialcraft5:fire_drops}。末影珍珠可以趁夜裏打終界使者拿到。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:iron_support",
+            "essentialcraft5:elemental_core"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:mru_catcher",
+            "essentialcraft5:matrix_link"
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:heating_rod"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "五種零件都到過你手裏，這一步就會打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "收好剩下的",
+          "text": "收集器和連結器一次出 8 個，換能器各只用 1 個，剩下的要收好，後面幾乎每台機器都要一個{item:essentialcraft5:mru_catcher}，{item:essentialcraft5:elemental_core}和{item:essentialcraft5:heating_rod}也會一直用到。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "提前準備",
+          "text": "第二章頭一件事是做一塊[[mru/soul_stone]]，要用 1 塊綠寶石塊、4 塊靈魂沙和幾顆綠寶石。靈魂沙只有地獄才有，可以趁現在去一趟。"
+        }
+      ]
+    }
+  ]
+}

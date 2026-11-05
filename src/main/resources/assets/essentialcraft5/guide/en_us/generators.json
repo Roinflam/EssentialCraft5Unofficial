@@ -1,0 +1,620 @@
+{
+  "id": "generators",
+  "order": 40,
+  "group": "main",
+  "title": "Chapter 4 · Generators",
+  "subtitle": "MRU on tap",
+  "icon": "essentialcraft5:heat_generator",
+  "entries": [
+    {
+      "id": "heat_generator",
+      "title": "{item:essentialcraft5:heat_generator}",
+      "icon": "essentialcraft5:heat_generator",
+      "summary": "Burns fuel; the hotter, the better",
+      "complete": "essentialcraft5:guide/heat_generator",
+      "items": [
+        "essentialcraft5:heat_generator",
+        "essentialcraft5:magical_slag"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "We used to have to go out and kill something whenever we wanted MRU. Then we learned to burn coal, then flowers, and later to wring a little out of the cold. At last I could stay at home.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:heat_generator}, surround it with lava and burn coal for MRU. A <em>generator</em> is a machine that makes MRU by itself, and once you have one, you no longer need to hunt for it."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: the Magical Plate, Magical Screen, MRU Conversion Matrix and World Interacting Device from the last chapter, 2 {item:essentialcraft5:heating_rod}, and one each of {item:essentialcraft5:elemental_core}, {item:essentialcraft5:fortified_frame} and {item:essentialcraft5:mru_catcher}. Bring 4 buckets of lava and some coal as well."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:heat_generator"
+        },
+        {
+          "type": "h",
+          "text": "Layout"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "H": "essentialcraft5:heat_generator",
+            "L": {
+              "block": "minecraft:lava",
+              "label": "Flowing counts"
+            }
+          },
+          "pattern": [
+            "  L  ",
+            "     ",
+            "L H L",
+            "     ",
+            "  L  "
+          ],
+          "caption": "Only the four blocks two spaces out to the north, south, east and west, level with the generator, count toward output"
+        },
+        {
+          "type": "p",
+          "text": "Output per tick is {cfg:machines.heat_generator.mru_generated} MRU multiplied by the factor of each of those four blocks in turn. The ring right next to the generator can hold anything."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{block:minecraft:lava} (flowing counts)",
+              "0.95"
+            ],
+            [
+              "{block:minecraft:netherrack}",
+              "0.75"
+            ],
+            [
+              "{block:minecraft:fire} (soul fire counts)",
+              "0.7"
+            ],
+            [
+              "Any other block",
+              "0.5"
+            ],
+            [
+              "Air",
+              "0, so one open side and it makes nothing"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "With lava on all four sides it makes {cfg:machines.heat_generator.mru_generated|mul:0.81450625|add:-0.499999|int} MRU per tick. With netherrack on all four, it makes only {cfg:machines.heat_generator.mru_generated|mul:0.31640625|add:-0.499999|int}."
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the generator and, following the picture above, pour a bucket of lava two blocks out to the north, south, east and west, level with the generator. Wall the lava in so it doesn't run everywhere.",
+            "Open its screen and put coal, charcoal, wood or anything else a furnace burns into the fuel slot.",
+            "Rebind your machines' Bound Gems to the generator, clearing the old binding first ([[crafting/bound_gem]]). The Matrix Destructor can rest from now on."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Heat Generator. Once it's set up, the output on its screen isn't 0 and the MRU keeps rising."
+        },
+        {
+          "type": "h",
+          "text": "Balance"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.heat_generator.balance<0",
+          "text": "Each Heat Generator rolls a random <em>Balance</em> between 0 and 2 when it's placed. You can see it on the screen, and breaking and replacing the generator rolls again. The number matters a great deal in [[generators/projections]]. Anything at or below 0.5, or at or above 1.5, is useful, so hold on to one like that."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.heat_generator.balance>=0",
+          "text": "The Heat Generator's MRU always has a Balance of {cfg:machines.heat_generator.balance}, which you can see on its screen."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Once it holds {cfg:machines.heat_generator.max_mru} MRU it stops lighting new fuel, but <w>whatever is already burning burns out, and the MRU it makes meanwhile is wasted</w>. Coal and charcoal suit it well, while a lava bucket, which burns for 1,000 seconds, is a poor choice. A redstone signal pauses the whole machine."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each fuel item it lights adds one {item:essentialcraft5:magical_slag} to the side slot. It stops at 64, though the fuel still burns. Keep the slag, because the Magical Lantern, the Mimic Block and the Magnetizing Staff all need it.",
+            "A lava bucket gives back an empty bucket. Hoppers and pipes can feed fuel in and pull slag and empty buckets out.",
+            "Breaking the generator loses the MRU stored in it.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "After you've been to Hoanna, void materials can upgrade it into the [[void_machines/ultra_heat_generator]], which gets hotter the longer it burns and makes more the hotter it gets."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "natural_furnace",
+      "title": "{item:essentialcraft5:natural_furnace}",
+      "icon": "essentialcraft5:natural_furnace",
+      "summary": "Burning plants for MRU",
+      "complete": "essentialcraft5:guide/natural_furnace",
+      "optional": true,
+      "items": [
+        "essentialcraft5:natural_furnace"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:natural_furnace} and burn flowers, saplings and grass into MRU. You only need this or the Heat Generator, though nothing stops you from building both."
+        },
+        {
+          "type": "p",
+          "text": "Plants are living things too and carry an MRU Matrix like anything else, which is why the forebears burned flowers for MRU. The Natural Furnace needs no lava and no coal. A field of flowers and some bone meal will keep it going."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:natural_furnace"
+        },
+        {
+          "type": "p",
+          "text": "It takes the same ingredients as the Heat Generator, arranged differently."
+        },
+        {
+          "type": "h",
+          "text": "What it burns"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Plant",
+            "Burn time each"
+          ],
+          "widths": [
+            5,
+            3
+          ],
+          "rows": [
+            {
+              "if": "cfg:machines.natural_furnace.ticks_flower>0",
+              "cells": [
+                "Flowers (tall ones like sunflowers and rose bushes too)",
+                "{cfg:machines.natural_furnace.ticks_flower|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.natural_furnace.ticks_sapling>0",
+              "cells": [
+                "Saplings",
+                "{cfg:machines.natural_furnace.ticks_sapling|sec}"
+              ]
+            },
+            {
+              "if": "cfg:machines.natural_furnace.ticks_grass>0",
+              "cells": [
+                "Grass and ferns (tall grass and large ferns too)",
+                "{cfg:machines.natural_furnace.ticks_grass|sec}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "While something burns it makes {cfg:machines.natural_furnace.mru_generated} MRU per tick, and once it holds {cfg:machines.natural_furnace.max_mru} MRU it stops lighting new plants."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.natural_furnace.ticks_flower>0",
+          "text": "A stack of 64 flowers burns for about {cfg:machines.natural_furnace.ticks_flower|mul:64|div:1200|round:0} minutes."
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the Natural Furnace and open its screen.",
+            "Put plants in the slot under the flame, up to a full stack. It lights one at a time, and a burnt plant leaves nothing behind.",
+            "As with the Heat Generator, bind your machines' Bound Gems to it."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Natural Furnace. Put in a flower and the flame on its screen lights up as the MRU starts to rise."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.natural_furnace.balance<0",
+          "text": "Its <em>Balance</em> works like the Heat Generator's. It rolls a random number between 0 and 2 when placed and rolls again if you break and replace it. [[generators/projections]] explains what it's for."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.natural_furnace.balance>=0",
+          "text": "The Natural Furnace's MRU always has a <em>Balance</em> of {cfg:machines.natural_furnace.balance}."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book subtitled this page “Be aware, Botania!”, a nod to the other mod that draws its power from flowers. It says grass and saplings carry an MRU matrix too, though flowers matter most."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Hoppers and pipes can feed plants in from any side. Nothing else gets in, and nothing can be pulled out.",
+            "Even when the furnace is full, a plant already burning burns out. A redstone signal pauses the whole machine.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "After you've been to Hoanna, void materials can upgrade it into the [[void_machines/ultra_natural_furnace]], which burns flowers, leaves, grass and logs and makes far more."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projections",
+      "title": "Balance and Projections",
+      "icon": "essentialcraft5:frozen_matrix_projection",
+      "summary": "Frozen, chaos, magic and shade",
+      "complete": "essentialcraft5:guide/frozen_projection",
+      "items": [
+        "essentialcraft5:empty_matrix_projection",
+        "essentialcraft5:frozen_matrix_projection",
+        "essentialcraft5:chaos_matrix_projection",
+        "essentialcraft5:magic_matrix_projection",
+        "essentialcraft5:shade_matrix_projection"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:frozen_matrix_projection}, which goes into the {item:essentialcraft5:cold_distillator} on the next page."
+        },
+        {
+          "type": "p",
+          "text": "The forebears used Soul Stones to take an impression of a matrix. The result is a <em>matrix projection</em>, a kind of \"matrix negative\". You make a blank one first, then MRU of different Balance gives it different properties. For what Balance means, see [[start/mru]]."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Projection",
+            "Balance needed",
+            "Chamber time",
+            "Used for"
+          ],
+          "widths": [
+            4,
+            3,
+            3,
+            4
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:empty_matrix_projection}",
+              "Any",
+              "1,000 ticks (50 s)",
+              "The base for the other four"
+            ],
+            [
+              "{item:essentialcraft5:frozen_matrix_projection}",
+              "0.5 or less",
+              "10,000 ticks (8 min 20 s)",
+              "Cold Distillator"
+            ],
+            [
+              "{item:essentialcraft5:chaos_matrix_projection}",
+              "1.5 or more",
+              "10,000 ticks (8 min 20 s)",
+              "Sun Ray Absorber, Chapter 10"
+            ],
+            [
+              "{item:essentialcraft5:magic_matrix_projection}",
+              "Between 0.5 and 1.5",
+              "20,000 ticks (16 min 40 s)",
+              "Moon Well, Chapter 8"
+            ],
+            [
+              "{item:essentialcraft5:shade_matrix_projection}",
+              "Any, with a {item:essentialcraft5:dark_soul_matter} in the bottom slot",
+              "20,000 ticks (16 min 40 s)",
+              "Shade lens for guns"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a {item:essentialcraft5:soul_stone} in the Radiating Chamber's top slot to make an Empty Projection. The stone can be bound or not, and it's used up either way.",
+            {
+              "if": [
+                "cfg:machines.heat_generator.balance<0",
+                "cfg:machines.natural_furnace.balance<0"
+              ],
+              "text": "Find a generator with a Balance of 0.5 or less. Heat Generators and Natural Furnaces roll theirs when placed, so break and replace until one fits. On average, one try in four does."
+            },
+            {
+              "if": [
+                "cfg:machines.heat_generator.balance<0",
+                "cfg:machines.natural_furnace.balance>=0"
+              ],
+              "text": "Find a {item:essentialcraft5:heat_generator} with a Balance of 0.5 or less. It rolls one when placed, so break and replace it until it fits. On average, one try in four does."
+            },
+            {
+              "if": [
+                "cfg:machines.heat_generator.balance>=0",
+                "cfg:machines.natural_furnace.balance<0"
+              ],
+              "text": "Find a {item:essentialcraft5:natural_furnace} with a Balance of 0.5 or less. It rolls one when placed, so break and replace it until it fits. On average, one try in four does."
+            },
+            {
+              "if": [
+                "cfg:machines.heat_generator.balance>=0",
+                "cfg:machines.natural_furnace.balance>=0"
+              ],
+              "text": "Find a generator with a Balance of 0.5 or less. [[start/mru]] lists what each generator gives."
+            },
+            "Place a <em>new</em> Radiating Chamber just for this and bind its gem to that generator. Breaking and replacing your old chamber also works, since that empties the MRU inside.",
+            "Put the Empty Projection in the top slot and wait 10,000 ticks."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:empty_matrix_projection"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:frozen_matrix_projection",
+            "essentialcraft5:chaos_matrix_projection",
+            "essentialcraft5:magic_matrix_projection",
+            "essentialcraft5:shade_matrix_projection"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold a Frozen Matrix Projection."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Why a new chamber",
+          "text": "A machine's Balance is the mix of all the MRU it has pulled in, weighted by amount. Your old chamber is full of Pure MRU at 1.0. With the wrong Balance it won't work and never uses that MRU up. No new frozen MRU can get in, and it sits on \"{lang:gui.essentialcraft5.radiating_chamber.wrong_balance}\" forever."
+        },
+        {
+          "type": "h",
+          "text": "Key points"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Before breaking a generator</em>, use up the MRU in it. Whatever it holds is lost when it breaks.",
+            {
+              "if": "cfg:machines.heat_generator.balance<0||cfg:machines.natural_furnace.balance<0",
+              "text": "Hold on to a generator at 1.5 or more as well, because Chapter 10's chaos projection needs one. Keeping one frozen and one chaos generator saves trouble."
+            },
+            "If the Balance drifts out of range partway through, progress resets. These jobs take a long time, so there's no need to stand by and soak up corruption ([[crafting/corruption]]).",
+            "The magic projection isn't fussy. Anything between 0.5 and 1.5 works, including the Pure MRU from your Matrix Destructor.",
+            "The shade projection ignores Balance. Put a blank projection in the top slot and a {item:essentialcraft5:dark_soul_matter} in the bottom slot and give it 20,000 ticks. The Dark Soul Matter recipe is in [[storage/soul_storage]]. The projection is only used for a gun lens ([[guns/parts]])."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "It feeds the MRUCU",
+          "text": "The chamber leaks MRU the whole time it works on a projection. A frozen or chaos projection takes 10,000 ticks and pours about 5,000 into the MRUCU within 32 blocks. A magic projection takes 20,000 ticks and adds about 10,000, so two projections push it past the point where it hurts. Keep the chamber more than 13 blocks from where you spend time, or move the MRUCU away afterwards with an {item:essentialcraft5:mru_mover} ([[start/mrucu]]).",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen==1"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "It feeds the MRUCU",
+          "text": "A projection takes tens of thousands of ticks, and the chamber leaks MRU the whole time, so the MRUCU nearby keeps growing. Keep the chamber more than 13 blocks from where you spend time, or move the MRUCU away afterwards with an {item:essentialcraft5:mru_mover} ([[start/mrucu]]).",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen!=1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Right-clicking a projection also changes the type of your own matrix; see [[gear/projection_use]]."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "From matrix rank 3, the last projection you absorbed also decides your [[matrix/alignment|Alignment]]: Chaos, Frozen, Magic and Shade each give a different passive."
+        }
+      ]
+    },
+    {
+      "id": "cold_distillator",
+      "title": "{item:essentialcraft5:cold_distillator}",
+      "icon": "essentialcraft5:cold_distillator",
+      "summary": "Drawing MRU out of the cold",
+      "complete": "essentialcraft5:guide/cold_distillator",
+      "items": [
+        "essentialcraft5:cold_distillator",
+        "essentialcraft5:cold_stone"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:cold_distillator} that draws MRU out of the ice and snow around it. The colder it gets, the slower the MRU in the air moves, and once it's slow enough it can be filtered out. The distillator burns no fuel and its MRU is frozen, so once it's set up it keeps running."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: a {item:essentialcraft5:frozen_matrix_projection}, 2 {item:essentialcraft5:cold_stone}, and one each of {item:essentialcraft5:magical_screen}, {item:essentialcraft5:mru_conversion_matrix}, {item:essentialcraft5:world_interactor}, {item:essentialcraft5:magic_plate}, {item:essentialcraft5:elemental_core} and {item:essentialcraft5:mru_catcher}. It doesn't need the Heat Rods or frame the generators use."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:cold_distillator"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:cold_stone"
+        },
+        {
+          "type": "p",
+          "text": "A Cold Stone is 4 ice and 4 snow blocks around a glowstone, and no block is colder."
+        },
+        {
+          "type": "h",
+          "text": "How it works"
+        },
+        {
+          "type": "p",
+          "text": "The distillator adds up the cold values of every cold block within 3 blocks of it in each direction, a 7×7×7 cube, drops the fraction and multiplies by {cfg:machines.cold_distillator.mru_gen_modifier}. That's its output per tick. After you place ice or snow, the output updates within a second."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:cold_stone}",
+              "0.5"
+            ],
+            [
+              "{item:minecraft:blue_ice}",
+              "0.4"
+            ],
+            [
+              "{item:minecraft:packed_ice}",
+              "0.3"
+            ],
+            [
+              "{item:minecraft:snow_block}, {block:minecraft:powder_snow}",
+              "0.2"
+            ],
+            [
+              "{item:minecraft:ice}",
+              "0.15"
+            ],
+            [
+              "{item:minecraft:snow} (layers)",
+              "0.05"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "With 20 Cold Stones around it, the cold adds up to 10 and it makes {cfg:machines.cold_distillator.mru_gen_modifier|mul:10|add:-0.499999|int} MRU per tick. With 10 packed ice instead, it adds up to only 3 and it makes {cfg:machines.cold_distillator.mru_gen_modifier|mul:3|add:-0.499999|int}. The distillator holds up to {cfg:machines.cold_distillator.max_mru} MRU, its Balance is always {cfg:machines.cold_distillator.balance}, and a redstone signal stops it."
+        },
+        {
+          "type": "structure",
+          "key": {
+            "F": "essentialcraft5:cold_stone",
+            "D": "essentialcraft5:cold_distillator"
+          },
+          "anchor": "D",
+          "pattern": [
+            "FFFFF",
+            "F F F",
+            "FFDFF",
+            "F F F",
+            "FFFFF"
+          ],
+          "caption": "The 20 frost stones from the example above, laid out on the machine's own layer. Anything within 3 blocks in every direction (7×7×7) counts, so the layers above and below work too."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Cold Distillator, and with ice and snow around it, the output on its screen isn't 0."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Cheap ice",
+          "text": "Icebergs and ice spikes plains are full of packed ice and blue ice. Mining it with a Silk Touch pickaxe is far cheaper than crafting Cold Stones."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:machines.cold_distillator.damage_entities_around",
+          "title": "Mind the chill",
+          "text": "While it works, every tick it picks a random creature within 3 blocks and gives it level III Mining Fatigue, Weakness and Slowness for 150 seconds, with a 20% chance of 1 damage as well. Among players only whoever placed it gets chilled, and Creative mode is immune. Set it up and keep your distance."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.cold_distillator.damage_entities_around",
+          "text": "It leaves alone villagers, player-built iron and snow golems, allays following a player, saddled camels, and anything tamed, leashed or name-tagged."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Next",
+          "text": "If a machine sits more than 16 blocks from its source, see [[generators/ray_tower]]. Otherwise go straight on to [[storage/crystals]] in Chapter 5."
+        }
+      ]
+    },
+    {
+      "id": "ray_tower",
+      "title": "{item:essentialcraft5:ray_tower}",
+      "icon": "essentialcraft5:ray_tower",
+      "summary": "Going the distance",
+      "complete": "essentialcraft5:guide/ray_tower",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ray_tower"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (as needed): when a machine is more than 16 blocks from its MRU source, relay the MRU through a {item:essentialcraft5:ray_tower}."
+        },
+        {
+          "type": "p",
+          "text": "A Ray Tower is a two-block-tall MRU relay with its own Bound Gem slot, and it holds {cfg:machines.ray_tower.max_mru} MRU."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ray_tower"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the tower within 16 blocks of the source and give it a gem bound to that source.",
+            "Bind the distant machine's gem to the tower. Clicking either the top or the bottom half works.",
+            "If that still isn't far enough, add another. Towers can be chained one after another."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Ray Tower, and once it's linked, the distant machine's screen shows \"{lang:gui.essentialcraft5.link.working}\"."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Each tower must be in the same dimension as the one before it, with its chunk loaded. If any tower along the way is in an unloaded chunk, everything after it is cut off."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,458 @@
+{
+  "id": "mru",
+  "order": 20,
+  "group": "main",
+  "title": "Chapter 2 · Your First MRU",
+  "subtitle": "Soul Stone, UBMRU and the Matrix Destructor",
+  "icon": "essentialcraft5:soul_stone",
+  "entries": [
+    {
+      "id": "soul_stone",
+      "title": "{item:essentialcraft5:soul_stone}",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "Trade emeralds for one",
+      "complete": "essentialcraft5:main/soul_stone",
+      "items": [
+        "essentialcraft5:soul_stone"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Every living thing wears a matrix, a small patch of MRU kept in order by a mind. The first MRU we ever ran a machine on, we took from ourselves.",
+          "by": "Fragments of Essence, Book II"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: get a {item:essentialcraft5:soul_stone} from a ritual, then bind it to yourself."
+        },
+        {
+          "type": "p",
+          "text": "Every living thing carries an invisible <em>MRU Matrix</em>, and the energy stored in it is called <em>UBMRU</em>. The forebears used the Soul Stone to read their own matrices. It remembers one person's matrix, and in the Matrix Destructor on the next pages it turns that person's UBMRU into MRU that machines can use."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "1 {item:minecraft:emerald_block};",
+            "4 {item:minecraft:soul_sand}, not soul soil, dug in the Nether's soul sand valleys or around its fortresses;",
+            "a few {item:minecraft:emerald}, each with a 50% chance of turning into a Soul Stone."
+          ]
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:emerald_block",
+            "R": "minecraft:soul_sand"
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:emerald",
+          "result": "essentialcraft5:soul_stone",
+          "chance": 0.5
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the emerald block in the center with soul sand on each of its four sides, and leave the space above the emerald block empty.",
+            "Stand close by and drop emeralds onto the emerald block. The ritual eats about one a second, and half the time a Soul Stone pops out where it landed.",
+            "<em>Right-click</em> the Soul Stone to bind it to yourself. The tooltip then shows your name and, when you are the one looking, how much UBMRU you carry."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "How close to stand and how often the ritual checks are covered with the other ritual rules in [[elements/rituals]]. This one works no matter who threw the emerald."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You hold a Soul Stone with your name on it."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "A stone popping out doesn't fill the space, so the ritual goes on eating emeralds. Each stone takes 2 emeralds on average, so drop only as many as you need, not the whole stack. <w>The main line uses about 9 Soul Stones</w>, around 18 emeralds in all: 1 for the Matrix Destructor, 1 each for the Empty Matrix Projections in Chapters 4, 8 and 10, and 5 for the pentacle in Chapter 12. Leave the ritual standing and make them as you go."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Sneak + right-click with it in your main hand to unbind it. Right-clicking a stone someone else has bound rebinds it to you.",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "From Matrix Rank 2, sneak + right-clicking your own stone in your main hand switches your [[matrix/reservoir|Matrix Reservoir]]'s auto-fill on or off instead of unbinding it, and from Rank 4 holding it toward an MRUCU siphons it."
+            },
+            "Soul Stones don't stack; each one takes a slot of its own.",
+            "Right-clicking a Wind Rune with a Soul Stone also makes you Windbound ([[wind/windbound]]).",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "From Matrix Rank 1, holding your own bound Soul Stone in either hand shows MRU presences and how much they hold, like the monocle."
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "On your own stone the tooltip also shows your matrix rank and Codex size, and from Rank 2 your Matrix Reservoir and the auto-fill switch. Nobody else sees these lines."
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "Sneak + right-click a {item:essentialcraft5:matrix_crucible} with your bound Soul Stone to move your UBMRU into the trial reserve, which you keep when you die ([[matrix/crucible]])."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ubmru",
+      "title": "Gathering UBMRU",
+      "icon": "minecraft:iron_sword",
+      "summary": "Kill creatures, absorb their matrix",
+      "complete": "essentialcraft5:guide/first_kill",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: gather enough UBMRU to turn into MRU on the next page."
+        },
+        {
+          "type": "p",
+          "text": "Besides their own matrices, the forebears took MRU from the creatures they hunted. Kill a creature yourself and you absorb part of its matrix, gaining 10–30 times its <em>base max health</em> in UBMRU, 20 times on average."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Creature",
+            "Base health",
+            "Average gain"
+          ],
+          "widths": [
+            4,
+            2,
+            2
+          ],
+          "rows": [
+            [
+              "Chicken",
+              "4",
+              "80"
+            ],
+            [
+              "Cow, pig",
+              "10",
+              "200"
+            ],
+            [
+              "Zombie, skeleton, creeper",
+              "20",
+              "400"
+            ],
+            [
+              "Enderman",
+              "40",
+              "800"
+            ],
+            [
+              "Iron golem",
+              "100",
+              "2,000"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Only kills by <em>your</em> own hand count. Melee, bows and tridents all work; pets, machines, falls and fire don't.",
+            "It goes by base health, so extra max health from potions or gear doesn't count.",
+            "A few special baubles change what each kill gives you; see [[baubles/kill_ubmru]]."
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier>0",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier!=1"
+          ],
+          "text": "The <b>first</b> time you personally kill each kind of hostile mob, it goes into your [[matrix/codex|Matrix Codex]] and that kill gives {cfg:general.matrix_rank.first_kill_ubmru_multiplier|pct} more UBMRU, with \"Matrix Codex +1\" shown above the hotbar. Later kills of the same kind give the normal amount."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier==1"
+          ],
+          "text": "The <b>first</b> time you personally kill each kind of hostile mob, it goes into your [[matrix/codex|Matrix Codex]] and that kill's UBMRU is <b>doubled</b>, with \"Matrix Codex +1\" shown above the hotbar. Later kills of the same kind give the normal amount."
+        },
+        {
+          "type": "h",
+          "text": "How much you need"
+        },
+        {
+          "type": "p",
+          "text": "Getting from here to your first generator takes about 1,100 MRU, of which Magician Table recipes use 1,060 and fortified materials in the Radiating Chamber about 70."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated==1",
+          "text": "That comes to {cfg:machines.matrix_absorber.ubmru_usage|mul:1100} UBMRU, or about {cfg:machines.matrix_absorber.ubmru_usage|mul:1100|div:400|round:0} zombies. There's no need to gather it all first. The Destructor only holds {cfg:machines.matrix_absorber.max_mru} MRU at a time, so hunt as you go."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.matrix_absorber.mru_generated!=1",
+          "text": "The Destructor turns {cfg:machines.matrix_absorber.ubmru_usage} UBMRU into {cfg:machines.matrix_absorber.mru_generated} MRU each tick and a zombie gives 400 UBMRU on average, so you can work out from there how many you need. There's no need to gather it all first. The Destructor only holds {cfg:machines.matrix_absorber.max_mru} MRU at a time, so hunt as you go."
+        },
+        {
+          "type": "p",
+          "text": "Every machine hooked up to the Destructor fills itself first, and a single Radiating Chamber can hoard {cfg:machines.radiating_chamber.max_mru} MRU. Take the Bound Gem out of any machine you aren't using yet, or the MRU you convert will end up sitting inside it ([[crafting/bound_gem]])."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have killed a creature yourself and the number on your Soul Stone is no longer 0."
+        },
+        {
+          "type": "tip",
+          "style": "bad",
+          "title": "Death resets it",
+          "text": "<b>When you die, all your UBMRU is gone</b>, and if another player killed you, all of it goes to them. Convert it to MRU as soon as you have some, because MRU stored in machines stays put when you die."
+        }
+      ]
+    },
+    {
+      "id": "matrix_absorber",
+      "title": "{item:essentialcraft5:matrix_absorber}",
+      "icon": "essentialcraft5:matrix_absorber",
+      "summary": "Turns your UBMRU into MRU",
+      "complete": "essentialcraft5:main/matrix_absorber",
+      "items": [
+        "essentialcraft5:matrix_absorber"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build a {item:essentialcraft5:matrix_absorber} and turn your UBMRU into your first MRU."
+        },
+        {
+          "type": "p",
+          "text": "The Matrix Destructor is the first machine you build. MRU is this mod's electricity and every machine runs on it; your first MRU comes from your own matrix. For what MRU is, see [[start/mru]]."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: the [[elements/parts]] from Chapter 1, and a {item:essentialcraft5:soul_stone} bound to you."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_absorber"
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the Matrix Destructor and right-click to open it.",
+            "Put your bound Soul Stone in its only slot.",
+            "As long as you're online, it draws UBMRU from you every tick and turns it into MRU until it's full."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Rate",
+              "{cfg:machines.matrix_absorber.ubmru_usage} UBMRU → {cfg:machines.matrix_absorber.mru_generated} MRU per tick"
+            ],
+            [
+              "Speed",
+              "{cfg:machines.matrix_absorber.mru_generated|mul:20} MRU per second"
+            ],
+            [
+              "Capacity",
+              "{cfg:machines.matrix_absorber.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.matrix_absorber.balance==1",
+              "cells": [
+                "Balance",
+                "1.0 ({balance:pure})"
+              ]
+            },
+            {
+              "if": "cfg:machines.matrix_absorber.balance!=1",
+              "cells": [
+                "Balance",
+                "{cfg:machines.matrix_absorber.balance}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The MRU on its screen starts going up."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The Destructor drains whoever the Soul Stone is bound to, so <w>never hand a stone bound to you to someone else</w>. It stops when the owner logs off or when it gets a redstone signal, and it stops drawing once full. Any UBMRU it hasn't converted stays on you and is still lost if you die."
+        },
+        {
+          "type": "p",
+          "text": "The Destructor doesn't send MRU anywhere by itself. Other machines pull it out with a Bound Gem, and that is the first thing the next chapter sets up."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "While you save up a [[matrix/crucible|trial reserve]], take your Soul Stone out of the absorber. You need it in hand to store UBMRU, and while it sits in the absorber it keeps converting the UBMRU on you."
+        }
+      ]
+    },
+    {
+      "id": "crucible",
+      "title": "{item:essentialcraft5:matrix_crucible}",
+      "icon": "essentialcraft5:matrix_crucible",
+      "summary": "Where you break through to a new rank",
+      "complete": "essentialcraft5:guide/matrix/crucible",
+      "items": [
+        "essentialcraft5:matrix_crucible"
+      ],
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:matrix_crucible} and set it up in your base."
+        },
+        {
+          "type": "p",
+          "text": "The matrix you carry can grow thicker, breaking through one layer at a time. These layers are <hl>matrix ranks</hl>, and each gives you a new ability. The Crucible is where you break through: hand in that rank's offerings and energy, then win a trial beside it. [[matrix/overview]] explains how ranks work."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: only things from Chapters 1 and 2; see the recipe below."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_crucible"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It holds {cfg:machines.matrix_crucible.max_mru} MRU, which trials from rank 2 on draw from. Fill it from a generator with a [[crafting/bound_gem|Bound Gem]], which you make next chapter.",
+            "Its offering slots only take items placed by hand; hoppers can't fill them.",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Leave open ground within {cfg:general.matrix_rank.trial.spawn_radius_max} blocks around it. That is where the echoes appear during a trial."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Matrix Crucible."
+        }
+      ]
+    },
+    {
+      "id": "rank_1",
+      "title": "Rank 1 · Awareness",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "Your first trial",
+      "complete": "essentialcraft5:guide/matrix/rank_1",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: win your first trial at the Crucible and reach matrix rank 1, Awareness."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "4 kinds of hostile mob killed by your own hand; zombies, skeletons, spiders and creepers will do"
+            ],
+            [
+              "Offerings",
+              "4 each of {item:essentialcraft5:fire_drops}, {item:essentialcraft5:water_drops}, {item:essentialcraft5:earth_drops} and {item:essentialcraft5:air_drops}"
+            ],
+            [
+              "Energy",
+              "5,000 UBMRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "2 in all, up to 2 at once; 20 health each, 4 damage a hit; 70 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "Stand still for {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:10} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Kill 4 different kinds of hostile mob. Each new kind shows \"Matrix Codex +1\" above your hotbar ([[matrix/codex]]).",
+            "Take your Soul Stone out of the {item:essentialcraft5:matrix_absorber} and keep killing mobs to build up UBMRU.",
+            "Whenever you have some, sneak-right-click the Crucible holding your Soul Stone to bank it in your trial reserve, until you have 5,000.",
+            "Put the offerings in, stand next to the Crucible with your Soul Stone in your main hand, open the screen and start the trial.",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Defeat the 2 Matrix Echoes that appear."
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Stay next to it without moving or getting hurt until the channel finishes."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "\"Rank 1 · Awareness\" appears in the middle of the screen, and your Soul Stone's tooltip shows matrix rank 1."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<em>While you save up UBMRU, keep your Soul Stone out of the Matrix Destructor.</em> Until its buffer is full it converts your UBMRU every tick, and you won't get anywhere. UBMRU you carry is lost when you die, so bank it a little at a time; what is in your trial reserve survives death. Put the stone back once you have the rank."
+        },
+        {
+          "type": "p",
+          "text": "Rank 1 gives you <em>Matrix Vision</em>: with your bound Soul Stone in either hand, you can see nearby MRUCUs and how much they hold without a monocle. The breakthrough also gives you a little matrix damage ([[matrix/crucible]])."
+        }
+      ]
+    }
+  ]
+}

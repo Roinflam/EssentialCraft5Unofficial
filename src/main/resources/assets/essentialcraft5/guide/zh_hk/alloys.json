@@ -1,0 +1,696 @@
+{
+  "id": "alloys",
+  "order": 60,
+  "group": "main",
+  "title": "第六章 · 中期材料",
+  "subtitle": "讓魔力工作台快上五倍的合金",
+  "icon": "essentialcraft5:combined_magical_alloys",
+  "entries": [
+    {
+      "id": "magical_essence",
+      "title": "{item:essentialcraft5:magical_essence}",
+      "icon": "essentialcraft5:magical_essence",
+      "summary": "輻射倉照出的頭一樣中期材料",
+      "complete": "essentialcraft5:guide/alloys/magical_essence",
+      "items": [
+        "essentialcraft5:magical_essence"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "東西灌夠了 MRU，就會褪成淡青色，到了某些場合，能冒名頂替別的東西。頂替的本事，是拿大量 MRU 換來的。",
+          "by": "《源質殘卷·卷三》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：用[[crafting/radiating_chamber]]做出{item:essentialcraft5:magical_essence}。這一章的材料都從它開始，先煉成水晶粉，再做幾種合金，最後做出讓魔力工作台快上 <t>5</t> 倍的注魔合金。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "這一章要準備什麼",
+          "text": "主線一共要 <t>14</t> 份左右的烈焰粉和 <t>8</t> 顆末影珍珠，最好先去地獄要塞打一趟烈焰人。魔力工作台的活加起來約 1.8 萬點進度，合 {cfg:machines.magician_table.mru_usage_modifier|mul:18000|int} MRU，裝着{item:essentialcraft5:eye_of_absorption}大約 5 分鐘做得完。日光一章的太陽稜鏡還要 4 塊注魔合金，摺合 32 份烈焰粉和 32 顆珍珠，這一趟多打些烈焰人，省得回頭再跑。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_essence"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "輻射倉的上格放紅石，下格放烈焰粉。",
+            "給輻射倉接上 MRU，平衡值多少都行。",
+            "每份要 <t>100</t> 刻，合 5 秒，每刻扣 {cfg:machines.radiating_chamber.mru_usage_modifier|int} MRU，一份一共花 {cfg:machines.radiating_chamber.mru_usage_modifier|mul:100|int} MRU。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出第一份魔力精華。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "別搞混",
+          "text": "第九章水晶提取器抽出來的{item:essentialcraft5:common_fire_essence}、{item:essentialcraft5:common_water_essence}這些叫<em>元素精華</em>，和魔力精華不是一回事。魔力精華只是輻射倉做的一種材料，眼下只拿來煉水晶粉。"
+        },
+        {
+          "type": "p",
+          "text": "多出來的魔力精華留着，以後能做[[tesla/mru_magnet]]，裝飾方塊上的[[decorations/patterns|符文花紋]]也要用它。"
+        }
+      ]
+    },
+    {
+      "id": "crystal_dust",
+      "title": "{item:essentialcraft5:crystal_dust}",
+      "icon": "essentialcraft5:crystal_dust",
+      "summary": "接下來幾台機器的主料",
+      "complete": "essentialcraft5:guide/alloys/crystal_dust",
+      "items": [
+        "essentialcraft5:crystal_dust"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在[[crafting/magician_table]]裏把魔力精華煉成{item:essentialcraft5:crystal_dust}。"
+        },
+        {
+          "type": "p",
+          "text": "先輩造水晶、侍弄水晶的那幾台機器，都離不開這種粉。接下來主線必做的{item:essentialcraft5:crystal_former}和{item:essentialcraft5:crystal_extractor}各要 <t>2</t> 份，可選的{item:essentialcraft5:crystal_controller}再要 2 份，想做[[gear/mhs_armor]]的話，四件一共要 10 份。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_dust"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "魔力精華放在工作台的<em>中心格</em>，四角空着。",
+            "給工作台接上 MRU，一份一共花 {cfg:machines.magician_table.mru_usage_modifier|mul:3000|int} MRU，裝什麼升級都是這個數，升級只改快慢，見下表。"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "工作台裝着",
+            "做一份要多久"
+          ],
+          "rows": [
+            [
+              "沒裝升級",
+              "2 分 30 秒"
+            ],
+            [
+              "{item:essentialcraft5:eye_of_absorption}（×3）",
+              "50 秒"
+            ],
+            [
+              "{item:essentialcraft5:combined_magical_alloys}（×5）",
+              "30 秒"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出第一份水晶粉。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "省時間",
+          "text": "先做 1 份讓這一步打上勾，剩下的等本章後面裝上注魔合金再做，MRU 花得一樣多，速度卻快好幾倍。"
+        }
+      ]
+    },
+    {
+      "id": "purified_alloys",
+      "title": "四種合金",
+      "icon": "essentialcraft5:magic_purified_blaze_alloy",
+      "summary": "魔力工作台裏的四種基礎合金",
+      "complete": "essentialcraft5:guide/alloys/purified_alloys",
+      "items": [
+        "essentialcraft5:magic_purified_blaze_alloy",
+        "essentialcraft5:magic_purified_glass_alloy",
+        "essentialcraft5:magic_purified_redstone_alloy",
+        "essentialcraft5:magic_purified_gold_alloy"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出{item:essentialcraft5:magic_purified_blaze_alloy}和{item:essentialcraft5:magic_purified_glass_alloy}。合金最早是海納爾人煉出來的。烈焰合金是下一步注魔合金的原料，玻璃合金以後拿來做富集倉存儲方塊和日光玻璃。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：幾塊{item:essentialcraft5:magic_fortified_plating}，再加烈焰粉和玻璃。魔力強化板在工作台中心放一塊魔力強化石就能做。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_purified_blaze_alloy",
+            "essentialcraft5:magic_purified_glass_alloy"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在魔力工作台的中心放一塊魔力強化板。",
+            "四角放 4 份同一種材料，放烈焰粉出烈焰合金，放玻璃出玻璃合金，玻璃換成染色玻璃或遮光玻璃也行。",
+            "等工作台做完，從產物格里取出來。"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "合金",
+            "中心",
+            "四角",
+            "MRU",
+            "以後用在"
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magic_purified_blaze_alloy}",
+              "魔力強化板",
+              "烈焰粉",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:500|int}",
+              "注魔合金"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_glass_alloy}",
+              "魔力強化板",
+              "玻璃",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:1000|int}",
+              "富集倉存儲方塊、日光玻璃"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_redstone_alloy}",
+              "魔力強化板",
+              "紅石",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:1000|int}",
+              "富集倉紅石控制器、魔力唱片機"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_gold_alloy}",
+              "金錠",
+              "金粒",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:250|int}",
+              "護符、黃金法球、魔力單片鏡"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "烈焰合金和玻璃合金都做出來了。"
+        },
+        {
+          "type": "h",
+          "text": "另外兩種"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_purified_redstone_alloy",
+            "essentialcraft5:magic_purified_gold_alloy"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "紅石合金和魔力金錠這一章還用不上，等用到時再做。紅石合金留給[[enrichment/monitoring|富集倉紅石控制器]]和[[devices/magical_jukebox]]，魔力金錠留給[[charms/charms|護符]]、[[staffs/golden_orb]]和[[gear/magic_monocle]]。"
+        }
+      ]
+    },
+    {
+      "id": "combined_magical_alloys",
+      "title": "{item:essentialcraft5:combined_magical_alloys}",
+      "icon": "essentialcraft5:combined_magical_alloys",
+      "summary": "工作台的五倍速升級",
+      "complete": "essentialcraft5:guide/alloys/combined_magical_alloys",
+      "items": [
+        "essentialcraft5:combined_magical_alloys"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出{item:essentialcraft5:combined_magical_alloys}，然後<em>把它裝進魔力工作台</em>，讓工作台快上 <t>5</t> 倍。先輩的工作台上，嵌得最多的就是這種合金。往後動輒上萬 MRU 的配方多得是，早些裝上能省下大把時間。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：1 塊魔力強化板、2 塊烈焰合金和 2 塊{item:essentialcraft5:magic_purified_ender_scale_alloy}。末影鱗合金是魔力強化板加 4 顆末影珍珠，擺法和烈焰合金一樣。折算下來，一共要 8 份烈焰粉和 8 顆末影珍珠。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:combined_magical_alloys"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "魔力強化板放在魔力工作台的中心。",
+            "兩塊烈焰合金佔一條對角線，兩塊末影鱗合金佔另一條，哪條放哪種都行。",
+            "等它做完，一塊一共花 {cfg:machines.magician_table.mru_usage_modifier|mul:10000|int} MRU，不裝升級要 8 分鐘左右，裝着吸收之眼約 3 分鐘。",
+            "手持注魔合金右鍵工作台，就把它裝上了。工作台原本裝着別的升級的話，先空手潛行右鍵把它取下來，裝上的升級隨時都能原樣取回，沒有一點損耗，詳見[[storage/upgrades]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出注魔合金，記得把它裝上。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "MRU 要跟得上",
+          "text": "升級只讓工作台做得更快，每刻花的 MRU 也跟着變成 5 倍，每刻 {cfg:machines.magician_table.mru_usage_modifier|mul:5} MRU，做一件東西的總耗能不變。源頭供不上，工作台就會做做停停，裝了升級也快不起來。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "工作台同時只能裝一個升級。全部升級和倍數列在[[storage/upgrades]]裏，其中元素核心 ×1.2、末影鱗合金 ×2.5、吸收之眼 ×3、MRU 共鳴水晶 ×4、注魔合金 ×5。",
+            "注魔合金以後還要當材料用，主線的水晶提取器要 1 塊，太陽稜鏡要 4 塊，支線的巖漿冶煉爐、魔力防護套裝和魔力護盾也都用得到。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "第十八～二十一章的[[hologram/neuronic_plating]]每合成一次要 2 塊注魔合金，出 4 塊護板，這幾章加起來要三十多塊注魔合金，到那時工作台最好換上更快的升級。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "這一章必做的步驟到這裏就完了，主線接着翻到下一章的[[enrichment/controller]]。本章剩下的[[alloys/resonating_crystal]]、[[alloys/pale]]、[[alloys/plating]]、[[alloys/crystal_lamps]]幾篇都是可選的，不過淡青護板和魔力護板第十三章搭風之祭壇要用，可以先看看。"
+        }
+      ]
+    },
+    {
+      "id": "resonating_crystal",
+      "title": "{item:essentialcraft5:mru_resonating_crystal}",
+      "icon": "essentialcraft5:mru_resonating_crystal",
+      "summary": "輻射倉做的四倍速升級",
+      "complete": "essentialcraft5:guide/alloys/resonating_crystal",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mru_resonating_crystal"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（現在可選，第十七章起要用）：用輻射倉做一顆{item:essentialcraft5:mru_resonating_crystal}。它是另一種 ×4 的工作台升級，用不着烈焰粉和末影珍珠，手頭鑽石和綠寶石富餘的話，可以先拿它頂上。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：用輻射倉做一顆{item:essentialcraft5:mru_resonating_crystal}。它是另一種 ×4 的工作台升級，用不着烈焰粉和末影珍珠，手頭鑽石和綠寶石富餘的話，可以先拿它頂上。",
+          "if": "!cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_resonating_crystal"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "上格",
+              "鑽石"
+            ],
+            [
+              "下格",
+              "綠寶石"
+            ],
+            [
+              "平衡值",
+              "不挑"
+            ],
+            [
+              "時間",
+              "100 刻（5 秒）"
+            ],
+            [
+              "每刻耗能",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:50|int} MRU"
+            ],
+            [
+              "一顆共計",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:5000|int} MRU"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "耗能很猛",
+          "text": "它每刻要的 MRU 比一台熱力產能器的產量高得多，輻射倉裏的 MRU 不夠一刻用時，它就停下來等，進度不會丟，攢夠了再接着做。輻射倉自己最多存 {cfg:machines.radiating_chamber.max_mru} MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出一顆共鳴水晶。"
+        },
+        {
+          "type": "p",
+          "text": "它以後用處不少，[[gear/elemental_tools]]、[[tesla/mru_coil|特斯拉線圈]]和[[tesla/reactor|反應堆]]都要用它。建好米斯萊熔爐以後，一顆還能換一顆{item:essentialcraft5:mithriline_crystal}，省下十幾份米斯萊粉，見[[mithriline/conversions]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "從第十七章起，它就成了主線材料，{item:essentialcraft5:demonic_core}和宅男套裝的{item:essentialcraft5:particle_emitter}都要用它，做法分別見[[demons/ackronite]]和[[computer/force_parts]]，一整套宅男套裝前後要四五十顆。鑽石不夠的話，可以拿[[gear/pale_gem]]頂替。"
+        }
+      ]
+    },
+    {
+      "id": "pale",
+      "title": "淡青材料",
+      "icon": "essentialcraft5:pale_ingot",
+      "summary": "珍珠、金錠和板的替代品",
+      "complete": "essentialcraft5:guide/alloys/pale",
+      "items": [
+        "essentialcraft5:pale_pearl",
+        "essentialcraft5:pale_ingot",
+        "essentialcraft5:pale_core",
+        "essentialcraft5:pale_plate"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（第十三章的風之祭壇要用）：認識淡青系列。它們是用大量 MRU「漂白」過的材料，在源質魔法的配方里能頂替幾樣常用材料。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "淡青材料",
+            "頂替",
+            "怎麼做"
+          ],
+          "widths": [
+            3,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:pale_pearl}",
+              "末影珍珠",
+              "輻射倉：上格青金石，下格螢石粉"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "金錠",
+              "輻射倉：上格青金石塊，下格金錠，一次出 4 塊"
+            ],
+            [
+              "{item:essentialcraft5:pale_core}",
+              "{item:essentialcraft5:elemental_core}",
+              "輻射倉：上格石頭，下格{item:essentialcraft5:elemental_gem}"
+            ],
+            [
+              "{item:essentialcraft5:pale_plate}",
+              "{item:essentialcraft5:magic_plate}",
+              "魔力工作台：中心魔力強化板，四角淡青錠"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "只在源質魔法的配方里",
+          "text": "淡青材料只放得進源質魔法配方里那些兩樣都收的格子，配方圖上這種格子會輪流顯示兩樣東西，原版和別的模組的配方不認它們。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:pale_pearl",
+            "essentialcraft5:pale_ingot"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:pale_core",
+            "essentialcraft5:pale_plate"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "配方",
+            "時間",
+            "每刻耗能",
+            "共計 MRU"
+          ],
+          "rows": [
+            [
+              "淡青珍珠",
+              "250 刻",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:20|int}",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:5000|int}"
+            ],
+            [
+              "淡青錠（4 塊）",
+              "100 刻",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:80|int}",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:8000|int}"
+            ],
+            [
+              "淡青元素核心",
+              "100 刻",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:10|int}",
+              "{cfg:machines.radiating_chamber.mru_usage_modifier|mul:1000|int}"
+            ],
+            [
+              "淡青板",
+              "工作台",
+              "—",
+              "{cfg:machines.magician_table.mru_usage_modifier|mul:100|int}"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出任意一樣淡青材料。"
+        },
+        {
+          "type": "h",
+          "text": "什麼時候用得上"
+        },
+        {
+          "type": "list",
+          "items": [
+            "末影珍珠不夠的時候，可以拿淡青珍珠做末影鱗合金和米斯萊水晶柱，省下打終界使者的工夫。",
+            "淡青板能做{item:essentialcraft5:pale_plating}，做法見[[alloys/plating]]。第十三章的風之祭壇要 12 塊，4 塊淡青板就能出 16 塊。",
+            "淡青板還能做{item:essentialcraft5:pale_magmatic_furnace}，見[[magmatic/furnace_upgrades]]。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "以後做力場核心也要用淡青板，見[[computer/force_parts]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書用 pale 一詞稱呼這道處理，意思是讓物品變得「蒼白」。書裏説灌進去的 MRU 足夠多，物品就能在特定的場合冒名頂替別的東西，代價是耗掉極多的 MRU。"
+        }
+      ]
+    },
+    {
+      "id": "plating",
+      "title": "護板與柵欄",
+      "icon": "essentialcraft5:magic_plating",
+      "summary": "擋住 MRU 的方塊",
+      "complete": "essentialcraft5:guide/alloys/plating",
+      "items": [
+        "essentialcraft5:magic_plating",
+        "essentialcraft5:pale_plating",
+        "essentialcraft5:fortified_stone_fence",
+        "essentialcraft5:magic_fence"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（第十三章的風之祭壇要用）：做一些{item:essentialcraft5:magic_plating}。工作台裏 4 塊{item:essentialcraft5:magic_plate}合成 16 塊護板，4 塊{item:essentialcraft5:pale_plate}合成 16 塊{item:essentialcraft5:pale_plating}。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:magic_plating",
+            "essentialcraft5:pale_plating"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "MRU 穿得過尋常的牆，先輩要擋住它，就得往牆裏砌特製的板材。護板就是擋得住 MRU 的建築方塊，主要用來砌下一章富集倉的外殼，也能替你擋下[[start/mrucu|MRU 聚集體]]造成的矩陣損傷，第十三章搭風之祭壇還要用到 8 塊魔力護板和 12 塊淡青護板。"
+        },
+        {
+          "type": "h",
+          "text": "擋住聚集體"
+        },
+        {
+          "type": "p",
+          "text": "聚集體要損傷 12 格以內的你時，會看你們之間那條連線上擋得最好的一塊方塊，傷害落到你身上的幾率見下表。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "中間隔着",
+            "落到你身上的幾率"
+          ],
+          "rows": [
+            [
+              "什麼都不擋",
+              "每次都中"
+            ],
+            [
+              "{item:essentialcraft5:fortified_stone}",
+              "1/2"
+            ],
+            [
+              "{item:essentialcraft5:fortified_glass}",
+              "1/3"
+            ],
+            [
+              "{item:essentialcraft5:magic_plating}",
+              "1/5"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_plating}",
+              "1/7"
+            ],
+            [
+              "{item:essentialcraft5:pale_plating}",
+              "1/10"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_glass}",
+                "1/15"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_stone}",
+                "1/18"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_plating}",
+                "1/36"
+              ]
+            },
+            [
+              "富集倉的控制器、接收器、存儲方塊這類部件",
+              "1/100"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "染色"
+        },
+        {
+          "type": "p",
+          "text": "護板和魔力強化石一樣能染色，手持染料右鍵就行，染料不會消耗。潛行右鍵能把周圍 5×5×5 以內的同種方塊一起染上，別人領地裏你無權放方塊的格子不受牽連。顏色不影響擋 MRU 的效果，挖下來的方塊總是白色。"
+        },
+        {
+          "type": "h",
+          "text": "柵欄"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fortified_stone_fence",
+            "essentialcraft5:magic_fence"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "6 塊魔力強化石或 6 塊魔力護板擺成兩行三列，能做出 16 段柵欄。它們能和地獄磚柵欄這類石質柵欄連在一起，和木柵欄連不上，柵欄本身也不擋 MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出魔力護板或淡青護板。"
+        }
+      ]
+    },
+    {
+      "id": "crystal_lamps",
+      "title": "水晶燈",
+      "icon": "essentialcraft5:fire_crystal_lamp",
+      "summary": "六種顏色的光源",
+      "complete": "essentialcraft5:guide/alloys/crystal_lamps",
+      "optional": true,
+      "items": [
+        "essentialcraft5:fire_crystal_lamp",
+        "essentialcraft5:water_crystal_lamp",
+        "essentialcraft5:earth_crystal_lamp",
+        "essentialcraft5:air_crystal_lamp",
+        "essentialcraft5:elemental_crystal_lamp",
+        "essentialcraft5:mithriline_crystal_lamp"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做幾盞水晶燈照明，亮度 <t>15</t>，和螢石一樣亮。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "工作台四角放圓石，正中放一支火把。",
+            "上下左右放 4 份同一種材料，燈的顏色看材料而定，{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}、{item:essentialcraft5:air_drops}、{item:essentialcraft5:elemental_gem}各出一種顏色，放{item:essentialcraft5:mithriline_dust}出的是米斯萊水晶燈。",
+            "放下以後得用鎬挖，才會掉落。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_crystal_lamp",
+            "essentialcraft5:water_crystal_lamp",
+            "essentialcraft5:earth_crystal_lamp"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:air_crystal_lamp",
+            "essentialcraft5:elemental_crystal_lamp",
+            "essentialcraft5:mithriline_crystal_lamp"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "做出任意一盞水晶燈。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書寫道，魔晶十分通透，單拿出來沒什麼用，有人拿它圍住一支尋常的火把，再用圓石加固，就成了一盞只能裝飾、卻相當好看的燈。"
+        }
+      ]
+    }
+  ]
+}

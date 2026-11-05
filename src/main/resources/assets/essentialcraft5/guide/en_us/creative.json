@@ -1,0 +1,289 @@
+{
+  "id": "creative",
+  "order": 99,
+  "group": "side",
+  "title": "Side Chapter · Infinite Items",
+  "subtitle": "Infinite power and a ward, no recipe",
+  "icon": "essentialcraft5:infinite_mru_source",
+  "entries": [
+    {
+      "id": "creative_items",
+      "title": "Infinite Items",
+      "icon": "essentialcraft5:infinite_mru_source",
+      "summary": "No crafting recipe: infinite power and a ward",
+      "items": [
+        "essentialcraft5:infinite_mru_source",
+        "essentialcraft5:infinite_espe_source",
+        "essentialcraft5:infinite_thermal_source",
+        "essentialcraft5:infinite_mru_crystal",
+        "essentialcraft5:creative_ward",
+        "essentialcraft5:balance_setter",
+        "essentialcraft5:creative_mru_storage",
+        {
+          "if": "cfg:machines.mru_converter.enabled",
+          "items": [
+            "essentialcraft5:infinite_mru_converter"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "These things appear in no book of the Fragments, and I never found out who made them, or from what. Every one I have seen was put into my hands by someone else.",
+          "by": "Compiler's note"
+        },
+        {
+          "type": "p",
+          "text": "These items <em>have no crafting recipe</em>, so you can't make them in Survival, and they never turn up in loot or trades. Someone has to take them from the Creative inventory and hand them to you. Once you have them, they work normally in Survival."
+        },
+        {
+          "type": "p",
+          "text": "The blocks drop themselves when mined with a pickaxe, so you can move them whenever you like, and creepers or TNT can't blow them up. The carried items work as long as they are on you. None of them changes the blocks around it or causes corruption. For terms such as MRU and ESPE, see [[start/glossary]]."
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:infinite_mru_source",
+            "essentialcraft5:infinite_espe_source",
+            "essentialcraft5:infinite_thermal_source"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Item",
+            "How to use",
+            "What it does"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:infinite_mru_source}",
+              "Place it near machines",
+              "Tops up MRU in machines within <t>8</t> blocks every second, and a Bound Gem can draw from it endlessly"
+            ],
+            [
+              "{item:essentialcraft5:infinite_espe_source}",
+              "Place it near Mithriline Furnaces or crystal pillars",
+              "Tops up ESPE within <t>8</t> blocks every second"
+            ],
+            [
+              "{item:essentialcraft5:infinite_thermal_source}",
+              "Right-click with an empty hand to switch",
+              "The best heat source for a Heat Generator, or cold source for a Cold Distillator"
+            ],
+            {
+              "if": [
+                "cfg:machines.mru_converter.enabled",
+                "!mod:botania"
+              ],
+              "cells": [
+                "{item:essentialcraft5:infinite_mru_converter}",
+                "Place it against blocks that take energy",
+                "Uses no MRU and pushes out energy (FE) as fast as a Demonic MRU Converter"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.mru_converter.enabled",
+                "mod:botania"
+              ],
+              "cells": [
+                "{item:essentialcraft5:infinite_mru_converter}",
+                "Place it against blocks that take energy or mana",
+                "Uses no MRU and pushes out energy (FE) or Botania mana as fast as a Demonic MRU Converter"
+              ]
+            },
+            {
+              "if": "bauble:essentialcraft5:infinite_mru_crystal",
+              "cells": [
+                "{item:essentialcraft5:infinite_mru_crystal}",
+                "Keep it on you",
+                "Pays every MRU cost and never empties"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:creative_ward",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:creative_ward}",
+                "Keep it on you",
+                "UBMRU stays full; matrix damage and Hoanna radiation stay at zero"
+              ]
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:creative_ward",
+                "!cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "{item:essentialcraft5:creative_ward}",
+                "Keep it on you",
+                "UBMRU stays full; matrix damage stays at zero"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The two infinite sources"
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:infinite_mru_source} does one pass a second, topping up machines within <t>8</t> blocks on each axis that draw MRU through a [[crafting/bound_gem]]. Each pass fills at most <t>32</t> of them, and the rest wait for the next pass."
+        },
+        {
+          "type": "p",
+          "text": "Generators are left out, because filling them would stop them burning and hide their real output."
+        },
+        {
+          "type": "p",
+          "text": "You can also link it with a Bound Gem like any other source, and the machine fills up in one go. The MRU it hands out carries the source's own balance, which a {item:essentialcraft5:balance_setter} can change. The setter has no recipe either and only works in Creative mode. Right-click it to cycle between {balance:frozen}, {balance:pure} and {balance:chaos}, then sneak-right-click the source to set it to the one selected."
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:infinite_espe_source} also does one pass a second, <t>8</t> blocks, at most <t>32</t> per pass, topping up ESPE in the [[mithriline/furnace]] and in [[mithriline/crystal_pillar]]s, so pentacles and wind runes that draw from the pillars never run short. It also works placed where the furnace draws its ESPE from."
+        },
+        {
+          "type": "p",
+          "text": "Right-click either source with an empty hand to see how many it topped up last pass."
+        },
+        {
+          "type": "h",
+          "text": "Infinite MRU Converter",
+          "if": "cfg:machines.mru_converter.enabled"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.mru_converter.enabled",
+          "text": "The {item:essentialcraft5:infinite_mru_converter} works like an ordinary MRU converter ([[converter/mru_converter]]). Pick an output in its screen and it pushes it into the blocks touching it. It has no gem slot, uses no MRU and leaks none, and outputs as much as {cfg:machines.mru_converter.infinite.max_mru_per_tick} MRU per tick would make."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.mru_converter.enabled",
+            "cfg:machines.mru_converter.max_per_owner>0"
+          ],
+          "text": "It counts toward the same limit as ordinary converters, and at most {cfg:machines.mru_converter.max_per_owner} of all your converters work at the same time."
+        },
+        {
+          "type": "h",
+          "text": "The thermal source"
+        },
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:infinite_thermal_source} starts out as a heat source. It gives the [[generators/heat_generator]] a factor of <t>1</t>, with no loss at all, where lava gives 0.95. One on each of the four sides, with a one-block gap like lava, gives full output."
+        },
+        {
+          "type": "p",
+          "text": "Right-click it with an empty hand to turn it into a cold source. One block gives a [[generators/cold_distillator]] <t>171</t> cold, as much as filling its surroundings with Cold Stone. The heat side gives no cold and the cold side no heat, so the wrong one produces nothing."
+        },
+        {
+          "type": "h",
+          "text": "Items you carry",
+          "if": "bauble:essentialcraft5:infinite_mru_crystal||bauble:essentialcraft5:creative_ward"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:infinite_mru_crystal"
+          ],
+          "if": "bauble:essentialcraft5:infinite_mru_crystal"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:creative_ward"
+          ],
+          "if": "bauble:essentialcraft5:creative_ward"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:infinite_mru_crystal",
+              "text": "{item:essentialcraft5:infinite_mru_crystal}: keep it in your inventory, offhand or a ring slot. Staffs, charms, Magical Wings and everything else that costs MRU pay from it, and it never empties. While you carry it, your other storage items are never drained."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:creative_ward",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "{item:essentialcraft5:creative_ward}: keep it in your inventory or a necklace slot. Your [[mru/ubmru]] stays full, and [[corruption/matrix_damage|matrix damage]] and Hoanna radiation stay at zero, so no new corruption effects roll. If another player kills you, they can't take the UBMRU the ward added, and when you take the ward off, your UBMRU goes back to what it was before."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:creative_ward",
+                "!cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "{item:essentialcraft5:creative_ward}: keep it in your inventory or a necklace slot. Your [[mru/ubmru]] stays full and [[corruption/matrix_damage|matrix damage]] stays at zero, so no new corruption effects roll. If another player kills you, they can't take the UBMRU the ward added, and when you take the ward off, your UBMRU goes back to what it was before."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "While you carry the {item:essentialcraft5:infinite_mru_crystal}, it also pays for the blocking done by [[gear/mhs_armor]], [[gear/void_armor]] and the [[computer/suit]], so the charge stored in each piece stops going down. A piece only blocks if it holds some charge of its own, so charge empty ones first.",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal",
+            "cfg:general.attunement.enabled"
+          ],
+          "text": "The extra damage types armor blocks after attunement don't count: discharges blocked by [[attunement/mhs_armor|MHS Armor]] at stage 2, and magic and armor-piercing damage blocked by the [[attunement/computer_armor|Computer Guy's Suit]] from stage 2. The crystal never pays for those; they still come out of your other storage items and the charge in the armor."
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal"
+          ],
+          "text": "While you carry the {item:essentialcraft5:infinite_mru_crystal}, it also pays for the blocking done by [[gear/mhs_armor]], so the charge stored in each piece stops going down. A piece only blocks if it holds some charge of its own, so charge empty ones first."
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal",
+            "cfg:general.attunement.enabled"
+          ],
+          "text": "Discharges that [[attunement/mhs_armor|MHS Armor]] blocks from attunement stage 2 don't count. The crystal never pays for those; they still come out of your other storage items and the charge in the armor."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "bauble:essentialcraft5:infinite_mru_crystal||bauble:essentialcraft5:creative_ward"
+          ],
+          "text": "Worn in the accessory bar, these two also stop working while a [[computer/seal_field|Curio Seal Field]] covers you. Kept in the inventory or off hand, they are unaffected."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "text": "The ward only stops new corruption. Effects you already have stay until you treat them ([[pentacle/cure]]).",
+          "if": [
+            "bauble:essentialcraft5:creative_ward",
+            "cfg:general.corruption.effects_enabled"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "The Creative inventory also has a {item:essentialcraft5:creative_mru_storage} and a {item:essentialcraft5:creative_espe_storage}. Despite the similar names they are different blocks. They come from the original mod and only wait to be drawn from, never topping up anything around them."
+        }
+      ]
+    }
+  ]
+}

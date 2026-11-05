@@ -1,0 +1,220 @@
+[
+  {
+    "id": "magical_furnace",
+    "title": "{item:essentialcraft5:magical_furnace}",
+    "icon": "essentialcraft5:magical_furnace",
+    "complete": "essentialcraft5:guide/void_machines/magical_furnace",
+    "optional": true,
+    "items": [
+      "essentialcraft5:magical_furnace"
+    ],
+    "summary": "Toss items on top; results land on the corners",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: build a Magical Furnace and toss logs, sand, raw ores or anything else a furnace takes on top of it. It smelts them one at a time and now and then gives an extra result."
+      },
+      {
+        "type": "h",
+        "text": "You need"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The machine itself: it takes {item:essentialcraft5:void_plating}, a {item:essentialcraft5:void_core} and a {item:essentialcraft5:void_mru_reactor} brought back from Hoanna; the recipe is below.",
+          "29 {item:essentialcraft5:void_stone} in any colors ([[hoanna/void_stone]]).",
+          "4 ordinary {item:essentialcraft5:heat_generator}s ([[generators/heat_generator]]); Ultra Heat Generators don't count.",
+          "A {item:essentialcraft5:bound_gem} linked to an MRU source ([[crafting/bound_gem]])."
+        ]
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:magical_furnace"
+      },
+      {
+        "type": "h",
+        "text": "Layout"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:magical_furnace"
+      },
+      {
+        "type": "p",
+        "text": "Lay a 5×5 floor of Void Stone and put the furnace on top of the middle block. Put one Void Stone on each corner of the furnace's layer and one Heat Generator on each corner of the layer above. The generators are only stands here; they don't need fuel."
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Right-click the furnace and put the bound gem into its only slot.",
+          "Stand next to it and toss the items onto the furnace; a whole stack is fine.",
+          "Every {cfg:machines.magical_furnace.ticks_required|sec} one item is done; the result and the {item:essentialcraft5:magical_slag} land on the corner Heat Generators."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "The status bar in the GUI says “Smelting”, the tossed stack shrinks, results show up on the south-east corner and slag on the north-east one."
+      },
+      {
+        "type": "h",
+        "text": "Numbers"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "Per item",
+            "{cfg:machines.magical_furnace.ticks_required|sec}"
+          ],
+          [
+            "Energy",
+            "{cfg:machines.magical_furnace.mru_usage} MRU per tick"
+          ],
+          [
+            "Extra result",
+            "{cfg:machines.magical_furnace.double_output_chance|pct}, on the north-west corner"
+          ],
+          [
+            "Magical Slag",
+            "1 per item on the north-east corner; {cfg:machines.magical_furnace.double_slag_chance|pct} chance of 1 more on the south-west corner"
+          ],
+          [
+            "Experience",
+            "none"
+          ]
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "If MRU runs out halfway, the progress pauses and goes on once MRU is back; nothing is wasted. Only a different kind of item starts over.",
+          "A redstone signal stops it.",
+          "If 8 or more dropped items already lie on a corner it pauses (“Output corners are full”) until you clear them. Results stack onto a matching pile first, so come by and pick them up.",
+          "Wet Sponges and dusts never give an extra result (slag is unaffected), so re-wetting or grinding and smelting again can't make items out of nothing.",
+          "It leaves alone drops meant for a particular player and display items."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "Watch out",
+        "text": "Don't mix it up with the {item:essentialcraft5:magic_magmatic_furnace}, a tier of the Magmatic Furnace. For ores and raw ores the {item:essentialcraft5:magmatic_smeltery} ([[magmatic/smeltery]]) is still the best deal; the Magical Furnace wins by smelting anything without lava."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "The original research book introduced it with a single line, “not an infernal one”: another magic mod of the time had a big furnace that ate dropped items too, and the author wanted to make clear this one was different."
+      }
+    ]
+  },
+  {
+    "id": "magical_teleporter",
+    "title": "{item:essentialcraft5:magical_teleporter}",
+    "icon": "essentialcraft5:magical_teleporter",
+    "complete": "essentialcraft5:guide/void_machines/magical_teleporter",
+    "optional": true,
+    "items": [
+      "essentialcraft5:magical_teleporter"
+    ],
+    "summary": "Stand on it to reach the block a gem is bound to",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: build a Magical Teleporter, stand on it until it is charged and get sent to the top of the block a bound gem points at: any distance within a world, or into another dimension."
+      },
+      {
+        "type": "h",
+        "text": "You need"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The machine itself: the same recipe as the Magical Furnace, except that the Magic Fortified Plates on the sides become {item:essentialcraft5:magic_plate}s (pale or mithriline plates work too); see below.",
+          "36 {item:essentialcraft5:void_stone} and 4 {item:essentialcraft5:magic_plating}, any colors ([[hoanna/void_stone]], [[alloys/plating]]).",
+          "Two {item:essentialcraft5:bound_gem}s ([[crafting/bound_gem]]): one linked to an MRU source, one bound to the destination block."
+        ]
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:magical_teleporter"
+      },
+      {
+        "type": "h",
+        "text": "Layout"
+      },
+      {
+        "type": "structure",
+        "structure": "essentialcraft5:magical_teleporter"
+      },
+      {
+        "type": "p",
+        "text": "The teleporter's layer is 5×5: the four blocks two steps east, south, west and north are Magic Plating, everything else is Void Stone. On each of the two layers above, put two Void Stones on every side so they form four pairs of pillars; the corners and the middle stay empty, leaving two blocks of room above the teleporter to stand in."
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Right-click the destination block with a bound gem; you will land on top of it (on grass or a thin layer of snow, on the ground below it).",
+          "Right-click the teleporter: the gem linked to an MRU source goes into the left slot, the destination gem into the right slot.",
+          "Stand on top of the teleporter and stay put. The status bar goes from “Ready” to “Charging”; after {cfg:machines.magical_teleporter.ticks_required|sec} you are sent.",
+          "After you arrive, step off first (even if you landed on another teleporter); it charges again only once you step back on."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "A firework blast, and you are standing on top of that block; the teleporter has spent the MRU for the trip."
+      },
+      {
+        "type": "h",
+        "text": "Cost"
+      },
+      {
+        "type": "formula",
+        "text": "Same world: {cfg:machines.magical_teleporter.mru_usage} × (east-west + up-down + north-south distance) ÷ 3 MRU, at most {cfg:machines.magical_teleporter.max_mru}"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "Charging",
+            "{cfg:machines.magical_teleporter.ticks_required|sec}"
+          ],
+          [
+            "Capacity",
+            "{cfg:machines.magical_teleporter.max_mru} MRU"
+          ],
+          {
+            "if": "cfg:machines.magical_teleporter.allow_dimensional",
+            "cells": [
+              "Another dimension",
+              "only with a full tank; takes all {cfg:machines.magical_teleporter.max_mru} MRU"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "Without enough MRU for the trip the charge pauses and goes on once MRU is back; a different person, a removed gem or a broken structure starts it over.",
+          "A redstone signal pauses the charge.",
+          "Riding something or carrying a passenger blocks the trip; get off first.",
+          "A teleporter inside someone else's claim only charges for players who have permission there."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "Watch out",
+        "text": "On arrival the destination is checked: there must be something to stand on, two free blocks of room, nothing harmful such as lava, fire, cactus or powder snow, and it must be a place where you may change blocks (no entering other people's claims); the Nether's bedrock roof can't be reached. If not, nothing happens and no MRU is spent; the GUI says why. Step off, fix it and step back on. If the destination area isn't loaded it waits a few seconds; if it still isn't, the trip fails."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "The original research book called it a “warp gate” and used a row of exclamation marks to stress that it reaches <em>other dimensions</em>."
+      }
+    ]
+  }
+]

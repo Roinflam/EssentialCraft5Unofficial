@@ -1,0 +1,177 @@
+[
+  {
+    "id": "magical_builder",
+    "title": "建筑魔杖",
+    "icon": "essentialcraft5:magical_builder_fill",
+    "summary": "圈一片选区，一次填、清或换一整片方块",
+    "complete": "essentialcraft5:guide/void_machines/magical_builder",
+    "optional": true,
+    "items": [
+      "essentialcraft5:magical_builder_fill",
+      "essentialcraft5:magical_builder_clear",
+      "essentialcraft5:magical_builder_clear_matching",
+      "essentialcraft5:magical_builder_clear_others",
+      "essentialcraft5:magical_builder_replace_all"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>：做一根建筑魔杖，圈出一片选区，把里面的方块一次填满、清掉或者换成另一种。它烧 MRU 干活，几秒做完一片，拆下来的东西直接进背包。"
+      },
+      {
+        "type": "recipe",
+        "recipe": "essentialcraft5:builder/magical_builder"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>：虚空板和虚空核心要从海纳尔带回来（[[hoanna/void_plating]]、[[hoanna/relics]]）；{item:essentialcraft5:world_interactor}在魔力工作台上做（[[crafting/magician_crafts]]），白名单过滤器见[[logistics/filters]]，魔力挖掘器见[[gear/magical_digger]]。做出来是填充模式。"
+      },
+      {
+        "type": "h",
+        "text": "怎么用"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "拿着魔杖右键一个方块设第一个角，再右键另一个方块设第二个角。两个角围成的长方体就是选区，主手拿着魔杖时它会用品红色的框标出来。",
+          "潜行右键一个方块，把它<hl>选定</hl>：填充和全部替换放的就是它，清除选定方块、清除选定以外拿它来比。",
+          "背包里备好选定方块的物品，对着空气右键开工。魔杖一格一格地做，施工时一直拿着它、别走远。",
+          "想停下就潜行对着空气右键；没在施工时这样做会清掉两个角，选定方块留着。"
+        ]
+      },
+      {
+        "type": "h",
+        "text": "五种模式"
+      },
+      {
+        "type": "table",
+        "header": [
+          "模式",
+          "做什么",
+          "每格 MRU"
+        ],
+        "widths": [
+          3,
+          6,
+          2
+        ],
+        "rows": [
+          [
+            "填充",
+            "只往空气格里放选定方块",
+            "<t>25</t>"
+          ],
+          [
+            "清除",
+            "拆掉选区里所有的方块，不用选定方块",
+            "<t>250</t>"
+          ],
+          [
+            "清除选定方块",
+            "只拆和选定方块同种的",
+            "<t>250</t>"
+          ],
+          [
+            "清除选定以外",
+            "拆掉选定方块以外的",
+            "<t>250</t>"
+          ],
+          [
+            "全部替换",
+            "空气格和水、岩浆格放上选定方块，别的方块换成它，已经是它的不动",
+            "放 <t>25</t>，换 <t>300</t>"
+          ]
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "title": "换模式",
+        "text": "工作台里单放一根，就换到下一个模式：填充 → 清除 → 清除选定方块 → 清除选定以外 → 全部替换 → 填充。存的 MRU、两个角、选定方块都留着。"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "选区最大",
+            "{cfg:general.builder.max_volume} 格"
+          ],
+          [
+            "两个角最远",
+            "{cfg:general.builder.max_point_distance} 格"
+          ],
+          [
+            "开工时离选区",
+            "{cfg:general.builder.max_reach} 格以内"
+          ],
+          [
+            "速度",
+            "每刻最多 {cfg:general.builder.cells_per_tick} 格"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "魔杖自带 5000 MRU 的存储，做出来是空的。用的时候先扣身上储存物品里的 MRU（[[storage/soul_storage]]），不够才扣魔杖自己的；魔杖自己的放进[[storage/charging_chamber]]充。只按<em>做成的格子</em>收钱，空气格、跳过的格子都不收。"
+      },
+      {
+        "type": "list",
+        "items": [
+          "放下的方块按你面对的方向摆（楼梯朝着你），台阶放下半块，蜡烛、海泡菜只放 1 个，作物从刚种下的样子长起。",
+          "新方块在这一格立不住（比如花放在石头上、海带放在没水的地方），或者有人、生物站着的，这一格整格不动、不收钱，全部替换也不会先把原来的方块拆掉。做完时聊天栏会报跳过了几格。",
+          "材料只用背包里没改过名、没装东西的那种物品；用完、MRU 不够都会停下，做好的留着。",
+          "拆下来的东西进背包，放不下的掉在脚下。门、高花、伸出来的活塞会整个拆下来，东西照样进背包。清除从最上面一层往下拆，沙子、砂砾不会掉下来。",
+          "施工途中换了手里的东西、走出 {cfg:general.builder.max_reach} 格、换了维度就会停下。一个人同时只能有一片在做。",
+          "创造模式不扣 MRU、不用材料，拆下来的东西也不给。"
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "text": "动不了的格子（别人的领地、基岩、屏障）不动也不扣；没有权限的格子累计到 256 格，魔杖就会停下，框选时避开别人的领地。箱子、熔炉、机器这类装着东西的方块，以及水和岩浆，清除时都会跳过。门、床、高花和装着东西的方块不能选定。全部替换时如果这一格能拆、不能放，格子会留成空气，按拆收 250。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "主手拿着魔杖能看到品红色的选区框；对空气右键后开始施工，做完聊天栏会报改了多少格。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作研究书里它的副标题只有一行代码：world.edit();。正文第一句是：这把法杖几乎无所不能——但记住，能力越大，责任越大。"
+      }
+    ],
+    "_src": [
+      "item/MagicalBuilderItem.java:76 — 右键方块走 onItemUseFirst（先于方块自己的右键，选点不开箱子）：不潜行设点、潜行选定方块",
+      "item/MagicalBuilderItem.java:109 — 依次设第一点、第二点，两点距离超过 general.builder.max_point_distance、格数超过 max_volume 不设；两点都有再点只提示",
+      "item/MagicalBuilderItem.java:156 — 不能选定：空气、液体、没有物品形态、硬度 < 0、带方块实体、分两半（门、床、高花）、细雪、builder_blacklist 标签",
+      "item/MagicalBuilderItem.java:210 — 右键空气开工；潜行时有活就停下（两个点留着），没活就清掉两个点（选定方块留着）",
+      "item/BuilderMode.java:100 — 每格怎么做：填充只放空气格；清除拆所有；清除选定方块只拆同种；清除选定以外拆不同种；全部替换放空气 / 液体格、换别的方块、同种不动",
+      "item/BuilderMode.java:35 — 放 25、拆 250、换 300 MRU（原作常量）；换的时候拆成了、放被拒按拆收 250",
+      "item/BuilderMode.java:55 — 换模式顺序：填充 → 清除 → 清除选定方块 → 清除选定以外 → 全部替换 → 填充",
+      "item/BuilderMode.java:60 — 只有清除不用选定方块",
+      "item/BuilderJobs.java:236 — 开工条件：真玩家、能改方块、没有在做的活、两个点在当前维度、要选定方块的模式有选定方块、格数、离选区 max_reach 以内、区块已加载",
+      "item/BuilderJobs.java:428 — 每刻复核：同一只手里还是这根魔杖、活着、同维度、离选区 max_reach 以内，不满足就停、做好的留着",
+      "item/BuilderJobs.java:113 — 被拒（领地拒绝、删除被取消、放置被拒）累计 256 格就停下（代码常量 DENIED_LIMIT，不是配置），提示没有权限",
+      "item/BuilderJobs.java:350 — 每根魔杖每刻 cells_per_tick 格，全服合计 max_cells_per_tick_total 格，几人同时用时平分",
+      "item/BuilderJobs.java:490 — 带方块实体、硬度 < 0、builder_blacklist 的格子哪种模式都不碰；纯液体只有全部替换会放",
+      "item/BuilderJobs.java:503 — 放：立不住、被挡住（含自己站着的格子）跳过；没有材料停、MRU 不够停；放置被拒材料放回、不扣",
+      "item/BuilderJobs.java:580 — 拆：被拒不扣；拆成了扣 250、掉落进背包；创造模式不给掉落",
+      "item/BuilderJobs.java:537 — 门、高花等的上半和伸出的活塞头改拆下半 / 底座，整个拆下来进背包，只收一次 250",
+      "item/BuilderJobs.java:600 — 换：先按这一格现在的流体算放置状态，放不下、立不住、有人站着的整格不动不收钱；先确认有材料和 MRU 再拆；放置被拒时格子留空气、掉落照给、只扣 250",
+      "item/BuilderJobs.java:447 — 做完时有放不下跳过的格子，聊天栏的提示里报跳过了几格",
+      "item/BuilderJobs.java:692 — 放下的状态按物品自己的放置规则算一格：台阶放下半块、蜡烛 / 海泡菜放 1 个、作物从最小的长起、楼梯朝玩家面对的方向",
+      "item/BuilderJobs.java:777 — 材料只用没有 NBT 的那种物品（改过名、装了东西的不碰）",
+      "item/BuilderJobs.java:786 — 掉落每刻合并交给玩家，放不下的掉在脚下",
+      "item/MRUStaffItem.java:32 — 魔杖自带 5000 MRU 的存储",
+      "mru/MRUDrain.java:28 — 先扣身上储存物品里的 MRU，不够再扣魔杖自己的；创造模式不扣",
+      "registry/ECBuilder.java:87 — general.builder：max_volume 4096、max_point_distance 48、max_reach 64、cells_per_tick 64、max_cells_per_tick_total 256",
+      "data/essentialcraft5/recipes/builder/magical_builder.json — 主配方：世界交互器 ×2、虚空板 ×2、虚空核心、白名单过滤器 ×2、魔力挖掘器、魔力板",
+      "data/essentialcraft5/recipes/builder/cycle_fill.json — 换模式是保留 NBT 的无序配方（另 4 条同样），MRU、两个点、选定方块都带过去",
+      "data/essentialcraft5/advancements/guide/void_machines/magical_builder.json — 拿到 5 种里的任意一根就打勾",
+      "client/BuilderClient.java:111 — 主手拿着魔杖时画品红选区框（只在点所在的维度），物品格右下角画选定方块",
+      "原作 lang en_US.lang L1013 / L1049 — 研究书副标题 world.edit();、第一页「能力越大，责任越大」"
+    ]
+  }
+]

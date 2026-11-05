@@ -1,0 +1,353 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+}
+
+group = mod_group_id
+version = mod_version
+
+base {
+    // 产物名跟项目名走大驼峰，mod_id 仍然是 Forge 要求的全小写
+    archivesName = rootProject.name
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
+
+minecraft {
+    mappings channel: mapping_channel, version: mapping_version
+
+    // 访问转换器：只放开 BushBlock.mayPlaceOn 一个方法（魔力栽培器判断作物能不能种在耕地上，见 cfg 里的注释）。
+    // jar 里同一份文件由 Forge 在运行期读取
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    // This property allows configuring Gradle's ProcessResources task(s) to run on IDE output locations before launching the game.
+    // It is REQUIRED to be set to true for this template to function.
+    copyIdeResources = true
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            // 只跑本模组的 GameTest
+            property 'forge.enabledGameTestNamespaces', mod_id
+
+            // Curios 等正式版模组的 mixin refmap 里是 SRG 名，开发环境要按 SRG→官方名 的表重映射，否则启动即崩
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            // 本模组自己的 mixin（饰品封禁场，只注入 Curios 自己声明的方法，没有 refmap）。开发环境里本模组不从 jar 加载，
+            // 清单里的 MixinConfigs 不起作用，要在启动参数里指定；天灾封印（原版读附魔的几处）是另一份配置
+            args "-mixin.config=${mod_id}.mixins.json"
+            args "-mixin.config=${mod_id}.seal.mixins.json"
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        client {
+            // 开发用的「展示厅」：进一个新建的超平坦世界、摆好已移植的机器、截图后退出。
+            // 只有加 -PecShowroom 时才打开（见 dev/DevShowroom），IDE 里正常 runClient 不受影响
+            if (project.hasProperty('ecShowroom')) {
+                property 'essentialcraft5.showroom', 'true'
+            }
+            // -PecGuiAudit：展示厅每拍一张开着界面的图，就把界面上每段文字、贴图、格子的坐标记进 run/guiaudit（见 dev/GuiAudit），
+            // 再用 tools/guiaudit/analyze.py 查出框、压格子、重叠；和 -PecShowroom 或某一批的开关一起用，方块排不拍，研究手册只拍一轮
+            if (project.hasProperty('ecGuiAudit')) {
+                property 'essentialcraft5.guiAudit', 'true'
+                // 手册只拍一轮，默认 v640；-PecGuiAuditGuideRound=v427 换别的
+                property 'essentialcraft5.guiAudit.guideRound', project.findProperty('ecGuiAuditGuideRound') ?: 'v640'
+            }
+            // -PecShowroomGuide：只拍研究手册（跳过方块排、场景、机器界面），改手册时用
+            if (project.hasProperty('ecShowroomGuide')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.guideOnly', 'true'
+            }
+            // -PecShowroomHoanna：只拍第六批 6a 海纳尔部分（主世界的 6a 场景、05_hoanna_*、两个界面、海纳尔章手册），调天空配色时用
+            if (project.hasProperty('ecShowroomHoanna')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.hoannaOnly', 'true'
+            }
+            // -PecShowroom6b：只拍第六批 6b 虚空机器（6b 方块排、04_scene_builder_* 等场景、传送器往返、6b 界面和手册页）
+            if (project.hasProperty('ecShowroom6b')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.voidOnly', 'true'
+            }
+            // -PecShowroom7：只拍第七批虚空与恶魔（本批方块排、04_scene_demon* 等场景、交易 / 五芒星界面、物品提示和本批手册页）
+            if (project.hasProperty('ecShowroom7')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.demonOnly', 'true'
+            }
+            // -PecShowroom8：只拍第八批全息与计算机（04_scene_holopad / hologram_* / orbital_* / divider_* / computer_* 等场景、物品提示和本批手册页）
+            if (project.hasProperty('ecShowroom8')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.hologramOnly', 'true'
+            }
+            // -PecShowroom9：只拍第九批地脉凝聚器（04_scene_ley_condenser_* 场景、凝聚器界面与物品提示、本批手册页）
+            if (project.hasProperty('ecShowroom9')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.condenserOnly', 'true'
+            }
+            // -PecShowroom10a：只拍第十批 10a（04_scene_seal_hud、饰品栏 / 背包 / 终端里被压制的样子、封禁场和附录「与原作的不同」的手册页）
+            if (project.hasProperty('ecShowroom10a')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.sealOnly', 'true'
+            }
+            // -PecShowroom10b：只拍第十批 10b（04_scene_trials_*：心愿、召来的大法师、坍缩前后、透镜、二分枪对凋灵、轨道锁定、全息诱饵、偏转、效果图标；提示框、铁砧、本批手册页）
+            if (project.hasProperty('ecShowroom10b')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.trialsOnly', 'true'
+            }
+            // -PecShowroom10c：只拍第十批 10c（04_scene_c10_*：审判庭哨兵四招与回声、信标与穹顶、坐标的方位行、3 档五芒星；解码中的辐射仓、终端「模块」页、穹顶界面、提示框、本批手册页）
+            if (project.hasProperty('ecShowroom10c')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.modulesOnly', 'true'
+            }
+            // -PecShowroom11：只拍第十一批（04_scene_b11_*：MRU 转换器四种外观与真在工作的一排、修过贴图坐标的 OBJ 机器近景；转换器界面、物品提示和本批手册页）
+            if (project.hasProperty('ecShowroom11')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.batch11Only', 'true'
+            }
+            // -PecShowroom12：只拍第十二批（ec5_b12_*：三台机器的顶面和侧面、透过栽培器玻璃顶看里面、展示框里的九样物品；三台机器的界面、本批手册页）
+            if (project.hasProperty('ecShowroom12')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.batch12Only', 'true'
+            }
+            // -PecShowroom13a：只拍第十三批 13a（ec5_b13a_*：淬炼台与五种着色的回响、首领血条、成功标题、引导；凝结中的富集仓与状态检测器；淬炼台界面、灵魂石 / 重锤 / 同调各阶提示框、5 阶宅男终端「模块」页、本批手册页）
+            if (project.hasProperty('ecShowroom13a')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.batch13aOnly', 'true'
+            }
+            // -PecShowroom13b：只拍第十三批 13b（ec5_b13b_*：四套顶阶盔甲与两把剑、电量条（六成、不到两成、让出后遗症的格子、虚空套装）、风之护甲两次空中跳、审判庭定罪粒子、裁决之刃断罪；四套胸甲各阶、裁决之刃、余烬元素剑的提示框、本批手册页）
+            if (project.hasProperty('ecShowroom13b')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.batch13bOnly', 'true'
+            }
+            // -PecShowroom13c：只拍第十三批 13c（ec5_b13c_*：七种怪各自的关键姿势、普通和精英并排、四只风法师、潜行者相位、魔像护盾电弧、矩阵之影三相与悖论画面、镜影；导流符 / 风暴余息 / 灵魂刻刀 / 两种掉落材料的提示框、异兽录手册页）
+            if (project.hasProperty('ecShowroom13c')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.batch13cOnly', 'true'
+            }
+            // -PecShowroom13d：只拍第十三批 13d（ec5_b13d_*：海纳尔特产方块昼夜、巢穴核心三态、里程碑、八种本地怪的关键姿势与精英、渊鳗水箱、七个群系景观、三种中景观远景与核心、地脉风暴夜空 / 白天 / 落晶 / 提示条、大潮光幕对新月、热点细尘、勘测图光柱、日阵榍石、黑暗影晶；勘测图三态 / 渊盐 / 特产 / 异变掉落的提示框、本批手册页）
+            if (project.hasProperty('ecShowroom13d')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.batch13dOnly', 'true'
+            }
+            // -PecShowroom13e：只拍第十三批 13e（ec5_b13e_*：封印宝库地面 / 井 / 前厅空的和放满 / 封印门关开 / 宝库室，审判庭前哨全景 / 信标座 / 营地，沉没城区全景 / 穹顶里，渊潮领主与漩涡，废城守望者与炮台、镇压红圈，天灾之心护盾期与四相、熄光拿火把 / 空手，天灾之心加强的封印锁图标、开场名字、合相技两种、四灾归心，4 档灵魂五芒星；第二十二、二十三章与海纳尔探索三篇、异兽录三只首领的手册页）
+            if (project.hasProperty('ecShowroom13e')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.batch13eOnly', 'true'
+            }
+            // -PecShowroomJei：挂上完整 JEI，进世界后逐个打开本模组的 JEI 分类各拍一张（见 compat/jei/DevJeiShowroom）
+            // -PecShowroomQuote：只拍几章篇首的题记块（三种手册宽度各一轮）
+            if (project.hasProperty('ecShowroomQuote')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.guideOnly', 'true'
+                property 'essentialcraft5.showroom.quoteOnly', 'true'
+            }
+            // -PecShowroomStruct：只拍研究手册里的立体结构图（同时是只拍手册），加了结构图、改了 StructureView3D 时用
+            if (project.hasProperty('ecShowroomStruct')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.guideOnly', 'true'
+                property 'essentialcraft5.showroom.structOnly', 'true'
+            }
+            if (project.hasProperty('ecShowroomJei')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.jeiOnly', 'true'
+            }
+        }
+
+        server {
+            args '--nogui'
+        }
+
+        // 独立服环境跑 GameTest：Forge 对 GameTest 服自动同意 EULA，不需要 eula.txt。
+        // 顺带验证专用服不会加载到客户端类
+        gameTestServer {
+            workingDirectory project.file('run-gametest')
+        }
+
+        data {
+            workingDirectory project.file('run-data')
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'forge'
+            // 语言提供者从 tools/legacy_lang 读原作译文
+            property 'essentialcraft5.projectDir', projectDir.absolutePath
+        }
+    }
+}
+
+// GameTest 服按 server.properties 建世界（默认普通地形），测试却按超平坦世界的地表（y≈-60）摆放，
+// 结果测试区域埋在地下、看不到天空（月亮井这类要看天的机器测不了）。所以每次都用全新的超平坦世界
+tasks.matching { it.name == 'runGameTestServer' }.configureEach {
+    doFirst {
+        def dir = file('run-gametest')
+        delete new File(dir, 'world')
+        dir.mkdirs()
+        // properties 文件里冒号要转义
+        new File(dir, 'server.properties').text = 'level-type=minecraft\\:flat\n'
+    }
+}
+
+// 上面 runs 里 refmap 重映射要用的表，启动前先生成
+tasks.matching { it.name == 'prepareRuns' }.configureEach { dependsOn 'createSrgToMcp' }
+
+// datagen 的产物也是资源
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    // Curios 饰品栏（原作的 Baubles 饰品全部改走 Curios）
+    maven {
+        name = 'Curios'
+        url = 'https://maven.theillusivec4.top/'
+    }
+    // 植物魔法的 api 构件（MRU 转换器的魔力输出，编译期可选依赖；运行期默认不带植物魔法）；JEI 的 api 也在这里
+    maven {
+        name = 'BlameJared'
+        url = 'https://maven.blamejared.com/'
+        content {
+            includeGroup 'vazkii.botania'
+            includeGroup 'vazkii.patchouli'
+            includeGroup 'mezz.jei'
+        }
+    }
+}
+
+// -PcuriosRuntimeJar=<jar>：开发环境运行时（runClient / runServer / runGameTestServer）改用这份 Curios 5.14.x，
+// 用来核对别的 5.14.x 构建上饰品压制的注入点是否到位；编译仍挂官方 :api。不加这个参数时和以前完全一样。
+// ForgeGradle 不认 fg.deobf(files(...))，所以拷进 build/ 下的平铺仓库再按坐标引用
+def curiosRuntime = "top.theillusivec4.curios:curios-forge:${curios_version}"
+if (project.hasProperty('curiosRuntimeJar')) {
+    def curiosSrc = file(project.property('curiosRuntimeJar'))
+    if (!curiosSrc.isFile()) {
+        throw new GradleException("curiosRuntimeJar 指向的文件不存在：${curiosSrc}")
+    }
+    // 坐标里的「版本」取文件大小和修改时间：换一份 jar 坐标就变，不会命中 ForgeGradle 旧的反混淆缓存
+    def curiosStamp = Long.toHexString(curiosSrc.length() * 31L + curiosSrc.lastModified())
+    def curiosDir = new File(projectDir, 'build/curios-runtime')
+    def curiosTarget = new File(curiosDir, "curios-forge-local-${curiosStamp}.jar")
+    if (!curiosTarget.exists()) {
+        curiosDir.mkdirs()
+        java.nio.file.Files.copy(curiosSrc.toPath(), curiosTarget.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+    }
+    repositories { flatDir { dirs curiosDir } }
+    curiosRuntime = "curioslocal:curios-forge-local:${curiosStamp}"
+}
+
+// -PbotaniaRuntimeJar=<植物魔法 jar> -PpatchouliRuntimeJar=<Patchouli jar>：开发环境运行时（runClient / runServer / runGameTestServer）挂上真的植物魔法，
+// 跑 MRU 转换器魔力那组 GameTest（ConverterBotaniaTests，没挂植物魔法时不生成）。植物魔法的 mods.toml 硬依赖 Patchouli（Curios 本来就在运行期），
+// 所以两个一起给才生效；只给一个直接报错。不加这两个参数时和以前完全一样，运行期没有植物魔法——这本身就在验证「没装时照常加载」。
+// 写法同 -PcuriosRuntimeJar：拷进 build/ 下的平铺仓库再按坐标引用（ForgeGradle 不认 fg.deobf(files(...))）
+def botaniaRuntime = []
+if (project.hasProperty('botaniaRuntimeJar') || project.hasProperty('patchouliRuntimeJar')) {
+    if (!(project.hasProperty('botaniaRuntimeJar') && project.hasProperty('patchouliRuntimeJar'))) {
+        throw new GradleException('botaniaRuntimeJar 和 patchouliRuntimeJar 要一起给（植物魔法硬依赖 Patchouli）')
+    }
+    def localRuntimeJar = { String prop, String name ->
+        def src = file(project.property(prop))
+        if (!src.isFile()) {
+            throw new GradleException("${prop} 指向的文件不存在：${src}")
+        }
+        // 坐标里的「版本」取文件大小和修改时间：换一份 jar 坐标就变，不会命中 ForgeGradle 旧的反混淆缓存
+        def stamp = Long.toHexString(src.length() * 31L + src.lastModified())
+        def dir = new File(projectDir, "build/${name}-runtime")
+        def target = new File(dir, "${name}-local-${stamp}.jar")
+        if (!target.exists()) {
+            dir.mkdirs()
+            java.nio.file.Files.copy(src.toPath(), target.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+        }
+        repositories { flatDir { dirs dir } }
+        return "${name}local:${name}-local:${stamp}".toString()
+    }
+    botaniaRuntime = [localRuntimeJar('botaniaRuntimeJar', 'botania'), localRuntimeJar('patchouliRuntimeJar', 'patchouli')]
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // 编译期只挂 api 分类器，开发环境运行用完整 jar
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+    runtimeOnly fg.deobf(curiosRuntime)
+
+    // 植物魔法只挂 api（全工程只有 compat/botania/BotaniaManaBridge 用到它）；运行期默认不带，见上面的 -PbotaniaRuntimeJar
+    compileOnly fg.deobf("vazkii.botania:Botania:${botania_version}:api")
+    botaniaRuntime.each { runtimeOnly fg.deobf(it) }
+
+    // JEI 只挂 api（compat/jei 里的分类由 JEI 按 @JeiPlugin 找到再加载，没装 JEI 时这些类不会被碰到）；
+    // 运行期默认不带，加 -PjeiRuntime（-PecShowroomJei 自动带上）时开发环境挂完整的 JEI
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
+    if (project.hasProperty('jeiRuntime') || project.hasProperty('ecShowroomJei')) {
+        runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    }
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    // 描述含中文，必须固定过滤编码，否则在系统默认编码为 GBK 的机器上 expand 出来的 mods.toml 会是乱码
+    filteringCharset = 'UTF-8'
+
+    var replaceProperties = [minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+                             forge_version       : forge_version, forge_version_range: forge_version_range,
+                             loader_version_range: loader_version_range,
+                             curios_version_range: curios_version_range,
+                             mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+                             mod_authors         : mod_authors, mod_credits: mod_credits, mod_description: mod_description,]
+
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    // CC BY-SA 4.0 要求随作品附上许可文本和署名
+    from(rootProject.file('LICENSE')) { into 'META-INF' }
+    from(rootProject.file('CREDITS.md')) { into 'META-INF' }
+    // CREDITS 里「改动清单见 README」要能在 jar 里找到
+    from(rootProject.file('README.md')) { into 'META-INF' }
+
+    manifest {
+        attributes(["Specification-Title"     : mod_id,
+                    "Specification-Vendor"    : mod_authors,
+                    "Specification-Version"   : "1",
+                    "Implementation-Title"    : project.name,
+                    "Implementation-Version"  : project.jar.archiveVersion,
+                    "Implementation-Vendor"   : mod_authors,
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                    // Forge 47 上模组 jar 的 mixin 配置只能写在清单里（由 Mixin 自己读，mods.toml 不支持 [[mixins]]）
+                    "MixinConfigs"            : "${mod_id}.mixins.json,${mod_id}.seal.mixins.json"])
+    }
+
+    finalizedBy 'reobfJar'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+// ============================================================
+//  Windows 上的 AF_UNIX 坑
+//
+//  JDK 17+ 在 Windows 上用 AF_UNIX 套接字实现 Selector 的唤醒管道，套接字文件默认建在 %TEMP%。
+//  有的 Windows 机器上 %LOCALAPPDATA% 及其以下的目录里 AF_UNIX 能 bind 却 connect 不上，
+//  表现为 Gradle 编译 Worker 报 "Unable to establish loopback connection"。
+//  只有 jdk.net.unixdomain.tmpdir 能改这个位置，这里给编译 Worker 和开发环境的 MC 进程都指到项目内的目录。
+// ============================================================
+def udsTmpDir = file("${rootDir}/.gradle/uds-tmp")
+udsTmpDir.mkdirs()
+// 必须是 String 而不是 GString：forkOptions.jvmArgs 是 List<String>，塞 GString 进去执行时会类型转换失败
+String udsJvmArg = "-Djdk.net.unixdomain.tmpdir=${udsTmpDir.absolutePath}"
+
+tasks.withType(JavaCompile).configureEach {
+    options.forkOptions.jvmArgs.add(udsJvmArg)
+}
+
+minecraft.runs.configureEach {
+    jvmArg udsJvmArg
+}

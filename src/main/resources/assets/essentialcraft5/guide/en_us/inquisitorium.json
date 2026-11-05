@@ -1,0 +1,795 @@
+{
+  "id": "inquisitorium",
+  "order": 103,
+  "group": "main",
+  "title": "Chapter 19 · The Inquisitorium",
+  "subtitle": "Follow the echo to the Inquisitorium",
+  "icon": "essentialcraft5:inquisitorium_chip",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "legend",
+      "title": "The Inquisitorium: Following the Echo",
+      "icon": "minecraft:echo_shard",
+      "summary": "Where this chapter goes and what to bring",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "From this day the Court will not answer. Whoever calls is to be met by a projection. Should the projection be destroyed, it leaves an echo that points the way here. Whoever follows the echo to us will be judged then.",
+          "by": "Inquisitorium archive, fragment"
+        },
+        {
+          "type": "p",
+          "text": "No one is left alive in the Inquisitorium. The holopad's signal went out across Hoanna and brought the Holographic Projection, but the {item:essentialcraft5:glitchy_core} it drops still holds an <em>echo</em> that points to where the Inquisitorium really is. In this chapter you decode that echo, follow it to the Inquisitorium and defeat the <em>Inquisitorium Sentinel</em> that guards it."
+        },
+        {
+          "type": "h",
+          "text": "How this chapter goes"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Defeat a Holographic Projection and pick up the Glitchy Core it drops ([[inquisitorium/glitchy_core]]).",
+            "Put the core in a Radiating Chamber, feed it MRU at the matching balance and decode the {item:essentialcraft5:inquisitorium_coordinates} ([[inquisitorium/decoding]]).",
+            "Carry the coordinates to the shadow-corrupted land they point to in Hoanna ([[inquisitorium/journey]]).",
+            "Make the coordinates into an {item:essentialcraft5:inquisitorium_beacon}, light it there and summon the Sentinel ([[inquisitorium/beacon]]).",
+            "Defeat the [[inquisitorium/sentinel|Sentinel]], then take your pentacle up to tier 3 ([[inquisitorium/purify]])."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What to prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "MRU whose balance you can adjust. That means at least two generators, one with a low balance and one with a high one, plus an {item:essentialcraft5:intersector} to blend them ([[enrichment/intersector]]).",
+            "For the beacon, 5 {item:essentialcraft5:twinkling_titanite}, 1 {item:essentialcraft5:void_core} and 2 {item:essentialcraft5:neuronic_enriched_plating}.",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "Supplies for a long trip in Hoanna. Bring food, a bed and a boat, and be ready for radiation and disasters ([[hoanna/radiation]])."
+            },
+            {
+              "if": "!cfg:general.radiation.enabled",
+              "text": "Supplies for a long trip in Hoanna. Bring food, a bed and a boat, and be ready for disasters ([[hoanna/events]])."
+            },
+            "For the Sentinel, the same kit you used against the Holographic Projection, with extra healing ([[inquisitorium/sentinel]]).",
+            "For the tier 3 pentacle, 4 Demonic Plating and 4 Demonic Crystal Pillars ([[inquisitorium/purify]])."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "Before the holopad, the original research book records a few rumors that the mysterious \"Inquisition\" is hidden somewhere in Hoanna, though nobody can find it, and that it might help you build the computer that controls the Demonic Plates. What became of it, the original never says."
+        }
+      ]
+    },
+    {
+      "id": "glitchy_core",
+      "title": "{item:essentialcraft5:glitchy_core}",
+      "icon": "essentialcraft5:glitchy_core",
+      "summary": "Always dropped by the Projection, with a target balance",
+      "complete": "essentialcraft5:guide/inquisitorium/glitchy_core",
+      "items": [
+        "essentialcraft5:glitchy_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: get a Glitchy Core. A Holographic Projection drops one every time a player defeats it, on the spot along with the math core and the relics ([[hologram/hologram]])."
+        },
+        {
+          "type": "p",
+          "text": "The Inquisitorium kept every record by balance, and it locked the echo the same way. Each Glitchy Core carries a <hl>target balance</hl>, shown in its tooltip as a line like \"Target balance: 0.73\". The value has two decimals and is random between {cfg:general.inquisitorium.balance_min} and {cfg:general.inquisitorium.balance_max}. When you decode the core, the Radiating Chamber's balance has to match it."
+        },
+        {
+          "type": "p",
+          "text": "The closer the target is to 1 ({balance:pure}), the easier it is, since generators fixed at 1 already exist. A target near either end needs a dedicated frozen or chaotic source. If a core is too awkward, fight another Projection for a new one."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Glitchy Core in your inventory."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Cores without a target",
+          "text": "A Glitchy Core taken from the creative inventory has no target balance and rolls one when it lands in your inventory."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It only drops when a player defeats the Projection, and a group fight still drops just one.",
+            "Each core rolls its own target, and only cores with the same target stack.",
+            "The [[inquisitorium/sentinel|Inquisitorium Sentinel]] drops another one when it is defeated."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decoding",
+      "title": "Decoding: Matching the Target Balance",
+      "icon": "essentialcraft5:radiating_chamber",
+      "summary": "A Radiating Chamber turns the core into coordinates",
+      "complete": "essentialcraft5:guide/inquisitorium/decoded",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: put the Glitchy Core in a {item:essentialcraft5:radiating_chamber} ([[crafting/radiating_chamber]]), bring the chamber's balance onto the target written on the core and decode a set of {item:essentialcraft5:inquisitorium_coordinates}."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Where",
+              "Either input slot, with the other one empty"
+            ],
+            [
+              "Balance",
+              "Within <t>{cfg:general.inquisitorium.decode_tolerance}</t> of the target"
+            ],
+            [
+              "Time",
+              "{cfg:general.inquisitorium.decode_ticks|sec}, counting only time on target"
+            ],
+            [
+              "MRU",
+              "{cfg:general.inquisitorium.decode_mru} in total, spread evenly over the ticks"
+            ],
+            [
+              "Output slot",
+              "Must be empty"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How to"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the Glitchy Core in the upper or lower input slot and leave the other empty.",
+            "Hover over the bar in the middle of the screen, and \"Required Balance\" shows this core's window, the target plus or minus {cfg:general.inquisitorium.decode_tolerance}.",
+            "Adjust the chamber's balance as described below until the balance reading on the screen falls inside the window.",
+            "The bar reads \"Decoding\" and the percentage climbs. When it is full it shows \"Locating\" for a moment, then the coordinates appear in the output slot and the core is used up."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Tuning the balance"
+        },
+        {
+          "type": "p",
+          "text": "The chamber draws MRU from whatever machine its bound gem points at. Each bit it pulls in is averaged with what it already holds, weighted by amount, so the chamber's balance slowly drifts toward the source's."
+        },
+        {
+          "type": "list",
+          "items": [
+            "If a generator already sits near the target, bind the gem straight to it. The {item:essentialcraft5:matrix_absorber} and the {item:essentialcraft5:moon_well} are both fixed at 1.",
+            "For an uneven value such as 0.73, connect the two gem slots of an {item:essentialcraft5:intersector} to two sources, one below the target and one above it, then bind the chamber to the intersector. The blend lands between the two, weighted by how much each side sends.",
+            "To nudge the reading, put a lever on one of the generators and use redstone to stop it now and then, which shifts the ratio in the intersector ([[generators/heat_generator]])."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "A set of Inquisitorium Coordinates appears in the output slot. Everyone within 16 blocks of the chamber at that moment gets this step ticked, and so does anyone who later takes the coordinates into their inventory."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "MRU already in the chamber counts toward its balance, so a chamber full of MRU at another balance takes a long time to come around. A freshly placed, empty chamber is quickest, because its balance becomes whatever the first pull brings in."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the balance leaves the window, decoding pauses. Progress is kept, no MRU is used, and it carries on once the balance is back.",
+            "Swapping the core, moving it to the other slot or taking it out resets the progress. Stopping the chamber with redstone keeps it.",
+            "While decoding, the chamber leaks a little MRU into its surroundings, as it always does ([[crafting/corruption]]).",
+            "Hoppers and pipes can't insert the Glitchy Core, so put it in by hand.",
+            "Coordinates decoded at the same spot always point to the same place, so a second core decoded in the same chamber leads back to where the first one did."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journey",
+      "title": "{item:essentialcraft5:inquisitorium_coordinates}",
+      "icon": "essentialcraft5:inquisitorium_coordinates",
+      "summary": "Carry it to the shadow-corrupted land",
+      "complete": "essentialcraft5:guide/inquisitorium/arrived",
+      "items": [
+        "essentialcraft5:inquisitorium_coordinates"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: take the Inquisitorium Coordinates to within {cfg:general.inquisitorium.arrive_radius} blocks of the place they point to."
+        },
+        {
+          "type": "p",
+          "text": "They point to the <em>Shadow Corrupted Land</em> in Hoanna nearest to the X and Z of the chamber that decoded them, a place of gray-black grass and drifting ash ([[hoanna/lands]]). If you decoded them in the Overworld, search around the same X and Z in Hoanna. The exact numbers are in the tooltip.",
+          "if": "!cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "p",
+          "text": "They most likely point to the [[hoanna_explore/inquisitorium_outpost|Inquisitorium outpost]] nearest to the X and Z of the chamber that decoded them, a ruined flat ground in the <em>Shadow Corrupted Land</em>. Only if there is no outpost nearby do they point to the nearest Shadow Corrupted Land ([[hoanna/lands]]). If you decoded them in the Overworld, search around the same X and Z in Hoanna. The exact numbers are in the tooltip.",
+          "if": "cfg:general.inquisitorium_outpost.decoder_targets_outpost"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Go through the Gate to Hoanna ([[hoanna/crossing]]).",
+            "Hold the coordinates in your main hand or off hand, and the line above the hotbar keeps showing which way the Inquisitorium lies and how far it is.",
+            "Follow it. Within {cfg:general.inquisitorium.arrive_radius} blocks the line changes to \"right around here\" and this step is ticked."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The line above the hotbar reads \"Inquisitorium: right around here\". If you made the beacon first and never carried the coordinates here, the step is ticked when you summon the Sentinel ([[inquisitorium/beacon]])."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "It can be a long way, hundreds or thousands of blocks of Hoanna wasteland and sea, with radiation and disasters to watch for ([[hoanna/radiation]], [[hoanna/events]]). Take a bed and a boat. You can sleep somewhere safe along the way.",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "It can be a long way, hundreds or thousands of blocks of Hoanna wasteland and sea, with disasters to watch for ([[hoanna/events]]). Take a bed and a boat. You can sleep somewhere safe along the way.",
+          "if": "!cfg:general.radiation.enabled"
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The coordinates only count in your hand. In the inventory they neither tick the step nor show the direction.",
+            "The coordinates only guide you in Hoanna. Held in any other dimension, the line says where in Hoanna they point.",
+            {
+              "if": "!cfg:general.inquisitorium_outpost.decoder_targets_outpost",
+              "text": "If there is no Shadow Corrupted Land within {cfg:general.inquisitorium.search_radius} blocks, they point to a spot {cfg:general.inquisitorium.fallback_distance} blocks away in a direction set by where you decoded them, and the same spot gives the same point every time."
+            },
+            {
+              "if": "cfg:general.inquisitorium_outpost.decoder_targets_outpost",
+              "text": "If there is neither an outpost nor any Shadow Corrupted Land within {cfg:general.inquisitorium.search_radius} blocks, they point to a spot {cfg:general.inquisitorium.fallback_distance} blocks away in a direction set by where you decoded them, and the same spot gives the same point every time."
+            },
+            "Making the [[inquisitorium/beacon|beacon]] uses up these coordinates."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "beacon",
+      "title": "{item:essentialcraft5:inquisitorium_beacon}",
+      "icon": "essentialcraft5:inquisitorium_beacon",
+      "summary": "Light it at the coordinates to summon the Sentinel",
+      "complete": "essentialcraft5:guide/inquisitorium/beacon",
+      "items": [
+        "essentialcraft5:inquisitorium_beacon"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make an Inquisitorium Beacon, take it to the coordinates and light it at night. Lighting it wakes the echo sleeping there. The beacon vanishes, and in its place the Inquisitorium Sentinel appears."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:inquisitorium_beacon"
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 5 {item:essentialcraft5:twinkling_titanite}, 1 {item:essentialcraft5:void_core}, 2 {item:essentialcraft5:neuronic_enriched_plating} and the coordinates from the previous step, which go in the middle. The coordinates are built into the beacon, and it remembers them and shows them in its tooltip."
+        },
+        {
+          "type": "h",
+          "text": "Where and when"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It only lights in Hoanna, within {cfg:general.inquisitorium.arrive_radius} blocks of the coordinates it remembers.",
+            "It needs <hl>open sky</hl>. The column above it must be clear of anything that blocks movement, water included, and the Sentinel appears 5 blocks up, so keep that space free too.",
+            "It must be <hl>night</hl>. A thunderstorm by day counts, and so does Hoanna's darkness disaster ([[hoanna/events]]).",
+            "There must be no Holographic Projection or Sentinel within 64 blocks.",
+            "Light it with a right-click in survival or adventure mode, somewhere you are allowed to change blocks. It won't light in someone else's claim or any other place you lack permission, and nothing answers on Peaceful."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The beacon vanishes, the Sentinel appears above it and a purple boss bar lights up at the top of the screen."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "If anything is missing, right-clicking costs nothing and the hotbar line says what is wrong. Once everything is right, the Sentinel appears at once, so read [[inquisitorium/sentinel]] and gear up first."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Losing keeps the beacon",
+          "text": "When everyone has been out of the fight for {cfg:general.hologram.abandon_ticks|sec}, the Sentinel shuts down and the beacon drops back where it was, still holding the coordinates, and it never despawns. Switching to Peaceful does the same. A placed beacon breaks by hand and keeps its coordinates."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The rules for who counts as a fighter and what happens if you run off are the same as for the Holographic Projection ([[hologram/summoning]]).",
+            "Summoning the Sentinel also ticks the decoding and arriving steps if they aren't ticked yet. The beacon can only be made from decoded coordinates, and lighting it means you are there.",
+            "The beacon glows faintly, so you can find it at night."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sentinel",
+      "title": "{lang:entity.essentialcraft5.inquisitorium_sentinel}",
+      "icon": "essentialcraft5:inquisitorium_sentinel_spawn_egg",
+      "summary": "An advanced Projection, with echoes and matrix damage",
+      "complete": "essentialcraft5:main/inquisitorium",
+      "items": [
+        "essentialcraft5:inquisitorium_sentinel_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:inquisitorium_sentinel"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: defeat the Inquisitorium Sentinel. Whoever follows the echo this far is judged by it. It is an advanced Holographic Projection that hovers in place, cycles the same four attacks and can <hl>only be hurt in the rests between attacks</hl> ([[hologram/hologram]]). The difference is that it has <t>{cfg:general.inquisitorium.max_health}</t> health and two more tricks."
+        },
+        {
+          "type": "h",
+          "text": "Echo",
+          "if": "cfg:general.inquisitorium.echo_ratio"
+        },
+        {
+          "type": "p",
+          "text": "After it finishes an attack, the next one is joined by the previous attack again at <t>{cfg:general.inquisitorium.echo_ratio|pct}</t> strength, so you dodge two at once. Above its head, besides the core of the current attack, a smaller core circles around. That one is the echo.",
+          "if": "cfg:general.inquisitorium.echo_ratio"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.inquisitorium.echo_ratio",
+          "header": [
+            "Echoed attack",
+            "What it becomes"
+          ],
+          "widths": [
+            3,
+            7
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:addition_core} Addition",
+              "Fewer shadows by that strength (at least one), appearing early in the attack"
+            ],
+            [
+              "{item:essentialcraft5:subtraction_core} Subtraction",
+              "Armor Destroyers fired less often, by that strength"
+            ],
+            [
+              "{item:essentialcraft5:multiplication_core} Multiplication",
+              "Still ten orbital strikes, damage scaled by that strength, landing between the current attack's strikes"
+            ],
+            [
+              "{item:essentialcraft5:division_core} Division",
+              "Fewer divider fields by that strength (at least one), between the current attack's rounds"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "When the next attack is the same as the last, that round has no echo. Echoed shadows, destroyers and fields are counted together with the main attack's and never go over the Projection's limits.",
+          "if": "cfg:general.inquisitorium.echo_ratio"
+        },
+        {
+          "type": "h",
+          "text": "Matrix damage",
+          "if": "cfg:general.inquisitorium.matrix_damage_per_hit"
+        },
+        {
+          "type": "p",
+          "text": "Each time an orbital strike or a shadow <em>lands</em> a hit on you, you also take <t>{cfg:general.inquisitorium.matrix_damage_per_hit}</t> [[corruption/matrix_damage|matrix damage]]. Hits fully stopped by a shield or armor don't count, and divider fields and Armor Destroyers add none.",
+          "if": "cfg:general.inquisitorium.matrix_damage_per_hit"
+        },
+        {
+          "type": "p",
+          "text": "A full fight usually builds up enough to condense matrix-type corruption effects. The three costliest, at 72,000, can only be cured by a tier 3 pentacle ([[inquisitorium/purify]]).",
+          "if": [
+            "cfg:general.inquisitorium.matrix_damage_per_hit",
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What to bring"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Bring the same kit as for the Holographic Projection: a melee weapon, armor you can spare, food and healing, fire resistance and a stack of blocks ([[hologram/hologram]]).",
+            {
+              "if": "cfg:general.hologram.max_damage_per_hit>0",
+              "text": "More patience. As with the Holographic Projection, each rest usually lets you take only about 40 off it, so expect around {cfg:general.inquisitorium.max_health|div:40|int} rounds of attacks, against {cfg:general.hologram.max_health|div:40|int} for the Holographic Projection."
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.matrix_effects_enabled"
+              ],
+              "text": "A way to cure corruption afterward: your pentacle and crystal pillars well charged with ESPE ([[pentacle/cure]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The Sentinel goes dark and drops an {item:essentialcraft5:inquisitorium_chip}, a {item:essentialcraft5:glitchy_core}, a pile of relics and 50 experience. Everyone in the fight gets the advancement \"{lang:advancements.essentialcraft5.inquisitorium.title}\"."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The [[hologram/divider_gun|divider gun]] and the [[hologram/orbital_remote|orbital remote]] don't work on it, and arrows, guns and other non-melee damage still count for only a quarter."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Who counts as a fighter, how you get pulled back and how running off ends the fight all work as for the Holographic Projection ([[hologram/summoning]]).",
+            "It only drops loot when a player defeats it, and a group fight still drops one set.",
+            {
+              "if": "cfg:general.ancient_scrolls.enabled",
+              "text": "When a player defeats it, it also always drops Book VI of the [[scrolls/scrolls|Fragments of Essence]], one copy however many people fought."
+            },
+            "The relics come from the same list as the Projection's, about twenty each time ([[hoanna/relics]]).",
+            "The creative inventory has an {item:essentialcraft5:inquisitorium_sentinel_spawn_egg}. A Sentinel hatched from it is still limited to Hoanna and to one per 64 blocks, and it disappears if nobody fights it."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "purify",
+      "title": "Purge: The Tier 3 Pentacle",
+      "icon": "essentialcraft5:demonic_crystal_pillar",
+      "summary": "Reach tier 3 to cure the three costliest matrix effects",
+      "complete": "essentialcraft5:guide/pentacle/tier3",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: take the soul pentacle from Chapter 12 to tier 3 ([[pentacle/tier_three]]). Then every point of ESPE in the pillars counts double. Tier 4, the one above it, comes in Chapter 22 ([[shade/tier4]])."
+        },
+        {
+          "type": "p",
+          "text": "The Sentinel piles on matrix damage fast. {lang:corruption_effect.essentialcraft5.matrix_12}, {lang:corruption_effect.essentialcraft5.matrix_19} and {lang:corruption_effect.essentialcraft5.matrix_20} cost 72,000, more than even a full tier 2 can pay, so they need tier 3.",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "These three take {cfg:general.corruption.draw_threshold_multiplier|mul:72000|int} damage to condense, and once they do, only a tier 3 pentacle can cure them.",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Demonic Plating",
+              "4, any color ([[demons/demonic_plating]])"
+            ],
+            [
+              "Demonic Crystal Pillar",
+              "4"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:demonic_crystal_pillar"
+        },
+        {
+          "type": "p",
+          "text": "Each Demonic Crystal Pillar takes 6 {item:essentialcraft5:ackronite_ingot}, 2 {item:essentialcraft5:demonic_core} and 1 {item:essentialcraft5:void_crystal_pillar}, and the void pillar is used up. All four together take 24 Ackronite, 8 Demonic Cores and 4 Void Crystal Pillars, and each Demonic Core needs 4 Demonic Plates ([[demons/ackronite]])."
+        },
+        {
+          "type": "p",
+          "text": "Make 4 more Void Crystal Pillars, since the 4 on tier 2 must stay where they are. Each needs a Void Core and an MRU Reactor, and if you run short, let a chamber in Hoanna collapse a few more times ([[hoanna/collapse]]).",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled"
+        },
+        {
+          "type": "p",
+          "text": "Make 4 more Void Crystal Pillars, since the 4 on tier 2 must stay where they are. Each needs a Void Core and an MRU Reactor ([[hoanna/relics]]).",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier3"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Keep the tier 2 structure intact, every block of it.",
+            "On the layer below the pentacle, place a Demonic Plating one block out to the east, south, west and north.",
+            "In the same four directions, one block out and 3 blocks above the pentacle, stand a Demonic Crystal Pillar each. You can prop them up on blocks and remove the blocks afterward.",
+            "Right-click the pentacle to open it."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The runes turn red and the screen says \"Tier 3\". The step ticks the first time you open a tier 3 pentacle, and if you reached tier 3 back in Chapter 12, it is already ticked."
+        },
+        {
+          "type": "p",
+          "text": "At tier 3, curing an effect draws only half as much from the pillars as at a lower tier. One of the three 72,000 effects takes 100,000 ESPE.",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.matrix_effects_enabled"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rank_7",
+      "title": "Rank 7 · Scrutiny",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "Matrix Fortitude",
+      "complete": "essentialcraft5:guide/matrix/rank_7",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: reach matrix rank 7, Scrutiny."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "27 kinds in all, at least 2 of them bosses: the Holographic Projection, the Inquisitorium Sentinel and the Wither all count"
+            ],
+            [
+              "Site",
+              "A tier 3 Soul Pentacle, which you just built"
+            ],
+            [
+              "Offerings",
+              "2 {item:essentialcraft5:condensed_matrix}, 2 {item:essentialcraft5:demonic_core}, 1 [[hologram/math_cores|math core]] (addition, subtraction, multiplication or division)"
+            ],
+            [
+              "Energy",
+              "80,000 MRU in the Crucible and 8,000 ESPE in the pentacle's pillars"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "8 in all, up to 4 at once; 92 health each, 10 damage a hit; 130 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "Stand still for {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:70} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the offerings in the Crucible's offering slots and fill it with enough MRU through a Bound Gem.",
+            "Stand within 3 blocks with your bound Soul Stone in your main hand, open the screen, and once everything on the right is ticked, start the trial.",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Defeat enough Matrix Echoes, and don't stray far from the Crucible."
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Stay next to the Crucible without moving or getting hurt until the channel finishes."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "\"Rank 7 · Scrutiny\" appears in the middle of the screen, and your Soul Stone's tooltip shows matrix rank 7."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.stability.matrix_damage_multiplier==0.8",
+          "text": "Rank 7 gives you [[matrix/tolerance|Matrix Fortitude]]: matrix damage from trials, siphons and the like is cut by a further fifth. Your reservoir grows to {cfg:general.matrix_rank.pool_per_rank|mul:6}."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.stability.matrix_damage_multiplier!=0.8",
+          "text": "Rank 7 gives you [[matrix/tolerance|Matrix Fortitude]]: matrix damage from trials, siphons and the like is multiplied by a further {cfg:general.matrix_rank.stability.matrix_damage_multiplier}. Your reservoir grows to {cfg:general.matrix_rank.pool_per_rank|mul:6}."
+        },
+        {
+          "type": "p",
+          "text": "Rank 8 needs a tier 4 pentacle and a Shade Core, and comes in Chapter 22 ([[shade/rank_8]])."
+        }
+      ]
+    },
+    {
+      "id": "chip",
+      "title": "{item:essentialcraft5:inquisitorium_chip}",
+      "icon": "essentialcraft5:inquisitorium_chip",
+      "summary": "The Sentinel's chip, for Blank Modules and Inquisitorium armor",
+      "items": [
+        "essentialcraft5:inquisitorium_chip"
+      ],
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:inquisitorium_chip"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The chip is where the Sentinel kept its records, but whom the Inquisitorium judged and what it wrote down can no longer be read. The Inquisitorium Sentinel drops one Inquisitorium Chip each time a player defeats it. It goes into the {item:essentialcraft5:blank_module} of Chapter 21, and one chip makes two, exactly the two modules the main line asks you to fit ([[terminal/blank_module]])."
+        },
+        {
+          "type": "p",
+          "text": "Each piece of [[inquisitorium/armor|Inquisitorium armor]] takes a chip as well. For more modules or armor, fight again. Each fight needs a Glitchy Core, a decoding and a new beacon, and the Sentinel drops a Glitchy Core of its own."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Another round",
+          "text": "Coordinates decoded in the same chamber always point to the same place, so the next beacon goes back to the old spot and there is no new place to search for."
+        }
+      ]
+    },
+    {
+      "id": "armor",
+      "title": "Inquisitorium Armor",
+      "icon": "essentialcraft5:inquisitorium_helmet",
+      "summary": "Heavy armor without MRU, one chip per piece",
+      "complete": "essentialcraft5:guide/inquisitorium/armor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:inquisitorium_helmet",
+        "essentialcraft5:inquisitorium_chestplate",
+        "essentialcraft5:inquisitorium_leggings",
+        "essentialcraft5:inquisitorium_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make a set of Inquisitorium armor from your chips. It uses no MRU and has very high armor and toughness and never wears down while worn, so it suits anyone who'd rather not keep their armor charged."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:inquisitorium_helmet",
+            "essentialcraft5:inquisitorium_chestplate",
+            "essentialcraft5:inquisitorium_leggings",
+            "essentialcraft5:inquisitorium_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each piece takes 1 chip plus {item:essentialcraft5:void_plating} and {item:essentialcraft5:ackronite_ingot}, and the helmet, chestplate and leggings also take a {item:essentialcraft5:neuronic_enriched_plating}. A full set needs 4 chips, which means four Sentinel fights."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Armor per piece",
+              "<t>{cfg:general.inquisitorium_armor.armor}</t>"
+            ],
+            [
+              "Toughness per piece",
+              "<t>{cfg:general.inquisitorium_armor.toughness}</t>"
+            ],
+            [
+              "Knockback resistance per piece",
+              "<t>{cfg:general.inquisitorium_armor.knockback_resistance|pct}</t>"
+            ],
+            [
+              "Chestplate",
+              "Max health +{cfg:general.inquisitorium_armor.chest_health}"
+            ],
+            [
+              "Boots",
+              "Walk {cfg:general.inquisitorium_armor.boots_speed|mul:10|pct} faster"
+            ],
+            [
+              "MRU resistance",
+              "With all four on, MRU corruption, corruption radiation and Hoanna Radiation can't touch you, and the helmet lets you see MRU"
+            ],
+            [
+              "Durability",
+              "Helmet 5,120, chestplate 15,360, leggings 10,240, boots 5,120, never lost while worn"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A full set reaches the most armor and toughness vanilla will count, 30 and 20. Unlike the [[gear/void_armor|void armor]] and the [[computer/suit|Computer Guy's Suit]], though, it never spends MRU to stop a hit outright."
+        },
+        {
+          "type": "h",
+          "text": "Full set: Inquisitorium Law"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Magic resistance: magic damage that has an attacker is cut by {cfg:general.inquisitorium_armor.magic_resistance|pct}. Damage with no attacker, such as corruption or MRU Corruption, isn't reduced.",
+            "Damage from bosses is cut by {cfg:general.inquisitorium_armor.boss_resistance|pct}.",
+            "Edict: harmful effects on you last only about {cfg:general.inquisitorium_armor.edict_reduction|mul:-1|add:1|pct} as long.",
+            "Conviction: any creature that hits you is convicted for {cfg:general.inquisitorium_armor.conviction_ticks|sec}, up to {cfg:general.inquisitorium_armor.conviction_max_targets|raw} at a time. Your own hits on a convicted target deal {cfg:general.inquisitorium_armor.conviction_bonus|pct} more damage (reflected damage and damage dealt by baubles get none); against a player only {cfg:general.attunement.pvp_effect_scale|pct} of that bonus counts."
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "Attunement stages strengthen the magic resistance and Conviction, and from stage 3 blunt very heavy hits ([[attunement/inquisitorium_armor]])."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have made any piece of Inquisitorium armor."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original, the Inquisitorium armor had finished textures and a line on the chestplate, \"Be quiet, Dominique!\", but no recipe and no place in any loot chest, so in survival you could never get a single piece."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,693 @@
+{
+  "id": "baubles",
+  "order": 93,
+  "group": "side",
+  "title": "支線 · 特殊飾品",
+  "subtitle": "前人留下的指環、護身符和腰帶",
+  "icon": "essentialcraft5:eta_amulet",
+  "entries": [
+    {
+      "id": "finding",
+      "title": "去哪找",
+      "icon": "essentialcraft5:eta_amulet",
+      "summary": "地牢和上古遺蹟裡的箱子",
+      "complete": "essentialcraft5:guide/baubles/finding",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "這些指環、護身符和腰帶，做法已經失傳，箱子裡翻到一件就是一件，世上不會再多出來。戴之前先讀上面的字，有的給你一樣，也要拿走一樣。",
+          "by": "《源質殘卷·卷一》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：找到特殊飾品並戴上。這些指環、護身符和腰帶壓在地牢和遺蹟的箱底，殘卷裡記著它們各自的用處，卻沒寫是誰做的，做它們的人看樣子比先輩還要早。它們一共 32 種，每件都會改動一點遊戲規則，比如擊殺時多得[[mru/ubmru|UBMRU]]、把傷害彈回去、挖礦多掉東西。飾品無法制作，只能尋找，開局就可以去翻箱子了。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書講這些飾品的只有一頁，夾在講上古遺蹟的「滄海桑田」裡。三十二件裡有二十四件直接拿希臘字母命名，從 α 一直排到 ω，剩下八件才用了尋常的名字。"
+        },
+        {
+          "type": "h",
+          "text": "去哪找"
+        },
+        {
+          "type": "list",
+          "items": [
+            "原版地牢裡的箱子，地牢就是那種帶刷怪籠的圓石小屋。",
+            "上古遺蹟裡的箱子，開出的東西和地牢一樣，遺蹟的介紹見[[start/mrucu]]。大多數遺蹟是埋在石頭裡的籠子，一座有 4 個箱子，翻起來最划算。",
+            {
+              "if": "cfg:general.ancient_scrolls.enabled",
+              "text": "上古遺蹟的箱子有時還會開出一卷[[scrolls/scrolls|源質殘卷]]，那是先輩留下的書。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每個箱子會抽 1～3 次，每次有 3/4 的機率出一件飾品，平均一箱 1.5 件。每種飾品出現的機率相同，想要某一件指定的，平均得開二十來個箱子。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "bauble:essentialcraft5:mystical_accessory",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "海納爾遺蹟的箱子裡另有一種{item:essentialcraft5:mystical_accessory}，形態和抗性都是隨機的，不算在這 32 種裡，詳見[[baubles/mystical_accessory]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼戴"
+        },
+        {
+          "type": "list",
+          "items": [
+            "飾品欄在原版背包之外，開啟背包後點人物旁邊的飾品按鈕，或者直接按{keybind:key.curios.open.desc}，就能開啟它。",
+            "飾品戴在飾品欄的項鍊槽、腰帶槽和戒指槽裡，一般項鍊槽、腰帶槽各 1 個，戒指槽 2 個。拿在手裡右鍵也能直接戴上。",
+            "<em>同種只生效一件</em>，戴著一枚{item:essentialcraft5:omega_ring}時，第二枚就戴不上了。",
+            "每件飾品的作用都寫在它的提示框裡。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "飾品格蒙上一層暗紫、壓著禁用圖示，說明附近有人穿著全套宅男套裝，你被他展開的[[computer/seal_field]]罩住了。飾品暫時失效，東西還在，離他 {cfg:general.computer_seal.radius|add:2} 格以外就會恢復。"
+        },
+        {
+          "type": "h",
+          "text": "按用途分"
+        },
+        {
+          "type": "table",
+          "header": [
+            "篇",
+            "講什麼"
+          ],
+          "rows": [
+            [
+              "[[baubles/kill_ubmru]]",
+              "改變擊殺得到的 UBMRU"
+            ],
+            [
+              "[[baubles/ubmru_other]]",
+              "多積攢 UBMRU，或把它換成 MRU"
+            ],
+            [
+              "[[baubles/combat]]",
+              "換一種打法"
+            ],
+            [
+              "[[baubles/harvest]]",
+              "從方塊和生物身上多拿一點"
+            ],
+            [
+              "[[baubles/wind_corruption]]",
+              "風之好感和 MRU 腐化"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "[[baubles/radiation]]",
+                "海納爾輻射與餘燼"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "if": [
+            "bauble:essentialcraft5:omega_ring",
+            "bauble:essentialcraft5:portable_matrix_destructor"
+          ],
+          "style": "info",
+          "title": "先找哪件",
+          "text": "剛起步時最有用的是{item:essentialcraft5:omega_ring}和{item:essentialcraft5:portable_matrix_destructor}，前者讓擊殺得到的 UBMRU 翻倍，後者能隨身把 UBMRU 換成 MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到過任意一件特殊飾品。"
+        }
+      ]
+    },
+    {
+      "id": "kill_ubmru",
+      "title": "擊殺的 UBMRU",
+      "icon": "essentialcraft5:omega_ring",
+      "summary": "改變擊殺得到的 UBMRU",
+      "complete": "essentialcraft5:guide/baubles/kill_ubmru",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ring_of_stability",
+        "essentialcraft5:ring_of_experience",
+        "essentialcraft5:life_pendant",
+        "essentialcraft5:doctors_belt",
+        "essentialcraft5:chi_ring",
+        "essentialcraft5:omega_ring"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "這幾件飾品改變的是你親手擊殺生物時得到的[[mru/ubmru|UBMRU]]，一隻殭屍平均約 400。同時戴好幾件時，按飾品欄裡的順序依次計算，每一步都向下取整。擊殺別的玩家奪來的 UBMRU 不受這些飾品影響。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:ring_of_stability",
+              "text": "{item:essentialcraft5:ring_of_stability}：每次多得 0～99。"
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_experience",
+              "text": "{item:essentialcraft5:ring_of_experience}：少得 10%，少掉的部分每 {cfg:general.bauble_limits.experience_ring_ubmru_per_xp} 點在你身邊化作 1 點經驗，一隻殭屍平均少 40 點。"
+            },
+            {
+              "if": "bauble:essentialcraft5:life_pendant",
+              "text": "{item:essentialcraft5:life_pendant}：少得 30%，少掉的部分除以 30 就是回復的生命值，殺一隻殭屍約回 4 點，合 2 顆心。"
+            },
+            {
+              "if": "bauble:essentialcraft5:doctors_belt",
+              "text": "{item:essentialcraft5:doctors_belt}：一點也得不到，換來的是身上凋零、中毒、飢餓、失明、反胃、挖掘疲勞、緩慢、虛弱這八種負面效果的持續時間減半。"
+            },
+            {
+              "if": "bauble:essentialcraft5:chi_ring",
+              "text": "{item:essentialcraft5:chi_ring}：減半，換來撿經驗球時另得球上 {cfg:general.bauble_limits.chi_xp_bonus|pct} 的經驗，多得的這份不會拿去修帶經驗修補的裝備。"
+            },
+            {
+              "if": "bauble:essentialcraft5:omega_ring",
+              "text": "{item:essentialcraft5:omega_ring}：翻倍。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.first_kill_ubmru_multiplier>0"
+          ],
+          "text": "[[matrix/codex|矩陣圖譜]]首殺多給的那一份，按這些飾品改過以後的數算。"
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:doctors_belt",
+          "style": "info",
+          "title": "別戴錯",
+          "text": "要攢 UBMRU 喂[[mru/matrix_absorber]]，或者留給便攜矩陣換能器用時，先把{item:essentialcraft5:doctors_belt}摘下來，戴著它擊殺幾乎攢不到 UBMRU。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到過其中任意一件。"
+        }
+      ]
+    },
+    {
+      "id": "ubmru_other",
+      "title": "UBMRU 的別的用處",
+      "icon": "essentialcraft5:portable_matrix_destructor",
+      "summary": "多攢 UBMRU，把它換成 MRU",
+      "complete": "essentialcraft5:guide/baubles/ubmru_other",
+      "optional": true,
+      "items": [
+        "essentialcraft5:portable_matrix_destructor",
+        "essentialcraft5:kappa_ring",
+        "essentialcraft5:alpha_ring"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "這三件飾品能讓你多積攢一些 UBMRU，或者隨身把 UBMRU 換成 MRU。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:portable_matrix_destructor",
+              "text": "{item:essentialcraft5:portable_matrix_destructor}：等於戴在脖子上的矩陣換能器，按[[mru/matrix_absorber]]的比例把你的 UBMRU 換成它自己存著的 MRU，{cfg:machines.matrix_absorber.ubmru_usage} UBMRU 換 {cfg:machines.matrix_absorber.mru_generated} MRU，每秒最多換 20 次，最多存 5000。它也算靈魂儲存，法杖、護符這些耗 MRU 的東西會先從它這裡扣。"
+            },
+            {
+              "if": "bauble:essentialcraft5:kappa_ring",
+              "text": "{item:essentialcraft5:kappa_ring}：每半秒多得 1 UBMRU，一小時合計 7200，代價是餓得更快，大約每 20 秒消耗 1 點飢餓值，有飽和度時先扣飽和度。"
+            },
+            {
+              "if": "bauble:essentialcraft5:alpha_ring",
+              "text": "{item:essentialcraft5:alpha_ring}：每喝一瓶{item:essentialcraft5:magical_water}多得 500 UBMRU，不戴它時，喝魔力水沒有任何效果。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:portable_matrix_destructor",
+          "style": "info",
+          "text": "戴著便攜矩陣換能器打怪，擊殺攢下的 UBMRU 會慢慢變成隨身的 MRU，留給[[staffs/golden_orb|法杖]]和[[charms/charms|護符]]用，省得來回跑去充能。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到過其中任意一件。"
+        }
+      ]
+    },
+    {
+      "id": "combat",
+      "title": "戰鬥",
+      "icon": "essentialcraft5:zeta_amulet",
+      "summary": "換一種打法",
+      "complete": "essentialcraft5:guide/baubles/combat",
+      "optional": true,
+      "items": [
+        "essentialcraft5:zeta_amulet",
+        "essentialcraft5:eta_amulet",
+        "essentialcraft5:theta_belt",
+        "essentialcraft5:iota_ring",
+        "essentialcraft5:sigma_ring",
+        "essentialcraft5:nu_amulet",
+        "essentialcraft5:psi_ring"
+      ],
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:zeta_amulet",
+              "text": "{item:essentialcraft5:zeta_amulet}：每次打中扣 300 UBMRU，清掉目標的受傷無敵時間，下一擊馬上就能打上，攻擊被擋下時不扣。攻擊冷卻照常計算，連點的話每一下傷害都會變小。"
+            },
+            {
+              "if": "bauble:essentialcraft5:eta_amulet",
+              "text": "{item:essentialcraft5:eta_amulet}：你造成的和你受到的傷害<em>都</em>翻倍。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:theta_belt",
+                "cfg:general.bauble_limits.theta_cooldown_ticks"
+              ],
+              "text": "{item:essentialcraft5:theta_belt}：受到致命一擊時，它會扣掉 UBMRU 把這一下抵消，扣的數量是這一下算過護甲後的傷害乘以 5000，UBMRU 不夠就抵消不了。抵消一次後要冷卻 {cfg:general.bauble_limits.theta_cooldown_ticks|sec}，冷卻期間再挨致命一擊就抵消不了，飾品欄裡的腰帶上看得到冷卻進度，退出重進也照樣要等冷卻走完。虛空傷害和 /kill 都抵消不了。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:theta_belt",
+                "!cfg:general.bauble_limits.theta_cooldown_ticks"
+              ],
+              "text": "{item:essentialcraft5:theta_belt}：受到致命一擊時，它會扣掉 UBMRU 把這一下抵消，扣的數量是這一下算過護甲後的傷害乘以 5000，UBMRU 不夠就抵消不了。虛空傷害和 /kill 都抵消不了。"
+            },
+            {
+              "if": "bauble:essentialcraft5:iota_ring",
+              "text": "{item:essentialcraft5:iota_ring}：從你打出的傷害裡拆出 10%，緊接著單獨補一下無視護甲的魔法傷害，這一下打完，目標的受傷無敵時間清零。"
+            },
+            {
+              "if": "bauble:essentialcraft5:sigma_ring",
+              "text": "{item:essentialcraft5:sigma_ring}：受到有來源的傷害時，有 10% 的機率把這一下原樣還給對方，自己不受傷。還回去的傷害不會再被彈回來。對方這一下要是根本沒打著你，比如被領地的 PvP 保護攔下了，也不會還回去。"
+            },
+            {
+              "if": "bauble:essentialcraft5:nu_amulet",
+              "text": "{item:essentialcraft5:nu_amulet}：每次擊殺，對你周圍水平 6 格、上下 3 格內的敵對生物各造成 3 點傷害，最多 {cfg:general.bauble_limits.nu_max_targets} 只，近的優先，被這一圈打死的怪不會再引發連鎖。代價是擊殺所得的 UBMRU 少 25%。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "!cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:psi_ring}：怪物盯上你時，會轉而去打它附近別的敵對生物，村民和寵物不會被當成新目標，同一只怪每 {cfg:general.bauble_limits.psi_cooldown_ticks|sec}內最多換一次目標。凋零怪、終界龍這類首領不受影響。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:psi_ring",
+                "cfg:general.bauble_limits.psi_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:psi_ring}：怪物盯上你時，會轉而去打它附近別的敵對生物，村民和寵物不會被當成新目標，同一只怪每 {cfg:general.bauble_limits.psi_cooldown_ticks|sec}內最多換一次目標。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "多人遊戲裡，這些傷害都算你打出的，照常受 PvP 開關、隊伍和領地約束。你的攻擊被擋下時，這些飾品都不起作用，也不扣 UBMRU。"
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:eta_amulet",
+          "style": "warn",
+          "text": "{item:essentialcraft5:eta_amulet}讓別人打你的傷害同樣翻倍，打 Boss 前想清楚再戴。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到過其中任意一件。"
+        }
+      ]
+    },
+    {
+      "id": "harvest",
+      "title": "挖掘與掉落",
+      "icon": "essentialcraft5:omicron_amulet",
+      "summary": "從方塊和生物身上多拿一點",
+      "complete": "essentialcraft5:guide/baubles/harvest",
+      "optional": true,
+      "items": [
+        "essentialcraft5:omicron_amulet",
+        "essentialcraft5:pi_belt",
+        "essentialcraft5:rho_ring",
+        "essentialcraft5:tau_ring",
+        "essentialcraft5:upsilon_ring",
+        "essentialcraft5:phi_ring"
+      ],
+      "blocks": [
+        {
+          "type": "h",
+          "text": "挖方塊"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:omicron_amulet",
+              "text": "{item:essentialcraft5:omicron_amulet}：挖方塊時，掉落物裡煤、鑽石、紅石粉、種子這類不是方塊的東西每組多 1 個，每次扣 500 UBMRU，掉的全是方塊時不扣。放下去又能挖回來的東西不加，比如紅石線掉的紅石粉、絆線掉的線、沒長成的作物掉的種子，長成的作物照樣加。陶罐這類能裝東西的方塊，裡面掉出來的東西也不加。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:pi_belt}：挖礦石掉的經驗乘以 {cfg:general.bauble_limits.pi_xp_multiplier}，小數部分按機率進位。鐵、銅、金礦這類本來不掉經驗的礦石，有 5% 的機率給 1 點，但挖下來掉的是礦石本身時不算，比如用了絲綢之觸。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:pi_belt",
+                "!cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:pi_belt}：挖方塊掉的經驗乘以 {cfg:general.bauble_limits.pi_xp_multiplier}，小數部分按機率進位。本來不掉經驗的方塊，有 5% 的機率給 1 點，但挖下來掉的是方塊本身時不算，比如用了絲綢之觸。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:rho_ring",
+                "cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:rho_ring}：挖礦石不再掉經驗，每點經驗改給 {cfg:general.bauble_limits.rho_ubmru_per_xp} UBMRU，和 π 腰帶一起戴時，先乘倍數再換算。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:rho_ring",
+                "!cfg:general.bauble_limits.mining_xp_ores_only"
+              ],
+              "text": "{item:essentialcraft5:rho_ring}：挖方塊不再掉經驗，每點經驗改給 {cfg:general.bauble_limits.rho_ubmru_per_xp} UBMRU，和 π 腰帶一起戴時，先乘倍數再換算。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這三件只認你親手挖掉、又在你夠得著的地方的方塊，機器、法杖替你挖的都不算，創造模式下也不算。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.bauble_limits.mining_xp_ores_only",
+            "bauble:essentialcraft5:pi_belt||bauble:essentialcraft5:rho_ring"
+          ],
+          "text": "π 腰帶和 ρ 指環只認礦石。刷怪籠、幽匿塊這類挖掉也掉經驗的方塊，戴著它們挖，經驗照原樣掉。"
+        },
+        {
+          "type": "h",
+          "text": "生物"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "bauble:essentialcraft5:tau_ring",
+                "!cfg:general.bauble_limits.tau_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:tau_ring}：你親手殺死的生物，它自己的掉落每組多 0～2 個，每次扣 1000 UBMRU。它身上穿戴的和撿起來的東西不會變多，凋零怪、終界龍這類首領的掉落也不加。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:tau_ring",
+                "cfg:general.bauble_limits.tau_affects_bosses"
+              ],
+              "text": "{item:essentialcraft5:tau_ring}：你親手殺死的生物，它自己的掉落每組多 0～2 個，每次扣 1000 UBMRU。它身上穿戴的和撿起來的東西不會變多。"
+            },
+            {
+              "if": "bauble:essentialcraft5:upsilon_ring",
+              "text": "{item:essentialcraft5:upsilon_ring}：你是離終界使者最近的玩家、又在 16 格以內時，它沒法瞬移。"
+            },
+            {
+              "if": "bauble:essentialcraft5:phi_ring",
+              "text": "{item:essentialcraft5:phi_ring}：拿{item:minecraft:shears}右鍵牛、雞、魷魚、蜘蛛、苦力怕、骷髏、岩漿立方怪、史萊姆、殭屍或雪魔像，能分別剪出 1～3 個皮革、羽毛、墨囊、線、火藥、骨粉、岩漿膏、黏液球、腐肉或雪塊。每剪一次消耗 1000 UBMRU 和剪刀 32 點耐久，兩次之間至少隔 {cfg:general.bauble_limits.phi_cooldown_ticks|sec}。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:omega_ring",
+          "style": "info",
+          "text": "這幾件都要花 UBMRU，配上[[baubles/kill_ubmru]]裡的{item:essentialcraft5:omega_ring}，打怪攢下的就夠它們用。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到過其中任意一件。"
+        }
+      ]
+    },
+    {
+      "id": "wind_corruption",
+      "title": "風與腐化",
+      "icon": "essentialcraft5:wind_catcher",
+      "summary": "風之好感和 MRU 腐化",
+      "complete": "essentialcraft5:guide/baubles/wind_corruption",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ring_of_resistance",
+        "essentialcraft5:wind_catcher",
+        "essentialcraft5:wind_mages_talisman",
+        "essentialcraft5:beta_ring",
+        "essentialcraft5:gamma_ring"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "前四件和[[wind/air_potion|風之好感]]有關，好感記的是風跟你有多熟，最後一件和 MRU 腐化有關。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:wind_mages_talisman",
+              "text": "{item:essentialcraft5:wind_mages_talisman}：風之好感係數 +0.3，平時每瓶風之藥水實得 {cfg:general.wind_affinity.base_coefficient|mul:100|int} 點，戴上它變成 {cfg:general.wind_affinity.base_coefficient|add:0.3|mul:100|int} 點。"
+            },
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "{item:essentialcraft5:wind_catcher}：係數 −0.1，換來每次增加好感時有 15% 的機率捕到一個{item:essentialcraft5:wind_keeper}，喝風之藥水、打碎瓶裝的風都算。<em>只戴它、沒有別的加成時係數為 0，好感不會增加</em>，不過每喝一瓶、每打碎一個，照樣有 15% 的機率捕到{item:essentialcraft5:wind_keeper}。"
+            },
+            {
+              "if": "bauble:essentialcraft5:ring_of_resistance",
+              "text": "{item:essentialcraft5:ring_of_resistance}：風不再捉弄你，受眷顧以後不會再被風從背後猛推一把，也不會被託上半空，好感照常增加。"
+            },
+            {
+              "if": "bauble:essentialcraft5:beta_ring",
+              "text": "{item:essentialcraft5:beta_ring}：受[[wind/windbound]]以後，風偶爾拂過你時，會改給你一個四選一的增益，力量 II、生命恢復 I、飽和 I 或挖掘加速 II，持續 6 分鐘，好感照常增加。"
+            },
+            {
+              "if": "bauble:essentialcraft5:gamma_ring",
+              "text": "{item:essentialcraft5:gamma_ring}：MRU 腐化不再傷害你，改為回復同樣多的生命值。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "bauble:essentialcraft5:wind_catcher",
+          "style": "info",
+          "title": "捕風掛墜的妙用",
+          "text": "{item:essentialcraft5:wind_keeper}平時只有風法師裡的大法師才掉，做[[wind/wind_tablet]]卻要用一個。戴著{item:essentialcraft5:wind_catcher}喝風之藥水，平均六七瓶就能捕到一個，捕夠了再換回別的飾品。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到過其中任意一件。"
+        }
+      ]
+    },
+    {
+      "id": "radiation",
+      "title": "輻射與餘燼",
+      "icon": "essentialcraft5:mu_ring",
+      "summary": "和海納爾輻射、餘燼有關的五件",
+      "complete": "essentialcraft5:guide/baubles/radiation",
+      "optional": true,
+      "items": [
+        "essentialcraft5:delta_ring",
+        "essentialcraft5:epsilon_belt",
+        "essentialcraft5:lambda_ring",
+        "essentialcraft5:mu_ring",
+        "essentialcraft5:xi_belt"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "這五件是為海納爾準備的，做它們的人多半就是海納爾人。其中四件和海納爾輻射有關，一件和餘燼有關。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "海納爾輻射怎樣積攢、怎樣消散、會帶來什麼後果，見[[hoanna/radiation]]。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "bauble:essentialcraft5:delta_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:delta_ring}：輻射壓低生命上限時只按<em>一半的等級</em>計算，多久壓一次仍按原來的等級算。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:epsilon_belt",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "text": "{item:essentialcraft5:epsilon_belt}：親手擊殺敵對生物時，有 {cfg:general.bauble_limits.epsilon_ember_chance|pct} 的機率多掉一個隨機餘燼，殺動物和玩家不算。餘燼能在[[void_machines/ember_forge]]裡鍛劍。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:lambda_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:lambda_ring}：<em>不在</em>海納爾時，輻射每秒多消散 60，加上平時的 5，一共 65。人在海納爾時它沒有效果。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mu_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:mu_ring}：在海納爾不怕日陣灼燒、毒霧和強震，毒霧帶來的中毒和輻射都不會有，只是地震時照樣會小小踉蹌一下。代價是在海納爾每秒多積攢 20 輻射，盔甲也擋不掉。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:mu_ring",
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.radiation.enabled"
+              ],
+              "text": "{item:essentialcraft5:mu_ring}：在海納爾不怕日陣灼燒、毒霧和強震，只是地震時照樣會小小踉蹌一下。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "cfg:general.radiation.enabled",
+                "cfg:general.bauble_limits.xi_dose_ceiling>0"
+              ],
+              "text": "{item:essentialcraft5:xi_belt}：打玩家時，每點傷害讓對方的輻射 +5000，一下最多 +{cfg:general.bauble_limits.xi_dose_per_hit}，累計最多加到 {cfg:general.bauble_limits.xi_dose_ceiling}，對方已經高於這個值就不再加。打別的生物時，它的生命上限會跟著你打掉的生命一起降，打掉的血再也回不來，上限最低留 1，寵物和坐騎不會被壓低，生物重新載入後恢復原狀。你自己挨打時，每點傷害讓自己的輻射 +1000，同樣最多加到 {cfg:general.bauble_limits.xi_dose_ceiling}。這些都在正常傷害之外另算，攻擊被擋下時，包括被盾牌擋下，一律不算。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "!cfg:general.radiation.enabled||cfg:general.bauble_limits.xi_dose_ceiling==0"
+              ],
+              "text": "{item:essentialcraft5:xi_belt}：打玩家以外的生物時，它的生命上限會跟著你打掉的生命一起降，上限最低留 1，寵物和坐騎不會被壓低，生物重新載入後恢復原狀。這在正常傷害之外另算，攻擊被擋下時，包括被盾牌擋下，都不算。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "bauble:essentialcraft5:xi_belt",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled",
+            "cfg:general.bauble_limits.xi_dose_ceiling>=10000"
+          ],
+          "text": "所以被戴著{item:essentialcraft5:xi_belt}的人打得再多，你的生命上限最多也只壓低 {cfg:general.bauble_limits.xi_dose_ceiling|div:10000|add:0.5|round:0|int} 級，每級相當於最大生命的 {cfg:general.radiation.cap_loss_percent_per_level|pct}。離開海納爾約 {cfg:general.bauble_limits.xi_dose_ceiling|add:-9999|div:300|round:0|int} 分鐘後，輻射就會散到不再壓低上限，詳見[[hoanna/radiation]]。戴著它的人自己挨打時也一樣。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "餘燼也能從海納爾遺蹟的箱子裡開出來，見[[hoanna/relics]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到過其中任意一件。"
+        }
+      ]
+    },
+    {
+      "id": "mystical_accessory",
+      "title": "{item:essentialcraft5:mystical_accessory}",
+      "icon": "essentialcraft5:mystical_accessory",
+      "summary": "隨機形態、三項隨機抗性的飾品",
+      "items": [
+        "essentialcraft5:mystical_accessory"
+      ],
+      "if": [
+        "bauble:essentialcraft5:mystical_accessory",
+        "cfg:general.hoanna.portal_enabled"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海納爾人留下的箱子裡偶爾能翻出一件{item:essentialcraft5:mystical_accessory}，平均每箱約半件，見[[hoanna/relics]]。每一件都是隨機的，可能是項鍊、腰帶或戒指，樣子也各不一樣，這些都在箱子開啟的那一刻定下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "戴在哪",
+              "取決於它的形態，項鍊只能戴在項鍊槽，腰帶、戒指同理，形態寫在提示框裡"
+            ],
+            [
+              "MRU 腐化抗性",
+              "0%~10%，減輕 MRU 腐化的傷害和聚集體造成的矩陣損傷"
+            ],
+            [
+              "腐化輻射抗性",
+              "0%~10%，這個模組裡沒有任何東西會造成腐化輻射，可以不管"
+            ],
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "海納爾輻射抗性",
+                "0%~10%，在海納爾裡少積攢一些輻射，見[[hoanna/radiation]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "幾件神秘飾品的抗性可以疊加，<em>不受「同種只生效一件」的限制</em>，但每一項合計最多算 <t>40%</t>，正好是一條項鍊、一條腰帶和兩枚戒指都取滿值時的總和，飾品欄再多也不會更高。"
+        },
+        {
+          "type": "p",
+          "text": "它們還能和盔甲的抗性疊加。盔甲四件的抗性相加後除以 4，飾品的抗性直接加上去。比如魔力防護全套四件各 25%，合起來算 25%，再加兩件各 10% 的神秘飾品，MRU 腐化抗性一共 45%，受到的影響只剩 0.55。"
+        },
+        {
+          "type": "formula",
+          "text": "受到的影響 = 1 − 盔甲抗性之和 ÷ 4 − 飾品抗性之和（神秘飾品最多算 40%）"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "從創造模式物品欄裡拿的神秘飾品還沒有定形，放進背包的下一刻就會定下來。"
+        }
+      ]
+    }
+  ]
+}

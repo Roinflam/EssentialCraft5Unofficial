@@ -1,0 +1,1095 @@
+{
+  "id": "apex",
+  "order": 110,
+  "group": "main",
+  "title": "第二十三章 · 九階",
+  "subtitle": "天災信標、天災之心與九階",
+  "icon": "essentialcraft5:calamity_remnant",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "intro",
+      "title": "最後一章",
+      "icon": "essentialcraft5:calamity_beacon",
+      "summary": "召出天災之心，打倒它",
+      "items": [
+        "essentialcraft5:calamity_beacon"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "by": "審判庭殘檔",
+          "text": "天災記錄：烈日、毒霧、長夜、地動，四類輪替，未見止期。成因：不明。附註：每逢天災，荒原上有一處讀數先落後起，狀如心搏。本庭未予裁定。"
+        },
+        {
+          "type": "p",
+          "text": "這是主線的最後一章。做出天災信標，趕上海納爾鬧天災時召出天災之心，把它打倒，再拿它留下的天災殘核升到矩陣九階，主線就走完了。",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這是主線的最後一章。做出天災信標，召出天災之心，把它打倒，再拿它留下的天災殘核升到矩陣九階，主線就走完了。",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這是主線的最後一章。做出天災信標，趕上海納爾鬧天災時召出天災之心，把它打倒，主線就走完了。",
+          "if": [
+            "!cfg:general.matrix_rank.enabled",
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這是主線的最後一章。做出天災信標，召出天災之心，把它打倒，主線就走完了。",
+          "if": [
+            "!cfg:general.matrix_rank.enabled",
+            "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "篇",
+            "做什麼"
+          ],
+          "rows": [
+            [
+              "[[apex/beacon]]",
+              "做天災信標，它能反覆用"
+            ],
+            [
+              "[[apex/summon]]",
+              "召喚要滿足的條件"
+            ],
+            [
+              "[[apex/fight]]",
+              "三個階段、四種天災的招式怎麼躲"
+            ],
+            [
+              "[[apex/rewards]]",
+              "每人一份的掉落和天災殘核"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "[[apex/rank_9]]",
+                "升到矩陣九階，主線最後一步"
+              ]
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "cells": [
+                "[[apex/ascension]]",
+                "可選：宅男套裝和裁決之刃升到同調 5 階"
+              ]
+            },
+            [
+              "[[apex/epilogue]]",
+              "主線以後還能做什麼"
+            ]
+          ],
+          "widths": [
+            3,
+            7
+          ]
+        },
+        {
+          "type": "h",
+          "text": "開打之前"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "天災之心的大招大多無視護甲，靠的是躲。宅男套裝同調到 4 階，這幾招能擋下一部分，見[[attunement/computer_armor]]。"
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "天災之心的大招大多無視護甲，靠的是躲，盔甲堆得再厚也擋不住。"
+            },
+            "帶上火把一類的光源，黑暗那一相要拿在手上才看得清它，見[[apex/fight]]。",
+            {
+              "if": "cfg:general.calamity_heart.per_second_cap>0",
+              "text": "它一秒鐘掉的血有上限，輸出再高也快不了多少。備足食物和回血的東西，打一場多半要好幾分鐘。"
+            },
+            {
+              "if": "!cfg:general.calamity_heart.per_second_cap>0",
+              "text": "備足食物和回血的東西，躲招的時候顧不上打它，一場下來也要好一陣。"
+            },
+            "找幾個朋友一起打更穩，打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各拿一份掉落，見[[apex/rewards]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裏沒有終局首領，矩陣也不分階。天災之心是這一版為海納爾的天災補上的結尾。"
+        }
+      ]
+    },
+    {
+      "id": "beacon",
+      "title": "{item:essentialcraft5:calamity_beacon}",
+      "icon": "essentialcraft5:calamity_beacon",
+      "summary": "召喚天災之心用，打贏了還回到手裏",
+      "complete": "essentialcraft5:guide/apex/beacon",
+      "items": [
+        "essentialcraft5:calamity_beacon"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出一個{item:essentialcraft5:calamity_beacon}。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：4 個{item:essentialcraft5:twinkling_titanite}、2 個{item:essentialcraft5:shade_core}、1 個{item:essentialcraft5:demon_oath}和 1 個{item:essentialcraft5:glitchy_core}，在工作台上照下面的樣子擺，有一格空着。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:calamity_beacon"
+        },
+        {
+          "type": "list",
+          "items": [
+            "惡魔之誓見[[shade/oath]]，暗影核心見[[shade/shade_core]]。",
+            "每打倒一次全息投影或審判庭哨兵，都會掉一個故障核心，見[[inquisitorium/glitchy_core]]。手上沒有了，就再打一場。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到天災信標。"
+        },
+        {
+          "type": "h",
+          "text": "信標能反覆用"
+        },
+        {
+          "type": "p",
+          "text": "召喚時信標從你手裏交給天災之心。打倒它以後，信標回到召喚者的背包，背包滿了就掉在腳下，召喚者不在線的話等他下次上線再給。"
+        },
+        {
+          "type": "p",
+          "text": "回到手裏的信標是空的，物品提示裏寫着。拿空信標再召一次，要從背包里扣 {cfg:general.calamity_heart.cores_per_resummon} 個暗影核心，新做的信標不扣。",
+          "if": [
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0",
+            "cfg:general.calamity_heart.cores_per_resummon>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "回到手裏的信標是空的，物品提示裏寫着。空信標和新做的一樣，再召不另扣東西。",
+          "if": [
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0",
+            "!cfg:general.calamity_heart.cores_per_resummon>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "在這個世界裏召天災之心不用等天災，可每次都要多扣暗影核心：新做的信標扣 {cfg:general.calamity_heart.cores_extra_without_calamity} 個，空信標扣 {cfg:general.calamity_heart.cores_per_resummon|addcfg:general.calamity_heart.cores_extra_without_calamity} 個。",
+          "if": [
+            "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0",
+            "cfg:general.calamity_heart.cores_extra_without_calamity>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "在這個世界裏召天災之心不用等天災。拿空信標再召，要從背包里扣 {cfg:general.calamity_heart.cores_per_resummon} 個暗影核心，新做的信標不扣。",
+          "if": [
+            "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0",
+            "!cfg:general.calamity_heart.cores_extra_without_calamity>0",
+            "cfg:general.calamity_heart.cores_per_resummon>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "沒打倒就收場時，信標原樣還給你，這次扣的暗影核心也一起退回，見[[apex/summon]]。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "主線只要做一個信標。它不會壞，丟了才要再做，別把惡魔之誓和故障核心花在第二個上。"
+        }
+      ]
+    },
+    {
+      "id": "summon",
+      "title": "召喚天災之心",
+      "icon": "essentialcraft5:calamity_beacon",
+      "summary": "等天災、找平地、選好你能動的地方",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "召喚的做法很簡單：拿着天災信標，右鍵海納爾的地面。難的是同時湊齊下面這些條件，差一條都召不出來，信標也不會用掉。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.calamity_beacon>0"
+              ],
+              "cells": [
+                "矩陣階",
+                "至少 {cfg:general.matrix_rank.gates.calamity_beacon} 階，見[[shade/rank_8]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.calamity_heart.require_calamity",
+                "cfg:general.hoanna_events.chance_multiplier>0",
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "天災",
+                "海納爾此刻正鬧天災，地脈風暴也算"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.calamity_heart.require_calamity",
+                "cfg:general.hoanna_events.chance_multiplier>0",
+                "!cfg:general.hoanna_events.ley_storm_enabled||!cfg:general.hoanna_events.ley_storm_chance>0||!cfg:general.hoanna_tide.enabled"
+              ],
+              "cells": [
+                "天災",
+                "海納爾此刻正鬧天災"
+              ]
+            },
+            {
+              "if": "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0",
+              "cells": [
+                "天災",
+                "不用等，隨時能召"
+              ]
+            },
+            [
+              "頭頂",
+              "露天，頭頂上沒有方塊"
+            ],
+            [
+              "地面",
+              "以你點的那一格為中心、邊長 {cfg:general.calamity_heart.pillar_offset|mul:2|add:1} 格的正方形範圍裏抽 25 處地面，最高處和最低處相差不超過 {cfg:general.calamity_heart.max_unevenness} 格"
+            ],
+            [
+              "權限",
+              "中心那一格，和它東南西北各 {cfg:general.calamity_heart.pillar_offset} 格的四處，你都得能動。災柱就立在那四處"
+            ],
+            [
+              "附近",
+              "{cfg:general.calamity_heart.exclusive_radius} 格內沒有別的天災之心或矩陣之影"
+            ],
+            [
+              "難度",
+              "不是和平"
+            ],
+            [
+              "每天一次",
+              "你今天還沒打倒過它。只算打倒的那次，沒打倒的不算"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "天災不常來，來了也不一定待得久：地震只有 4 分鐘左右，黑暗卻能連着幾個遊戲日。只有召喚的那一刻要趕上天災，召出來以後天災結束了也照樣打。東西備齊以後就待在海納爾，聊天欄一出紅字就去召，見[[hoanna/events]]。",
+          "if": [
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "備好信標、食物和光源；信標是空的話，背包裏再帶夠暗影核心，見[[apex/beacon]]。",
+            {
+              "if": [
+                "cfg:general.calamity_heart.require_calamity",
+                "cfg:general.hoanna_events.chance_multiplier>0"
+              ],
+              "text": "等海納爾降下天災。"
+            },
+            "找一塊露天的平地，四周 {cfg:general.calamity_heart.pillar_offset} 格以內都是你能動的地方。",
+            "手持信標右鍵地面。四根災柱在四周立起來，天災之心懸在正中。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "條件不夠時，動作欄寫着差的是哪一條，信標和暗影核心都不扣。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "召喚者死了、下線、換了維度，這一場就算沒打倒：天災之心散去，信標和這次扣的暗影核心原樣退回，今天還能再召。其他人都撤走 {cfg:general.mobs.boss.abandon_ticks|sec}、切到和平難度也一樣。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.calamity_heart.require_calamity",
+                "cfg:general.hoanna_events.chance_multiplier>0"
+              ],
+              "text": "主災就是召喚那一刻正在鬧的天災。趕上地脈風暴時，四種裏挑一種當主災。主災決定了哪根災柱更結實、打贏後多給什麼，見[[apex/rewards]]。"
+            },
+            {
+              "if": "!cfg:general.calamity_heart.require_calamity||!cfg:general.hoanna_events.chance_multiplier>0",
+              "text": "主災在四種天災裏隨機挑一種，它決定了哪根災柱更結實、打贏後多給什麼，見[[apex/rewards]]。"
+            },
+            "「每天一次」按召喚者算：今天打倒過它的人不能再召，可以跟着別人召的那場一起打。",
+            "平地只在召喚時看一次，打起來以後挖坑、壘牆都不影響。它的招不破壞方塊，也不放方塊。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "title": "打倒天災之心",
+      "icon": "essentialcraft5:calamity_remnant",
+      "summary": "先拆災柱，再躲四種天災",
+      "complete": "essentialcraft5:main/calamity_heart",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：打倒天災之心。"
+        },
+        {
+          "type": "entity",
+          "id": "essentialcraft5:calamity_heart",
+          "scale": 0.5
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.calamity_heart.max_health} 點生命，一秒鐘最多掉 {cfg:general.calamity_heart.per_second_cap} 點，打法就是一邊躲一邊磨。生命、護甲、一下最多掉多少這些數，見[[bestiary/calamity_heart]]。",
+          "if": "cfg:general.calamity_heart.per_second_cap>0"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.calamity_heart.max_health} 點生命，打法就是一邊躲一邊磨。生命、護甲這些數，見[[bestiary/calamity_heart]]。",
+          "if": "!cfg:general.calamity_heart.per_second_cap>0"
+        },
+        {
+          "type": "p",
+          "text": "它只吃參戰玩家親手打的傷害，寵物、機器、炮塔都傷不到它；箭、魔法、爆炸這類不是近戰的傷害只算 {cfg:general.mobs.boss.non_melee_multiplier|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "開場與天災封印",
+          "if": "cfg:general.calamity_heart.intro_ticks>0||cfg:general.calamity_heart.enchant_seal"
+        },
+        {
+          "type": "p",
+          "text": "召出來以後先是 {cfg:general.calamity_heart.intro_ticks|sec}的開場：場地邊界亮起一圈光，四根災柱依次破土，天色暗下來，屏幕上浮出它的名字。這段時間它和災柱都打不動，也不出招，趁機站好位置。",
+          "if": "cfg:general.calamity_heart.intro_ticks>0"
+        },
+        {
+          "type": "p",
+          "text": "開場快結束時，天災封印落在每個參戰的人身上：你身上東西的附魔全部失效（詛咒不算），物品不再發光，物品提示裏寫着是哪根災柱壓着它。原版的、別的模組的附魔都一樣。封印按東西放在哪分成四處，每處由一根災柱壓着，打倒那根就解開那一處，屏幕上方血條下面的四把小鎖會跟着亮起來：",
+          "if": "cfg:general.calamity_heart.enchant_seal"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.calamity_heart.enchant_seal",
+          "header": [
+            "災柱",
+            "壓着哪裏"
+          ],
+          "rows": [
+            [
+              "日陣（北）",
+              "頭盔、胸甲"
+            ],
+            [
+              "地震（西）",
+              "護腿、靴子"
+            ],
+            [
+              "黑暗（南）",
+              "主手，也就是快捷欄里正選着的那一格"
+            ],
+            [
+              "毒霧（東）",
+              "副手、飾品欄、背包裏其餘的東西"
+            ]
+          ],
+          "widths": [
+            2,
+            5
+          ]
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.calamity_heart.enchant_seal",
+          "items": [
+            "封印只看東西此刻放在哪：把主手的劍換到副手，它就歸毒霧那根管。主災那根柱子最結實，它壓着的那一處最難拿回來。先拆哪根自己定：先拿回護甲上的保護，還是先拿回武器。",
+            "四根都倒了就全部解開。打倒它、它散去、你死了、下線、換了維度或者退出這場戰鬥，封印都當場解開。",
+            {
+              "if": [
+                "cfg:general.calamity_heart.reseal_on_reraise",
+                "cfg:general.calamity_heart.reraise_pillars>0"
+              ],
+              "text": "崩解後重新立起的災柱，會把它那一處重新封上。"
+            },
+            "護甲本身的護甲值、套裝效果都不受影響，失效的只是附魔。東西本身什麼都沒變：丟在地上的、放進箱子的不受封印，打完也不會少一條附魔。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "三個階段"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "<em>護盾期</em>：災柱還立着時（只剩一根也算），它懸在半空，怎麼打都不掉血，還會拿立着的那幾根柱子的天災出招。先拆柱子，每根 {cfg:general.calamity_heart.pillar_health} 點生命，主災那根 {cfg:general.calamity_heart.main_pillar_health} 點。每倒一根，它放一次那種天災的「殘響」（見下面第二張表），護盾隨即破開 {cfg:general.calamity_heart.shield_window_ticks|sec}，它落到低處讓你打。柱子沒拆完時，它的血最多打到崩解線。",
+            "<em>失衡期</em>：四根都倒了，它落低一些，慢慢跟着你們挪。它每次拿兩種天災出招，每 {cfg:general.calamity_heart.aspect_swap_ticks|sec}換一對，出招也比護盾期勤。照下面的表躲，有空就打。",
+            "<em>崩解</em>：生命低於 {cfg:general.calamity_heart.collapse_threshold|pct} 時，它停住不再出招，屏幕上方它的血條開始 {cfg:general.calamity_heart.collapse_ticks|sec}倒計時。這段時間它多受 {cfg:general.calamity_heart.collapse_damage_taken|add:-1|pct} 傷害，可每 {cfg:general.calamity_heart.pulse_interval|sec}放一次脈衝，打中 {cfg:general.calamity_heart.pulse_range} 格內每個參戰的人，{cfg:general.calamity_heart.pulse_damage} 點再加最大生命的 {cfg:general.calamity_heart.pulse_health_percent|pct}。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "倒計時走完還沒打倒它，它會重新立起 {cfg:general.calamity_heart.reraise_pillars} 根災柱，生命回到 {cfg:general.calamity_heart.reraise_health|pct}，從護盾期再來。這種事只有一回：第二次倒計時走完，它就一直放脈衝，直到被打倒，不會再回血。",
+          "if": "cfg:general.calamity_heart.reraise_pillars>0"
+        },
+        {
+          "type": "p",
+          "text": "倒計時走完還沒打倒它，它的生命回到 {cfg:general.calamity_heart.reraise_health|pct}，再來一遍。這種事只有一回：第二次倒計時走完，它就一直放脈衝，直到被打倒，不會再回血。",
+          "if": "!cfg:general.calamity_heart.reraise_pillars>0"
+        },
+        {
+          "type": "p",
+          "text": "每根災柱第一次掉到一半時會反噬：柱腳亮起一圈 {cfg:general.calamity_heart.backlash_radius} 格的紅圈，{cfg:general.calamity_heart.backlash_warning_ticks|sec}後炸開，圈裏的人挨 {cfg:general.calamity_heart.backlash_damage} 點再加最大生命的 {cfg:general.calamity_heart.backlash_health_percent|pct}，還會被推開。看見紅圈先退出去，炸完再回來接着拆。",
+          "if": "cfg:general.calamity_heart.backlash_damage>0||cfg:general.calamity_heart.backlash_health_percent>0"
+        },
+        {
+          "type": "p",
+          "text": "四根都倒的那一刻，它放「四災歸心」：以它為中心亮起一圈 {cfg:general.calamity_heart.converge_radius} 格的金圈，外面一圈光從場地邊上往裏收，{cfg:general.calamity_heart.converge_warning_ticks|sec}後收攏，金圈外的參戰者挨 {cfg:general.calamity_heart.converge_damage} 點再加最大生命的 {cfg:general.calamity_heart.converge_health_percent|pct}。金圈亮着時它停在原地不動。拆最後一根柱子前想好路線，看見金圈就往它身邊跑。",
+          "if": "cfg:general.calamity_heart.converge_damage>0||cfg:general.calamity_heart.converge_health_percent>0"
+        },
+        {
+          "type": "p",
+          "text": "崩解時它雖然不再出招，每 {cfg:general.calamity_heart.collapse_echo_interval|sec}還會垂死反撲一次，輪流放斷層（一連 {cfg:general.calamity_heart.fault_rings} 圈震波）和稜線齊射（{cfg:general.calamity_heart.volley_lines} 道光線，每道都穿過一個參戰的人）。邊打邊躲。",
+          "if": [
+            "cfg:general.calamity_heart.collapse_echo_interval>0",
+            "cfg:general.calamity_heart.fault_rings>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "崩解時它雖然不再出招，每隔 {cfg:general.calamity_heart.collapse_echo_interval|mul:2|sec}還會垂死反撲一次，放出稜線齊射（{cfg:general.calamity_heart.volley_lines} 道光線，每道都穿過一個參戰的人）。邊打邊躲。",
+          "if": [
+            "cfg:general.calamity_heart.collapse_echo_interval>0",
+            "!cfg:general.calamity_heart.fault_rings>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "四種天災"
+        },
+        {
+          "type": "table",
+          "header": [
+            "天災",
+            "招式",
+            "怎麼躲"
+          ],
+          "rows": [
+            {
+              "if": [
+                "cfg:general.calamity_heart.prism_lines>0",
+                "cfg:general.calamity_heart.max_prisms>0"
+              ],
+              "cells": [
+                "日陣",
+                "天光稜線：地上先亮起 {cfg:general.calamity_heart.prism_lines} 道光線，片刻後光柱沿線落下，{cfg:general.calamity_heart.prism_damage} 點再加最大生命的 {cfg:general.calamity_heart.prism_health_percent|pct}，還會着火 {cfg:general.calamity_heart.prism_fire_seconds} 秒",
+                "看見地上亮線就橫着走開"
+              ]
+            },
+            [
+              "日陣",
+              "烈日標記：頭頂亮起標記的人，到時頭頂還露着天，就挨最大生命的 {cfg:general.calamity_heart.mark_health_percent|pct}",
+              "鑽到方塊底下，頭頂有遮擋就不挨"
+            ],
+            {
+              "if": [
+                "cfg:general.calamity_heart.fumes_per_cast>0",
+                "cfg:general.calamity_heart.max_fumes>0"
+              ],
+              "cells": [
+                "毒霧",
+                "瘴雲：每次放出 {cfg:general.calamity_heart.fumes_per_cast} 團毒霧，場上最多 {cfg:general.calamity_heart.max_fumes} 團，和天災裏的毒霧一樣，只是只毒參戰的人",
+                "繞開霧團，別在一處久站"
+              ]
+            },
+            {
+              "if": "cfg:general.calamity_heart.corrosion_ticks>0",
+              "cells": [
+                "毒霧",
+                "腐蝕吐息：朝一個參戰的人那邊噴一口 {cfg:general.calamity_heart.breath_range} 格長的吐息，{cfg:general.calamity_heart.breath_damage} 點再加最大生命的 {cfg:general.calamity_heart.breath_health_percent|pct}，挨中的人掛上 {cfg:general.calamity_heart.corrosion_ticks|sec}腐蝕，這段時間回不了血",
+                "地上朝你這邊冒出一溜綠色粒子時，橫着走出那一片"
+              ]
+            },
+            {
+              "if": "!cfg:general.calamity_heart.corrosion_ticks>0",
+              "cells": [
+                "毒霧",
+                "腐蝕吐息：朝一個參戰的人那邊噴一口 {cfg:general.calamity_heart.breath_range} 格長的吐息，{cfg:general.calamity_heart.breath_damage} 點再加最大生命的 {cfg:general.calamity_heart.breath_health_percent|pct}",
+                "地上朝你這邊冒出一溜綠色粒子時，橫着走出那一片"
+              ]
+            },
+            [
+              "黑暗",
+              "熄光：它隱進黑暗 {cfg:general.calamity_heart.blackout_ticks|sec}，其間偷襲 {cfg:general.calamity_heart.blackout_strikes} 次。每次偷襲先認準你那時站的地方，片刻後撲過來，一下 {cfg:general.calamity_heart.strike_damage} 點",
+              "主手或副手拿着火把一類的光源，就看得見它和偷襲的軌跡；偷襲打的是你原來站的地方，挪開幾步就躲開"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.quake_rings>0",
+              "cells": [
+                "地震",
+                "震波：一連沿地面推開 {cfg:general.calamity_heart.quake_rings} 圈震波，踩在地上的人挨 {cfg:general.calamity_heart.quake_damage} 點再加最大生命的 {cfg:general.calamity_heart.quake_health_percent|pct}，還會被拋起來",
+                "每一圈到腳下時跳起來"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.calamity_heart.rubble_count>0",
+                "cfg:general.calamity_heart.max_rubble>0"
+              ],
+              "cells": [
+                "地震",
+                "落石：每次砸下 {cfg:general.calamity_heart.rubble_count} 塊石頭，場上最多 {cfg:general.calamity_heart.max_rubble} 塊，一塊 {cfg:general.calamity_heart.rubble_damage} 點",
+                "看地上的影子，影子變大就挪開"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            5,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每拆倒一根災柱，它放一次那種天災的殘響，比平時的招更狠："
+        },
+        {
+          "type": "table",
+          "header": [
+            "天災",
+            "殘響",
+            "怎麼躲"
+          ],
+          "rows": [
+            [
+              "日陣",
+              "正午：{cfg:general.calamity_heart.noon_warning_ticks|sec}後，頭頂露天的參戰者全都挨最大生命的 {cfg:general.calamity_heart.noon_health_percent|pct}",
+              "拆日陣那根柱子前，先在旁邊找好能鑽進去的遮擋"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.max_fumes>0",
+              "cells": [
+                "毒霧",
+                "瀰漫：毒霧一下放滿 {cfg:general.calamity_heart.max_fumes} 團，這一批留 {cfg:general.calamity_heart.echo_fume_ticks|sec}",
+                "離開霧團最密的地方，等它們散掉"
+              ]
+            },
+            [
+              "黑暗",
+              "長夜：熄光 {cfg:general.calamity_heart.long_night_ticks|sec}，其間偷襲 {cfg:general.calamity_heart.long_night_strikes} 次",
+              "同熄光，光源拿在手上，一直走動"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.fault_rings>0",
+              "cells": [
+                "地震",
+                "斷層：一連 {cfg:general.calamity_heart.fault_rings} 圈震波",
+                "每一圈到腳下時跳起來"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            5,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "除了偷襲和落石，這些招都無視護甲，大多還按你最大生命的一部分算，生命再多也得躲。偷襲和落石是普通傷害，護甲照常減。落石砸到地上就碎了，不會留下方塊。"
+        },
+        {
+          "type": "h",
+          "text": "合相技",
+          "if": "cfg:general.calamity_heart.combo_delay_ticks>0"
+        },
+        {
+          "type": "p",
+          "text": "失衡期裏每換到一對天災，過 {cfg:general.calamity_heart.combo_delay_ticks|sec}它就把這兩種合在一起放一次，屏幕上會寫出名字。剛進失衡期的那一對，要等四災歸心落下以後才來。",
+          "if": "cfg:general.calamity_heart.combo_delay_ticks>0"
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.calamity_heart.combo_delay_ticks>0",
+          "header": [
+            "合相技",
+            "做法",
+            "怎麼躲"
+          ],
+          "rows": [
+            [
+              "蝕日（日陣 + 毒霧）",
+              "4 道穿過它身體的光線一齊落下，再放 3 團毒霧",
+              "站在兩道光線之間的空當裏，離它越遠空當越寬；別進霧"
+            ],
+            [
+              "墜夜（黑暗 + 地震）",
+              "熄光，其間砸下兩批落石",
+              "拿着光源看清影子，影子變大就挪開"
+            ],
+            [
+              "瘴影（毒霧 + 黑暗）",
+              "熄光，偷襲 4 次，每次落點留下一團毒霧",
+              "光源拿在手上，躲開以後別回原處"
+            ],
+            [
+              "熔裂（地震 + 日陣）",
+              "一連幾圈震波，同時 4 道穿過它身體的光線",
+              "震波到腳下時跳起來，落地時站在光線之間"
+            ]
+          ],
+          "widths": [
+            3,
+            5,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "穿過它身體的光線每放一次都轉半個空當：上一次安全的地方，這一次正好壓在線上。",
+          "if": "cfg:general.calamity_heart.combo_delay_ticks>0"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "天災之心倒下，打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各拿到一份掉落，這一步也打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "別想躲遠了放冷箭，也別飛到天上。挖地洞躲起來，它的招照樣打得到；只有烈日標記認頭頂有沒有遮擋。"
+        },
+        {
+          "type": "h",
+          "text": "誰算參戰"
+        },
+        {
+          "type": "list",
+          "items": [
+            "召喚它的人，和之後打出過傷害的人。旁觀的、路過的不算，招式不會盯上他們，毒霧也不毒寵物和村民。",
+            {
+              "if": "cfg:general.calamity_heart.pull_range>0",
+              "text": "召喚點周圍 {cfg:general.calamity_heart.arena_radius} 格是場地。參戰的人跑到離中心 {cfg:general.calamity_heart.pull_range}~{cfg:general.calamity_heart.escape_range} 格的地方，會被拽回中心附近，每次扣 {cfg:general.mobs.boss.pull_damage} 點血；跑到 {cfg:general.calamity_heart.escape_range} 格以外，或者死了、下線、換了維度，就退出了這場戰鬥。"
+            },
+            {
+              "if": "!cfg:general.calamity_heart.pull_range>0",
+              "text": "召喚點周圍 {cfg:general.calamity_heart.arena_radius} 格是場地。它不會把人拽回來；跑到離中心 {cfg:general.calamity_heart.escape_range} 格以外，或者死了、下線、換了維度，就退出了這場戰鬥。"
+            },
+            "拽回的落點得是你能動的地方，落點被堵住、或者你在那裏不能動，就拽不回來，這樣一直在外面待 {cfg:general.mobs.boss.abandon_ticks|sec}也算退出。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "它的大招按無視護甲的重擊算：宅男套裝同調 4 階起擋 {cfg:general.computer_armor.piercing_share|pct}，審判庭套裝 4 階少受 {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct}。虛空套裝的閃避和相位對它沒用。"
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "它的大招按無視護甲的重擊算，虛空套裝的閃避和相位對它沒用。"
+            },
+            "日陣那一相的招算火焰傷害：喝了抗火藥水就傷不到你，火焰保護附魔也能減一些。",
+            {
+              "if": "cfg:general.calamity_heart.pillar_per_hit_cap>0",
+              "text": "災柱只吃參戰玩家親手打的傷害，不是近戰的也只算一部分，一下最多掉 {cfg:general.calamity_heart.pillar_per_hit_cap} 點，沒有每秒上限，拆柱子比打本體快。"
+            },
+            {
+              "if": "!cfg:general.calamity_heart.pillar_per_hit_cap>0",
+              "text": "災柱只吃參戰玩家親手打的傷害，不是近戰的也只算一部分，沒有每秒上限，拆柱子比打本體快。"
+            },
+            "黑暗那一相時，屏幕邊緣和場地的天色會慢慢暗下去，打完就慢慢恢復。",
+            "它有一段專門的戰鬥音樂，只放給參戰的人。",
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "{item:essentialcraft5:mu_ring}只擋天災本身的日陣、毒霧和強震，擋不住天災之心的招，它放的毒霧也照毒不誤。"
+            },
+            {
+              "if": "cfg:general.calamity_heart.enchant_seal",
+              "text": "開着鐵砧、砂輪、附魔台這類界面時，界面裏看到的附魔是全的，改完放回去不會丟附魔。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rewards",
+      "title": "掉落與天災殘核",
+      "icon": "essentialcraft5:calamity_remnant",
+      "summary": "每人一份，天災殘核從這裏來",
+      "items": [
+        "essentialcraft5:calamity_remnant"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "天災之心倒下時，打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各拿一份，直接進背包，背包滿了掉在腳下。打得少於這些的人什麼也拿不到。"
+        },
+        {
+          "type": "h",
+          "text": "每人一份"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.calamity_heart.first_kill_bonus>0",
+              "text": "1 個{item:essentialcraft5:calamity_remnant}。你第一次打倒它時再多給 {cfg:general.calamity_heart.first_kill_bonus} 個。"
+            },
+            {
+              "if": "!cfg:general.calamity_heart.first_kill_bonus>0",
+              "text": "1 個{item:essentialcraft5:calamity_remnant}。"
+            },
+            "2 顆{item:essentialcraft5:aberrant_heart}。",
+            "約 20 抽[[hoanna/relics|海納爾遺物]]，和遺蹟箱子裏的是同一類東西。",
+            "主災的那一份，見下表。",
+            "{cfg:general.calamity_heart.experience} 點經驗。"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "主災",
+            "多給"
+          ],
+          "rows": [
+            [
+              "日陣",
+              "4 個{item:essentialcraft5:twinkling_titanite}"
+            ],
+            [
+              "毒霧",
+              "2 個{item:essentialcraft5:void_mru_reactor}"
+            ],
+            [
+              "黑暗",
+              "2 個{item:essentialcraft5:void_core}"
+            ],
+            [
+              "地震",
+              "1 塊{item:essentialcraft5:matter_of_eternity}"
+            ]
+          ],
+          "widths": [
+            3,
+            7
+          ]
+        },
+        {
+          "type": "p",
+          "text": "主災是什麼，見[[apex/summon]]的進階細節。"
+        },
+        {
+          "type": "h",
+          "text": "天災殘核用在哪"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "升[[apex/rank_9|矩陣九階]]要 1 個，這是主線的最後一步。"
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "宅男套裝、裁決之刃升到同調 5 階，每件 1 個，見[[apex/ascension]]。"
+            },
+            {
+              "if": [
+                "!cfg:general.matrix_rank.enabled",
+                "!cfg:general.attunement.enabled"
+              ],
+              "text": "眼下它沒有別的用處，留着就好。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "天災殘核進了背包。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "信標回到召喚者手裏，召喚者自己也得打夠 {cfg:general.mobs.boss.loot_share|pct} 才分得到掉落，信標照樣還他。",
+            "一天能打幾次看有幾個人召：每人每個遊戲日只能召一次，可以跟着別人召的那幾場一起打，每場各拿一份。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "它是首領，打掉它一成以上生命就記進[[matrix/codex|矩陣圖譜]]的首領一組，九階要它。"
+            },
+            "它不是被參戰的人打倒的，比如掉出世界、被指令清掉，哪怕剛有人打過它，也什麼都不掉。",
+            "生成蛋、指令放出來的天災之心沒有召喚者，主災隨機定一種，打倒了什麼都不給。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rank_9",
+      "title": "九階 · 源質",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "主線的最後一步",
+      "complete": "essentialcraft5:guide/matrix/rank_9",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：升到矩陣九階「源質」。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "圖譜",
+              "一共 33 種，天災之心要在裏面，見[[matrix/codex]]"
+            ],
+            [
+              "站點",
+              "4 檔靈魂五芒星，見[[shade/tier4]]"
+            ],
+            [
+              "祭品",
+              "3 個{item:essentialcraft5:condensed_matrix}、2 個{item:essentialcraft5:shade_core}、1 個{item:essentialcraft5:calamity_remnant}"
+            ],
+            [
+              "能量",
+              "台子裏 10 萬 MRU，五芒星的柱子裏 16000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "迴響",
+                "共 10 只，同時最多 4 只；每隻 116 點生命，打你一下 12 點；限時 150 秒"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "引導",
+                "站着不動 {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:90} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把祭品放進淬鍊台的祭品格，台子裏的 MRU 用綁定寶石備夠。",
+            "站在台子 3 格內，主手拿着綁定你的靈魂石，打開界面，右邊全打勾以後點「開始淬鍊」。",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "打倒夠數的矩陣迴響，別離開台子太遠。"
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "站在台子旁邊不動，也別受傷，等引導走完。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "屏幕正中出現「九階 · 源質」，靈魂石的物品提示裏寫着矩陣九階。"
+        },
+        {
+          "type": "p",
+          "text": "九階的回報：[[matrix/alignment|相性]]升到 III，矩陣容量漲到 {cfg:general.matrix_rank.pool_per_rank|mul:8}，手冊首頁的標題欄也寫上「九階」。矩陣階到這裏就滿了。"
+        },
+        {
+          "type": "p",
+          "text": "同調 5 階要的就是矩陣九階，見[[apex/ascension]]。",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "cfg:general.attunement.rank_gate|at:4==9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ascension",
+      "title": "同調 5 階",
+      "icon": "essentialcraft5:verdict_blade",
+      "summary": "主線以後的頭一個長目標",
+      "if": "cfg:general.attunement.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：把宅男套裝和裁決之刃升到同調 5 階。"
+        },
+        {
+          "type": "p",
+          "text": "這是同調能到的最高一階，要的東西都在這兩章裏：天災殘核和影晶。升階的做法和前幾階一樣，見[[attunement/stage_up]]。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "矩陣階",
+                "至少 {cfg:general.attunement.rank_gate|at:4} 階"
+              ]
+            },
+            [
+              "同調度",
+              "4 階的同調度攢滿"
+            ],
+            [
+              "四角",
+              "1 個{item:essentialcraft5:calamity_remnant}、4 個{item:essentialcraft5:umbral_crystal}、1 個{item:essentialcraft5:demonic_core}、1 顆{item:minecraft:nether_star}"
+            ],
+            [
+              "MRU",
+              "15 萬"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "宅男套裝四件各升各的，每件都要一份；裁決之刃另要一份。全部升完要 5 個天災殘核。"
+        },
+        {
+          "type": "p",
+          "text": "第一次打倒天災之心拿 2 個，升九階用掉 1 個，剩下 1 個夠升一件。之後每打倒一次多 1 個，每人每天能召一次，跟着別人召的那幾場也算。",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.calamity_heart.first_kill_bonus==1"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.calamity_heart.first_kill_bonus==1",
+            "cfg:general.calamity_heart.first_kill_bonus>0"
+          ],
+          "text": "第一次打倒天災之心拿 {cfg:general.calamity_heart.first_kill_bonus|add:1} 個，之後每打倒一次拿 1 個。每人每天能召一次，跟着別人召的那幾場也算。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.calamity_heart.first_kill_bonus>0",
+          "text": "每打倒一次天災之心拿 1 個。每人每天能召一次，跟着別人召的那幾場也算。"
+        },
+        {
+          "type": "p",
+          "text": "第一次打倒天災之心拿 2 個，夠升兩件。之後每打倒一次多 1 個，每人每天能召一次，跟着別人召的那幾場也算。",
+          "if": [
+            "!cfg:general.matrix_rank.enabled",
+            "cfg:general.calamity_heart.first_kill_bonus==1"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "真正花時間的是同調度。同調預算按在線時間攢，從 2 階練到 5 階至少要在線約 27 小時；這段時間裏打得少，還要更久，見[[attunement/budget]]。",
+          "if": [
+            "cfg:general.attunement.budget_per_hour==360",
+            "cfg:general.attunement.budget_cap==720"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每階要的材料和 5 階的效果，見[[attunement/computer_armor]]和[[attunement/verdict_blade]]。"
+        }
+      ]
+    },
+    {
+      "id": "epilogue",
+      "title": "主線走完了",
+      "icon": "essentialcraft5:calamity_remnant",
+      "summary": "之後還能做的事",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "主線到這裏為止"
+        },
+        {
+          "type": "p",
+          "text": "從第一塊魔晶、第一份 MRU 起步，你造了產能器和富集倉，煉出米斯萊，走進海納爾，跟惡魔做過交易，打倒了全息投影和審判庭哨兵，穿上宅男套裝，在暗影腐化之地攢下影晶，最後打倒了天災之心，矩陣也練到了九階。源質魔法的主線到這裏就走完了。",
+          "if": "cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "從第一塊魔晶、第一份 MRU 起步，你造了產能器和富集倉，煉出米斯萊，走進海納爾，跟惡魔做過交易，打倒了全息投影和審判庭哨兵，穿上宅男套裝，在暗影腐化之地攢下影晶，最後打倒了天災之心。源質魔法的主線到這裏就走完了。",
+          "if": "!cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "h",
+          "text": "還能做什麼"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "把宅男套裝和裁決之刃練到同調 5 階，見[[apex/ascension]]。"
+            },
+            "海納爾的荒野還沒走完：封印寶庫、沉沒城區和審判庭前哨各有各的東西，見[[hoanna_explore/overview]]。",
+            "異獸錄裏還有幾隻首領沒打過，比如守在城鎮裏的廢城守望者、沉城外的淵潮領主，見[[bestiary/overview]]。",
+            "槍械、虛空機器、地脈投影、特殊飾品這些支線都還在，從[[logistics/after_main_line]]裏挑一章。"
+          ]
+        }
+      ]
+    }
+  ]
+}

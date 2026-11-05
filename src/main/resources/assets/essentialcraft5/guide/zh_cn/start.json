@@ -1,0 +1,1942 @@
+{
+  "id": "start",
+  "order": 5,
+  "group": "start",
+  "title": "入门",
+  "subtitle": "MRU 是什么，这本书怎么用",
+  "icon": "essentialcraft5:research_book",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "模组概览",
+      "icon": "essentialcraft5:research_book",
+      "summary": "这本书怎么读、主线怎么走",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "辐光散在万物里时，从不伤人。海纳尔人把它聚起来，赶着它干活，后来海纳尔烧了。我们也在聚，也在赶。这几卷记的是做法，该在哪里停手，我们还没弄清。",
+          "by": "《源质残卷·序》"
+        },
+        {
+          "type": "p",
+          "text": "先辈管它叫 <hl>MRU</hl>，意思是魔法辐射单位。这股力量烧毁过一整个世界，如今被拘在晶石和线圈里，成了驱动机器的源头。源质魔法这个模组讲的，就是怎样用机器收集 MRU、把它存起来，再拿它驱动别的机器、打造魔法装备。你可以把 MRU 当作模组里的电，详见[[start/mru]]。"
+        },
+        {
+          "type": "h",
+          "text": "这本书分三块"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<t>入门</t>：基本概念和几张速查表，碰到不懂的词先来这里查。",
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "text": "<t>主线</t>：一共十五章，按游戏进度从挖魔晶一步步做到物流。大多数篇目是一个步骤，做完会打勾，少数是查表、讲规则的参考篇，不用打勾。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "<t>主线</t>：一共二十三章，按游戏进度从挖魔晶一步步做到审判庭、宅男套装和套装的模块，最后召出天灾之心。大多数篇目是一个步骤，做完会打勾，少数是查表、讲规则的参考篇，不用打勾。"
+            },
+            "<t>支线</t>：装备、器械、饰品、枪械等内容，不必按顺序读，主线进度够了随时可以做。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "主线大致路线"
+        },
+        {
+          "type": "table",
+          "header": [
+            "阶段",
+            "章",
+            "做什么"
+          ],
+          "widths": [
+            2,
+            2,
+            7
+          ],
+          "rows": [
+            [
+              "起步",
+              "一～五",
+              "挖魔晶，用自己的矩阵换出第一份 MRU，造辐射仓和魔力工作台，搭产能器，做随身的 MRU 电池"
+            ],
+            [
+              "中期",
+              "六～十一",
+              "合金与淡青材料、富集仓、元素水晶与精华（定向培育）、日光、米斯莱与第二种能量 ESPE"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "后期",
+                "十二～十五",
+                "用灵魂五芒星治腐化效果，在风一章开始积攒风之好感、替风完成心愿，为第十六章做准备，再做自动化与物流的产线"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "后期",
+                "十二～十五",
+                "用灵魂五芒星治腐化效果，再经过风这一章，然后是自动化与物流的产线"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "十六～二十一",
+                "穿过海纳尔之门去海纳尔，让聚集体坍缩，召唤恶魔做交易、升 2 档五芒星，打倒全息投影，接着解码故障核心、打审判庭哨兵、升 3 档五芒星，做出宅男套装，最后给它装上模块"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "第一次玩、照着书一步步走，前十五章一般要花二十多到三十个小时。前期最难过的一关是下界，从第二章起，灵魂沙、石英和烈焰粉都要去那里取。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "海纳尔以后的六章还要再花七十到一百个小时，多半花在挂机积攒 ESPE 上。审判庭一章要十五到二十个小时，排在宅男套装之前，等 ESPE 的时候正好有事可做。积攒 ESPE 的机器只在区块加载时工作，挂机时人要留在附近。整条主线走下来一百个小时出头，熟悉流程的老手要三十多个小时。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "从哪开始",
+          "text": "入门这几篇先粗读一遍，[[start/faq]]最好细看，然后翻到[[elements/book]]，照着主线一步步做。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "玩过原作？",
+          "text": "玩过 1.12 版源质魔法的话，先看[[from_ec4/overview|附录「与原作的不同」]]，改了名的、换了做法的和去掉的东西，那一章里都记着。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "源质魔法（EssentialCraft）最早是 Modbder 做的，后来 TheLMiffy1111 等人接手，做成了「源质魔法 4 非官方版」。这本手册所属的模组，是它在 1.20.1 上的移植。"
+        }
+      ],
+      "_src": [
+        "tools/guide/FORMAT.md §2 — 主线 21 章（海纳尔之门关闭时 hoanna / demons / hologram / inquisitorium / computer / terminal 六章整章隐藏，剩 15 章）",
+        "tools/plan/progression.md「毕业时长」（第十批 10c）— 普通玩家前 15 章 23~32 小时、第 16~21 章 67~98 小时，合计约 105（90~130）；熟练约 34（31~40）；第十九章审判庭 15~19 / 5~6 小时；第二章起要下界（灵魂沙、石英、烈焰粉）；祭坛、五芒星、水晶柱只在区块加载时攒 ESPE",
+        "CREDITS.md — EssentialCraft 3 by Modbder；EssentialCraft 4 Unofficial by TheLMiffy1111 等",
+        "附录分类 from_ec4（order 120）— 写给玩过 1.12 原作的人的入口（batch10.md §5.2）"
+      ]
+    },
+    {
+      "id": "mru",
+      "title": "MRU 与平衡值",
+      "icon": "essentialcraft5:mru_crystal",
+      "summary": "魔法辐射单位",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<hl>MRU</hl> 是 Magical Radiation Unit 的缩写，意思是魔法辐射单位。海纳尔人管它的光叫辐光，先辈著书时才改称 MRU，残卷里两个叫法都有。这个模组里的机器全靠它运转，它怎样产出、传输和消耗，看下面这张表就明白了。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "环节",
+            "是什么",
+            "详见"
+          ],
+          "widths": [
+            2,
+            6,
+            3
+          ],
+          "rows": [
+            [
+              "产出",
+              "<em>产能器</em>是自己产出 MRU 的机器，最早拿你自己的矩阵来换，之后依次是烧燃料、烧花草和吸寒气",
+              "[[mru/matrix_absorber]]、[[generators/heat_generator]]"
+            ],
+            [
+              "传输",
+              "不用管道和电线，在用 MRU 的机器里放一颗<em>绑定宝石</em>，它就隔空从 16 格内的源头拉 MRU",
+              "[[crafting/bound_gem]]"
+            ],
+            [
+              "消耗",
+              "辐射仓、魔力工作台这类机器边干活边消耗",
+              "[[crafting/radiating_chamber]]"
+            ],
+            [
+              "随身",
+              "<em>灵魂储存</em>物品像电池一样带在身上，法杖、护符和魔力装备都从里面扣取 MRU",
+              "[[storage/soul_storage]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "平衡值"
+        },
+        {
+          "type": "p",
+          "text": "每一份 MRU 都带着一个 0～2 之间的<em>平衡值</em>，显示在机器界面上，说的是这份 MRU 偏「冷」还是偏「躁」。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "平衡值",
+            "叫法"
+          ],
+          "widths": [
+            3,
+            5
+          ],
+          "rows": [
+            [
+              "正好 1.0",
+              "{balance:pure}：最稳定"
+            ],
+            [
+              "低于 1.0",
+              "{balance:frozen}：越接近 0 越冷"
+            ],
+            [
+              "高于 1.0",
+              "{balance:chaos}：越接近 2 越躁"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "大多数机器不管平衡值，在意它的主要是辐射仓的几种配方，比如[[generators/projections]]，平衡值落在某一段里才做得出来。"
+        },
+        {
+          "type": "h",
+          "text": "平衡值从哪来"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:matrix_absorber}",
+              "固定 {cfg:machines.matrix_absorber.balance}"
+            ],
+            {
+              "if": "cfg:machines.heat_generator.balance<0",
+              "cells": [
+                "{item:essentialcraft5:heat_generator}",
+                "放下时随机 0～2，拆了重放会重新随机"
+              ]
+            },
+            {
+              "if": "cfg:machines.heat_generator.balance>=0",
+              "cells": [
+                "{item:essentialcraft5:heat_generator}",
+                "固定 {cfg:machines.heat_generator.balance}"
+              ]
+            },
+            {
+              "if": "cfg:machines.natural_furnace.balance<0",
+              "cells": [
+                "{item:essentialcraft5:natural_furnace}",
+                "放下时随机 0～2，拆了重放会重新随机"
+              ]
+            },
+            {
+              "if": "cfg:machines.natural_furnace.balance>=0",
+              "cells": [
+                "{item:essentialcraft5:natural_furnace}",
+                "固定 {cfg:machines.natural_furnace.balance}"
+              ]
+            },
+            [
+              "{item:essentialcraft5:cold_distillator}",
+              "固定 {cfg:machines.cold_distillator.balance}"
+            ],
+            [
+              "{item:essentialcraft5:sun_ray_absorber}",
+              "固定 {cfg:machines.sun_ray_absorber.balance}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "混合"
+        },
+        {
+          "type": "p",
+          "text": "机器拉进来的 MRU 会和里面原有的按数量混在一起，平衡值取加权平均，机器里存得越多，新来的 MRU 越难把它带偏。"
+        },
+        {
+          "type": "formula",
+          "text": "存着 4000 MRU（1.0）的机器拉进 1000 MRU（0.2）\n新平衡值 = (4000 × 1.0 + 1000 × 0.2) ÷ 5000 = 0.84"
+        },
+        {
+          "type": "p",
+          "text": "想让一台机器换成另一种平衡值，最省事的办法是换一台空的。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书说，MRU 是一种比电子还小的粒子，藏在万物里，能像伽马射线一样穿透物质，所以叫「辐射」，它又能改变物质的性质，所以叫「魔法」。书里还说，散在世间的 MRU 平静无害，被收集、压缩、驱使以后就不再安分了。"
+        },
+        {
+          "type": "image",
+          "texture": "essentialcraft5:textures/special/bookicons/mru_lowest.png",
+          "width": 256,
+          "height": 256,
+          "caption": "原作研究书里的锂原子想象图，中间是原子核，青色的是电子，更小的紫色粒子就是 MRU"
+        }
+      ],
+      "_src": [
+        "mru/MRUBalance.java:41 — kind：< 1 冰冻、> 1 混沌、= 1 纯净；范围 [0, 2]",
+        "mru/MRUStorage.java:117 — pullFrom 按数量加权平均",
+        "blockentity/MatrixAbsorberBlockEntity.java:52 — balance 默认 1.0",
+        "blockentity/HeatGeneratorBlockEntity.java:58 — balance 默认 -1 = 放下随机；blockentity/NaturalFurnaceBlockEntity.java:66 同；blockentity/RandomBalanceBlockEntity.java:47 [0, 2) 随机",
+        "blockentity/ColdDistillatorBlockEntity.java:64 — balance 默认 0；machines.sun_ray_absorber.balance 默认 2.0",
+        "mru/MRULink.java:34 — 绑定宝石 16 格",
+        "assets/essentialcraft5/textures/special/bookicons/mru_lowest.png — 原作研究书插图"
+      ]
+    },
+    {
+      "id": "mrucu",
+      "title": "MRU 聚集体与腐化",
+      "icon": "essentialcraft5:mru_mover",
+      "summary": "机器漏出来的 MRU",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>MRU 聚集体</em>（MRUCU）是悬在空中的一团 MRU，看上去是一颗向四面放光的光球，存得越多就越大，颜色随平衡值变化，纯净的是青色，冰冻的偏蓝，混沌的偏红。一团最多存 2 万 MRU，两团挤到同一格时会合成一团。"
+        },
+        {
+          "type": "image",
+          "texture": "essentialcraft5:textures/special/bookicons/mru_pressence.png",
+          "width": 256,
+          "height": 256,
+          "caption": "一团完全纯净的 MRU 聚集体"
+        },
+        {
+          "type": "h",
+          "text": "三个容易混的名字"
+        },
+        {
+          "type": "table",
+          "header": [
+            "名字",
+            "怎么来",
+            "会怎样",
+            "怎么消"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.corruption.respect_claims",
+              "cells": [
+                "「MRU 腐化」效果",
+                "待在自己那台漏 MRU 的机器 6 格内，每漏一次叠一层，别人的机器不会给你叠",
+                "II 级起偶尔掉最大生命的 {cfg:general.corruption.mru_corruption_health_percent|pct}",
+                "走开以后，等时间走完就自己消失，见下文"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.respect_claims",
+              "cells": [
+                "「MRU 腐化」效果",
+                "待在漏 MRU 的机器 6 格内，每漏一次叠一层",
+                "II 级起偶尔掉最大生命的 {cfg:general.corruption.mru_corruption_health_percent|pct}",
+                "走开以后，等时间走完就自己消失，见下文"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.mru_corruption_lethal",
+              "cells": [
+                "",
+                "",
+                "和中毒一样打不死人，最多剩半颗心",
+                ""
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "cells": [
+                "矩阵损伤",
+                "存满 1 万的聚集体每秒给 12 格内的人加",
+                "本身不掉血，积攒多了会凝成腐化效果",
+                "不会自己消退"
+              ]
+            },
+            {
+              "if": "!cfg:general.corruption.effects_enabled",
+              "cells": [
+                "矩阵损伤",
+                "存满 1 万的聚集体每秒给 12 格内的人加",
+                "只是一直累积",
+                "不会自己消退"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.corruption.draw_requires_cure_tier"
+              ],
+              "cells": [
+                "腐化效果",
+                "打开过灵魂五芒星以后，由积攒过多的矩阵损伤凝成",
+                "不治就一直存在，死亡也不会消除",
+                "只有[[pentacle/pentacle]]能治"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "!cfg:general.corruption.draw_requires_cure_tier"
+              ],
+              "cells": [
+                "腐化效果",
+                "由积攒过多的矩阵损伤凝成",
+                "永久的小毛病，死亡也不会消除",
+                "只有[[pentacle/pentacle]]能治"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "从哪来"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>机器泄漏</em>：辐射仓、魔力工作台这类机器干活时往外漏 MRU，漏出的 MRU 汇进水平 32 格、上下 16 格以内最近的一团，附近没有就在机器旁边新凝一团，见[[crafting/corruption]]。",
+            "<em>钻石仪式</em>：见下。",
+            "<em>上古遗迹</em>：随世界一起生成，见下。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "存满 1 万以后"
+        },
+        {
+          "type": "p",
+          "text": "聚集体存满 1 万 MRU 以后，每秒给 12 格内的玩家加一次<em>矩阵损伤</em>，存量在 1 万～2 万之间时每次 40 点，满 2 万时 80 点，创造模式的玩家不受影响。不到 1 万时它完全无害。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "矩阵损伤不会自己消退，积攒多了会凝成<em>腐化效果</em>，只有[[pentacle/pentacle]]能治，详见[[corruption/matrix_damage]]。打开第一座搭好的五芒星以前，损伤只会越积越多，不会凝成效果，打开以后各类效果都可能凝成，不过要攒下很多损伤才会凝成一个。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.corruption.effects_enabled",
+            "!cfg:general.corruption.draw_requires_cure_tier"
+          ],
+          "text": "矩阵损伤不会自己消退，积攒多了会凝成永久的<em>腐化效果</em>，只有[[pentacle/pentacle]]能治，详见[[corruption/matrix_damage]]。"
+        },
+        {
+          "type": "h",
+          "text": "察觉与防范"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>看见</em>：拿着或戴着{item:essentialcraft5:magic_monocle}，就能隔着墙看见聚集体，见[[gear/magic_monocle]]。",
+            "<em>估存量</em>：聚集体没有读数，只能看光芒的长短来估计，光芒长度和存量成正比，存 5000 时最长的一道约伸出 1 格，1 万时约 2 格，满 2 万时约 4 格。",
+            "<em>挪走</em>：用{item:essentialcraft5:mru_mover}把它挪到平时不去的角落，见[[crafting/corruption]]。",
+            "<em>隔墙</em>：聚集体和你之间隔着的方块能挡掉一部分损伤，见下表。",
+            "<em>穿防护</em>：穿上一整套魔力防护套装，每秒的损伤会从 40 / 80 点降到 1 / 3 点，见[[gear/mhs_armor]]。",
+            "<em>关起来</em>：富集仓里存的 MRU 本身不伤人。外壳里飘着的聚集体，不管是关在里面的漏能机器养出来的，还是挪进去的，只要在外壳上砌一块{item:essentialcraft5:ec_balancer}，就不再伤人，见[[pentacle/ec_balancer]]。"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "隔着的方块",
+            "伤到你的几率"
+          ],
+          "widths": [
+            5,
+            3
+          ],
+          "rows": [
+            [
+              "什么都不隔",
+              "每次都中"
+            ],
+            [
+              "{item:essentialcraft5:fortified_stone}",
+              "1/2"
+            ],
+            [
+              "{item:essentialcraft5:fortified_glass}",
+              "1/3"
+            ],
+            [
+              "{item:essentialcraft5:magic_plating}",
+              "1/5"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_plating}",
+              "1/7"
+            ],
+            [
+              "{item:essentialcraft5:pale_plating}",
+              "1/10"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_glass}",
+                "1/15"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_stone}",
+                "1/18"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:demonic_plating}",
+                "1/36"
+              ]
+            },
+            [
+              "富集仓的控制器、接收器、存储方块这类部件",
+              "1/100"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "判定只看聚集体和你之间那条连线上挡得最多的一块，叠几层也不会更强。护板的做法见[[alloys/plating]]。"
+        },
+        {
+          "type": "h",
+          "text": "「MRU 腐化」效果"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.respect_claims",
+          "text": "这是开头那张表里的第一种。会漏 MRU 的机器每漏一次，就给水平 6 格、上下 3 格以内<em>这台机器的主人</em>叠一层「{lang:effect.essentialcraft5.mru_corruption}」。它只叠给放下机器的人，队友、路人和隔壁的邻居都不受影响。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.corruption.respect_claims",
+          "text": "这是开头那张表里的第一种。会漏 MRU 的机器每漏一次，就给水平 6 格、上下 3 格以内的玩家叠一层「{lang:effect.essentialcraft5.mru_corruption}」。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "头一层是 I 级、持续 10 秒，之后每叠一层加 0.1 秒。",
+            "叠层时按剩余时间定等级，每满 100 秒高一级。",
+            "从 II 级起，每秒有（等级 − 1）/16 的几率挨一下魔法伤害，扣掉最大生命的 {cfg:general.corruption.mru_corruption_health_percent|pct}，魔力防护套装能减轻这一下。",
+            "它不是药水效果，所以不在屏幕右上角，图标是快捷栏左边的一个紫框。牛奶、图腾和净化都去不掉它，死亡时它会消散。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "守着一台机器时，剩余时间每秒净涨 1 秒，约 90 秒升到 II 级，约 190 秒升到 III 级。离开以后等级不再变，时间走完效果就消失。"
+        },
+        {
+          "type": "h",
+          "text": "钻石仪式"
+        },
+        {
+          "type": "ritual",
+          "key": {
+            "C": "minecraft:emerald_block",
+            "R": "minecraft:soul_sand"
+          },
+          "pattern": [
+            " R ",
+            "RCR",
+            " R "
+          ],
+          "throw": "minecraft:diamond"
+        },
+        {
+          "type": "p",
+          "text": "把{item:minecraft:diamond}丢在和灵魂石仪式一样的摆法上，每颗有 60% 的几率给 32 格内最近的聚集体灌进 5000 MRU，附近没有聚集体就在原地凝成一团新的，整个过程不出任何物品。两颗钻石就可能把一团喂到 1 万，想清楚了再往这里丢钻石。"
+        },
+        {
+          "type": "h",
+          "text": "上古遗迹"
+        },
+        {
+          "type": "p",
+          "text": "上古遗迹很少见，平均两三百个区块才有一座，多半深埋在主世界 y 0～127 的石头里。石砖砌成的笼子四面围着铁栏杆，里面摆着四个地牢箱子和四个刷怪笼，正中悬着一团聚集体。这些笼子是先辈照海纳尔人的法子砌的，用来关住越长越大的聚集体。偶尔也有露在地表或洞穴里的，那是一座石砖平台，有的也带着箱子。"
+        },
+        {
+          "type": "p",
+          "text": "遗迹里那团聚集体存着 5000～1 万 MRU，还不到伤人的程度，但别在它旁边开机器，漏出来的 MRU 会把它喂过 1 万。箱子里的东西和原版地牢一样，还可能开出[[baubles/finding|特殊饰品]]。"
+        },
+        {
+          "type": "p",
+          "text": "遗迹里那团聚集体还有一只聚能魔像守着，你走近 {cfg:general.mobs.mru_golem.trigger_radius} 格它就会醒来，出在遗迹正上方的地面上，开局的装备打不过它，见[[bestiary/mru_golem]]。这次更新以前就生成好的遗迹里没有魔像。",
+          "if": "cfg:general.mobs.mru_golem.trigger_radius>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_wraith.spawn_weight>0",
+          "text": "存着 {cfg:general.mobs.matrix_wraith.min_presence_mru} MRU 以上的聚集体附近，暗处还会招来[[bestiary/matrix_wraith|矩阵游魂]]，遗迹里那团就够这个数，见[[corruption/matrix_damage]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "海纳尔的上古遗迹密得多，平均三十来个区块就有一座，见[[hoanna/lands]]。"
+        }
+      ],
+      "_src": [
+        "entity/MRUPresenceEntity.java:82 — 上限 20000；L86 每 4 刻同格合并；L335 存量 / 10000 ≥ 1 才伤；L88 范围 12（±0.5 再扩 12）；L398 损伤 ⌊4 × tier / (10 − 10 × 易伤)⌋ → 40 / 80，魔力防护全套易伤 0.75 → 1 / 3",
+        "mru/MRUBalance.java:67 — 颜色：纯净青、向冰冻渐蓝、向混沌渐红",
+        "mru/ECCorruption.java:89 — 泄漏汇进水平 32、竖直 16 内最近的一团（respect_claims 开着时是主人能动的那团，L233 chooseTarget），没有就新建；L97 给水平 6、竖直 3 内的玩家叠 MRU 腐化（respect_claims 开着时只叠给机器主人，L317 stackRecipients）；L212 创造 / 旁观不叠",
+        "entity/MRUResistances.java:35 — 默认抗性（配置 machines.mru_presence.block_resistances）：强化石 2、强化玻璃 3、魔力护板 5、米斯莱护板 7、淡青护板 10、虚空玻璃 15、虚空石 18、恶魔护板 36、富集仓部件 100；连线上取最大值 r，几率 1/⌊r⌋（entity/MRUPresenceEntity.java:358）",
+        "item/MHSArmorItem.java:65 — MRU 腐化抗性每件 0.25",
+        "corruption/MRUCorruption.java — 初次 200 刻；L123 等级 = 叠前时长 / 2000；L124 每层 +2 刻；L51 每秒 (放大值)/16；L76 damage = 最大生命 × general.corruption.mru_corruption_health_percent（0.25）× 易伤",
+        "ritual/GroundRituals.java:111 — 钻石仪式 0.6，ECCorruption.increaseAt(5000)",
+        "data/essentialcraft5/worldgen/placed_feature/elder_mrucu.json — rarity_filter 16，y 0~127；worldgen/ElderMRUCUFeature.java:41 折算每 190~260 区块一座；L279 聚集体 5000 + [0, 5000)",
+        "worldgen/ElderMRUCUFeature.java:29 — 四种布局（平台、带箱平台、岩浆圈、埋着的笼子 + 4 箱 + 4 刷怪笼）；箱子用原版地牢战利品表",
+        "data/essentialcraft5/worldgen/placed_feature/elder_mrucu_hoanna.json — rarity_filter 3（实测每 35 区块）",
+        "blockentity/EnrichmentControllerBlockEntity.java:60 — 外壳里有稳定器时仓内聚集体不伤玩家",
+        "entity/MRUResistances.java:44 — 抗性 100 的只有富集仓的控制器、接收器、稳定器、输出器、存储方块、红石控制器、状态检测器；外壳上的强化石、护板等按各自的抗性算",
+        "client/render/MRUPresenceRenderer.java:88-102 — 光芒长度 5~25 × 0.0000075 × MRU 格：5000 → 约 0.94、1 万 → 约 1.9、2 万 → 约 3.75",
+        "entity/MRUResistances.java:35-50 — void_glass 15、demonic_plating 36",
+        "blockentity/EnrichmentControllerBlockEntity.java:40-63 — 仓里的 MRU 存在控制器里，不是聚集体；稳定器只稳定外壳范围里的聚集体实体",
+        "tools/plan/batch13.md §5.3.1 — 魔像只给新生成的遗迹写 guardian: pending；生存 / 冒险玩家进 8 格触发；生命 120、护甲 10（13c-M2）"
+      ]
+    },
+    {
+      "id": "glossary",
+      "title": "名词速查",
+      "icon": "minecraft:book",
+      "summary": "书里常见的词，一句话讲清",
+      "blocks": [
+        {
+          "type": "table",
+          "header": [
+            "词",
+            "意思",
+            "详见"
+          ],
+          "widths": [
+            2,
+            5,
+            3
+          ],
+          "rows": [
+            [
+              "MRU",
+              "魔法辐射单位，相当于这个模组里的电，机器收集、储存、消耗的都是它",
+              "[[start/mru]]"
+            ],
+            [
+              "刻",
+              "游戏时间的单位，20 刻 = 1 秒，书里说的「每刻」就是每 1/20 秒",
+              "—"
+            ],
+            [
+              "平衡值",
+              "每份 MRU 都带着的一个 0～2 之间的数，{balance:pure}正好 1.0，{balance:frozen}低于 1.0，{balance:chaos}高于 1.0",
+              "[[start/mru]]"
+            ],
+            [
+              "产能器",
+              "自己产出 MRU 的机器",
+              "[[generators/heat_generator]]"
+            ],
+            [
+              "绑定宝石",
+              "记住源头位置的宝石，放进机器就隔空拉 MRU，不用管道和电线",
+              "[[crafting/bound_gem]]"
+            ],
+            [
+              "魔晶",
+              "火、水、地、风四种元素的晶粒，挖蕴魔矿石得到",
+              "[[elements/ores]]"
+            ],
+            [
+              "MRU 矩阵",
+              "罩在每个活物身上的一层看不见的 MRU，护着你不受 MRU 伤害",
+              "[[mru/soul_stone]]"
+            ],
+            [
+              "UBMRU",
+              "你的矩阵里存的能量，亲手击杀生物获得，死亡清零",
+              "[[mru/ubmru]]"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "矩阵阶",
+                "你自己的矩阵分九阶，在矩阵淬炼台打赢试炼才升一阶，每阶给一样新本事",
+                "[[matrix/overview]]"
+              ]
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "矩阵图谱",
+                "记你亲手杀过哪些敌对生物，每种只记第一次，升阶要够数",
+                "[[matrix/codex]]"
+              ]
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "相性",
+                "矩阵三阶起，你的矩阵属性给的被动",
+                "[[matrix/alignment]]"
+              ]
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "矩阵容量",
+                "矩阵二阶起你身上能直接存的 MRU，死了清零",
+                "[[matrix/reservoir]]"
+              ]
+            },
+            [
+              "MRU 聚集体",
+              "也叫 MRUCU，是悬在空中的一团 MRU，多半由机器漏出，存满 1 万以后会伤人",
+              "[[start/mrucu]]"
+            ],
+            [
+              "「MRU 腐化」效果",
+              "守在漏 MRU 的机器旁边时叠上的负面效果，走开以后会自行消失",
+              "[[start/mrucu]]"
+            ],
+            [
+              "矩阵损伤",
+              "存满 1 万的聚集体给你叠的暗伤，不会自己消退",
+              "[[corruption/matrix_damage]]"
+            ],
+            {
+              "if": [
+                "cfg:general.computer_seal.enabled",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "饰品封禁场",
+                "宅男套装全套自带的场，被它罩住的玩家，饰品栏里的东西会暂时失效",
+                "[[computer/seal_field]]"
+              ]
+            },
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "cells": [
+                "腐化效果",
+                "矩阵损伤积攒多了凝成的小毛病，不治就一直存在，灵魂五芒星能治好",
+                "[[pentacle/pentacle]]"
+              ]
+            },
+            [
+              "矩阵投影",
+              "灵魂石照成的「矩阵底片」，分冰冻、混沌、魔力几种",
+              "[[generators/projections]]"
+            ],
+            [
+              "{item:essentialcraft5:magic_plate}、{item:essentialcraft5:magic_fortified_plating}、{item:essentialcraft5:magic_plating}",
+              "魔力板是零件，由魔力强化板加 4 个魔力锭做成，魔力强化板是一块魔力强化石在魔力工作台里做出来的。魔力护板是建材，4 块魔力板出 16 块",
+              "[[crafting/magician_crafts]]"
+            ],
+            [
+              "{item:essentialcraft5:iron_support}、{item:essentialcraft5:fortified_frame}",
+              "这是两种不同的零件，铁框架在第一章用铁锭和元素晶石合成，魔力强化框架在第三章用魔力强化石和魔力强化玻璃合成",
+              "[[crafting/fortified]]"
+            ],
+            [
+              "同一类材料",
+              "配方里要「魔力板」「魔力核心」的格子，一般也收同类里更高级的淡青板、米斯莱板、恶魔板，或淡青元素核心、恶魔核心，配方图上那一格会轮流显示能放的几种",
+              "[[alloys/pale]]"
+            ],
+            [
+              "灵魂储存",
+              "能存 MRU 的随身物品，像电池一样给装备供能",
+              "[[storage/soul_storage]]"
+            ],
+            [
+              "富集仓",
+              "用外壳方块围成的大型 MRU 电池",
+              "[[enrichment/controller]]"
+            ],
+            [
+              "ESPE",
+              "末影之星脉冲能量，书里的第二种能量，由水晶柱积攒，米斯莱熔炉和风之符文祭坛要用",
+              "[[mithriline/mithriline_ingot]]"
+            ],
+            [
+              "柱位、档位",
+              "结构里要立水晶柱的格子叫柱位，水晶柱和灵魂五芒星都分档位，档位高的柱位要放档位够高的柱子",
+              "[[mithriline/crystal_pillar]]"
+            ],
+            [
+              "注风",
+              "在风之符文祭坛上，把水晶柱里的 ESPE 注进手里的物品，让它变成别的东西，比如把钻石变成风之水晶",
+              "[[wind/wind_rune]]"
+            ],
+            [
+              "风之好感",
+              "风对你有多少好感，喝风之药水等办法都能让它涨",
+              "[[wind/air_potion]]"
+            ],
+            [
+              "风之眷顾",
+              "用灵魂石在风之符文上注风后得到的状态",
+              "[[wind/windbound]]"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.wind_wish.enabled"
+              ],
+              "cells": [
+                "风之心愿、风之印记",
+                "受眷顾以后风托付给你的小事，每做完一个记一笔风之印记，积攒够了风之石板才肯开门",
+                "[[wind/wishes]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "风之号角",
+                "山羊角注风做成，夜里吹响能把大法师叫到身边",
+                "[[wind/wind_horn]]"
+              ]
+            },
+            [
+              "风法师、大法师",
+              "主世界夜里出现的远程怪，分学徒、法师、大法师三等，穿红袍的大法师会掉落做风之石板用的受困之风",
+              "[[wind_mage/wind_mages]]"
+            ],
+            {
+              "if": "mod:curios",
+              "cells": [
+                "饰品栏",
+                "物品栏界面里由饰品模组提供的戒指、项链、腰带格子，灵魂储存和特殊饰品都能戴在这里",
+                "[[baubles/finding]]"
+              ]
+            },
+            [
+              "魔力防护套装",
+              "挡聚集体矩阵损伤的一套盔甲，前中期最常用的防护",
+              "[[gear/mhs_armor]]"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "第一个毁于 MRU 的世界，要靠风之石板换出的门前往",
+                "[[hoanna/legend]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "遗物",
+                "海纳尔遗迹箱子里开出的东西：榍石、虚空板、虚空核心、MRU 反应核、余烬等",
+                "[[hoanna/relics]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "余烬",
+                "遗物的一种，有八个品种，锻余烬元素剑用",
+                "[[hoanna/relics]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "天灾",
+                "海纳尔里隔一阵来一次的日阵、毒雾、黑暗或地震",
+                "[[hoanna/events]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "阿克罗尼特",
+                "只能和恶魔交易换来的金属锭，第十八、二十章的主料",
+                "[[demons/trade]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.demon.standing.enabled"
+              ],
+              "cells": [
+                "契约之誉",
+                "和恶魔每做成一笔交易 +1，攒多了恶魔给你更好的条件",
+                "[[demons/standing]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "全息投影",
+                "第十八章的 Boss，在海纳尔用全息投影台召出，打倒它才拿得到数学核心",
+                "[[hologram/hologram]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "数学核心",
+                "加、减、乘、除四种，只有全息投影掉，做电脑引擎用",
+                "[[hologram/math_cores]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "故障核心",
+                "全息投影必掉的核心，上面写着一个目标平衡值，放进辐射仓能解码出审判庭坐标",
+                "[[inquisitorium/glitchy_core]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "审判庭哨兵",
+                "第十九章的 Boss，是全息投影的进阶型，招式带有回声，打中你会增加矩阵损伤",
+                "[[inquisitorium/sentinel]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.inquisitorium.echo_ratio"
+              ],
+              "cells": [
+                "回声",
+                "审判庭哨兵的本事，一招放完后，下一招出招时上一招会减弱一些再跟着来一遍",
+                "[[inquisitorium/sentinel]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "恐惧之地",
+                "海纳尔里铺满暗褐色恐惧泥土的地方，地上只有枯萎的灌木和蘑菇",
+                "[[hoanna/lands]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "魔力果实",
+                "海纳尔魔力腐化之地草地上长的果实，很顶饿",
+                "[[hoanna/flora]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "cells": [
+                "海纳尔辐射",
+                "在海纳尔待久了身上积攒的辐射，会压低生命上限，和辐射仓的「MRU 辐射」是两回事",
+                "[[hoanna/radiation]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.collapse.enabled"
+              ],
+              "cells": [
+                "坍缩",
+                "海纳尔的富集仓里关着的聚集体慢慢凝成虚空核心或 MRU 反应核",
+                "[[hoanna/collapse]]"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0",
+              "cells": [
+                "腐蚀",
+                "一种状态效果，带着它回不了血，和「MRU 腐化」、腐化效果都是两回事",
+                "[[guns/lens_effects]]"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.divider_gun.affect_bosses",
+                "cfg:general.divider_gun.boss_mode_ticks>0"
+              ],
+              "cells": [
+                "二分",
+                "一种状态效果，带着它的生物打出的伤害和受到的治疗都减半，二分枪打 Boss 时会挂上",
+                "[[hologram/divider_gun]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "模块",
+                "装在宅男套装上的扩展件，每块增加一样本事，空白模块是它们的底料",
+                "[[terminal/install]]"
+              ]
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "cells": [
+                "同调",
+                "装备在实战里攒同调度、一阶阶升上去，越用越强；和你自己的矩阵阶不是一回事",
+                "[[attunement/overview]]"
+              ]
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "mru/MRUBalance.java:41 — 平衡值三态",
+        "player/UBMRUEvents.java:91 — 击杀所得；L81 死亡清零",
+        "player/UBMRUEvents.java:91 — UBMRU 来自亲手击杀",
+        "item/BoundGemItem.java — 绑定宝石；mru/MRULink.java:34 — 16 格",
+        "ESPE / 风之好感 / 风之眷顾 / 海纳尔各行的说法与 mithriline、wind、hoanna 各章一致（各章 _src 有出处）",
+        "data/essentialcraft5/worldgen/biome/dreadlands.json — 恐惧之地只有枯萎的灌木和蘑菇（恐惧仙人掌在海纳尔沙漠，hoanna_desert.json）；风之符文祭坛的叫法同 wind/wind_rune"
+      ]
+    },
+    {
+      "id": "materials",
+      "title": "材料速查",
+      "icon": "essentialcraft5:mithriline_ore",
+      "summary": "常用材料从哪来",
+      "items": [
+        "essentialcraft5:mithriline_ore",
+        "essentialcraft5:nether_mithriline_ore",
+        "essentialcraft5:end_mithriline_ore",
+        "essentialcraft5:mithriline_dust",
+        "essentialcraft5:mithriline_dust_block"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "前中期最常用的材料都列在下面这张表里，点一下名字就能跳到介绍它的那一篇。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "材料",
+            "从哪来",
+            "详见"
+          ],
+          "widths": [
+            4,
+            5,
+            3
+          ],
+          "rows": [
+            [
+              "四种魔晶",
+              "挖蕴魔矿石或举行地面仪式",
+              "[[elements/ores]]"
+            ],
+            [
+              "{item:essentialcraft5:elemental_gem}",
+              "用四种魔晶合成，或者挖元素蕴魔矿石",
+              "[[elements/elemental_gem]]"
+            ],
+            [
+              "{item:essentialcraft5:soul_stone}",
+              "绿宝石仪式",
+              "[[mru/soul_stone]]"
+            ],
+            [
+              "{item:essentialcraft5:fortified_stone}、{item:essentialcraft5:fortified_glass}",
+              "辐射仓照石头、玻璃",
+              "[[crafting/fortified]]"
+            ],
+            [
+              "{item:essentialcraft5:magical_ingot}、{item:essentialcraft5:magical_water}",
+              "魔力工作台",
+              "[[crafting/magician_crafts]]"
+            ],
+            [
+              "从 MRU 碎片到大 MRU 晶块",
+              "魔力工作台一级级提炼石英",
+              "[[storage/crystals]]"
+            ],
+            [
+              "{item:essentialcraft5:magical_slag}",
+              "热力产能器烧燃料的副产物",
+              "[[generators/heat_generator]]"
+            ],
+            [
+              "{item:essentialcraft5:magical_essence}",
+              "辐射仓：红石粉 + 烈焰粉",
+              "[[alloys/magical_essence]]"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "辐射仓：青金石块 + 金锭",
+              "[[alloys/pale]]"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_dust}",
+              "挖米斯莱矿石，见下",
+              "—"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_ingot}",
+              "米斯莱粉加魔力锭合成，或者用米斯莱熔炉转化",
+              "[[mithriline/mithriline_ingot]]"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "虚空核心、MRU 反应核",
+                "海纳尔遗迹里的箱子",
+                "[[hoanna/relics]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ackronite_ingot}",
+                "和恶魔做交易",
+                "[[demons/ackronite]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:glitchy_core}",
+                "打倒全息投影、审判庭哨兵必掉",
+                "[[inquisitorium/glitchy_core]]"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:inquisitorium_chip}",
+                "打倒审判庭哨兵",
+                "[[inquisitorium/chip]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "米斯莱矿石"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:mithriline_ore",
+            "essentialcraft5:nether_mithriline_ore",
+            "essentialcraft5:end_mithriline_ore",
+            "essentialcraft5:mithriline_dust",
+            "essentialcraft5:mithriline_dust_block"
+          ],
+          "per_row": 5
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:mithriline_ore}在主世界、下界和末地都有，和蕴魔矿石嵌在同样的石头里，任何镐都能挖。挖一块掉 3～10 份{item:essentialcraft5:mithriline_dust}，时运 III 能到 3～34 份，精准采集则掉矿石本身。"
+        },
+        {
+          "type": "p",
+          "text": "九份米斯莱粉能压成一块，放回工作台又能拆回九份。第十一章以后米斯莱粉用得很快，下矿时碰到就顺手挖回来，有时运镐更好。"
+        },
+        {
+          "type": "h",
+          "text": "前五章要备的原版材料"
+        },
+        {
+          "type": "p",
+          "text": "照着主线做完前五章，大约要用到下面这些材料。数字是必做步骤的合计，按需制作的机器另算。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "材料",
+            "大约要",
+            "主要用在"
+          ],
+          "rows": [
+            [
+              "{item:minecraft:iron_ingot}",
+              "150",
+              "魔力锭、元素核心、各种板和眼"
+            ],
+            [
+              "{item:minecraft:diamond}",
+              "9",
+              "辐射仓的 4 块钻石板、鲜红灵魂物质"
+            ],
+            [
+              "{item:minecraft:emerald}",
+              "20 左右",
+              "仪式台的绿宝石块、灵魂石、绿宝石板"
+            ],
+            [
+              "{item:minecraft:ender_pearl}",
+              "9",
+              "吸收之眼、MRU 收集器、MRU 链接器"
+            ],
+            [
+              "{item:minecraft:gold_ingot}",
+              "8",
+              "MRU 收集器、MRU 链接器"
+            ],
+            [
+              "{item:minecraft:quartz}",
+              "8",
+              "绑定宝石、MRU 晶体"
+            ],
+            [
+              "{item:minecraft:obsidian}",
+              "8",
+              "2 块黑曜石板"
+            ],
+            [
+              "{item:minecraft:soul_sand}",
+              "4",
+              "灵魂石仪式"
+            ],
+            [
+              "{item:minecraft:ice}、{item:minecraft:snow_block}、{item:minecraft:glowstone}",
+              "各 8、8、2",
+              "冷凝器配方里的 2 块霜冻石，摆在它周围的冰雪另算"
+            ]
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/radiating_chamber/magical_essence.json — 红石粉 + 烈焰粉；pale_ingot.json — 青金石块 + 金锭",
+        "data/essentialcraft5/recipes/mithriline/mithriline_ingot.json — 米斯莱粉 4 + 魔力锭；mithriline/furnace/mithriline_dust_to_mithriline_ingot.json — 米斯莱熔炉 60 ESPE",
+        "registry/ECWorldGen.java:32 — 米斯莱矿掉 3 ~ 8×(时运+1)+2 份；data/essentialcraft5/worldgen/configured_feature/mithriline_ore.json — 主世界石头层；nether_ / end_ 替换下界岩、末地石",
+        "data/essentialcraft5/recipes/materials/mithriline_dust_block.json — 9 → 1；mithriline_dust_from_block.json 1 → 9",
+        "tools/plan/progression.md「全线总量」— 米斯莱粉合计约 2964 份",
+        "第一~五章合计：按 data/essentialcraft5/recipes 展开矩阵换能器、4 颗绑定宝石、辐射仓、魔力工作台、热力产能器、冷凝器、充能仓、1 个吸收之眼升级（元素核心 9 个、魔力板 4 块一并展开）：铁锭约 155、钻石 9、绿宝石 6 + 灵魂石 2 块约 4 + 绿宝石块 9、末影珍珠 9、金锭 8、石英 8、黑曜石 8",
+        "data/essentialcraft5/loot_tables/entities/hologram_*.json、inquisitorium_sentinel.json — 故障核心必掉 1 个；哨兵另掉审判庭芯片（第十批 10c）"
+      ]
+    },
+    {
+      "id": "faq",
+      "title": "常见误区",
+      "icon": "minecraft:writable_book",
+      "summary": "新手最容易踩的坑",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "MRU 与 UBMRU"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>一死就会失去全部 UBMRU</em>，攒下一些就尽早换成 MRU，见[[mru/ubmru]]。",
+            "<em>只有你亲手杀的才给 UBMRU</em>，弓箭射死的也算，宠物和机器代劳的不算。",
+            "<em>矩阵换能器只在灵魂石的主人在线时工作</em>，绑着你的灵魂石别交给别人，见[[mru/matrix_absorber]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "机器"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>绑定宝石有距离限制</em>，源头要在同一维度、三个方向各 16 格以内，所在区块还得是加载着的，见[[crafting/bound_gem]]。",
+            "<em>每台机器都会先把自己存满</em>，几台机器绑着同一个源头时，先拉到的那台先囤。",
+            "<em>拆掉机器时，里面存的 MRU 跟着没了</em>，物品会掉出来。",
+            "<em>热力产能器四面只要有一面是空气，就一点也不产出</em>，见[[generators/heat_generator]]。",
+            "<em>辐射仓里存着的旧 MRU 会拖住平衡值</em>，做冰冻、混沌投影要用空的辐射仓，见[[generators/projections]]。",
+            "<em>魔力工作台的输出格满了，进度会清零</em>，产物要及时取走。",
+            "<em>前期的机器收到红石信号就停机</em>，矩阵换能器、辐射仓、魔力工作台、热力产能器、自然熔炉、冷凝器和充能仓都是这样。机器不干活时，先看看旁边有没有红石。",
+            "<em>这个模组的机器不会替你挖方块、放方块</em>，也不会点火，见[[automation/rules]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "安全"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.radiating_chamber.generate_corruption||cfg:machines.magician_table.generate_corruption",
+              "text": "<em>别守在干活的辐射仓、魔力工作台旁边</em>，离得近了会叠上「MRU 腐化」效果，见[[crafting/corruption]]。"
+            },
+            "<em>别让 MRU 聚集体长过 1 万</em>，超过以后它会损伤 12 格内玩家的矩阵，见[[start/mrucu]]。",
+            "<em>同种饰品只生效一件</em>，见[[baubles/finding]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "饰品"
+        },
+        {
+          "type": "list",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "items": [
+            "<em>饰品突然不管用、饰品格上出现禁用图标</em>，是附近有人穿着全套宅男套装、开着饰品封禁场，离他 {cfg:general.computer_seal.radius|add:2} 格以外就会恢复，见[[computer/seal_field]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "玩过原作"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>照原作的经验来玩容易踩空</em>，不少东西改了名、换了做法，还有去掉的，先看[[from_ec4/overview|附录「与原作的不同」]]。"
+          ]
+        }
+      ],
+      "_src": [
+        "player/UBMRUEvents.java:60 — 只认真玩家击杀（投射物算射手）；L81 死亡清零",
+        "blockentity/MatrixAbsorberBlockEntity.java:105 — 主人在线才换",
+        "mru/MRULink.java:34 — 16 格；L101 维度；L114 区块加载",
+        "mru/MRUStorage.java:117 — 每刻拉满自身",
+        "block/MachineBlock.java:115 — 拆掉只掉物品栏（战利品表只掉方块本身，不带 MRU）",
+        "blockentity/HeatGeneratorBlockEntity.java:187 — 空气系数 0",
+        "blockentity/MagicianTableBlockEntity.java:182 — 输出放不下清零",
+        "entity/MRUPresenceEntity.java:335 — 1 万起伤矩阵",
+        "baubles 章 finding 条目 — 同种饰品只生效一件",
+        "hasNeighborSignal 停机：blockentity/MatrixAbsorberBlockEntity.java:97、RadiatingChamberBlockEntity.java:265、MagicianTableBlockEntity.java:178、HeatGeneratorBlockEntity.java:122、NaturalFurnaceBlockEntity.java:165、ColdDistillatorBlockEntity.java:109、ChargingChamberBlockEntity.java:64（射线塔不看红石，农牧机器、合成器靠红石脉冲工作，所以只写前期这几台）",
+        "machines.radiating_chamber.generate_corruption / machines.magician_table.generate_corruption — 两台都不漏时「别守在旁边」那条隐藏",
+        "附录分类 from_ec4 — 原作玩家的入口（batch10.md §5.2）",
+        "item/ComputerSealField.java — 饰品封禁场；已在场内的人到 radius + 2 才算离开"
+      ]
+    },
+    {
+      "id": "numbers",
+      "title": "数值速查",
+      "icon": "minecraft:comparator",
+      "summary": "常用机器的关键数字",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "产能器"
+        },
+        {
+          "type": "table",
+          "header": [
+            "机器",
+            "产量",
+            "能存"
+          ],
+          "widths": [
+            4,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:matrix_absorber}",
+              "每刻 {cfg:machines.matrix_absorber.ubmru_usage} UBMRU → {cfg:machines.matrix_absorber.mru_generated} MRU",
+              "{cfg:machines.matrix_absorber.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:heat_generator}",
+              "每刻 {cfg:machines.heat_generator.mru_generated} × 四面系数（四面岩浆 {cfg:machines.heat_generator.mru_generated|mul:0.81450625|add:-0.499999|int}）",
+              "{cfg:machines.heat_generator.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:natural_furnace}",
+              "烧植物时每刻 {cfg:machines.natural_furnace.mru_generated}",
+              "{cfg:machines.natural_furnace.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:cold_distillator}",
+              "每刻 = 周围冷值之和（取整）× {cfg:machines.cold_distillator.mru_gen_modifier}",
+              "{cfg:machines.cold_distillator.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:sun_ray_absorber}",
+              "被光束照到时每刻 {cfg:machines.sun_ray_absorber.mru_generated}",
+              "{cfg:machines.sun_ray_absorber.max_mru}"
+            ],
+            [
+              "{item:essentialcraft5:ender_generator}",
+              "每打中末影人一次 {cfg:machines.ender_generator.mru_generated}",
+              "{cfg:machines.ender_generator.max_mru}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "前期机器能存多少"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:radiating_chamber}",
+              "{cfg:machines.radiating_chamber.max_mru} MRU"
+            ],
+            [
+              "{item:essentialcraft5:magician_table}",
+              "{cfg:machines.magician_table.max_mru} MRU"
+            ],
+            [
+              "{item:essentialcraft5:charging_chamber}",
+              "{cfg:machines.charging_chamber.max_mru} MRU"
+            ],
+            [
+              "{item:essentialcraft5:ray_tower}",
+              "{cfg:machines.ray_tower.max_mru} MRU"
+            ],
+            [
+              "绑定宝石距离",
+              "三个方向各 16 格"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "MRU 聚集体"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "一团最多",
+              "2 万 MRU"
+            ],
+            [
+              "开始伤人",
+              "存满 1 万起，12 格内"
+            ],
+            [
+              "每秒加的矩阵损伤",
+              "1 万～2 万时 40，满 2 万时 80"
+            ],
+            [
+              "详见",
+              "[[start/mrucu]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩阵阶"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.matrix_rank.enabled",
+          "rows": [
+            [
+              "每阶耐受",
+              "+{cfg:general.matrix_rank.tolerance_per_rank|pct}"
+            ],
+            [
+              "矩阵容量",
+              "{cfg:general.matrix_rank.pool_per_rank} ×（阶 − 1）"
+            ],
+            [
+              "换入容量",
+              "每秒最多 {cfg:general.matrix_rank.pool_absorb_per_second} MRU，保留线 {cfg:general.matrix_rank.pool_absorb_reserve} UBMRU"
+            ],
+            [
+              "矩阵虹吸",
+              "一次最多 {cfg:general.matrix_rank.siphon.amount} MRU，自己挨 {cfg:general.matrix_rank.siphon.matrix_damage} 矩阵损伤，冷却 {cfg:general.matrix_rank.siphon.cooldown_ticks|sec}"
+            ],
+            [
+              "试炼成功",
+              "矩阵损伤 {cfg:general.matrix_rank.trial.success_matrix_damage_per_rank} × 新阶"
+            ],
+            [
+              "试炼失败",
+              "冷却 {cfg:general.matrix_rank.trial.fail_cooldown_seconds} 秒；离台超过 {cfg:general.matrix_rank.trial.leave_radius} 格就算失败"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "矩阵稳固（七阶）",
+                "再乘 {cfg:general.matrix_rank.stability.matrix_damage_multiplier}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.matrix_rank.gates.calamity_beacon>0"
+              ],
+              "cells": [
+                "天灾信标",
+                "要矩阵 {cfg:general.matrix_rank.gates.calamity_beacon} 阶"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "富集仓"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "外壳每边",
+              "{cfg:machines.enrichment_chamber.min_size}～{cfg:machines.enrichment_chamber.max_size} 格"
+            ],
+            [
+              "控制器基础容量",
+              "{cfg:machines.enrichment_chamber.max_mru} MRU"
+            ],
+            [
+              "每个存储方块再加",
+              "{cfg:machines.enrichment_chamber.mru_per_storage} MRU"
+            ],
+            [
+              "自动复查外壳",
+              "每 {cfg:machines.enrichment_chamber.recheck_interval|sec}"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.collapse.enabled"
+              ],
+              "cells": [
+                "聚集体坍缩（海纳尔）",
+                "积攒满 {cfg:machines.enrichment_chamber.collapse.seconds} 秒出 1 个，每次扣 {cfg:machines.enrichment_chamber.collapse.mru} MRU，天灾期间 ×{cfg:machines.enrichment_chamber.collapse.event_multiplier}，见[[hoanna/collapse]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "{item:essentialcraft5:mru_coil}"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "最大射程",
+              "{cfg:machines.mru_coil.max_radius} 格"
+            ],
+            [
+              "每打中一个目标",
+              "{cfg:machines.mru_coil.mru_per_hit} MRU"
+            ],
+            {
+              "if": "cfg:machines.mru_coil.hurt_monsters",
+              "cells": [
+                "打怪物每下",
+                "{cfg:machines.mru_coil.monster_damage} 点"
+              ]
+            },
+            {
+              "if": "cfg:machines.mru_coil.hurt_players",
+              "cells": [
+                "打玩家每下",
+                "{cfg:machines.mru_coil.player_damage} + 最大生命的 {cfg:machines.mru_coil.player_health_percent|pct}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "风之心愿与风之号角"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            {
+              "if": [
+                "cfg:general.wind_wish.enabled",
+                "cfg:general.wind_wish.required>0"
+              ],
+              "cells": [
+                "风之石板要的心愿",
+                "{cfg:general.wind_wish.required} 个"
+              ]
+            },
+            {
+              "if": "cfg:general.wind_wish.enabled",
+              "cells": [
+                "每个心愿",
+                "原始好感 +{cfg:general.wind_wish.points}，期限 {cfg:general.wind_wish.deadline_ticks|div:24000|round:1} 个游戏日，见[[wind/wishes]]"
+              ]
+            },
+            [
+              "风之号角",
+              "注风 {cfg:general.wind_horn.espe} ESPE，吹一次就用掉，冷却 {cfg:general.wind_horn.cooldown_ticks|div:1200|round:1} 分钟"
+            ],
+            [
+              "召来的",
+              "1 只大法师 + {cfg:general.wind_horn.escorts} 只随从，{cfg:general.wind_horn.despawn_ticks|div:1200|round:1} 分钟没人打就会散去，见[[wind/wind_horn]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "海纳尔辐射"
+        },
+        {
+          "type": "kv",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ],
+          "rows": [
+            [
+              "每一级",
+              "1 万剂量"
+            ],
+            [
+              "生命上限",
+              "1 万起每级压低最大生命的 {cfg:general.radiation.cap_loss_percent_per_level|pct}，辐射 II 压低 {cfg:general.radiation.cap_loss_percent_per_level|mul:2|pct}，最多压低 {cfg:general.radiation.max_cap_loss_percent|pct}，最低留 1"
+            ],
+            [
+              "消退",
+              "海纳尔里每秒 1，离开后每秒 5"
+            ],
+            [
+              "详见",
+              "[[hoanna/radiation]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "恶魔"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "召唤一只",
+              "{cfg:general.demon.summon_espe} ESPE，按柱子里的原数扣除"
+            ],
+            [
+              "成交一次给",
+              "{cfg:general.demon.reward_min}～{cfg:general.demon.reward_max} 个{item:essentialcraft5:ackronite_ingot}"
+            ],
+            {
+              "if": "cfg:general.demon.clear_radius>0",
+              "cells": [
+                "清怪",
+                "每 {cfg:general.demon.clear_interval|sec}打一只，{cfg:general.demon.clear_radius} 格内"
+              ]
+            },
+            [
+              "详见",
+              "[[demons/summoning]]、[[demons/trade]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "全息投影"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "生命",
+              "{cfg:general.hologram.max_health}"
+            ],
+            {
+              "if": "cfg:general.hologram.max_damage_per_hit>0",
+              "cells": [
+                "一下最多掉",
+                "{cfg:general.hologram.max_damage_per_hit}"
+              ]
+            },
+            [
+              "召唤",
+              "露天处的{item:essentialcraft5:holopad}，64 格内只能有一只"
+            ],
+            [
+              "脱战",
+              "一下子离开 {cfg:general.hologram.escape_range} 格以外、换维度或下线，在 24 格到这个距离之间会被拉回，没人参战 {cfg:general.hologram.abandon_ticks|sec}后消失"
+            ],
+            [
+              "详见",
+              "[[hologram/summoning]]、[[hologram/hologram]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "审判庭"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "解码",
+              "辐射仓里的平衡值对准核心上的目标，允许前后差 {cfg:general.inquisitorium.decode_tolerance}，耗时 {cfg:general.inquisitorium.decode_ticks|sec}，一共 {cfg:general.inquisitorium.decode_mru} MRU"
+            ],
+            [
+              "坐标",
+              "走到 {cfg:general.inquisitorium.arrive_radius} 格内就算到达，信标也要放在这个范围内"
+            ],
+            [
+              "哨兵的生命",
+              "{cfg:general.inquisitorium.max_health}"
+            ],
+            {
+              "if": "cfg:general.inquisitorium.echo_ratio",
+              "cells": [
+                "回声",
+                "上一招以 {cfg:general.inquisitorium.echo_ratio|pct} 的强度跟着再来一遍"
+              ]
+            },
+            {
+              "if": "cfg:general.inquisitorium.matrix_damage_per_hit",
+              "cells": [
+                "每打中一下",
+                "矩阵损伤 +{cfg:general.inquisitorium.matrix_damage_per_hit}"
+              ]
+            },
+            [
+              "详见",
+              "[[inquisitorium/decoding]]、[[inquisitorium/sentinel]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "全息诱饵"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "每次",
+              "{cfg:general.holo_decoy.mru_per_use} MRU，冷却 {cfg:general.holo_decoy.cooldown_ticks|sec}"
+            ],
+            [
+              "引怪",
+              "分身周围 {cfg:general.holo_decoy.radius} 格，持续 {cfg:general.holo_decoy.lifetime_ticks|sec}"
+            ],
+            {
+              "if": "cfg:general.holo_decoy.boss_ticks",
+              "cells": [
+                "Boss 被骗",
+                "{cfg:general.holo_decoy.boss_ticks|sec}"
+              ]
+            },
+            [
+              "详见",
+              "[[hologram/decoy]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.force_dome.enabled"
+          ],
+          "text": "{item:essentialcraft5:force_dome}"
+        },
+        {
+          "type": "kv",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.force_dome.enabled"
+          ],
+          "rows": [
+            [
+              "范围",
+              "水平 {cfg:machines.force_dome.radius} 格，从天到地整根柱子"
+            ],
+            [
+              "满负荷每秒",
+              "{cfg:machines.force_dome.mru_per_tick|mul:20} MRU，只有一部分区块可拦时按比例少扣"
+            ],
+            {
+              "if": "cfg:machines.force_dome.max_per_owner>0",
+              "cells": [
+                "同时工作",
+                "每人最多 {cfg:machines.force_dome.max_per_owner} 台"
+              ]
+            },
+            [
+              "领地结果记",
+              "能动的 {cfg:machines.force_dome.claim_cache_ticks|div:1200} 分钟，动不了的 {cfg:machines.force_dome.claim_cache_ticks|div:12000} 小时"
+            ],
+            [
+              "详见",
+              "[[computer/force_dome]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "module:essentialcraft5:rewind_module||module:essentialcraft5:matrix_filter_module||module:essentialcraft5:matrix_shunt_module||module:essentialcraft5:accumulator_module||module:essentialcraft5:shred_module||module:essentialcraft5:phase_anchor_module"
+          ],
+          "text": "宅男套装模块"
+        },
+        {
+          "type": "kv",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "module:essentialcraft5:rewind_module||module:essentialcraft5:matrix_filter_module||module:essentialcraft5:matrix_shunt_module||module:essentialcraft5:accumulator_module||module:essentialcraft5:shred_module||module:essentialcraft5:phase_anchor_module"
+          ],
+          "rows": [
+            {
+              "if": "module:essentialcraft5:rewind_module",
+              "cells": [
+                "回溯",
+                "每次 {cfg:general.computer_modules.rewind.mru_cost} MRU + {cfg:general.computer_modules.rewind.matrix_damage} 矩阵损伤，冷却 {cfg:general.computer_modules.rewind.cooldown_ticks|div:1200|round:1} 分钟，[[terminal/rewind]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "cells": [
+                "矩阵过滤",
+                "每拦一个新效果 {cfg:general.computer_modules.matrix_filter.mru_per_effect} MRU，矩阵损伤 = 秒 × 级数 × {cfg:general.computer_modules.matrix_filter.matrix_per_effect_second}，[[terminal/matrix_filter]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "cells": [
+                "矩阵分流",
+                "魔法伤害的 {cfg:general.computer_modules.matrix_shunt.ratio|pct}，分走最大生命的 1% 记 {cfg:general.computer_modules.matrix_shunt.matrix_per_max_health|div:100} 矩阵损伤，[[terminal/matrix_shunt]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "cells": [
+                "累加器",
+                "被吞掉的伤害最多补到这一下的 {cfg:general.computer_modules.accumulator.max_ratio|mul:100|round:0|pctv}，{cfg:general.computer_modules.accumulator.forget_ticks|sec}不记就作废，[[terminal/accumulator]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:shred_module",
+              "cells": [
+                "削减",
+                "每层护甲 −{cfg:general.computer_modules.shred.armor_per_level}、韧性 −{cfg:general.computer_modules.shred.toughness_per_level}，最多 {cfg:general.computer_modules.shred.max_level} 层，{cfg:general.computer_modules.shred.duration_ticks|sec}，[[terminal/shred]]"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "cells": [
+                "相位锚",
+                "每秒 {cfg:general.computer_modules.phase_anchor.mru_per_second} MRU，边长 {cfg:general.computer_modules.phase_anchor.radius|mul:2|add:1|int} 格，[[terminal/phase_anchor]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.wind.steadfast_points||cfg:general.wind.deflect_points",
+          "text": "风之契约"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.wind.steadfast_points||cfg:general.wind.deflect_points",
+          "rows": [
+            {
+              "if": "cfg:general.wind.steadfast_points",
+              "cells": [
+                "不动如山",
+                "真名显全以后风之好感达到 {cfg:general.wind.steadfast_points}，[[wind_mage/steadfast]]"
+              ]
+            },
+            {
+              "if": "cfg:general.wind.deflect_points",
+              "cells": [
+                "风之偏转",
+                "风之好感 {cfg:general.wind.deflect_points}，每 {cfg:general.wind.deflect_cooldown_ticks|sec}偏开一个，[[wind_mage/deflect]]"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.attunement.enabled",
+          "text": "同调"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.attunement.enabled",
+          "rows": [
+            [
+              "每阶要攒",
+              "1～5 阶依次 {cfg:general.attunement.thresholds}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "每阶要的矩阵阶",
+                "1～5 阶依次 {cfg:general.attunement.rank_gate}"
+              ]
+            },
+            [
+              "盔甲挨一下",
+              "{cfg:general.attunement.points_hit} 点，首领 {cfg:general.attunement.points_boss_hit} 点"
+            ],
+            [
+              "同调预算",
+              "每小时 {cfg:general.attunement.budget_per_hour}，最多存 {cfg:general.attunement.budget_cap}"
+            ],
+            [
+              "每阶生命",
+              "每件 +{cfg:general.attunement.health_per_stage}"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "武器打实一下",
+                "{cfg:general.attunement.points_hit} 点；击杀 {cfg:general.attunement.points_kill} 点，首领 {cfg:general.attunement.points_boss_kill} 点"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "每阶攻击",
+                "武器 +{cfg:general.attunement.damage_per_stage|pct}"
+              ]
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "各机器 Config.define：blockentity/MatrixAbsorberBlockEntity.java:51、blockentity/HeatGeneratorBlockEntity.java:57、blockentity/NaturalFurnaceBlockEntity.java:65、blockentity/ColdDistillatorBlockEntity.java:63、blockentity/RadiatingChamberBlockEntity.java:76、blockentity/MagicianTableBlockEntity.java:64、blockentity/ChargingChamberBlockEntity.java:32、blockentity/RayTowerBlockEntity.java:35",
+        "blockentity/HeatGeneratorBlockEntity.java:121 — 四面岩浆 20 × 0.95⁴ 截断取整 = 16（占位符先 add:-0.499999 再四舍五入，等于代码的 (int)(x + 1e-6)）",
+        "mru/MRULink.java:34 — 绑定宝石 16 格",
+        "entity/MRUPresenceEntity.java:82 — 上限 20000；L335 1 万起；L88 12 格；L398 每秒 40 / 80",
+        "hoanna/Radiation.java:46 — PER_LEVEL 10000、DECAY_IN_HOANNA 1（L51）、DECAY_OUTSIDE 5（L52）；effect/RadiationEffect.java:118 healthCap — 最大生命 × (1 − min(max_cap_loss_percent 0.5, cap_loss_percent_per_level 0.05 × (amp + 1)))，最低 1（hoanna/HoannaHazardsConfig.java:91 / :95）",
+        "block/HolopadBlock.java:31 — 露天、64 格内没有别的全息投影才召唤；registry/ECHologram.java:211 max_health、L214 max_damage_per_hit、L230 escape_range、L233 abandon_ticks",
+        "registry/ECDemon.java:228 — summon_espe、L230 reward_min、L235 clear_radius",
+        "player/WindWishes.java Config — general.wind_wish.required 7、points 1000（原始值，按系数 0.1 实得 100）、deadline_ticks 72000（3 个游戏日）；item/WindHornItem.java Config — general.wind_horn.espe 20000、cooldown_ticks 12000、escorts 2、despawn_ticks 6000",
+        "registry/ECHoloDecoy.java Config — general.holo_decoy.*；player/WindPact.java Config — general.wind.steadfast_points / deflect_points / deflect_cooldown_ticks",
+        "registry/ECInquisitorium.java Rules — general.inquisitorium.*（decode_tolerance 0.02、decode_ticks 1000、decode_mru 5000、arrive_radius 32、max_health 800、echo_ratio 0.5、matrix_damage_per_hit 1000）",
+        "blockentity/ForceDomeBlockEntity.java:107 Config.define — machines.force_dome.radius / mru_per_tick / max_per_owner / claim_cache_ticks；:220 DENIED_CACHE_MULTIPLIER 动不了的区块记 6 倍长（代码常量）；:325 costPerSecond 按可拦区块比例",
+        "item/module/SurvivalModuleConfig.java、registry/ECCombatModules.java — general.computer_modules.{rewind,matrix_filter,matrix_shunt,accumulator,shred,phase_anchor}.*（第十批 10c）",
+        "tools/plan/batch13.md §2.5 — 天灾信标门 general.matrix_rank.gates.calamity_beacon 8（0 = 不设门，那一行藏掉）"
+      ]
+    }
+  ]
+}

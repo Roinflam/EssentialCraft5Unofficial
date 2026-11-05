@@ -1,0 +1,799 @@
+{
+  "id": "shade",
+  "order": 109,
+  "group": "main",
+  "title": "Chapter 22 · Shade",
+  "subtitle": "Umbral crystals, shade cores, tier 4",
+  "icon": "essentialcraft5:shade_core",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "intro",
+      "title": "What this chapter is about",
+      "icon": "essentialcraft5:shade_core",
+      "summary": "The last two chapters start here",
+      "items": [
+        "essentialcraft5:shade_core"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "by": "The Forgotten Necronomicon",
+          "text": "Demons make no promises. The rare few who won an oath from one paid with something taken from the deepest dark. It is scarce even in hell, and the demon held it the way a man holds fire."
+        },
+        {
+          "type": "p",
+          "text": "Fitting the Computer Guy's Suit with modules finishes Chapter 21. Two chapters remain. This one takes you to the Shadow Corrupted Land for materials and raises the pentacle. The next, [[apex/intro]], summons the Heart of Calamity, and the main line ends once it falls."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Entry",
+            "What you do"
+          ],
+          "rows": [
+            [
+              "[[shade/attune]]",
+              "Absorb a Shade Matrix Projection to make your matrix shade"
+            ],
+            [
+              "[[shade/umbral]]",
+              "Gather Umbral Crystals in the Shadow Corrupted Land"
+            ],
+            [
+              "[[shade/shade_core]]",
+              "Drop Umbral Crystals into an Enrichment Chamber and collapse a Shade Core"
+            ],
+            [
+              "[[shade/shade_pillar]]",
+              "Make SHADE Corrupted Crystal Pillars from Shade Cores"
+            ],
+            [
+              "[[shade/tier4]]",
+              "Stand 4 shade pillars around the pentacle to reach tier 4"
+            ],
+            [
+              "[[shade/oath]]",
+              "With enough renown, swear the oath to a demon for a Demon's Oath"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "cells": [
+                "[[shade/rank_8]]",
+                "Reach matrix rank 8 on the tier 4 pentacle"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            7
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What to stock up on"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.shade.umbral==4",
+                "cfg:general.demon.standing.oath_cost==16"
+              ],
+              "text": "{item:essentialcraft5:umbral_crystal}: about 72 across both chapters."
+            },
+            {
+              "if": [
+                "!cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.shade.umbral==4",
+                "cfg:general.demon.standing.oath_cost==16"
+              ],
+              "text": "{item:essentialcraft5:umbral_crystal}: about 52 across both chapters."
+            },
+            {
+              "if": "!cfg:machines.enrichment_chamber.shade.umbral==4||!cfg:general.demon.standing.oath_cost==16",
+              "text": "{item:essentialcraft5:umbral_crystal}: for Shade Cores, shade pillars and the oath; each entry gives the count."
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "{item:essentialcraft5:shade_core}: about 9 across both chapters, 1 for each of the 4 pillars, 2 for the Calamity Beacon, 1 for rank 8 and 2 for rank 9."
+            },
+            {
+              "if": "!cfg:general.matrix_rank.enabled",
+              "text": "{item:essentialcraft5:shade_core}: about 6 across both chapters, 1 for each of the 4 pillars and 2 for the Calamity Beacon."
+            },
+            "4 {item:essentialcraft5:demonic_crystal_pillar}s, which go in the middle of the shade pillar recipe and are used up. Leave the 4 on your tier 3 pentacle alone and make 4 more.",
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "Demonic Renown of {cfg:general.demon.standing.oath} ([[shade/oath]])."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each Shade Core takes an Enrichment Chamber {cfg:machines.enrichment_chamber.shade.seconds|div:60|round:1} minutes of collapse, so build two or three chambers early and let them run together while you gather crystals and trade for renown.",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "p",
+          "text": "In this world an Enrichment Chamber can't make Shade Cores, so the steps here that need one can't be done.",
+          "if": "!cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original you could also absorb a Shade Matrix Projection and turn your matrix shade, but the shade type did nothing at all, and no weapon went with it."
+        }
+      ]
+    },
+    {
+      "id": "attune",
+      "title": "Shade Matrix",
+      "icon": "essentialcraft5:shade_matrix_projection",
+      "summary": "Turn your matrix shade",
+      "complete": "essentialcraft5:guide/shade/attune",
+      "items": [
+        "essentialcraft5:shade_matrix_projection"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: absorb a {item:essentialcraft5:shade_matrix_projection} and turn your matrix type to Shade."
+        },
+        {
+          "type": "p",
+          "text": "Shade [[matrix/alignment|Alignment]] only works from matrix rank 8, starting straight at II and reaching III at rank 9. You can switch while still below rank 8; the type stays with you and starts working once you get there.",
+          "if": "cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "Your matrix type has no passive effect on its own; turning it shade is the first step of this chapter.",
+          "if": "!cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: an {item:essentialcraft5:empty_matrix_projection} and a {item:essentialcraft5:dark_soul_matter}. Make the Shade Matrix Projection in a Radiating Chamber, with the blank projection in the top slot and the dark soul matter in the bottom slot; any balance works."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:shade_matrix_projection"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Right-click the projection once and let go. It takes your matrix imprint, and only you can use it from then on.",
+            "Find somewhere without monsters, have food ready, and hold right-click for 10 seconds.",
+            "When it finishes, the projection vanishes, chat says your matrix has twisted into a new color, and your type is now shade."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You finish absorbing a Shade Matrix Projection and your matrix type becomes Shade."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Absorbing has a cost: Wither, Weakness, Slowness, Mining Fatigue and Hunger at once, plus a spell of blindness ([[gear/projection_use]]). Absorb a different projection later and your type changes with it, so getting back to shade takes another shade projection."
+        },
+        {
+          "type": "h",
+          "text": "Fine print",
+          "if": "cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Shade Alignment cuts magic damage that has an attacker by {cfg:general.matrix_rank.resonance.shade.magic_reduction|at:1|pct} at II and {cfg:general.matrix_rank.resonance.shade.magic_reduction|at:2|pct} at III. Damage with no attacker, such as corruption effects or MRU Corruption, is not reduced.",
+            "A weapon with Matrix Traits heals you for {cfg:general.guns.lens_drain_percent|pctv} of each hit's damage, also only from rank 8 ([[matrix/alignment]])."
+          ],
+          "if": "cfg:general.matrix_rank.enabled"
+        }
+      ]
+    },
+    {
+      "id": "umbral",
+      "title": "Gathering Umbral Crystals",
+      "icon": "essentialcraft5:umbral_crystal",
+      "summary": "Clusters in shadow land, richer at night",
+      "complete": "essentialcraft5:guide/shade/umbral",
+      "items": [
+        "essentialcraft5:umbral_crystal"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: collect 16 {item:essentialcraft5:umbral_crystal}s. These two chapters use far more than that, but 16 at once ticks this step."
+        },
+        {
+          "type": "p",
+          "text": "Umbral Crystals grow in the [[hoanna/lands|Shadow Corrupted Land]] of Hoanna. Right-click a ripe {item:essentialcraft5:umbral_cluster} to gather it. It drops back to a dim spent cluster that stays where it is and slowly grows again ([[hoanna_explore/specialties]])."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "At night or during Darkness",
+                "1–2 crystals"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "At night",
+                "1–2 crystals"
+              ]
+            },
+            [
+              "By day",
+              "a {cfg:general.hoanna_world.umbral.day_chance|pct} chance of 1"
+            ],
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "Growing back",
+                "Only in the Shadow Corrupted Land, at night or during Darkness; about one game day"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "Growing back",
+                "Only in the Shadow Corrupted Land at night; about one game day"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Where they go"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:machines.enrichment_chamber.shade.enabled",
+              "text": "Each [[shade/shade_core|Shade Core]] eats {cfg:machines.enrichment_chamber.shade.umbral}."
+            },
+            "Each [[shade/shade_pillar|shade pillar]] takes 3, and tier 4 needs 4 pillars.",
+            {
+              "if": "cfg:general.demon.standing.enabled",
+              "text": "The [[shade/oath|oath]] takes {cfg:general.demon.standing.oath_cost}."
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "The [[shade/rank_8|rank 8]] offerings take 8."
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "Raising the Computer Guy's Suit or the Verdict Blade to attunement stage 5 takes 4 per piece ([[apex/ascension]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have 16 Umbral Crystals in your inventory at once."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Days are lean, so go at night. Don't mine a ripe cluster with a pickaxe. You get the same as a right-click, but the cluster is gone and never grows back."
+        },
+        {
+          "type": "p",
+          "text": "During Darkness, daytime gathering counts as night and spent clusters regrow by day too ([[hoanna_explore/calamity_windows]]).",
+          "if": "cfg:general.hoanna_events.darkness_enabled"
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "[[bestiary/inquisitorium_patroller|Inquisitorium Patrollers]] spawn in the Shadow Corrupted Land whatever the light, so go armed even by day.",
+            "A patch of shadow land doesn't hold many clusters, and once picked they take a game day to return. When several of you play together, split up the patches so nobody waits on anybody.",
+            "Chapter 19's Inquisitorium Coordinates point into the Shadow Corrupted Land, so follow them if you haven't found one yet ([[inquisitorium/journey]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shade_core",
+      "title": "{item:essentialcraft5:shade_core}",
+      "icon": "essentialcraft5:shade_core",
+      "summary": "The third thing a chamber can collapse into",
+      "complete": "essentialcraft5:guide/shade/shade_core",
+      "items": [
+        "essentialcraft5:shade_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build an Enrichment Chamber in the Shadow Corrupted Land, drop Umbral Crystals into it, and collapse your first {item:essentialcraft5:shade_core}."
+        },
+        {
+          "type": "p",
+          "text": "Collapse is the craft from Chapter 16 ([[hoanna/collapse]]). With the chamber in the Shadow Corrupted Land and Umbral Crystals inside, it no longer collapses into a Void Core or a Reactor but into a Shade Core.",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "cfg:machines.enrichment_chamber.collapse.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "An Enrichment Chamber in the Shadow Corrupted Land with Umbral Crystals inside will, given time, collapse into a Shade Core that drops in its middle. [[enrichment/controller]] covers building the chamber.",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "!cfg:machines.enrichment_chamber.collapse.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In this world an Enrichment Chamber can't make Shade Cores.",
+          "if": "!cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "h",
+          "text": "What it takes",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Where",
+              "The Shadow Corrupted Land in Hoanna, or within {cfg:machines.enrichment_chamber.shade.site_radius} blocks of it. The controller itself and the eight points {cfg:machines.enrichment_chamber.shade.site_radius} blocks away in each straight and diagonal direction are checked, and one of the nine in shadow land is enough"
+            ],
+            [
+              "Shell",
+              "A formed Enrichment Chamber whose shell holds at least {cfg:machines.enrichment_chamber.shade.casing} {item:essentialcraft5:void_stone}, {item:essentialcraft5:void_glass} and {item:essentialcraft5:demonic_plating} blocks combined"
+            ],
+            [
+              "Stabilizer",
+              "An {item:essentialcraft5:ec_balancer} in the shell, as for any collapse"
+            ],
+            [
+              "MRUCU",
+              "One holding a full {cfg:machines.enrichment_chamber.collapse.presence_mru} MRU, shut inside"
+            ],
+            [
+              "Stored MRU",
+              "At least {cfg:machines.enrichment_chamber.shade.mru}. The controller alone stores {cfg:machines.enrichment_chamber.max_mru}, and each [[enrichment/holding_chamber|Holding Block]] in the shell adds {cfg:machines.enrichment_chamber.mru_per_storage}, so add more if it doesn't fit"
+            ],
+            [
+              "Umbral Crystals",
+              "{cfg:machines.enrichment_chamber.shade.umbral} {item:essentialcraft5:umbral_crystal}s lying inside the chamber, eaten when it collapses"
+            ],
+            [
+              "Balance",
+              "Doesn't matter"
+            ]
+          ],
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "p",
+          "text": "While every condition holds, progress rises by 1 a second, and at {cfg:machines.enrichment_chamber.shade.seconds} seconds, or {cfg:machines.enrichment_chamber.shade.seconds|div:60|round:1} minutes, it collapses.",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "p",
+          "text": "During a darkness [[hoanna/events|calamity]] in Hoanna, each second counts as {cfg:machines.enrichment_chamber.collapse.event_multiplier}. Other calamities give no speed-up, unlike the collapse in chapter 16.",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "cfg:general.hoanna_events.darkness_enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The [[hoanna_explore/tide|mana tide]] speeds it up as well, to 1.5 seconds per second at the full moon. During darkness the calamity rate applies instead, and the two never stack.",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "cfg:general.hoanna_tide.enabled",
+            "cfg:general.hoanna_events.darkness_enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The [[hoanna_explore/tide|mana tide]] speeds it up as well, to 1.5 seconds per second at the full moon.",
+          "if": [
+            "cfg:machines.enrichment_chamber.shade.enabled",
+            "cfg:general.hoanna_tide.enabled",
+            "!cfg:general.hoanna_events.darkness_enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "When it collapses the MRUCU disappears, {cfg:machines.enrichment_chamber.shade.mru} MRU and {cfg:machines.enrichment_chamber.shade.umbral} Umbral Crystals are used up, and a Shade Core drops in the middle. It piles separately from Void Cores, Reactors and Condensed Matrices, and stops at full progress once its pile reaches 64.",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "p",
+          "text": "Shade Cores come first. With the right place and enough crystals, the chamber makes Shade Cores whatever the balance, and condensing waits too. Short of crystals or in the wrong place, it collapses and condenses by balance as before.",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "h",
+          "text": "How to do it",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "steps",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled",
+          "items": [
+            "Pick a spot at the edge of the Shadow Corrupted Land, ideally in the neighboring land and less than {cfg:machines.enrichment_chamber.shade.site_radius} blocks from it.",
+            {
+              "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "Build the chamber as in [[hoanna/collapse]] with at least {cfg:machines.enrichment_chamber.shade.casing} Void Stone, Void Glass or Demonic Plating blocks, plus the controller, Holding Blocks, a Stabilizer and preferably a [[enrichment/monitoring|State Checker]]."
+            },
+            {
+              "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+              "text": "Build the chamber as in [[enrichment/controller]] with at least {cfg:machines.enrichment_chamber.shade.casing} Void Stone, Void Glass or Demonic Plating blocks in the shell, plus the controller, Holding Blocks, a Stabilizer and preferably a [[enrichment/monitoring|State Checker]]."
+            },
+            "Shut an MRUCU in and let it fill, then pump in {cfg:machines.enrichment_chamber.shade.mru} MRU through an Acceptor.",
+            "Open one shell block, throw {cfg:machines.enrichment_chamber.shade.umbral} Umbral Crystals inside, and put the block back.",
+            "Right-click the controller or check the State Checker to make sure it is on the Shade Core path and nothing is missing, then wait."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You pick up your first Shade Core."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Inquisitorium Patrollers spawn in the Shadow Corrupted Land whatever the light. A chamber in the neighboring land, within {cfg:machines.enrichment_chamber.shade.site_radius} blocks of it, still counts, and patrollers normally never spawn there. During Darkness they spawn on all land, so they can still find you then.",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "h",
+          "text": "Fine print",
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The State Checker turns the collapse bar purple while it works on a Shade Core, and hovering over it shows what is missing: the wrong place, or how many crystals the shell still lacks.",
+            "Crystals that land outside the shell or get washed out by water don't count.",
+            "Collapse uses up the MRUCU. For another core, push in a new one, let it fill and drop in another {cfg:machines.enrichment_chamber.shade.umbral} crystals.",
+            "Several chambers can work at once without affecting each other. The main line needs a fair number of cores, so two or three chambers save the most time."
+          ],
+          "if": "cfg:machines.enrichment_chamber.shade.enabled"
+        }
+      ]
+    },
+    {
+      "id": "shade_pillar",
+      "title": "{item:essentialcraft5:shade_crystal_pillar}",
+      "icon": "essentialcraft5:shade_crystal_pillar",
+      "summary": "The top pillar, needed for tier 4",
+      "complete": "essentialcraft5:guide/shade/shade_pillar",
+      "items": [
+        "essentialcraft5:shade_crystal_pillar"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: make a {item:essentialcraft5:shade_crystal_pillar} at the Magician Table. A [[shade/tier4|tier 4 pentacle]] needs 4."
+        },
+        {
+          "type": "p",
+          "text": "The shade pillar is the highest of the five crystal pillars. It gathers ESPE {cfg:machines.mithriline_crystal_pillar.tier_multipliers|at:4} times as fast as a mithriline pillar, and its base adds 120 to an enchanting table ([[mithriline/crystal_pillar]])."
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: a {item:essentialcraft5:demonic_crystal_pillar} in the middle and, in the four corners, 1 {item:essentialcraft5:shade_core} and 3 {item:essentialcraft5:umbral_crystal}s, one per slot, plus MRU in the Magician Table; the recipe page shows how much."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:shade_crystal_pillar"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You make your first SHADE Corrupted Crystal Pillar."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The Demonic Crystal Pillar in the middle is used up. Tier 4 is built on top of tier 3, so none of the 4 demonic pillars already on the pentacle can come down. Make 4 more, which means another 24 Ackronite Ingots ([[pentacle/tier_three]])."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original, the SHADE Corrupted Crystal Pillar had no recipe. It was only in the creative inventory and never turned up in survival."
+        }
+      ]
+    },
+    {
+      "id": "tier4",
+      "title": "Tier 4 Pentacle",
+      "icon": "essentialcraft5:shade_crystal_pillar",
+      "summary": "Four shade pillars around tier 3",
+      "complete": "essentialcraft5:guide/pentacle/tier4",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: raise your Chapter 12 Soul Pentacle to tier 4. Ranks 8 and 9 both have to be reached on a tier 4 pentacle.",
+          "if": "cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: raise your Chapter 12 Soul Pentacle to tier 4.",
+          "if": "!cfg:general.matrix_rank.enabled"
+        },
+        {
+          "type": "p",
+          "text": "Tier 4 cures the same corruption effects as tier 3, and every point of ESPE in the pillars still counts as two. The 4 extra shade pillars gather fastest of all, so the pentacle has more ESPE to draw on.",
+          "if": "cfg:general.corruption.effects_enabled"
+        },
+        {
+          "type": "p",
+          "text": "Every point of ESPE in the pillars still counts as two at tier 4. The 4 extra shade pillars gather fastest of all, so the pentacle has more ESPE to draw on.",
+          "if": "!cfg:general.corruption.effects_enabled"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Tier 3",
+              "Left whole, every block in place ([[pentacle/tier_three]])"
+            ],
+            [
+              "Shade pillars",
+              "4 ([[shade/shade_pillar]])"
+            ],
+            [
+              "Void Stone",
+              "4, one under each shade pillar"
+            ],
+            [
+              "Footprint",
+              "Grows from 5 × 5 to 7 × 7, with the 4 shade pillars on the corners"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The tier 4 layout"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:player_pentacle_tier4"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Keep the tier 3 layout whole.",
+            "Following the 3D view above, stand 4 shade pillars outside the tier 3 layout, each on a block of {item:essentialcraft5:void_stone}.",
+            "Right-click the pentacle center and open its screen to check the tier."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The runes turn dark purple and the screen shows tier 4."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Every pillar has to sit exactly where the 3D view shows it; one block off and the tier doesn't form. Switch the view to flat to check it layer by layer."
+        },
+        {
+          "type": "h",
+          "text": "Using it",
+          "if": "cfg:general.corruption.effects_enabled"
+        },
+        {
+          "type": "p",
+          "text": "Tier 4 draws ESPE from 24 pillars, each point counting as two. Curing an effect takes the same from the pillars as tier 3, half what the lower tiers take.",
+          "if": "cfg:general.corruption.effects_enabled"
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.corruption.effects_enabled",
+              "text": "Which tier can cure which corruption effect is the same at 4 as at 3 ([[pentacle/cure]])."
+            },
+            "Summon a [[bestiary/matrix_shade|Matrix Specter]] on a tier 4 pentacle and the reserved ESPE comes from all 24 pillars, and goes back to them if you lose.",
+            "Lose a shade pillar and the pentacle drops back to tier 3 until you replace it."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oath",
+      "title": "Sworn: The Oath",
+      "icon": "essentialcraft5:demon_oath",
+      "summary": "Hand over crystals for a Demon's Oath",
+      "complete": "essentialcraft5:guide/shade/oath",
+      "items": [
+        "essentialcraft5:demon_oath"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: raise your Demonic Renown to {cfg:general.demon.standing.oath}, swear the oath to a demon and receive a {item:essentialcraft5:demon_oath}.",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: get a {item:essentialcraft5:demon_oath}.",
+          "if": "!cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "p",
+          "text": "Every trade you complete with a demon adds 1 to your Demonic Renown ([[demons/standing]]). At {cfg:general.demon.standing.oath} you reach the last tier, <hl>Sworn</hl>, and a demon will take your Umbral Crystals and hear an oath. The trades you made for Ackronite all count, so by this chapter you are probably not far off.",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "p",
+          "text": "In this world demons pay no attention to renown and nobody can swear the oath, so there is no Demon's Oath and the next chapter's Calamity Beacon can't be made.",
+          "if": "!cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "p",
+          "text": "<em>Prepare</em>: at least {cfg:general.demon.standing.oath_cost} {item:essentialcraft5:umbral_crystal}s in your inventory, and a summoned demon ([[demons/summoning]]).",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "steps",
+          "if": "cfg:general.demon.standing.enabled",
+          "items": [
+            "Summon a demon.",
+            "Sneak and right-click it with Umbral Crystals in your main hand or off hand.",
+            "The demon takes {cfg:general.demon.standing.oath_cost} crystals, gives you a Demon's Oath and leaves."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You receive a Demon's Oath."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Only the player who summoned the demon can swear; someone else right-clicking it doesn't count. The oath isn't a trade, so your renown stays the same, and the demon leaves. Summon another if you still want Ackronite.",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "h",
+          "text": "Fine print",
+          "if": "cfg:general.demon.standing.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Crystals spread across several slots are counted together, so the stack in your hand doesn't need {cfg:general.demon.standing.oath_cost} on its own.",
+            "If your renown is under {cfg:general.demon.standing.oath} or you are short of crystals, the action bar says what is missing and nothing is taken.",
+            "The Demon's Oath only goes into next chapter's [[apex/beacon|Calamity Beacon]], so one is enough."
+          ],
+          "if": "cfg:general.demon.standing.enabled"
+        }
+      ]
+    },
+    {
+      "id": "rank_8",
+      "title": "Rank 8 · Shade",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "Shade Alignment, and the Calamity Beacon",
+      "complete": "essentialcraft5:guide/matrix/rank_8",
+      "if": "cfg:general.matrix_rank.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: reach matrix rank 8, Shade."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "30 kinds in all, at least 8 of them killed in Hoanna, 1 from the End and 3 Essential Craft creatures ([[matrix/codex]])"
+            ],
+            [
+              "Site",
+              "A tier 4 Soul Pentacle, which you just built"
+            ],
+            [
+              "Offerings",
+              "3 {item:essentialcraft5:condensed_matrix}, 1 {item:essentialcraft5:shade_core}, 1 {item:essentialcraft5:matter_of_eternity}, 8 {item:essentialcraft5:umbral_crystal}"
+            ],
+            [
+              "Energy",
+              "100,000 MRU in the Crucible and 12,000 ESPE in the pentacle's pillars"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "9 in all, up to 4 at once; 104 health each, 11 damage a hit; 140 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "Stand still for {cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:80} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "For the End kind, a shulker or the Ender Dragon will do. Essential Craft creatures are this mod's own monsters: everything in the bestiary counts, and so do the ones you fought earlier, such as wind mages and the Holographic Projection ([[bestiary/overview]])."
+        },
+        {
+          "type": "h",
+          "text": "How"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place the offerings in the Crucible's offering slots and fill it with enough MRU through a Bound Gem.",
+            "Stand within 3 blocks with your bound Soul Stone in your main hand, open the screen, and once everything on the right is ticked, start the trial.",
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Defeat enough Matrix Echoes, and don't stray far from the Crucible."
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "text": "Stay next to the Crucible without moving or getting hurt until the channel finishes."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "\"Rank 8 · Shade\" appears in the middle of the screen, and your Soul Stone's tooltip shows matrix rank 8."
+        },
+        {
+          "type": "p",
+          "text": "Rank 8 gives you this: if your matrix is shade, [[matrix/alignment|Shade Alignment]] starts working here, straight at II. Your reservoir grows to {cfg:general.matrix_rank.pool_per_rank|mul:7}."
+        },
+        {
+          "type": "p",
+          "text": "The Calamity Beacon needs rank 8, and the next chapter starts with it ([[apex/beacon]]).",
+          "if": "cfg:general.matrix_rank.gates.calamity_beacon==8"
+        },
+        {
+          "type": "p",
+          "text": "The Calamity Beacon needs matrix rank {cfg:general.matrix_rank.gates.calamity_beacon}, and the next chapter starts with it ([[apex/beacon]]).",
+          "if": [
+            "!cfg:general.matrix_rank.gates.calamity_beacon==8",
+            "cfg:general.matrix_rank.gates.calamity_beacon>0"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1436 @@
+{
+  "id": "void_machines",
+  "order": 98,
+  "group": "side",
+  "title": "Side Chapter · Void Machines",
+  "subtitle": "What the void materials from Hoanna make",
+  "icon": "essentialcraft5:void_core",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "ultra_heat_generator",
+      "title": "{item:essentialcraft5:ultra_heat_generator}",
+      "icon": "essentialcraft5:ultra_heat_generator",
+      "summary": "The longer it burns, the hotter and stronger",
+      "complete": "essentialcraft5:guide/void_machines/ultra_heat_generator",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ultra_heat_generator"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "Void stone keeps the radiance out. Thirty fathoms deeper and there would be enough to wall the whole city. They keep pressing us from above. We started digging too late.",
+          "by": "Carved in a mine shaft, Hoanna"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): upgrade the [[generators/heat_generator|Heat Generator]] into an {item:essentialcraft5:ultra_heat_generator}. It still burns fuel, but it also has a <hl>heat</hl> value that only ever rises. The longer it burns, the hotter it gets and the more it makes, and once it is hot, one of them outdoes several ordinary generators."
+        },
+        {
+          "type": "h",
+          "text": "Rare materials for this chapter"
+        },
+        {
+          "type": "p",
+          "text": "Of the void materials you bring back from Hoanna, the two rarest come from a craft the people of Hoanna only learned near the end. All six things in this chapter need a {item:essentialcraft5:void_core} from the chests of Hoanna's ruins in Chapter 16, and all but the Building Wand need an {item:essentialcraft5:void_mru_reactor} as well. A chest gives about 0.2 of each on average ([[hoanna/relics]]). {item:essentialcraft5:void_plating} is easy to come by, since you can press it from Void Stone on the Magician Table ([[hoanna/void_plating]])."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Item",
+            "Void Cores",
+            "Reactors",
+            "Void Plates",
+            "Also needs"
+          ],
+          "widths": [
+            4,
+            2,
+            2,
+            2,
+            4
+          ],
+          "rows": [
+            [
+              "[[void_machines/ultra_heat_generator]]",
+              "2",
+              "2",
+              "4",
+              "1 Heat Generator"
+            ],
+            [
+              "[[void_machines/ultra_natural_furnace]]",
+              "2",
+              "2",
+              "4",
+              "1 Natural Furnace"
+            ],
+            [
+              "[[void_machines/magical_furnace]]",
+              "1",
+              "1",
+              "2",
+              "Matter of Eternity, World Interacting Device"
+            ],
+            [
+              "[[void_machines/magical_teleporter]]",
+              "1",
+              "1",
+              "2",
+              "Matter of Eternity, World Interacting Device"
+            ],
+            [
+              "[[void_machines/ember_forge]]",
+              "1",
+              "1",
+              "2",
+              "Matter of Eternity"
+            ],
+            [
+              "[[void_machines/magical_builder]]",
+              "1",
+              "—",
+              "2",
+              "2 World Interacting Devices"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Building all six takes 8 cores and 7 reactors, or roughly 40 chests. The later main chapters, [[demons]], [[hologram]], [[inquisitorium]] and [[computer]], use roughly another 15 cores and 12 reactors, and [[gear/void_armor]] takes 8 cores and 5 reactors more. All three together come to about 155 chests, so set the main-line share aside first and then build what you want most."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Which one first",
+          "if": [
+            "cfg:machines.ultra_natural_furnace.ticks_log",
+            "cfg:machines.ultra_natural_furnace.mru_log"
+          ],
+          "text": "If your cores only stretch to one generator and you have a steady supply of logs, such as a tree farm, pick the [[void_machines/ultra_natural_furnace]]. It makes {cfg:machines.ultra_natural_furnace.mru_log} MRU a tick the moment a log goes in. If you would rather leave it running and let it grow, pick the Ultra Heat Generator, which reaches 82 a tick after 12 minutes of warm-up, a little over 100 after an hour and about 180 after ten hours."
+        },
+        {
+          "type": "p",
+          "text": "A {item:essentialcraft5:matter_of_eternity} is made on the Magician Table from one Nether Star and 4 Large MRU Chunks ([[storage/soul_storage]])."
+        },
+        {
+          "if": [
+            "cfg:machines.ley_condenser.enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.ley_condenser.nether_star.ticks>0"
+          ],
+          "type": "p",
+          "text": "Nether Stars can also be condensed in a {item:essentialcraft5:ley_condenser} ([[ley/condensing]]), so you don't have to fight a Wither for each one."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "4 {item:essentialcraft5:void_plating}s, 2 {item:essentialcraft5:void_mru_reactor}s and 2 {item:essentialcraft5:void_core}s around a Heat Generator in the middle. Bring 4 buckets of lava as well, plus about 72 coal for the warm-up, or 8 coal blocks or 6 lava buckets in its place."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ultra_heat_generator"
+        },
+        {
+          "type": "structure",
+          "key": {
+            "H": "essentialcraft5:ultra_heat_generator",
+            "L": {
+              "block": "minecraft:lava",
+              "label": "Flowing counts too"
+            }
+          },
+          "pattern": [
+            "  L  ",
+            "     ",
+            "L H L",
+            "     ",
+            "  L  "
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Heat sources are placed and counted exactly as for the Heat Generator, two blocks out to the north, south, east and west, but here they <em>only set how fast it heats up</em> and add nothing to the output. Lava on all four sides heats it fastest, and a single side of air stops the heating completely."
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Choose the spot before you place it. <b>Breaking it resets the heat to zero</b>, so moving it means warming up from scratch.",
+            "Following the picture, place lava two blocks out on each of the four sides.",
+            "Link the machines that use MRU to it with [[crafting/bound_gem|Bound Gems]], so the MRU it makes has somewhere to go.",
+            "Put fuel in the left slot, which only takes things that burn. It starts burning and heating up right away.",
+            "Let it warm up. With lava on all four sides and coal as fuel, it reaches 10,000°C in about 12 minutes and then makes 82 MRU per tick."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The number on the \"Heat\" line in its screen keeps climbing, and the output grows with it."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The first two and a half minutes eat fuel fast, about a piece of coal every two seconds, and one stack of 64 gets it to about 1,000°C, so keep it topped up. Something has to draw its MRU during the warm-up as well. With nothing attached it fills up within a few minutes, and once full it stops lighting new fuel and the heat stops rising."
+        },
+        {
+          "type": "h",
+          "text": "Heat and output"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Heat",
+            "MRU per tick",
+            "Burn time used per tick"
+          ],
+          "rows": [
+            [
+              "Below 1,000°C",
+              "heat ÷ 100 (nothing below 1)",
+              "<w>25–49 ticks</w>, more as it gets hotter"
+            ],
+            [
+              "1,000–10,000°C",
+              "2 + heat × 0.008 (10–82)",
+              "1 tick, like a furnace"
+            ],
+            [
+              "Above 10,000°C",
+              "72 + heat ÷ 1,000",
+              "1 tick"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Lava ×4, coal",
+            "Coal used",
+            "Heat",
+            "MRU per tick"
+          ],
+          "rows": [
+            [
+              "About 44 seconds",
+              "15",
+              "100°C",
+              "First 1 MRU"
+            ],
+            [
+              "About 2.6 minutes",
+              "65",
+              "1,000°C",
+              "10 MRU"
+            ],
+            [
+              "About 12 minutes",
+              "72",
+              "10,000°C",
+              "82 MRU"
+            ],
+            [
+              "1 hour",
+              "About 108",
+              "About 32,000°C",
+              "104 MRU"
+            ],
+            [
+              "10 hours",
+              "About 513",
+              "About 108,000°C",
+              "180 MRU"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Above 1,000°C a piece of coal lasts the full 80 seconds. Poorer heat sources warm it up far more slowly. Reaching 1,000°C takes about 167 coal with netherrack on all four sides, and about 841 with plain stone."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each tick it burns, the heat rises by \"product of the four factors × heating rate\". Below 1,000°C the rate climbs slowly from 0.1 to 1, between 1,000 and 10,000°C it stays at 1, and above that it is 9,990 ÷ heat, so the hotter it gets, the slower it climbs.",
+            "Output depends <em>only on the heat</em>. Once it is hot you can take the lava away and it keeps producing at its current heat. It just stops heating up.",
+            "It holds {cfg:machines.ultra_heat_generator.max_mru} MRU. When full it stops lighting new fuel, but the piece already burning goes on burning and heating. The heat never drops, and it rises again once machines draw from it.",
+            "A redstone signal stops the whole machine, and both the heat and the burn progress are kept.",
+            "Each fuel item it lights adds a piece of {item:essentialcraft5:magical_slag} to the right slot, and a lava bucket leaves an empty bucket behind. Hoppers can pull out both.",
+            {
+              "if": "cfg:machines.ultra_heat_generator.max_heat==0",
+              "text": "There is no heat limit. It keeps heating up for as long as it burns."
+            },
+            {
+              "if": "cfg:machines.ultra_heat_generator.max_heat>0",
+              "text": "The heat tops out at {cfg:machines.ultra_heat_generator.max_heat}°C."
+            },
+            {
+              "if": "cfg:machines.ultra_heat_generator.balance<0",
+              "text": "When placed it rolls a random balance between 0 and 2 and keeps it from then on. Below 1 leans {balance:frozen} and above 1 leans {balance:chaos} (see [[start/glossary]]). Breaking and replacing it rerolls the balance but also resets the heat, so check the balance before you start warming it up."
+            },
+            {
+              "if": "cfg:machines.ultra_heat_generator.balance>=0",
+              "text": "The MRU it makes always has a balance of {cfg:machines.ultra_heat_generator.balance} (see [[start/glossary]])."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Further reading</em>: heat source factors in [[generators/heat_generator]]; getting MRU into machines in [[crafting/bound_gem]]."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book made a point of adding \"There is no heat limit too!\" and said that the hotter it gets, the less fuel it burns."
+        }
+      ]
+    },
+    {
+      "id": "ultra_natural_furnace",
+      "title": "{item:essentialcraft5:ultra_natural_furnace}",
+      "icon": "essentialcraft5:ultra_natural_furnace",
+      "summary": "Burns flowers, leaves, grass and logs",
+      "complete": "essentialcraft5:guide/void_machines/ultra_natural_furnace",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ultra_natural_furnace"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): upgrade the [[generators/natural_furnace|Natural Furnace]] into an {item:essentialcraft5:ultra_natural_furnace}. It burns flowers, leaves, grass and logs instead, makes far more per tick than the regular one, and gets the most out of logs."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "It takes the same 4 {item:essentialcraft5:void_plating}s, 2 {item:essentialcraft5:void_mru_reactor}s and 2 {item:essentialcraft5:void_core}s as the Ultra Heat Generator, with a Natural Furnace in the middle instead. Chop a few stacks of logs to burn as well."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ultra_natural_furnace"
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Place it, then link your MRU-using machines to it with [[crafting/bound_gem|Bound Gems]] before anything else.",
+            "Put logs, leaves, flowers or grass into its only slot, up to a full stack of 64.",
+            "It lights one item at a time and burns it for a set time depending on its kind, making a fixed amount of MRU per tick. Nothing is left afterwards.",
+            "A {item:minecraft:hopper} or pipe can feed it from any side, though it only accepts the kinds listed below, so a steady line of logs keeps it going."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Once something burnable is in, the flame lights up and its screen shows the output per tick."
+        },
+        {
+          "type": "h",
+          "text": "What it burns"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Kind",
+            "Burns for",
+            "MRU per tick"
+          ],
+          "rows": [
+            {
+              "if": [
+                "cfg:machines.ultra_natural_furnace.ticks_flower",
+                "cfg:machines.ultra_natural_furnace.mru_flower"
+              ],
+              "cells": [
+                "Small flowers (poppies, dandelions, tulips…)",
+                "{cfg:machines.ultra_natural_furnace.ticks_flower|sec}",
+                "{cfg:machines.ultra_natural_furnace.mru_flower} MRU"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.ultra_natural_furnace.ticks_leaves",
+                "cfg:machines.ultra_natural_furnace.mru_leaves"
+              ],
+              "cells": [
+                "Leaves",
+                "{cfg:machines.ultra_natural_furnace.ticks_leaves|sec}",
+                "{cfg:machines.ultra_natural_furnace.mru_leaves} MRU"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.ultra_natural_furnace.ticks_grass",
+                "cfg:machines.ultra_natural_furnace.mru_grass"
+              ],
+              "cells": [
+                "Grass, ferns (tall ones too) and tall flowers",
+                "{cfg:machines.ultra_natural_furnace.ticks_grass|sec}",
+                "{cfg:machines.ultra_natural_furnace.mru_grass} MRU"
+              ]
+            },
+            {
+              "if": [
+                "cfg:machines.ultra_natural_furnace.ticks_log",
+                "cfg:machines.ultra_natural_furnace.mru_log"
+              ],
+              "cells": [
+                "Logs (stripped logs and wood blocks too)",
+                "{cfg:machines.ultra_natural_furnace.ticks_log|sec}",
+                "{cfg:machines.ultra_natural_furnace.mru_log} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "Total per item = ticks it burns × MRU per tick"
+        },
+        {
+          "if": [
+            "cfg:machines.ultra_natural_furnace.ticks_log",
+            "cfg:machines.ultra_natural_furnace.mru_log"
+          ],
+          "type": "p",
+          "text": "A log burns for {cfg:machines.ultra_natural_furnace.ticks_log} ticks at {cfg:machines.ultra_natural_furnace.mru_log} MRU per tick, far more in total than anything else, so chopping trees is the best way to fuel it."
+        },
+        {
+          "type": "p",
+          "text": "Sunflowers, lilacs, rose bushes, peonies and the other <em>tall flowers count as grass</em>. Saplings, Nether stems, bamboo and dead bushes don't go in at all."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "It only holds {cfg:machines.ultra_natural_furnace.max_mru} MRU and fills up within seconds on logs. Once it is full, <b>the rest of whatever is burning goes to waste</b>. If your machines draw slowly, link a [[storage/charging_chamber]] too and put a big soul storage item in it, so the extra MRU is saved for the things you carry."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Compared with the regular Natural Furnace, small flowers and grass give more here, but tall flowers count as grass and give less than they would in the regular one.",
+            "When full it stops lighting new items, but the one already burning finishes.",
+            "A redstone signal stops it, and the burn progress is kept.",
+            "Hoppers and pipes can't pull anything out of its slot.",
+            {
+              "if": "cfg:machines.ultra_natural_furnace.balance<0",
+              "text": "When placed it rolls a random balance between 0 and 2, shown in its screen. If you don't like the number, break it and place it again (see [[start/glossary]])."
+            },
+            {
+              "if": "cfg:machines.ultra_natural_furnace.balance>=0",
+              "text": "The MRU it makes always has a balance of {cfg:machines.ultra_natural_furnace.balance} (see [[start/glossary]])."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Further reading</em>: the regular version in [[generators/natural_furnace]]; storing MRU in items you carry in [[storage/soul_storage]]."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original mod it went looking for flowers, grass, leaves and logs within a dozen or so blocks and set them alight by itself, and it even replanted saplings that fell nearby. Now it only burns what you put in its slot and leaves the woods around it alone."
+        }
+      ]
+    },
+    {
+      "id": "magical_furnace",
+      "title": "{item:essentialcraft5:magical_furnace}",
+      "icon": "essentialcraft5:magical_furnace",
+      "complete": "essentialcraft5:guide/void_machines/magical_furnace",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_furnace"
+      ],
+      "summary": "Toss items on top; results land on the corners",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a Magical Furnace. Toss logs, sand, raw ores or anything else a furnace takes onto it, and it finishes one item every {cfg:machines.magical_furnace.ticks_required|sec}, sometimes with an extra result."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The machine itself takes a {item:essentialcraft5:magical_screen}, an {item:essentialcraft5:void_mru_reactor}, a {item:essentialcraft5:world_interactor}, 2 {item:essentialcraft5:magic_fortified_plating}s, a {item:essentialcraft5:void_core}, 2 {item:essentialcraft5:void_plating}s and 1 {item:essentialcraft5:matter_of_eternity}. The recipe is below.",
+            "Cores and reactors come from [[hoanna/relics]], the Matter of Eternity takes a Nether Star ([[storage/soul_storage]]), and the other parts are in [[crafting/magician_crafts]].",
+            "29 {item:essentialcraft5:void_stone} in any colors ([[hoanna/void_stone]]).",
+            "4 ordinary {item:essentialcraft5:heat_generator}s ([[generators/heat_generator]]). Ultra Heat Generators won't do.",
+            "A {item:essentialcraft5:bound_gem} linked to an MRU source ([[crafting/bound_gem]])."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_furnace"
+        },
+        {
+          "type": "h",
+          "text": "Layout"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:magical_furnace"
+        },
+        {
+          "type": "p",
+          "text": "Lay a 5×5 floor of Void Stone and put the furnace on the middle block. Put a Void Stone on each corner of the furnace's layer and a Heat Generator on each corner of the layer above. The generators are only stands here and need no fuel."
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Right-click the furnace and put the bound gem in its only slot to power it. If the structure is wrong, hover over the status bar in its screen to see which block is off.",
+            "Stand next to it and toss what you want smelted onto the furnace. A whole stack at once is fine.",
+            "Each finished item drops its result on top of the south-east Heat Generator, and a piece of {item:essentialcraft5:magical_slag} on the north-east one.",
+            "Come back now and then to pick up what has landed on the corners."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The status in its screen reads \"Smelting\", the tossed stack shrinks, and results turn up on the south-east corner with slag on the north-east one."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Once 8 or more piles of dropped items lie on one corner, it stops and the status reads \"Output corners are full\" until you clear them. Items on the ground despawn after a while, so after tossing a whole chest's worth on it, stay nearby."
+        },
+        {
+          "type": "h",
+          "text": "Numbers"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Per item",
+              "{cfg:machines.magical_furnace.ticks_required|sec}"
+            ],
+            [
+              "Energy",
+              "{cfg:machines.magical_furnace.mru_usage} MRU per tick while smelting"
+            ],
+            [
+              "Holds",
+              "{cfg:machines.magical_furnace.max_mru} MRU"
+            ],
+            [
+              "Extra result",
+              "{cfg:machines.magical_furnace.double_output_chance|pct}, on the north-west corner"
+            ],
+            [
+              "Magical Slag",
+              "1 per item on the north-east corner; {cfg:machines.magical_furnace.double_slag_chance|pct} chance of 1 more on the south-west corner"
+            ],
+            [
+              "Experience",
+              "none"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Which furnace?",
+          "text": "For ores and raw ores alone, the {item:essentialcraft5:magmatic_smeltery} is the better deal ([[magmatic/smeltery]]). The Magical Furnace smelts anything, needs no lava and works quickly. The {item:essentialcraft5:magic_magmatic_furnace} has a similar name but is actually a tier of the Magmatic Furnace ([[magmatic/furnace_upgrades]])."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If MRU runs out halfway, the progress pauses and carries on once MRU is back, so nothing is wasted. Only a different kind of item, an empty top or a missing structure block starts it over.",
+            "A redstone signal stops it and keeps the progress.",
+            "Results merge into a matching pile nearby first, so a corner usually holds only one or two piles.",
+            "To collect automatically, place a [[logistics/magical_hopper]] nearby with a filter that only lets the results and slag through ([[logistics/filters]]). Without a filter it also carries off the items you tossed on top to be smelted.",
+            "Wet Sponges and dusts never give an extra result, though slag comes out as usual, so re-wetting, or grinding and smelting again, can't make items out of nothing.",
+            "It leaves alone drops meant for another player and display items."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book subtitled it \"Not an Infernal one\". Another magic mod of the time had a big furnace that swallowed dropped items too, and the line most likely sets the two apart."
+        }
+      ]
+    },
+    {
+      "id": "magical_teleporter",
+      "title": "{item:essentialcraft5:magical_teleporter}",
+      "icon": "essentialcraft5:magical_teleporter",
+      "complete": "essentialcraft5:guide/void_machines/magical_teleporter",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_teleporter"
+      ],
+      "summary": "Stand on it to reach the block a gem is bound to",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a Magical Teleporter. Stand on it until it is charged and you are sent to the top of the block a bound gem points at, however far away it is in the same world."
+        },
+        {
+          "if": "cfg:machines.magical_teleporter.allow_dimensional",
+          "type": "p",
+          "text": "It crosses dimensions too, so the Overworld, the Nether, the End and Hoanna are each one trip from the others."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.magical_teleporter.allow_dimensional",
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0"
+          ],
+          "text": "Teleporting into Hoanna, though, needs matrix rank {cfg:general.matrix_rank.gates.hoanna_portal}; below that, the teleporter won't send you. Leaving Hoanna never checks your rank."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The machine itself uses the Magical Furnace recipe, except that the sides become {item:essentialcraft5:magic_plate}s, and pale, mithriline or demonic plates work there too. It needs a {item:essentialcraft5:matter_of_eternity} as well.",
+            "36 {item:essentialcraft5:void_stone} and 4 {item:essentialcraft5:magic_plating}, any colors ([[hoanna/void_stone]], [[alloys/plating]]).",
+            "Two {item:essentialcraft5:bound_gem}s, one linked to an MRU source and one bound to the destination block ([[crafting/bound_gem]])."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_teleporter"
+        },
+        {
+          "type": "h",
+          "text": "Layout"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:magical_teleporter"
+        },
+        {
+          "type": "p",
+          "text": "The teleporter's layer is 5×5. The four blocks two steps east, south, west and north of it are Magic Plating, and everything else is Void Stone."
+        },
+        {
+          "type": "p",
+          "text": "On each of the two layers above, put two Void Stones on every side so they form four pairs of pillars. The corners and the middle stay empty, leaving two blocks of room above the teleporter to stand in."
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Right-click the destination block with a bound gem to record it. You land on top of it, or on the ground beneath if you clicked grass or a thin layer of snow. For a machine, a chest or anything else that opens, sneak + right-click.",
+            "Right-click the teleporter. The gem linked to an MRU source goes in the left slot, and the destination gem in the right slot. Hover over the status bar in its screen to see what the trip costs and whether the destination is safe.",
+            "Stand on top of the teleporter and stay put. The status changes from \"Ready\" to \"Charging\", and after {cfg:machines.magical_teleporter.ticks_required|sec} you are sent.",
+            "If you land on another teleporter, step off and back on before it will charge again. The same goes after a failed trip."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "A firework bang, and you are standing on top of that block, with the trip's MRU taken from the teleporter."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "When the charge is full, the destination is checked. It needs something to stand on, two free blocks of room, nothing harmful such as lava, fire, cactus or powder snow, and it has to be a place where you may change blocks. The Nether's bedrock roof can't be reached. If the check fails you stay put, no MRU is spent and the screen says why, so step off, fix it and step back on."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Getting back",
+          "text": "One teleporter only goes one way. For a round trip, build one at each end and sneak + right-click the other teleporter with a gem to make it the destination. After arriving, step off and back on to return. Each one needs its own Matter of Eternity, so count your Nether Stars first."
+        },
+        {
+          "type": "h",
+          "text": "Cost"
+        },
+        {
+          "type": "formula",
+          "text": "Same world: {cfg:machines.magical_teleporter.mru_usage} × (east-west + up-down + north-south distance) ÷ 3 MRU, at most {cfg:machines.magical_teleporter.max_mru}"
+        },
+        {
+          "type": "p",
+          "text": "For example, 60 blocks east and 30 north add up to 90, which costs {cfg:machines.magical_teleporter.mru_usage|mul:30} MRU per trip. Distance is measured from the teleporter to the block the gem points at."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Charging",
+              "{cfg:machines.magical_teleporter.ticks_required|sec}"
+            ],
+            [
+              "Capacity",
+              "{cfg:machines.magical_teleporter.max_mru} MRU"
+            ],
+            {
+              "if": "cfg:machines.magical_teleporter.allow_dimensional",
+              "cells": [
+                "Another dimension",
+                "only with a full tank; takes all {cfg:machines.magical_teleporter.max_mru} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If there isn't enough MRU for the trip, the charge pauses and carries on once MRU is back. A different person, a removed gem or a broken structure starts it over.",
+            "A redstone signal pauses the charge.",
+            "You can't be sent while riding something or carrying a passenger, so get off first.",
+            "A teleporter inside someone else's claim only charges for players who have permission there.",
+            "While charging it loads the area around the destination. If that still isn't ready when the charge is full, it waits a few more seconds and then counts the trip as failed.",
+            {
+              "if": "cfg:machines.magical_teleporter.generate_corruption",
+              "text": "Every trip leaks 0–{cfg:machines.magical_teleporter.max_corruption_gen} MRU around it (see [[crafting/corruption]])."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Further reading</em>: binding and unbinding gems in [[crafting/bound_gem]]; a strong source to power it is the [[void_machines/ultra_heat_generator]]."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book called it a \"warp gate\" and used a whole row of exclamation marks to stress that it reaches <em>other dimensions</em>."
+        }
+      ]
+    },
+    {
+      "id": "magical_builder",
+      "title": "Magical Building Wand",
+      "icon": "essentialcraft5:magical_builder_fill",
+      "summary": "Fill, clear or swap a whole area at once",
+      "complete": "essentialcraft5:guide/void_machines/magical_builder",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_builder_fill",
+        "essentialcraft5:magical_builder_clear",
+        "essentialcraft5:magical_builder_clear_matching",
+        "essentialcraft5:magical_builder_clear_others",
+        "essentialcraft5:magical_builder_replace_all"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): craft a Magical Building Wand, mark out an area, and fill it, clear it or swap every block in it for another in one go. It runs on MRU, finishes an area in a few seconds and puts whatever it breaks straight into your inventory."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:world_interactor} ×2, {item:essentialcraft5:void_plating} ×2, {item:essentialcraft5:void_core} ×1, {item:essentialcraft5:whitelist_filter} ×2, {item:essentialcraft5:magical_digger} ×1 and {item:essentialcraft5:magic_plate} ×1, where pale, mithriline or demonic plates also work for the last one. It comes out in Fill mode."
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:builder/magical_builder"
+        },
+        {
+          "type": "p",
+          "text": "The World Interacting Device is made on an ordinary crafting table ([[crafting/magician_crafts]]). Void Plates are covered in [[hoanna/void_plating]] and cores in [[hoanna/relics]], filters in [[logistics/filters]] and the digger in [[gear/magical_digger]]."
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Holding the wand, right-click one block to set the first corner and another to set the second. The box between them is the selection, outlined in magenta while the wand is in your main hand.",
+            "Sneak + right-click a block to <hl>select</hl> it. Fill and Replace All place that block, and Remove Selected and Remove All But Selected compare against it.",
+            "For the modes that place blocks, Fill and Replace All, carry the selected block's item in your inventory, then right-click the air to start. The wand works through the area block by block, so keep holding it and stay close while it works.",
+            "Sneak + right-click the air to stop. If nothing is running, this clears both corners instead, while the selected block stays. Once both corners are set, this is also how you clear them to start a new selection."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "With the wand in your main hand you see a magenta selection box; right-clicking the air starts the work, and chat reports how many blocks were changed."
+        },
+        {
+          "type": "h",
+          "text": "Five modes"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Mode",
+            "What it does",
+            "MRU per block"
+          ],
+          "widths": [
+            3,
+            6,
+            2
+          ],
+          "rows": [
+            [
+              "Fill",
+              "Places the selected block into empty air only",
+              "<t>25</t>"
+            ],
+            [
+              "Remove All",
+              "Breaks every block in the area; no selected block needed",
+              "<t>250</t>"
+            ],
+            [
+              "Remove Selected",
+              "Breaks only blocks of the selected kind",
+              "<t>250</t>"
+            ],
+            [
+              "Remove All But Selected",
+              "Breaks everything except the selected kind",
+              "<t>250</t>"
+            ],
+            [
+              "Replace All",
+              "Places the selected block into air, water and lava, swaps every other block for it, leaves ones that already match",
+              "place <t>25</t>, swap <t>300</t>"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Switching modes",
+          "text": "Put the wand alone in a crafting grid to switch to the next mode: Fill → Remove All → Remove Selected → Remove All But Selected → Replace All → Fill. Stored MRU, both corners and the selected block are kept."
+        },
+        {
+          "type": "h",
+          "text": "Where the MRU comes from"
+        },
+        {
+          "type": "p",
+          "text": "The wand holds 5,000 MRU of its own and comes out empty, so charge it in the [[storage/charging_chamber]]. It draws from the storage items you carry first ([[storage/soul_storage]]) and only then from itself."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Filling the largest area",
+              "{cfg:general.builder.max_volume|mul:25} MRU"
+            ],
+            [
+              "Clearing the largest area",
+              "{cfg:general.builder.max_volume|mul:250} MRU"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The wand's own 5,000 MRU only breaks 20 blocks, so for big jobs carry soul storage items. One {item:essentialcraft5:matter_of_eternity} holds a million. You only pay for <em>blocks it actually changes</em>, and air and skipped blocks cost nothing."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Blocks in someone else's claim are left alone and cost nothing, but once 256 have been refused the wand stops, so keep your selection out of other people's claims. Bedrock, barriers and blocks such as chests, furnaces, signs and machines are skipped in every mode, and water and lava are skipped when removing."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Largest area",
+              "{cfg:general.builder.max_volume} blocks"
+            ],
+            [
+              "Corners at most",
+              "{cfg:general.builder.max_point_distance} blocks apart"
+            ],
+            [
+              "To start, stay within",
+              "{cfg:general.builder.max_reach} blocks of the area"
+            ],
+            [
+              "Speed",
+              "up to {cfg:general.builder.cells_per_tick} blocks per tick"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Blocks face the way they would if you placed them by hand from where you stand, so stairs and the like follow the direction you face. Slabs go in as bottom halves, candles and sea pickles as one, and crops start freshly planted.",
+            "If the new block can't stay in a spot, such as a flower on stone or kelp out of water, or someone is standing there, the spot is left untouched and costs nothing. Replace All won't break the old block first either. The chat message at the end says how many spots were skipped.",
+            "It only uses items that aren't renamed and hold nothing. It stops when they run out or MRU runs short, and keeps what is already done.",
+            "Broken blocks go into your inventory, and what doesn't fit drops at your feet. Drops follow each block's own loot table, as if mined with the right tool but no enchantments. Stone gives cobblestone, diamond ore gives one diamond, and glass, ice and other blocks that need Silk Touch give nothing.",
+            "Doors, tall flowers and extended pistons come off whole. Removing works from the top layer down, so sand and gravel don't fall.",
+            "Doors, beds, tall flowers and blocks such as chests, signs, campfires and machines can't be selected. If Replace All may break a block but not place one there, the spot is left as air and costs 250.",
+            "It stops if you change what's in your hand, walk more than {cfg:general.builder.max_reach} blocks away or change dimension. One area per player at a time.",
+            "In Creative mode it costs no MRU or materials and gives nothing back."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Further reading</em>: batteries to carry for the wand in [[storage/soul_storage]]; for plain mining without a selection, the [[gear/magical_digger]] is handier."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book subtitled it with a single line of code, world.edit();. Its first page said the wand can do almost anything, then reminded you that with great power comes great responsibility."
+        }
+      ]
+    },
+    {
+      "id": "ember_forge",
+      "title": "{item:essentialcraft5:ember_forge}",
+      "icon": "essentialcraft5:ember_forge",
+      "complete": "essentialcraft5:guide/void_machines/ember_forge",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ember_forge"
+      ],
+      "summary": "Forge embers and focuses into a sword",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build an Ember Forge and forge 4 embers and 4 elemental focuses into an {item:essentialcraft5:forged_elemental_sword}. The forge itself needs no MRU. Embers are what is left of the fire that burned Hoanna."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The forge itself takes a {item:essentialcraft5:magical_screen}, an {item:essentialcraft5:void_mru_reactor}, an {item:essentialcraft5:magic_purified_ender_scale_alloy}, 2 {item:essentialcraft5:magic_fortified_plating}s, a {item:essentialcraft5:void_core}, 2 {item:essentialcraft5:void_plating}s and 1 {item:essentialcraft5:matter_of_eternity}. The recipe is below.",
+            "29 {item:essentialcraft5:void_stone} ([[hoanna/void_stone]]), plus 4 {item:essentialcraft5:pale_plating} and 4 {item:essentialcraft5:magic_plating} ([[alloys/plating]]), all in any colors.",
+            "Each sword takes 4 embers and 4 elemental focuses. Embers are common in the chests of Hoanna's ruins, about nine per chest on average ([[hoanna/relics]]).",
+            "The focuses are the hard part. Each sword uses up 4 whole, and you build them up slowly by extracting essences from crystals ([[essence/fuel_and_focus]]). Decide which element you want before you start, since [[void_machines/ember_sword]] lists what each one does. The main line's [[demons/demonic_pentacle]] also needs 4 {item:essentialcraft5:fire_focus}, so set those aside first."
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ember_forge"
+        },
+        {
+          "type": "h",
+          "text": "Layout"
+        },
+        {
+          "type": "structure",
+          "structure": "essentialcraft5:ember_forge"
+        },
+        {
+          "type": "p",
+          "text": "Lay a 5×5 floor of Void Stone and put the forge on the middle block. On the forge's layer, place a Void Stone in each corner and a Pale Plating two blocks out on each side."
+        },
+        {
+          "type": "p",
+          "text": "One layer up, place a Magic Plating in each corner, right on top of those four Void Stones."
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Throw one ember onto each of the four Pale Platings and one focus onto each of the four Magic Platings. Whatever lands there is straightened and held in place, and passers-by and mobs can't pick it up.",
+            {
+              "if": "cfg:machines.ember_forge.night_required",
+              "text": "Wait for night. {cfg:machines.ember_forge.ticks_required|sec} after all eight are in place, a sword pops out of the top of the forge."
+            },
+            {
+              "if": "!cfg:machines.ember_forge.night_required",
+              "text": "{cfg:machines.ember_forge.ticks_required|sec} after all eight are in place, a sword pops out of the top of the forge."
+            },
+            "If you can't tell what it's waiting for, right-click the forge with an empty hand. It tells you which spot is missing, how many items are left, whether it's waiting for night, or how far along it is."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "Once the structure is right, spell particles drift around the forge, a trail of red sparks links each ember to it, and each focus glows with a blue spark while purple particles stream into the forge. A while into forging, lava sparks rise from the top and a portal sound plays every two or three seconds."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The finished sword lands on top of the forge, and at night mobs that pick up items will grab it. Light the area up and stay close until it's done."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each forging takes only one item per spot. A whole stack of embers on one plating is used one at a time, and the rest goes into later swords. Focuses are used up whole whatever their durability.",
+            {
+              "if": "cfg:machines.ember_forge.night_required",
+              "text": "It only works at night. During the day nothing happens even with all eight in place, and if dawn breaks halfway, the progress starts over the next night. Places without a sky, like the Nether and the End, work at any time, and a thunderstorm counts as night too."
+            },
+            "A redstone signal pauses it and keeps the progress. If an item goes missing or the structure loses a block, progress starts over.",
+            "Sneak + right-click with an empty hand to release everything it is holding. It won't hold anything again for 10 seconds, so that is how you take back items you put in the wrong place."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book's subtitle for it is a single line, \"So shiny... So warm...\""
+        }
+      ]
+    },
+    {
+      "id": "ember_sword",
+      "title": "{item:essentialcraft5:forged_elemental_sword}",
+      "icon": "essentialcraft5:forged_elemental_sword",
+      "complete": "essentialcraft5:guide/void_machines/ember_sword",
+      "optional": true,
+      "items": [
+        "essentialcraft5:forged_elemental_sword"
+      ],
+      "summary": "Focuses set the element, ember pairs add the rest",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): forge an Ember Elemental Sword in the [[void_machines/ember_forge]]. Its damage and special effects depend entirely on the focuses and embers you put in."
+        },
+        {
+          "type": "p",
+          "text": "The four focuses set a <hl>primary</hl> and a <hl>secondary element</hl>, and the four embers pair up to add extra damage and on-hit effects. The three tables below cover each in turn."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Plan your sword",
+          "text": "Four focuses of one kind make that element both primary and secondary. Three of one kind plus another fix the primary, and the secondary is picked at random between the two. Four different embers give the most pairs."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The sword's tooltip lists its primary and secondary elements, the ember bonus and every effect it can trigger."
+        },
+        {
+          "type": "h",
+          "text": "Primary element"
+        },
+        {
+          "type": "p",
+          "text": "Among the four focuses, an element that appears more often than each of the other three is the primary element. Ties, and one of each, give \"Combined\". The primary element sets the base damage and an on-hit effect that costs <t>50</t> MRU per hit."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Primary",
+            "Attack bonus",
+            "On hit"
+          ],
+          "rows": [
+            [
+              "Fire",
+              "+7",
+              "Sets the target on fire for 5 s"
+            ],
+            [
+              "Water",
+              "+3",
+              "Weakness and Slowness on the target for 2 s"
+            ],
+            [
+              "Earth",
+              "+8",
+              "Blindness and Mining Fatigue on the target for 2 s"
+            ],
+            [
+              "Air",
+              "+8",
+              "Speed and Strength for you for 2.5 s"
+            ],
+            [
+              "Combined",
+              "+5",
+              "Nothing (and no MRU spent)"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The bonus works like a vanilla sword's, so the attack damage in the tooltip includes the 1 point of your bare hand. For comparison, a netherite sword is +7."
+        },
+        {
+          "type": "h",
+          "text": "Secondary element"
+        },
+        {
+          "type": "p",
+          "text": "The secondary element is picked at random from the elements among the focuses. It triggers when you press right-click and costs <t>50</t> MRU, and at the same time the sword comes up to block like a shield."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Fire",
+              "Fire Resistance for 2.5 s; hostile mobs within 2 blocks catch fire for 2 s (villagers, pets and other players don't)"
+            ],
+            [
+              "Water",
+              "Regeneration for 2.5 s; does nothing and costs nothing while you already have Regeneration"
+            ],
+            [
+              "Earth",
+              "Resistance for 2 s"
+            ],
+            [
+              "Air",
+              "Speed and Strength for 1.5 s"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Ember pairs"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:acidic_ember",
+            "essentialcraft5:chaos_ember",
+            "essentialcraft5:common_ember",
+            "essentialcraft5:corrupted_ember",
+            "essentialcraft5:crystal_ember",
+            "essentialcraft5:divine_ember",
+            "essentialcraft5:magical_ember",
+            "essentialcraft5:flame_ember"
+          ],
+          "per_row": 4
+        },
+        {
+          "type": "p",
+          "text": "The 4 embers pair up by kind. Four of the same kind make no pairs, and four different kinds make 6. Look each pair up below. Damage bonuses add up pair by pair, to at most {cfg:general.ember_sword.max_ember_damage|sign} in total, and an effect given by several pairs only counts once."
+        },
+        {
+          "type": "p",
+          "text": "If there are on-hit effects, each hit costs another <t>50</t> MRU and the effects last 3 s. Damage bonuses alone cost nothing."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Pair",
+            "Effect"
+          ],
+          "widths": [
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "Acidic + Chaotic",
+              "Damage +4"
+            ],
+            [
+              "Acidic + Smouldering",
+              "Damage +2"
+            ],
+            [
+              "Acidic + Corrupted",
+              "Slowness on the target"
+            ],
+            [
+              "Acidic + Crystal",
+              "Damage +6"
+            ],
+            [
+              "Acidic + Divine",
+              "Poison on the target"
+            ],
+            [
+              "Acidic + Magical",
+              "Poison II on the target"
+            ],
+            [
+              "Acidic + Burning",
+              "Damage +8"
+            ],
+            [
+              "Chaotic + Smouldering",
+              "Damage +7, <b>hurts the wielder</b>"
+            ],
+            [
+              "Chaotic + Corrupted",
+              "Slowness II on the target"
+            ],
+            [
+              "Chaotic + Crystal",
+              "Damage +5"
+            ],
+            [
+              "Chaotic + Divine",
+              "Lightning"
+            ],
+            [
+              "Chaotic + Magical",
+              "Damage +6"
+            ],
+            [
+              "Chaotic + Burning",
+              "Damage +4"
+            ],
+            [
+              "Smouldering + Corrupted",
+              "Weakness on the target"
+            ],
+            [
+              "Smouldering + Crystal",
+              "Damage +3"
+            ],
+            [
+              "Smouldering + Divine",
+              "Strength for you"
+            ],
+            [
+              "Smouldering + Magical",
+              "Speed for you"
+            ],
+            [
+              "Smouldering + Burning",
+              "Damage +11"
+            ],
+            [
+              "Corrupted + Crystal",
+              "Lifesteal (heals 1)"
+            ],
+            [
+              "Corrupted + Divine",
+              "<b>Hurts the wielder</b>, Hunger II on the target"
+            ],
+            [
+              "Corrupted + Magical",
+              "Greater Lifesteal (heals 3)"
+            ],
+            [
+              "Corrupted + Burning",
+              "Damage +5"
+            ],
+            [
+              "Crystal + Divine",
+              "Damage +9"
+            ],
+            [
+              "Crystal + Magical",
+              "Damage +7"
+            ],
+            [
+              "Crystal + Burning",
+              "Speed II for you"
+            ],
+            [
+              "Divine + Magical",
+              "Dispel (strips one beneficial effect from the target)"
+            ],
+            [
+              "Divine + Burning",
+              "Corrosion on the target (can't heal)"
+            ],
+            [
+              "Magical + Burning",
+              "Damage +6"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Lightning</em>: a bolt comes down on the target you hit, dealing <t>5</t> damage and setting it on fire for 8 s, and you get Fire Resistance II for 3 s. It only strikes that one target, doesn't set blocks alight and doesn't turn villagers or pigs into anything else. It strikes at most once every 2 seconds.",
+            "<em>Hurts the wielder</em>: you take <t>2</t> damage on every hit.",
+            "<em>Dispel</em>: strips one beneficial status effect from the target, endless ones first and otherwise the one with the most time left. Harmful effects are never touched. <em>Corrosion</em>: the target can't heal for 3 s, and natural regeneration, Regeneration and Instant Health all do nothing.",
+            {
+              "if": "!cfg:general.ember_sword.max_ember_damage<36",
+              "text": "The four highest-damage embers are Acidic, Chaotic, Smouldering and Burning. Their 6 pairs add up to +36, at the price of hurting yourself."
+            },
+            {
+              "if": "cfg:general.ember_sword.max_ember_damage<36",
+              "text": "Acidic, Chaotic, Smouldering and Burning make 6 pairs adding up to +36, but the ember bonus only counts up to {cfg:general.ember_sword.max_ember_damage|sign}. Reaching that is enough, so there's no need to force this combination and its self-damage."
+            },
+            "To avoid both the self-damage and the extra MRU per hit, use Acidic, Smouldering and Burning, with the fourth repeating any of them. Their 3 pairs add up to +21 with no on-hit effects at all."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "When the MRU runs out every effect stops, the self-damage included, and only the attack damage is left. If you use it a lot, carry a soul storage item, since the sword draws from that first."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.ember_inlay.enabled",
+          "text": "The pairs with on-hit effects can also be made into ember inlays and set into other weapons ([[void_machines/ember_inlay]])."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "Fighting with it builds attunement points, up to stage 2. Its effects then last longer and cost less MRU, and a stage 2 sword can be reforged into a {item:essentialcraft5:verdict_blade} ([[attunement/ember_sword]])."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It never loses durability, even when mining or blocking, and it can be enchanted.",
+            "It holds 5,000 MRU and charges in the [[storage/charging_chamber]]. Costs come first from storage items you carry, such as a {item:essentialcraft5:soul_shard} ([[storage/soul_storage]]), and then from the sword itself.",
+            "Blocking works like a shield, so an axe hit can knock it down for 5 seconds.",
+            "Forging the same materials twice can give a different secondary element.",
+            "The creative inventory has two Ember Elemental Swords, one empty and one full of MRU. Neither has been forged, so they have no primary or secondary element and no ember bonus."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original mod this table of pairs sat in the code and almost never took effect. Here it finally does."
+        }
+      ]
+    },
+    {
+      "id": "ember_inlay",
+      "title": "{item:essentialcraft5:ember_inlay}",
+      "icon": "essentialcraft5:ember_inlay",
+      "complete": "essentialcraft5:guide/void_machines/ember_inlay",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ember_inlay"
+      ],
+      "summary": "Put a pair of embers' effects into any weapon",
+      "if": "cfg:general.ember_inlay.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): make an ember inlay and set it into a weapon on an anvil. From then on, every hit that lands with that weapon triggers the pair's on-hit effect from the [[void_machines/ember_sword]]. Swords, axes and bows from other mods work too."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ember_inlay"
+        },
+        {
+          "type": "p",
+          "text": "Craft two <em>different</em> embers, a {item:essentialcraft5:pale_gem} and a {item:essentialcraft5:combined_magical_alloys} together in any arrangement to get one inlay that remembers the pair. Only the 14 pairs with an on-hit effect can be made. The damage-only pairs can't, and neither can Chaotic + Smouldering, which adds damage along with backlash."
+        },
+        {
+          "type": "h",
+          "text": "Inlaying"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the weapon in the left slot of an {item:minecraft:anvil} and the inlay in the right one.",
+            "Take out the inlaid weapon. It costs {cfg:general.ember_inlay.anvil_levels} levels and 1 inlay, and the weapon's tooltip gains an \"Ember Inlay: …\" line.",
+            "A weapon holds one inlay. Inlaying another pair replaces it, and the old inlay is not returned."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You take your first inlaid weapon out of an anvil."
+        },
+        {
+          "type": "h",
+          "text": "Which weapons"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Swords, axes, pickaxes, shovels, hoes and tridents, plus similar items from other mods, and shields and fishing rods too, all of which trigger when you land a hit holding them in your main hand;",
+            "bows and crossbows;",
+            "not the {item:essentialcraft5:forged_elemental_sword}, which already carries embers;",
+            "one at a time; stacked items can't be inlaid."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "When a hit lands"
+        },
+        {
+          "type": "p",
+          "text": "Land a melee hit with the inlaid weapon, or land an arrow while holding the inlaid bow or crossbow in your main hand, and {cfg:general.ember_inlay.mru_per_hit} MRU is spent to trigger the pair's effect. The MRU comes from storage items you carry first. If you can't pay, nothing happens."
+        },
+        {
+          "type": "p",
+          "text": "The effect is exactly that pair's effect on the Ember Elemental Sword and lasts 3 seconds ([[void_machines/ember_sword]] has the table). Lightning still strikes at most once every 2 seconds, and backlash still hurts you. Inlays give <em>effects only, no extra damage</em>, so an inlaid sword hits as hard as before."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "A hit doesn't land if a claim, a team or the rule against players hurting each other stops it, if something else cancels the damage, or if it does no damage because the target is briefly invulnerable. Then no MRU is spent and nothing triggers. Thorns, spell damage, damage dealt by baubles such as the {item:essentialcraft5:nu_amulet}'s chain, and the ring of spikes from a fully raised {item:essentialcraft5:spiky_shield} don't count as weapon hits."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A sweep counts once for every creature it hits, and charges MRU for each.",
+            "Several pieces of damage dealt to the same creature at the same instant, such as the extra hit some other mods' weapons add to an attack, count as one hit and are charged once.",
+            "A hit that the target's absorption soaks up entirely, such as the golden hearts from a golden apple, still lands. It triggers and costs MRU as usual.",
+            "Bows and crossbows go by what is in your main hand when the arrow hits, so if you switch to something else, that arrow won't trigger.",
+            "Mining and blocking cost no MRU; only hits that land on a creature do.",
+            "All 14 inlays show up in the recipe book, and an inlay's tooltip says which pair it holds and what it triggers."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original mod, embers could only go into the Ember Elemental Sword. Inlays came later."
+        }
+      ]
+    }
+  ]
+}

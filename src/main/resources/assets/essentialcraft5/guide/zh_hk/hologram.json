@@ -1,0 +1,949 @@
+{
+  "id": "hologram",
+  "order": 101,
+  "group": "main",
+  "title": "第十八章 · 全息",
+  "subtitle": "向審判庭發出信號",
+  "icon": "essentialcraft5:glitchy_core",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "neuronic_plating",
+      "title": "{item:essentialcraft5:neuronic_enriched_plating}",
+      "icon": "essentialcraft5:neuronic_enriched_plating",
+      "summary": "全息與宅男套裝的基礎材料",
+      "complete": "essentialcraft5:guide/hologram/neuronic_plating",
+      "items": [
+        "essentialcraft5:neuronic_enriched_plating"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "收到信號。來源：海納爾地表，露天。發信者不明，矩陣未登記。處置：遣投影前往，試其深淺。",
+          "by": "審判庭殘檔"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出{item:essentialcraft5:neuronic_enriched_plating}。本章要做一台全息投影台，再打倒它召來的 Boss，投影台要用 1 塊富神經元護板，後面的宅男套裝更是處處離不開它。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:neuronic_enriched_plating"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：5 塊{item:essentialcraft5:demonic_plate}、2 顆{item:essentialcraft5:wind_gem}和 2 份{item:essentialcraft5:combined_magical_alloys}，做法分別見[[demons/ackronite]]、[[wind/wind_gem]]和[[alloys/combined_magical_alloys]]，一次合成出 <t>4</t> 塊護板。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一塊富神經元護板。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "現在就開始多注風",
+          "text": "後面最慢的一環是風之水晶，富神經元護板每次合成要 2 顆，宅男套裝四件一共要 48 顆，見[[computer/costs]]。每顆注風要 {cfg:general.wind.gem_espe} ESPE，而一座祭壇的 8 根柱子在主世界每秒只能積攢 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160}，在終界是每秒 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160}。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "text": "算下來，主世界的一座祭壇要不停積攢三十多個小時，終界的一座也要八九個小時。"
+            },
+            "多搭兩三座[[wind/wind_rune]]祭壇同時注風，最好搭在終界。",
+            "柱子只在你待在附近時積攢，見[[mithriline/crystal_pillar]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "用在哪"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每台{item:essentialcraft5:holopad}要 1 塊，見[[hologram/holopad]]。",
+            "壓力穩定器、斥力發生器、推進引擎、揚聲器板、視覺透鏡和電腦引擎都要用它，見[[computer/drives]]。",
+            "宅男套裝的四件和反重力板，每件自身還要 2~3 塊，全套加上反重力板一共要合成 <t>17</t> 次護板，見[[computer/costs]]。",
+            {
+              "if": "cfg:machines.ley_condenser.enabled",
+              "text": "{item:essentialcraft5:ley_condenser}也要 1 塊，見[[ley/ley_condenser]]。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "holopad",
+      "title": "{item:essentialcraft5:holopad}",
+      "icon": "essentialcraft5:holopad",
+      "summary": "向整個海納爾發出信號的台子",
+      "complete": "essentialcraft5:guide/hologram/holopad",
+      "items": [
+        "essentialcraft5:holopad"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做一台全息投影台。在海納爾頭頂露天的地方右鍵它，就會召來本章的 Boss「全息投影」，製作電腦引擎要用的數學核心，只有打倒它才拿得到。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:holopad"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：6 個{item:essentialcraft5:twinkling_titanite}、1 個{item:essentialcraft5:void_core}、1 個{item:essentialcraft5:matter_of_eternity}和 1 塊{item:essentialcraft5:neuronic_enriched_plating}，前兩樣都出自海納爾遺蹟的箱子，見[[hoanna/relics]]，挖{item:essentialcraft5:titanite_ore}也偶爾出{item:essentialcraft5:twinkling_titanite}。"
+        },
+        {
+          "type": "p",
+          "text": "永恆物質要用一顆地獄之星來做，在{item:essentialcraft5:magician_table}裏放 1 顆{item:minecraft:nether_star}和 4 個{item:essentialcraft5:mru_large_chunk}即可，後者見[[storage/soul_storage]]。永恆物質裏存的 MRU 會在合成投影台時一起消失，所以最好用剛做好、沒充過能的那塊。"
+        },
+        {
+          "type": "p",
+          "text": "地獄之星要打凋零怪才有，召喚一隻凋零怪要 3 個凋零怪骷髏頭，凋零怪骷髏掉頭的幾率卻只有 <t>2.5%</t>，用掠奪 III 也只有 <t>5.5%</t>。投影台要做好幾台，最好早點去地獄要塞攢骷髏頭。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.ley_condenser.enabled",
+          "text": "打完第一場、拿到數學核心以後，可以做一台{item:essentialcraft5:ley_condenser}，後面要用的地獄之星就能凝聚出來，見[[ley/condensing]]，不過第一台投影台的那顆只能靠凋零怪。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "一台只召一次",
+          "text": "每打一場都要一台新的投影台。四種數學核心要分四場才拿得齊，見[[hologram/math_cores]]，第二十一章的模塊至少還要一個，所以最好按 5~7 台來準備，一共要 5~7 顆地獄之星、5~7 個虛空核心和 30~42 個閃耀榍石。每打倒它一次，掉下的遺物會補回一些，平均約 2 個閃耀榍石，虛空核心大約每三場補回一個。它每次還必掉一個{item:essentialcraft5:glitchy_core}，第十九章只用得着一個，見[[inquisitorium/glitchy_core]]。"
+        },
+        {
+          "type": "h",
+          "text": "放在哪"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "!cfg:general.hologram.other_dimensions",
+              "text": "只能在<hl>海納爾</hl>啓動，在別的維度右鍵，快捷欄會提示無法啓動。"
+            },
+            {
+              "if": "cfg:general.hologram.other_dimensions",
+              "text": "在任何維度都能啓動。"
+            },
+            "台子頭頂要<hl>露天</hl>，正上方那一列不能有擋路的方塊和水，花草、火把這類不擋路的東西不礙事。",
+            "台子上方 <t>5</t> 格是投影出現的地方，那裏要空着。",
+            "<t>64</t> 格內不能有別的全息投影。",
+            "要在你有權改動方塊的地方啓動，在別人的領地這類沒有權限的地方啓動不了。",
+            "要在生存或冒險模式下右鍵，和平難度下信號得不到回應。",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.holopad>0"
+              ],
+              "text": "你的矩陣階要到 {cfg:general.matrix_rank.gates.holopad} 階，不夠時右鍵會提示要幾階、你現在幾階，見[[matrix/overview]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一台全息投影台。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "條件不滿足時右鍵不會扣掉任何東西，快捷欄會寫明缺什麼。條件一滿足，台子立刻消失，Boss 當場出現，所以先讀完[[hologram/summoning]]和[[hologram/hologram]]，備好裝備再右鍵。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "放錯了地方",
+          "text": "投影台空手就能敲下來，掉落的是它本身，換個地方再放就好。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書在這台裝置前面記了幾段傳聞，説海納爾某處藏着一個審判庭，卻誰也找不到。書裏説，要讓惡魔板真正運轉還缺一台電腦，以你的技術造不出來，審判庭也許幫得上忙。這台裝置會朝整個海納爾發出很強的信號，審判庭要是真的存在，一定收得到。"
+        }
+      ]
+    },
+    {
+      "id": "summoning",
+      "title": "召喚：一旦開打",
+      "icon": "essentialcraft5:glitchy_core",
+      "summary": "誰算參戰、跑遠了會怎樣",
+      "complete": "essentialcraft5:guide/hologram/summon",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在投影台上右鍵，召出全息投影。應答這道信號的是審判庭留下的機器，它遣來的守衞只是一道投影。台子消失後，上方 <t>5</t> 格處浮現出半透明的全息投影，戰鬥音樂隨之響起。它懸在半空一動不動，一輪接一輪地出招，直到被打倒，或者所有人都離開。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.gates.holopad>0"
+          ],
+          "text": "召喚要矩陣 {cfg:general.matrix_rank.gates.holopad} 階，階數不夠時台子只提示要幾階、你現在幾階，見[[matrix/overview]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "投影出現，屏幕上方亮起紅色的 Boss 血條。"
+        },
+        {
+          "type": "h",
+          "text": "誰算參戰"
+        },
+        {
+          "type": "list",
+          "items": [
+            "召喚它的人。",
+            "之後真正打掉它血量的生存或冒險模式玩家，朋友想加入的話，上去打它一下就行。",
+            "在旁邊看着的、路過的和旁觀模式的玩家都不算參戰，它的招式不會盯上他們，也不會把他們拉回來。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "參戰以後"
+        },
+        {
+          "type": "list",
+          "items": [
+            "離它超過 <t>24</t> 格，你就會被拉回台子原來的位置，扣 <t>5</t> 點生命，簡單難度扣得少些，困難難度多些。距離每半秒查一次，所以走路、飛行都撤不出去。",
+            "想撤出戰鬥，就在半秒之內一下子拉開到 <t>{cfg:general.hologram.escape_range}</t> 格以外，或者換維度、下線，死亡和改成創造、旁觀模式也算退出。退出以後不會再被拉回，招式也不再追着你。",
+            {
+              "if": "bauble:essentialcraft5:computer_board",
+              "text": "參戰期間飛行會被關掉，反重力板給的也不例外，鞘翅照常能用。"
+            },
+            {
+              "if": "!bauble:essentialcraft5:computer_board",
+              "text": "參戰期間飛行會被關掉，鞘翅照常能用。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "打輸了不丟台子",
+          "text": "所有人都退出以後再過 {cfg:general.hologram.abandon_ticks|sec}，投影會自己關閉，台子掉回原來的位置，掉在地上也不會消失，可以再來一次。切到和平難度時投影同樣會關閉，台子也會掉回來。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "它和它的招式都不破壞方塊，招式卻會打到每一個參戰的人，你的同伴也在內，附近的敵對生物也會被順帶打到。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "要是拉回的落點被方塊堵住、底下是巖漿這類傷人的東西、你在那裏不能動方塊（比如投影台在別人的領地裏），或者傳送被攔了下來，你就不會被拉回去，也不扣血，但仍在戰鬥中，招式照樣追着你。這樣連着 <t>{cfg:general.hologram.abandon_ticks|sec}</t>拉不回來，或者跑出 <t>{cfg:general.hologram.escape_range}</t> 格，就算退出。",
+            "它的招式打不到村民、寵物和動物，你站到它們旁邊，也借不了它的手去傷它們。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hologram",
+      "title": "{lang:entity.essentialcraft5.hologram}",
+      "icon": "essentialcraft5:hologram_spawn_egg",
+      "summary": "四種招式怎麼躲、什麼時候打",
+      "complete": "essentialcraft5:main/hologram",
+      "items": [
+        "essentialcraft5:hologram_spawn_egg",
+        "essentialcraft5:player_clone_spawn_egg",
+        "essentialcraft5:music_disc_ropocalypse"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:hologram"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：打倒全息投影。審判庭管的是度量和裁斷，它的守衞出招也照着加減乘除來。它有 <t>{cfg:general.hologram.max_health}</t> 點生命，<hl>只在兩招之間的休息時間打得動</hl>，出招時打上去毫無反應。它的血越少，休息越短，滿血時約 5 秒，快死時只剩 1 秒。"
+        },
+        {
+          "type": "h",
+          "text": "帶什麼去"
+        },
+        {
+          "type": "list",
+          "items": [
+            "近戰武器，箭、槍、爆炸等非近戰傷害只算四分之一。",
+            "舊盔甲，或者壞了也不心疼的盔甲，減法招每打中一下，手裏的東西和每件盔甲各掉 5 點耐久。",
+            "食物和回血的東西，再帶一組方塊，減法招射來的東西撞上方塊就會消失，搭個掩體就擋得住。",
+            "藥水帶抗火和治療兩種，抗火對付會讓你着火的軌道打擊，治療對付直接把生命減半的二分場。護甲有一套鑽石甲上下就擋得住影子，軌道打擊到了後幾發，護甲也擋不了多少，只能靠走位。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每次休息一般只打得掉 40 點左右，算下來一場要熬過大約 {cfg:general.hologram.max_health|div:40|int} 輪招式，每輪出招 5 秒、休息 1~5 秒，順利的話兩三分鐘打完。武器一下只有十來點的話，輪數要翻一倍。"
+        },
+        {
+          "type": "h",
+          "text": "四種招式"
+        },
+        {
+          "type": "p",
+          "text": "看它頭頂轉着的核心，就知道它在放哪一招，休息時那裏換成{item:essentialcraft5:glitchy_core}。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "頭頂的核心",
+            "招式",
+            "怎麼應付"
+          ],
+          "widths": [
+            4,
+            5,
+            7
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:addition_core}",
+              "加法：在每個參戰者身邊變出叫作{lang:entity.essentialcraft5.player_clone}的影子，長着你的樣子，拿着你的武器，跑得很快",
+              "影子一碰就碎，10 秒後自己消失，一下最多打 <t>{cfg:general.hologram.clone_max_attack_damage}</t> 點，簡單難度少些，困難難度多一半。它的血越少，影子越多"
+            ],
+            [
+              "{item:essentialcraft5:subtraction_core}",
+              "減法：朝每個參戰者連射{lang:entity.essentialcraft5.armor_destroyer}",
+              "不傷人，但每打中一發，手裏的東西和每件盔甲各掉 <t>5</t> 點耐久，魔力防護、虛空套裝、宅男套裝這類靠 MRU 擋傷害的盔甲改為扣電，電不夠的魔力防護照樣掉耐久。躲到方塊後面就行"
+            ],
+            [
+              "{item:essentialcraft5:multiplication_core}",
+              "乘法：在隨機一名參戰者腳下召下軌道打擊，一共 10 發",
+              "看見品紅光柱就挪開，光柱收細以後打擊落下，5 × 5 × 5 範圍內的都會捱打、着火。它滿血時打擊 3 秒才落，快死時 1 秒就落，要一直走動"
+            ],
+            [
+              "{item:essentialcraft5:division_core}",
+              "除法：在參戰者腳下放品紅色的二分場",
+              "聽見嘶嘶聲、看見品紅球就跑到 3 格以外，球 2 秒後張開，被罩住的人生命直接減半，還會掛上虛弱、緩慢、挖掘疲勞和失明。它的血越少，球越多"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hologram.orbital_max_damage<512",
+          "text": "軌道打擊一發比一發疼，從 1 點起每發翻一倍，漲到 <t>{cfg:general.hologram.orbital_max_damage}</t> 點就不再漲。護甲能擋住一部分，抗性提升、保護附魔和盾一點也擋不住。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hologram.orbital_max_damage>=512",
+          "text": "軌道打擊一發比一發疼，從 1 點起每發翻一倍，從第 8 發起每發都上百點，第 10 發有 <t>512</t> 點，幾乎沒人扛得住，千萬別站着不動。護甲能擋住一部分，抗性提升、保護附魔和盾一點也擋不住。"
+        },
+        {
+          "type": "h",
+          "text": "打它"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "待在離它 24 格以內，離得太遠就打不動它，一邊躲招式一邊等它休息。",
+            "它頭頂換成故障核心時，就上去打。",
+            "一次休息裏只要打出 40 點左右，不管是一下還是幾下加起來，它都會立刻出下一招，所以每次休息只能打掉一小截，要熬過好幾輪招式。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "投影熄滅，原地掉下一個數學核心、一個{item:essentialcraft5:glitchy_core}、一堆遺物和 <t>50</t> 點經驗，數學核心見[[hologram/math_cores]]。參戰的人都會獲得進度「{lang:advancements.essentialcraft5.hologram.title}」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "用遠程武器很吃虧，那 40 點按你打出去的傷害算，一箭射出 40 點只掉它 10 點血，卻照樣逼它馬上出招。只有玩家親手打才傷得了它，寵物、機器和別的生物都傷不到。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.hologram.max_damage_per_hit>0",
+              "text": "一下最多隻掉 <t>{cfg:general.hologram.max_damage_per_hit}</t> 點，再重的武器也一樣。"
+            },
+            "它自己的軌道打擊傷不到它。",
+            "一件盔甲都不穿打倒它，還能另外拿到進度「{lang:advancements.essentialcraft5.hologram_big.title}」。",
+            "創造模式物品欄裏有{item:essentialcraft5:hologram_spawn_egg}和{item:essentialcraft5:player_clone_spawn_egg}。用生成蛋放出來的全息投影同樣受維度限制，64 格內也只能有一隻，沒人打它就會消失，消失時不掉投影台。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decoy",
+      "title": "{item:essentialcraft5:holo_decoy_projector}",
+      "icon": "essentialcraft5:holo_decoy_projector",
+      "summary": "投出一個分身，把怪引開幾秒",
+      "complete": "essentialcraft5:guide/hologram/decoy",
+      "optional": true,
+      "items": [
+        "essentialcraft5:holo_decoy_projector"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一個{item:essentialcraft5:holo_decoy_projector}，投出你自己的全息分身。全息投影會變出你的影子來打你，投影儀用的是同一種本事，只是影子站到了你這邊。附近正盯着你的敵對生物會掉頭去打它，給你幾秒鐘喘口氣、換個位置或收拾殘局。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：配方要一個{item:essentialcraft5:addition_core}，它只在打倒全息投影時才有可能掉，見[[hologram/math_cores]]，所以投影儀要等打完本章的 Boss 才做得出來。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:holo_decoy_projector"
+        },
+        {
+          "type": "p",
+          "text": "<em>充電</em>：它用自己存的 MRU 工作，剛做出來是空的，放進{item:essentialcraft5:charging_chamber}就能充滿，見[[storage/charging_chamber]]。身上帶着靈魂儲存時，先從靈魂儲存里扣。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿在手裏，把準星對準前方 {cfg:general.holo_decoy.max_range} 格以內的地面，對着牆或半空也行，分身會落到下方最近的地面上，最多往下找 4 格。",
+            "右鍵，花掉 {cfg:general.holo_decoy.mru_per_use} MRU，那裏會出現一個半透明的你，面朝你正對着的方向。",
+            "分身周圍 {cfg:general.holo_decoy.radius} 格以內正盯着你的敵對生物會立刻改去打它，分身還在的時候，它們想回頭找你也會被拉回去。",
+            "{cfg:general.holo_decoy.lifetime_ticks|sec}後分身消失，被打掉 20 點生命也會提前消失。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "投出過一個全息誘餌。"
+        },
+        {
+          "type": "tip",
+          "if": [
+            "cfg:general.holo_decoy.boss_ticks",
+            "cfg:general.holo_decoy.cooldown_ticks"
+          ],
+          "style": "warn",
+          "title": "Boss 很快就會識破",
+          "text": "凋零怪這類 Boss 只會被騙 <t>{cfg:general.holo_decoy.boss_ticks|sec}</t>，然後就回頭找你，從它上當那一刻算起，{cfg:general.holo_decoy.cooldown_ticks|sec}內誰的分身都騙不了它第二次，幾個人輪流投也一樣。有些模組的 Boss 每時每刻都在重新挑目標，分身對它們幾乎沒用。"
+        },
+        {
+          "type": "tip",
+          "if": [
+            "cfg:general.holo_decoy.boss_ticks",
+            "!cfg:general.holo_decoy.cooldown_ticks"
+          ],
+          "style": "warn",
+          "title": "Boss 很快就會識破",
+          "text": "凋零怪這類 Boss 每次只會被騙 <t>{cfg:general.holo_decoy.boss_ticks|sec}</t>，時間一到就先回頭找你。有些模組的 Boss 每時每刻都在重新挑目標，分身對它們幾乎沒用。"
+        },
+        {
+          "type": "tip",
+          "if": "!cfg:general.holo_decoy.boss_ticks",
+          "style": "warn",
+          "title": "騙不了 Boss",
+          "text": "凋零怪這類 Boss 根本不會上當，分身只對普通的敵對生物有用。"
+        },
+        {
+          "type": "h",
+          "text": "數值"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每次",
+              "{cfg:general.holo_decoy.mru_per_use} MRU"
+            ],
+            [
+              "可存",
+              "20000 MRU"
+            ],
+            [
+              "最遠",
+              "準星前 {cfg:general.holo_decoy.max_range} 格"
+            ],
+            [
+              "引怪範圍",
+              "分身周圍 {cfg:general.holo_decoy.radius} 格"
+            ],
+            [
+              "持續",
+              "{cfg:general.holo_decoy.lifetime_ticks|sec}"
+            ],
+            [
+              "分身的生命",
+              "20"
+            ],
+            {
+              "if": "cfg:general.holo_decoy.cooldown_ticks",
+              "cells": [
+                "冷卻",
+                "{cfg:general.holo_decoy.cooldown_ticks|sec}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "騙誰、不騙誰"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只騙喪屍、骷髏、苦力怕這類敵對生物，正盯着你或你同隊玩家的都會被引開。",
+            "起了名字或拴着繩的怪不受影響。監守者是瞎的，靠氣味和振動找人，看不見投影，也不受影響。",
+            "它不碰別的玩家、村民、動物和任何人的寵物，別的玩家被怪盯上時它也不管，除非他和你同隊。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每人同時只能有一個分身，再投一個時，舊的會當場消失。",
+            {
+              "if": "cfg:general.holo_decoy.cooldown_ticks",
+              "text": "冷卻記在你身上，所有投影儀共用，退出重進也接着算，只有死亡才會清零。"
+            },
+            "你下線、死亡或去了別的維度，分身會馬上消失，存檔裏也不會留下它。",
+            "你和隊友打不壞自己的分身，橫掃和範圍武器不會誤傷它，怪打它照樣會掉血。",
+            "苦力怕會追到分身旁邊爆炸，你離得近照樣會被炸到，最好投遠一點。",
+            "分身不掉東西，不怕火，也摔不壞。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math_cores",
+      "title": "數學核心",
+      "icon": "essentialcraft5:addition_core",
+      "summary": "想要哪種，就在那一招之後補刀",
+      "items": [
+        "essentialcraft5:addition_core",
+        "essentialcraft5:subtraction_core",
+        "essentialcraft5:multiplication_core",
+        "essentialcraft5:division_core"
+      ],
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:addition_core",
+            "essentialcraft5:subtraction_core",
+            "essentialcraft5:multiplication_core",
+            "essentialcraft5:division_core"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "數學核心是審判庭那些會計算的機器裏的零件，它的投影守衞隨身帶着。全息投影被打倒時會掉一個，種類取決於它<hl>最後放完的是哪一招</hl>，加法、減法、乘法、除法依次對應{item:essentialcraft5:addition_core}、{item:essentialcraft5:subtraction_core}、{item:essentialcraft5:multiplication_core}和{item:essentialcraft5:division_core}。還沒放完過一招就被打倒的話，會隨機掉一種。"
+        },
+        {
+          "type": "p",
+          "text": "做[[computer/computer_engine]]要四種各一個，數學核心沒有合成配方，只能這樣一場一場打出來。"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:addition_core}還是{item:essentialcraft5:holo_decoy_projector}的材料，見[[hologram/decoy]]，想做投影儀就多留一個。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "第二十一章的模塊也要用數學核心，見[[terminal/modules]]，主線要裝上兩塊，所以至少還得再打一場："
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "text": "{item:essentialcraft5:addition_core}：累加器模塊"
+            },
+            {
+              "if": "module:essentialcraft5:rewind_module||module:essentialcraft5:shred_module",
+              "text": "{item:essentialcraft5:subtraction_core}：回溯模塊、削減模塊各一個"
+            },
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "text": "{item:essentialcraft5:multiplication_core}：矩陣過濾模塊"
+            },
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "text": "{item:essentialcraft5:division_core}：矩陣分流模塊"
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "text": "相位錨模塊不需要數學核心"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "挑你要的那一種"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "先把它打到只剩一兩下的血。",
+            "留意它頭頂的核心，出招時轉着的就是這一招的核心。",
+            "等它放完你想要的那一招，在緊接着的休息裏補上最後一下。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "會挑時機的話打四場就能湊齊，失手幾次也不過五六場。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.ley_condenser.enabled",
+          "text": "多出來的核心也不浪費，哪一種都能拿去做{item:essentialcraft5:ley_condenser}，按需凝聚礦物和地獄之星，見[[ley/ley_condenser]]。"
+        },
+        {
+          "type": "h",
+          "text": "另外會掉的"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:orbital_remote}",
+              "<t>25%</t>，見[[hologram/orbital_remote]]"
+            ],
+            [
+              "{item:essentialcraft5:divider_gun}",
+              "<t>25%</t>，見[[hologram/divider_gun]]"
+            ],
+            [
+              "{item:essentialcraft5:music_disc_ropocalypse}",
+              "<t>30%</t>，是一張音樂唱片"
+            ],
+            [
+              "{item:essentialcraft5:glitchy_core}",
+              "<t>必掉 1 個</t>，上面寫着目標平衡值，第十九章要用，見[[inquisitorium/glitchy_core]]"
+            ],
+            [
+              "海納爾遺物",
+              "<t>18~20</t> 份，和城鎮塔頂的箱子是同一張清單，見[[hoanna/relics]]"
+            ],
+            [
+              "經驗",
+              "<t>50</t> 點"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "只有被玩家打倒才會掉東西，幾個人一起打也只掉一份，進度「{lang:advancements.essentialcraft5.hologram.title}」則會發給它倒下時仍在戰鬥中的每一個人。"
+        }
+      ]
+    },
+    {
+      "id": "orbital_remote",
+      "title": "{item:essentialcraft5:orbital_remote}",
+      "icon": "essentialcraft5:orbital_remote",
+      "summary": "全息投影的稀有戰利品：遠程召下打擊",
+      "complete": "essentialcraft5:main/hologram_remote",
+      "optional": true,
+      "items": [
+        "essentialcraft5:orbital_remote"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：打倒全息投影時，它有時會掉下一個{item:essentialcraft5:orbital_remote}，掉率見[[hologram/math_cores]]。遙控器沒有合成配方，只能從它身上得到。"
+        },
+        {
+          "type": "p",
+          "text": "<em>充電</em>：它用自己存的 MRU 工作，掉下來時是空的，放進{item:essentialcraft5:charging_chamber}就能充滿，見[[storage/charging_chamber]]。身上帶着靈魂儲存時，先從靈魂儲存里扣。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿在主手或副手，把準星對準 32 格內的地面，那裏會立起一道品紅色的光柱，標出落點。對着天空或夠不着的地方時不出光柱，右鍵也沒有反應。",
+            "右鍵，花掉 {cfg:general.orbital_remote.mru_per_strike} MRU，落點立起真正的光柱，開始一點點收細。",
+            "3 秒後打擊落下，以落點為中心 5×5×5 範圍內的每個生物都受到 {cfg:general.orbital_remote.damage} 點傷害，被打中的還會着火 2 秒。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一個軌道打擊遙控器，獲得進度「{lang:advancements.essentialcraft5.hologram_remote.title}」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "穿牆",
+          "text": "打擊不受牆壁阻擋，落點 5×5×5 範圍內的生物隔着幾層方塊都照樣捱打。護甲能擋住一部分，<w>抗性提升、保護附魔和盾都擋不住</w>。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.orbital_remote.lock_range>0",
+          "text": "鎖定"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.orbital_remote.lock_range>0",
+          "text": "準星對着 {cfg:general.orbital_remote.lock_range} 格內的一隻生物時，預覽光柱會立在它腳下跟着它走，這就是鎖定。這時右鍵，打擊點會一直跟着它移動，落下前半秒才定住，跑得快的生物還來得及逃出 5×5×5 的範圍。"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.orbital_remote.lock_range>0",
+          "items": [
+            "打擊點只在水平方向跟着走，高度停在鎖定的那一刻，目標就算跳下懸崖或飛上天，打擊也照樣落在原來的高度。",
+            "被鎖定的生物沒了或去了別的世界時，打擊會停在最後跟到的地方，照常落下。",
+            "隔着牆看不到的和隱身的生物鎖不上，你自己、隊友、寵物這些本來就不捱打的也鎖不上。沒對準生物時，照舊打準星對着的方塊。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "數值"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每發",
+              "{cfg:general.orbital_remote.mru_per_strike} MRU"
+            ],
+            [
+              "可存",
+              "20000 MRU"
+            ],
+            [
+              "傷害",
+              "{cfg:general.orbital_remote.damage}"
+            ],
+            {
+              "if": "cfg:general.orbital_remote.player_damage_multiplier>0",
+              "cells": [
+                "打玩家的傷害倍率",
+                "{cfg:general.orbital_remote.player_damage_multiplier|x}"
+              ]
+            },
+            [
+              "範圍",
+              "以落點為中心 5×5×5"
+            ],
+            [
+              "落下",
+              "右鍵後 3 秒"
+            ],
+            [
+              "射程",
+              "32 格"
+            ],
+            {
+              "if": "cfg:general.orbital_remote.lock_range>0",
+              "cells": [
+                "鎖定距離",
+                "{cfg:general.orbital_remote.lock_range} 格"
+              ]
+            },
+            {
+              "if": "cfg:general.orbital_remote.cooldown_ticks>0",
+              "cells": [
+                "冷卻",
+                "{cfg:general.orbital_remote.cooldown_ticks|sec}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "打誰、不打誰"
+        },
+        {
+          "type": "list",
+          "items": [
+            "不會傷到你自己、你馴服的動物和同一支隊伍的玩家。",
+            "村民、起了名字或拴着繩的生物、別人馴服的生物和玩家造的傀儡同樣不受傷害，盔甲架也不受影響。",
+            {
+              "if": "cfg:general.orbital_remote.player_damage_multiplier>0",
+              "text": "<b>別的玩家照樣捱打</b>，能不能打按 PvP 和領地的規則來定。"
+            },
+            {
+              "if": "cfg:general.orbital_remote.player_damage_multiplier==0",
+              "text": "不會傷到別的玩家。"
+            },
+            "打死的生物算作你擊殺，照常掉落物品和經驗。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "落點總在方塊的頂面，對着牆面按下去，打擊會落在那一格的正上方。靜止的水面也算地面，草叢和花也會擋住準星。",
+            "落下時的爆炸只有聲音和火光，不炸方塊，不點燃地面，也不把誰推開，地形一格都不會變。",
+            "你下線或死亡時，還沒落下的打擊會隨之熄滅。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裏這一擊會先蒸乾落點附近的水、冰和雪，再把能燒煉的方塊就地燒煉，沙子化成玻璃，礦石煉成錠，撒得滿地都是。這一版的打擊只傷生物，不動地形。"
+        }
+      ]
+    },
+    {
+      "id": "divider_gun",
+      "title": "{item:essentialcraft5:divider_gun}",
+      "icon": "essentialcraft5:divider_gun",
+      "summary": "全息投影的稀有戰利品：敵人生命減半",
+      "complete": "essentialcraft5:main/hologram_gun",
+      "optional": true,
+      "items": [
+        "essentialcraft5:divider_gun"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：{item:essentialcraft5:divider_gun}也是全息投影的稀有戰利品，沒有合成配方，掉率見[[hologram/math_cores]]。"
+        },
+        {
+          "type": "p",
+          "text": "<em>充電</em>：它和遙控器一樣，掉下來時是空的，放進{item:essentialcraft5:charging_chamber}就能充滿，身上帶着靈魂儲存時先從靈魂儲存里扣。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "按住右鍵像拉弓一樣蓄力，拉滿 1 秒後自動射出一顆二分彈。開始拉時 MRU 要夠一發才拉得動，射出去的那一刻才扣。",
+            "二分彈像雪球一樣沿拋物線飛行，打中方塊或生物就停在那裏，放出一個品紅色的小球。",
+            "2 秒後小球張開成半徑 3 格的球，球裏的敵對生物生命減半，還會掛上下表裏的四種負面效果。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一把二分槍，獲得進度「{lang:advancements.essentialcraft5.hologram_gun.title}」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "只對敵對生物",
+          "text": "它只對敵對生物起作用，你自己和別的玩家、村民、動物、寵物，以及起了名字或拴着繩的生物都不受影響，你平時打不了的生物，比如別人領地裏的，它也碰不到。減半<w>不會致死</w>，收尾還得自己動手。"
+        },
+        {
+          "type": "h",
+          "text": "數值"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每發",
+              "{cfg:general.divider_gun.mru_per_shot} MRU"
+            ],
+            [
+              "可存",
+              "20000 MRU"
+            ],
+            [
+              "蓄力",
+              "1 秒"
+            ],
+            [
+              "張開",
+              "落地 2 秒後"
+            ],
+            [
+              "半徑",
+              "3 格"
+            ],
+            [
+              "效果",
+              "生命減半，虛弱 V、緩慢 V、挖掘疲勞 V 各 10 秒，失明 5 秒"
+            ],
+            {
+              "if": [
+                "!cfg:general.divider_gun.affect_bosses",
+                "cfg:general.divider_gun.boss_mode_ticks>0"
+              ],
+              "cells": [
+                "對 Boss",
+                "不減半，改掛 {cfg:general.divider_gun.boss_mode_ticks|sec}的二分，對狀態效果免疫的不受影響"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.divider_gun.affect_bosses",
+          "text": "對凋零怪這類 Boss 也有效，一發就能削掉一半生命，只有終界龍和全息投影例外，二分場對它們一概無效。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.divider_gun.affect_bosses",
+            "cfg:general.divider_gun.boss_mode_ticks>0"
+          ],
+          "text": "打中 Boss 時不減半，改為掛上 {cfg:general.divider_gun.boss_mode_ticks|sec}的<hl>二分</hl>，它打出的傷害和受到的治療都會減半。你平時打不着的 Boss，它同樣碰不到。<w>對狀態效果免疫的 Boss 不受影響</w>，凋零怪、終界龍都是這樣，所以這一條只對別的模組裏掛得上狀態效果的 Boss 有用，全息投影也不受影響。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.divider_gun.affect_bosses",
+            "!cfg:general.divider_gun.boss_mode_ticks"
+          ],
+          "text": "對凋零怪、終界龍這類 Boss 無效，對全息投影同樣無效。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "二分彈飛了 10 秒還沒落地，就會自己消失。",
+            "它不會觸發壓力板，也不會讓標靶發出信號或打壞方塊。",
+            "它沒有冷卻，算上拉弓 1 秒和張開前的 2 秒，場上同時最多有兩三個球。",
+            {
+              "if": [
+                "!cfg:general.divider_gun.affect_bosses",
+                "cfg:general.divider_gun.boss_mode_ticks>0"
+              ],
+              "text": "Boss 身上的二分是一個普通的負面效果，別的模組的淨化手段能清掉它。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裏二分槍的球不分敵我，除了全息投影和創造模式的玩家，範圍裏的活物一律減半，開槍的人自己站得太近也躲不過。"
+        }
+      ]
+    }
+  ]
+}

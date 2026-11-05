@@ -1,0 +1,910 @@
+{
+  "id": "guns",
+  "order": 95,
+  "group": "side",
+  "title": "支線 · 魔力槍械",
+  "subtitle": "用 MRU 射線開火的四種槍",
+  "icon": "essentialcraft5:pistol",
+  "entries": [
+    {
+      "id": "weapon_maker",
+      "title": "武器工作台",
+      "icon": "essentialcraft5:pistol_weapon_maker",
+      "summary": "四種工作台，各組裝一種槍",
+      "complete": "essentialcraft5:guide/guns/weapon_maker",
+      "optional": true,
+      "items": [
+        "essentialcraft5:pistol_weapon_maker",
+        "essentialcraft5:rifle_weapon_maker",
+        "essentialcraft5:sniper_weapon_maker",
+        "essentialcraft5:gatling_weapon_maker"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "我管它叫愛之射線。被它打穿的人大概不會同意這個名字，可他們也沒機會來跟我爭了。",
+          "by": "《工坊手記》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一台武器工作台。先輩裡有位工匠造過這幾把槍，槍托、握把和機栓是分開打的，最後才拼到一起。槍不在合成格里合成，要在武器工作台裡用核心、靈魂格物品和幾種錠<em>組裝</em>，每開一槍都要消耗魔力能量[[start/mru|MRU]]。工作台第三章就能做，第一把槍要等到<em>第五章</em>做出[[storage/soul_storage|靈魂格物品]]以後。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：7 塊{item:essentialcraft5:fortified_stone}、1 塊{item:minecraft:heavy_weighted_pressure_plate}和 1 張{item:minecraft:crafting_table}，強化石的做法見[[crafting/fortified]]，這樣合出來的是手槍用的工作台。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pistol_weapon_maker"
+        },
+        {
+          "type": "h",
+          "text": "換成另外三種"
+        },
+        {
+          "type": "p",
+          "text": "把工作台<em>單獨</em>放進合成格，它會變成下一種，順序是手槍 → 步槍 → 狙擊步槍 → 加特林機槍 → 手槍，所以一台來回切換就夠用，不必做四台。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:rifle_weapon_maker",
+            "essentialcraft5:sniper_weapon_maker",
+            "essentialcraft5:gatling_weapon_maker"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼組裝"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "不潛行時右鍵工作台，就會開啟組裝介面。",
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "text": "核心格里放一個{item:essentialcraft5:elemental_core}或{item:essentialcraft5:pale_core}，元素核心的做法見[[elements/parts]]。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "核心格里放一個{item:essentialcraft5:elemental_core}、{item:essentialcraft5:pale_core}或{item:essentialcraft5:demonic_core}，元素核心的做法見[[elements/parts]]。"
+            },
+            "靈魂格里放一個{item:essentialcraft5:soul_sphere}、{item:essentialcraft5:dark_soul_matter}、{item:essentialcraft5:red_soul_matter}或{item:essentialcraft5:matter_of_eternity}，見[[storage/soul_storage]]。",
+            "照格子旁邊的字母放錠，<t>B</t> 是槍托，<t>H</t> 是握把，<t>M</t> 是機栓，狙擊步槍多一組 <t>S</t> 狙擊鏡。<em>同一個字母的格子要放同一種材料</em>，不同字母之間可以不同，怎麼搭配見[[guns/parts]]。",
+            "右上角出現槍的預覽以後，滑鼠移上去能看到這把槍的全部數值，點「完成」，槍就出現在右邊的輸出格里。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "輸出格里出現一把槍。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先充滿再組裝",
+          "text": "組裝會用掉靈魂格物品，它裡面存的 MRU 轉進新槍，最多轉 5000，正好是一把槍裝得下的量。拿最便宜的{item:essentialcraft5:soul_sphere}先充滿再放進去，新槍拿出來就是滿的。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "注意",
+          "text": "東西放不進去，就是這一格不收它，滑鼠移到空格子上能看到這一格收什麼。\n組裝時核心、靈魂格物品和每一格的材料各用掉 1 個，多放的留在格子裡，可以接著造下一把。\n輸出格里的槍拿走以後，才能造下一把。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書在這一頁開頭推想，MRU 既然是一種輻射，就有可能造出一種發射 MRU 射線、殺死所有活物的武器。"
+        }
+      ]
+    },
+    {
+      "id": "parts",
+      "title": "部件與材料",
+      "icon": "essentialcraft5:magical_ingot",
+      "summary": "槍托、握把、機栓各管什麼",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "每把槍由<em>槍托</em>（B）、<em>握把</em>（H）和<em>機栓</em>（M）三個部件組成，每個部件用一種錠做成，各管幾項數值。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "槍托（B）",
+              "裝填、射擊間隔、彈量"
+            ],
+            [
+              "握把（H）",
+              "耐久、後坐"
+            ],
+            [
+              "機栓（M）",
+              "傷害、散佈"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "部件管的那幾項按材料的全值算，其餘幾項只算三分之一，三個部件加起來就是這把槍的數值。下表先按材料列出機栓和握把所管的四項。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "材料",
+            "傷害",
+            "散佈（度）",
+            "耐久",
+            "後坐（度）"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_ingot}",
+              "8",
+              "3",
+              "120",
+              "6"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "11",
+              "6",
+              "160",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_ingot}",
+              "14",
+              "1",
+              "300",
+              "12"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_plating}",
+                "18",
+                "6",
+                "1200",
+                "2"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ackronite_ingot}",
+                "26",
+                "1",
+                "3000",
+                "0"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "下表是槍托所管的三項。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "材料",
+            "裝填（秒）",
+            "間隔（刻）",
+            "彈量"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_ingot}",
+              "5",
+              "6",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "8",
+              "2",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_ingot}",
+              "12",
+              "12",
+              "12"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_plating}",
+                "4",
+                "4",
+                "8"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ackronite_ingot}",
+                "2",
+                "2",
+                "20"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "三個部件都用魔力錠：傷害 = 8（機栓）+ 8 ÷ 3（槍托）+ 8 ÷ 3（握把）≈ 13.3"
+        },
+        {
+          "type": "p",
+          "text": "算出來以後，還要按槍的種類再修正一次。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:pistol}：裝填時間減半。",
+            "{item:essentialcraft5:rifle}：按住連發，不受射擊間隔限制，散佈 ×1.3，彈量 ×6。",
+            "{item:essentialcraft5:sniper}：傷害 ×2，散佈 ÷10，射擊間隔 ×9。",
+            "{item:essentialcraft5:gatling}：按住連發，不受射擊間隔限制，散佈 ×4.5，彈量 ×20。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "彈量最後向下取整，最少 1 發。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎麼配最划算",
+          "text": "機栓只佔一兩格，管的卻是傷害。手槍只把機栓換成米斯萊錠，多花的不過 1 塊米斯萊錠，傷害就從 13.3 漲到 19.3，每發耗的 MRU 也從 133 漲到 193。\n槍托管彈量，米斯萊錠做的槍托一匣能多裝好幾倍，只是裝填也慢得多。\n材料放好以後，滑鼠移到工作台右上角的預覽上就能看到最終數值，不用自己算。"
+        },
+        {
+          "type": "h",
+          "text": "透鏡與瞄具"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>透鏡</em>：用{item:essentialcraft5:chaos_matrix_projection}、{item:essentialcraft5:frozen_matrix_projection}、{item:essentialcraft5:magic_matrix_projection}、{item:essentialcraft5:shade_matrix_projection}這四種[[generators/projections|矩陣投影]]中的一種，它決定射線的顏色，不加任何數值。",
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+              "text": "射線打即時，四種透鏡還各有一個命中效果，依次是腐蝕、凍住、驅散和吸取，見[[guns/lens_effects]]。"
+            },
+            "手槍、步槍和狙擊步槍的透鏡可裝可不裝，加特林必須裝，透鏡座放{item:essentialcraft5:sun_imbued_glass}，兩個透鏡格放同一種投影。",
+            "<em>瞄具</em>：手槍和步槍的瞄具格能放一塊{item:essentialcraft5:magic_purified_glass_alloy}，拿著槍潛行時視野放大 1.2 倍。",
+            "<em>狙擊鏡</em>：狙擊步槍必須裝，鏡座放{item:essentialcraft5:magic_purified_glass_alloy}，兩個 <t>S</t> 格放同一種錠，魔力錠放大 3 倍，淡青錠 5 倍，米斯萊錠 7 倍。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "兩個 <t>S</t> 格放{item:essentialcraft5:void_plating}能放大 12 倍，虛空板見[[hoanna/void_plating]]。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "兩個 <t>S</t> 格放{item:essentialcraft5:ackronite_ingot}能放大 16 倍，阿克羅尼特錠見[[demons/ackronite]]。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "後坐只對手槍和狙擊步槍起作用，數值是每開一槍槍口上抬的度數。",
+            "表裡的間隔是手槍、狙擊步槍兩發之間最少要隔的刻數，同一種槍共用這段冷卻。步槍和加特林按住就能連發，不受它限制。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書寫著暗影透鏡能「造成暗影傷害」，可原作裡並沒有這個效果，那塊透鏡甚至做不出來。這一版給它補上了吸取效果和輻射倉配方。"
+        }
+      ]
+    },
+    {
+      "id": "pistol",
+      "title": "{item:essentialcraft5:pistol}",
+      "icon": "essentialcraft5:pistol",
+      "summary": "點一下打一發的入門槍",
+      "complete": "essentialcraft5:guide/guns/pistol",
+      "optional": true,
+      "items": [
+        "essentialcraft5:pistol"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：在{item:essentialcraft5:pistol_weapon_maker}裡組裝一把手槍。它是最便宜的槍，右鍵點一下打一發。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "p",
+          "text": "要 1 個核心、1 個靈魂格物品和 5 塊錠，其中槍托 3 格、機栓 1 格、握把 1 格，透鏡格和瞄具格可以空著。第一把全用{item:essentialcraft5:magical_ingot}最省事，魔力錠的做法見[[crafting/magician_crafts]]。"
+        },
+        {
+          "type": "p",
+          "text": "三個部件都用魔力錠時，數值如下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每發傷害",
+              "13.3"
+            ],
+            [
+              "每發耗",
+              "133 MRU"
+            ],
+            [
+              "彈量",
+              "3 發"
+            ],
+            [
+              "射擊間隔",
+              "10 刻（0.5 秒）"
+            ],
+            [
+              "裝填",
+              "約 4.2 秒，裝完再冷卻 3 秒"
+            ],
+            [
+              "散佈",
+              "5°"
+            ],
+            [
+              "後坐",
+              "槍口上抬 10°"
+            ],
+            [
+              "耐久",
+              "200 發"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一把手槍。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "list",
+          "items": [
+            "右鍵開一槍。同一種槍共用射擊間隔，拿兩把手槍輪著打也不會更快。",
+            "裝了瞄具的話，潛行時視野放大 1.2 倍。",
+            "按住 Shift 看物品提示，能看到這把槍的全部數值。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "槍裡自帶的 5000 MRU 夠魔力錠手槍打 37 發。換成米斯萊錠槍托，彈量會大得多，三個部件都用米斯萊錠時一匣有 20 發，只是每發要耗 233 MRU，裝填也要 10 秒。"
+        }
+      ]
+    },
+    {
+      "id": "rifle",
+      "title": "{item:essentialcraft5:rifle}",
+      "icon": "essentialcraft5:rifle",
+      "summary": "按住右鍵連發",
+      "complete": "essentialcraft5:guide/guns/rifle",
+      "optional": true,
+      "items": [
+        "essentialcraft5:rifle"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：組裝一把突擊步槍。<em>按住右鍵</em>就能連射，每 3 刻一發，對付成群的怪物最順手。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "p",
+          "text": "要 1 個核心、1 個靈魂格物品和 8 塊錠，其中槍托 4 格、機栓 1 格、握把 3 格，透鏡和瞄具可裝可不裝。"
+        },
+        {
+          "type": "p",
+          "text": "三個部件都用魔力錠時，數值如下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每發傷害",
+              "13.3"
+            ],
+            [
+              "每發耗",
+              "40 MRU"
+            ],
+            [
+              "彈量",
+              "20 發"
+            ],
+            [
+              "射速",
+              "按住時每 3 刻一發，每秒約 6.7 發"
+            ],
+            [
+              "裝填",
+              "約 8.3 秒"
+            ],
+            [
+              "散佈",
+              "6.5°"
+            ],
+            [
+              "耐久",
+              "200 發"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一把突擊步槍。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "注意",
+          "text": "一匣 20 發 3 秒就打完了，裝填卻要 8 秒多，最好在打空之前往後撤。它的散佈是手槍的 1.3 倍，打遠處的目標容易偏。"
+        },
+        {
+          "type": "p",
+          "text": "每發只耗 40 MRU，槍裡自帶的 5000 MRU 能打 125 發。"
+        }
+      ]
+    },
+    {
+      "id": "sniper",
+      "title": "{item:essentialcraft5:sniper}",
+      "icon": "essentialcraft5:sniper",
+      "summary": "傷害翻倍，潛行開鏡",
+      "complete": "essentialcraft5:guide/guns/sniper",
+      "optional": true,
+      "items": [
+        "essentialcraft5:sniper"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：組裝一把狙擊步槍。它傷害翻倍，幾乎沒有散佈，只是兩發之間要等很久。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "p",
+          "text": "要 1 個核心、1 個靈魂格物品和 7 塊錠，其中槍托 3 格、機栓 2 格、握把 2 格。狙擊鏡<em>必須</em>裝上，鏡座放 1 塊{item:essentialcraft5:magic_purified_glass_alloy}，兩個 <t>S</t> 格放同一種錠，玻璃合金的做法見[[alloys/purified_alloys]]。"
+        },
+        {
+          "type": "p",
+          "text": "三個部件都用魔力錠時，數值如下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每發傷害",
+              "26.7"
+            ],
+            [
+              "每發耗",
+              "266 MRU"
+            ],
+            [
+              "彈量",
+              "3 發"
+            ],
+            [
+              "射擊間隔",
+              "90 刻（4.5 秒）"
+            ],
+            [
+              "裝填",
+              "約 8.3 秒，裝完再冷卻 3 秒"
+            ],
+            [
+              "散佈",
+              "0.5°"
+            ],
+            [
+              "後坐",
+              "槍口上抬 10°"
+            ],
+            [
+              "耐久",
+              "200 發"
+            ],
+            [
+              "開鏡",
+              "3 倍"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一把狙擊步槍。"
+        },
+        {
+          "type": "h",
+          "text": "開鏡"
+        },
+        {
+          "type": "p",
+          "text": "拿著狙擊步槍<em>潛行</em>就會開鏡。狙擊鏡越好，放大得越多，魔力錠 3 倍，淡青錠 5 倍，米斯萊錠 7 倍。"
+        },
+        {
+          "type": "p",
+          "text": "兩個 <t>S</t> 格放{item:essentialcraft5:void_plating}能放大 12 倍，放{item:essentialcraft5:ackronite_ingot}能放大 16 倍。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎麼用",
+          "text": "狙擊步槍適合在開戰前先打一槍，不適合一直打下去，兩發之間要隔 4.5 秒，打完 3 發還要裝填 8 秒多，再冷卻 3 秒。三個部件都用米斯萊錠時傷害能到 46.7，兩發之間卻要等 180 刻，合 9 秒。"
+        }
+      ]
+    },
+    {
+      "id": "gatling",
+      "title": "{item:essentialcraft5:gatling}",
+      "icon": "essentialcraft5:gatling",
+      "summary": "先轉 3 秒，然後每刻一發",
+      "complete": "essentialcraft5:guide/guns/gatling",
+      "optional": true,
+      "items": [
+        "essentialcraft5:gatling"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：組裝一把加特林機槍。工坊手記畫著它的那一頁，頁邊寫著它太沉，抱著走不快。按住右鍵，它先空轉 3 秒，之後每刻打出一發。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "p",
+          "text": "要 1 個核心、1 個靈魂格物品和 13 塊錠，其中槍托 7 格、機栓 2 格、握把 4 格。透鏡<em>必須</em>裝上，透鏡座放{item:essentialcraft5:sun_imbued_glass}，兩個透鏡格放同一種矩陣投影，日光玻璃的做法見[[solar/sun_imbued_glass]]。加特林沒有瞄具。"
+        },
+        {
+          "type": "p",
+          "text": "三個部件都用魔力錠時，數值如下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每發傷害",
+              "13.3"
+            ],
+            [
+              "每發耗",
+              "26 MRU"
+            ],
+            [
+              "彈量",
+              "66 發"
+            ],
+            [
+              "射速",
+              "按住後先轉 3 秒，之後每刻一發，每秒 20 發"
+            ],
+            [
+              "裝填",
+              "約 8.3 秒"
+            ],
+            [
+              "散佈",
+              "22.5°"
+            ],
+            [
+              "耐久",
+              "200 發"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一把加特林機槍。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "注意",
+          "text": "拿在主手或副手都會讓你走得很慢，移動速度只剩四成，和緩慢 IV 差不多。\n一匣 66 發 3 秒多就打完了，開火時每秒耗 520 MRU，槍裡自帶的 5000 MRU 不到 10 秒就會用光，最好隨身多帶幾個充滿的[[storage/soul_storage|儲存物品]]。"
+        },
+        {
+          "type": "p",
+          "text": "它的散佈很大，適合貼近了掃一群怪物。只把槍托換成米斯萊錠，一匣就有 266 發，三個部件都用米斯萊錠有 400 發，打起來幾乎不用停，只是裝填要 20 秒。"
+        }
+      ]
+    },
+    {
+      "id": "firing",
+      "title": "開火、裝填與修理",
+      "icon": "essentialcraft5:rifle",
+      "summary": "耗 MRU、裝填、卡殼和修理",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "每一發都耗 MRU"
+        },
+        {
+          "type": "p",
+          "text": "槍裡不裝子彈，打出去的每一道射線都是 MRU。手槍、狙擊步槍每發耗的 MRU 是傷害 × 10，步槍是傷害 × 3，加特林是傷害 × 2，捨去小數。MRU 不夠時這一發打不出去，也不算進發數，創造模式下不耗 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "開火時先看你身上{item:essentialcraft5:soul_sphere}這類[[storage/soul_storage|儲存物品]]，它們加起來夠打一發，就全從它們扣，不夠時再看槍裡自帶的 MRU 夠不夠這一發，兩邊的 MRU 不會湊在一起用。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "充能",
+          "text": "槍自帶 5000 MRU，打空以後放進[[storage/charging_chamber]]就能充回來。出門時多帶幾個充滿的靈魂球，比跑回家充槍省事。"
+        },
+        {
+          "type": "h",
+          "text": "彈量與裝填"
+        },
+        {
+          "type": "p",
+          "text": "一匣能打的發數就是彈量。打空以後像拉弓一樣<em>按住右鍵</em>裝填，中途鬆手就得從頭來，裝滿才能接著打，手槍和狙擊步槍裝完還要再等 3 秒。"
+        },
+        {
+          "type": "p",
+          "text": "物品提示裡的「已射」是這一匣已經打了幾發，快打空時槍口會冒煙。"
+        },
+        {
+          "type": "h",
+          "text": "磨損、卡殼與修理"
+        },
+        {
+          "type": "p",
+          "text": "每打一發磨損加 1，物品欄裡的耐久條顯示的就是磨損。磨損到了耐久值以後，每發有 <w>1/4</w> 的機率卡殼，卡殼時這一匣直接作廢，要重新裝填，槍本身不會壞。"
+        },
+        {
+          "type": "p",
+          "text": "在{item:minecraft:anvil}裡放上槍和 1 塊<em>與槍托同種</em>的錠，花 4 級經驗，磨損就清零了。"
+        },
+        {
+          "type": "h",
+          "text": "射線"
+        },
+        {
+          "type": "list",
+          "items": [
+            "射程 64 格，瞬間命中，打出去會留下一道持續 3 秒的光束，顏色隨透鏡而定。",
+            "石頭、玻璃、樹葉、柵欄、門這些有碰撞箱的方塊都擋得住射線，草叢和花擋不住，射線也不會弄壞任何方塊。",
+            "射線會穿過一條線上的所有生物，一發最多打中 {cfg:general.guns.max_targets_per_shot} 個。",
+            "射線不會打中你自己、你騎著的坐騎、你馴服的動物和你的隊友。",
+            "被它打死的怪算你親手殺的，照常掉經驗，只有玩家擊殺才掉的東西也會掉。",
+            "多人遊戲裡打別的玩家要看 PvP 規則，PvP 關著時傷不到人。",
+            "射線不算近戰、彈射物，也不算元素或魔法傷害，靠 MRU 擋傷害的盔甲都擋不住它。",
+            {
+              "if": [
+                "cfg:general.guns.player_damage_multiplier!=1",
+                "cfg:general.guns.player_damage_multiplier!=0"
+              ],
+              "text": "打玩家時傷害是平時的 {cfg:general.guns.player_damage_multiplier|x}。"
+            },
+            {
+              "if": [
+                "cfg:general.guns.player_damage_multiplier==0",
+                "cfg:general.guns.matrix_damage_per_damage>0"
+              ],
+              "text": "打中玩家時對方不掉血，只有 MRU 矩陣會受損，見下文。"
+            },
+            {
+              "if": [
+                "cfg:general.guns.player_damage_multiplier==0",
+                "!cfg:general.guns.matrix_damage_per_damage"
+              ],
+              "text": "射線打中玩家沒有任何效果。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "打中玩家時",
+          "text": "射線打中別的玩家時會傷到對方的 MRU 矩陣，槍的傷害每 1 點加 {cfg:general.guns.matrix_damage_per_damage} 點矩陣損傷，攢多了就會凝成[[corruption/matrix_damage|腐化效果]]。只要打中就算數，對方沒掉血也一樣，被 PvP 規則、隊伍或領地擋下的不算，創造模式的玩家不受影響。",
+          "if": "cfg:general.guns.matrix_damage_per_damage>0"
+        },
+        {
+          "type": "p",
+          "text": "挨打的人身上會竄起品紅色的電弧，螢幕邊緣也泛起一圈品紅。",
+          "if": "cfg:general.guns.matrix_damage_per_damage>0"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:divider_gun}不能在武器工作台上組裝，只能從全息投影身上掉落，見[[hologram/divider_gun]]。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作管這種射線叫「愛之射線」，被它打死的人，死亡訊息寫的也是「……被……的愛之射線貫穿了」。"
+        }
+      ]
+    },
+    {
+      "id": "lens_effects",
+      "title": "透鏡的效果",
+      "icon": "essentialcraft5:chaos_matrix_projection",
+      "summary": "混沌腐蝕、冰凍凍住、魔力驅散、暗影吸取",
+      "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "裝在槍上的四種矩陣投影除了給射線換顏色，還各有一個命中效果，在射線每次<em>打實</em>、真正傷到目標時發動，透鏡的裝法見[[guns/parts]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "透鏡",
+            "效果",
+            "每打實一下"
+          ],
+          "widths": [
+            3,
+            2,
+            5
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0",
+              "cells": [
+                "{item:essentialcraft5:chaos_matrix_projection}",
+                "腐蝕",
+                "{cfg:general.guns.lens_corrosion_ticks|sec}內無法回血，再次打中會重新計時"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_freeze_per_hit>0",
+              "cells": [
+                "{item:essentialcraft5:frozen_matrix_projection}",
+                "凍住",
+                "寒冷值增加 {cfg:general.guns.lens_freeze_per_hit}，積攢到 140 時凍僵"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_dispel",
+              "cells": [
+                "{item:essentialcraft5:magic_matrix_projection}",
+                "驅散",
+                "剝掉一個有益的狀態效果"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_drain_percent>0",
+              "cells": [
+                "{item:essentialcraft5:shade_matrix_projection}",
+                "吸取",
+                "你回復目標這一下實際損失生命的 {cfg:general.guns.lens_drain_percent|pctv}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_corrosion_ticks>0",
+          "text": "腐蝕"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_corrosion_ticks>0",
+          "text": "中了腐蝕的生物回不了血，自然回復、生命恢復、瞬間治療和大多數吸血效果都不起作用。它身上會顯示腐蝕的圖示和剩餘時間，喝牛奶能清掉。會自己回血的怪物和對手，捱上幾槍就回不上來了。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "text": "凍住"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "text": "每打實一下，目標的寒冷值增加 {cfg:general.guns.lens_freeze_per_hit}，寒冷值越高，目標走得越慢，攢到 140 就會像陷進細雪一樣凍僵，每 2 秒受一次凍傷。寒冷值每秒自然回落 40，最多攢到 180，所以停手以後目標還會再凍一小會兒。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "title": "要連著打",
+          "text": "目標挨一下以後有半秒的受擊無敵，同一把槍最多每半秒對它打實一下，要凍僵就得接連打實好幾下。彈匣夠長的手槍、步槍和加特林攢得起來，狙擊步槍兩槍之間，寒冷值早就退光了。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "text": "身上穿著任意一件皮革裝備的生物凍不住，流浪者、北極熊、雪魔像、凋零怪這些本來就不怕冷的生物也凍不住。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_dispel",
+          "text": "驅散"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_dispel",
+          "text": "每打實一下，就剝掉目標身上一個有益的狀態效果，先剝沒有時限的，沒有的話就剝剩餘時間最長的那個。有害的效果一個也不碰，Boss 身上的效果照樣能剝。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_drain_percent>0",
+          "text": "吸取"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_drain_percent>0",
+          "text": "每打實一下，你會回復目標這一下實際損失生命的 {cfg:general.guns.lens_drain_percent|pctv}，被護甲和傷害吸收擋掉的部分不算，打死目標的那一下照樣回血。你自己中了腐蝕時回不了血。目標挨一下以後有半秒受擊無敵，所以同時打幾個目標回得更多。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.resonance.same_type_lens_multiplier>1"
+          ],
+          "text": "你的矩陣和透鏡是同一種屬性、並且已經有[[matrix/alignment|相性]]時，透鏡的命中效果再 ×{cfg:general.matrix_rank.resonance.same_type_lens_multiplier}：腐蝕更久、凍得更深、回得更多，驅散不變。打玩家時多出來的那部分減半。"
+        },
+        {
+          "type": "h",
+          "text": "什麼時候不算打實"
+        },
+        {
+          "type": "list",
+          "items": [
+            "被領地、隊伍或「玩家之間不能互相傷害」的規則擋下，或者傷害被別的東西取消，都不算打實，不附加任何效果。",
+            "目標還在受擊無敵中、這一下沒造成傷害時，不算打實。",
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0",
+              "text": "對狀態效果免疫的 Boss 不會被腐蝕。"
+            },
+            "射線打中別的玩家時的矩陣損傷照原來的規則算，和透鏡效果互不相干，見[[guns/firing]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裡的四種透鏡只改射線的顏色，這四種命中效果是這一版補上的。"
+        }
+      ]
+    }
+  ]
+}

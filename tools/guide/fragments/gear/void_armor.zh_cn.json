@@ -1,0 +1,192 @@
+[
+  {
+    "id": "void_armor",
+    "title": "虚空套装",
+    "icon": "essentialcraft5:void_chestplate",
+    "summary": "有电时近战和箭都挨不着",
+    "complete": "essentialcraft5:guide/gear/void_armor",
+    "optional": true,
+    "if": "cfg:general.hoanna.portal_enabled",
+    "items": [
+      "essentialcraft5:void_helmet",
+      "essentialcraft5:void_chestplate",
+      "essentialcraft5:void_leggings",
+      "essentialcraft5:void_boots"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>目标</em>（可选）：把魔力防护升级成虚空套装：{item:essentialcraft5:void_helmet}、{item:essentialcraft5:void_chestplate}、{item:essentialcraft5:void_leggings}、{item:essentialcraft5:void_boots}。它的护甲很厚，四件合计多 {cfg:general.void_armor.max_health|mul:4} 点生命上限；身上有电时，近战和箭这类伤害一下都挨不着。"
+      },
+      {
+        "type": "p",
+        "text": "<em>准备</em>（全套）：4 件魔力防护（[[gear/mhs_armor]]）、7 颗{item:minecraft:nether_star}、5 个{item:essentialcraft5:void_mru_reactor}、8 个{item:essentialcraft5:void_core}、8 块{item:essentialcraft5:void_plating}、4 块{item:essentialcraft5:matter_of_eternity}。虚空核心和反应核只出遗迹箱子（[[hoanna/relics]]），这一套要 8 个核心，是全章最费的东西。"
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:void_helmet",
+          "essentialcraft5:void_chestplate",
+          "essentialcraft5:void_leggings",
+          "essentialcraft5:void_boots"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "每张配方第二行中间放同部位的魔力防护，合成时整件吃掉；胸甲顶上是两个反应核夹一颗下界之星，另外三件是两颗下界之星夹一个反应核。"
+      },
+      {
+        "type": "tip",
+        "style": "warn",
+        "title": "坑",
+        "text": "<w>永恒物质里存的 MRU 合成时一起吃掉</w>，先把它抽空；魔力防护上的附魔也不会带过去。"
+      },
+      {
+        "type": "h",
+        "text": "护甲"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "护甲值",
+            "头盔 {cfg:general.void_armor.armor_helmet}、胸甲 {cfg:general.void_armor.armor_chestplate}、护腿 {cfg:general.void_armor.armor_leggings}、靴子 {cfg:general.void_armor.armor_boots}"
+          ],
+          [
+            "盔甲韧性",
+            "每件 {cfg:general.void_armor.toughness}"
+          ],
+          [
+            "击退抗性",
+            "每件 {cfg:general.void_armor.knockback_resistance|pct}"
+          ],
+          [
+            "生命上限",
+            "每件 +{cfg:general.void_armor.max_health}（{cfg:general.void_armor.max_health|div:2} 颗心）"
+          ],
+          [
+            "耐久",
+            "2048 / 6144 / 4096 / 2048，穿在身上不掉"
+          ],
+          [
+            "附魔能力",
+            "40（钻石 10、下界合金 15）"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "这些属性一直都在，有没有电都一样。全套的护甲、韧性加起来超过游戏的上限（护甲 <t>30</t>、韧性 <t>20</t>）时，超出的部分不算。脱下以后多出来的生命上限跟着去掉，血量也会降回去。重新进入世界、从末地回到主世界、死亡后带着套装重生时，生命最多先是 20 点，之后自然回满。"
+      },
+      {
+        "type": "h",
+        "text": "有电就挡物理伤害"
+      },
+      {
+        "type": "p",
+        "text": "每件存 <t>5000 MRU</t>（提示框里写着）。挨到近战，或者箭、三叉戟这类弹射物时，有电的那件替你挡下它那一份：头盔 3/20、胸甲 8/20、护腿 6/20、靴子 3/20。四件都有电就整下都挡住，一点血都不掉（击退照样有）。"
+      },
+      {
+        "type": "p",
+        "text": "每件挡一次要花 MRU：它那一份伤害每 1 点 <t>800 MRU</t>，向下取整、至少按 1 点算。先从身上的储存物品（{item:essentialcraft5:soul_shard}这类）里扣，凑不够再扣这件自己存的。<w>扣不起的那件这一下就不挡</w>，那一份照常挨；这件自己一点电都没有时也不挡，不会去抽储存物品。"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "挨 1 点",
+            "每件都按 1 点算，全套 3200 MRU"
+          ],
+          [
+            "挨 8 点",
+            "头盔 800 + 胸甲 2400 + 护腿 1600 + 靴子 800 = 5600 MRU（胸甲自己存的只够挡两下）"
+          ],
+          [
+            "挨 20 点",
+            "胸甲一件就要 6400，比它自己存的还多；身上没有储存物品时，胸甲那 8 点照常挨"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "饰品改过的伤害按改过的数算：戴着{item:essentialcraft5:eta_amulet}挨 8 点，按翻倍以后的 16 点扣。带着{item:essentialcraft5:infinite_mru_crystal}时这笔电全由它付，虚空套装的电不会耗尽。"
+      },
+      {
+        "type": "p",
+        "text": "只挡物理伤害：火、岩浆、爆炸、闪电、冰冻、魔法、荆棘、摔落、溺水这些不挡、不扣 MRU，照常按上面的护甲减伤。无视护甲的伤害也不挡。"
+      },
+      {
+        "type": "h",
+        "text": "每件自己的本事"
+      },
+      {
+        "type": "table",
+        "widths": [
+          1,
+          4
+        ],
+        "header": [
+          "部位",
+          "效果"
+        ],
+        "rows": [
+          [
+            "{item:essentialcraft5:void_helmet}",
+            "打死一只生物（玩家不算）回复「它的最大生命 ÷ 10」点饥饿值（僵尸是 2 点，一个鸡腿）；戴着能隔墙看见聚集体"
+          ],
+          [
+            "{item:essentialcraft5:void_chestplate}",
+            "受到的任何伤害（掉出世界和 /kill 除外）都有 <t>20%</t> 闪避：这一下不掉血、不花 MRU"
+          ],
+          [
+            "{item:essentialcraft5:void_leggings}",
+            "没有额外的效果"
+          ],
+          [
+            "{item:essentialcraft5:void_boots}",
+            "摔落伤害只剩一成；走得快得多，能直接迈上一格高的方块"
+          ]
+        ]
+      },
+      {
+        "type": "h",
+        "text": "MRU 抗性"
+      },
+      {
+        "type": "p",
+        "text": "每件：MRU 腐化 100%、腐化辐射 50%、海纳尔辐射 75%，只有穿在盔甲格里才算。穿齐一套 MRU 腐化完全伤不到你，大聚集体也加不了你的矩阵损伤。和别的属性一样，不看电量。"
+      },
+      {
+        "type": "p",
+        "if": "cfg:general.radiation.enabled",
+        "text": "海纳尔辐射：穿齐一套，攒辐射的速度只剩四分之一（[[hoanna/radiation]]）。"
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "原作研究书称它为「游戏里最好的护甲」。护腿的说明写着「能相位偏移穿过怪物」，原作却从没做出这个效果。原作里只要身上有电，普通伤害就一点都挨不着，扣不起电也照挡。"
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "做成的标志",
+        "text": "拿到任意一件虚空套装。"
+      }
+    ],
+    "_src": [
+      "registry/ECVoidArmor.java:89 Config — general.void_armor：armor_helmet/chestplate/leggings/boots 6/16/12/6、toughness 6、knockback_resistance 0.2、max_health 20（每件）",
+      "item/VoidArmorItem.java:57 MAX_MRU 5000、:59 MRU_PER_POINT 800；:84 share 3/8/6/3；:97 blockCost = max(1, ⌊伤害 × 份额 ÷ 20⌋) × 800",
+      "item/VoidArmorEvents.java:126 onVoidArmorDodgeAndFall（HIGH）— 胸甲闪避 20%（不闪 bypasses_invulnerability）、摔落 × 0.1；:146 onVoidArmorAbsorb（LOW，在 η 等 NORMAL 的饰品之后）— 物理且不带 bypasses_armor 时 absorbPhysical（这件自己的 MRU > 0 才挡，MRUDrain.playerUseMRU 先扣储存物品，扣不起不挡）；混合端只算不扣，:252 onVoidArmorPayDeferred 到 LivingDamageEvent 再扣",
+      "util/ECDamageKinds.java isPhysical — 近战、弹射物算；魔法、火 / 爆炸 / 闪电 / 冰冻、没有攻击者的、bypasses_invulnerability 不算；魔法另含配置 general.damage_kinds.magic_namespaces 的命名空间（默认 5 个法术模组），magic_exceptions 里的不算魔法",
+      "item/VoidArmorEvents.java:312 onKillFeedsHelmet — 真玩家打死非玩家生物：eat((int)(最大生命 / 10), 1)",
+      "item/VoidArmorItem.java:160 damageItem — 穿在玩家身上返回 0；:171 getResistance 1 / 0.5 / 0.75",
+      "mru/MRUDrain.java tryDrainFromStorages — 带着无尽 MRU 晶体（isInfinite）时全由它付，虚空套装自己的 MRU 不动",
+      "item/bauble/BaubleCombatEvents.java onBaubleLivingHurt（NORMAL）— η 受到 / 打出的伤害 ×2",
+      "registry/ECVoidArmor.java:54 BOOTS_BONUS 移速 +0.075、登高 +0.6；:45 MATERIAL 耐久 2048/6144/4096/2048、附魔 40",
+      "item/VoidArmorEvents.java:334 onArmorChanged / onLivingTickClampHealth — 脱下后生命夹回新的上限",
+      "net/minecraft/world/entity/LivingEntity readAdditionalSaveData、ServerPlayer.restoreFrom — 读档 / 从末地回来先按不含盔甲修饰符的上限 setHealth（最多 20）",
+      "data/essentialcraft5/recipes/void_armor/*.json — NRN / CMC / PEP（胸甲 RNR），M = 同部位魔力防护",
+      "net/minecraft/world/entity/ai/attributes/Attributes — 护甲上限 30、韧性上限 20"
+    ]
+  }
+]

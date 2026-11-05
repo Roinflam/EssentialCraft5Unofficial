@@ -1,0 +1,1376 @@
+{
+  "id": "terminal",
+  "order": 105,
+  "group": "main",
+  "title": "第二十一章 · 終端與模組",
+  "subtitle": "給宅男套裝裝上本事",
+  "icon": "essentialcraft5:blank_module",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "legend",
+      "title": "這一章做什麼",
+      "icon": "essentialcraft5:blank_module",
+      "summary": "模組是什麼，主線要做到哪一步",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "要是真有人把這套東西做完了，人還好好地活著，那很好。我大概是等不到那一天了。",
+          "by": "《工坊手記·末頁》"
+        },
+        {
+          "type": "p",
+          "text": "工坊手記的圖上，四件甲都留著幾個空槽。宅男套裝上的這些<hl>模組槽</hl>是用來裝<em>模組</em>的，每裝一塊，套裝就多一樣本事。模組裝在哪件盔甲上就跟著那件走，戴著宅男頭盔按 {keybind:key.essentialcraft5.computer_terminal} 開啟宅男終端，在「模組」頁裡能開關模組，也能把它拆下來。"
+        },
+        {
+          "type": "h",
+          "if": "!cfg:general.attunement.enabled",
+          "text": "這一章的兩步"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.attunement.enabled",
+          "text": "這一章的三步"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "用{item:essentialcraft5:inquisitorium_chip}做出{item:essentialcraft5:blank_module}，見[[terminal/blank_module]]。",
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "text": "挑兩塊模組做出來裝上，讓它們同時生效，主線就走完了，做法見[[terminal/modules]]。"
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "挑兩塊模組做出來裝上，讓它們同時生效，做法見[[terminal/modules]]。"
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "穿著宅男套裝打仗，把四件都升到同調 2 階，主線就走完了，見[[terminal/attuned]]。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "模組一覽"
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            5
+          ],
+          "header": [
+            "模組",
+            "裝在",
+            "做什麼"
+          ],
+          "rows": [
+            {
+              "if": "module:essentialcraft5:rewind_module",
+              "cells": [
+                "{item:essentialcraft5:rewind_module}",
+                "頭盔",
+                "受到致命一擊時退回幾秒前站過的地方"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "cells": [
+                "{item:essentialcraft5:matrix_filter_module}",
+                "頭盔",
+                "有害的狀態效果上不了身，改記成矩陣損傷"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "cells": [
+                "{item:essentialcraft5:matrix_shunt_module}",
+                "胸甲",
+                "魔法傷害有一半不扣血，改記成矩陣損傷"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "cells": [
+                "{item:essentialcraft5:accumulator_module}",
+                "胸甲",
+                "記下被無敵幀吞掉的傷害，等下一次打即時一起補上"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:shred_module",
+              "cells": [
+                "{item:essentialcraft5:shred_module}",
+                "胸甲",
+                "每打實一次，就給目標疊一層破甲"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "cells": [
+                "{item:essentialcraft5:phase_anchor_module}",
+                "護腿或靴子",
+                "周圍的敵對生物無法瞬移"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:attraction_module",
+              "cells": [
+                "{item:essentialcraft5:attraction_module}",
+                "護腿",
+                "把身邊沒人扔的掉落物和經驗球推到你腳邊"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:stride_module",
+              "cells": [
+                "{item:essentialcraft5:stride_module}",
+                "靴子",
+                "一步能邁上更高的坎"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:steady_hand_module",
+              "cells": [
+                "{item:essentialcraft5:steady_hand_module}",
+                "護腿或靴子",
+                "懸空、頭在水裡時挖東西不再變慢"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:veil_module",
+              "cells": [
+                "{item:essentialcraft5:veil_module}",
+                "頭盔",
+                "怪物要離你更近才發現你"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每件盔甲的模組槽都有限，裝不下全部模組，得挑著裝，各件的槽數見下表。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "頭盔",
+              "{cfg:general.computer_modules.slots_helmet}"
+            ],
+            [
+              "胸甲",
+              "{cfg:general.computer_modules.slots_chestplate}"
+            ],
+            [
+              "護腿",
+              "{cfg:general.computer_modules.slots_leggings}"
+            ],
+            [
+              "靴子",
+              "{cfg:general.computer_modules.slots_boots}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "同調升階以後，模組槽還會變多，見[[attunement/computer_armor]]。"
+        },
+        {
+          "type": "p",
+          "text": "做每塊模組都要用一塊{item:essentialcraft5:blank_module}，其餘材料寫在各自的條目裡。"
+        }
+      ]
+    },
+    {
+      "id": "blank_module",
+      "title": "{item:essentialcraft5:blank_module}",
+      "icon": "essentialcraft5:blank_module",
+      "summary": "用審判庭晶片做模組的底料",
+      "complete": "essentialcraft5:guide/terminal/blank_module",
+      "items": [
+        "essentialcraft5:blank_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出{item:essentialcraft5:blank_module}。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:blank_module"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:inquisitorium_chip}是審判庭哨兵掉的，一份配方能出 <t>2</t> 塊空白模組，正好夠主線要裝的兩塊，想多裝幾塊就得再去打哨兵。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裡有了空白模組，這一步就會打勾。"
+        },
+        {
+          "type": "p",
+          "text": "空白模組本身沒有效果，也裝不到盔甲上，只用來做模組。"
+        }
+      ]
+    },
+    {
+      "id": "install",
+      "title": "裝、拆、開關",
+      "icon": "essentialcraft5:computer_chestplate",
+      "summary": "在工作台裡安裝，在宅男終端裡拆下和開關",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "裝"
+        },
+        {
+          "type": "p",
+          "text": "把一件宅男盔甲和一塊模組一起放進工作台，放哪兩格都行，其餘格子空著，產物就是裝好這塊模組的那件盔甲，電量、耐久、附魔和名字都原樣保留。<w>配方書裡看不到這個配方</w>，照這樣擺放即可。"
+        },
+        {
+          "type": "p",
+          "text": "下面幾種情況裝不上，工作台不會給出產物："
+        },
+        {
+          "type": "list",
+          "items": [
+            "這件盔甲的模組槽已經滿了。",
+            "模組裝不到這個部位上，它的提示裡寫著能裝在哪幾件。",
+            "這件盔甲上已經裝著一塊同種模組。",
+            "放進去的不是宅男盔甲，別的盔甲和虛空套裝都沒有模組槽。",
+            "這塊模組在當前世界裡被停用了，它的提示裡會有一行紅字，已經裝上的照樣能在終端裡拆下來。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每件盔甲的模組槽數量如下："
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "頭盔",
+              "{cfg:general.computer_modules.slots_helmet}"
+            ],
+            [
+              "胸甲",
+              "{cfg:general.computer_modules.slots_chestplate}"
+            ],
+            [
+              "護腿",
+              "{cfg:general.computer_modules.slots_leggings}"
+            ],
+            [
+              "靴子",
+              "{cfg:general.computer_modules.slots_boots}"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "什麼時候生效"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.computer_modules.require_full_set",
+              "text": "要<em>穿齊四件宅男盔甲</em>，模組才會生效，少穿一件，四件上的模組就全都不起作用。"
+            },
+            {
+              "if": "!cfg:general.computer_modules.require_full_set",
+              "text": "穿著哪件，哪件上的模組就生效，不必穿齊四件。"
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "text": "同種模組在整套裡只算一塊，護腿和靴子上各裝一塊{item:essentialcraft5:phase_anchor_module}，也只有一塊起作用。"
+            },
+            {
+              "if": "!module:essentialcraft5:phase_anchor_module",
+              "text": "同種模組在整套裡只算一塊，兩件盔甲上各裝一塊同種模組，也只有一塊起作用。"
+            },
+            "在終端裡關掉的模組不會生效。",
+            "提示裡有「開著時每秒」一行的，是每秒耗電的模組，它們每秒從你身上扣一次電，先扣身上{item:essentialcraft5:soul_shard}這類儲存物品裡的，不夠再扣胸甲自己存的。哪一秒付不起，那一秒模組就不生效，終端上顯示「缺電」，補上電以後下一秒接著生效。",
+            "提示裡有「每次觸發」一行的模組按次收費，觸發時才扣電，身上的電不夠就不會觸發。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "宅男終端的「模組」頁"
+        },
+        {
+          "type": "p",
+          "text": "戴著宅男頭盔按 {keybind:key.essentialcraft5.computer_terminal} 開啟宅男終端，點面板上方的「模組」頁籤。四件盔甲各佔一段，每一格寫著模組名和狀態，比如生效中、關著、缺電、冷卻中、沒穿齊、重複等，滑鼠移上去會顯示說明，右邊是開關和用來拆下的小叉。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "用開關關掉的模組不生效，也不耗電。",
+            "點小叉拆下模組後，模組回到背包裡，背包滿了就掉在腳下，這一格隨之空出，後面的模組依次往前挪。",
+            "只能操作穿在身上的盔甲，放在背包裡的要先穿上再拆。",
+            "連續點選要隔大約 1/4 秒，點得太快的那一下不算。",
+            "名單刷新之前點下去時，要是那一格已經換成了別的模組，比如剛拆掉了排在前面的一塊，這一下就不算，不會拆錯。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>模組跟著盔甲走</w>，把裝了模組的盔甲送人，模組也一起送了出去，想留下就先拆下來。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每秒耗電的模組剛開啟或剛裝上時，要等到下一次扣電才開始生效，最多等 1 秒，這之前終端上顯示「等待扣電」。",
+            "冷卻中的模組仍算裝著、開著，終端上顯示剩餘秒數，退出遊戲再進來，冷卻也不會清零。",
+            "創造模式下不扣電。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "title": "裝上兩塊模組",
+      "icon": "essentialcraft5:blank_module",
+      "summary": "讓兩塊不同的模組同時生效",
+      "complete": "essentialcraft5:guide/terminal/modules",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出兩塊不同的模組，裝到宅男套裝上，讓它們同時生效。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "對照下面的表和各模組的條目，想想自己最常在哪裡吃虧，挑出兩塊。",
+            "每塊模組要一塊{item:essentialcraft5:blank_module}和幾樣別的材料，做法見各自的條目。",
+            "照[[terminal/install]]裡的辦法裝上，穿齊四件，在終端裡開啟，身上還要帶著電。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "兩種模組同時生效以後，最多 1 秒就會打勾，終端「模組」頁裡兩塊都顯示「生效中」就是成功了。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼挑"
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            5
+          ],
+          "header": [
+            "模組",
+            "裝在",
+            "適合"
+          ],
+          "rows": [
+            {
+              "if": "module:essentialcraft5:rewind_module",
+              "cells": [
+                "{item:essentialcraft5:rewind_module}",
+                "頭盔",
+                "常被一擊斃命，或者容易掉進虛空"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "cells": [
+                "{item:essentialcraft5:matrix_filter_module}",
+                "頭盔",
+                "常被虛弱、緩慢、挖掘疲勞、失明這類效果拖累"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:matrix_shunt_module",
+              "cells": [
+                "{item:essentialcraft5:matrix_shunt_module}",
+                "胸甲",
+                "對手多用法術和魔法傷害"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "cells": [
+                "{item:essentialcraft5:accumulator_module}",
+                "胸甲",
+                "用加特林這類速射武器"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:shred_module",
+              "cells": [
+                "{item:essentialcraft5:shred_module}",
+                "胸甲",
+                "要對付護甲很高的怪物"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "cells": [
+                "{item:essentialcraft5:phase_anchor_module}",
+                "護腿或靴子",
+                "總被終界使者、界伏蚌這些會瞬移的怪物折騰"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:attraction_module",
+              "cells": [
+                "{item:essentialcraft5:attraction_module}",
+                "護腿",
+                "挖完礦、打完怪不想滿地撿東西"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:stride_module",
+              "cells": [
+                "{item:essentialcraft5:stride_module}",
+                "靴子",
+                "常在山地、台階多的地方趕路"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:steady_hand_module",
+              "cells": [
+                "{item:essentialcraft5:steady_hand_module}",
+                "護腿或靴子",
+                "常在半空搭建，或者在水下挖礦"
+              ]
+            },
+            {
+              "if": "module:essentialcraft5:veil_module",
+              "cells": [
+                "{item:essentialcraft5:veil_module}",
+                "頭盔",
+                "想繞開怪群，不想被遠處的怪盯上"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_modules.slots_chestplate<3",
+          "text": "頭盔有 {cfg:general.computer_modules.slots_helmet} 格，胸甲有 {cfg:general.computer_modules.slots_chestplate} 格，胸甲能裝的那三塊裝不全，得有所取捨。"
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.corruption.effects_enabled",
+          "style": "info",
+          "text": "矩陣過濾和矩陣分流都是拿矩陣損傷去頂傷害，損傷攢多了會凝成腐化效果，可以回家用靈魂五芒星治，見[[pentacle/cure]]。"
+        }
+      ]
+    },
+    {
+      "id": "rewind",
+      "title": "{item:essentialcraft5:rewind_module}",
+      "icon": "essentialcraft5:rewind_module",
+      "summary": "受到致命一擊時退回幾秒前的位置",
+      "if": "module:essentialcraft5:rewind_module",
+      "items": [
+        "essentialcraft5:rewind_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>做什麼</em>：裝在宅男頭盔上，捱了致命一擊時不會死去，你會被送回大約 {cfg:general.computer_modules.rewind.seconds_back} 秒前站過的地方，生命值也回到當時的數值。審判庭晶片原本是存放記錄的零件，做成這塊模組以後，它記下的是你幾秒前站在哪裡。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:rewind_module"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "{item:essentialcraft5:matter_of_eternity}也是一塊能存 MRU 的電池，<w>裡面的 MRU 會在合成時一起消失</w>，所以要用剛做出來、還沒充過電的那塊。"
+        },
+        {
+          "type": "h",
+          "text": "救一次的代價"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU",
+              "{cfg:general.computer_modules.rewind.mru_cost}，先扣身上儲存物品裡的，不夠再扣胸甲自己存的"
+            ],
+            {
+              "if": "cfg:general.computer_modules.rewind.matrix_damage>0",
+              "cells": [
+                "矩陣損傷",
+                "+{cfg:general.computer_modules.rewind.matrix_damage}"
+              ]
+            },
+            [
+              "冷卻",
+              "{cfg:general.computer_modules.rewind.cooldown_ticks|div:1200|round:1} 分鐘"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "冷卻還沒結束，或者身上的 MRU 不夠付一次，回溯就不會發動，也什麼都不扣。退出遊戲再進來、死亡之後，冷卻都不會清零。"
+        },
+        {
+          "type": "h",
+          "text": "什麼時候救"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:minecraft:totem_of_undying}和其他免死道具先發動，它們都沒能救下你時，才輪到回溯。",
+            {
+              "if": "cfg:general.computer_modules.rewind.rescue_void",
+              "text": "掉進虛空摔死的也能救回來，前提是幾秒前你還站在實地上。"
+            },
+            {
+              "if": "!cfg:general.computer_modules.rewind.rescue_void",
+              "text": "掉進虛空時不會救。"
+            },
+            "被 /kill 殺死時不會救。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "送回哪裡"
+        },
+        {
+          "type": "p",
+          "text": "回溯每秒記一次你所在的位置，保留最近 {cfg:general.computer_modules.rewind.seconds_back|mul:2} 秒的記錄。發動時先挑大約 {cfg:general.computer_modules.rewind.seconds_back} 秒前的那一處，不合格就往更早的找，都不行再從 {cfg:general.computer_modules.rewind.min_age_ticks|sec}到 {cfg:general.computer_modules.rewind.seconds_back} 秒之間的記錄裡挑。合格的位置要同時滿足下面幾條："
+        },
+        {
+          "type": "list",
+          "items": [
+            "和你現在處在同一個維度；",
+            "記錄時腳踩實地，跳在半空或游泳時記下的不算；",
+            "落腳處站得下人，也沒有岩漿、火、仙人掌、細雪這類會傷人的方塊；",
+            "是你有權動方塊的地方，不會把你送進別人的領地，或者世界出生點周圍禁止改動方塊的範圍。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "要是一處合格的都沒有，或者傳送被別的東西攔下，回溯就不會發動，也不扣任何東西。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "救下的標誌",
+          "text": "動作欄顯示「回溯：退回幾秒前」，出發和落腳的地方各響一聲傳送音效，你回到了幾秒前站著的地方。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>剛換完維度、剛穿齊套裝或剛開啟模組的頭幾秒裡還沒有記錄</w>，這時捱了致命一擊是救不回來的，穿過地獄傳送門或海納爾之門以後，最好先站穩幾秒。"
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.corruption.effects_enabled",
+          "style": "info",
+          "text": "每救一次都會加矩陣損傷，攢多了會凝成腐化效果，見[[corruption/matrix_damage]]。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "救下以後身上的火會熄滅，摔落距離清零。要是身上還有傷害吸收效果，吸收量也會補回當時的數值，但不超過這個效果本身給的量。",
+            "退回之後，之前記下的位置全部作廢，從這一刻起重新記。",
+            "有沒有權動方塊，只檢查最先選中、站得下又沒有傷人方塊的兩處，這兩處都進不去就不救，也不會再試別的位置。",
+            "回溯只保護你自己。在玩家之間能互相傷害的地方，它相當於每 {cfg:general.computer_modules.rewind.cooldown_ticks|div:1200|round:1} 分鐘多一條命。",
+            "套裝不生效時不記位置，比如沒穿齊四件，或者模組被關掉了。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matrix_filter",
+      "title": "{item:essentialcraft5:matrix_filter_module}",
+      "icon": "essentialcraft5:matrix_filter_module",
+      "summary": "有害效果不會上身，改記矩陣損傷",
+      "if": "module:essentialcraft5:matrix_filter_module",
+      "items": [
+        "essentialcraft5:matrix_filter_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>做什麼</em>：裝在宅男頭盔上，虛弱、緩慢、挖掘疲勞、失明這類有害的狀態效果加不到你身上，每攔下一個，就改記一筆矩陣損傷。審判庭當年記的就是人的矩陣，用它的晶片做成的模組，也把賬記在矩陣上。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:matrix_filter_module"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "配方要用的{item:essentialcraft5:magic_water_bottle}出自支線「護符與隨身物品」，做法見[[charms/consumables]]。"
+        },
+        {
+          "type": "h",
+          "text": "攔一個花多少"
+        },
+        {
+          "type": "formula",
+          "text": "矩陣損傷 = 持續秒數 × 級數 × {cfg:general.computer_modules.matrix_filter.matrix_per_effect_second}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "級數就是效果名後面的數字，I 級算 1，II 級算 2。",
+            "其他模組以狀態效果的形式加上來的瞬間效果按 1 秒算，扔過來或喝下去的傷害藥水是直接傷害，不歸這塊模組管。",
+            "每攔下一個新效果，還要另花 {cfg:general.computer_modules.matrix_filter.mru_per_effect} MRU，先扣身上儲存物品裡的，不夠再扣胸甲自己存的。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "比如女巫扔來的虛弱藥水正砸在你身上時，效果是 90 秒、I 級，會記下 {cfg:general.computer_modules.matrix_filter.matrix_per_effect_second|mul:90} 點矩陣損傷，花掉 {cfg:general.computer_modules.matrix_filter.mru_per_effect} MRU。"
+        },
+        {
+          "type": "h",
+          "text": "同一個效果反覆來"
+        },
+        {
+          "type": "p",
+          "text": "攔下一個效果以後，在它本該持續的時間裡，同一個效果再來，只要級數不比攔下的高、結束得也不比它晚，就免費照攔。結束得更晚的，只補記多出來的那幾秒，不再花 MRU，級數更高的則當作新的一個重新算。所以站在滯留藥水的藥水雲這類不停給你掛效果的地方，花費和身上一直掛著這個效果差不多，不會每一下都收一遍。"
+        },
+        {
+          "type": "p",
+          "text": "要是身上本來就掛著同一個效果，比如開啟模組之前中的，而且級數不比新來的低、剩下的時間也不比新來的短，這一下本來就不會改變什麼，模組不攔，也不花錢。新來的要是持續得更久，模組就會攔下它，只補記多出來的那幾秒，不花 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "什麼時候不攔"
+        },
+        {
+          "type": "list",
+          "items": [
+            "生命恢復、夜視、發光這類有益或中性的效果不攔。",
+            "套裝本來就擋得住的效果不攔，也不花錢。宅男胸甲不會因中毒、凋零、瞬間傷害掉血，宅男頭盔能讓你一直吃飽，所以穿著胸甲時的這三種效果，和戴著頭盔時的飢餓，都不攔。",
+            "錨定不攔，它和矩陣損傷是一路的，攔下來只會越積越多。",
+            "海納爾輻射不是藥水效果，MRU 腐化、心智悖論、腐化效果留下的雙手遲鈍這類矩陣後遺症也不是，過濾管不到它們。",
+            "矩陣損傷快滿、記不下這個效果的全部損傷時，效果照常加到身上，也不扣 MRU。",
+            "身上的 MRU 不夠付一次時不攔。",
+            "時長顯示為 ∞ 的永久效果不攔。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>已經在身上的效果不會被清掉</w>，模組只攔新加上來的，開啟模組之前中的效果照樣要等它自己結束。"
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.corruption.effects_enabled",
+          "style": "info",
+          "text": "任何有害效果它都攔得住，代價是欠下的矩陣損傷，攢多了會凝成腐化效果，可以回家用靈魂五芒星治，見[[pentacle/cure]]。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它最有用的地方，是對付虛弱、緩慢、挖掘疲勞、失明這些套裝擋不住的效果。中毒、凋零、飢餓套裝自己就擋得住，模組不管，詳見上面的「什麼時候不攔」。",
+            "其他模組帶來的有害效果，只要是用正常方式加到身上的，同樣攔得住。",
+            "矩陣損傷到了上限以後它就攔不住了，上限見[[corruption/matrix_damage]]。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matrix_shunt",
+      "title": "{item:essentialcraft5:matrix_shunt_module}",
+      "icon": "essentialcraft5:matrix_shunt_module",
+      "summary": "把一部分魔法傷害改記為矩陣損傷",
+      "if": "module:essentialcraft5:matrix_shunt_module",
+      "items": [
+        "essentialcraft5:matrix_shunt_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>做什麼</em>：裝在宅男胸甲上，受到魔法傷害時，這一下的 {cfg:general.computer_modules.matrix_shunt.ratio|pct} 不扣血，改記成矩陣損傷。分走的傷害每相當於最大生命的 1%，就記 {cfg:general.computer_modules.matrix_shunt.matrix_per_max_health|div:100} 點，以原版的 20 點生命為例，每分走 1 點傷害記 {cfg:general.computer_modules.matrix_shunt.matrix_per_max_health|div:20} 點，所以生命上限越高，同樣一下記下的損傷越少。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:matrix_shunt_module"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "{item:essentialcraft5:dark_soul_matter}能存 MRU，<w>裡面的 MRU 會在合成時一起消失</w>，最好先把電用掉再放進去。"
+        },
+        {
+          "type": "h",
+          "text": "哪些算魔法傷害"
+        },
+        {
+          "type": "p",
+          "text": "宅男胸甲本來就不怕自己喝下的傷害藥水、中毒這類魔法傷害，分流管的是胸甲擋不住的那些："
+        },
+        {
+          "type": "list",
+          "items": [
+            "別人扔過來的噴濺或滯留傷害藥水，女巫扔的也算；",
+            "喚魔者的尖牙、深海守衛的鐳射、監守者的音波；",
+            "尖刺反傷；",
+            "常見法術模組的法術傷害。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "物理、火焰、爆炸、摔落這些傷害不算在內，照常由宅男套裝自己的防護去擋。"
+        },
+        {
+          "type": "h",
+          "text": "什麼時候不分流"
+        },
+        {
+          "type": "list",
+          "items": [
+            "矩陣損傷快滿時，只分走還記得下的那部分，滿了以後整下傷害照常扣血。",
+            "這一下被盾牌完全擋住，或者被別的東西攔下、沒有真正打到你身上時，不會記損傷。"
+          ]
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.corruption.effects_enabled",
+          "style": "info",
+          "text": "分流掉的傷害沒有憑空消失，它變成了矩陣損傷，攢多了會凝成腐化效果，可以回家用靈魂五芒星治，見[[pentacle/cure]]。常和法術怪打交道的話，記得隔一陣看看五芒星介面裡的損傷條。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "分流按打過來的傷害算，沒分走的那部分再去吃保護附魔、抗性提升這些減傷。",
+            {
+              "if": "module:essentialcraft5:matrix_filter_module",
+              "text": "和{item:essentialcraft5:matrix_filter_module}同時裝著時互不影響，那塊管效果，這塊管傷害。"
+            },
+            "不消耗 MRU。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accumulator",
+      "title": "{item:essentialcraft5:accumulator_module}",
+      "icon": "essentialcraft5:accumulator_module",
+      "summary": "把被受擊無敵吞掉的傷害補進下一擊",
+      "if": "module:essentialcraft5:accumulator_module",
+      "items": [
+        "essentialcraft5:accumulator_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "生物捱了一下以後，大約有半秒處在<hl>受擊無敵</hl>狀態，這時再打它，不比上一下重的攻擊會被<w>整下吞掉</w>，一點傷害也打不出來。加特林每刻一發，打在同一個目標身上的大半都白費了。{item:essentialcraft5:accumulator_module}裝在胸甲上，能把這些被吞掉的傷害<em>記成一筆賬</em>，等下一次真正打即時一起補進去。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:accumulator_module"
+        },
+        {
+          "type": "h",
+          "text": "怎麼起作用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "你的攻擊落在目標的受擊無敵期間、被整下吞掉時，這一下的傷害記到你對這個目標的賬上。",
+            "下一次在受擊無敵之外真正打即時，賬上的傷害補進這一擊，最多補到這一擊本身傷害的 {cfg:general.computer_modules.accumulator.max_ratio|mul:100|round:0|pctv}。",
+            "補過以後這筆賬清零，超出的部分作廢。{cfg:general.computer_modules.accumulator.forget_ticks|sec}內沒有再往賬上記，這筆賬也會作廢。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它只認<em>近戰</em>和<em>魔力槍械的射線</em>兩種攻擊，近戰不管用劍、斧還是空手都算，弓箭、三叉戟以及其他模組的子彈和法術既不記賬，也不補傷害。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "適合誰",
+          "text": "加特林、突擊步槍這類速射武器受益最大。不開模組時，對同一個目標每半秒只有一發算數，開著以後其餘幾發會攢起來補進下一發，對單個目標的有效傷害最多能漲到原來的 {cfg:general.computer_modules.accumulator.max_ratio|add:1|mul:100|round:0|pctv}。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "補上去的傷害照樣受對方的傷害上限約束，全息投影、審判庭哨兵這類首領每一下最多隻掉那麼多血，補得再多也只掉到上限。這兩種首領在休息期會按你每一下原本的傷害，判斷要不要「挨夠了提前出招」，補上去的那部分不算在裡面。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "受擊無敵期間打出比上一下更重的一擊時，原版只結算兩下的差額，這種情況不記賬，也不補。",
+            "被領地、隊伍或「玩家之間不能互相傷害」擋下的攻擊，以及被盾牌整下擋掉的那一下，都不補傷害，賬會留著。",
+            "補進去的傷害算在這一擊裡，護甲、二分、宅男套裝的減傷都照常按補過之後的數值算，這一擊照樣能暴擊，也照樣能橫掃。",
+            {
+              "if": "bauble:essentialcraft5:zeta_amulet",
+              "text": "{item:essentialcraft5:zeta_amulet}每一擊都會花 UBMRU 直接清掉對方的受擊無敵，戴著它時不會有傷害被吞掉，累加器也就閒著。"
+            },
+            "最多同時記 {cfg:general.computer_modules.accumulator.max_entries} 個目標的賬，超出時丟掉最久沒記過賬的那個。",
+            "不消耗 MRU。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shred",
+      "title": "{item:essentialcraft5:shred_module}",
+      "icon": "essentialcraft5:shred_module",
+      "summary": "每打實一次給目標疊一層破甲",
+      "if": "module:essentialcraft5:shred_module",
+      "items": [
+        "essentialcraft5:shred_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:shred_module}裝在胸甲上，你每<em>打實</em>一下、真正傷到目標，就給目標疊上一層<hl>破甲</hl>，層數越多，護甲越薄，之後的每一擊都打得更疼。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:shred_module"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每層破甲",
+              "護甲 −{cfg:general.computer_modules.shred.armor_per_level}、盔甲韌性 −{cfg:general.computer_modules.shred.toughness_per_level}"
+            ],
+            [
+              "最多",
+              "{cfg:general.computer_modules.shred.max_level} 層"
+            ],
+            [
+              "持續",
+              "{cfg:general.computer_modules.shred.duration_ticks|sec}，每打實一下重新計時，到期後所有層數一起消失"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "近戰、弓箭、魔力槍械的射線、法術，任何攻擊都算數，只要傷害記在你頭上就行，護甲最低扣到 0。破甲是看得見的狀態效果，目標身上會顯示圖示和剩餘時間，喝牛奶就能清掉。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "適合誰",
+          "text": "對付護甲很高的怪物或穿著重甲的對手時最有用，先疊上幾層，之後每一擊被護甲擋掉的部分都會少一截。"
+        },
+        {
+          "type": "h",
+          "text": "什麼時候不算打實"
+        },
+        {
+          "type": "list",
+          "items": [
+            "被領地、隊伍或「玩家之間不能互相傷害」擋下的攻擊，以及傷害被別的東西取消的攻擊，都不疊層。",
+            "目標還在受擊無敵中、這一下沒造成傷害時不疊，被盾牌整下擋掉的也不疊。",
+            "傷害全被金蘋果給的那種額外黃心吸收時，<em>算</em>打實，照樣疊層。",
+            "尖刺附魔、宅男全套反傷這類別人打你時自動打回去的傷害不疊，那是對方先動的手，算不上你打實的一下。",
+            {
+              "if": "bauble:essentialcraft5:sigma_ring",
+              "text": "{item:essentialcraft5:sigma_ring}把傷害彈回去的那一下也不疊。"
+            },
+            "凋零怪這類對狀態效果免疫的首領不吃破甲。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "同一刻對同一個目標只疊一層，其他模組的武器一次攻擊打出好幾段傷害時，也只算一下。",
+            "不消耗 MRU。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase_anchor",
+      "title": "{item:essentialcraft5:phase_anchor_module}",
+      "icon": "essentialcraft5:phase_anchor_module",
+      "summary": "周圍的敵對生物無法瞬移",
+      "if": "module:essentialcraft5:phase_anchor_module",
+      "items": [
+        "essentialcraft5:phase_anchor_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:phase_anchor_module}裝在護腿或靴子上，開著時每秒耗 {cfg:general.computer_modules.phase_anchor.mru_per_second} MRU。以你為中心、邊長 {cfg:general.computer_modules.phase_anchor.radius|mul:2|add:1|int} 格的立方範圍裡，敵對生物身上會掛上<hl>錨定</hl>，終界使者和界伏蚌就沒法瞬移脫身。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:phase_anchor_module"
+        },
+        {
+          "type": "h",
+          "text": "錨定攔什麼"
+        },
+        {
+          "type": "list",
+          "items": [
+            "終界使者挨打、躲箭、碰到水時的隨機瞬移，以及界伏蚌換位置。",
+            "扔出的末影珍珠落地後不傳送，珍珠照樣用掉。",
+            "吃下紫頌果不會傳送。",
+            "它不攔走路，也不會把誰拽過來，傳送門、指令傳送、{item:essentialcraft5:magical_teleporter}這類傳送都不受影響。",
+            {
+              "if": "module:essentialcraft5:rewind_module",
+              "text": "{item:essentialcraft5:rewind_module}的回退也不受影響。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.computer_modules.phase_anchor.affect_players",
+          "text": "對別的玩家"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_modules.phase_anchor.affect_players",
+          "text": "它只錨定和你<em>互相</em>交過手的玩家，條件是 {cfg:general.computer_modules.phase_anchor.combat_ticks|sec}內你對他、他對你各有一次攻擊沒被領地、隊伍或「玩家之間不能互相傷害」擋下，打中了或者被盾牌、盔甲整下擋掉都算。這樣的人在範圍裡沒法扔末影珍珠或吃紫頌果逃走。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_modules.phase_anchor.affect_players",
+          "text": "只有一方動過手、玩家之間不能互相傷害，或者是你打不了的隊友，都不會被錨定，交手過了時限也會放開。尖刺、反傷這類挨打後自動打回去的傷害，以及雪球這種沒有傷害的攻擊，都不算對方動手。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "身上的 MRU 不夠付這一秒的電費時，這一秒就不錨定。錨定每秒補掛一次，每次持續 {cfg:general.computer_modules.phase_anchor.effect_ticks|sec}，離開範圍或模組停下以後，最多還會錨住這麼久。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "起了名字或拴著拴繩的生物不會被錨定。",
+            "被錨住的界伏蚌捱了界伏蚌子彈也不會分裂，在界伏蚌農場旁邊最好先關掉模組，或者給要留著繁殖的界伏蚌起個名字。",
+            "錨定是看得見的狀態效果，身上會顯示圖示，喝牛奶能清掉，但下一秒又會掛上。",
+            "對狀態效果免疫的首領不受錨定影響。",
+            "有些模組的怪物用自己的方式瞬移，不經過上面這幾種傳送，錨定攔不住它們。",
+            "護腿和靴子上各裝一塊，也只算一塊。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "attraction",
+      "title": "{item:essentialcraft5:attraction_module}",
+      "icon": "essentialcraft5:attraction_module",
+      "summary": "把身邊沒人扔的掉落物推到你腳邊",
+      "if": "module:essentialcraft5:attraction_module",
+      "items": [
+        "essentialcraft5:attraction_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "打完一群怪，地上總散著幾件沒撿的掉落物和一堆經驗球。{item:essentialcraft5:attraction_module}裝在護腿上，開著時每秒耗 {cfg:general.computer_modules.attraction.mru_per_second} MRU，把你身邊的掉落物和經驗球一下一下推到你腳邊，推到了就照常撿起來。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:attraction_module"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "範圍",
+              "水平 {cfg:general.computer_modules.attraction.radius} 格，上下和{item:essentialcraft5:magnetizing_staff}夠得一樣遠"
+            ],
+            [
+              "多久一次",
+              "每 {cfg:general.computer_modules.attraction.interval_ticks|sec}"
+            ],
+            [
+              "每次最多",
+              "{cfg:general.staffs.magnetizing_max_items} 個掉落物、{cfg:general.staffs.magnetizing_max_orbs} 個經驗球，離你近的先推"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "哪些不推"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>有人扔出來的東西</em>。你自己按 {keybind:key.drop} 或從物品欄裡扔掉的、別的玩家扔的都不推，想丟掉的東西扔出去就不會再回來，豬靈換給你的、悅靈和村民送來的東西也算扔出來的。",
+            "指定給別人拾取的東西。",
+            "隔著方塊看不見的東西，從你的眼睛到那件東西之間有方塊擋著就不推，所以牆後水道里的東西不會被拉走。",
+            "別人領地或出生點保護範圍裡的掉落物和經驗球。",
+            "潛行時什麼都不推，蹲著整理背包時，旁邊的東西不會一直往你身上湊。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "身上的 MRU 付不起這一秒的電費時，這一秒不推。它只推不撿，背包滿了，推過來的東西就堆在你腳邊。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "每一下推的力道和{item:essentialcraft5:magnetizing_staff}一樣，離得遠的要推好幾下才到。",
+            "想讓它停一陣、又不想一直蹲著，就在終端裡把它關掉，關著時不耗 MRU。",
+            {
+              "if": [
+                "cfg:general.computer_modules.attraction.radius>8",
+                "cfg:general.computer_modules.attraction.interval_ticks<10"
+              ],
+              "text": "水平範圍超過 8 格時，它實際上每半秒才推一次，比上表寫的慢。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stride",
+      "title": "{item:essentialcraft5:stride_module}",
+      "icon": "essentialcraft5:stride_module",
+      "summary": "能直接走上更高的坎",
+      "if": "module:essentialcraft5:stride_module",
+      "items": [
+        "essentialcraft5:stride_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:stride_module}裝在靴子上，開著時每秒耗 {cfg:general.computer_modules.stride.mru_per_second} MRU。穿著{item:essentialcraft5:computer_boots}本來就能一步邁上一格高的方塊，攀行開著時，一步能邁的高度再加 {cfg:general.computer_modules.stride.step_bonus} 格。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_modules.stride.step_bonus>=0.3",
+          "text": "一格方塊上面再墊一塊下半磚，這樣的坎也能直接走上去，不用跳。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:stride_module"
+        },
+        {
+          "type": "h",
+          "text": "一步能邁多高"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "平時",
+              "0.6 格"
+            ],
+            [
+              "穿著{item:essentialcraft5:computer_boots}",
+              "1.2 格"
+            ],
+            [
+              "攀行開著",
+              "{cfg:general.computer_modules.stride.step_bonus|add:1.2} 格"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "身上的 MRU 付不起這一秒的電費時，這一秒退回 1.2 格，走在台階上可能突然邁不上去。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "騎馬、坐船時用的是坐騎自己能邁的高度，攀行管不到。",
+            "剛重生或剛從終界回來時，要等下一次扣 MRU 才恢復，最多等 1 秒。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steady_hand",
+      "title": "{item:essentialcraft5:steady_hand_module}",
+      "icon": "essentialcraft5:steady_hand_module",
+      "summary": "懸空、水下挖東西不再變慢",
+      "if": "module:essentialcraft5:steady_hand_module",
+      "items": [
+        "essentialcraft5:steady_hand_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "攀在梯子上鑿牆、潛到水底挖礦，同一塊石頭要多挖好幾倍的時間。{item:essentialcraft5:steady_hand_module}裝在護腿或靴子上，不耗 MRU，裝上以後這兩種減速就都沒有了。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:steady_hand_module"
+        },
+        {
+          "type": "table",
+          "widths": [
+            5,
+            2,
+            3
+          ],
+          "header": [
+            "什麼時候",
+            "平時",
+            "開著穩手"
+          ],
+          "rows": [
+            [
+              "腳沒踩在地上，比如懸在空中、攀著梯子、浮在水裡",
+              "慢到 1/5",
+              "和站在地上一樣快"
+            ],
+            [
+              "頭在水裡，頭盔上又沒有{lang:enchantment.minecraft.aqua_affinity}",
+              "再慢到 1/5",
+              "不再變慢"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "浮在水裡挖東西時兩種減速疊在一起，平時只有站在地上時的 1/25，開著穩手就和站在地上一樣快。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "它不耗 MRU，胸甲裡一點 MRU 都沒有也照樣生效。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "效率附魔、挖掘加速、挖掘疲勞照舊算，穩手只抵掉上面兩種減速。",
+            "護腿和靴子各裝一塊也只算一塊。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veil",
+      "title": "{item:essentialcraft5:veil_module}",
+      "icon": "essentialcraft5:veil_module",
+      "summary": "怪物要離你更近才發現你",
+      "if": "module:essentialcraft5:veil_module",
+      "items": [
+        "essentialcraft5:veil_module"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:veil_module}裝在頭盔上，開著時每秒耗 {cfg:general.computer_modules.veil.mru_per_second} MRU。怪物要離你更近才會發現你，你潛行時還要更近。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:veil_module"
+        },
+        {
+          "type": "h",
+          "text": "怪物發現你的距離"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "平時",
+              "原來的 {cfg:general.computer_modules.veil.multiplier|pct}"
+            ],
+            [
+              "潛行",
+              "原來的 {cfg:general.computer_modules.veil.sneak_multiplier|mul:0.8|pct}，潛行本身的減免已經算在裡面"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "比如骷髏平時在 16 格內就會盯上你，開著隱匿時要走進 {cfg:general.computer_modules.veil.multiplier|mul:16} 格它才發現，潛行著要走進 {cfg:general.computer_modules.veil.sneak_multiplier|mul:12.8} 格。"
+        },
+        {
+          "type": "h",
+          "text": "隱匿管不到的"
+        },
+        {
+          "type": "list",
+          "items": [
+            "別的玩家看你和平時一樣，它對玩家沒有效果。",
+            "已經盯上你的怪物不會因此放過你，你要跑出它原本的追蹤距離，它才會丟下你。",
+            "再怎麼縮，走到 2 格以內照樣會被發現。",
+            "少數怪物找人時根本不管這些，潛行和隱身藥水對它們沒用，隱匿也一樣。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "身上的 MRU 付不起這一秒的電費時，這一秒不生效。"
+        }
+      ]
+    },
+    {
+      "id": "attuned",
+      "title": "宅男套裝同調 2 階",
+      "icon": "essentialcraft5:computer_chestplate",
+      "summary": "四件都升到同調 2 階",
+      "complete": "essentialcraft5:guide/terminal/attuned",
+      "if": "cfg:general.attunement.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：把宅男套裝四件都升到同調 2 階。"
+        },
+        {
+          "type": "p",
+          "text": "同調是裝備在實戰裡一階一階變強的過程，怎麼攢、怎麼升見[[attunement/overview]]。宅男套裝升到 2 階，胸甲多一個模組槽，護盾電費更省，還能擋住有攻擊者的魔法傷害，各階詳情見[[attunement/computer_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.attunement.rank_gate"
+              ],
+              "cells": [
+                "矩陣階",
+                "三階，第十章就有了"
+              ]
+            },
+            [
+              "材料",
+              "每件每階一份，見[[attunement/computer_armor]]的材料表"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "穿著四件宅男套裝到處打怪：敵對生物打你一下，四件各長 {cfg:general.attunement.points_hit} 點，前提是這隻怪你 10 秒內打實過。",
+            "一件攢滿 0 階，就拿去[[crafting/magician_table|魔力工作台]]升到 1 階；接著穿，攢滿再升 2 階。",
+            "四件都到 2 階以後同時穿上，這一步就完成了。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "四件都是同調 2 階，穿在身上。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "同調度有[[attunement/budget|預算]]卡著，每小時最多長 {cfg:general.attunement.budget_per_hour} 點，四件一起長也只扣一次。站著挨打不還手不算數，刷怪籠裡出來的怪也不算。從零升到 2 階要攢的點數遠超一小時的預算，邊做支線邊攢最划算。"
+        }
+      ]
+    },
+    {
+      "id": "epilogue",
+      "title": "第二十一章到這裡為止",
+      "icon": "essentialcraft5:computer_engine",
+      "summary": "還剩兩章：暗影與天災之心",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "套裝裝好了"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.attunement.enabled",
+          "text": "你從挖出第一塊魔晶、攢下第一份 MRU 起步，後來造了產能器和富集倉，煉出米斯萊，注過風，走進海納爾，跟惡魔做過交易，打倒了全息投影，又循著回聲找到審判庭，穿上宅男套裝，最後給它裝上了模組。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "你從挖出第一塊魔晶、攢下第一份 MRU 起步，後來造了產能器和富集倉，煉出米斯萊，注過風，走進海納爾，跟惡魔做過交易，打倒了全息投影，又循著回聲找到審判庭，穿上宅男套裝，給它裝上了模組，又穿著它打到四件同調 2 階。"
+        },
+        {
+          "type": "p",
+          "text": "主線還剩兩章：[[shade/intro|第二十二章]]攢影晶、凝暗影核心、把五芒星升到 4 檔，[[apex/intro|第二十三章]]召出天災之心，把它打倒。"
+        },
+        {
+          "type": "p",
+          "text": "模組不必都做，槽位有限，照自己常吃的虧換著裝就好，見[[terminal/modules]]。槍械、虛空機器、地脈投影、特殊飾品這些沒看過的支線都還在，想先去別處轉轉，就從[[logistics/after_main_line]]裡挑一章。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "宅男套裝還能接著同調到更高階，模組槽更多，護盾擋得更多，見[[attunement/computer_armor]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "{item:essentialcraft5:forged_elemental_sword}同調到 2 階以後，能升格成{item:essentialcraft5:verdict_blade}，見[[attunement/verdict_blade]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的語言檔案裡，宅男套裝那一頁還藏著一句書裡從沒顯示過的話：「做完這麼多東西，你還活著嗎？很好。我可沒活下來。」"
+        }
+      ]
+    }
+  ]
+}

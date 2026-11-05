@@ -1,0 +1,128 @@
+{
+  "id": "creative",
+  "order": 99,
+  "group": "side",
+  "title": "Side · Infinite Items",
+  "subtitle": "Infinite power and a ward, with no crafting recipe",
+  "icon": "essentialcraft5:infinite_mru_source",
+  "entries": [
+    {
+      "id": "creative_items",
+      "title": "Infinite items",
+      "icon": "essentialcraft5:infinite_mru_source",
+      "summary": "No crafting recipe: infinite power and a ward",
+      "items": [
+        "essentialcraft5:infinite_mru_source",
+        "essentialcraft5:infinite_espe_source",
+        "essentialcraft5:infinite_thermal_source",
+        "essentialcraft5:infinite_mru_crystal",
+        "essentialcraft5:creative_ward"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "These items <em>have no crafting recipe</em> and never turn up in loot or trades. Once you have them they work normally in Survival: the three blocks drop themselves when mined with a pickaxe, so you can pick them up and move them, and creepers or TNT cannot blow them up; the two carried items work as long as you have them on you. They save you hunting for power and cleaning up afterwards. None of them changes the blocks around it or causes corruption."
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:infinite_mru_source",
+            "essentialcraft5:infinite_espe_source",
+            "essentialcraft5:infinite_thermal_source",
+            "essentialcraft5:infinite_mru_crystal",
+            "essentialcraft5:creative_ward"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "Item",
+            "How to use",
+            "What it does"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:infinite_mru_source}",
+              "Place it near machines",
+              "Tops up MRU in machines within <t>8</t> blocks every second; a Bound Gem can draw from it endlessly"
+            ],
+            [
+              "{item:essentialcraft5:infinite_espe_source}",
+              "Place it near Mithriline Furnaces or crystal pillars",
+              "Tops up ESPE within <t>8</t> blocks every second"
+            ],
+            [
+              "{item:essentialcraft5:infinite_thermal_source}",
+              "Right-click with an empty hand to switch",
+              "The best heat source for a Heat Generator, or cold source for a Cold Distillator"
+            ],
+            [
+              "{item:essentialcraft5:infinite_mru_crystal}",
+              "Keep it on you",
+              "Pays every MRU cost and never empties"
+            ],
+            [
+              "{item:essentialcraft5:creative_ward}",
+              "Keep it on you",
+              "UBMRU stays full; matrix damage and Hoanna radiation stay at zero"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The two infinite sources"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:infinite_mru_source} runs once a second: every machine within <t>8</t> blocks on each axis that draws MRU through a [[crafting/bound_gem]] is topped up, at most <t>32</t> per pass; the rest get their turn next pass. Generators are left alone (filling them up would stop them burning and hide their output)."
+        },
+        {
+          "type": "p",
+          "text": "You can also link it with a Bound Gem like any other source, and the machine fills up in one go. Set its balance with a {item:essentialcraft5:balance_setter} and the MRU it hands out carries that balance."
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:infinite_espe_source} also runs once a second, <t>8</t> blocks, at most <t>32</t> per pass, topping up ESPE in the [[mithriline/furnace]] and in [[mithriline/crystal_pillar]]s, so pentacles and wind runes that draw from the pillars never run short. It also works when placed where a furnace draws its ESPE from."
+        },
+        {
+          "type": "p",
+          "text": "Right-click either source with an empty hand to see how many it topped up last pass."
+        },
+        {
+          "type": "h",
+          "text": "The thermal source"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:infinite_thermal_source} starts as a heat source: it gives the [[generators/heat_generator]] a factor of <t>1</t>, no loss at all (lava gives 0.95), so one on each side, two steps out like lava, means full output. Right-click with an empty hand to turn it into a cold source: one block gives the [[generators/cold_distillator]] <t>171</t> cold, as much as surrounding it entirely with frost stone. Heat gives no cold and cold gives no heat, so the wrong mode produces nothing."
+        },
+        {
+          "type": "h",
+          "text": "The two carried items"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:infinite_mru_crystal}: keep it in your inventory, offhand or a ring slot. Staffs, charms, Magical Wings and everything else that costs MRU is paid from it, and it is always full; while you carry it, your other storage items are never drained.",
+            "{item:essentialcraft5:creative_ward}: keep it in your inventory or a necklace slot. [[mru/ubmru]] stays full, and matrix damage and Hoanna radiation stay at zero, so no new corruption effects are drawn. If another player kills you, they do not get the UBMRU the ward added; take the ward off and your UBMRU goes back to what it was before."
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "While you carry the {item:essentialcraft5:infinite_mru_crystal}, it also pays for everything [[gear/void_armor]] blocks: Void Armor never runs out of charge, and melee hits and arrows never get through."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "text": "The ward only stops new corruption; effects you already have stay until you go to [[pentacle/cure]]."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "How these differ from the {item:essentialcraft5:creative_mru_storage} and {item:essentialcraft5:creative_espe_storage}: those two come from the original mod and only wait to be drawn from; they never top up anything around them."
+        }
+      ]
+    }
+  ]
+}

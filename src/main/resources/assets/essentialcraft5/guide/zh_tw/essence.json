@@ -1,0 +1,623 @@
+{
+  "id": "essence",
+  "order": 70,
+  "group": "main",
+  "title": "第九章 · 精華與焦點",
+  "subtitle": "長大的水晶能榨出什麼",
+  "icon": "essentialcraft5:crystal_extractor",
+  "entries": [
+    {
+      "id": "crystal_extractor",
+      "title": "{item:essentialcraft5:crystal_extractor}",
+      "icon": "essentialcraft5:crystal_extractor",
+      "summary": "從長大的水晶裡抽精華",
+      "complete": "essentialcraft5:guide/essence/crystal_extractor",
+      "items": [
+        "essentialcraft5:crystal_extractor"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "古時的水晶碎了，會落下一層粉，那粉就是精華。如今的水晶捨不得打碎，我們學會了從它身上一點一點地抽。",
+          "by": "《源質殘卷·卷三》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在長大的{item:essentialcraft5:elemental_crystal}旁邊放一台{item:essentialcraft5:crystal_extractor}，用 MRU 從水晶裡抽出元素精華。水晶本身不會被消耗，可以一直抽下去。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "這一章要準備什麼",
+          "text": "提取器抽一輪要花 10 萬 MRU。長滿的水晶某種元素有 3 點時，平均一輪抽出的精華夠做 1 個這種元素的焦點，2 點約兩輪夠一個，只有 1 點要五六輪。所以最好早點動手，多種幾顆水晶，挑元素高的來抽，再趁水晶還在生長時用[[essence/crystal_controller]]把想要的元素推上去。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "主線後面，開海納爾之門的風之石板要用 4 個{item:essentialcraft5:air_focus}，惡魔五芒星要用 4 個{item:essentialcraft5:fire_focus}，風、火兩種元素最好提前多養一些。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：{item:essentialcraft5:combined_magical_alloys}、2 份水晶粉、2 個 MRU 轉換矩陣、2 塊黑曜石板、1 塊魔力螢幕和 1 個元素核心，元素核心也可以換成淡青元素核心。它每刻要耗 {cfg:machines.crystal_extractor.mru_usage} MRU，一台熱力產能器遠遠供不上，最好從富集倉取。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_extractor"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "提取器放在水晶東南西北任意一側，和水晶<em>緊挨著、在同一高度</em>。",
+            "放進一顆綁向 MRU 源的綁定寶石。",
+            "12 個產物格<em>全空著</em>時它才開工，每刻耗 {cfg:machines.crystal_extractor.mru_usage} MRU，一輪要 {cfg:machines.crystal_extractor.required_ticks} 刻，合 {cfg:machines.crystal_extractor.required_ticks|sec}。",
+            "每輪結束時 12 個格子各抽一次，抽到的精華留在格子裡，格子取空了才開始下一輪，底下接個漏斗就能讓它一直轉下去。"
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": "essentialcraft5:elemental_crystal",
+            "X": "essentialcraft5:crystal_extractor"
+          },
+          "anchor": "X",
+          "pattern": [
+            "XC"
+          ],
+          "caption": "提取器緊貼著水晶，東南西北哪一面都行，和水晶同一高度。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "提取器的產物格里出現了精華。滑鼠指著進度箭頭，還能看到它的狀態和旁邊水晶的數值。"
+        },
+        {
+          "type": "h",
+          "text": "能抽出什麼"
+        },
+        {
+          "type": "p",
+          "text": "每格先從 4 種元素、4 個稀有度組成的 16 種精華里等機率挑一種，再按這種精華的元素算出貨機率。"
+        },
+        {
+          "type": "formula",
+          "text": "機率（%）= 水晶大小 × 這種元素的值 × 係數"
+        },
+        {
+          "type": "table",
+          "header": [
+            "稀有度",
+            "係數",
+            "大小 100、元素 3",
+            "大小 100、元素 50"
+          ],
+          "rows": [
+            [
+              "普通",
+              "0.08",
+              "24%",
+              "400%"
+            ],
+            [
+              "罕見",
+              "0.06",
+              "18%",
+              "300%"
+            ],
+            [
+              "稀有",
+              "0.04",
+              "12%",
+              "200%"
+            ],
+            [
+              "卓越",
+              "0.02",
+              "6%",
+              "100%"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "抽中時數量在 1 到「機率 ÷ 4」之間隨機，一格最多 64 個。機率可以超過 100%，比如大小 100、火元素 50 的水晶，一挑中普通火焰精華就是一大把。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "放提取器之前，先在物品提示裡看一眼水晶的四種元素。哪種元素是 0，這種精華就永遠抽不到，大小為 1、元素全是 0 的<em>剛成型的水晶</em>更是一個也抽不出來。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一顆水晶四周可以圍上好幾台提取器，各抽各的。一台提取器旁邊有幾顆水晶時，按北、南、西、東的順序認第一顆。",
+            "還在生長的水晶也能抽，只是個頭小，出貨的機率也低。",
+            "收到紅石訊號時停機，進度保留，退出存檔也不會丟。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書說，簡單的機器有元素核心就能讓 MRU 帶上元素，更高階的器械卻要一樣更專門的東西，就是元素焦點。書里正是為了做焦點，才去找古時的水晶和它們身上的精華。"
+        }
+      ]
+    },
+    {
+      "id": "essences",
+      "title": "精華",
+      "icon": "essentialcraft5:common_fire_essence",
+      "summary": "四種元素，四種稀有度",
+      "complete": "essentialcraft5:guide/essence/essences",
+      "items": [
+        "essentialcraft5:common_fire_essence",
+        "essentialcraft5:common_water_essence",
+        "essentialcraft5:common_earth_essence",
+        "essentialcraft5:common_air_essence",
+        "essentialcraft5:uncommon_fire_essence",
+        "essentialcraft5:uncommon_water_essence",
+        "essentialcraft5:uncommon_earth_essence",
+        "essentialcraft5:uncommon_air_essence",
+        "essentialcraft5:rare_fire_essence",
+        "essentialcraft5:rare_water_essence",
+        "essentialcraft5:rare_earth_essence",
+        "essentialcraft5:rare_air_essence",
+        "essentialcraft5:exceptional_fire_essence",
+        "essentialcraft5:exceptional_water_essence",
+        "essentialcraft5:exceptional_earth_essence",
+        "essentialcraft5:exceptional_air_essence"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：從提取器裡拿出第一個精華，學會看它的元素和稀有度。"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:common_fire_essence",
+            "essentialcraft5:common_water_essence",
+            "essentialcraft5:common_earth_essence",
+            "essentialcraft5:common_air_essence"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "提取器抽出的是{item:essentialcraft5:common_fire_essence}、{item:essentialcraft5:common_water_essence}、{item:essentialcraft5:common_earth_essence}和{item:essentialcraft5:common_air_essence}四種元素的精華，元素燃料和焦點都用它們做，也能拿去喂水晶控制器。"
+        },
+        {
+          "type": "p",
+          "text": "每種精華分四個稀有度，名字都一樣，要看名字的顏色和提示裡的「稀有度」一行來分，普通、罕見、稀有、卓越依次是白、黃、青、紫。精華一組 64 個。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "稀有度",
+            "提取器裡的係數",
+            "4 個做幾份燃料",
+            "控制器每刻吃一個的機率",
+            "喂水晶每個加"
+          ],
+          "rows": [
+            [
+              "普通",
+              "0.08",
+              "1",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|pct}",
+              "0~1"
+            ],
+            [
+              "罕見",
+              "0.06",
+              "4",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|mul:2|pct}",
+              "0~3"
+            ],
+            [
+              "稀有",
+              "0.04",
+              "8",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|mul:3|pct}",
+              "0~5"
+            ],
+            [
+              "卓越",
+              "0.02",
+              "16",
+              "{cfg:machines.crystal_controller.mutation_chance_modifier|mul:4|pct}",
+              "0~7"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "稀有度越高越難抽到，也越值錢，4 個卓越精華能做 16 份燃料，頂得上 64 個普通精華。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裡有任意一種精華。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "別搞混",
+          "text": "{item:essentialcraft5:magical_essence}是輻射倉用紅石和烈焰粉做的材料，做法見[[alloys/magical_essence]]，它和水晶沒有關係，也不是元素精華。"
+        }
+      ]
+    },
+    {
+      "id": "fuel_and_focus",
+      "title": "燃料與焦點",
+      "icon": "essentialcraft5:fire_focus",
+      "summary": "把精華凝成焦點",
+      "complete": "essentialcraft5:guide/essence/focus",
+      "items": [
+        "essentialcraft5:fire_elemental_fuel",
+        "essentialcraft5:water_elemental_fuel",
+        "essentialcraft5:earth_elemental_fuel",
+        "essentialcraft5:air_elemental_fuel",
+        "essentialcraft5:fire_focus",
+        "essentialcraft5:water_focus",
+        "essentialcraft5:earth_focus",
+        "essentialcraft5:air_focus"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：用精華做出{item:essentialcraft5:fire_elemental_fuel}這類元素燃料，再把燃料做成{item:essentialcraft5:fire_focus}這類焦點。先輩造的隨身器物，芯子裡多半嵌著一個焦點。後面的護符、法杖和好幾樣器械也都拿它當核心材料。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：同一元素、同一稀有度的精華 4 個，做焦點還要 4 個金錠和 4 個鐵錠，金錠可以換成淡青錠。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_elemental_fuel",
+            "essentialcraft5:water_elemental_fuel",
+            "essentialcraft5:earth_elemental_fuel",
+            "essentialcraft5:air_elemental_fuel"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在工作台裡把 4 個精華擺成十字，中間按元素放東西，火放煤或木炭，水放雪球，地放小麥種子，風空著。",
+            "普通精華出 1 份燃料，罕見出 4 份，稀有 8 份，卓越 16 份。燃料一組 16 個。",
+            "燃料放中間，四角放金錠，四邊放鐵錠，做出來的就是對應元素的焦點。焦點不能堆疊。"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:fire_focus",
+            "essentialcraft5:water_focus",
+            "essentialcraft5:earth_focus",
+            "essentialcraft5:air_focus"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裡有任意一種焦點。"
+        },
+        {
+          "type": "h",
+          "text": "焦點要攢多少"
+        },
+        {
+          "type": "list",
+          "items": [
+            "這一章可選的[[essence/magical_lantern]]要火、風焦點各 2 個。",
+            "支線裡的護符、魔力之翼、法杖和盾，每件要 1~4 個，見[[charms/charms]]、[[charms/magical_wings]]、[[staffs/magmatic_staff]]等篇。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "開海納爾之門用的[[wind/wind_tablet]]要 4 個{item:essentialcraft5:air_focus}，[[demons/demonic_pentacle]]要 4 個{item:essentialcraft5:fire_focus}。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "去過海納爾以後，在[[void_machines/ember_forge]]裡鍛一把劍要用掉整整 4 個焦點。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "省精華",
+          "text": "一個焦點用掉一份燃料，所以要按燃料算賬，4 個罕見精華能做 4 份燃料，夠做 4 個焦點，4 個普通精華卻只夠做 1 個。罕見以上的精華拿去喂水晶之前，先算算焦點夠不夠。"
+        }
+      ]
+    },
+    {
+      "id": "crystal_controller",
+      "title": "{item:essentialcraft5:crystal_controller}",
+      "icon": "essentialcraft5:crystal_controller",
+      "summary": "定向培育水晶",
+      "complete": "essentialcraft5:guide/essence/bred_crystal",
+      "items": [
+        "essentialcraft5:crystal_controller"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：趁水晶<em>還在生長</em>，用{item:essentialcraft5:crystal_controller}餵它精華，把一種元素推到 {cfg:machines.crystal_controller.bred_threshold} 以上。元素越高，提取器抽出的這種精華越多。長滿的水晶每次挑中這種精華，元素 3 點時只有約 24% 的機率出貨，平均出 3 個，13 點起次次出貨，到 20 點平均一次能出 20 個左右。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：2 份水晶粉、魔力螢幕、MRU 收集器、1 塊魔力板、2 塊{item:essentialcraft5:magic_fortified_plating}、MRU 轉換矩陣和元素核心，再備好一顆剛放下、還在生長的水晶和一些精華。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_controller"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "新水晶一放下，就把控制器放在緊挨著它、同一高度的位置。",
+            "接上 MRU，把想推高的元素對應的精華放進右邊的格子。",
+            "控制器裡存著不少於 {cfg:machines.crystal_controller.mru_usage|mul:10} MRU 時，每刻都有一定機率吃掉 1 個精華和 {cfg:machines.crystal_controller.mru_usage|mul:10} MRU，給水晶對應的元素加上幾點，機率和點數見[[essence/essences]]裡的表。",
+            "盯著介面上的元素讀數，喂到 {cfg:machines.crystal_controller.bred_threshold} 以上為止。"
+          ]
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": "essentialcraft5:elemental_crystal",
+            "K": "essentialcraft5:crystal_controller"
+          },
+          "anchor": "K",
+          "pattern": [
+            "KC"
+          ],
+          "caption": "控制器緊貼著水晶，東南西北哪一面都行，和水晶同一高度。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "某一次喂完，喂的那種元素到了 {cfg:machines.crystal_controller.bred_threshold}，控制器 16 格內的人這一步就會打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>只有生長中的水晶能改</em>，長到大小 100 元素就定型了，控制器也跟著停下，所以精華要在水晶剛放下時就備好。水晶長滿約需 41 分鐘，這段時間裡普通精華大約能給一種元素加 25 點，要吃掉約 50 個精華和約 5 萬 MRU，卓越精華則能把它加滿。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎麼起步",
+          "text": "控制器要精華，精華又得從有元素的水晶裡抽。先讓第一顆水晶自己長滿，抽出一些精華，拿去喂第二顆剛種下的水晶。第二顆的那種元素推上去以後，抽出的精華就多得多，再拿去喂第三顆，這樣兩三代就能推到 {cfg:machines.crystal_controller.bred_threshold}。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一顆水晶四面都能貼控制器，幾台一起喂同一種元素會快得多，水晶長滿以後再把其中一台換成[[essence/crystal_extractor]]。",
+            "某種元素到了 100，控制器就不再吃這種精華。",
+            "旁邊有生長中的水晶時，控制器平時也會偶爾耗一點 MRU，每刻有 {cfg:machines.crystal_controller.use_mru_chance|pct} 的機率耗掉 {cfg:machines.crystal_controller.mru_usage} MRU，旁邊沒有水晶或水晶已經長滿時不耗。",
+            "收到紅石訊號時停機。",
+            "打勾只看喂的那種元素，別的元素自己長到多少都不算。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "下一步",
+          "text": "這一章必做的步驟到這裡就做完了，主線接著進入「日光」一章的[[solar/sun_imbued_glass]]。缺哪種元素的精華，可以用下一篇的[[essence/elemental_decomposer]]拿雜物專門攢。想要一盞隨身的燈，看[[essence/magical_lantern]]。"
+        }
+      ]
+    },
+    {
+      "id": "elemental_decomposer",
+      "title": "{item:essentialcraft5:elemental_decomposer}",
+      "icon": "essentialcraft5:elemental_decomposer",
+      "summary": "把雜物拆成四種元素的精華",
+      "complete": "essentialcraft5:guide/essence/elemental_decomposer",
+      "optional": true,
+      "items": [
+        "essentialcraft5:elemental_decomposer"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一台{item:essentialcraft5:elemental_decomposer}，把圓石、腐肉、羽毛這類平時攢下的雜物餵給它，換成你想要的那種元素的精華。"
+        },
+        {
+          "type": "p",
+          "text": "MRU 落下來時穿進了岩石和活物，尋常的石頭、骨頭和羽毛裡也沾著一星半點的元素。分解器出得不多，但元素由你來挑，想用[[essence/crystal_controller]]把水晶的某種元素推高、手上又缺這種精華時，可以拿它專門攢。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：四塊{item:essentialcraft5:pale_plate}，{item:essentialcraft5:fire_focus}、{item:essentialcraft5:water_focus}、{item:essentialcraft5:earth_focus}、{item:essentialcraft5:air_focus}各一個，再加一個{item:essentialcraft5:fortified_frame}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:elemental_decomposer"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在寶石槽裡放一顆綁在 MRU 源上的{item:essentialcraft5:bound_gem}。",
+            "把雜物放進左邊 3×3 的輸入格，漏斗和管道也能往裡送。它只收下表這四類裡的東西，別的放不進去。",
+            "它每次拿 1 件、扣一份 MRU，給這件東西所屬的元素記 1 點，介面上能看到四種元素各攢了多少點。",
+            "某種元素的點數攢夠了，就出 1 顆這種元素的精華，放進右邊對應的格子。右邊每行是一種元素，左列放普通精華，右列放罕見精華。",
+            {
+              "if": "cfg:machines.elemental_decomposer.uncommon_every>0",
+              "text": "每種元素每出 {cfg:machines.elemental_decomposer.uncommon_every} 顆，最後那顆的稀有度是罕見。"
+            }
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每件間隔",
+              "{cfg:machines.elemental_decomposer.ticks_per_item|sec}"
+            ],
+            [
+              "每件 MRU",
+              "{cfg:machines.elemental_decomposer.mru_per_item}"
+            ],
+            [
+              "幾件出一顆精華",
+              "{cfg:machines.elemental_decomposer.points_per_essence}"
+            ],
+            {
+              "if": "cfg:machines.elemental_decomposer.uncommon_every>0",
+              "cells": [
+                "每幾顆出一顆罕見",
+                "{cfg:machines.elemental_decomposer.uncommon_every}"
+              ]
+            },
+            [
+              "MRU 容量",
+              "{cfg:machines.elemental_decomposer.max_mru}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "元素",
+            "收哪些東西（舉例）"
+          ],
+          "rows": [
+            [
+              "火",
+              "{item:minecraft:netherrack}、{item:minecraft:blackstone}、{item:minecraft:basalt}、{item:minecraft:soul_sand}、{item:minecraft:magma_block}、{item:minecraft:gunpowder}"
+            ],
+            [
+              "水",
+              "{item:minecraft:kelp}、{item:minecraft:seagrass}、{item:minecraft:lily_pad}、{item:minecraft:ink_sac}、{item:minecraft:snowball}、{item:minecraft:clay_ball}"
+            ],
+            [
+              "地",
+              "{item:minecraft:cobblestone}、{item:minecraft:dirt}、{item:minecraft:sand}、{item:minecraft:gravel}、{item:minecraft:flint}、{item:minecraft:bone}、{item:minecraft:rotten_flesh}"
+            ],
+            [
+              "風",
+              "{item:minecraft:feather}、{item:minecraft:string}、{item:minecraft:stick}、{item:minecraft:wheat_seeds}、{item:minecraft:grass}、{item:minecraft:vine}，以及各種樹葉和樹苗"
+            ]
+          ],
+          "widths": [
+            1,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "if": "mod:jei",
+          "text": "完整的清單在 JEI 的元素分解器分類裡，每種元素一頁。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.elemental_decomposer.ticks_per_item==10",
+            "cfg:machines.elemental_decomposer.points_per_essence==32"
+          ],
+          "text": "MRU 跟得上時，一台每小時能吃掉 7200 件雜物，出 225 顆左右的精華，一箱 1728 個圓石大約換 54 顆{item:essentialcraft5:common_earth_essence}。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到分解器，這一步就打勾了。放進一組圓石、接上 MRU 以後，介面上地元素的點數會一點點往上漲。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "某種元素的普通格和罕見格里只要有一格滿了，它就不再拿這種元素的雜物，別的元素照常分解，所以要用漏斗把右邊的格子及時抽空。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "攢下的點數存在機器裡，拆掉機器就沒了。",
+            "一樣東西同時算在幾類裡時，按火、水、地、風的順序歸到第一類。",
+            "罕見精華餵給水晶控制器時，每刻被吃掉的機率是普通精華的兩倍，每個加的點數也更多，見[[essence/essences]]。",
+            "漏斗和管道只能往輸入格放東西、從精華格往外抽。",
+            "收到紅石訊號時暫停。",
+            {
+              "if": "cfg:machines.elemental_decomposer.generate_corruption",
+              "text": "工作時每秒向周圍洩漏 0～{cfg:machines.elemental_decomposer.max_corruption_gen} MRU，見[[crafting/corruption]]。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magical_lantern",
+      "title": "{item:essentialcraft5:magical_lantern}",
+      "icon": "essentialcraft5:magical_lantern",
+      "summary": "走到哪亮到哪",
+      "complete": "essentialcraft5:guide/essence/magical_lantern",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_lantern"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一盞{item:essentialcraft5:magical_lantern}，拿在手上能照亮腳下，也能在牆上、地上放下永久的隱形光源。先輩走夜路時，提的就是這種燈。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：火之焦點、風之焦點各 2 個，1 個{item:essentialcraft5:red_soul_matter}，2 塊魔力板和 2 個{item:essentialcraft5:magical_slag}。爐渣是[[generators/heat_generator]]燒剩下的，每燒一份燃料留下 1 個。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_lantern"
+        },
+        {
+          "type": "p",
+          "text": "燈籠自己能存 5000 MRU，剛做出來時是空的，放進[[storage/charging_chamber]]就能充滿。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>拿在主手或副手上</em>時，腳下是空氣、亮度又不到 12，那裡就會自動亮起來，人走開約 1 秒後熄滅，不耗 MRU。走路時大約每隔幾格亮一處，已經夠亮的地方和鞘翅滑翔時不亮。",
+            "<em>右鍵方塊的某一面</em>，只要那一面外側是空氣，就會用掉 1 個魔力爐渣和 100 MRU，在那裡放下一個永久的{block:essentialcraft5:magic_light}，低頭右鍵腳下的地面也行。",
+            "MRU 先從身上帶著的[[storage/soul_storage]]里扣，不夠再扣燈籠自己的，創造模式下什麼都不扣。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "手裡有魔力燈籠。"
+        },
+        {
+          "type": "h",
+          "text": "魔力光源"
+        },
+        {
+          "type": "p",
+          "text": "魔力光源亮度為 15，看不見也摸不著，人可以直接穿過去。戴著[[gear/magic_monocle]]這類能看見 MRU 的東西，能看到它周圍閃著品紅色的火花。要拆掉它，就對準正中間那一小塊空間打一下，拆下來什麼也不掉。"
+        }
+      ]
+    }
+  ]
+}

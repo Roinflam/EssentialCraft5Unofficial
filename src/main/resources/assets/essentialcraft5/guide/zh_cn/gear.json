@@ -1,0 +1,1690 @@
+{
+  "id": "gear",
+  "order": 85,
+  "group": "side",
+  "title": "支线 · 装备与防护",
+  "subtitle": "先看清并挡住 MRU，再换上一套好工具",
+  "icon": "essentialcraft5:mhs_helmet",
+  "entries": [
+    {
+      "id": "magic_monocle",
+      "title": "{item:essentialcraft5:magic_monocle}",
+      "icon": "essentialcraft5:magic_monocle",
+      "summary": "隔墙看见聚集体",
+      "complete": "essentialcraft5:guide/gear/magic_monocle",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magic_monocle"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "聚集体藏在墙后、地下的时候最危险，等你发觉，它多半已经长满了。先做一片能隔墙看见它的镜片，再做一身挡得住它的衣服。",
+          "by": "《源质残卷·卷二》"
+        },
+        {
+          "type": "p",
+          "text": "这一章讲随身的装备，先做能看见、能挡住 MRU 的东西，再换一套趁手的工具。每一篇都是可选的，缺什么做什么。单片镜、二阶魔杖和魔力防护有了<em>第六章</em>的几种合金就能做，[[gear/elemental_tools|弱化元素工具]]更早，第一章的材料就够，后面几篇各自写明了要等到什么时候。"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一副{item:essentialcraft5:magic_monocle}，隔着墙也能看见附近的 MRU 聚集体。聚集体是悬在空中的一团 MRU，多半是机器漏出来的，详见[[start/mrucu]]。"
+        },
+        {
+          "type": "p",
+          "text": "聚集体本来就看得见，只是藏在墙里、地下的很容易漏掉，等你察觉时，它也许已经攒到 1 万 MRU，开始[[corruption/matrix_damage|损伤你的矩阵]]了。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：三块{item:essentialcraft5:magic_purified_gold_alloy}和一块{item:essentialcraft5:magic_purified_glass_alloy}，都在魔力工作台上做，花费很少，做法见[[alloys/purified_alloys]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magic_monocle"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "list",
+          "items": [
+            "拿在主手或副手里，附近的聚集体会透过方块显现出来。",
+            "右键就能戴上，也可以直接放进头盔格，戴在头上效果一样，还能空出双手，只是占了头盔的位置。",
+            "戴着或拿着它时，还能看见永久魔力光源冒出的 MRU 粒子，光源的做法见[[essence/magical_lantern]]。",
+            "它没有耐久，不会损坏。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到单片镜时这一步打勾。拿着或戴上它，墙后的聚集体就会显出来。"
+        },
+        {
+          "type": "p",
+          "text": "<em>想深入</em>：[[gear/mru_mover_t2]]拿在手里，或者戴上[[gear/mhs_armor]]及后面几套盔甲的头盔，同样能隔墙看见聚集体。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/gear/magic_monocle.json — DS/D /D ：金合金 ×3、玻璃合金 ×1；alloys/magic_purified_gold_alloy.json 250 MRU、magic_purified_glass_alloy.json 1000 MRU",
+        "item/MagicMonocleItem.java:37 getEquipmentSlot HEAD、:43 swapWithEquipmentSlot（右键戴上）；没有耐久（stacksTo 1，registry/ECGear.java:80）",
+        "api/MRUVision.java canSee — 主手、副手、头盔槽里有 essentialcraft5:mru_vision 标签的物品；标签成员（src/generated/.../tags/items/mru_vision.json）：单片镜、二阶移动魔杖、魔力防护头盔、虚空头盔、风之头盔、风法师兜帽、宅男头盔、审判庭头盔",
+        "client/render/MRUPresenceRenderer.java:37 — 能看见 MRU 的玩家看到的聚集体不做深度测试；client/EssenceClient.java:51 — 永久魔力光源的粒子只给能看见 MRU 的玩家",
+        "entity/MRUPresenceEntity.java:335 — 存量 ⌊MRU / 10000⌋ ≥ 1 才伤矩阵",
+        "最早能做：magic_monocle / mru_mover_t2 / mhs_* 要提纯合金、注魔合金（第六章 alloys）；weak_elemental_* 要元素晶石块（第一章）；data/essentialcraft5/recipes/gear/*.json"
+      ]
+    },
+    {
+      "id": "mru_mover_t2",
+      "title": "{item:essentialcraft5:mru_mover_t2}",
+      "icon": "essentialcraft5:mru_mover_t2",
+      "summary": "找得到，也搬得动",
+      "complete": "essentialcraft5:guide/gear/mru_mover_t2",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mru_mover_t2"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一根{item:essentialcraft5:mru_mover_t2}。它的用法和一阶的{item:essentialcraft5:mru_mover}一样，一阶魔杖见[[crafting/corruption]]，不同的是拿在手里时还能像单片镜那样隔墙看见聚集体，找聚集体、搬聚集体，有这一根就够了。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：两块{item:essentialcraft5:magic_purified_glass_alloy}、一颗钻石和两块{item:essentialcraft5:magical_ingot}，到了第十二章，钻石也可以换成{item:essentialcraft5:pale_gem}。魔力锭是第三章在魔力工作台上做的那种，见[[crafting/magician_crafts]]，和单片镜用的{item:essentialcraft5:magic_purified_gold_alloy}是两样东西。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mru_mover_t2"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "对准聚集体按住右键，就能把它往自己这边拉，潜行时改成往外推。",
+            "前方约 20 格以内都够得着，每秒挪 2 格。",
+            "把大聚集体挪到离你常待的地方远一些的角落里。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "够得着",
+              "前方约 20 格"
+            ],
+            [
+              "挪动速度",
+              "每秒 2 格"
+            ],
+            [
+              "耐久",
+              "1536，只在真的拉动时每秒掉 1 点，约能用 25 分钟"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到二阶魔杖时这一步打勾。拿着它能看见墙后的聚集体，也能把它拉过来。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "聚集体所在的格子和要挪去的格子都得是你能改动的地方，魔杖才挪得动它，所以别人领地里和出生点附近受保护的聚集体都挪不动，也挪不出世界边界，一阶魔杖也是这样。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/gear/mru_mover_t2.json —  SI/ ES/E  ：玻璃合金 ×2、#essentialcraft5:diamonds（钻石或淡青宝石）、魔力锭 ×2",
+        "item/MRUMoverItem.java:52 SEGMENTS 20（前方 20 段）、:54 STEP 0.1（每刻 0.1 格 = 每秒 2 格）；:103 有耐久的每 20 刻掉 1 点，只在真的挪动时",
+        "registry/ECGear.java:89 durability(256 × 6) = 1536（1536 秒 ≈ 25.6 分钟）",
+        "item/MRUMoverItem.java:120 canMoveTo（世界边界、出生点保护）、:147 mayMove（当前格和目的格都要 ECProtection.canEdit，假玩家不行）——旧手册写「保护区里的能往外挪」，实际 mayMove 里的 mayInteract 更严，挪不动",
+        "api/MRUVision.java — 二阶魔杖在 mru_vision 标签里（拿在手里）；一阶不在"
+      ]
+    },
+    {
+      "id": "mrucu_container",
+      "title": "{item:essentialcraft5:mrucu_container}",
+      "icon": "essentialcraft5:mrucu_container",
+      "summary": "整团装走，换个地方放下",
+      "complete": "essentialcraft5:guide/gear/mrucu_container",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mrucu_container"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一只{item:essentialcraft5:mrucu_container}。移动魔杖只能把聚集体一点一点拖走，这只瓶子却能把整团聚集体连同里面的 MRU 一起收进去，带到别处再放出来。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：两块{item:essentialcraft5:magical_ingot}、三块{item:essentialcraft5:magic_purified_glass_alloy}和一颗钻石，到了第十二章，钻石也可以换成{item:essentialcraft5:pale_gem}。用料和[[gear/mru_mover_t2]]差不多，做得出魔杖就做得出它。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:mrucu_container"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿着空瓶对准前方 6 格内的聚集体，按住右键约 2 秒，聚集体和瓶口之间会冒出紫色的光点，这期间视线要一直对着它，才收得进去。",
+            "收进去时要付这团聚集体存量 {cfg:general.mrucu_container.capture_cost_percent|pctv} 的 MRU，先从你身上的[[storage/soul_storage|灵魂储存]]里扣，付不起就收不了。",
+            "瓶里装着聚集体时，拿它右键一个方块，聚集体会出现在你点中那一面外侧那一格的正中，瓶子随即变回空瓶，放出来不花 MRU。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "够得着",
+              "前方 6 格"
+            ],
+            [
+              "收一次",
+              "按住右键 2 秒，付存量 {cfg:general.mrucu_container.capture_cost_percent|pctv} 的 MRU"
+            ],
+            [
+              "放出来",
+              "不花 MRU"
+            ],
+            [
+              "一瓶装",
+              "一团聚集体，MRU 和平衡值原样保留"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "聚集体封在瓶里时不伤人，不吸收周围漏出的 MRU，也不和别的聚集体合并。瓶里那团旋涡光的颜色随平衡值变化，物品提示里写着存了多少 MRU。瓶子本身不怕火，掉进岩浆也不会连同聚集体一起烧掉。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到收容瓶时这一步打勾。对准一团聚集体按住右键，它会整团收进瓶里。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "收和放都只能在你能改动的地方，收时看聚集体所在的那一格，放时看目标那一格。放的位置还得在世界边界以内、出生点保护范围以外。别人领地里的聚集体收不走，你自己的也放不进别人家。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作里的聚集体算是一种生物，玩家常拿捕捉生物的道具把它整团搬走。移植以后它不再是生物，那些道具认不出它，才有了这只瓶子。"
+        }
+      ],
+      "_src": [
+        "item/MRUCUContainerItem.java — REACH 6（视线前方 6 格内最近的聚集体，找法同 MRUMoverItem.findTarget）、USE_TICKS 40（按住 2 秒，中途对不准就停）",
+        "item/MRUCUContainerItem.java capture — 付存量 general.mrucu_container.capture_cost_percent%（默认 10，向上取整）的 MRU，MRUDrain.playerUseMRU 先扣身上储存物品，创造模式不扣；瓶里记 MRU、平衡值、归零后是否保留",
+        "item/MRUCUContainerItem.java useOn / release — 点中那一面外侧那格的正中放出，不花 MRU；MRUPresenceEntity.create 的 flag 让第一轮结算跳过",
+        "item/MRUCUContainerItem.java — 权限同移动魔杖：收时 mayMove(聚集体那格)，放时 canMoveTo（世界边界、出生点保护）+ mayMove(目的格)；装着时聚集体不存在于世界，不伤人、不吸泄漏、不合并",
+        "registry/ECGear.java MRUCU_CONTAINER — stacksTo(1).fireResistant()；client/GearClient.java 装着时第二层按 MRUBalance.rgb 染色",
+        "data/essentialcraft5/recipes/gear/mrucu_container.json — I I / GDG /  G ：魔力锭 ×2、玻璃合金 ×3、#essentialcraft5:diamonds（钻石或淡青宝石）",
+        "原作聚集体继承 EntityLivingBase，抓生物的道具能装走；移植后是普通实体，那些道具认不出（MRUCUContainerItem 类注释）"
+      ]
+    },
+    {
+      "id": "mhs_armor",
+      "title": "魔力防护套装",
+      "icon": "essentialcraft5:mhs_chestplate",
+      "summary": "把腐化挡在外面",
+      "complete": "essentialcraft5:guide/gear/mhs_armor",
+      "optional": true,
+      "items": [
+        "essentialcraft5:mhs_helmet",
+        "essentialcraft5:mhs_chestplate",
+        "essentialcraft5:mhs_leggings",
+        "essentialcraft5:mhs_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一套魔力防护，包括{item:essentialcraft5:mhs_helmet}、{item:essentialcraft5:mhs_chestplate}、{item:essentialcraft5:mhs_leggings}和{item:essentialcraft5:mhs_boots}。这是第一套挡得住 MRU 的装备，穿上以后，MRU 腐化造成的伤害更轻，大聚集体也几乎伤不到你的矩阵。存着 MRU 时，它还会替你挡下一部分伤害。"
+        },
+        {
+          "type": "p",
+          "text": "先辈走近关着聚集体的笼子之前，都要先换上这样一身。守在漏 MRU 的机器旁，身上会不断叠加「MRU 腐化」效果，存量到了 1 万 MRU 的聚集体还会损伤周围玩家的矩阵，详见[[crafting/corruption]]。常守着机器干活的话，最好做上一套。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "全套要八块{item:essentialcraft5:combined_magical_alloys}、五个{item:essentialcraft5:world_interactor}、十二块{item:essentialcraft5:magic_plate}、一块{item:essentialcraft5:magic_purified_glass_alloy}和十份{item:essentialcraft5:crystal_dust}，加起来约 14 万 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "花费的大头是注魔合金，八块一共要 64 份{item:minecraft:blaze_powder}和 64 颗{item:minecraft:ender_pearl}，做法见[[alloys/combined_magical_alloys]]。可以先去下界要塞刷够烈焰粉，再趁夜里去打末影人。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:mhs_helmet",
+            "essentialcraft5:mhs_chestplate",
+            "essentialcraft5:mhs_leggings",
+            "essentialcraft5:mhs_boots"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "护甲"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "护甲值",
+              "头盔 {cfg:general.mhs_armor.armor_helmet}、胸甲 {cfg:general.mhs_armor.armor_chestplate}、护腿 {cfg:general.mhs_armor.armor_leggings}、靴子 {cfg:general.mhs_armor.armor_boots}"
+            ],
+            [
+              "盔甲韧性",
+              "每件 {cfg:general.mhs_armor.toughness}"
+            ],
+            [
+              "生命上限",
+              "每件 +{cfg:general.mhs_armor.max_health}，全套多 {cfg:general.mhs_armor.max_health|mul:4} 点，即 {cfg:general.mhs_armor.max_health|mul:2} 颗心"
+            ],
+            [
+              "耐久",
+              "512 / 1536 / 1024 / 512"
+            ],
+            [
+              "附魔能力",
+              "25，比钻石的 10 好附魔得多"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "修它最省事的是经验修补，也可以在铁砧上把两件合成一件（右边那件会被吃掉），铁砧上没有能修它的材料，工作台和砂轮也合不了它。[[devices/magical_repairer]]也能修，只是很费 MRU，胸甲从 0 修满要 {cfg:machines.magical_repairer.mru_usage|mul:1536} MRU。"
+        },
+        {
+          "type": "h",
+          "text": "矩阵缓冲"
+        },
+        {
+          "type": "p",
+          "text": "每件能存 <t>{cfg:general.mhs_armor.max_mru|at:0} MRU</t>，放进[[storage/charging_chamber]]就能充满。挨了近战、弹射物这类物理伤害，或者火、岩浆、爆炸、闪电这类元素伤害时，存着 MRU 的每一件替你挡下属于它的那一份，头盔 {cfg:general.mhs_armor.shares_helmet|at:0}/20、胸甲 {cfg:general.mhs_armor.shares_chestplate|at:0}/20、护腿 {cfg:general.mhs_armor.shares_leggings|at:0}/20、靴子 {cfg:general.mhs_armor.shares_boots|at:0}/20。"
+        },
+        {
+          "type": "p",
+          "text": "每件挡一次都要花 MRU，它那一份伤害每 1 点要 <t>{cfg:general.mhs_armor.mru_per_damage} MRU</t>，点数向下取整，至少按 1 点算。身上的{item:essentialcraft5:soul_shard}这类储存物品加起来够付，就从它们里扣，不够的话整笔从这件盔甲自己存的里扣。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩阵二阶起，灵魂储存不够时先扣你的[[matrix/reservoir|矩阵容量]]，最后才扣盔甲自己存的。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": [
+                "cfg:general.mhs_armor.shares_helmet|at:0==1",
+                "cfg:general.mhs_armor.shares_chestplate|at:0==2",
+                "cfg:general.mhs_armor.shares_leggings|at:0==1",
+                "cfg:general.mhs_armor.shares_boots|at:0==1",
+                "cfg:general.mhs_armor.mru_per_damage==100"
+              ],
+              "cells": [
+                "挨 8 点",
+                "每件都按 1 点算，全套 400 MRU，挡下 2 点"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.mhs_armor.shares_helmet|at:0==1",
+                "cfg:general.mhs_armor.shares_chestplate|at:0==2",
+                "cfg:general.mhs_armor.shares_leggings|at:0==1",
+                "cfg:general.mhs_armor.shares_boots|at:0==1",
+                "cfg:general.mhs_armor.mru_per_damage==100",
+                "cfg:general.mhs_armor.max_mru|at:0==2000"
+              ],
+              "cells": [
+                "挨 20 点",
+                "头盔 100 + 胸甲 200 + 护腿 100 + 靴子 100 = 500 MRU，挡下 5 点，胸甲自己存的够挡 10 下"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.mhs_armor.shares_helmet|at:0==1",
+            "cfg:general.mhs_armor.shares_chestplate|at:0==2",
+            "cfg:general.mhs_armor.shares_leggings|at:0==1",
+            "cfg:general.mhs_armor.shares_boots|at:0==1",
+            "cfg:general.mhs_armor.armor_helmet==3",
+            "cfg:general.mhs_armor.armor_chestplate==8",
+            "cfg:general.mhs_armor.armor_leggings==6",
+            "cfg:general.mhs_armor.armor_boots==3",
+            "cfg:general.mhs_armor.toughness==2"
+          ],
+          "text": "四件都有电时挨一下 20 点，穿着它只掉 5.25 点生命，钻石套要掉 8 点，下界合金套 7.2 点。没电的时候，它挡伤害就和钻石套一样。"
+        },
+        {
+          "type": "p",
+          "text": "魔法、摔落，还有着火以后一直掉的血、冰冻这类无视护甲的伤害，它都不挡。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>一件自己一点 MRU 都没有时不挡</w>，也不会去抽储存物品里的。付不起的那件，这一下也不挡，属于它的那份伤害照样落到你身上。"
+        },
+        {
+          "type": "p",
+          "text": "穿着它时，快捷栏左边有一个小方框，显示身上这几件靠 MRU 挡伤害的盔甲一共还剩多少电。物品提示里还写着这件满电时大约能挡几下 20 点的伤害。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "同调升阶以后，份额和每件能存的电都会变大，见[[attunement/mhs_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "MRU 抗性"
+        },
+        {
+          "type": "p",
+          "text": "每一件都带着几种抗性，数值写在物品提示里，穿在盔甲格里才生效，放在背包里不起作用。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU 腐化",
+              "25%"
+            ],
+            [
+              "腐化辐射",
+              "12.5%，这个模组里没有东西会造成腐化辐射，可以不管"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "cells": [
+                "海纳尔辐射",
+                "10%"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "受到的影响 = 1 − 四件抗性之和 ÷ 4"
+        },
+        {
+          "type": "p",
+          "text": "穿齐一套，MRU 腐化的影响只剩 0.75，每次伤害从最大生命的 {cfg:general.corruption.mru_corruption_health_percent|pct} 降到 {cfg:general.corruption.mru_corruption_health_percent|mul:0.75|pct}。"
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna/radiation]]也照这个办法算，穿齐一套后，每秒增加的辐射先乘以 <t>0.9</t> 再舍去零头，大约每秒少涨 1 点。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.radiation.enabled"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "挡住聚集体"
+        },
+        {
+          "type": "p",
+          "text": "存量到了 1 万 MRU 的聚集体，每秒会给 12 格内的玩家加一次矩阵损伤。存量每满 1 万算 1 级，满 2 万就是 2 级，损伤照下面的公式算，没穿防护时「受到的影响」按 0.99 计。"
+        },
+        {
+          "type": "formula",
+          "text": "每秒的矩阵损伤 = ⌊4 × 等级 ÷（10 − 10 × 受到的影响）⌋"
+        },
+        {
+          "type": "table",
+          "header": [
+            "身上的防护",
+            "1 级",
+            "2 级"
+          ],
+          "rows": [
+            [
+              "没有",
+              "40",
+              "80"
+            ],
+            [
+              "1 件",
+              "6",
+              "12"
+            ],
+            [
+              "2 件",
+              "3",
+              "6"
+            ],
+            [
+              "3 件",
+              "2",
+              "4"
+            ],
+            [
+              "全套",
+              "1",
+              "3"
+            ]
+          ],
+          "widths": [
+            2,
+            1,
+            1
+          ]
+        },
+        {
+          "type": "p",
+          "text": "只穿一件就能从 40 降到 6，哪怕一时只做得起头盔，也值得先把它做出来。中间隔着方块时，挨到的几率还会更低，隔着{item:essentialcraft5:fortified_stone}时两秒里只有一秒算数，隔着{item:essentialcraft5:fortified_glass}时三秒里只有一秒。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "四件都拿到过时这一步打勾。戴上头盔，就能像单片镜那样隔墙看见聚集体。"
+        },
+        {
+          "type": "p",
+          "text": "<em>想深入</em>：去过海纳尔以后，可以把它升级成[[gear/void_armor]]。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/gear/mhs_*.json — 头盔 AIA/PGP/DDD、胸甲 IDI/PAP/PAP、护腿 AIA/PDP/PDP、靴子 DID/PDP/ADA：注魔合金 8、世界交互器 5、#plates/magic 12、玻璃合金 1、水晶粉 10",
+        "MRU 合计：注魔合金 8 × (10000 + 2 × 500 + 2 × 1000 + 10) + 水晶粉 10 × (3000 + 100) + 魔力板 12 × 310 + 交互器 5 × 400 + 玻璃合金 1010 ≈ 14.2 万（alloys/*.json、magician_table/*.json、radiating_chamber/magical_essence.json）",
+        "alloys/combined_magical_alloys_a.json — 每块要烈焰合金 ×2（各 4 烈焰粉）、末影合金 ×2（各 4 颗 #essentialcraft5:ender_pearls）：八块 = 64 烈焰粉、64 珍珠（淡青珍珠也算末影珍珠）",
+        "item/MHSArmorItem.java:323-375 Material — 耐久 512/1536/1024/512、护甲 3/8/6/3（穿着时按 general.mhs_armor.armor_* 给，:119 getDefaultAttributeModifiers）、附魔 25；没有修复材料（getRepairIngredient 空）；:198 isRepairable 为假（工作台修理配方、砂轮合并不收，铁砧两件合修照原版），魔力修复器按 essentialcraft5:mru_repairable 照修",
+        "item/MHSArmorItem.java:203 getResistance — MRU 腐化 0.25（2 阶 0.5）/ 腐化辐射 0.125 / 海纳尔辐射 0.10；api/MRUResistance.java:82 vulnerability = 1 − 盔甲之和 / 4 − 饰品之和；腐化辐射（:28）只给腐化方块用，现在没有来源",
+        "corruption/MRUCorruption.java damage — 伤害 = 最大生命 × general.corruption.mru_corruption_health_percent（0.25）× 易伤；hoanna/Radiation.java:174 gain — (int)((区块底数 0~5 + 群系加成 0 / 2 / 6) × 易伤)，截断：全套易伤 0.9 时 n ≤ 10 的 ⌊0.9n⌋ = n − 1（恐惧之地 n = 11 时少 2）",
+        "entity/MRUPresenceEntity.java:398 matrixDamage — ⌊4 × tier / (10 − 10 × min(易伤, 0.99))⌋；PLAYER_RANGE 12.5；每 20 刻一轮；表里数值逐件算过（1 件 0.9375 → 6.4、2 件 0.875 → 3.2、3 件 0.8125 → 2.13、全套 0.75 → 1.6）",
+        "entity/MRUResistances.java:36-37 — 强化石 2、强化玻璃 3：沿线最大抗性 r，1/⌊r⌋ 的几率算数",
+        "修复器每点 machines.magical_repairer.mru_usage（500）MRU × 胸甲耐久 1536 = 76.8 万（item/MHSArmorItem.java:320 胸甲耐久）",
+        "tools/plan/batch13.md §4.3 魔力防护 — 韧性 0 → 2 / 件、+2 生命 / 件（ConfiguredArmorStats，general.mhs_armor.*）；每件自带 2 000 MRU（不是储存物品）、份额头 1 / 胸 2 / 腿 1 / 靴 1、每点 100 MRU、挡物理 + 元素（item/MHSArmorItem 实现 IMRUShieldArmor）",
+        "item/armor/MRUShield.java cost = max(1, ⌊伤害 × 份额 ÷ 20⌋) × 单价：8 点每件按 1 点算 4 × 100 = 400、挡 8 × 5 / 20 = 2；20 点 100 + 200 + 100 + 100 = 500、挡 5；胸甲 2 000 ÷ 200 = 10 下；mru/MRUDrain.payShield 储存物品加矩阵容量够就从它们扣，否则整笔扣这件；这件自己 MRU 为 0 不挡",
+        "IMRUShieldArmor.coverage 默认实现 — bypasses_armor 的不挡（原版着火 on_fire、冰冻 freeze、摔落、魔法都带它）；ECDamageKinds.isElemental 火 / 爆炸 / 闪电 / 冰冻",
+        "tools/plan/batch13.md §4.1 — D = 20 有电：挡 25% 后 15，护甲 20 / 韧性 8 → 15 × (1 − 16.25 / 25) ≈ 5.2；钻石 20 × 0.4 = 8.0，下界合金 20 × 0.36 = 7.2",
+        "tools/plan/batch13.md §4.7 — 护甲电量条（client/ArmorChargeHud，快捷栏旁、四件护盾盔甲电量合计）；提示框「满电约挡：20 点 × N 下」",
+        "原版 RepairItemRecipe.assemble 新建一件、只留诅咒附魔（同调数据全丢），砂轮 GrindstoneMenu.mergeEnchants 复制上面那件；铁砧 AnvilMenu 合两件时复制左边那件；魔力修复器只改耐久",
+        "kv 两行、5.25 那段照默认份额 1/2/1/1、单价 100、容量 2 000、护甲 3/8/6/3、韧性 2 算，挂了 cfg:…|at:0== 条件，改了配置就不显示"
+      ]
+    },
+    {
+      "id": "void_armor",
+      "title": "虚空套装",
+      "icon": "essentialcraft5:void_chestplate",
+      "summary": "存着 MRU 时，近战和箭矢都伤不到你",
+      "complete": "essentialcraft5:guide/gear/void_armor",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:void_helmet",
+        "essentialcraft5:void_chestplate",
+        "essentialcraft5:void_leggings",
+        "essentialcraft5:void_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：把魔力防护升级成虚空套装，包括{item:essentialcraft5:void_helmet}、{item:essentialcraft5:void_chestplate}、{item:essentialcraft5:void_leggings}和{item:essentialcraft5:void_boots}。这套盔甲护甲值高，四件合计还多出 {cfg:general.void_armor.max_health|mul:4} 点生命上限，只要盔甲里存着 MRU，近战和箭矢这类伤害一下也挨不着。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "全套要四件[[gear/mhs_armor|魔力防护]]、七颗{item:minecraft:nether_star}、五个{item:essentialcraft5:void_mru_reactor}、八个{item:essentialcraft5:void_core}、八块{item:essentialcraft5:void_plating}和四块{item:essentialcraft5:matter_of_eternity}。永恒物质是拿一颗下界之星做成的大电池，见[[storage/soul_storage]]。"
+        },
+        {
+          "type": "p",
+          "text": "每块永恒物质还要再用一颗下界之星，全套算下来一共要 <em>11 颗下界之星</em>，最好早些开始攒。"
+        },
+        {
+          "type": "p",
+          "text": "虚空核心和反应核要从海纳尔人留下的[[hoanna/relics|遗迹箱子]]里开，每箱各约 0.2 个，凑齐八个虚空核心要开 40 来个箱子，所以在海纳尔见到箱子就打开。往后打倒[[hologram/hologram|全息投影]]时也会掉一些。<w>主线后面几章还要约 15 个核心、12 个反应核</w>，先给主线留够，详见[[hoanna/relics]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "箱子不够开时，还可以让海纳尔富集仓里关着的聚集体[[hoanna/collapse|坍缩]]，每坍缩一次要 {cfg:machines.enrichment_chamber.collapse.seconds|div:60|round:1} 分钟，出 1 个。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "打倒全息投影以后，[[ley/ley_condenser]]就能慢慢凝出下界之星，不用再去刷凋灵骷髅。",
+          "if": [
+            "cfg:machines.ley_condenser.enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:machines.ley_condenser.nether_star.ticks>0"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:void_helmet",
+            "essentialcraft5:void_chestplate",
+            "essentialcraft5:void_leggings",
+            "essentialcraft5:void_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每张配方第二行正中放同部位的魔力防护，合成时整件用掉。胸甲配方顶上一行是两个反应核夹一颗下界之星，另外三件是两颗下界之星夹一个反应核。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>永恒物质里存的 MRU 会在合成时一并用掉</w>，最好先抽空。魔力防护上的附魔也不会带到新盔甲上。"
+        },
+        {
+          "type": "h",
+          "text": "护甲"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "护甲值",
+              "头盔 {cfg:general.void_armor.armor_helmet}、胸甲 {cfg:general.void_armor.armor_chestplate}、护腿 {cfg:general.void_armor.armor_leggings}、靴子 {cfg:general.void_armor.armor_boots}"
+            ],
+            [
+              "盔甲韧性",
+              "每件 {cfg:general.void_armor.toughness}"
+            ],
+            [
+              "击退抗性",
+              "每件 {cfg:general.void_armor.knockback_resistance|pct}"
+            ],
+            [
+              "生命上限",
+              "每件 +{cfg:general.void_armor.max_health}，即 {cfg:general.void_armor.max_health|div:2} 颗心"
+            ],
+            [
+              "耐久",
+              "2048 / 6144 / 4096 / 2048，穿在身上时不掉耐久"
+            ],
+            [
+              "附魔能力",
+              "40，钻石为 10，下界合金为 15"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这些属性一直有效，和盔甲里有没有 MRU 无关。全套的护甲值和韧性加起来超过游戏上限时，超出的部分不算，护甲上限是 <t>30</t>，韧性上限是 <t>20</t>。"
+        },
+        {
+          "type": "h",
+          "text": "存有 MRU 时挡下物理伤害"
+        },
+        {
+          "type": "p",
+          "text": "每件能存 <t>{cfg:general.void_armor.max_mru} MRU</t>，物品提示里看得到存量，放进[[storage/charging_chamber]]就能充满。挨了近战攻击，或者被箭、三叉戟这类弹射物击中时，存着 MRU 的每一件会替你挡下属于它的那一份，头盔 3/20、胸甲 8/20、护腿 6/20、靴子 3/20。"
+        },
+        {
+          "type": "p",
+          "text": "四件都存着 MRU 时，这一下伤害全被挡住，一点血也不掉，击退照样有。"
+        },
+        {
+          "type": "p",
+          "text": "每件挡一次都要花 MRU，它那一份伤害每 1 点要 <t>{cfg:general.void_armor.mru_per_damage} MRU</t>，点数向下取整，至少按 1 点算。身上的{item:essentialcraft5:soul_shard}这类储存物品加起来够付，就从它们里扣，不够的话整笔从这件盔甲自己存的 MRU 里扣。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.enabled",
+          "text": "戴在饰品栏里的储存物品被[[computer/seal_field|饰品封禁场]]封住时不算在内，背包里和身上别处的照常算。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "挨 1 点",
+              "每件都按 1 点算，全套 1600 MRU"
+            ],
+            [
+              "挨 8 点",
+              "头盔 400 + 胸甲 1200 + 护腿 800 + 靴子 400 = 2800 MRU，胸甲自己存的够挡 41 下"
+            ],
+            [
+              "挨 20 点",
+              "头盔 1200 + 胸甲 3200 + 护腿 2400 + 靴子 1200 = 8000 MRU，胸甲自己存的够挡 15 下"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>付不起 MRU 的那件，这一下就不挡</w>，属于它的那份伤害照样落到你身上。一件盔甲自己一点 MRU 都没有时也不挡，不会去抽储存物品里的 MRU。出门打大怪之前，把四件都充满，身上再带几块储存物品。"
+        },
+        {
+          "type": "p",
+          "text": "戴着{item:essentialcraft5:eta_amulet}挨 8 点时，它让你多受的那 8 点护盾不挡，直接落到护甲和生命上；护盾只挡原来那 8 点，也只按 8 点扣费。",
+          "if": "bauble:essentialcraft5:eta_amulet"
+        },
+        {
+          "type": "p",
+          "text": "带着{item:essentialcraft5:infinite_mru_crystal}时，这笔 MRU 全由它付，只要每件盔甲自己充过一点 MRU，虚空套装和[[computer/suit]]就能一直挡下去。",
+          "if": "bauble:essentialcraft5:infinite_mru_crystal"
+        },
+        {
+          "type": "p",
+          "text": "它只挡物理伤害。火、岩浆、爆炸、闪电、冰冻、魔法、荆棘、摔落、溺水等伤害不挡，也不扣 MRU，照常按上面的护甲值减伤，无视护甲的伤害同样不挡。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "同调到 3 阶以后，它也挡元素伤害，见[[attunement/void_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "各件独有的能力"
+        },
+        {
+          "type": "table",
+          "header": [
+            "部位",
+            "效果"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:void_helmet}",
+              "打死一只玩家以外的生物，回复它最大生命 ÷ 10 的饥饿值，僵尸是 2 点，正好一个鸡腿，戴着还能隔墙看见聚集体"
+            ],
+            [
+              "{item:essentialcraft5:void_chestplate}",
+              "受到任何伤害都有 <t>20%</t> 的几率闪开，掉出世界和 /kill 除外，闪开时不掉血也不花 MRU"
+            ],
+            [
+              "{item:essentialcraft5:void_leggings}",
+              "没有额外的效果"
+            ],
+            [
+              "{item:essentialcraft5:void_boots}",
+              "摔落伤害只剩一成，走得也快得多，还能直接迈上一格高的方块"
+            ]
+          ],
+          "widths": [
+            1,
+            4
+          ]
+        },
+        {
+          "type": "h",
+          "text": "全套：虚空回击与天灾减半"
+        },
+        {
+          "type": "p",
+          "text": "四件穿齐时，胸甲闪开活物打来的一下以后，3 秒内你下一次近战打实多 50% 伤害。打在玩家身上时只多 {cfg:general.attunement.pvp_effect_scale|mul:0.5|pct}。"
+        },
+        {
+          "type": "p",
+          "text": "四件穿齐时，海纳尔[[hoanna/events|天灾]]里日阵的灼烧、地震的推力和毒雾的中毒时长都减半。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "同调升阶以后，闪避、回击和这份天灾抗性都会变强，见[[attunement/void_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "MRU 抗性"
+        },
+        {
+          "type": "p",
+          "text": "每件都带着几种抗性，穿在盔甲格里才生效，和其他属性一样，与盔甲里存了多少 MRU 无关。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU 腐化",
+              "100%"
+            ],
+            [
+              "腐化辐射",
+              "50%"
+            ],
+            {
+              "if": "cfg:general.radiation.enabled",
+              "cells": [
+                "海纳尔辐射",
+                "75%"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "穿齐一套，MRU 腐化就完全伤不到你，大聚集体也加不了你的矩阵损伤。"
+        },
+        {
+          "type": "p",
+          "text": "穿齐一套后，区块每秒带来的[[hoanna/radiation]]只剩四分之一，零头舍去。在恐惧之地以外，剩下的这点辐射抵不过每秒自然消散的 1 点，待多久都不会再涨，在恐惧之地每秒最多也只涨 1 点。",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到任意一件虚空套装时这一步打勾。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "p",
+          "text": "脱下盔甲，多出来的生命上限随之去掉，血量也跟着降回去。下线再上线、从末地回来时，血量保持不变。死后穿着套装重生，生命从 20 点开始，之后再自然回满。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书说它是「游戏里最好的护甲」，护腿的说明还许诺它「能相位偏移穿过怪物」，这一条原作里一直没有做出来。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/void_armor/*.json — NRN / CMC / PEP（胸甲 RNR），N = #forge:nether_stars、R = 反应核、C = 虚空核心、M = 同部位魔力防护、P = 虚空板、E = 永恒物质：合计下界之星 7、反应核 5、虚空核心 8、虚空板 8、永恒物质 4",
+        "data/essentialcraft5/recipes/magician_table/matter_of_eternity.json — 永恒物质 = 下界之星 + 4 个大 MRU 晶块：全套 7 + 4 = 11 颗下界之星",
+        "data/essentialcraft5/loot_tables/chests/town_tower.json、catacombs.json relics 池 — 6~17 次，虚空板 / 虚空核心 / 反应核各权重 6 / 343，每箱各约 0.2 个：8 ÷ 0.2 = 40 箱（tools/gen/hoanna_loot.py 生成）",
+        "data/essentialcraft5/loot_tables/entities/hologram_*.json relics 池 — 18~20 次，同样各 6 / 343，每场各约 0.33 个（「后面打倒全息投影时也会掉一些」）",
+        "registry/ECVoidArmor.java:89 Config — general.void_armor：armor_helmet/chestplate/leggings/boots 6/16/12/6、toughness 6、knockback_resistance 0.2、max_health 20（每件）",
+        "item/VoidArmorItem.java share 3/8/6/3；每件 max_mru 5 万、每点 mru_per_damage 400（tools/plan/batch13.md §4.3、§8.1 D13 A，general.void_armor.*）；item/armor/MRUShield.java cost = max(1, ⌊伤害 × 份额 ÷ 20⌋) × 单价：1 点 4 × 400 = 1 600；8 点 400 + 1 200 + 800 + 400 = 2 800；20 点 1 200 + 3 200 + 2 400 + 1 200 = 8 000；胸甲 5 万 ÷ 1 200 = 41 下、÷ 3 200 = 15 下；VoidArmorItem MRUItemStorage（充能仓能充）",
+        "item/VoidArmorEvents.java:62 DODGE_CHANCE 0.2（不闪 bypasses_invulnerability）、:64 FALL_REDUCTION 0.9；挡物理伤害在 LOW（η 等 NORMAL 饰品之后）；这件自己的 MRU > 0 才挡，MRUDrain.playerUseMRU 先扣储存物品，扣不起不挡；混合端只算不扣，LivingDamageEvent 再扣",
+        "util/ECDamageKinds.java isPhysical — 近战、弹射物算；魔法、火 / 爆炸 / 闪电 / 冰冻、没有攻击者的、bypasses_invulnerability 不算；魔法另含 general.damage_kinds.magic_namespaces",
+        "item/VoidArmorEvents.java:151 — 真玩家打死非玩家生物：eat((int)(最大生命 / 10), 1)",
+        "item/VoidArmorItem.java:146 damageItem — 穿在玩家身上返回 0；:157 getResistance 1 / 0.5 / 0.75",
+        "mru/MRUDrain.java tryDrainFromStorages — 带着无尽 MRU 晶体（isInfinite）时全由它付；宅男套装同走这里",
+        "item/bauble/BaubleCombatEvents.java onBaubleLivingHurt（NORMAL）— η 受到 / 打出的伤害 ×2（句子带 bauble:essentialcraft5:eta_amulet 条件）",
+        "registry/ECVoidArmor.java:54-56 BOOTS_BONUS 移速 +0.075、登高 +0.6；:46 耐久 2048/6144/4096/2048、附魔 40",
+        "item/VoidArmorEvents.java onArmorChanged / onLivingTickClampHealth — 脱下后生命夹回新的上限；item/armor/ArmorHealthRestore.java — 下线、从末地回来（Clone 且不是死亡）时记下超出基础上限的生命，第一个 PlayerTick END 恢复；死亡重生不记，新玩家对象按不含盔甲的上限满血（20）",
+        "item/VoidArmorItem.java:157 getResistance 1 / 0.5 / 0.75；hoanna/Radiation.java:174 gain 截断、:183 step 在海纳尔每次 −1：全套易伤 0.25，普通区块 0~5、海纳尔沙漠 2~7 → 0~1，抵不过 −1；恐惧之地 6~11 → 1~2，净 +0~1",
+        "mru/MRUDrain.java:31 playerUseMRU — 储存物品合计够才从它们扣，否则整笔扣这件自己的（不拆开付）；item/armor/MRUShield.java absorb — 自己没电（storedMRU ≤ 0）的那件不挡",
+        "net/minecraft/world/entity/ai/attributes/Attributes — 护甲上限 30、韧性上限 20",
+        "主线要约 15 个虚空核心、12 个反应核：hoanna/relics 第 9 块（恶魔五芒星 + 4 根虚空水晶柱 5 核心 4 反应核、全息投影台、力场核心；第十批 10c 加审判庭信标 1 核心、3 档五芒星 4 根虚空柱 4 核心 4 反应核）；套装 8 核心 5 反应核 = data/essentialcraft5/recipes/void_armor/*.json",
+        "compat/CuriosCompat.java forEachEquipped — 跳过被压制的饰品；mru/MRUDrain.java storages 先收饰品栏（被封的不收）再收盔甲、背包、副手",
+        "tools/plan/batch13.md §4.3 虚空 — 全套虚空回击：胸甲闪避后 60 刻内下一次近战打实 +50%（对玩家 × pvp_effect_scale）；api/HoannaWard 全套 0 阶 0.5：日阵露天火伤、地震推力、毒雾中毒时长 ×(1 − w)；同调 3 阶起挡元素（attunement/void_armor）"
+      ]
+    },
+    {
+      "id": "elemental_tools",
+      "title": "元素工具",
+      "icon": "essentialcraft5:elemental_pickaxe",
+      "summary": "共鸣水晶做的工具",
+      "complete": "essentialcraft5:guide/gear/elemental_tools",
+      "optional": true,
+      "items": [
+        "essentialcraft5:elemental_pickaxe",
+        "essentialcraft5:elemental_axe",
+        "essentialcraft5:elemental_shovel",
+        "essentialcraft5:elemental_hoe",
+        "essentialcraft5:elemental_sword",
+        "essentialcraft5:weak_elemental_pickaxe",
+        "essentialcraft5:weak_elemental_axe",
+        "essentialcraft5:weak_elemental_shovel",
+        "essentialcraft5:weak_elemental_hoe",
+        "essentialcraft5:weak_elemental_sword"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：换上一套元素工具。元素工具分两套，{item:essentialcraft5:elemental_pickaxe}那一套用{item:essentialcraft5:mru_resonating_crystal}做，比下界合金还强，{item:essentialcraft5:weak_elemental_pickaxe}那一套用{item:essentialcraft5:elemental_drops_block}做，和钻石同级，却便宜得多。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "",
+            "元素",
+            "弱化元素"
+          ],
+          "rows": [
+            [
+              "材料",
+              "{item:essentialcraft5:mru_resonating_crystal}",
+              "{item:essentialcraft5:elemental_drops_block}"
+            ],
+            [
+              "全套用料",
+              "11 颗，约 5.5 万 MRU",
+              "11 块，共 99 颗元素晶石"
+            ],
+            [
+              "耐久",
+              "3568",
+              "754"
+            ],
+            [
+              "挖掘速度",
+              "15，钻石为 8，下界合金为 9",
+              "7"
+            ],
+            [
+              "挖掘等级",
+              "排在下界合金之上",
+              "和钻石一样"
+            ],
+            [
+              "附魔能力",
+              "36，钻石为 10，金为 22",
+              "36"
+            ],
+            [
+              "剑 / 斧攻击",
+              "9 / 11",
+              "7 / 9"
+            ]
+          ],
+          "widths": [
+            2,
+            3,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "镐和斧每把要 3 份材料，锄和剑要 2 份，锹要 1 份。{item:essentialcraft5:mru_resonating_crystal}是在辐射仓里拿一颗钻石和一颗绿宝石照出来的，每颗花 5000 MRU，一块{item:essentialcraft5:elemental_drops_block}由九颗{item:essentialcraft5:elemental_gem}合成。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩阵三阶起，{item:essentialcraft5:elemental_sword}带上[[matrix/alignment|矩阵特性]]：打实一下，就按你的矩阵属性另多一样效果。弱化元素剑没有。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:elemental_pickaxe",
+            "essentialcraft5:elemental_axe",
+            "essentialcraft5:elemental_shovel",
+            "essentialcraft5:elemental_hoe",
+            "essentialcraft5:elemental_sword"
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:weak_elemental_pickaxe",
+            "essentialcraft5:weak_elemental_axe",
+            "essentialcraft5:weak_elemental_shovel",
+            "essentialcraft5:weak_elemental_hoe",
+            "essentialcraft5:weak_elemental_sword"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "省钻石",
+          "text": "钻石不够用时，共鸣水晶里的钻石和绿宝石都可以换成{item:essentialcraft5:pale_gem}，一颗钻石能换四颗淡青宝石，够做两颗共鸣水晶。[[gear/pale_gem]]要等第十二章做出淡青块以后才做得了。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到其中任意一件时这一步打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>记得留几把备用。</em>元素镐要拿去做[[gear/magical_digger]]，元素剑要拿去做{item:essentialcraft5:chaos_fork}、{item:essentialcraft5:frozen_mace}、{item:essentialcraft5:holy_mace}和{item:essentialcraft5:spiky_shield}，元素锄要拿去做{item:essentialcraft5:staff_of_life}，合成时它们身上的附魔都不会保留。"
+        },
+        {
+          "type": "p",
+          "text": "修它们最省事的是经验修补，两把合成一把也行，铁砧上却没有能修它们的材料。[[devices/magical_repairer]]也能修，只是很费 MRU，元素镐从 0 修满要 {cfg:machines.magical_repairer.mru_usage|mul:3568} MRU。"
+        },
+        {
+          "type": "p",
+          "text": "<em>想深入</em>：[[wind_gear/wind_tools]]一把就能在五种形态之间切换，耐久和挖掘等级也更高，用[[wind/wind_gem]]做。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/gear/elemental_*.json、weak_elemental_*.json — 镐 DDD、斧 DD/DS、锄 DD、剑 D/D、锹 D：3 / 3 / 2 / 2 / 1 = 11 份",
+        "data/essentialcraft5/recipes/radiating_chamber/mru_resonating_crystal.json — #essentialcraft5:diamonds + #essentialcraft5:emeralds（两个标签都含淡青宝石），100 刻 × cost_modifier 50 = 5000 MRU",
+        "data/essentialcraft5/recipes/materials/elemental_drops_block.json — 九颗元素晶石",
+        "item/ElementalTier.java:33-34 — WEAKENED(等级 3, 754, 7, 攻击 3（第十三批 2.5 → 3）, 附魔 36) 排在钻石之后、下界合金之前；ELEMENTAL(6, 3568, 15, 5, 36) 排在下界合金之后（needs_elemental_tool 标签目前没有方块）；没有修复材料",
+        "registry/ECGear.java:112-145 — 剑 SwordItem(3) → 1 + 3 + 加成 = 9 / 7；斧 AxeItem(5) → 1 + 5 + 加成 = 11 / 9",
+        "data/essentialcraft5/recipes/digger/magical_digger.json（元素镐）、staffs/chaos_fork、frozen_mace、holy_mace、spiky_shield（元素剑）、staffs/staff_of_life（元素锄）— 普通有序配方，附魔不保留",
+        "修复器 500 MRU / 点 × 元素镐耐久 3568（item/ElementalTier.java:32）= 178.4 万"
+      ]
+    },
+    {
+      "id": "projection_use",
+      "title": "矩阵投影的使用",
+      "icon": "essentialcraft5:chaos_matrix_projection",
+      "summary": "改变自己的 MRU 矩阵",
+      "complete": "essentialcraft5:guide/gear/projection_use",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "if": "!cfg:general.matrix_rank.enabled",
+          "text": "<em>目标</em>（可选，打算做{item:essentialcraft5:chaos_fork}或{item:essentialcraft5:frozen_mace}时再做）：把一块矩阵投影吸收进自己的 MRU 矩阵，改变矩阵的属性。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "<em>目标</em>（可选，不过矩阵三阶要求属性不是中性，第十章之前总要做一次）：把一块矩阵投影吸收进自己的 MRU 矩阵，改变矩阵的属性。"
+        },
+        {
+          "type": "p",
+          "text": "先辈当中这样做过的人不多，吸收的过程并不好受。辐射仓里做出的[[generators/projections|矩阵投影]]除了当材料，还能吸收进矩阵，你的矩阵会染上投影的属性，{item:essentialcraft5:chaos_matrix_projection}让它变成混沌，{item:essentialcraft5:frozen_matrix_projection}变成冰冻，{item:essentialcraft5:magic_matrix_projection}变成魔力，{item:essentialcraft5:shade_matrix_projection}变成暗影，{item:essentialcraft5:empty_matrix_projection}让它变回中性。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.matrix_rank.enabled",
+          "text": "矩阵属性<em>没有任何被动效果</em>，只用来搭配武器。混沌矩阵配{item:essentialcraft5:chaos_fork}，冰冻矩阵配{item:essentialcraft5:frozen_mace}，属性对上了，打中目标时才有特效，详见[[staffs/matrix_weapons]]。魔力、暗影和中性矩阵都没有配套的武器。不打算用这两把武器的话，吸收投影只有代价。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩阵三阶起，矩阵属性给你一项被动，叫[[matrix/alignment|相性]]，带矩阵特性的武器打实以后也按它多出一样效果。选一种矩阵，就是选一种打法：混沌加伤害，冰冻挡近战、冻住对手，魔力省电，暗影要到八阶才起作用，之后特性能把伤害吸回来。{item:essentialcraft5:chaos_fork}和{item:essentialcraft5:frozen_mace}仍然要对应的矩阵才有自带的特效，见[[staffs/matrix_weapons]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "先右键点一下投影就松手，投影上会印下你的 MRU 矩阵，从此归你所有，物品提示里写着主人是谁，别人的投影你用不了。",
+            "再找一处安全的地方，备好食物，按住右键 10 秒。",
+            "这期间每 2 秒响一次传送门的声音，剩 5 秒时开始反胃，最后 2.5 秒失明。",
+            "吸收完的那一刻，投影消失，矩阵属性随之改变，聊天栏里会有一句提示。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "代价"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "吸收完成后",
+              "凋零 I、虚弱 V、缓慢 V、挖掘疲劳 V、饥饿 I，各持续 38 秒"
+            ],
+            [
+              "失明",
+              "用完以后还会再失明约 100 秒"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "用掉过一块矩阵投影时这一步打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "中途松手就白费了，已经上身的反胃和失明也不会消失。最好趁周围没有怪物时用，用完先吃点东西。"
+        },
+        {
+          "type": "p",
+          "text": "想知道自己现在是什么属性，看一眼绑定在你身上的{item:essentialcraft5:soul_stone}的物品提示就知道了，灵魂石见[[mru/soul_stone]]。"
+        }
+      ],
+      "_src": [
+        "item/MatrixProjectionItem.java:56 USE_DURATION 200（10 秒）、:58 SOUND_INTERVAL 40（2 秒）、:60 NAUSEA_AT 100（剩 5 秒，反胃 200 刻）、:63 BLINDNESS_AT 50（剩 2.5 秒，给 2049 刻 ≈ 用完后 100 秒）、:67 AFTERMATH_TICKS 760（38 秒）",
+        "item/MatrixProjectionItem.java:104 没主人时潜行右键 pass、否则印主人；:117 别人的投影只在动作栏提示；finishUsingItem — 凋零 I、虚弱 V、缓慢 V、挖掘疲劳 V、饥饿 I，setMatrixType，聊天栏 matrix_projection.used，触发 consume_item（本步打勾）",
+        "item/MatrixWeaponItem.java:121 hurtEnemy — 只有混沌之叉（混沌矩阵）和冰冻重锤（冰冻矩阵）看矩阵类型；全模组再没有别处读 getMatrixType（SoulStoneItem 只显示）",
+        "item/SoulStoneItem.java:122 — 绑定者本人看提示框显示矩阵属性",
+        "item/MatrixProjectionItem.java:100 use — 没有主人时右键只印主人（不开始举），潜行时 pass；印过以后右键才 startUsingItem；:195 提示写主人"
+      ]
+    },
+    {
+      "id": "magical_digger",
+      "title": "{item:essentialcraft5:magical_digger}",
+      "icon": "essentialcraft5:magical_digger",
+      "summary": "什么都挖得动的 MRU 镐",
+      "complete": "essentialcraft5:guide/gear/magical_digger",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_digger"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一把{item:essentialcraft5:magical_digger}。这是一把靠 MRU 驱动的镐，什么方块都挖得飞快，原本要特定工具才掉落的方块用它也照常掉落，而且永远不会坏。不潜行时，它还会把周围同种的方块一起挖掉，挖矿脉、开隧道都省事得多。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "一把{item:essentialcraft5:elemental_pickaxe}、一个{item:essentialcraft5:red_soul_matter}、两个{item:essentialcraft5:earth_focus}、两个{item:essentialcraft5:fire_focus}、两块{item:minecraft:tnt}和一块{item:essentialcraft5:magic_plate}，魔力板也可以换成淡青板或米斯莱板。元素镐的做法见[[gear/elemental_tools]]，灵魂物质见[[storage/soul_storage]]。"
+        },
+        {
+          "type": "p",
+          "text": "最费时的是四个焦点。焦点要拿精华做成的燃料来做，精华又得先培育元素水晶再抽出来，新水晶里的元素往往很少，详见[[essence/fuel_and_focus]]。想要挖掘器的话，最好早点开始培育水晶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "先留够主线的",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "主线做[[wind/wind_tablet]]还要 4 个{item:essentialcraft5:air_focus}，做[[demons/demonic_pentacle]]还要 4 个{item:essentialcraft5:fire_focus}，先把这些留够，多出来的再拿来做这里的东西。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_digger"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "合成前",
+          "text": "元素镐上的附魔和{item:essentialcraft5:red_soul_matter}里存着的 MRU 都不会转到挖掘器上，所以先把灵魂物质里的 MRU 用掉再合成。新做出的挖掘器是空的，放进[[storage/charging_chamber]]充上 MRU 再用。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "p",
+          "text": "拿在手里，像普通的镐一样挖就行。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "挖任何方块的速度都是 32，钻石镐是 8，下界合金镐是 9，连黑曜石也只要两秒多。挖什么都照常掉落，用不着换工具。",
+            "每挖掉一格扣 9 MRU，身上的{item:essentialcraft5:soul_shard}这类储存物品加起来够付，就从它们里扣，不够时从挖掘器自己存的 MRU 里扣。",
+            "不潜行时，挖掉一格，周围 3×3×3 范围里和它同种的方块会一起被挖掉，每格同样扣 9 MRU，MRU 不够就停下。潜行时只挖正在挖的这一格，照样扣 9 MRU。",
+            "连带挖掉的方块和你亲手挖的一样，照常掉落物品和经验，挖掘器上的时运、精准采集对它们也有效。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "自己存的 MRU",
+              "5000，存满约能挖 555 格"
+            ],
+            [
+              "每格",
+              "9 MRU"
+            ],
+            [
+              "挖掘速度",
+              "32，自己存的 MRU 不到 9 时只有 1"
+            ],
+            [
+              "连带范围",
+              "3×3×3 里的同种方块，一次最多 27 格"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到挖掘器时这一步打勾。充上 MRU 后挖一下石头，周围的石头会跟着一起不见。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>挖掘器自己存的 MRU 不到 9 时</em>，它会变得很慢，速度只有 1，效率魔咒也不管用，挖石头要两秒多，黑曜石要一分多钟。这时东西照样掉落，也不花 MRU，但不再连带挖掘，哪怕身上的储存物品还是满的。记得给挖掘器自己留一点 MRU。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "连带挖的每一格都算你亲手挖的，别人的领地、出生点附近受保护的地方、世界边界以外，这些你不能改动的地方都挖不动，也不扣那一格的 MRU。",
+            "只连带挖掉和中心<em>同一种</em>的方块，挖石头只带走石头，旁边的泥土和矿石都不动，范围也不会一圈圈往外扩。",
+            "它没有耐久，永远不会坏，在附魔台和铁砧上能附效率、时运、精准采集这类镐的魔咒，耐久和经验修补附不上去，它本来也用不着。",
+            {
+              "if": "cfg:machines.ley_projector.enabled",
+              "text": "它也是{item:essentialcraft5:ley_projector}的材料，见[[ley/ley_projector]]，拿它合成时，里面存的 MRU 会一并用掉。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书给它的副标题是「一种复合工具？」，正文说它「几乎能替代任何工具」。原作里潜行挖一格不花 MRU，挖不动的格子反倒照样扣。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/digger/magical_digger.json — TEM/FAE/PFT：TNT ×2、大地焦点 ×2、鲜红灵魂物质、火之焦点 ×2、元素镐、#plates/magic（魔力 / 淡青 / 米斯莱 / 恶魔板）；普通有序配方，附魔和 MRU 都不保留",
+        "data/essentialcraft5/recipes/essence/earth_focus.json、fire_focus.json — 焦点 = 金 ×4 + 铁 ×4 + 对应元素燃料；焦点起步慢见 tools/plan/progression.md「拖沓」第 4 条",
+        "item/MagicalDiggerItem.java:61 MAX_MRU 5000（÷ 9 ≈ 555 格）、:63 COST 9、:65 FAST_SPEED 32、:67 SLOW_SPEED 1、:69 AREA_RADIUS 1（3×3×3）；:103 isCorrectToolForDrops 恒真",
+        "item/MagicalDiggerItem.java 类注释 — 1 速时挖石头约 45 刻、黑曜石约 1500 刻，效率不起作用（DiggerTests.diggerSpeedMatchesGuide）；32 速黑曜石约 47 刻",
+        "item/MagicalDiggerItem.java:123 mineBlock — 自己存的 ≥ 9 才扣中心格（潜行也扣）；不潜行的真玩家登记范围挖；MRUDrain.playerUseMRU：储存物品合计够就从它们扣，否则整笔扣挖掘器自己的",
+        "item/MagicalDiggerEvents.java:131-144 — 邻格要同一种方块、硬度 ≥ 0、mayInteract；调玩家本人的 gameMode.destroyBlock（掉落、附魔、经验照常），挖成才扣",
+        "item/MagicalDiggerItem.java:147 canBeDepleted false、:153 isEnchantable true（耐久、经验修补附不上）",
+        "data/essentialcraft5/recipes/wind/wind_tablet.json 风之焦点 ×4、demon/demonic_pentacle.json 火之焦点 ×4（海纳尔之门开着时才是主线）"
+      ]
+    },
+    {
+      "id": "essential_tools",
+      "title": "{item:essentialcraft5:essential_pickaxe}与{item:essentialcraft5:essential_axe}",
+      "icon": "essentialcraft5:essential_pickaxe",
+      "summary": "挖一面 3×3，砍倒整棵树",
+      "complete": "essentialcraft5:guide/gear/essential_tools",
+      "optional": true,
+      "items": [
+        "essentialcraft5:essential_pickaxe",
+        "essentialcraft5:essential_axe"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一把{item:essentialcraft5:essential_pickaxe}或{item:essentialcraft5:essential_axe}。两件都靠 MRU 干活，不会损坏，镐一下挖掉你挖的那一面上的 3×3，斧砍一根原木，整棵树都会跟着倒下。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "镐要一把{item:essentialcraft5:elemental_pickaxe}，斧要一把{item:essentialcraft5:elemental_axe}，元素工具见[[gear/elemental_tools]]。每件还要两块{item:essentialcraft5:mithriline_plate}、一颗{item:essentialcraft5:wind_gem}、两个{item:essentialcraft5:mru_resonating_crystal}和一个{item:essentialcraft5:dark_soul_matter}，风之水晶要到第十三章才做得出来，见[[wind/wind_gem]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:essential_pickaxe"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:essential_axe"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "合成前",
+          "text": "元素工具上的附魔和{item:essentialcraft5:dark_soul_matter}里存着的 MRU 都不会转到新工具上，合成前最好先把那份 MRU 用掉。新做的镐和斧是空的，放进[[storage/charging_chamber]]充上 MRU 再用。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "p",
+          "text": "拿在手里，像普通的镐和斧一样用。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "工具自己存的 MRU 还够付一格时，镐挖石头和矿石、斧砍木头的速度是 12，下界合金工具是 9，不够一格时速度只有 1。",
+            "{item:essentialcraft5:essential_pickaxe}每挖掉一格扣 {cfg:general.essential_tools.mru_per_block} MRU，{item:essentialcraft5:essential_axe}每砍掉一格扣 {cfg:general.essential_tools.mru_per_log} MRU，你亲手挖的那格也算在内。身上的储存物品加起来够付时从它们里扣，不够再扣工具自己存的，两边都付不起下一格，连带就停在那里。拿镐挖泥土、拿斧挖石头这类不对路的方块时，它和普通工具一样，不扣 MRU，也不连带。",
+            "镐会连带挖掉你挖的那一面上、以这一格为中心的 3×3，挖墙时是竖着的一片，挖地板和天花板时是平着的一片。",
+            "斧砍的是原木或菌柄时，和它连着的同一种原木会在几刻之内一根接一根倒下，掉落物都堆在你砍的那一格，树叶留在原处，过一阵自己掉光。",
+            "潜行时只挖、只砍正在挖的这一格，照样扣这一格的 MRU。",
+            "连带挖掉的每一格都算你亲手挖的，照常掉落物品和经验，工具上的时运、精准采集对它们同样有效。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "自己存的 MRU",
+              "{cfg:general.essential_tools.max_mru}"
+            ],
+            [
+              "镐每格",
+              "{cfg:general.essential_tools.mru_per_block} MRU"
+            ],
+            [
+              "斧每格",
+              "{cfg:general.essential_tools.mru_per_log} MRU"
+            ],
+            [
+              "挖掘速度",
+              "12，自己存的 MRU 不够一格时只有 1"
+            ],
+            [
+              "镐的范围",
+              "挖的那一面上的 3×3，一次最多连带 8 格"
+            ],
+            [
+              "斧的上限",
+              "一棵最多 {cfg:general.essential_tools.max_logs} 根"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到镐或斧其中一件，这一步就打勾了。给镐充上 MRU，对着石墙挖一格，周围的 8 格石头会跟着碎掉。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "if": "cfg:general.essential_tools.leaves_required>0",
+          "text": "<em>斧只放倒天然的树</em>，连着的原木旁边要有至少 {cfg:general.essential_tools.leaves_required} 片自己长出来的树叶才算一棵树，下界的巨型菌看的是下界疣块和诡异疣块。用原木盖的房子和柱子旁边没有天然树叶，你亲手放的树叶也不算，砍它们时斧只砍掉你砍的那一根。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "if": "!cfg:general.essential_tools.leaves_required>0",
+          "text": "<em>斧会放倒连着的所有同种原木</em>，用原木盖的房子、柱子也一样，砍之前看清楚。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "镐连带时不碰这几种格子：箱子、熔炉、刷怪笼和各种机器这类带方块实体的方块，基岩这类挖不动的方块，不该用镐挖的方块，以及比你挖的那格硬太多的方块。周围的格子最多只能比中间那格硬 {cfg:general.essential_tools.hardness_margin}，所以挖石头不会顺带挖掉黑曜石。",
+            "少数方块镐从不顺带挖，只有你正对着挖它时才会挖掉，免得把挖下来什么也不掉的稀有方块连带毁掉。",
+            "斧找树时只往上和同一层找，你砍的那根下面的原木不碰。水平方向最多找出 {cfg:general.essential_tools.felling_radius} 格，往上最多 {cfg:general.essential_tools.felling_height} 格，只认和你砍的那根同一种的原木，离得近的先砍。",
+            "一棵树还没倒完时再砍别的原木，只砍那一根。砍到一半换了主手的东西、去了别的维度或者死了，剩下的就不砍了。",
+            "连带的格子落在你不能动的地方时，比如别人的领地、出生点附近受保护的地方或世界边界外，那几格留着不动，也不扣 MRU。",
+            "两件都没有耐久，能附效率、时运和精准采集，附不上耐久和经验修补。凡是下界合金镐挖得出掉落物的方块，{item:essentialcraft5:essential_pickaxe}都挖得出。斧照样能右键给原木去皮。",
+            "创造模式下两件都只挖一格，也不扣 MRU。",
+            "[[gear/magical_digger]]连带挖的是周围 3×3×3 里同一种方块，适合挖矿脉。{item:essentialcraft5:essential_pickaxe}只挖一面，不分石头种类，开隧道、清场地更顺手。"
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/essentialtools/essential_pickaxe.json — MWM / RER / _D_：米斯莱板 ×2、风之水晶、MRU 共鸣水晶 ×2、元素镐、暗黑灵魂物质；普通有序配方，附魔和 MRU 都不保留",
+        "data/essentialcraft5/recipes/essentialtools/essential_axe.json — 同上，元素镐换成元素斧",
+        "registry/ECEssentialTools.java:153 DEFAULTS — max_mru 50000、mru_per_block 10、mru_per_log 20、hardness_margin 3、max_logs 128、felling_radius 10、felling_height 48、leaves_required 4",
+        "registry/ECEssentialTools.java:87 材料速度 12（代码常量）、:104 附魔能力 15、:72 排序登记在下界合金之后（下界合金镐挖得出掉落的它都挖得出）",
+        "item/EssentialTool.java:39 isCharged — 自己存的 ≥ 一格的价钱才快；item/EssentialPickaxeItem.java:56、item/EssentialAxeItem.java:57 getDestroySpeed 快时取材料速度（DiggerItem：只对适用方块，其余 1），不快时 1；下界合金材料速度 9 是原版 Tiers.NETHERITE",
+        "item/EssentialToolEvents.java:132 onToolMined — 只对镐 #mineable/pickaxe、斧 #mineable/axe 生效（别的方块不扣不连带）；canAfford 不够不登记；:142 潜行、创造模式、假玩家、本刻已经连带过的只付中心那格",
+        "item/EssentialToolEvents.java:369 run — tick 末尾确认中心那格真没了才扣它的钱；之后逐格 destroyBlock（玩家本人挖：掉落、经验、时运、精准采集照原版），返回真且方块变了才扣；MRUDrain.playerUseMRU 储存物品合计够就从它们扣，否则扣工具自己的",
+        "item/EssentialToolEvents.java:163 faceFor — 左键记下的格子对得上用记下的面，否则用视线射线；:176 planeAround 垂直于这个面的 8 格（3×3、8 格是代码常量）",
+        "item/EssentialToolEvents.java:212 areaMineable — #mineable/pickaxe、isCorrectToolForDrops、0 ≤ 硬度 ≤ 中心硬度 + hardness_margin（石头 1.5、黑曜石 50）、没有方块实体、不在 essential_tools/no_area 标签里",
+        "item/EssentialToolEvents.java:230 planFelling — 26 邻接、只认同一种方块、dy 0~felling_height（不往下）、|dx| |dz| ≤ felling_radius、max_scan、max_logs（广度优先，近的先收）；:280 isNaturalTree 不是 persistent 的树叶 + 下界疣块 / 诡异疣块合计 ≥ leaves_required，0 = 不查",
+        "item/EssentialToolEvents.java:411 runJobs — 每棵每刻 logs_per_tick、全服每刻 logs_per_tick_total；:422 runJob 换手 / 换维度 / 死亡（stillHolding）整单作废；:338 essentialToolItemJoin 砍树期间的掉落物挪到砍的那一格",
+        "item/EssentialToolEvents.java:152 一个人同时只有一棵树在砍（JOBS 按玩家），没砍完时再砍原木不找树",
+        "item/EssentialToolEvents.java level.mayInteract（出生点保护、世界边界）不满足的格子跳过；destroyBlock 被领地插件拦下返回 false，不扣（EssentialToolTests.pickaxeDeniedCellStaysFree）",
+        "item/EssentialPickaxeItem.java:79 canBeDepleted false、:90 isEnchantable true（耐久、经验修补附不上，EssentialToolTests.essentialToolsBasics）；斧继承 AxeItem，右键去皮照原版",
+        "data/essentialcraft5/advancements/guide/gear/essential_tools.json — 拿到两件任一（inventory_changed）",
+        "item/MagicalDiggerItem.java 类注释 — 挖掘器连带 3×3×3 里同一种方块",
+        "item/EssentialToolEvents.java:213 — 连带的格子跳过 essentialcraft5:essential_tools/no_area 标签（默认只有 minecraft:budding_amethyst，可由数据包改）；中心那格照常挖（batch12.md 定稿 a）"
+      ]
+    },
+    {
+      "id": "pale_gem",
+      "title": "{item:essentialcraft5:pale_gem}",
+      "icon": "essentialcraft5:pale_gem",
+      "summary": "本模组配方里钻石与绿宝石的替身",
+      "complete": "essentialcraft5:guide/gear/pale_gem",
+      "optional": true,
+      "items": [
+        "essentialcraft5:pale_gem"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：在{item:essentialcraft5:radiating_chamber}里做几颗{item:essentialcraft5:pale_gem}，要等第十二章做出{item:essentialcraft5:pale_block}以后才能动手。"
+        },
+        {
+          "type": "p",
+          "text": "这个模组里大多数要钻石或绿宝石的配方都能拿淡青宝石顶替，{item:essentialcraft5:diamond_plate}、{item:essentialcraft5:emerald_plate}、{item:essentialcraft5:mru_resonating_crystal}、{item:essentialcraft5:matrix_link}、{item:essentialcraft5:soul_sphere}、{item:essentialcraft5:red_soul_matter}、{item:essentialcraft5:emerald_heart}和{item:essentialcraft5:mru_mover_t2}都收它。"
+        },
+        {
+          "type": "p",
+          "text": "一颗钻石能换四颗淡青宝石。共鸣水晶本来要一颗钻石加一颗绿宝石，换成淡青宝石以后，一颗钻石就够做两颗。后面的章节要用不少共鸣水晶，钻石紧缺时这样换很划算。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：一块{item:essentialcraft5:pale_block}和一颗钻石或绿宝石，淡青块见[[pentacle/pale_block]]。每做一次花 3 万 MRU，出四颗。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pale_gem"
+        },
+        {
+          "type": "p",
+          "text": "它还能当{item:essentialcraft5:ley_projector}的透镜，放一颗进透镜格，投影出的矿就按时运 I 掉落，宝石本身不消耗，详见[[ley/ley_lens]]。",
+          "if": "cfg:machines.ley_projector.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到过一颗淡青宝石时这一步打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "不收它的地方",
+          "text": "淡青宝石只在这个模组的配方里顶替钻石和绿宝石，下面这些地方不收它。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "原版和其他模组的配方。",
+            "做淡青宝石本身要用真正的钻石或绿宝石，不能拿淡青宝石再换淡青宝石。",
+            "{item:essentialcraft5:mithriline_furnace}里钻石和绿宝石的互换，还有注风做{item:essentialcraft5:wind_gem}，都只认真正的钻石或绿宝石。",
+            "{item:essentialcraft5:crystal_former}最上排正中的钻石格，还有往绿宝石块上丢钻石、丢绿宝石的两种仪式，分别是[[start/mrucu]]里的钻石仪式和[[mru/soul_stone]]的仪式。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作里的淡青宝石在哪个模组的配方里都能当钻石和绿宝石用，连红宝石、蓝宝石也能顶，还能拿它再做淡青宝石，或者在米斯莱熔炉里换回真钻石，一颗钻石就这样滚出了八颗。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/radiating_chamber/pale_gem_from_diamond.json（250 刻 × 120）、pale_gem_from_emerald.json（300 刻 × 100）— 淡青块 + #forge:gems/diamond 或 emerald，出 4 颗，都是 3 万 MRU",
+        "src/generated/.../tags/items/diamonds.json、emeralds.json — #essentialcraft5:diamonds / emeralds 含淡青宝石；用到这两个标签的配方：charms/emerald_heart、gear/mru_mover_t2、magician_table/red_soul_matter、soul_sphere、materials/diamond_plate_*、emerald_plate_*、matrix_link、radiating_chamber/mru_resonating_crystal",
+        "item/PaleGemItem.java — 只走 EC 内部标签，不进 forge 共享标签；投影仪开着时多一行透镜提示",
+        "data/essentialcraft5/recipes/mithriline/furnace/diamond_to_emerald.json、emerald_to_diamond.json、wind/imbue/wind_gem.json — 只认原版钻石 / 绿宝石；blockentity/CrystalFormerBlockEntity.java:141 SLOT_DIAMOND 只收 Items.DIAMOND；ritual/GroundRituals.java:111-114 钻石 / 绿宝石仪式只认原版物品",
+        "「后面的章节要的共鸣水晶很多」— tools/plan/progression.md：第 20 章共鸣水晶 48 颗"
+      ]
+    },
+    {
+      "id": "ley_detector",
+      "title": "{item:essentialcraft5:ley_detector}",
+      "icon": "essentialcraft5:ley_detector",
+      "summary": "扫一遍周围的矿，轮廓只画给你看",
+      "complete": "essentialcraft5:guide/gear/ley_detector",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ley_detector"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一台{item:essentialcraft5:ley_detector}。右键一下，周围的矿就会描上一圈发光的轮廓，隔着石头也看得见，照着轮廓挖过去，不用再盲目地开矿道。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "四块{item:essentialcraft5:mithriline_ingot}、一块{item:essentialcraft5:magical_screen}、两个{item:essentialcraft5:earth_focus}、一个{item:essentialcraft5:magic_monocle}和一个{item:minecraft:compass}。米斯莱锭见[[mithriline/mithriline_ingot]]，单片镜见[[gear/magic_monocle]]，焦点见[[essence/fuel_and_focus]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:ley_detector"
+        },
+        {
+          "type": "p",
+          "text": "新做的探测仪里没有 MRU，放进[[storage/charging_chamber]]充上再用。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "拿着探测仪右键。每扫一次花 {cfg:general.ley_detector.mru_per_scan} MRU，身上的{item:essentialcraft5:soul_shard}这类储存物品够付就从它们里扣，不够再扣探测仪自己存的。",
+            "以你站的那一格为中心，周围 {cfg:general.ley_detector.radius} 格内的矿都会描上轮廓，矿太多时只描离你最近的那些。",
+            "轮廓留一阵子，最后 3 秒慢慢淡掉。",
+            "潜行右键在「全部矿石」「只看贵重矿」「聚集体」三种模式之间轮着切换，切换不花 MRU。"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "颜色",
+            "是什么矿"
+          ],
+          "rows": [
+            [
+              "<c:FFD34D>金色</c>",
+              "钻石、绿宝石、金、远古残骸和米斯莱的矿"
+            ],
+            [
+              "<c:B57CFF>紫色</c>",
+              "元素蕴魔矿"
+            ],
+            [
+              "<c:6FE3E3>青色</c>",
+              "其余的矿，别的模组加的矿也在这一类"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "选「只看贵重矿」时，只描金色那一类。"
+        },
+        {
+          "type": "p",
+          "text": "选「聚集体」时不描矿，改为指出 {cfg:general.mobs.mru_golem.detector_radius} 格内存量 {cfg:general.mobs.mru_golem.detector_min_mru} MRU 以上、离你最近的那团聚集体在哪个方向，上古遗迹里的那团通常就是它，见[[bestiary/mru_golem]]。它只在已经加载的区块里找。"
+        },
+        {
+          "type": "p",
+          "text": "右键和扫矿一样花 {cfg:general.ley_detector.mru_per_scan} MRU、进同样的冷却。动作栏会写出那团在你哪个方向、水平多远、往上或往下几格、存着多少 MRU，眼前还会朝那个方向冒一串青色的小点，只有你看得见。附近没有合适的聚集体时也会说一声，MRU 照扣。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "自己存的 MRU",
+              "{cfg:general.ley_detector.max_mru}"
+            ],
+            [
+              "每扫一次",
+              "{cfg:general.ley_detector.mru_per_scan} MRU"
+            ],
+            [
+              "范围",
+              "以你为中心，前后左右上下各 {cfg:general.ley_detector.radius} 格"
+            ],
+            [
+              "轮廓",
+              "留 {cfg:general.ley_detector.display_ticks|sec}，最多描 {cfg:general.ley_detector.max_highlights} 格"
+            ],
+            [
+              "冷却",
+              "{cfg:general.ley_detector.cooldown_ticks|sec}"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到探测仪，这一步就打勾了。充上 MRU 后在矿洞里右键，附近的矿就会亮起轮廓。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "轮廓只画在<em>你自己</em>的屏幕上，旁边的人看不见。扫描以你右键时站的地方为中心，走远以后轮廓不会跟着你更新，到了新地方要再扫一次。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "描了轮廓的那一格被挖掉、换成别的方块以后，轮廓马上消失。",
+            "再扫一次会把上一次的轮廓换掉，换了维度或者退出游戏，轮廓就清空了。",
+            "冷却期间右键没有反应，物品图标上盖着一层冷却遮罩。",
+            "扫描要花几刻才做完，做完才换上新的轮廓。"
+          ]
+        }
+      ],
+      "_src": [
+        "registry/ECLeyDetector.java:79 Config.DEFAULTS — 存 10000、每次 1500、冷却 200 刻、半径 16、画 300 刻、最多 256 格；:94-116 配置 general.ley_detector.*（半径 4~32）",
+        "data/essentialcraft5/recipes/leydetector/ley_detector.json — MSM / EOE / MCM：米斯莱锭 ×4、魔力屏幕、大地焦点 ×2、魔力单片镜、指南针",
+        "item/LeyDetectorItem.java:57 initCapabilities — 自带 MRUItemStorage（max_mru），新做的是空的；MRUStaffItem.creativeVariants 创造栏放空 / 满两份",
+        "item/LeyDetectorItem.java:102 MRUDrain.playerUseMRU — 先扣身上的储存物品，凑不够再扣探测仪自己的；:106 冷却；:109 只给本人发 S2CLeyScanPacket；:112 playNotifySound 只有本人听得见",
+        "item/LeyDetectorItem.java:63 潜行右键切 ValuableOnly，不扣、不进冷却（LeyDetectorTests.leySneakToggles）",
+        "client/ley/LeyScanClient.java:94 以收到包时玩家脚下那格为中心；:52 每刻 4096 格分刻扫，:132 扫完才换上新结果；:54 FADE_TICKS 60（最后 3 秒淡出）",
+        "client/ley/LeyScanClient.java:56-60 颜色 金 #FFD34D / 紫 #B57CFF / 青 #6FE3E3，:103 colorOf 先看贵重；tools/tags/ecleydetector.json — targets = #forge:ores，valuable = 钻石、绿宝石、远古残骸、金、米斯莱矿，ec = 15 种元素蕴魔矿",
+        "ley/LeyScan.java:126 只留离中心最近的 max_highlights 格",
+        "client/ley/LeyScanClient.java:188 那一格换了方块就不画；:126 / :138 换维度清空，:198 断线清空",
+        "item/LeyDetectorItem.java:78 冷却中右键 FAIL；物品冷却由原版画遮罩",
+        "tools/plan/batch13.md §5.3.1 — 第三档「聚集体」：只查已加载区块，64 格内最近 ≥ 5 000 MRU 的聚集体方向（item/LeyDetectorItem.locate / describe，13c-M2：花费与冷却同扫矿，动作栏方位 + 水平距离 + 上下差 + MRU，只给本人冒指路粒子，没找到也扣；范围与门槛读 general.mobs.mru_golem.detector_radius / detector_min_mru）"
+      ]
+    },
+    {
+      "id": "homeward_compass",
+      "title": "{item:essentialcraft5:homeward_compass}",
+      "icon": "essentialcraft5:homeward_compass",
+      "summary": "记一个归途点，引导几秒传回去",
+      "complete": "essentialcraft5:guide/gear/homeward_compass",
+      "optional": true,
+      "items": [
+        "essentialcraft5:homeward_compass"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一个{item:essentialcraft5:homeward_compass}。在家里记下一个归途点，以后不管走到哪儿，按住右键站上几秒就能传回来。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "四块{item:essentialcraft5:magic_purified_ender_scale_alloy}、一颗{item:essentialcraft5:wind_gem}、两个{item:minecraft:ender_eye}、一块{item:essentialcraft5:dark_soul_matter}和一个{item:minecraft:compass}。末影鳞合金见[[storage/upgrades]]，风之水晶见[[wind/wind_gem]]，暗黑灵魂物质见[[storage/soul_storage]]。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:homeward_compass"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "潜行右键一个方块，把它记成归途点。回来时你会站在这个方块顶上，所以挑一块头顶空着的地板。想换地方，随时再记一次。",
+            "要回去时，按住右键别松手，人也别走动。罗盘引导 {cfg:general.homeward_compass.channel_ticks|sec}，这期间身边会冒出紫色的传送门粒子。",
+            "引导满了就传回归途点。MRU 到这时才扣，全从身上的储存物品里扣，罗盘自己不存 MRU。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "引导中走开超过 {cfg:general.homeward_compass.move_tolerance} 格、受了伤，或者松开右键，这一趟就断了。断了不花 MRU，也不进冷却，重新按住右键就好。"
+        },
+        {
+          "type": "h",
+          "text": "起不了手的时候"
+        },
+        {
+          "type": "p",
+          "text": "下面几种情况按右键不会开始引导，快捷栏上方会写明原因。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "最近 {cfg:general.homeward_compass.combat_lock_ticks|sec}内挨过怪物或别的玩家的打。",
+            "身上有{lang:effect.essentialcraft5.anchored}，或者正骑着坐骑。",
+            "罗盘还在冷却。",
+            "身上的储存物品凑不够这一趟的 MRU。"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "同一维度",
+              "{cfg:general.homeward_compass.base_mru} MRU，每远 1 格加 {cfg:general.homeward_compass.mru_per_block} MRU，最多 {cfg:general.homeward_compass.max_mru_same_dimension} MRU"
+            ],
+            {
+              "if": "cfg:general.homeward_compass.allow_cross_dimension",
+              "cells": [
+                "跨维度",
+                "{cfg:general.homeward_compass.cross_dimension_mru} MRU"
+              ]
+            },
+            [
+              "冷却（同一维度）",
+              "{cfg:general.homeward_compass.cooldown_ticks|div:1200} 分钟"
+            ],
+            {
+              "if": "cfg:general.homeward_compass.allow_cross_dimension",
+              "cells": [
+                "冷却（跨维度）",
+                "{cfg:general.homeward_compass.cross_dimension_cooldown_ticks|div:1200} 分钟"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "距离按你站的地方到归途点的水平直线距离算，高度差不算在内。物品提示上写着从你现在的位置回去要花多少 MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到罗盘，这一步就打勾了。记好归途点，走远一些再按住右键，几秒后你就站回了那块地板上。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "引导满了以后，落点不合适就传不过去，比如归途点上方被方块堵住、脚下那块方块没了，或者那里有岩浆、火这类伤人的东西。罗盘会说明原因，这一趟不花 MRU，也不进冷却。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "罗盘不能把你从别的维度带进海纳尔，去海纳尔只能走[[hoanna/open_gate|海纳尔之门]]。在海纳尔里记下的归途点，人在海纳尔时照样能用。"
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.homeward_compass.allow_cross_dimension"
+              ],
+              "text": "从海纳尔回主世界可以用罗盘，回家的其他办法见[[hoanna/way_home]]。"
+            },
+            {
+              "if": "!cfg:general.homeward_compass.allow_cross_dimension",
+              "text": "罗盘只能带你回同一个维度里的归途点。"
+            },
+            "引导中身上被挂上{lang:effect.essentialcraft5.anchored}，这一趟也会断，同样不花 MRU。",
+            "冷却退出游戏再进来也不会清掉，死了才清掉。",
+            "别人的领地、出生点附近受保护的地方这些你不能动的地方，记不成归途点。归途点后来被圈进了别人的领地，也传不过去。",
+            "归途点离你很远时，到点后罗盘会等那边的区块加载，最多 2 秒，这时别走开。"
+          ]
+        }
+      ],
+      "_src": [
+        "registry/ECHomewardCompass.java:84 Config.DEFAULTS — 引导 100 刻、走开 1.5 格、战斗锁 200 刻、冷却 6000 / 12000 刻、5000 + 10/格封顶 50000、跨维度 100000、允许跨维度、拒绝表 [essentialcraft5:hoanna]；:105-140 配置 general.homeward_compass.*",
+        "data/essentialcraft5/recipes/homewardcompass/homeward_compass.json — AWA / EDE / ACA：末影鳞合金 ×4、风之水晶、末影之眼 ×2、暗黑灵魂物质、指南针",
+        "item/HomewardCompassItem.java:140 onItemUseFirst 潜行才绑定（在物品冷却检查之前）；:154 查点的那格上方的权限，ALLOW 才写 NBT（:158）；记的是点的那一格，落点在它顶上",
+        "item/HomewardCompassItem.java:252 getUseDuration = channel_ticks；teleport/HomewardChannels.java:168 begin 进入使用状态、加 PORTAL 票、放传送门声；HomewardCompassItem.onUseTick 客户端冒 PORTAL 粒子",
+        "teleport/HomewardChannels.java:196 走开超过 move_tolerance 打断、:198 引导中挂上锚定打断、:273 到点再查一次锚定（HomewardCompassTests.homewardAnchoredMidChannel）；:387 LivingDamageEvent 伤害 > 0 打断；:213 松手取消；打断都不扣钱、不进冷却（HomewardCompassTests.homewardMoveCancels / homewardDamageCancels）",
+        "item/HomewardCompassItem.java:213 冷却、:217 锚定、:220 骑乘、:226 战斗锁（HomewardChannels.combatLockLeft，:392 被活物打中就记，下线不清）、:231 维度规则、:235 MRU 只看身上的储存物品；不过就在动作栏说原因",
+        "item/HomewardCompassItem.java:305 cost — 同维度 base_mru + mru_per_block × 向上取整的水平直线距离，封顶 max_mru_same_dimension；跨维度一口价；:409 提示框按看的人自己的位置算",
+        "teleport/HomewardChannels.java:300 先 ECTeleport.teleport，:305 传成才扣 MRU，:306 进冷却（同维度 cooldown_ticks、跨维度 cross_dimension_cooldown_ticks）",
+        "teleport/HomewardChannels.java:278 ECTeleport.check — 被挡、脚下没方块、伤人方块、没权限、世界外都不传、不扣（:290；HomewardCompassTests.homewardBlockedNoCharge）",
+        "item/HomewardCompassItem.java:325 targetAllowed — 同维度一律可以；跨维度要 allow_cross_dimension 且目标不在 denied_target_dimensions（默认海纳尔）",
+        "item/HomewardCompassItem.java:358 冷却到期刻存 PlayerPersisted；teleport/HomewardChannels.java:419 从末地回来补回、死亡重生清掉（HomewardCompassTests.homewardCooldownPersists）",
+        "teleport/HomewardChannels.java:81-83 RETRY_INTERVAL 10、RETRY_LIMIT 40（最多等 2 秒），等的时候走开就打断"
+      ]
+    }
+  ]
+}

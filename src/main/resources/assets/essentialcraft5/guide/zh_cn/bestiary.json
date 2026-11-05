@@ -1,0 +1,2893 @@
+{
+  "id": "bestiary",
+  "order": 112,
+  "group": "side",
+  "title": "支线 · 异兽录",
+  "subtitle": "新出现的怪在哪、怎么打、掉什么",
+  "icon": "essentialcraft5:ancient_core",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "掉落与精英",
+      "icon": "minecraft:spawner",
+      "summary": "哪种击杀才掉东西，精英是什么",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "残卷里找不到这些东西的名字。我只记下自己碰到过的，在哪里遇上，怎样打倒，倒下以后留下什么。还没碰到的，这里就空着。",
+          "by": "编者按"
+        },
+        {
+          "type": "p",
+          "text": "这一章一种怪写一篇，讲它在哪儿出没、怎么打、打倒以后掉什么。下表按碰到它的地方排。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "分区",
+            "怪",
+            "在哪碰到"
+          ],
+          "rows": [
+            [
+              "主世界",
+              "[[bestiary/elemental_wisp]]",
+              "地下 y {cfg:general.mobs.elemental_wisp.max_y} 以下的矿洞、洞穴"
+            ],
+            [
+              "主世界",
+              "[[bestiary/matrix_wraith]]",
+              "存着 {cfg:general.mobs.matrix_wraith.min_presence_mru} MRU 以上的聚集体附近，别的维度也有"
+            ],
+            [
+              "主世界",
+              "[[bestiary/storm_sorcerer]]",
+              "雷雨天里刷出的风法师"
+            ],
+            [
+              "下界",
+              "[[bestiary/nether_imp]]",
+              "下界荒地、灵魂沙峡谷"
+            ],
+            [
+              "末地",
+              "[[bestiary/void_stalker]]",
+              "外岛的露天地面"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "[[bestiary/frostbitten]]",
+                "冰冻、魔力腐化之地，夜里"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "[[bestiary/mana_prism]]",
+                "魔力、冰冻腐化之地，夜里"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "[[bestiary/chaos_aberrant]]",
+                "混沌、暗影腐化之地，夜里"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "[[bestiary/ember_spirit]]",
+                "恐惧之地、海纳尔沙漠，夜里"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "[[bestiary/hoanna_scavenger]]",
+                "恐惧之地、海纳尔沙漠，白天也有"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "[[bestiary/abyssal_eel]]",
+                "海纳尔之海的深水里"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "[[bestiary/inquisitorium_patroller]]",
+                "暗影腐化之地，亮处也有"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "海纳尔",
+                "[[bestiary/catacomb_revenant]]",
+                "古代墓穴里"
+              ]
+            },
+            [
+              "首领",
+              "[[bestiary/mru_golem]]",
+              "上古遗迹那团聚集体附近"
+            ],
+            [
+              "首领",
+              "[[bestiary/matrix_shade]]",
+              "用导流符在灵魂五芒星上召出"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "首领",
+                "[[bestiary/town_sentry]]",
+                "海纳尔城镇的中心，第一次有人走近时醒"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "首领",
+                "[[bestiary/abyss_tyrant]]",
+                "在沉没城区的沉城祭坛召出"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "首领",
+                "[[bestiary/calamity_heart]]",
+                "第二十三章用天灾信标召出"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "它们都是敌对生物，亲手杀过就记进[[matrix/codex|矩阵图谱]]，首领都算在首领一组。"
+        },
+        {
+          "type": "p",
+          "text": "海纳尔的八种本地怪算矩阵图谱里「海纳尔原生」一组，[[matrix/ranks|六阶]]要其中至少 2 种。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.enabled"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "自己动手打死野外的怪"
+        },
+        {
+          "type": "p",
+          "text": "这一章写到的野怪掉落，比如魔晶、MRU 碎片、烈焰粉、末影珍珠、受困之风、上古晶核，都要你<em>自己动手打死野外的怪</em>才掉。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "怪得是野外自然刷出来的，或者本来就守在遗迹里。刷怪笼、刷怪蛋、发射器放出来的，指令叫来的，被别的怪叫来帮忙的，打死了都不掉。",
+            {
+              "if": "cfg:general.mobs.fair_kill_min_share>0",
+              "text": "得是玩家打死的，而且至少 {cfg:general.mobs.fair_kill_min_share|pct} 的伤害是玩家打的，你的宠物打的也算你的。着火、中毒、凋零掉的血，你最后一次打中它以后 5 秒内的也算你的。摔、岩浆、淹水，或者别的机器先把它磨到只剩一口气，你再补一刀，这样拿不到。"
+            },
+            {
+              "if": "!cfg:general.mobs.fair_kill_min_share>0",
+              "text": "得是玩家打死的，你的宠物打死的也算你的。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "同一类怪杀得越多，掉得越少"
+        },
+        {
+          "type": "p",
+          "text": "掉落几率还要看你最近一小时杀了多少同一类的怪，只算你在线的时间。没超过下表的只数时照常掉，超过以后按比例往下打折，杀得再快，一小时里平均拿到的也不会更多。平常打怪碰不到这条线。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "一类",
+            "包括",
+            "一小时里不打折的只数"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.mobs.kill_fatigue.overworld_common>0",
+              "cells": [
+                "野外常见",
+                "[[bestiary/elemental_wisp]]、[[bestiary/matrix_wraith]]、[[bestiary/void_stalker]]",
+                "{cfg:general.mobs.kill_fatigue.overworld_common}"
+              ]
+            },
+            {
+              "if": "!cfg:general.mobs.kill_fatigue.overworld_common>0",
+              "cells": [
+                "野外常见",
+                "[[bestiary/elemental_wisp]]、[[bestiary/matrix_wraith]]、[[bestiary/void_stalker]]",
+                "不限"
+              ]
+            },
+            {
+              "if": [
+                "!cfg:general.hoanna.portal_enabled",
+                "cfg:general.mobs.kill_fatigue.ember>0"
+              ],
+              "cells": [
+                "余火",
+                "[[bestiary/nether_imp]]",
+                "{cfg:general.mobs.kill_fatigue.ember}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.mobs.kill_fatigue.ember>0"
+              ],
+              "cells": [
+                "余火",
+                "[[bestiary/nether_imp]]、[[bestiary/ember_spirit]]，还有[[bestiary/chaos_aberrant]]掉的混沌余烬",
+                "{cfg:general.mobs.kill_fatigue.ember}"
+              ]
+            },
+            {
+              "if": [
+                "!cfg:general.hoanna.portal_enabled",
+                "!cfg:general.mobs.kill_fatigue.ember>0"
+              ],
+              "cells": [
+                "余火",
+                "[[bestiary/nether_imp]]",
+                "不限"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.mobs.kill_fatigue.ember>0"
+              ],
+              "cells": [
+                "余火",
+                "[[bestiary/nether_imp]]、[[bestiary/ember_spirit]]，还有[[bestiary/chaos_aberrant]]掉的混沌余烬",
+                "不限"
+              ]
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.wind_storm>0",
+              "cells": [
+                "风暴",
+                "[[bestiary/storm_sorcerer]]",
+                "{cfg:general.mobs.kill_fatigue.wind_storm}"
+              ]
+            },
+            {
+              "if": "!cfg:general.mobs.kill_fatigue.wind_storm>0",
+              "cells": [
+                "风暴",
+                "[[bestiary/storm_sorcerer]]",
+                "不限"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+              ],
+              "cells": [
+                "海纳尔常见",
+                "海纳尔八种本地怪掉的{item:essentialcraft5:aberrant_residue}",
+                "{cfg:general.mobs.kill_fatigue.hoanna_common}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+              ],
+              "cells": [
+                "海纳尔常见",
+                "海纳尔八种本地怪掉的{item:essentialcraft5:aberrant_residue}",
+                "不限"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.mobs.kill_fatigue.hoanna_titanite>0"
+              ],
+              "cells": [
+                "榍石",
+                "[[bestiary/hoanna_scavenger]]掉的{item:essentialcraft5:titanite}",
+                "{cfg:general.mobs.kill_fatigue.hoanna_titanite}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.mobs.kill_fatigue.hoanna_titanite>0"
+              ],
+              "cells": [
+                "榍石",
+                "[[bestiary/hoanna_scavenger]]掉的{item:essentialcraft5:titanite}",
+                "不限"
+              ]
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.elite>0",
+              "cells": [
+                "精英多掉的那份",
+                "所有精英",
+                "{cfg:general.mobs.kill_fatigue.elite}"
+              ]
+            },
+            {
+              "if": "!cfg:general.mobs.kill_fatigue.elite>0",
+              "cells": [
+                "精英多掉的那份",
+                "所有精英",
+                "不限"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            5,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "这份计数每人各算各的，别人杀的不算到你头上，死了也不清零。"
+        },
+        {
+          "type": "h",
+          "text": "精英"
+        },
+        {
+          "type": "p",
+          "text": "这一章的普通怪在野外刷出来时，有 {cfg:general.mobs.elite_chance|pct} 的几率是<em>精英</em>（海纳尔里是 {cfg:general.mobs.elite_chance_hoanna|pct}），风暴术士除外。精英个头大一圈，身上带着发光的纹路，名字也不一样，比如元素游灵的精英叫「元素聚灵」。同一种怪的精英，{cfg:general.mobs.elite_radius} 格内最多只有 {cfg:general.mobs.elite_max_nearby} 只。刷怪笼和刷怪蛋出来的不会是精英。"
+        },
+        {
+          "type": "p",
+          "text": "海纳尔闹[[hoanna/events|天灾]]的时候，本地怪是精英的几率是平时的 {cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier} 倍。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier>1"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "生命",
+              "×{cfg:general.mobs.elite_health_multiplier}"
+            ],
+            [
+              "攻击",
+              "×{cfg:general.mobs.elite_attack_multiplier}"
+            ],
+            [
+              "护甲",
+              "+{cfg:general.mobs.elite_armor_bonus}"
+            ],
+            [
+              "击退抗性",
+              "+{cfg:general.mobs.elite_knockback_resistance}"
+            ],
+            [
+              "个头",
+              "大 15%"
+            ],
+            [
+              "经验",
+              "×{cfg:general.mobs.elite_xp_multiplier}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每种精英还多一样本事，写在各自那一篇里。自己动手打死野外的精英，还多掉一份材料。"
+        },
+        {
+          "type": "h",
+          "text": "异变残质与异变之心",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "海纳尔的本地怪掉{item:essentialcraft5:aberrant_residue}，精英多掉{item:essentialcraft5:aberrant_heart}，清掉一处[[hoanna_explore/nests|巢穴]]也能分到。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "它们用来给虚空套装、审判庭套装、宅男套装和裁决之刃同调升阶，见[[attunement/stage_up]]。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.attunement.enabled"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "弱点"
+        },
+        {
+          "type": "p",
+          "text": "有的怪怕火、怕冰、怕雷或怕近身砍，用对了伤害 ×{cfg:general.mobs.weakness_multiplier}；有的怪不怕箭，弹射物打它只有 {cfg:general.mobs.resistance_multiplier|pct} 的伤害。各自怕什么，写在各自那一篇里。"
+        },
+        {
+          "type": "h",
+          "text": "首领"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "text": "聚能魔像和矩阵之影是首领。打掉首领 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各得一份掉落，直接进背包，背包满了就掉在脚下。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "聚能魔像、矩阵之影、废城守望者、渊潮领主和天灾之心是首领。打掉首领 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各得一份掉落，直接进背包，背包满了就掉在脚下。"
+            },
+            "一下打得再重，扣的血也有上限，所以用一下秒杀不了它们。",
+            "它们和它们的招式都不破坏方块。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作没有这一章里的怪，都是这一版新加的。风暴术士是在原作风法师上加出来的第四种，长相差不多，招式是新的。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.5 — 支线 bestiary（order 112），按维度分区，每只一篇：entity 预览、出没、怎么打、掉落；海纳尔一区 13d 补、守望者等 13e 补",
+        "tools/plan/batch13.md §5.1 生成规则表 — 主世界地下 y ≤ 40 元素游灵 12；下界荒地炼狱小鬼 5、灵魂沙峡谷 2；绯红森林、末地外岛不进刷怪表（虚空潜行者独立生成器）",
+        "tools/plan/batch13.md §5.2 名录 — 矩阵游魂：所有维度，24 格内有 ≥ 5 000 MRU、没被稳定器压着的聚集体时追加；风暴术士：雷雨时风法师的 1/5",
+        "tools/plan/batch13.md §5.4、policy §4.18 — 公平击杀 essentialcraft5:fair_kill：killed_by_player 且是真玩家；来源公平（自然、区块生成、结构、巡逻、事件、巢穴、首领召出；刷怪笼、刷怪蛋、发射器、指令、转化、增援、召唤都不公平）；真玩家（含其宠物）的有效伤害占比 ≥ 0.5（loot/FairKillCondition，13c-Fa）",
+        "tools/plan/batch13.md §5.4 — 按人递减 essentialcraft5:kill_fatigue：通过概率 = chance × min(1, F / n)，n = 最近 60 分钟在线时间里杀过的这一组；组 overworld_common F = 32、wind_storm F = 8（loot/KillFatigueCondition、player/MobKillLedger，13c-Fa）",
+        "player/PlayerData.java mob_ledger — 只在服务端、每人一份、死亡 clone 保留（gametest/Batch13cPrepTests.mobPlayerDataKeys）",
+        "tools/plan/batch13.md §5.1 框架 — 精英：生命 ×2.5、攻击 ×1.4、护甲 +4、击退抗性 +0.3、经验 ×3、体型 ×1.15，发光纹；主世界 / 下界 / 末地几率 0.05；每种 48 格内 ≤ 1；来源是刷怪笼 / 蛋的不掷精英；名字走 getTypeName（entity/mob/ECMonster，13c-Fa）",
+        "tools/plan/batch13.md §5.3 共同、§8.1 D25 B、policy §4.18 首领通用件 — 掉落每名打出 ≥ 10% 有效伤害的参战者各一份进背包（ECItemEntities.giveOrDrop）；单次封顶（entity/boss/BossDamageBudget，13c-Fb）；不挖、不放、不炸方块",
+        "matrix/MatrixCodex.java — 图谱只记亲手杀的敌对生物，首领按 ≥ 10% 有效伤害参战记（#forge:bosses 含 mru_golem、matrix_shade）",
+        "tools/lang/glossary.md 第十二节 — 精英名「元素聚灵」等暂定；手册写「自己动手打死野外的怪才掉」「同一种怪一小时里杀得越多掉得越少」",
+        "registry/ECMobFramework.java Config — 精英几率 / 倍数、公平击杀占比、弱点与抗弹射物倍数、各递减组只数都读 general.mobs.*（正文用 {cfg:}）；组：元素游灵、矩阵游魂、虚空潜行者 overworld_common，炼狱小鬼 ember，风暴术士 wind_storm，各精英多掉的那一池 elite（data/essentialcraft5/loot_tables/entities/*.json，13c 集成核对）",
+        "tools/plan/batch13.md §5.2 名录、§6.5 海纳尔刷怪表 — 八种海纳尔本地怪（hoanna_natives 标签），各群系本地怪合计 220；天灾期间精英几率 × general.mobs.hoanna_spawns.calamity_elite_multiplier（2，0.10 → 0.20，13d-N3）",
+        "data/essentialcraft5/matrix_ranks/rank_6.json — codex.hoanna_natives 2（matrix/MatrixCodex.Group.HOANNA_NATIVES 按 hoanna_natives 标签数）",
+        "tools/plan/batch13.md §5.4 — 递减组 hoanna_common F = 30（八种本地怪的残质）、hoanna_titanite F = 20（拾荒者的榍石）；ember 组 13d 起含余烬灵的余烬、混沌畸变体的混沌余烬（loot_tables/entities/*.json，13d-N1~N3）",
+        "tools/plan/batch13.md §9.6 13d 行 — 异变残质 / 异变之心是虚空、审判庭 2~3 阶、宅男 3 阶、裁决之刃 2~3 阶的升阶材料（recipes/attunement/*.json）；巢穴奖励异变之心 ×1 + 残质 2~4（loot_tables/hoanna_nests/*.json，13d-N3）",
+        "tools/plan/batch13.md §5.3.3～§5.3.5 — 13e 首领区补废城守望者（城镇起点 trigger_radius 内醒）、渊潮领主（沉城祭坛召唤）、天灾之心（第二十三章天灾信标）；三只都进 #forge:bosses（预备）"
+      ],
+      "items": [
+        {
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:aberrant_residue",
+            "essentialcraft5:aberrant_heart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elemental_wisp",
+      "title": "{lang:entity.essentialcraft5.elemental_wisp}",
+      "icon": "essentialcraft5:elemental_wisp_spawn_egg",
+      "summary": "主世界地下，绕着人飞的元素光核",
+      "items": [
+        "essentialcraft5:elemental_wisp_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:elemental_wisp"
+        },
+        {
+          "type": "p",
+          "text": "元素游灵是一团悬在半空的元素光核，只在主世界地下 y {cfg:general.mobs.elemental_wisp.max_y} 以下、看不见天的暗处刷出，挖矿、钻洞穴时最常碰上，地下的怪里大约每四五十只有一只，{cfg:general.mobs.elemental_wisp.nearby_radius} 格内最多 {cfg:general.mobs.elemental_wisp.max_nearby} 只。",
+          "if": "cfg:general.mobs.elemental_wisp.max_nearby>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.elemental_wisp.max_nearby>0",
+          "text": "它分火、水、地、风四种，看光的颜色就分得出来，是哪种按它出生的群系定：海洋、河、沙滩、沼泽和繁茂洞穴里的是水，沙漠、恶地、热带草原这些热的地方是火，山地、丘陵和下雪的地方是风，别处都是地。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.elemental_wisp.max_nearby>0",
+          "text": "元素游灵是一团悬在半空的元素光核，分火、水、地、风四种，看光的颜色就分得出来。在这个世界里它不会自然刷出。"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.elemental_wisp.effect_seconds>0",
+          "text": "它只有 12 点生命、没有护甲，挨一两剑就散了。麻烦在它不肯待着，先绕着你飞几圈，再突然冲过来撞你。撞中时按它的元素给你带上一样效果：火让你着火，水让你缓慢，地让你挖掘疲劳，各 {cfg:general.mobs.elemental_wisp.effect_seconds} 秒；风把你往它冲来的方向推开，还把你掀起来。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.elemental_wisp.effect_seconds>0",
+          "text": "它只有 12 点生命、没有护甲，挨一两剑就散了。麻烦在它不肯待着，先绕着你飞几圈，再突然冲过来撞你。风之游灵撞中时还会把你往它冲来的方向推开，把你掀起来。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它绕圈的时候不好打。等它停住蓄力，缩一下再鼓起来，就要直冲过来了，迎面挥剑。",
+            "举起盾牌挡得住它撞过来的那一下。",
+            "每种游灵都怕和自己相克的东西，伤害 ×{cfg:general.mobs.weakness_multiplier}：火之游灵怕冰冻（细雪、冰冻伤害），水之游灵怕雷，地之游灵怕近身砍，风之游灵怕火。风之游灵挨箭和别的弹射物只吃 {cfg:general.mobs.resistance_multiplier|pct} 的伤害。火之游灵不怕火和岩浆，碰到水反倒掉血。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "自己动手打死野外的元素游灵，有一半的几率掉一个和它同元素的魔晶，也就是{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}或{item:essentialcraft5:air_drops}之一。它和矩阵游魂、虚空潜行者算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.overworld_common} 只以后掉得越来越少，见[[bestiary/overview]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "自己动手打死野外的元素游灵，有一半的几率掉一个和它同元素的魔晶，也就是{item:essentialcraft5:fire_drops}、{item:essentialcraft5:water_drops}、{item:essentialcraft5:earth_drops}或{item:essentialcraft5:air_drops}之一，杀得再多也照常掉。"
+        },
+        {
+          "type": "h",
+          "text": "精英 · 元素聚灵"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.elemental_wisp.effect_seconds>0",
+          "text": "元素聚灵绕着你飞的时候，每 {cfg:general.mobs.elemental_wisp.elite_bolt_interval|sec}按火、水、地、风的顺序轮着射一发元素弹，打中时带上那种元素的效果，冲撞也照旧。元素弹是飞来的东西，盾牌和掩体都挡得住，护甲也照常减伤。自己动手打死野外的元素聚灵，还多掉两颗随机的魔晶。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.elemental_wisp.effect_seconds>0",
+          "text": "元素聚灵绕着你飞的时候，每 {cfg:general.mobs.elemental_wisp.elite_bolt_interval|sec}按火、水、地、风的顺序轮着射一发元素弹，风元素弹打中时会把你推开、掀起来，冲撞也照旧。元素弹是飞来的东西，盾牌和掩体都挡得住，护甲也照常减伤。自己动手打死野外的元素聚灵，还多掉两颗随机的魔晶。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:elemental_wisp_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷元素游灵，可刷怪笼里出来的不会是精英，打死了也不掉魔晶。刷怪笼也得放在 y {cfg:general.mobs.elemental_wisp.max_y} 以下、看不见天的暗处，不然一只也不出。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 elemental_wisp — 主世界地下 y ≤ 40，按出生群系四元素；权重 12（地下约 515 中占 2.3%）；生命 12、护甲 0；绕飞冲撞、四元素效果；精英「元素聚灵」四元素轮射（mob_bolt）；掉对应魔晶 50%（fair_kill + kill_fatigue overworld_common），13c-M1 实现，集成时换代码出处",
+        "data/essentialcraft5/damage_type/mob_bolt.json + data/minecraft/tags/damage_type/is_projectile.json — 元素弹算弹射物：盾牌挡、护甲照算（registry/ECDamageTypes.mobBolt）",
+        "tools/plan/batch13.md §5.4 — overworld_common 组 F = 32（元素游灵、矩阵游魂共用）",
+        "tools/plan/batch13.md §5.4 — 普通怪的蛋可以改刷怪笼，来源 SPAWNER，关键掉落拿不到；刷怪蛋只放创造栏（policy §4.7）",
+        "entity/mob/ElementalWispEntity、api/Element.forBiome — 只在看不见天的暗处、y ≤ max_y；32 格内 ≤ 4；效果火点燃 / 水缓慢 I / 地挖掘疲劳 I 各 effect_seconds 秒，风推开掀起；克制 ×weakness_multiplier（火怕冰冻、水怕雷、地怕近战、风怕火），风抗弹射物 ×resistance_multiplier；精英每 elite_bolt_interval 刻火水地风轮射，多掉两颗随机魔晶（组 elite）（13c-M1 §2.1）"
+      ]
+    },
+    {
+      "id": "matrix_wraith",
+      "title": "{lang:entity.essentialcraft5.matrix_wraith}",
+      "icon": "essentialcraft5:matrix_wraith_spawn_egg",
+      "summary": "被大团聚集体招来，打人加矩阵损伤",
+      "items": [
+        "essentialcraft5:matrix_wraith_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:matrix_wraith"
+        },
+        {
+          "type": "p",
+          "text": "MRU 聚得太浓，会把游荡的东西引过来。只要 {cfg:general.mobs.matrix_wraith.presence_radius} 格内有一团存着 {cfg:general.mobs.matrix_wraith.min_presence_mru} MRU 以上的聚集体，那一带的暗处就会多刷出<em>矩阵游魂</em>，一团最多招来 {cfg:general.mobs.matrix_wraith.max_per_presence} 只，哪个维度都一样。每招来一只，那团聚集体就少 {cfg:general.mobs.matrix_wraith.drain_mru} MRU。",
+          "if": "cfg:general.mobs.matrix_wraith.spawn_weight>0"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.matrix_wraith.spawn_weight>0",
+          "text": "<em>矩阵游魂</em>是被浓 MRU 引来的游魂。在这个世界里它不会自然刷出。"
+        },
+        {
+          "type": "p",
+          "text": "关在装了{item:essentialcraft5:ec_balancer}的富集仓里的聚集体不招游魂。凝结、坍缩用的那团都是这样压着的，所以富集仓里养着的那团既招不来它们，也不会被它们抽走 MRU。",
+          "if": "cfg:general.mobs.matrix_wraith.spawn_weight>0"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 26 点生命、2 点护甲，抓一下 4 点伤害。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_wraith.matrix_damage_per_hit>0",
+          "text": "被它抓中一下，除了伤害，你还会多 {cfg:general.mobs.matrix_wraith.matrix_damage_per_hit} 点<em>矩阵损伤</em>，只加给挨打的那个人，矩阵损伤见[[corruption/matrix_damage]]。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "用近战打它。箭、三叉戟这类飞过去的东西打它只有 {cfg:general.mobs.resistance_multiplier|pct} 的伤害。",
+            "最省事的是不让它刷出来：把附近照亮，把聚集体关进装了稳定器的富集仓，或者拿[[gear/mrucu_container|收容瓶]]整团装走。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "矩阵阶的耐受能抵掉它加的一部分矩阵损伤，见[[matrix/tolerance]]。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "自己动手打死野外刷出的矩阵游魂，掉 1~2 个{item:essentialcraft5:mru_shard}。它和元素游灵、虚空潜行者算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.overworld_common} 只以后掉得越来越少。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "自己动手打死野外刷出的矩阵游魂，掉 1~2 个{item:essentialcraft5:mru_shard}，杀得再多也照常掉。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "游魂刷在聚集体附近。那团要是已经过了 1 万，你在它 12 格内打游魂的时候，聚集体每秒也在给你加矩阵损伤。"
+        },
+        {
+          "type": "h",
+          "text": "精英 · 矩阵怨灵"
+        },
+        {
+          "type": "p",
+          "text": "矩阵怨灵每隔 {cfg:general.mobs.matrix_wraith.elite_blink_cooldown|sec}会缩成一团，半秒后闪到你背后 2 格再出手。背靠着墙打，它在你身后站不住，就闪不过来；落点在水里也闪不过来。自己动手打死野外的矩阵怨灵，还多掉 2~4 个{item:essentialcraft5:mru_shard}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:matrix_wraith_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷矩阵游魂，可刷怪笼里出来的不会是精英，打死了也不掉{item:essentialcraft5:mru_shard}。刷怪笼 {cfg:general.mobs.matrix_wraith.presence_radius} 格内也得有一团够格的聚集体，不然一只也不出。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 matrix_wraith、§8.2 Q-9、policy §4.18 刷怪挤占 — 所有维度；24 格内有 ≥ 5 000 MRU、没被稳定器压着的聚集体时追加（权重 30，每团 ≤ 3）；生成时抽挂靠那团 300 MRU；entity/MRUPresenceIndex 查询时跳过被压着的（13c-Fa / M1）",
+        "entity/MRUPresenceEntity.java isStabilized — 富集仓控制器有稳定器时每 20 刻 stabilize(40)；凝结、坍缩的种子都在装稳定器的仓里",
+        "tools/plan/batch13.md §5.2 — 生命 26、护甲 2；命中 +150 矩阵损伤（配置可 0；走带来源标记的 addMatrixDamage，吃耐受，policy §4.18）；弹射物 ×0.5；精英「矩阵怨灵」闪背；掉 MRU 碎片 1~2（fair_kill + overworld_common），13c-M1",
+        "start/mrucu — 聚集体存量 ≥ 1 万每秒给 12 格内玩家加矩阵损伤",
+        "registry/ECWildMobs.java Config general.mobs.matrix_wraith.* — presence_radius 24、min_presence_mru 5 000、max_per_presence 3、drain_mru 300、matrix_damage_per_hit 150、elite_blink_cooldown 160；精英多掉 MRU 碎片 2~4（组 elite）（13c-M1 §2.2）"
+      ]
+    },
+    {
+      "id": "storm_sorcerer",
+      "title": "风暴术士",
+      "icon": "essentialcraft5:wind_keeper",
+      "summary": "雷雨天里招雷的风法师",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:wind_mage",
+          "nbt": "{Type:3b}",
+          "name": "entity.essentialcraft5.wind_mage.storm"
+        },
+        {
+          "type": "p",
+          "text": "<em>风暴术士</em>是风法师的第四种，深蓝紫的袍子上冒着电火花，有 {cfg:general.mobs.storm_sorcerer.max_health} 点生命、{cfg:general.mobs.storm_sorcerer.armor} 点护甲，比大法师耐打得多。别的风法师见[[wind_mage/wind_mages]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.mobs.storm_sorcerer.thunder_chance>0"
+          ],
+          "text": "下雷雨的时候，主世界刷出来的风法师有 {cfg:general.mobs.storm_sorcerer.thunder_chance|pct} 是风暴术士。刷怪蛋和刷怪笼出来的不会是它。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.mobs.storm_sorcerer.hoanna_chance>0"
+          ],
+          "text": "在海纳尔不用等下雨，那里的风法师有 {cfg:general.mobs.storm_sorcerer.hoanna_chance|pct} 是它。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_mage.max_nearby>0",
+          "text": "在这个世界里风法师不会自然出现，也就碰不到风暴术士。"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它放的疾风弹打中你是 {cfg:general.mobs.storm_sorcerer.gust_damage} 点，还会把你吹退一大截。疾风弹是飞来的东西，盾牌挡得住。别在悬崖边、岩浆旁边跟它打。",
+            {
+              "if": "cfg:general.mobs.storm_sorcerer.lightning_damage>0",
+              "text": "它会招雷：看得见你时，先在你脚下标一圈电火花，{cfg:general.mobs.storm_sorcerer.lightning_warning_ticks|sec}后那里落一道闪电，圈里（半径 {cfg:general.mobs.storm_sorcerer.lightning_radius} 格）的人挨 {cfg:general.mobs.storm_sorcerer.lightning_damage} 点，护甲挡不住。看见电火花就走出圈去。这道闪电不点火，也不劈坏东西。"
+            },
+            "它和别的风法师一样喜欢站在远处，借着掩体贴近了打最省事。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.kill_fatigue.wind_storm>0",
+          "text": "风暴术士死后必掉一个{item:essentialcraft5:imprisoned_wind}，和法师一样。自己动手打死野外刷出的风暴术士，还有 25% 的几率掉一个{item:essentialcraft5:wind_keeper}；风暴术士自成一类，一小时里杀到 {cfg:general.mobs.kill_fatigue.wind_storm} 只以后，受困之风掉得越来越少，见[[bestiary/overview]]。它还有一成左右的几率掉一件风法师套装，抢夺每级多一点。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.wind_storm>0",
+          "text": "风暴术士死后必掉一个{item:essentialcraft5:imprisoned_wind}，和法师一样。自己动手打死野外刷出的风暴术士，还有 25% 的几率掉一个{item:essentialcraft5:wind_keeper}，杀得再多也照常掉。它还有一成左右的几率掉一件风法师套装，抢夺每级多一点。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "风暴余息",
+          "text": "它掉的受困之风带着「风暴余息」，提示框里写着。右键打碎它不加风之好感，瓶子也不会碎，只能拿去当材料，比如做[[wind/wind_tablet]]。想涨好感，还是要去打别的风法师，见[[wind_mage/bottled_winds]]。"
+        },
+        {
+          "type": "p",
+          "text": "风暴术士没有精英。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 风法师 Type 3 — 雷雨时风法师的 1/5；海纳尔 10%；生命 50、护甲 2；疾风弹击退；1 秒预警落雷 8 点；精英「—」；受困之风 25%（fair_kill + kill_fatigue wind_storm F = 8，luck）；不另注册实体（entity/WindMageEntity TYPE_COUNT 3 → 4，13c-M1）",
+        "entity/WindMageEntity.java:86 TYPE_KEY \"Type\"（putByte）— 预览写 nbt {Type:3b}",
+        "policy §4.18、tools/lang/glossary.md 第十二节 — 「风暴余息」NBT 标记：能当合成材料，不能注风之好感（WindAffinity 认标记拒收，13c-M1）",
+        "registry/ECWildMobs.java Config general.mobs.storm_sorcerer.* — thunder_chance 0.2、hoanna_chance 0.1、生命 50 / 护甲 2、疾风弹 4、落雷 8（预警 20 刻、半径 1.5、冷却 160 刻，无视护甲、不点火不破坏）；掉落 data/essentialcraft5/loot_tables/entities/wind_mage_storm.json：禁锢之风必掉、受困之风 25%（fair_kill + wind_storm）、套装 10% + 抢夺 2.5%（13c-M1 §2.3）"
+      ]
+    },
+    {
+      "id": "nether_imp",
+      "title": "{lang:entity.essentialcraft5.nether_imp}",
+      "icon": "essentialcraft5:nether_imp_spawn_egg",
+      "summary": "下界里乱飞、吐余火的小东西",
+      "items": [
+        "essentialcraft5:nether_imp_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:nether_imp"
+        },
+        {
+          "type": "p",
+          "text": "炼狱小鬼是个头很小、会飞的怪，只在下界荒地和灵魂沙峡谷里刷，那两处的怪里大约每三十几只有一只。绯红森林里没有它。"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.nether_imp.max_health} 点生命、{cfg:general.mobs.nether_imp.armor} 点护甲，飞起来东一下西一下，不好瞄准。它在 {cfg:general.mobs.nether_imp.shoot_range} 格内朝你吐余火弹，一发 {cfg:general.mobs.nether_imp.bolt_damage} 点，打中会让你烧 {cfg:general.mobs.nether_imp.burn_seconds} 秒；余火弹落地不点火，下界的地面不会烧起来。血掉到 {cfg:general.mobs.nether_imp.flee_health|pct} 以下，它就掉头逃跑。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "余火弹飞得不快，也没有预警，横着走几步就躲开了。它是飞来的东西，举盾挡得住。",
+            "它逃的时候往高处飞，{cfg:general.mobs.nether_imp.flee_ticks|sec}后就回来，弓和弩追得上。别为了追它跑进岩浆海。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "cfg:general.mobs.kill_fatigue.ember>0"
+          ],
+          "text": "自己动手打死野外的炼狱小鬼，掉 1~2 个{item:minecraft:blaze_powder}，抢夺每级多掉 0~1 个。炼狱小鬼自成一类，一小时里杀到 {cfg:general.mobs.kill_fatigue.ember} 只以后掉得越来越少，见[[bestiary/overview]]。"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的炼狱小鬼，掉 1~2 个{item:minecraft:blaze_powder}，抢夺每级多掉 0~1 个。它和[[bestiary/ember_spirit]]、[[bestiary/chaos_aberrant]]掉的余烬算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.ember} 只以后掉得越来越少，见[[bestiary/overview]]。",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.mobs.kill_fatigue.ember>0"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.ember>0",
+          "text": "自己动手打死野外的炼狱小鬼，掉 1~2 个{item:minecraft:blaze_powder}，抢夺每级多掉 0~1 个，杀得再多也照常掉。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "它的灵魂收得进{item:essentialcraft5:soul_scriber}，恶魔交易时也会要炼狱小鬼的灵魂，见[[demons/soul_scriber]]。"
+        },
+        {
+          "type": "h",
+          "text": "精英 · 小鬼头目"
+        },
+        {
+          "type": "p",
+          "text": "小鬼头目一口气连吐 {cfg:general.mobs.nether_imp.elite_burst} 发余火弹。它还会停下来念 1 秒咒，叫来 {cfg:general.mobs.nether_imp.elite_summon_count} 只小鬼帮忙，叫来的死了过一阵还会再叫。念咒那 1 秒它停着不动，正是打它的时候；先打头目，它倒了就不会再叫。"
+        },
+        {
+          "type": "p",
+          "text": "叫来的小鬼什么都不掉，也不给经验。自己动手打死野外的小鬼头目，还多掉 2~4 个{item:minecraft:blaze_powder}。头目的灵魂收不了。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:nether_imp_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷炼狱小鬼，刷怪笼里出来的不会是精英，打死了也不掉烈焰粉。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.1 生成规则表、§5.2 nether_imp — 下界荒地权重 5（168 中 2.9%）、灵魂沙峡谷权重 2（71 中 2.7%）、绯红森林不刷；生命 16、护甲 2；不规则飞、余火弹（mob_bolt，落地不放火）、残血逃；精英「小鬼头目」三连发、召 2 只（来源 SUMMONED，不公平）；掉烈焰粉；进 soul_capturable，恶魔交易池加条目（13c-M3）",
+        "tools/plan/batch13.md §0.4 第 20 条 — 精英不能被灵魂刻刀收魂",
+        "data/essentialcraft5/tags/entity_types/soul_capturable.json — 含 essentialcraft5:nether_imp（13c 集成起是必需条目）",
+        "data/essentialcraft5/loot_tables/entities/nether_imp.json — 烈焰粉 1~2 + 抢夺 0~1（fair_kill + kill_fatigue ember F = 24），精英另 2~4（组 elite）；registry/ECNetherEndMobs.java Config general.mobs.nether_imp.*（生命 16、护甲 2、余火弹 4、烧 2 秒、16 格、30% 逃 60 刻、精英连吐 3、叫 2 只、念咒 1 秒）；叫来的帮手来源 SUMMONED，不掉不给经验（13c-M3 §2.1、§2.3）",
+        "13d 起 ember 组还含余烬灵的余烬、混沌畸变体的混沌余烬（loot_tables/entities/{ember_spirit, chaos_aberrant}.json，13d-N2），门关着时只有炼狱小鬼"
+      ]
+    },
+    {
+      "id": "void_stalker",
+      "title": "{lang:entity.essentialcraft5.void_stalker}",
+      "icon": "essentialcraft5:void_stalker_spawn_egg",
+      "summary": "末地外岛上忽隐忽现的怪",
+      "items": [
+        "essentialcraft5:void_stalker_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:void_stalker"
+        },
+        {
+          "type": "p",
+          "text": "虚空潜行者只在末地的外岛上出现，主岛上没有。你站在外岛上的时候，每 {cfg:general.mobs.void_stalker.spawn_interval|sec}有 {cfg:general.mobs.void_stalker.spawn_chance|pct} 的几率在离你 {cfg:general.mobs.void_stalker.spawn_min_distance}~{cfg:general.mobs.void_stalker.spawn_max_distance} 格的露天末地石上冒出一只，那一带 64 格内已有 {cfg:general.mobs.void_stalker.spawn_max_nearby} 只就不再刷。火把、末地烛照着的地方不刷，创造和旁观模式的人身边也不刷。它不占末影人的名额，外岛上的末影人照样那么多。",
+          "if": "cfg:general.mobs.void_stalker.spawn_chance>0"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.void_stalker.spawn_chance>0",
+          "text": "虚空潜行者是末地外岛上的怪。在这个世界里它不会自然刷出。"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.void_stalker.max_health} 点生命、{cfg:general.mobs.void_stalker.armor} 点护甲，爪击 {cfg:general.mobs.void_stalker.attack_damage} 点，比末影人结实得多。它在两种样子之间来回换：实体化 {cfg:general.mobs.void_stalker.solid_ticks|sec}，这时打得动；相位 {cfg:general.mobs.void_stalker.phase_ticks|sec}，身子变得半透明，什么都打不着它，箭和准星都从它身上穿过去，它也不出手，跑得还快三成。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它变透明之前，身子会一闪一闪，还响一声，{cfg:general.mobs.void_stalker.warning_ticks|sec}后就进相位。趁它实体化的时候打，看它开始闪就收手躲开，留着这一刀等它现形。",
+            {
+              "if": "cfg:general.mobs.void_stalker.rift_claw_cooldown>0",
+              "text": "它的爪子打实了，会把你闪到 {cfg:general.mobs.void_stalker.blink_min_distance}~{cfg:general.mobs.void_stalker.blink_max_distance} 格外，每 {cfg:general.mobs.void_stalker.rift_claw_cooldown|sec}最多一次，举盾挡住的那一下不算。落点脚下 3 格内一定有方块，也不会是岩浆、火或仙人掌，不会把你扔进虚空。落点和你原来站的地方之间没有墙或玻璃挡着，也不会在你没有权限动的地方，不会把你关进出不来的屋子。可落点离岛边可能很近，还可能摔两三格，被闪走以后先看清自己站在哪。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "自己动手打死野外的虚空潜行者，掉 1~2 颗{item:minecraft:ender_pearl}，抢夺每级多掉 0~1 颗。它和元素游灵、矩阵游魂算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.overworld_common} 只以后掉得越来越少，见[[bestiary/overview]]。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "自己动手打死野外的虚空潜行者，掉 1~2 颗{item:minecraft:ender_pearl}，抢夺每级多掉 0~1 颗，杀得再多也照常掉。"
+        },
+        {
+          "type": "h",
+          "text": "精英 · 裂隙行者"
+        },
+        {
+          "type": "p",
+          "text": "裂隙行者能隔着一段距离把你拉进裂隙，拽到它身边。拉之前你脚下会冒紫色粒子，动作栏也有提示，{cfg:general.mobs.void_stalker.pull_warning_ticks|sec}后就拉。它只拉离它 5~{cfg:general.mobs.void_stalker.pull_range} 格、它又看得见的人，看到提示就躲到墙或柱子后面。拽过去的落点和它之间同样没有墙挡着，也不会在你没有权限动的地方。"
+        },
+        {
+          "type": "p",
+          "text": "拉人的时候它站着不动，正好打它。自己动手打死野外的裂隙行者，还多掉 2~4 颗{item:minecraft:ender_pearl}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:void_stalker_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷虚空潜行者，刷怪笼里出来的不会是精英，打死了也不掉末影珍珠。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 void_stalker、policy §4.18 刷怪挤占 — 末地外岛（不含主岛），不进群系刷怪表，独立生成器：外岛上的生存 / 冒险玩家每 600 刻一次 25%（平均 2 400 刻 = 2 分钟），24~64 格外露天末地石地表；64 格内 ≤ 3、MONSTER 到上限不刷；不占末影人的尝试（13c-M3）",
+        "tools/plan/batch13.md §5.2 — 生命 45、护甲 8；实体化 4 秒 / 相位 2 秒（预警 0.5 秒）；裂隙爪闪人（落点下方 3 格有方块、可取消）；精英「裂隙行者」裂隙拉人；掉末影珍珠 1~2",
+        "data/essentialcraft5/loot_tables/entities/void_stalker.json — 末影珍珠 1~2 + 抢夺 0~1（fair_kill + overworld_common），精英另 2~4（组 elite）；生成器方块光要 0、和平 / 本维度怪物满 / 创造旁观身边不刷；相位前预警 warning_ticks（算在 solid_ticks 里），相位跑快三成；裂隙爪要真扣到血才闪（举盾挡住不算、不进冷却）；拉人只拉 5~pull_range 格且看得见的（13c-M3 §2.2、§2.3，entity/mob/VoidStalkerEntity.doHurtTarget）；闪人、拉人的落点要从出手一方的眼睛连过去不被方块挡住、玩家对落脚格和脚下那块地有权限（entity/mob/VoidStalkerRift.reachable）"
+      ]
+    },
+    {
+      "id": "frostbitten",
+      "title": "{lang:entity.essentialcraft5.frostbitten}",
+      "icon": "essentialcraft5:frostbitten_spawn_egg",
+      "summary": "冰冻腐化之地里冻成冰的遗骸",
+      "items": [
+        "essentialcraft5:frostbitten_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:frostbitten"
+        },
+        {
+          "type": "p",
+          "text": "霜蚀者是冻在冰壳里的人形遗骸，关节上长着冰晶，嘴里呼着白雾。它在冰冻腐化之地最多，一群 2~3 只，魔力腐化之地也有一些，夜里或暗处才刷。"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.frostbitten.max_health} 点生命、{cfg:general.mobs.frostbitten.armor} 点护甲，近战一下 {cfg:general.mobs.frostbitten.attack_damage} 点，打中还会给你积 {cfg:general.mobs.frostbitten.freeze_per_hit} 点冰冻。冰冻和陷进细雪时一样：积得越多走得越慢，积满 140 点就冻透了，一直掉血；离开细雪以后每秒消掉 40 点，所以要被它连着打中才会冻透。",
+          "if": "cfg:general.mobs.frostbitten.freeze_per_hit>0"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.frostbitten.max_health} 点生命、{cfg:general.mobs.frostbitten.armor} 点护甲，近战一下 {cfg:general.mobs.frostbitten.attack_damage} 点。",
+          "if": "!cfg:general.mobs.frostbitten.freeze_per_hit>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            "身上穿着任意一件皮革盔甲就不会被冻住，这是原版细雪的规矩，它的冰冻也认。",
+            {
+              "if": [
+                "cfg:general.mobs.frostbitten.breath_interval>0",
+                "cfg:general.mobs.frostbitten.breath_health_percent>0"
+              ],
+              "text": "每隔 {cfg:general.mobs.frostbitten.breath_interval|sec}它会朝前喷一口冰息。它先停下来，嘴前聚起一团白雾，{cfg:general.mobs.frostbitten.breath_charge|sec}后朝前方 {cfg:general.mobs.frostbitten.breath_range} 格喷出去，打中 {cfg:general.mobs.frostbitten.breath_damage} 点，再加你最大生命的 {cfg:general.mobs.frostbitten.breath_health_percent|pct}，盔甲挡不住。看到白雾聚拢就往旁边走，别站在它正前方。"
+            },
+            {
+              "if": [
+                "cfg:general.mobs.frostbitten.breath_interval>0",
+                "!cfg:general.mobs.frostbitten.breath_health_percent>0"
+              ],
+              "text": "每隔 {cfg:general.mobs.frostbitten.breath_interval|sec}它会朝前喷一口冰息。它先停下来，嘴前聚起一团白雾，{cfg:general.mobs.frostbitten.breath_charge|sec}后朝前方 {cfg:general.mobs.frostbitten.breath_range} 格喷出去，打中 {cfg:general.mobs.frostbitten.breath_damage} 点，盔甲挡不住。看到白雾聚拢就往旁边走，别站在它正前方。"
+            },
+            {
+              "if": [
+                "cfg:general.mobs.frostbitten.breath_interval>0",
+                "cfg:general.mobs.frostbitten.breath_freeze_ticks>0"
+              ],
+              "text": "冰息打中还会给你积 {cfg:general.mobs.frostbitten.breath_freeze_ticks} 点冰冻。"
+            },
+            "它怕火，着火、岩浆、火球这些火焰伤害打它是 ×{cfg:general.mobs.weakness_multiplier}，拿火焰附加的剑或火矢把它点着，之后烧它的那几下都算。它自己不怕冻。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "text": "只要是玩家打死的，它就掉 0~2 个{item:minecraft:snowball}，有 10% 的几率掉一块{item:minecraft:ice}，8% 的几率掉一块{item:essentialcraft5:cold_stone}。"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的霜蚀者，还有 35% 的几率掉一块{item:essentialcraft5:aberrant_residue}。它和别的海纳尔本地怪算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.hoanna_common} 只以后掉得越来越少，见[[bestiary/overview]]。",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的霜蚀者，还有 35% 的几率掉一块{item:essentialcraft5:aberrant_residue}。杀得再多也照常掉。",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "h",
+          "text": "精英 · {lang:entity.essentialcraft5.frostbitten.elite}"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.frostbitten.elite}左手举着一面冰盾，正面射来的箭和弹射物都挡得下，要绕到侧面或背后再射。每隔 {cfg:general.mobs.frostbitten.elite_seal_interval|sec}它会冰封身边：脚下先冒出一圈白雾，{cfg:general.mobs.frostbitten.elite_seal_warning|sec}后把 {cfg:general.mobs.frostbitten.elite_seal_radius} 格内的人冻住。看到白雾就跑出圈外。",
+          "if": "cfg:general.mobs.frostbitten.elite_seal_interval>0"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.frostbitten.elite}左手举着一面冰盾，正面射来的箭和弹射物都挡得下，要绕到侧面或背后再射。",
+          "if": "!cfg:general.mobs.frostbitten.elite_seal_interval>0"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的{lang:entity.essentialcraft5.frostbitten.elite}，还有一半的几率多掉一颗{item:essentialcraft5:aberrant_heart}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:frostbitten_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷霜蚀者，刷怪笼里出来的不会是精英，打死了也不掉异变残质。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 frostbitten、§6.5 — 冰冻腐化之地 180 / 2~3、魔力腐化之地 80 / 1~2，夜 / 暗处；生命 44、护甲 6；冻结；1 秒蓄力冰息；皮革照原版免疫；精英霜棺督卫冰盾、冰封（13d-N1，entity/mob/hoanna/Frostbitten*，合并时核类名与配置键）",
+        "tools/plan/batch13.md §5.2 名录 — 近战 8 + 60 冻结刻；冰息每 12 秒、1 秒蓄力、前方 5 格锥形 4 点 + 80 冻结刻；weak_to_fire、免疫冻结；督卫正面挡弹射物、每 15 秒身周 3 格 1 秒预警冰封",
+        "general.mobs.frostbitten.{max_health, armor, attack_damage, freeze_per_hit, breath_interval, breath_charge, breath_range, breath_damage, breath_health_percent, breath_freeze_ticks, elite_seal_interval, elite_seal_warning, elite_seal_radius}（键名已和代码里注册的配置核对）",
+        "data/essentialcraft5/loot_tables/entities/frostbitten.json（13d-N1）— 雪球 0~2、冰 0.10（killed_by_player）、霜冻石 0.08（killed_by_player）；异变残质 0.35（fair_kill + hoanna_common）；精英异变之心 0.50（elite）",
+        "tools/plan/batch13.md §5.4 — 关键掉落 fair_kill 在前、kill_fatigue 在后；海纳尔本地怪的残质走 hoanna_common（F = 30），精英多掉的那池走 elite；刷怪蛋只放创造栏，改刷怪笼后来源 SPAWNER、不掷精英、关键掉落拿不到（policy §4.7）"
+      ]
+    },
+    {
+      "id": "mana_prism",
+      "title": "{lang:entity.essentialcraft5.mana_prism}",
+      "icon": "essentialcraft5:mana_prism_spawn_egg",
+      "summary": "魔力腐化之地上飘着的晶体",
+      "items": [
+        "essentialcraft5:mana_prism_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:mana_prism"
+        },
+        {
+          "type": "p",
+          "text": "浮游棱晶是一人高的悬浮水晶，中间一颗 MRU 光点一跳一跳，底下慢慢转着三片小棱片。它在魔力腐化之地最多，冰冻腐化之地也偶尔有，夜里或暗处才刷。"
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna_explore/ley_storm|地脉风暴]]里所有陆地上都会刷它，每个人身边最多 {cfg:general.mobs.hoanna_spawns.storm_prism_max_nearby} 只。",
+          "if": [
+            "cfg:general.hoanna_events.ley_storm_enabled",
+            "cfg:general.hoanna_events.ley_storm_chance>0",
+            "cfg:general.hoanna_tide.enabled",
+            "cfg:general.mobs.hoanna_spawns.storm_prism_weight>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.mana_prism.max_health} 点生命、{cfg:general.mobs.mana_prism.armor} 点护甲，喜欢和你隔开一段距离。每隔 {cfg:general.mobs.mana_prism.lock_interval|sec}它会锁定你，一道细光线连到你身上，{cfg:general.mobs.mana_prism.lock_ticks|sec}后沿锁定那一刻的方向射出光束。"
+        },
+        {
+          "type": "p",
+          "text": "光束打中是 {cfg:general.mobs.mana_prism.beam_damage} 点，再加你最大生命的 {cfg:general.mobs.mana_prism.beam_health_percent|pct}。",
+          "if": "cfg:general.mobs.mana_prism.beam_health_percent>0"
+        },
+        {
+          "type": "p",
+          "text": "光束打中是 {cfg:general.mobs.mana_prism.beam_damage} 点。",
+          "if": "!cfg:general.mobs.mana_prism.beam_health_percent>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            "光束只朝锁定那一刻的方向射。看到光线连上你，就往旁边横着走几步，它就打空了。",
+            "方块挡得住光束，躲到墙或柱子后面也行。光束算弹射物：盔甲照常减伤，举盾对着它也挡得住。",
+            "它怕近身砍，近战打它是 ×{cfg:general.mobs.weakness_multiplier} 的伤害；箭和别的弹射物打它只有 {cfg:general.mobs.resistance_multiplier|pct} 的伤害。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的浮游棱晶，有 35% 的几率掉{item:essentialcraft5:aberrant_residue}、15% 的几率掉{item:essentialcraft5:magical_essence}。它和别的海纳尔本地怪算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.hoanna_common} 只以后掉得越来越少，见[[bestiary/overview]]。",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的浮游棱晶，有 35% 的几率掉{item:essentialcraft5:aberrant_residue}、15% 的几率掉{item:essentialcraft5:magical_essence}。杀得再多也照常掉。",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "h",
+          "text": "精英 · {lang:entity.essentialcraft5.mana_prism.elite}"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.mana_prism.elite}一次射三道光束，呈扇形散开，往一侧要走得远一点才躲得开。"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的{lang:entity.essentialcraft5.mana_prism.elite}，还有一半的几率多掉一颗{item:essentialcraft5:aberrant_heart}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:mana_prism_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷浮游棱晶，刷怪笼里出来的不会是精英，打死了也不掉异变残质。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 mana_prism、§6.5 — 魔力腐化之地 140 / 1~2、冰冻腐化之地 40 / 1，夜 / 暗处；地脉风暴全陆地追加（每人附近 ≤ 4，13d-N3 HoannaSpawnHooks）；生命 30、护甲 12；锁定 1.5 秒后沿锁定方向射光束（5 + 3%），横移可躲；方块挡；weak_to_melee、resists_projectile；精英棱晶集束三束扇形（13d-N1）",
+        "光束的伤害类型是 mob_bolt（ManaPrismEntity.fireBeams 用 ECDamageTypes.mobBolt(射手)，batch13.md §5.1 伤害类型表；is_projectile：盔甲照常减、盾牌按射手位置挡），正文「方块挡得住光束」那一条写了",
+        "tools/plan/batch13.md §5.2 名录 — 保持 8~14 格；每 80 刻锁定 1.5 秒",
+        "general.mobs.mana_prism.{max_health, armor, lock_interval, lock_ticks, beam_damage, beam_health_percent}（键名已和代码里注册的配置核对）；general.mobs.hoanna_spawns.{storm_prism_weight, storm_prism_max_nearby}（13d-N3）",
+        "data/essentialcraft5/loot_tables/entities/mana_prism.json（13d-N1）— 异变残质 0.35、魔力精华 0.15（fair_kill + hoanna_common）；精英异变之心 0.50（elite）。怪物稿的 MRU 碎片、MRU 共鸣水晶 N1 细则没写，这里不写",
+        "tools/plan/batch13.md §5.4 — 关键掉落 fair_kill 在前、kill_fatigue 在后；海纳尔本地怪的残质走 hoanna_common（F = 30），精英多掉的那池走 elite；刷怪蛋只放创造栏，改刷怪笼后来源 SPAWNER、不掷精英、关键掉落拿不到（policy §4.7）"
+      ]
+    },
+    {
+      "id": "chaos_aberrant",
+      "title": "{lang:entity.essentialcraft5.chaos_aberrant}",
+      "icon": "essentialcraft5:chaos_aberrant_spawn_egg",
+      "summary": "混沌之地里横冲直撞的肉怪",
+      "items": [
+        "essentialcraft5:chaos_aberrant_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:chaos_aberrant"
+        },
+        {
+          "type": "p",
+          "text": "混沌畸变体四脚着地、驼着背，背上裂开几道暗红发光的缝。它在混沌腐化之地最多，暗影腐化之地也有一些，夜里或暗处才刷。"
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna/events|地震]]时刷出来的畸变体，一出生就是狂暴的。",
+          "if": "cfg:general.hoanna_events.earthquake_enabled"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.chaos_aberrant.max_health} 点生命、{cfg:general.mobs.chaos_aberrant.armor} 点护甲，咬一下 {cfg:general.mobs.chaos_aberrant.attack_damage} 点。每隔 {cfg:general.mobs.chaos_aberrant.charge_cooldown|sec}它会冲撞一次：先低下头蓄力 {cfg:general.mobs.chaos_aberrant.charge_windup|sec}，地上拖出一道痕，然后朝那个方向直直冲过去。",
+          "if": "cfg:general.mobs.chaos_aberrant.charge_cooldown>0"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.chaos_aberrant.max_health} 点生命、{cfg:general.mobs.chaos_aberrant.armor} 点护甲，咬一下 {cfg:general.mobs.chaos_aberrant.attack_damage} 点。",
+          "if": "!cfg:general.mobs.chaos_aberrant.charge_cooldown>0"
+        },
+        {
+          "type": "p",
+          "text": "撞中是 {cfg:general.mobs.chaos_aberrant.charge_damage} 点，再加你最大生命的 {cfg:general.mobs.chaos_aberrant.charge_health_percent|pct}，还会把你撞飞，盔甲挡不住。",
+          "if": [
+            "cfg:general.mobs.chaos_aberrant.charge_cooldown>0",
+            "cfg:general.mobs.chaos_aberrant.charge_health_percent>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "撞中是 {cfg:general.mobs.chaos_aberrant.charge_damage} 点，还会把你撞飞，盔甲挡不住。",
+          "if": [
+            "cfg:general.mobs.chaos_aberrant.charge_cooldown>0",
+            "!cfg:general.mobs.chaos_aberrant.charge_health_percent>0"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.chaos_aberrant.charge_cooldown>0",
+              "text": "看它低头就往旁边让开，别站在它和墙之间。它冲过头撞上墙会晕一小会儿，正好打它。"
+            },
+            {
+              "if": "cfg:general.mobs.chaos_aberrant.frenzy_health>0",
+              "text": "血打到 {cfg:general.mobs.chaos_aberrant.frenzy_health|pct} 以下它会狂暴，跑得更快。"
+            },
+            {
+              "if": "cfg:general.mobs.chaos_aberrant.split_count>0",
+              "text": "它死的时候会裂出 {cfg:general.mobs.chaos_aberrant.split_count} 只畸变幼体。"
+            }
+          ]
+        },
+        {
+          "type": "entity",
+          "id": "essentialcraft5:chaos_larva",
+          "height": 40,
+          "if": "cfg:general.mobs.chaos_aberrant.split_count>0"
+        },
+        {
+          "type": "p",
+          "text": "畸变幼体只有一点点血，一下就死，咬人也不疼。它不掉东西、不给经验，过一阵自己就散了，也不会再分裂。刷怪笼和刷怪蛋出来的畸变体死了不裂。",
+          "if": "cfg:general.mobs.chaos_aberrant.split_count>0"
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的混沌畸变体，有 35% 的几率掉{item:essentialcraft5:aberrant_residue}、8% 的几率掉{item:essentialcraft5:chaos_ember}。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0",
+              "text": "异变残质和别的海纳尔本地怪掉的算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.hoanna_common} 只以后掉得越来越少，见[[bestiary/overview]]。"
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.ember>0",
+              "text": "混沌余烬和炼狱小鬼掉的烈焰粉、余烬灵掉的余烬算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.ember} 只以后掉得越来越少。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "精英 · {lang:entity.essentialcraft5.chaos_aberrant.elite}"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.chaos_aberrant.elite}会生出更多幼体。盯住母巢打，别被幼体缠住。"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的{lang:entity.essentialcraft5.chaos_aberrant.elite}，还有一半的几率多掉一颗{item:essentialcraft5:aberrant_heart}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:chaos_aberrant_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷混沌畸变体，刷怪笼里出来的不会是精英，打死了也不掉异变残质。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 chaos_aberrant、§6.5 — 混沌腐化之地 180 / 1~2、暗影腐化之地 60 / 1，夜；地震时出生即狂暴；生命 60、护甲 4；1 秒蓄力冲撞（12 + 6%），撞墙眩晕；死时裂 2 只幼体（chaos_larva，不存盘、不再分裂、来源 SUMMONED、无掉落无经验，只有公平来源的成体才裂）；精英畸变母巢（13d-N2）",
+        "tools/plan/batch13.md §5.2 名录 — 近战 10；每 8 秒冲撞、冲 8 格；生命 < 30% 狂暴；幼体 6 血、2 点、40 秒后消散；母巢多出幼体（数量 13d-N2 定）",
+        "general.mobs.chaos_aberrant.{max_health, armor, attack_damage, charge_cooldown, charge_windup, charge_damage, charge_health_percent, frenzy_health, split_count}（键名已和代码里注册的配置核对）",
+        "data/essentialcraft5/loot_tables/entities/chaos_aberrant.json（13d-N2）— 异变残质 0.35（fair_kill + hoanna_common，batch13.md §5.2「同上」）；混沌余烬 0.08（fair_kill + ember）；精英异变之心 0.50（elite）；chaos_larva 空表",
+        "tools/plan/batch13.md §5.4 — 关键掉落 fair_kill 在前、kill_fatigue 在后；海纳尔本地怪的残质走 hoanna_common（F = 30），精英多掉的那池走 elite；刷怪蛋只放创造栏，改刷怪笼后来源 SPAWNER、不掷精英、关键掉落拿不到（policy §4.7）"
+      ]
+    },
+    {
+      "id": "ember_spirit",
+      "title": "{lang:entity.essentialcraft5.ember_spirit}",
+      "icon": "essentialcraft5:ember_spirit_spawn_egg",
+      "summary": "恐惧之地和沙漠里的余烬",
+      "items": [
+        "essentialcraft5:ember_spirit_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:ember_spirit"
+        },
+        {
+          "type": "p",
+          "text": "余烬灵是一团悬着的余烬碎块，围着一颗暗火核心翻滚。它分八种，对应八种余烬，颜色就是那种余烬的颜色。它在恐惧之地和海纳尔沙漠最多，混沌腐化之地也有一些，夜里或暗处才刷。"
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna/events|日阵]]时它白天也在露天的地方刷。",
+          "if": "cfg:general.hoanna_events.sun_array_enabled"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.ember_spirit.max_health} 点生命、{cfg:general.mobs.ember_spirit.armor} 点护甲，像烈焰人一样悬在半空，每隔 {cfg:general.mobs.ember_spirit.shoot_interval|sec}朝你射一发余烬弹，打中 {cfg:general.mobs.ember_spirit.bolt_damage} 点，还带上一样效果，是什么看它是哪种余烬。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "余烬弹是飞来的东西，举盾挡得住，横着走也躲得开。",
+            "它不怕火，怕冰冻，细雪和冰冻伤害打它是 ×{cfg:general.mobs.weakness_multiplier}。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的余烬灵，有 20% 的几率掉一颗和它同色的余烬，还有 20% 的几率掉{item:essentialcraft5:aberrant_residue}。余烬是[[void_machines/ember_forge]]要的东西，别处只有城镇塔顶的箱子里有，混沌畸变体也偶尔掉一颗混沌余烬。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.kill_fatigue.ember>0",
+              "text": "余烬和炼狱小鬼掉的烈焰粉、混沌畸变体掉的混沌余烬算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.ember} 只以后掉得越来越少，见[[bestiary/overview]]。"
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0",
+              "text": "异变残质和别的海纳尔本地怪掉的算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.hoanna_common} 只以后掉得越来越少。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "精英 · {lang:entity.essentialcraft5.ember_spirit.elite}"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.ember_spirit.elite}身上有两种余烬，两种余烬弹轮着射。"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的{lang:entity.essentialcraft5.ember_spirit.elite}，还有一半的几率多掉一颗{item:essentialcraft5:aberrant_heart}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:ember_spirit_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷余烬灵，刷怪笼里出来的不会是精英，打死了也不掉余烬和异变残质。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 ember_spirit、§6.5 — 恐惧之地 120 / 1~2、海纳尔沙漠 100 / 1~2、混沌腐化之地 40 / 1，夜；日阵中白天露天也刷；生命 28、护甲 4；余烬弹八种余烬八种效果（复用 EmberEffect，按种子定种类存 NBT、按余烬染色）；精英余烬双生两种余烬交替（13d-N2）",
+        "tools/plan/batch13.md §5.2 名录 — 烈焰人式悬停、每 50 刻一发 mob_bolt 6 点；免疫火、weak_to_freezing。八种余烬各给什么效果 13d-N2 定，手册暂不列",
+        "general.mobs.ember_spirit.{max_health, armor, bolt_damage, shoot_interval}（键名已和代码里注册的配置核对）",
+        "data/essentialcraft5/loot_tables/entities/ember_spirit.json（13d-N2）— 它那种余烬 0.20（fair_kill + ember）；异变残质 0.20（fair_kill + hoanna_common，怪物稿数）；精英异变之心 0.50（elite）；第十六章 hoanna/relics：余烬原先只从城镇塔顶箱子出",
+        "tools/plan/batch13.md §5.4 — 关键掉落 fair_kill 在前、kill_fatigue 在后；海纳尔本地怪的残质走 hoanna_common（F = 30），精英多掉的那池走 elite；刷怪蛋只放创造栏，改刷怪笼后来源 SPAWNER、不掷精英、关键掉落拿不到（policy §4.7）"
+      ]
+    },
+    {
+      "id": "hoanna_scavenger",
+      "title": "{lang:entity.essentialcraft5.hoanna_scavenger}",
+      "icon": "essentialcraft5:hoanna_scavenger_spawn_egg",
+      "summary": "荒野里拾荒的遗民，白天也在",
+      "items": [
+        "essentialcraft5:hoanna_scavenger_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:hoanna_scavenger"
+        },
+        {
+          "type": "p",
+          "text": "遗民拾荒者裹着破布和拼起来的铁片，戴着防毒面具，背一个铁皮罐。它在恐惧之地和海纳尔沙漠里刷，夜里照常刷；白天也会在露天的地面上出现，那时附近只有零星几个。"
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna/events|毒雾]]时它刷得是平时的 {cfg:general.mobs.hoanna_spawns.fumes_scavenger_multiplier} 倍。",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0",
+            "cfg:general.mobs.hoanna_spawns.fumes_scavenger_multiplier>1"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.hoanna_scavenger.max_health} 点生命、{cfg:general.mobs.hoanna_scavenger.armor} 点护甲，刷出来时就定好拿什么。拿撬棍的贴身打你，一下 {cfg:general.mobs.hoanna_scavenger.crowbar_damage} 点；拿步枪的先瞄 {cfg:general.mobs.hoanna_scavenger.rifle_aim_ticks|sec}，再射一发 {cfg:general.mobs.hoanna_scavenger.rifle_damage} 点。"
+        },
+        {
+          "type": "p",
+          "text": "被它打中还会涨辐射，撬棍一下 {cfg:general.mobs.hoanna_scavenger.crowbar_dose}，步枪一下 {cfg:general.mobs.hoanna_scavenger.rifle_dose}，盔甲的辐射抗性照常替你挡，见[[hoanna/radiation]]。",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "步枪瞄准的时候它站着不动，这时躲到方块后面，或者往旁边走开。",
+            {
+              "if": "cfg:general.mobs.hoanna_scavenger.stim_health>0",
+              "text": "生命打到 {cfg:general.mobs.hoanna_scavenger.stim_health|pct} 以下，它会给自己打一针，回一段血，过一阵才能再打一针。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的遗民拾荒者，有 15% 的几率掉{item:essentialcraft5:titanite}、20% 的几率掉{item:essentialcraft5:aberrant_residue}。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.kill_fatigue.hoanna_titanite>0",
+              "text": "榍石自成一类，一小时里杀到 {cfg:general.mobs.kill_fatigue.hoanna_titanite} 个拾荒者以后掉得越来越少，见[[bestiary/overview]]。"
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0",
+              "text": "异变残质和别的海纳尔本地怪掉的算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.hoanna_common} 只以后掉得越来越少。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它的灵魂收得进{item:essentialcraft5:soul_scriber}，恶魔交易时也会要 2 个遗民的灵魂，见[[demons/soul_scriber]]。"
+        },
+        {
+          "type": "h",
+          "text": "精英 · {lang:entity.essentialcraft5.hoanna_scavenger.elite}"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.hoanna_scavenger.elite}背着一面展开的护盾，正面射来的东西都挡得下。打着打着它会放一发信号弹，叫来 {cfg:general.mobs.hoanna_scavenger.elite_summon_count} 个拾荒者。",
+          "if": "cfg:general.mobs.hoanna_scavenger.elite_summon_count>0"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.hoanna_scavenger.elite}背着一面展开的护盾，正面射来的东西都挡得下。",
+          "if": "!cfg:general.mobs.hoanna_scavenger.elite_summon_count>0"
+        },
+        {
+          "type": "p",
+          "text": "叫来的拾荒者什么都不掉，也不给经验，灵魂收不了，队长自己的灵魂也收不了。自己动手打死野外的{lang:entity.essentialcraft5.hoanna_scavenger.elite}，还有一半的几率多掉一颗{item:essentialcraft5:aberrant_heart}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:hoanna_scavenger_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷遗民拾荒者，刷怪笼里出来的不会是精英，打死了也不掉榍石和异变残质。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 hoanna_scavenger、§6.5 — 恐惧之地 100 / 1~3、海纳尔沙漠 120 / 1~3；白天地表变体（看得见天、y ≥ 60、64 格 ≤ 4）；毒雾时 ×2（13d-N3）；生命 36、护甲 8；撬棍 / 步枪（生成时定、存 NBT），命中加辐射剂量（Radiation.add，照普通易伤）；残血打针（冷却存盘）；精英遗民队长护盾、信号弹召 2 名（SUMMONED，不掉不收魂、经验 0）（13d-N1）",
+        "tools/plan/batch13.md §5.2 名录 — 撬棍 9、步枪 2 秒瞄准 15 格 6 点；撬棍 +150、步枪 +300；生命 < 25% 打针",
+        "general.mobs.hoanna_scavenger.{max_health, armor, crowbar_damage, rifle_aim_ticks, rifle_damage, crowbar_dose, rifle_dose, stim_health, elite_summon_count}（键名已和代码里注册的配置核对）",
+        "data/essentialcraft5/loot_tables/entities/hoanna_scavenger.json（13d-N1）— 榍石 0.15（fair_kill + hoanna_titanite F = 20）、异变残质 0.20（fair_kill + hoanna_common，怪物稿数）；精英异变之心 0.50（elite）；tags/entity_types/soul_capturable.json 含 hoanna_scavenger，精英与叫来的不收；demon_trades/default.json 遗民灵魂 ×2（batch13.md §3.4）",
+        "tools/plan/batch13.md §5.4 — 关键掉落 fair_kill 在前、kill_fatigue 在后；海纳尔本地怪的残质走 hoanna_common（F = 30），精英多掉的那池走 elite；刷怪蛋只放创造栏，改刷怪笼后来源 SPAWNER、不掷精英、关键掉落拿不到（policy §4.7）"
+      ]
+    },
+    {
+      "id": "abyssal_eel",
+      "title": "{lang:entity.essentialcraft5.abyssal_eel}",
+      "icon": "essentialcraft5:abyssal_eel_spawn_egg",
+      "summary": "海纳尔之海里的长鳗",
+      "items": [
+        "essentialcraft5:abyssal_eel_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:abyssal_eel"
+        },
+        {
+          "type": "p",
+          "text": "渊鳗是身上带着灰蓝光斑的长鳗，嘴里一圈光点。它只在海纳尔之海里刷，水深要有 {cfg:general.mobs.abyssal_eel.min_depth} 格以上、高度在 y {cfg:general.mobs.abyssal_eel.min_y}~{cfg:general.mobs.abyssal_eel.max_y} 之间，一群 1~3 条。这片海的水里不刷别的生物，下水碰到的多半是它。"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.abyssal_eel.max_health} 点生命、{cfg:general.mobs.abyssal_eel.armor} 点护甲，游得很快，只在水里咬人，一下 {cfg:general.mobs.abyssal_eel.bite_damage} 点，咬中还把你往下拽 {cfg:general.mobs.abyssal_eel.drag_ticks|sec}。",
+          "if": "cfg:general.mobs.abyssal_eel.drag_ticks>0"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.abyssal_eel.max_health} 点生命、{cfg:general.mobs.abyssal_eel.armor} 点护甲，游得很快，只在水里咬人，一下 {cfg:general.mobs.abyssal_eel.bite_damage} 点。",
+          "if": "!cfg:general.mobs.abyssal_eel.drag_ticks>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.abyssal_eel.drag_ticks>0",
+              "text": "被拽的时候拼命往上游，挣得开。下水前喝一瓶水肺药水，或者戴上带水下呼吸的头盔，被拽下去也不怕呛着。"
+            },
+            "它离了水就往水里跳，引到浅水边或岸上打容易得多。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的渊鳗，有 30% 的几率掉{item:essentialcraft5:aberrant_residue}。它和别的海纳尔本地怪算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.hoanna_common} 只以后掉得越来越少，见[[bestiary/overview]]。",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的渊鳗，有 30% 的几率掉{item:essentialcraft5:aberrant_residue}。杀得再多也照常掉。",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "h",
+          "text": "精英 · {lang:entity.essentialcraft5.abyssal_eel.elite}"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.abyssal_eel.elite}第一次受伤时会叫来 {cfg:general.mobs.abyssal_eel.elite_summon_count} 条渊鳗，叫来的什么都不掉，也不给经验。",
+          "if": "cfg:general.mobs.abyssal_eel.elite_summon_count>0"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的{lang:entity.essentialcraft5.abyssal_eel.elite}，还有一半的几率多掉一颗{item:essentialcraft5:aberrant_heart}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:abyssal_eel_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷渊鳗，刷怪笼里出来的不会是精英，打死了也不掉异变残质。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 abyssal_eel、§6.5 — 海纳尔之海 120 / 1~3（MONSTER + 水中放置，水深 ≥ 6、y 30~56，64 格 ≤ 6）；生命 34、护甲 4；咬 + 下拽 1 秒（可游开，不拽进方块）；精英渊鳗群首（13d-N2）",
+        "tools/plan/batch13.md §5.2 名录 — 咬 8；离水往水里跳；群首第一次受伤召 2 条（SUMMONED）",
+        "general.mobs.abyssal_eel.{max_health, armor, bite_damage, drag_ticks, min_depth, min_y, max_y, elite_summon_count}（键名已和代码里注册的配置核对）",
+        "data/essentialcraft5/loot_tables/entities/abyssal_eel.json（13d-N2）— 异变残质 0.30（fair_kill + hoanna_common）；精英异变之心 0.50（elite）",
+        "tools/plan/batch13.md §5.4 — 关键掉落 fair_kill 在前、kill_fatigue 在后；海纳尔本地怪的残质走 hoanna_common（F = 30），精英多掉的那池走 elite；刷怪蛋只放创造栏，改刷怪笼后来源 SPAWNER、不掷精英、关键掉落拿不到（policy §4.7）"
+      ]
+    },
+    {
+      "id": "inquisitorium_patroller",
+      "title": "{lang:entity.essentialcraft5.inquisitorium_patroller}",
+      "icon": "essentialcraft5:inquisitorium_patroller_spawn_egg",
+      "summary": "暗影腐化之地里巡逻的全息人影",
+      "items": [
+        "essentialcraft5:inquisitorium_patroller_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:inquisitorium_patroller"
+        },
+        {
+          "type": "p",
+          "text": "审判庭巡卫是半个人高的全息人影，青色，腿往下淡得看不见。它只在暗影腐化之地刷，一群 2~3 个。它自己发光，亮处也照样刷，火把挡不住它。"
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna/events|黑暗]]时它在所有陆地上都刷，亮不亮都一样，64 格内最多 {cfg:general.mobs.hoanna_spawns.darkness_patroller_max_nearby} 个。",
+          "if": [
+            "cfg:general.hoanna_events.darkness_enabled",
+            "cfg:general.mobs.hoanna_spawns.darkness_patroller_weight>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.inquisitorium_patroller.max_health} 点生命，没有护甲，悬在半空不近身。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.inquisitorium_patroller.destroyer_interval>0",
+              "text": "每隔 {cfg:general.mobs.inquisitorium_patroller.destroyer_interval|sec}射一发{lang:entity.essentialcraft5.armor_destroyer}。它不伤人，打中时你手里的东西和每件盔甲各掉 5 点耐久，魔力防护、虚空套装、宅男套装这类靠 MRU 挡伤害的盔甲改为扣电。它撞上方块就没了，搭个掩体挡得住。"
+            },
+            {
+              "if": "cfg:general.mobs.inquisitorium_patroller.strike_interval>0",
+              "text": "每隔 {cfg:general.mobs.inquisitorium_patroller.strike_interval|sec}它在你脚下画一个圈，{cfg:general.mobs.inquisitorium_patroller.strike_warning_ticks|sec}后从天上落下一发{lang:entity.essentialcraft5.orbital_strike}，打中 {cfg:general.mobs.inquisitorium_patroller.strike_damage} 点，举盾挡不住，抗性提升也减不了它。看到圈就走出去。"
+            },
+            "它和全息投影一样，远程打它会打折扣，近身砍更快。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的审判庭巡卫，有 20% 的几率掉{item:essentialcraft5:aberrant_residue}。它和别的海纳尔本地怪算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.hoanna_common} 只以后掉得越来越少，见[[bestiary/overview]]。",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的审判庭巡卫，有 20% 的几率掉{item:essentialcraft5:aberrant_residue}。杀得再多也照常掉。",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "它不掉{item:essentialcraft5:glitchy_core}，那只能从全息投影和审判庭哨兵身上拿，见[[inquisitorium/glitchy_core]]。"
+        },
+        {
+          "type": "h",
+          "text": "精英 · {lang:entity.essentialcraft5.inquisitorium_patroller.elite}"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.inquisitorium_patroller.elite}的轨道打击一落就是三发，一发接一发，看到圈要走得远一点。"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死野外的{lang:entity.essentialcraft5.inquisitorium_patroller.elite}，还有一半的几率多掉一颗{item:essentialcraft5:aberrant_heart}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:inquisitorium_patroller_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷审判庭巡卫，刷怪笼里出来的不会是精英，打死了也不掉异变残质。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 inquisitorium_patroller、§6.5 — 暗影腐化之地 160 / 2~3，不看亮度；黑暗天灾全陆地追加 60（64 格 ≤ 6，13d-N3 HoannaSpawnHooks）；生命 24、护甲 0；复用护甲破坏者（扣虚空 / 宅男 0 阶单价 MRU）+ 2 秒预警小型轨道打击 4；不掉故障核心（13d-N3）",
+        "tools/plan/batch13.md §5.2 名录 — 每 80 刻护甲破坏者、每 120 刻定标；全息的非近战 ÷4 这里改 ÷2；执行机三连（相隔 10 刻）",
+        "第十八章 hologram — 护甲破坏者打中手里的东西和每件盔甲各掉 5 点耐久；computer/suit — 宅男套装改扣电",
+        "general.mobs.inquisitorium_patroller.{max_health, destroyer_interval, strike_interval, strike_warning_ticks, strike_damage}（键名已和代码里注册的配置核对）；general.mobs.hoanna_spawns.{darkness_patroller_weight, darkness_patroller_max_nearby}",
+        "data/essentialcraft5/loot_tables/entities/inquisitorium_patroller.json（13d-N3）— 异变残质 0.20（fair_kill + hoanna_common，怪物稿数）；精英异变之心 0.50（elite）；没有故障核心（policy §4.13）",
+        "tools/plan/batch13.md §5.4 — 关键掉落 fair_kill 在前、kill_fatigue 在后；海纳尔本地怪的残质走 hoanna_common（F = 30），精英多掉的那池走 elite；刷怪蛋只放创造栏，改刷怪笼后来源 SPAWNER、不掷精英、关键掉落拿不到（policy §4.7）"
+      ]
+    },
+    {
+      "id": "catacomb_revenant",
+      "title": "{lang:entity.essentialcraft5.catacomb_revenant}",
+      "icon": "essentialcraft5:catacomb_revenant_spawn_egg",
+      "summary": "古代墓穴里的骷髅骑士",
+      "items": [
+        "essentialcraft5:catacomb_revenant_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:catacomb_revenant"
+        },
+        {
+          "type": "p",
+          "text": "墓穴守灵是穿着锈板甲的骷髅骑士，肋骨间透着淡青的灵火。它只在[[hoanna/ruins|古代墓穴]]里刷，墓穴里光照不到的地方会刷出守灵，也会刷普通的骷髅和僵尸。"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "p",
+          "text": "它有 {cfg:general.mobs.catacomb_revenant.max_health} 点生命、{cfg:general.mobs.catacomb_revenant.armor} 点护甲，持剑砍一下 {cfg:general.mobs.catacomb_revenant.attack_damage} 点。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它是灵体，箭和别的弹射物有 {cfg:general.mobs.catacomb_revenant.projectile_pass_chance|pct} 的几率直接穿过去，近身砍稳当得多。",
+            {
+              "if": "cfg:general.mobs.catacomb_revenant.oath_ticks>0",
+              "text": "一只守灵死了，{cfg:general.mobs.catacomb_revenant.oath_radius} 格内别的守灵会得到 {cfg:general.mobs.catacomb_revenant.oath_ticks|sec}力量 I。一群守灵最好拉开了一只一只打。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死墓穴里的守灵，有 25% 的几率掉{item:essentialcraft5:aberrant_residue}。它和别的海纳尔本地怪算同一类，一小时里合计杀到 {cfg:general.mobs.kill_fatigue.hoanna_common} 只以后掉得越来越少，见[[bestiary/overview]]。",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死墓穴里的守灵，有 25% 的几率掉{item:essentialcraft5:aberrant_residue}。杀得再多也照常掉。",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "h",
+          "text": "精英 · {lang:entity.essentialcraft5.catacomb_revenant.elite}"
+        },
+        {
+          "type": "p",
+          "text": "{lang:entity.essentialcraft5.catacomb_revenant.elite}每隔 {cfg:general.mobs.catacomb_revenant.blade_interval|sec}召出灵刃，最多同时 {cfg:general.mobs.catacomb_revenant.blade_count} 把。灵刃会追着你飞一阵，打中 {cfg:general.mobs.catacomb_revenant.blade_damage} 点，可以打掉。",
+          "if": "cfg:general.mobs.catacomb_revenant.blade_interval>0"
+        },
+        {
+          "type": "p",
+          "text": "自己动手打死墓穴里的{lang:entity.essentialcraft5.catacomb_revenant.elite}，还有一半的几率多掉一颗{item:essentialcraft5:aberrant_heart}。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:catacomb_revenant_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼，刷怪笼就改成刷墓穴守灵，刷怪笼里出来的不会是精英，打死了也不掉异变残质。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.2 catacomb_revenant、§6.5 — 只在古代墓穴 spawn_overrides（piece：守灵 60 + 骷髅 30 + 僵尸 20），光照 ≤ 7；生命 40、护甲 10；弹射物 30% 穿过；骨誓；精英墓穴守灵长追踪灵刃（13d-N3）",
+        "tools/plan/batch13.md §5.2 名录 — 剑 9；骨誓：死时 8 格内其它守灵力量 I 10 秒；守灵长每 12 秒 2 把灵刃（5 点、追踪 3 秒、可打掉、同时 ≤ 2）",
+        "general.mobs.catacomb_revenant.{max_health, armor, attack_damage, projectile_pass_chance, oath_radius, oath_ticks, blade_interval, blade_count, blade_damage}（键名已和代码里注册的配置核对）",
+        "data/essentialcraft5/loot_tables/entities/catacomb_revenant.json（13d-N3）— 异变残质 0.25（fair_kill + hoanna_common）；精英异变之心 0.50（elite）；墓穴里刷出的来源是结构，算公平（batch13.md §5.4）",
+        "tools/plan/batch13.md §5.4 — 关键掉落 fair_kill 在前、kill_fatigue 在后；海纳尔本地怪的残质走 hoanna_common（F = 30），精英多掉的那池走 elite；刷怪蛋只放创造栏，改刷怪笼后来源 SPAWNER、不掷精英、关键掉落拿不到（policy §4.7）"
+      ]
+    },
+    {
+      "id": "mru_golem",
+      "title": "{lang:entity.essentialcraft5.mru_golem}",
+      "icon": "essentialcraft5:mru_golem_spawn_egg",
+      "summary": "上古遗迹的守卫，掉上古晶核",
+      "complete": "essentialcraft5:guide/bestiary/mru_golem",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ancient_core",
+        "essentialcraft5:mru_golem_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:mru_golem"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：打倒一只聚能魔像，拿到{item:essentialcraft5:ancient_core}。"
+        },
+        {
+          "type": "p",
+          "text": "上古遗迹是先辈砌来关聚集体的笼子。有的遗迹还有一只魔像守着，它是谁留下的，残卷里没有写。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "上古晶核是装备同调升阶要用的材料，魔力防护、虚空、宅男套装和裁决之刃都用得上，见[[attunement/stage_up]]。"
+        },
+        {
+          "type": "h",
+          "text": "去哪找"
+        },
+        {
+          "type": "list",
+          "items": [
+            "主世界的[[start/mrucu|上古遗迹]]，多半埋在地下的石头里，笼子正中悬着一团聚集体。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "海纳尔的上古遗迹里，有 {cfg:general.mobs.mru_golem.hoanna_chance|pct} 守着魔像。"
+            },
+            "魔像只守这次更新以后生成的遗迹。你更新以前跑过的地方，遗迹早就生成好了，里面没有魔像，要往没去过的地方找。",
+            "戴上{item:essentialcraft5:magic_monocle}，隔着石头也看得见地下发光的聚集体。[[gear/ley_detector|地脉探测仪]]切到「聚集体」档，能指出 {cfg:general.mobs.mru_golem.detector_radius} 格内存量 {cfg:general.mobs.mru_golem.detector_min_mru} 以上的那团在哪个方向。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "它怎样出来"
+        },
+        {
+          "type": "p",
+          "text": "你走进遗迹那团聚集体 {cfg:general.mobs.mru_golem.trigger_radius} 格以内，魔像就会醒来。它出在聚集体正上方最近的一块露天地面上，不在笼子里；往上 {cfg:general.mobs.mru_golem.spawn_search_height} 格内都找不到露天的地面，才在聚集体旁边出来。旁边也腾不出长宽高各 3 格的空地，它就出不来，动作栏会提醒你，在聚集体旁边挖出这样一块空地就行。一座遗迹只出一只。",
+          "if": "cfg:general.mobs.mru_golem.trigger_radius>0"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.mru_golem.trigger_radius>0",
+          "text": "在这个世界里，走近遗迹不会叫醒魔像。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "要你在那一格能动方块才算数，在别人的领地里走过去，它不会出来。它落脚的地方也要是你能动的，正上方的地面在别人的领地里，它就改在旁边找。",
+            "生存和冒险模式才算，创造、旁观模式走过去不会叫醒它。",
+            "那团聚集体被挪离原位 {cfg:general.mobs.mru_golem.abandon_distance} 格以上，这只魔像就再也不会出来，上古晶核也就没了。魔像出来之前，别拿魔杖拽这团聚集体。魔像出来以后再拽就没关系了，它不会因此消失。",
+            "装进[[gear/mrucu_container|收容瓶]]再放出来的聚集体，不会再招出魔像。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "生命",
+              "{cfg:general.mobs.mru_golem.max_health}"
+            ],
+            [
+              "护甲",
+              "{cfg:general.mobs.mru_golem.armor}，盔甲韧性 {cfg:general.mobs.mru_golem.armor_toughness}"
+            ],
+            [
+              "击退抗性",
+              "{cfg:general.mobs.mru_golem.knockback_resistance}，几乎打不退"
+            ],
+            {
+              "if": "cfg:general.mobs.mru_golem.per_hit_cap>0",
+              "cells": [
+                "一下最多掉",
+                "{cfg:general.mobs.mru_golem.per_hit_cap} 点"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+            "cfg:general.mobs.mru_golem.shield_range>0",
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage==40",
+            "cfg:general.mobs.mru_golem.shield_min_mru==500"
+          ],
+          "text": "它还有一层<em>聚能护盾</em>：只要它离那团聚集体水平不到 {cfg:general.mobs.mru_golem.shield_range} 格（上下隔着几十格石头也算），聚集体里又还有 {cfg:general.mobs.mru_golem.shield_min_mru} MRU 以上，它挨的每 1 点伤害都改从聚集体里扣 {cfg:general.mobs.mru_golem.shield_mru_per_damage} MRU 抵掉。遗迹那团存着 5000~1 万 MRU，能替它挡下约 110~250 点。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+            "cfg:general.mobs.mru_golem.shield_range>0",
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage!=40||cfg:general.mobs.mru_golem.shield_min_mru!=500"
+          ],
+          "text": "它还有一层<em>聚能护盾</em>：只要它离那团聚集体水平不到 {cfg:general.mobs.mru_golem.shield_range} 格（上下隔着几十格石头也算），聚集体里又还有 {cfg:general.mobs.mru_golem.shield_min_mru} MRU 以上，它挨的每 1 点伤害都改从聚集体里扣 {cfg:general.mobs.mru_golem.shield_mru_per_damage} MRU 抵掉。遗迹那团存着 5000~1 万 MRU。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+            "cfg:general.mobs.mru_golem.shield_range>0"
+          ],
+          "text": "魔像身上的光亮着、慢慢明暗，就是护盾还在；暗下去就是没了。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+                "cfg:general.mobs.mru_golem.shield_range>0"
+              ],
+              "text": "拿{item:essentialcraft5:mru_mover}把聚集体拽到离魔像水平 {cfg:general.mobs.mru_golem.shield_range} 格以外，护盾就没了。魔像只在它醒来时那团聚集体所在那一格周围 {cfg:general.mobs.mru_golem.leash_range} 格里活动，把聚集体从那一格拽出去 {cfg:general.mobs.mru_golem.leash_range|addcfg:general.mobs.mru_golem.shield_range} 格以上，它怎么走都够不着。魔杖要你能动那一格才拽得动，见[[crafting/corruption]]。"
+            },
+            {
+              "if": [
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+                "cfg:general.mobs.mru_golem.shield_range>0"
+              ],
+              "text": "把魔像引开也行，可它离遗迹水平超过 {cfg:general.mobs.mru_golem.leash_range} 格就会掉头往回走，走回 {cfg:general.mobs.mru_golem.leash_range|add:-4} 格以内才再理你。往回走的时候它不出招，刚掉头那几步离聚集体还在 {cfg:general.mobs.mru_golem.shield_range} 格外、护盾也没有，站在边上用弓箭磨它正合适。"
+            },
+            {
+              "if": "!cfg:general.mobs.mru_golem.shield_mru_per_damage>0||!cfg:general.mobs.mru_golem.shield_range>0",
+              "text": "把魔像引开也行，可它离遗迹水平超过 {cfg:general.mobs.mru_golem.leash_range} 格就会掉头往回走，走回 {cfg:general.mobs.mru_golem.leash_range|add:-4} 格以内才再理你。往回走的时候它不出招，站在边上用弓箭磨它正合适。"
+            },
+            {
+              "if": [
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+                "cfg:general.mobs.mru_golem.shield_range>0",
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage==40",
+                "cfg:general.mobs.mru_golem.shield_min_mru==500",
+                "cfg:general.mobs.mru_golem.max_health==120"
+              ],
+              "text": "硬打。聚集体剩不到 {cfg:general.mobs.mru_golem.shield_min_mru} MRU 护盾就停了，算上护盾，它一共要挨约 230~370 点。"
+            },
+            {
+              "if": [
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+                "cfg:general.mobs.mru_golem.shield_range>0",
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage!=40||cfg:general.mobs.mru_golem.shield_min_mru!=500||cfg:general.mobs.mru_golem.max_health!=120"
+              ],
+              "text": "硬打。聚集体剩不到 {cfg:general.mobs.mru_golem.shield_min_mru} MRU 护盾就停了，之后每一下都打在它自己的生命上。"
+            },
+            {
+              "if": "!cfg:general.mobs.mru_golem.shield_mru_per_damage>0||!cfg:general.mobs.mru_golem.shield_range>0",
+              "text": "硬打。它没有护盾，{cfg:general.mobs.mru_golem.max_health} 点生命打完就倒。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "招式"
+        },
+        {
+          "type": "table",
+          "header": [
+            "招式",
+            "怎么来",
+            "怎么应付"
+          ],
+          "rows": [
+            [
+              "重锤",
+              "近身砸下来，{cfg:general.mobs.mru_golem.hammer_damage} 点",
+              "护甲照常减，离它远一点"
+            ],
+            [
+              "聚能冲击",
+              "它四周先亮一圈蓝光，{cfg:general.mobs.mru_golem.slam_warning_ticks|sec}后炸开，半径 {cfg:general.mobs.mru_golem.slam_radius} 格，{cfg:general.mobs.mru_golem.slam_damage} 点再加你最大生命的 {cfg:general.mobs.mru_golem.slam_health_fraction|pct}",
+              "看见蓝光就跑出圈外，护甲挡不住"
+            ],
+            {
+              "if": "cfg:general.attunement.enabled",
+              "cells": [
+                "电弧鞭",
+                "{cfg:general.mobs.mru_golem.whip_min_range}~{cfg:general.mobs.mru_golem.whip_max_range} 格内甩一道电弧，{cfg:general.mobs.mru_golem.whip_damage} 点",
+                "贴身打，或者拉开到 {cfg:general.mobs.mru_golem.whip_max_range} 格外。[[attunement/mhs_armor|魔力防护]]同调到 2 阶能挡掉一部分"
+              ]
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "cells": [
+                "电弧鞭",
+                "{cfg:general.mobs.mru_golem.whip_min_range}~{cfg:general.mobs.mru_golem.whip_max_range} 格内甩一道电弧，{cfg:general.mobs.mru_golem.whip_damage} 点",
+                "贴身打，或者拉开到 {cfg:general.mobs.mru_golem.whip_max_range} 格外"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            5,
+            5
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "魔像倒下，打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各拿到一份掉落，直接进背包，这一步也就打勾了。"
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:ancient_core} ×1",
+            "{item:essentialcraft5:magic_fortified_plating} ×2~4",
+            "{item:essentialcraft5:mru_chunk} ×2",
+            "{cfg:general.mobs.mru_golem.xp} 点经验"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每个打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各得一份，背包满了就掉在脚下。护盾替它挡下的伤害不算，只算真正扣掉的血。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.fair_kill_min_share>0",
+          "text": "至少 {cfg:general.mobs.fair_kill_min_share|pct} 的伤害要是玩家打的，靠岩浆、陷阱把它磨死的不掉。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "遗迹多半埋在地下，魔像却出在聚集体正上方的露天地面上，有时离你几十格，要回到地面上去找它打。它醒来时，动作栏会告诉你它在你头顶多少格。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "它是首领，打掉它一成以上生命就记进[[matrix/codex|矩阵图谱]]的首领一组。"
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.attunement.enabled"
+              ],
+              "text": "聚能冲击算无视护甲的重击，宅男套装同调 4 阶起挡 {cfg:general.computer_armor.piercing_share|pct}，审判庭套装 4 阶少受 {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct}，虚空套装闪不掉它。"
+            },
+            "切到和平难度，它会消失，不掉东西。难度调回来以后再走近那团聚集体，它会重新出来，血是满的；那团聚集体要是那时已被拽到很远的地方，就不会了。",
+            "它和它的招式都不破坏方块。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:mru_golem_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼只会在旁边放出一只，刷怪笼的类型不会变。刷怪蛋放出来的魔像没有守着的聚集体，也就没有护盾，打倒了那三样掉落一样都没有。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.3.1、policy §4.18 聚能魔像触发 — 只给新生成的遗迹写 guardian: pending 与原位（worldgen/ElderMRUCUFeature 两行 NBT），老存档的聚集体当没有守护；生存 / 冒险玩家进 8 格、这名玩家在聚集体那一格能动（ECProtection.check）、聚集体离原位 ≤ 16 格才触发；挪离 16 格以上 = 放弃；收容瓶内容不存 guardian；在聚集体正上方最近的露天地面生成（最多往上 48 格），找不到再在旁边；落点也要触发者能动（MRUGolemTrigger.LandingPermit，结论按人、聚集体、格子记 6 000 刻，一次最多新问 8 格），找不到能站又能动的地方时动作栏提示 no_room（同一团 200 刻一次）；海纳尔遗迹 20%（§8.2 Q-8）（entity/mob/MRUGolemTrigger，13c-M2）",
+        "tools/plan/batch13.md §5.3.1 — 生命 120、护甲 10、韧性 2、击退抗性 0.8、单次封顶 25；聚能护盾：16 格内且聚集体 ≥ 500 MRU 时每点伤害扣 40 MRU（遗迹 5 000~1 万抵 125~250，有效生命 245~370）；16 格追索；重锤 9、聚能冲击（1 秒蓝圈，3.5 格，6 + 10%，aberrant_strike）、电弧鞭（4~10 格 6 点 mru_discharge 带攻击者）",
+        "tools/plan/batch13.md §5.3.1 — 掉落（来源 STRUCTURE，fair_kill）：上古晶核 ×1、魔力强化板 ×2~4、MRU 晶块 ×2；经验 40；§5.3 共同：每名 ≥ 10% 的参战者一份进背包（giveOrDrop），每个池 killed_by_player",
+        "tools/plan/batch13.md §5.3.1 — 地脉探测仪「聚集体」档：只查已加载区块，64 格内最近 ≥ 5 000 MRU 的聚集体方向（item/LeyDetectorItem，13c-M2）",
+        "policy §4.17、batch13.md §5.1 表 — 魔力防护 2 阶挡带攻击者的 mru_discharge；aberrant_strike：宅男 4 阶挡一半、审判庭 4 阶 ×0.7、undodgeable",
+        "start/mrucu — 上古遗迹聚集体存 5 000~1 万 MRU；crafting/corruption — 移动魔杖要两格都能改动",
+        "data/essentialcraft5/advancements/guide/bestiary/mru_golem.json — 隐藏、impossible，打倒时由代码发给参战者（13c-M2）",
+        "tools/plan/batch13.md §5.4 — 小 Boss / Boss 的蛋点刷怪笼不改类型",
+        "entity/mob/MRUGolemEntity — 追索按醒来时聚集体那一格、护盾按聚集体现在的位置，都量水平距离（上下差 ≤ spawn_search_height + 8 都算在旁边），走回 leash_range − 4 才停；护盾每下先按单次封顶夹再抵，抵掉的不进伤害账、名单、公平击杀占比；和平散去时聚集体改回 pending、原位改成它现在那一格（没加载的找不到、改不回），不掉东西；名单脱战按水平 32 格、上下 spawn_search_height + 8（beyondEscape）；经验按打倒时的配置；出来以后再挪聚集体不算放弃；刷怪蛋放的没有护盾、三样掉落都没有（13c-M2 §1、§3）"
+      ]
+    },
+    {
+      "id": "matrix_shade",
+      "title": "{lang:entity.essentialcraft5.matrix_shade}",
+      "icon": "essentialcraft5:matrix_shade_spawn_egg",
+      "summary": "把矩阵损伤一次转给它，打倒就清掉",
+      "complete": "essentialcraft5:guide/bestiary/matrix_shade",
+      "optional": true,
+      "items": [
+        "essentialcraft5:matrix_conduit",
+        "essentialcraft5:matrix_crystal",
+        "essentialcraft5:matrix_shade_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:matrix_shade"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：用{item:essentialcraft5:matrix_conduit}召出矩阵之影，把身上的矩阵损伤一次转给它，再把它打倒。打倒以后，转过去的损伤就没了，还能拿到{item:essentialcraft5:matrix_crystal}。"
+        },
+        {
+          "type": "p",
+          "text": "矩阵里积下的损伤平时看不见。导流符把它引出来，在五芒星上聚成一个人形，胸口是一格一格的矩阵。"
+        },
+        {
+          "type": "p",
+          "text": "矩阵损伤是什么、从哪来，见[[corruption/matrix_damage]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.matrix_tuner.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "想慢慢抹掉，有[[corruption/matrix_tuner|矩阵调律器]]。矩阵之影一次抹完，花的 ESPE 不比调律器少，多出来的是几个矩阵结晶。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "矩阵结晶是装备同调升阶的材料，见[[attunement/stage_up]]。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一张{item:essentialcraft5:matrix_conduit}，在魔力工作台上做：中间一颗{item:essentialcraft5:mru_resonating_crystal}，四角{item:essentialcraft5:dark_soul_matter}、任意一种矩阵投影、{item:essentialcraft5:pale_gem}和{item:essentialcraft5:mithriline_plate}，要 2 万 MRU。",
+            "一座 1 档以上的[[pentacle/tier_one|灵魂五芒星]]，中心块那一格你得能动。",
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.mobs.matrix_shade.min_matrix_damage==18000"
+              ],
+              "text": "身上至少 {cfg:general.mobs.matrix_shade.min_matrix_damage|int} 点矩阵损伤，这时你每分钟已经有一半的几率凝成腐化效果。"
+            },
+            {
+              "if": "!cfg:general.corruption.effects_enabled||cfg:general.mobs.matrix_shade.min_matrix_damage!=18000",
+              "text": "身上至少 {cfg:general.mobs.matrix_shade.min_matrix_damage|int} 点矩阵损伤。"
+            },
+            {
+              "if": [
+                "cfg:general.mobs.matrix_shade.espe_per_damage==0.5",
+                "cfg:general.mobs.matrix_shade.max_absorbed==72000"
+              ],
+              "text": "五芒星的柱子里攒够 ESPE。每转过去 1 点损伤要预扣 {cfg:general.mobs.matrix_shade.espe_per_damage} 点 ESPE，而柱子里的 1 点 ESPE 只顶 0.36 点，所以转 72000 点要扣 36000 点，柱子里实际少掉 10 万。3 档的五芒星每点按两点算，少掉的减半。"
+            },
+            {
+              "if": "cfg:general.mobs.matrix_shade.espe_per_damage!=0.5||cfg:general.mobs.matrix_shade.max_absorbed!=72000",
+              "text": "五芒星的柱子里攒够 ESPE。每转过去 1 点损伤要预扣 {cfg:general.mobs.matrix_shade.espe_per_damage} 点 ESPE，而柱子里的 1 点 ESPE 只顶 0.36 点。3 档的五芒星每点按两点算，少掉的减半。"
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_conduit"
+        },
+        {
+          "type": "h",
+          "text": "召唤"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "手持导流符，右键五芒星的中心块。",
+            "矩阵之影在五芒星上出现，你身上的矩阵损伤转给它，最多 {cfg:general.mobs.matrix_shade.max_absorbed|int} 点。",
+            "你身上的损伤立刻少掉这么多，五芒星的柱子同时扣下对应的 ESPE。",
+            "打倒它，转过去的损伤就没了。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "条件不够时导流符不会用掉，动作栏上写着差什么，比如损伤不到 {cfg:general.mobs.matrix_shade.min_matrix_damage|int}、柱子里还差多少 ESPE。{cfg:general.mobs.matrix_shade.exclusive_radius} 格内已经有一只矩阵之影时召不出第二只，和平难度下也召不出来。只有生存和冒险模式能用导流符。五芒星正上方要空出 3 格高，站不下时它会在旁边几格找地方，再找不到就召不出来，同样什么都不扣。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "矩阵之影倒下，转给它的矩阵损伤就此抹掉，打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各拿到一份掉落，这一步也打勾。"
+        },
+        {
+          "type": "h",
+          "text": "它有多结实"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": "cfg:general.mobs.matrix_shade.absorbed_per_health>0",
+              "cells": [
+                "生命",
+                "{cfg:general.mobs.matrix_shade.base_health}，再加转给它的损伤 ÷ {cfg:general.mobs.matrix_shade.absorbed_per_health}"
+              ]
+            },
+            {
+              "if": "!cfg:general.mobs.matrix_shade.absorbed_per_health>0",
+              "cells": [
+                "生命",
+                "{cfg:general.mobs.matrix_shade.base_health}，不随转给它的损伤变"
+              ]
+            },
+            [
+              "护甲",
+              "{cfg:general.mobs.matrix_shade.armor}，盔甲韧性 {cfg:general.mobs.matrix_shade.armor_toughness}"
+            ],
+            {
+              "if": "cfg:general.mobs.matrix_shade.per_hit_cap>0",
+              "cells": [
+                "一下最多掉",
+                "{cfg:general.mobs.matrix_shade.per_hit_cap} 点"
+              ]
+            },
+            {
+              "if": "cfg:general.mobs.matrix_shade.per_second_cap>0",
+              "cells": [
+                "一秒最多掉",
+                "{cfg:general.mobs.matrix_shade.per_second_cap} 点"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_shade.per_second_cap>0",
+          "text": "一下打得再重，它一秒钟最多也只掉 {cfg:general.mobs.matrix_shade.per_second_cap} 点血，急不来，得一下一下慢慢磨。它只吃参战玩家亲手打的伤害，宠物、机器、炮塔都伤不到它；不是近战的伤害（箭、魔法、爆炸）只算 {cfg:general.mobs.boss.non_melee_multiplier|pct}。状态效果除了发光都对它没用，它推不动，也坐不进船和矿车。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.matrix_shade.per_second_cap>0",
+          "text": "它只吃参战玩家亲手打的伤害，宠物、机器、炮塔都伤不到它；不是近战的伤害（箭、魔法、爆炸）只算 {cfg:general.mobs.boss.non_melee_multiplier|pct}。状态效果除了发光都对它没用，它推不动，也坐不进船和矿车。"
+        },
+        {
+          "type": "h",
+          "text": "三相"
+        },
+        {
+          "type": "p",
+          "text": "它按身、心、矩阵三相轮着打，正好对应五芒星治的三类腐化。换相时它有 {cfg:general.mobs.matrix_shade.phase_shift_ticks|sec}打不动，但不回血。打了 {cfg:general.mobs.matrix_shade.enrage_ticks|div:1200} 分钟还没打倒，它出招的间隔会缩短 {cfg:general.mobs.matrix_shade.enrage_cooldown_multiplier|mul:-1|add:1|pct}。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "相",
+            "招式",
+            "怎么应付"
+          ],
+          "rows": [
+            [
+              "身",
+              "双拳近身砸，{cfg:general.mobs.matrix_shade.attack_damage} 点",
+              "护甲照常减"
+            ],
+            [
+              "身",
+              "迟滞之握，抓住你不放",
+              "打实它一下就挣脱。被抓住的 {cfg:general.mobs.matrix_shade.grip_ticks|sec}里你走得很慢"
+            ],
+            [
+              "身",
+              "坠身，你脚下出现一圈阴影，1 秒后它砸下来，{cfg:general.mobs.matrix_shade.slam_damage} 点再加你最大生命的 {cfg:general.mobs.matrix_shade.slam_health_percent|pct}",
+              "看见阴影圈就跑出去，护甲挡不住"
+            ],
+            [
+              "心",
+              "镜影，变出几个和它一模一样的分身，最多 {cfg:general.mobs.matrix_shade.max_mirrors} 个",
+              "看胸口的矩阵格，亮着那一格的才是真身。打碎假的会被反噬：缓慢 3 秒，再挨 4 点"
+            ],
+            [
+              "心",
+              "心智钉，往地上钉紫色的晶钉，最多 {cfg:general.mobs.matrix_shade.max_spikes} 根",
+              "钉子立着时它挨的伤害只算 {cfg:general.mobs.matrix_shade.spike_damage_taken|pct}。钉子 12 点血，见到就拆"
+            ],
+            [
+              "心",
+              "低语，挑一个人在他耳边低语 2 秒，只有他听得见",
+              "听见低语就把视线从它身上转开。2 秒后还盯着它，挨 {cfg:general.mobs.matrix_shade.whisper_damage} 点再加你最大生命的 {cfg:general.mobs.matrix_shade.whisper_health_percent|pct}"
+            ],
+            [
+              "矩阵",
+              "矩阵电弧，打中一个人后跳到离他 {cfg:general.mobs.matrix_shade.arc_chain_range} 格内的下一个人，最多 {cfg:general.mobs.matrix_shade.arc_max_targets} 人，每人 {cfg:general.mobs.matrix_shade.arc_damage} 点再加最大生命的 {cfg:general.mobs.matrix_shade.arc_health_percent|pct}",
+              "几个人分散站开，彼此隔 {cfg:general.mobs.matrix_shade.arc_chain_range} 格以上"
+            ],
+            {
+              "if": "cfg:general.mobs.matrix_shade.max_pillars>0",
+              "cells": [
+                "矩阵",
+                "失序之柱，每个参战的人脚下各一根，同时最多 {cfg:general.mobs.matrix_shade.max_pillars} 根，地上先亮 1.5 秒预警圈，再冲起一根光柱，{cfg:general.mobs.matrix_shade.pillar_damage} 点再加你最大生命的 {cfg:general.mobs.matrix_shade.pillar_health_percent|pct}",
+                "预警一亮就离开那个圈，护甲挡不住"
+              ]
+            },
+            [
+              "矩阵",
+              "收束，2 秒里把场地里的人往它那里拉，最后那一下打离它 5 格内的人，{cfg:general.mobs.matrix_shade.converge_damage} 点再加最大生命的 {cfg:general.mobs.matrix_shade.converge_health_percent|pct}",
+              "潜行能把拉力减半；举着盾不吃最后那一下"
+            ]
+          ],
+          "widths": [
+            1,
+            5,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它每换一相，你的屏幕边缘会慢慢泛起一层颜色：身相暗红，心相发紫，矩阵相是品红。颜色只在四边，不挡视线，打完就慢慢退去。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "这层颜色叫悖论画面，和腐化效果里的[[corruption/paradox|心智悖论]]不是一回事，战斗结束就没了。"
+        },
+        {
+          "type": "h",
+          "text": "谁算参战"
+        },
+        {
+          "type": "list",
+          "items": [
+            "召唤它的人，和之后打出过伤害的人。旁观的、路过的不算，招式不会盯上他们，也不会把他们拉进来。",
+            {
+              "if": "cfg:general.mobs.matrix_shade.pull_range>0",
+              "text": "五芒星中心 {cfg:general.mobs.matrix_shade.arena_radius} 格是场地。参战的人跑到离中心 {cfg:general.mobs.matrix_shade.pull_range}~{cfg:general.mobs.matrix_shade.escape_range} 格的地方，会被拽回中心附近，每次扣 {cfg:general.mobs.boss.pull_damage} 点血；跑到 {cfg:general.mobs.matrix_shade.escape_range} 格以外就算退出了这场战斗。拽回的落点得是你能动的地方，在别人的领地里它不会把你拽进去。落点被堵住、或者你在那里不能动，就拽不回来，这样一直待在 {cfg:general.mobs.matrix_shade.pull_range} 格以外，{cfg:general.mobs.boss.abandon_ticks|sec}后也算退出。"
+            },
+            {
+              "if": "cfg:general.mobs.matrix_shade.pull_range==0",
+              "text": "五芒星中心 {cfg:general.mobs.matrix_shade.arena_radius} 格是场地。它不会把人拽回来，离它 {cfg:general.mobs.matrix_shade.escape_range} 格以内都打得到它；跑到离中心 {cfg:general.mobs.matrix_shade.escape_range} 格以外就算退出了这场战斗。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "打输了"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_shade.pull_range>0",
+          "text": "召唤者死了、下线、换了维度、在离中心 {cfg:general.mobs.matrix_shade.pull_range} 格以外待满 {cfg:general.mobs.matrix_shade.summoner_away_ticks|sec}，或者所有人都撤走 {cfg:general.mobs.boss.abandon_ticks|sec}，矩阵之影都会在 {cfg:general.mobs.matrix_shade.dissipate_ticks|sec}后散去，切到和平难度也一样。召唤者被拽回来就不算在外面，拽不回来、跑出 {cfg:general.mobs.matrix_shade.escape_range} 格的都算。它不是被参战的人打倒的，比如掉出世界、被指令清掉，哪怕刚有人打过它，也算打输。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_shade.pull_range==0",
+          "text": "召唤者死了、下线、换了维度、离开 {cfg:general.mobs.matrix_shade.escape_range} 格超过 {cfg:general.mobs.matrix_shade.summoner_away_ticks|sec}，或者所有人都撤走 {cfg:general.mobs.boss.abandon_ticks|sec}，矩阵之影都会在 {cfg:general.mobs.matrix_shade.dissipate_ticks|sec}后散去，切到和平难度也一样。它不是被参战的人打倒的，比如掉出世界、被指令清掉，哪怕刚有人打过它，也算打输。"
+        },
+        {
+          "type": "p",
+          "text": "这时转给它的矩阵损伤原数还给召唤者，预扣的 ESPE 退回那座五芒星的柱子，导流符也掉回来。召唤者不在线时，等他下次上线再还；柱子满了装不下的 ESPE，过一会儿再往里退。五芒星被拆了的话，这笔 ESPE 等原地重新搭好再退。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "打输了损伤原数还回来，故意输掉清不了损伤。"
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.matrix_shade.crystal_step>0",
+              "text": "{item:essentialcraft5:matrix_crystal}，分得到的人每人 1 个；召唤者转进去的损伤每满 {cfg:general.mobs.matrix_shade.crystal_step|int} 再多 1 个。召唤者自己也得打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命才分得到，多给的那几个也一样"
+            },
+            {
+              "if": "!cfg:general.mobs.matrix_shade.crystal_step>0",
+              "text": "{item:essentialcraft5:matrix_crystal}，分得到的人每人 1 个。召唤者自己也得打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命才分得到"
+            },
+            "{item:essentialcraft5:dark_soul_matter} ×1~2",
+            "{item:essentialcraft5:mru_large_chunk}",
+            "{cfg:general.mobs.matrix_shade.experience} 点经验"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "比如转进去 72000 点，召唤者拿 4 个矩阵结晶，转进去 30000 点拿 2 个。",
+          "if": [
+            "cfg:general.mobs.matrix_shade.crystal_step==24000",
+            "cfg:general.mobs.matrix_shade.max_absorbed>=72000"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "中心块那一格你得能动，五芒星在别人的领地里召不出来，导流符也不会用掉。",
+            "转给它的损伤最多 {cfg:general.mobs.matrix_shade.max_absorbed|int} 点，多出的部分留在你身上。",
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.attunement.enabled",
+                "cfg:general.mobs.matrix_shade.max_pillars>0"
+              ],
+              "text": "坠身、低语、收束最后那一下都算无视护甲的重击，宅男套装同调 4 阶起挡 {cfg:general.computer_armor.piercing_share|pct}，审判庭套装 4 阶少受 {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct}；失序之柱算魔法，宅男套装 2 阶起按魔法挡，审判庭套装的抗魔也认它。虚空套装闪不掉这两种。"
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.attunement.enabled",
+                "!cfg:general.mobs.matrix_shade.max_pillars>0"
+              ],
+              "text": "坠身、低语、收束最后那一下都算无视护甲的重击，宅男套装同调 4 阶起挡 {cfg:general.computer_armor.piercing_share|pct}，审判庭套装 4 阶少受 {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct}。虚空套装闪不掉它们。"
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "矩阵电弧是 MRU 放电，[[attunement/mhs_armor|魔力防护]]同调到 2 阶能挡掉一部分。"
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "它是首领，打掉它一成以上生命就记进[[matrix/codex|矩阵图谱]]的首领一组。"
+            },
+            "它和它的招式都不破坏方块。",
+            "刷怪蛋和指令放出来的矩阵之影没有召唤者，打倒了什么都不掉，也不给经验，不会清掉谁的损伤。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:matrix_shade_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼只会在旁边放出一只，刷怪笼的类型不会变。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.3.2、§8.1 D21 A、policy §4.18 矩阵之影召唤 — 手持矩阵导流符右键自己能动的、≥ 1 档的灵魂五芒星中心块；召唤者矩阵损伤 ≥ 18 000；128 格内没有别的矩阵之影 / 天灾之心；非和平；不满足时符不消耗、提示原因（entity/boss/MatrixShadeSummon，13c-M4）",
+        "tools/plan/batch13.md §5.3.2 — 导流符：魔力工作台，中心 MRU 共鸣水晶，四角暗黑灵魂物质、任意矩阵投影、淡青宝石、米斯莱板；2 万 MRU（recipes/*/matrix_conduit.json，13c-M4）",
+        "tools/plan/batch13.md §5.3.2 — a = min(损伤, 72 000) 转进首领，召唤者立刻减 a；从召唤用的五芒星柱子预扣 a × 0.5 有效 ESPE（不够就召不了；不收 MRU，按原始 ESPE 每点约 1.39、3 档约 0.69，比矩阵调律器每点 0.5 原始贵）；有效 ESPE 照五芒星治疗打折（pentacle/cure：柱子 1 点顶 0.36，3 档每点按两点）→ 72 000 × 0.5 = 36 000，÷ 0.36 = 100 000",
+        "corruption/matrix_damage — 每 60 秒抽签几率 (损伤 + 1) ÷ 36 000，18 000 时一半",
+        "tools/plan/batch13.md §5.3.2 — 失败（召唤者死亡 / 下线 / 换维度 / 在拉回距离 24 格以外连续待满 30 秒 / 名单空 600 刻 / 和平 / 不是参战的人打倒的死亡）→ 200 刻后散去，a 原数还给召唤者（玩家对象在就直接还进他的数据，导流符刚死的等重生、下线的等上线；只有重启后他还没上线才记 SavedData、登录补；结算过的记在他自己存档里，回档也不重退），预扣的 ESPE 退回那座五芒星的柱子（满了记 SavedData 下次补），导流符掉回",
+        "tools/plan/batch13.md §5.3.2 — 生命 300 + a / 600（330~420）、护甲 8、韧性 4；单次封顶 25、每秒桶 15（330 / 15 = 22 秒）；三相：双拳、迟滞之握（挣脱 = 打它一下）、坠身（1 秒阴影圈 10 + 10%，aberrant_strike）；镜影（看胸口矩阵格分真身）、心智钉（可打掉）、低语；矩阵电弧（相距 ≤ 10 格才连锁）、失序之柱（1.5 秒预警圈 8 + 12%，matrix_rend）、收束（潜行减半拉力、举盾免冲击）；换相 2 秒无敌、不回血；满 5 分钟冷却 ×0.7；场地中心 20 格，参战者 24~48 格拉回（ECTeleport，按被拉的人探测落点权限；被取消、被堵、没权限都不拉不扣、人留名单，连着拉不回来满 abandon_ticks 脱战）",
+        "tools/plan/batch13.md §5.3 共同、policy §4.18 首领通用件 — Boss 只吃参战真玩家伤害（没有攻击者的 bypasses_invulnerability 例外：/kill、掉出世界，这类致死一下哪怕刚有人打过也不算玩家打倒；矩阵之影掉落表三池都带 fair_kill，刷怪蛋 / 指令放的、契约已经结掉的打倒了不掉东西、不给经验）、非近战 ×0.5、拒 orbital_strike、不吃状态效果（发光除外）、不受摔落 / 窒息 / 溺水、不能骑船矿车、推不动；技能只打参战者",
+        "tools/plan/batch13.md §5.3.2 — 掉落：矩阵结晶 ×(1 + ⌊a / 24 000⌋)（召唤者 1~4、其他人 1）、暗黑灵魂物质 1~2、大 MRU 晶块；经验 100；进度 guide/bestiary/matrix_shade（可选，打倒时发给参战者）",
+        "tools/plan/batch13.md §5.1 表、policy §4.18 — aberrant_strike：宅男 4 阶起挡一半（×3 价）、审判庭 4 阶 ×0.7；matrix_rend：宅男 2 阶起按魔法挡、审判庭抗魔；两种都 undodgeable",
+        "tools/lang/glossary.md 第十二节 — 收走损伤写「转给它」，悖论画面和心智悖论分开说",
+        "entity/boss/MatrixShadeEntity、registry/ECMatrixShade.java Config general.mobs.matrix_shade.* — 低语：挑一人 2 秒、只他听得见，到时仍看着它（约 60° 内）挨 6 + 8%；悖论画面是换相时屏幕边缘的颜色（身暗红 / 心紫 / 矩阵品红，最浓 0.20），不是招式；镜影 1 血、打碎反噬缓慢 II 3 秒 + 4；心智钉 12 血、立着时受伤 ×0.5；收束 2 秒、最后 5 格内没举盾的挨 6 + 8%；召唤只限生存 / 冒险，头顶 3 格，站不下在旁边 3~6 格找；失败退回损伤与 ESPE（退不完每 10 秒再试）；召唤者也要打够 loot_share 才分得到（13c-M4 §2、§3.1）",
+        "general.mobs.matrix_shade.max_pillars 填 0 时不放失序之柱（13c），进阶细节那条按它分两份"
+      ]
+    },
+    {
+      "id": "town_sentry",
+      "title": "{lang:entity.essentialcraft5.town_sentry}",
+      "icon": "essentialcraft5:town_sentry_spawn_egg",
+      "summary": "有人走近城镇中心时醒来的守城机器",
+      "complete": "essentialcraft5:guide/bestiary/town_sentry",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:ancient_core",
+        "essentialcraft5:aberrant_heart",
+        "essentialcraft5:town_sentry_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:town_sentry"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：打倒一只废城守望者，拿到{item:essentialcraft5:ancient_core}和{item:essentialcraft5:aberrant_heart}。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.town_sentry.trigger_radius>0",
+          "text": "海纳尔的城镇烧空以后，每座城里还剩一台守城的机器没停下。平时看不见它，有人走近城镇中心的十字路口，它就在路口旁边醒过来。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.town_sentry.trigger_radius>0",
+          "text": "海纳尔的城镇烧空以后，每座城里还剩一台守城的机器没停下。"
+        },
+        {
+          "type": "p",
+          "text": "上古晶核和异变之心都是装备同调升阶要用的材料，见[[attunement/stage_up]]。",
+          "if": "cfg:general.attunement.enabled"
+        },
+        {
+          "type": "h",
+          "text": "去哪找"
+        },
+        {
+          "type": "p",
+          "text": "海纳尔的[[hoanna/ruins|城镇]]，每座一只。你走进城镇中心 {cfg:general.town_sentry.trigger_radius} 格以内，它就在中心附近醒来。一座城只醒一次，打倒了就不会再有。早先生成好的城镇也一样有守望者。",
+          "if": "cfg:general.town_sentry.trigger_radius>0"
+        },
+        {
+          "type": "p",
+          "text": "在这个世界里，走近城镇不会叫醒守望者。",
+          "if": "!cfg:general.town_sentry.trigger_radius>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            "要你在城镇中心那一格能动方块才算数，在别人的领地里走过去，它不会醒。它落脚的地方也要是你能动的。",
+            "生存和冒险模式才算，创造、旁观模式走过去不会叫醒它。",
+            "附近找不到它能站的空地时，动作栏会提醒你，在城镇中心旁边腾出一块 3 格宽、4 格高的空地就行。"
+          ],
+          "if": "cfg:general.town_sentry.trigger_radius>0"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "生命",
+              "{cfg:general.town_sentry.max_health}"
+            ],
+            [
+              "护甲",
+              "{cfg:general.town_sentry.armor}，盔甲韧性 {cfg:general.town_sentry.armor_toughness}"
+            ],
+            [
+              "击退抗性",
+              "{cfg:general.town_sentry.knockback_resistance}，打不退"
+            ],
+            {
+              "if": "cfg:general.town_sentry.per_hit_cap>0",
+              "cells": [
+                "一下最多掉",
+                "{cfg:general.town_sentry.per_hit_cap} 点"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它离醒来的地方超过 {cfg:general.town_sentry.leash_range} 格就掉头往回走，引不远。"
+        },
+        {
+          "type": "h",
+          "text": "招式"
+        },
+        {
+          "type": "table",
+          "header": [
+            "招式",
+            "怎么来",
+            "怎么应付"
+          ],
+          "rows": [
+            [
+              "横扫",
+              "朝面前 {cfg:general.town_sentry.sweep_range} 格扫一下，{cfg:general.town_sentry.sweep_damage} 点",
+              "护甲照常减，别贴在它正面"
+            ],
+            {
+              "if": "cfg:general.town_sentry.turret_count>0",
+              "cells": [
+                "哨戒炮台",
+                "在身边两侧放下炮台，最多 {cfg:general.town_sentry.turret_count} 座。每座 {cfg:general.town_sentry.turret_health} 点生命，每 {cfg:general.town_sentry.turret_interval_ticks|sec}打一发，{cfg:general.town_sentry.turret_damage} 点；被打掉 {cfg:general.town_sentry.turret_respawn_ticks|sec}后补上。炮台还在时，它正面挡下箭和别的弹射物",
+                "先拆炮台；用弓的人绕到它侧面或背后射"
+              ]
+            },
+            {
+              "if": "cfg:general.town_sentry.alarm_count>0",
+              "cells": [
+                "全城警报",
+                "生命第一次降到 {cfg:general.town_sentry.alarm_health_fraction|pct} 时敲响警钟，叫来 {cfg:general.town_sentry.alarm_count} 名[[bestiary/hoanna_scavenger|遗民拾荒者]]，只叫这一回",
+                "快到一半血时先留出手来对付它们"
+              ]
+            },
+            [
+              "镇压",
+              "每 {cfg:general.town_sentry.suppress_cooldown_ticks|sec}一次，地上先亮起一圈红光，{cfg:general.town_sentry.suppress_warning_ticks|sec}后砸下，半径 {cfg:general.town_sentry.suppress_radius} 格，{cfg:general.town_sentry.suppress_damage} 点再加你最大生命的 {cfg:general.town_sentry.suppress_health_fraction|pct}",
+              "看见红圈就跑出去，护甲挡不住"
+            ]
+          ],
+          "widths": [
+            2,
+            5,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "守望者倒下，打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各拿到一份掉落，直接进背包，这一步也就打勾了。"
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:ancient_core} ×1",
+            "{item:essentialcraft5:aberrant_heart} ×1",
+            "{item:essentialcraft5:titanite} ×4~8",
+            "{item:essentialcraft5:twinkling_titanite} ×1~2",
+            "{cfg:general.town_sentry.xp} 点经验"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每个打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各得一份，背包满了就掉在脚下。"
+        },
+        {
+          "type": "p",
+          "text": "至少 {cfg:general.mobs.fair_kill_min_share|pct} 的伤害要是玩家打的，靠岩浆、陷阱把它磨死的不掉。",
+          "if": "cfg:general.mobs.fair_kill_min_share>0"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "炮台和警报叫来的拾荒者都不掉东西，打它们只是为了少挨打。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "它是首领，打掉它一成以上生命就记进[[matrix/codex|矩阵图谱]]的首领一组。"
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "镇压算无视护甲的重击，宅男套装同调 4 阶起挡 {cfg:general.computer_armor.piercing_share|pct}，审判庭套装 4 阶少受 {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct}，虚空套装闪不掉它。"
+            },
+            "切到和平难度，它会消失，不掉东西。难度调回来以后再走近城镇中心，它会重新醒来，血是满的。",
+            "它和它的招式都不破坏方块。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:town_sentry_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼只会在旁边放出一只，刷怪笼的类型不会变。刷怪蛋放出来的守望者打倒了什么都不掉。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.3.3 — 海纳尔里每名生存 / 冒险真玩家每 40 刻查所在区块的城镇结构引用；离起点 ≤ trigger_radius（32）、能动起点那一格（ECProtection.check）、SavedData essentialcraft5_town_guardians 里这座城还没醒过 → 起点附近生成（落点以触发者身份探测权限，找不到时动作栏提示腾地方）；老存档的城镇也守（batch13.md「13e 已定事项」第 3 条定为 B）；和平散去可再醒；trigger_radius 填 0 不触发",
+        "tools/plan/batch13.md §5.3.3 — 小 Boss 档：生命 260、护甲 14、韧性 4、击退抗性 1、单次封顶 30；追索 leash_range 24；横扫 13（扇形 120°、3 格）；哨戒炮台 ×2（30 血、每 30 刻 6 点 mob_bolt、被打掉 20 秒补、同时 ≤ 2，炮台活着时正面 ±60° 挡弹射物）；全城警报（第一次降到 50% 召 2 名遗民拾荒者，来源 SUMMONED，只一次）；镇压（每 14 秒，1.5 秒红圈，4 格，10 + 12%，aberrant_strike）",
+        "tools/plan/batch13.md §5.3.3 — 掉落（entities/town_sentry，STRUCTURE，fair_kill）：上古晶核 ×1、异变之心 ×1、榍石 4~8、闪耀榍石 1~2；经验 60；guide/bestiary/town_sentry 由 BossLoot.recordVictory 发",
+        "配置键 general.town_sentry.*（13e-T 定名，集成时核）；per_hit_cap、trigger_radius、max_turrets、alarm_summons 填 0 时那几句藏掉（ZERO_MEANS_OFF）"
+      ]
+    },
+    {
+      "id": "abyss_tyrant",
+      "title": "{lang:entity.essentialcraft5.abyss_tyrant}",
+      "icon": "essentialcraft5:abyss_tyrant_spawn_egg",
+      "summary": "在沉城祭坛召出的巨鳗",
+      "complete": "essentialcraft5:guide/bestiary/abyss_tyrant",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:aberrant_heart",
+        "essentialcraft5:ancient_core",
+        "essentialcraft5:abyss_tyrant_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:abyss_tyrant",
+          "scale": 0.6
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：在沉城祭坛召出渊潮领主，把它打倒。"
+        },
+        {
+          "type": "p",
+          "text": "海纳尔之海底下沉着整片城区，穹顶中央有一座祭坛，见[[hoanna_explore/sunken_district]]。拿潮晶右键祭坛，就有一条大得多的渊鳗从外面的水里游来。"
+        },
+        {
+          "type": "p",
+          "text": "异变之心和上古晶核都是装备同调升阶要用的材料，见[[attunement/stage_up]]。",
+          "if": "cfg:general.attunement.enabled"
+        },
+        {
+          "type": "h",
+          "text": "召唤"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.sunken_district.altar_tide_crystals>0",
+                "cfg:general.sunken_district.altar_aberrant_hearts>0"
+              ],
+              "text": "主手或副手拿着{item:essentialcraft5:tide_crystal}，右键沉城祭坛。背包里要有 {cfg:general.sunken_district.altar_tide_crystals} 个潮晶和 {cfg:general.sunken_district.altar_aberrant_hearts} 颗{item:essentialcraft5:aberrant_heart}，召出来以后才扣。"
+            },
+            {
+              "if": [
+                "cfg:general.sunken_district.altar_tide_crystals>0",
+                "!cfg:general.sunken_district.altar_aberrant_hearts>0"
+              ],
+              "text": "主手或副手拿着{item:essentialcraft5:tide_crystal}，右键沉城祭坛。背包里要有 {cfg:general.sunken_district.altar_tide_crystals} 个潮晶，召出来以后才扣。"
+            },
+            {
+              "if": [
+                "!cfg:general.sunken_district.altar_tide_crystals>0",
+                "cfg:general.sunken_district.altar_aberrant_hearts>0"
+              ],
+              "text": "右键沉城祭坛，背包里要有 {cfg:general.sunken_district.altar_aberrant_hearts} 颗{item:essentialcraft5:aberrant_heart}，召出来以后才扣。"
+            },
+            {
+              "if": [
+                "!cfg:general.sunken_district.altar_tide_crystals>0",
+                "!cfg:general.sunken_district.altar_aberrant_hearts>0"
+              ],
+              "text": "右键沉城祭坛就行，不用交东西。"
+            },
+            "祭坛那一格你得能动；{cfg:general.sunken_district.boss_clearance} 格内不能有别的首领；不能是和平难度。",
+            "同一座祭坛每个游戏日只能召一次，换一座沉城不受影响。祭坛本身不会用掉。",
+            "条件不够时动作栏写着差什么，什么都不扣。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它出在穹顶外的水里，只追在水里的人和打过它的人。穹顶封着玻璃，站在里面打不到它，得喝上水下呼吸药水，下水去打。"
+        },
+        {
+          "type": "h",
+          "text": "怎么打"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "生命",
+              "{cfg:general.sunken_district.max_health}"
+            ],
+            [
+              "护甲",
+              "{cfg:general.sunken_district.armor}"
+            ],
+            [
+              "咬",
+              "{cfg:general.sunken_district.bite_damage} 点"
+            ],
+            {
+              "if": "cfg:general.sunken_district.per_hit_cap>0",
+              "cells": [
+                "一下最多掉",
+                "{cfg:general.sunken_district.per_hit_cap} 点"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "它只吃参战玩家亲手打的伤害，宠物、机器、炮塔都伤不到它；箭、三叉戟、魔法这类不是近战的伤害只算 {cfg:general.mobs.boss.non_melee_multiplier|pct}。状态效果除了发光都对它没用。"
+        },
+        {
+          "type": "h",
+          "text": "漩涡",
+          "if": [
+            "cfg:general.sunken_district.vortex_interval>0",
+            "cfg:general.sunken_district.vortex_radius>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每 {cfg:general.sunken_district.vortex_interval|sec}它卷起一次漩涡，持续 {cfg:general.sunken_district.vortex_ticks|sec}：{cfg:general.sunken_district.vortex_radius} 格内在水里的参战者被往它那边拽，憋气也掉得快一倍。站在穹顶里不受影响；在水里的话，看见它身边冒起一大片气泡、听见漩涡声，就往远处游。",
+          "if": [
+            "cfg:general.sunken_district.vortex_interval>0",
+            "cfg:general.sunken_district.vortex_radius>0"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "渊潮领主倒下，打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各拿到一份掉落，这一步也打勾。"
+        },
+        {
+          "type": "h",
+          "text": "掉落"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:aberrant_heart} ×2",
+            "{item:essentialcraft5:ancient_core} ×1",
+            "6 抽[[hoanna/relics|海纳尔遗物]]",
+            "60 点经验"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每人每个游戏日只领一份，不管是哪座沉城。今天领过的人再打，聊天栏会说一声，什么也不给。",
+          "if": "cfg:general.sunken_district.daily_reward_limit"
+        },
+        {
+          "type": "p",
+          "text": "打倒一次领一次，同一天打几回都有。",
+          "if": "!cfg:general.sunken_district.daily_reward_limit"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "几个人轮流召几座沉城，奖励也只有一份：每天领的是人，不是祭坛。",
+          "if": "cfg:general.sunken_district.daily_reward_limit"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "它是首领，打掉它一成以上生命就记进[[matrix/codex|矩阵图谱]]的首领一组。"
+            },
+            {
+              "if": "cfg:general.sunken_district.pull_range>0",
+              "text": "参战的人离祭坛 {cfg:general.sunken_district.pull_range}~{cfg:general.sunken_district.escape_range} 格时，会被拽回穹顶附近，每次扣 {cfg:general.mobs.boss.pull_damage} 点血；跑到 {cfg:general.sunken_district.escape_range} 格以外，就退出了这场战斗。"
+            },
+            {
+              "if": "!cfg:general.sunken_district.pull_range>0",
+              "text": "它不会把人拽回来；离祭坛 {cfg:general.sunken_district.escape_range} 格以外的人，就退出了这场战斗。"
+            },
+            "所有人都撤走 {cfg:general.mobs.boss.abandon_ticks|sec}，它就散去，祭坛这一天的次数也照样用掉了。",
+            "漩涡只拽人，不改方块，也不弄出水流。它和它的招式都不破坏方块。",
+            "切到和平难度，它会消失，不掉东西。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:abyss_tyrant_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼只会在旁边放出一只，刷怪笼的类型不会变。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.3.4 — 沉城祭坛：真玩家、非和平、boss_radius 64 格内没有别的首领（#forge:bosses）、canEdit 祭坛那格、手持潮晶并且背包里够潮晶 ×4 + 异变之心 ×1 → 先生成、成功了再扣；祭坛不消耗、不可破坏；同一座每游戏日最多召一次（按主世界日）；不满足时动作栏按原因分句",
+        "tools/plan/batch13.md §5.3.4 — 首领档：渊鳗模型 ×2.2；生命 200、护甲 10、咬 14、单次封顶 25；漩涡每 15 秒、持续 4 秒，6 格内的参战者往它那里拉（改速度）、溺水速度 ×2，不改方块；穹顶里的人不受影响；离水太远照脱战",
+        "tools/plan/batch13.md §5.3.4 — 掉落（entities/abyss_tyrant，killed_by_player，每名 ≥ 10% 的参战者一份）：异变之心 ×2、上古晶核 ×1、海纳尔遗物 ×6 抽；经验 60；每名玩家每游戏日只领一份（boss_daily 键 essentialcraft5:abyss_tyrant），领过的聊天栏一句",
+        "配置键照 13e-S2 registry/ECSunkenDistrict（general.sunken_district.*，平铺一节）；per_hit_cap 填 0 时那一行藏掉；pull_range 16 / escape_range 48（Settings.arena），pull_range 填 0 = 不拉，分两份写；daily_reward_limit 关掉时不限每天一份；经验 60 是常量",
+        "block/SunkenAltarBlock.summon — 领主加进世界成功就记下这一座今天召过（SunkenAltarBlockEntity.markUsed），之后散去、打输都不退次数"
+      ]
+    },
+    {
+      "id": "calamity_heart",
+      "title": "{lang:entity.essentialcraft5.calamity_heart}",
+      "icon": "essentialcraft5:calamity_heart_spawn_egg",
+      "summary": "主线最后的首领",
+      "complete": "essentialcraft5:guide/bestiary/calamity_heart",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:calamity_remnant",
+        "essentialcraft5:calamity_heart_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:calamity_heart",
+          "scale": 0.5
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：打倒天灾之心。"
+        },
+        {
+          "type": "p",
+          "text": "第二十三章的终局首领，用天灾信标召出。召唤见[[apex/summon]]，三个阶段、四种天灾的招怎么躲见[[apex/fight]]，掉落见[[apex/rewards]]。这里只列它的数。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.calamity_heart.enchant_seal",
+          "text": "它开场会封住参战者身上的附魔，打倒灾柱逐一解开，见[[apex/fight]]。"
+        },
+        {
+          "type": "h",
+          "text": "它有多结实"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "生命",
+              "{cfg:general.calamity_heart.max_health}"
+            ],
+            [
+              "护甲",
+              "{cfg:general.calamity_heart.armor}，盔甲韧性 {cfg:general.calamity_heart.armor_toughness}"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.per_hit_cap>0",
+              "cells": [
+                "一下最多掉",
+                "{cfg:general.calamity_heart.per_hit_cap} 点"
+              ]
+            },
+            {
+              "if": "cfg:general.calamity_heart.per_second_cap>0",
+              "cells": [
+                "一秒最多掉",
+                "{cfg:general.calamity_heart.per_second_cap} 点"
+              ]
+            },
+            [
+              "灾柱",
+              "4 根，每根 {cfg:general.calamity_heart.pillar_health} 点生命，主灾那根 {cfg:general.calamity_heart.main_pillar_health} 点"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.pillar_per_hit_cap>0",
+              "cells": [
+                "灾柱一下最多掉",
+                "{cfg:general.calamity_heart.pillar_per_hit_cap} 点"
+              ]
+            },
+            [
+              "经验",
+              "{cfg:general.calamity_heart.experience}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "一下打得再重，它一秒钟最多也只掉 {cfg:general.calamity_heart.per_second_cap} 点血，只能慢慢磨。它只吃参战玩家亲手打的伤害；不是近战的伤害只算 {cfg:general.mobs.boss.non_melee_multiplier|pct}。状态效果除了发光都对它没用，它推不动，也坐不进船和矿车。",
+          "if": "cfg:general.calamity_heart.per_second_cap>0"
+        },
+        {
+          "type": "p",
+          "text": "它只吃参战玩家亲手打的伤害；不是近战的伤害只算 {cfg:general.mobs.boss.non_melee_multiplier|pct}。状态效果除了发光都对它没用，它推不动，也坐不进船和矿车。",
+          "if": "!cfg:general.calamity_heart.per_second_cap>0"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "天灾之心倒下，打掉它 {cfg:general.mobs.boss.loot_share|pct} 以上生命的人各拿到一份掉落，这一步也打勾。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "它是首领，打掉它一成以上生命就记进[[matrix/codex|矩阵图谱]]的首领一组。"
+            },
+            "它和它的招式都不破坏方块，也不放方块。",
+            "切到和平难度，它会消失，不掉东西，信标原样退回召唤者。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "刷怪蛋",
+          "text": "{item:essentialcraft5:calamity_heart_spawn_egg}只在创造模式物品栏里有。拿它右键刷怪笼只会在旁边放出一只，刷怪笼的类型不会变。刷怪蛋放出来的天灾之心没有召唤者，主灾随机定一种，打倒了什么都不给。"
+        }
+      ],
+      "_src": [
+        "tools/plan/batch13.md §5.3.5 — 生命 1 500、护甲 16、韧性 8；单次封顶 40、每秒桶 30；灾柱 160 / 主灾 240、单次封顶 40；经验 300；§5.3 共同（只吃参战真玩家伤害、非近战 ×0.5、不吃状态效果（发光除外）、推不动、不能骑船矿车）",
+        "batch13.md §5.5 — 首领各一个可选步骤 guide/bestiary/calamity_heart（BossLoot.recordVictory 发给分到掉落的人）；entity 块 scale 缩小预览（0.25~2）",
+        "配置键 general.calamity_heart.*（13e-B 定名，集成时核）；per_hit_cap、per_second_cap、pillar_per_hit_cap 填 0 时那一行藏掉（ZERO_MEANS_OFF）",
+        "召唤、阶段、招式、掉落写在 apex/summon、apex/fight、apex/rewards，这里不重复"
+      ]
+    }
+  ]
+}

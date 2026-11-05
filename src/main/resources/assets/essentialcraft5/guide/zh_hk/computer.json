@@ -1,0 +1,1342 @@
+{
+  "id": "computer",
+  "order": 104,
+  "group": "main",
+  "title": "第二十章 · 宅男套裝",
+  "subtitle": "控制惡魔板的電腦與最後的盔甲",
+  "icon": "essentialcraft5:computer_helmet",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "force_parts",
+      "title": "基礎力場零件",
+      "icon": "essentialcraft5:force_emitter",
+      "summary": "五種基礎件，每次出 4 個",
+      "complete": "essentialcraft5:guide/computer/force_parts",
+      "items": [
+        "essentialcraft5:force_absorber",
+        "essentialcraft5:force_emitter",
+        "essentialcraft5:particle_catcher",
+        "essentialcraft5:particle_emitter",
+        "essentialcraft5:force_field_core"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "圖都畫好了，四件甲，一塊板。缺一台能管住惡魔板的電腦，我造不出來，問遍了也沒人造得出來。這套東西是給以後的人的。",
+          "by": "《工坊手記》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出五種基礎力場零件。宅男套裝照的是工坊手記裏的圖。它是本章的終點，四件盔甲由十幾種零件一層層拼起來，最底下的就是這五種。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "開工前先算賬",
+          "text": "宅男套裝是整個模組裏最貴的東西，四件加起來要 287 塊惡魔板、48 顆風之水晶、4 個 MRU 反應核和 2 個永恆物質，完整清單見[[computer/costs]]。最慢的是注風，從現在起就讓五芒星和風之祭壇一直運轉，人也留在附近。"
+        },
+        {
+          "type": "h",
+          "text": "五種基礎件"
+        },
+        {
+          "type": "p",
+          "text": "五種零件擺法相同，四個角放一種材料，四條邊放一種，中間放一個，每次合成出 <t>4</t> 個。"
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "header": [
+            "零件",
+            "四個角",
+            "四條邊",
+            "中間"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:force_absorber}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:mithriline_crystal}",
+              "{item:essentialcraft5:wind_gem}"
+            ],
+            [
+              "{item:essentialcraft5:force_emitter}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:fading_crystal}",
+              "{item:essentialcraft5:wind_gem}"
+            ],
+            [
+              "{item:essentialcraft5:particle_catcher}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:fading_crystal}",
+              "{item:essentialcraft5:force_absorber}"
+            ],
+            [
+              "{item:essentialcraft5:particle_emitter}",
+              "{item:essentialcraft5:demonic_plate}",
+              "{item:essentialcraft5:mru_resonating_crystal}",
+              "{item:essentialcraft5:force_emitter}"
+            ],
+            [
+              "{item:essentialcraft5:force_field_core}",
+              "{item:essentialcraft5:pale_plate}",
+              "{item:essentialcraft5:demonic_core}",
+              "{item:essentialcraft5:void_mru_reactor}"
+            ]
+          ]
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:force_absorber",
+            "essentialcraft5:force_emitter",
+            "essentialcraft5:particle_catcher",
+            "essentialcraft5:particle_emitter",
+            "essentialcraft5:force_field_core"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>原料從哪來</em>：惡魔板和惡魔核心見[[demons/ackronite]]，風之水晶見[[wind/wind_gem]]，米斯萊水晶見[[mithriline/mithriline_ingot]]，黯淡水晶見[[pentacle/pale_crystal_pillar]]，MRU 共鳴水晶見[[alloys/resonating_crystal]]，淡青板見[[alloys/pale]]。MRU 反應核只能在海納爾的遺蹟箱子裏找到，見[[hoanna/relics]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>原料從哪來</em>：惡魔板和惡魔核心見[[demons/ackronite]]，風之水晶見[[wind/wind_gem]]，米斯萊水晶見[[mithriline/mithriline_ingot]]，黯淡水晶見[[pentacle/pale_crystal_pillar]]，MRU 共鳴水晶見[[alloys/resonating_crystal]]，淡青板見[[alloys/pale]]。MRU 反應核可以在海納爾的遺蹟箱子裏找到，見[[hoanna/relics]]，也可以讓混沌的富集倉坍縮出來，見[[hoanna/collapse]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到這五種裏的任意一種。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "反應核省着用",
+          "text": "每做一次力場核心要吃掉 1 個 MRU 反應核，四件套裝要做 4 次力場核心，算上反重力板是 5 次，所以反應核最好一個都別挪去做別的機器。"
+        }
+      ]
+    },
+    {
+      "id": "force_field",
+      "title": "力場發生器與力場護板",
+      "icon": "essentialcraft5:force_field_generator",
+      "summary": "兩種中間件，每次出 2 個",
+      "complete": "essentialcraft5:guide/computer/force_field",
+      "items": [
+        "essentialcraft5:force_field_generator",
+        "essentialcraft5:force_field_plating"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：用基礎件拼出{item:essentialcraft5:force_field_generator}和{item:essentialcraft5:force_field_plating}。套裝的每一件都要 1 個發生器和 2~3 塊力場護板，反重力板也要 1 個發生器。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:force_field_generator",
+            "essentialcraft5:force_field_plating"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:force_field_generator}",
+              "四個角放力場發射器，四條邊放力場核心，中間放一個{item:essentialcraft5:matter_of_eternity}，每次出 <t>2</t> 個"
+            ],
+            [
+              "{item:essentialcraft5:force_field_plating}",
+              "四個角放粒子捕捉器，四條邊放粒子發射器，中間放一個力場核心，每次出 <t>2</t> 個"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一個力場發生器。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "永恆物質也是一塊能存 MRU 的電池，<w>裏面存的 MRU 會在合成時一起消失</w>，所以要用剛做出來、還沒充過能的那塊。四件套裝要做 2 次發生器，共需 2 個永恆物質，要用掉 2 顆地獄之星，永恆物質的做法見[[storage/soul_storage]]。"
+        }
+      ]
+    },
+    {
+      "id": "drives",
+      "title": "穩定器、斥力與推進",
+      "icon": "essentialcraft5:thruster_engine",
+      "summary": "壓力穩定器、斥力發生器、推進引擎",
+      "complete": "essentialcraft5:guide/computer/drives",
+      "items": [
+        "essentialcraft5:pressure_stabilizer",
+        "essentialcraft5:repulsion_generator",
+        "essentialcraft5:thruster_engine"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出{item:essentialcraft5:thruster_engine}。它要用到{item:essentialcraft5:pressure_stabilizer}，{item:essentialcraft5:repulsion_generator}也順手一起做好。套裝的每一件都要壓力穩定器，胸甲、護腿和反重力板還要斥力發生器和推進引擎。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:pressure_stabilizer",
+            "essentialcraft5:repulsion_generator",
+            "essentialcraft5:thruster_engine"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:pressure_stabilizer}",
+              "四個角放力場吸收器，十字形的五格放富神經元護板，每次出 <t>2</t> 個"
+            ],
+            [
+              "{item:essentialcraft5:repulsion_generator}",
+              "四個角放粒子發射器，四條邊放力場發射器，中間放富神經元護板，每次出 <t>2</t> 個"
+            ],
+            [
+              "{item:essentialcraft5:thruster_engine}",
+              "力場發射器 ×4、粒子發射器、壓力穩定器 ×2、富神經元護板 ×2，擺法見上面的圖，每次出 <t>2</t> 個"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一個推進引擎。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "富神經元護板備足",
+          "text": "壓力穩定器每次要吃掉 5 塊富神經元護板，四件套裝光這一樣就要做六次，護板不夠了就回到[[hologram/neuronic_plating]]接着做，每次出 4 塊。"
+        }
+      ]
+    },
+    {
+      "id": "senses",
+      "title": "聲音與視覺",
+      "icon": "essentialcraft5:speaker_plate",
+      "summary": "聲音管理器、揚聲器板、視覺透鏡",
+      "complete": "essentialcraft5:guide/computer/senses",
+      "items": [
+        "essentialcraft5:sound_manager",
+        "essentialcraft5:speaker_plate",
+        "essentialcraft5:vision_lens"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出頭盔要用的{item:essentialcraft5:speaker_plate}和{item:essentialcraft5:vision_lens}。手記裏那頂頭盔的草圖上，畫着兩隻耳朵和一隻眼睛。頭盔要 2 塊揚聲器板和 1 個視覺透鏡，揚聲器板要先做出{item:essentialcraft5:sound_manager}才能合成，這三樣東西只有頭盔用得上。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:sound_manager",
+            "essentialcraft5:speaker_plate",
+            "essentialcraft5:vision_lens"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:sound_manager}",
+              "惡魔板 ×4、惡魔核心 ×2、力場吸收器 ×2，中間放壓力穩定器，每次出 <t>1</t> 個"
+            ],
+            [
+              "{item:essentialcraft5:speaker_plate}",
+              "四個角放力場吸收器，四條邊放富神經元護板，中間放聲音管理器，每次出 <t>1</t> 個"
+            ],
+            [
+              "{item:essentialcraft5:vision_lens}",
+              "四個角放富神經元護板，上下放力場吸收器，左右放{item:essentialcraft5:sun_imbued_glass}，中間放{item:essentialcraft5:magic_purified_glass_alloy}，每次出 <t>1</t> 個"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一塊揚聲器板。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "text": "日光玻璃第十章做過，見[[solar/sun_imbued_glass]]，玻璃合金在魔力工作台裏做，見[[alloys/purified_alloys]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書給宅男套裝寫的副標題，只有短短一句「它來自未來！」"
+        }
+      ]
+    },
+    {
+      "id": "computer_engine",
+      "title": "{item:essentialcraft5:computer_engine}",
+      "icon": "essentialcraft5:computer_engine",
+      "summary": "控制惡魔板的電腦",
+      "complete": "essentialcraft5:guide/computer/computer_engine",
+      "items": [
+        "essentialcraft5:computer_engine",
+        "essentialcraft5:logic_core"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出{item:essentialcraft5:computer_engine}，胸甲要用一個。它就是全息一章提到的那台控制惡魔板的電腦。畫這套圖的先輩到最後也沒能把它造出來。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：一個{item:essentialcraft5:logic_core}和 4 塊富神經元護板，邏輯核心的做法見下方，另外要加、減、乘、除四種數學核心各一個，它們由全息投影掉落，見[[hologram/math_cores]]。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:computer_engine",
+            "essentialcraft5:logic_core"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:logic_core}",
+              "四個角放惡魔板，上下放{item:minecraft:redstone}，左右放{item:minecraft:lapis_lazuli}，中間放{item:minecraft:quartz}，每次出 <t>1</t> 個"
+            ],
+            [
+              "{item:essentialcraft5:computer_engine}",
+              "四個角放富神經元護板，上、下、左、右依次放加法、減法、除法、乘法核心，中間放邏輯核心"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到電腦引擎。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "還差某一種核心",
+          "text": "四種核心每種只要一個，可數學核心沒有合成配方，缺了哪種只能再打一場全息投影，在對應的那一招之後補刀，見[[hologram/math_cores]]。"
+        }
+      ]
+    },
+    {
+      "id": "suit",
+      "title": "宅男套裝",
+      "icon": "essentialcraft5:computer_helmet",
+      "summary": "四件套裝，下一章給它裝模塊",
+      "complete": "essentialcraft5:main/computer_armor",
+      "items": [
+        "essentialcraft5:computer_helmet",
+        "essentialcraft5:computer_chestplate",
+        "essentialcraft5:computer_leggings",
+        "essentialcraft5:computer_boots"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：做出{item:essentialcraft5:computer_helmet}、{item:essentialcraft5:computer_chestplate}、{item:essentialcraft5:computer_leggings}、{item:essentialcraft5:computer_boots}，把四件同時帶在身上，穿着的也算。等下一章[[terminal/legend|終端與模塊]]給它裝上模塊，主線才算走完。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:computer_helmet",
+            "essentialcraft5:computer_chestplate",
+            "essentialcraft5:computer_leggings",
+            "essentialcraft5:computer_boots"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每件都要用到力場發生器、力場護板、富神經元護板和壓力穩定器。頭盔另要 2 塊揚聲器板和視覺透鏡，胸甲另要電腦引擎、斥力發生器和推進引擎，護腿另要斥力發生器和 2 個推進引擎。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "按上面的配方把四件做出來。",
+            "放進{item:essentialcraft5:charging_chamber}充 MRU，見[[storage/charging_chamber]]，每件最多存 {cfg:general.computer_armor.max_mru}，不必充滿，充上一部分就能用。",
+            "把四件都穿上。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "四件同時帶在身上，完成進度「{lang:advancements.essentialcraft5.computer_armor.title}」。下一章[[terminal/legend|終端與模塊]]給套裝裝上模塊，主線在那之後還有兩章。"
+        },
+        {
+          "type": "h",
+          "text": "一直都有的屬性"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "護甲值",
+              "頭盔 {cfg:general.computer_armor.armor_helmet}、胸甲 {cfg:general.computer_armor.armor_chestplate}、護腿 {cfg:general.computer_armor.armor_leggings}、靴子 {cfg:general.computer_armor.armor_boots}"
+            ],
+            [
+              "盔甲韌性",
+              "每件 {cfg:general.computer_armor.toughness}"
+            ],
+            [
+              "擊退抗性",
+              "每件 {cfg:general.computer_armor.knockback_resistance|pct}"
+            ],
+            [
+              "生命上限",
+              "頭盔、護腿、靴子各 +{cfg:general.computer_armor.max_health}，胸甲 +{cfg:general.computer_armor.chestplate_max_health}，每 2 點是一顆心"
+            ],
+            [
+              "耐久",
+              "16384，穿在身上時不會消耗"
+            ],
+            [
+              "附魔能力",
+              "127，鑽石為 10，地獄合金為 15"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "這些屬性有沒有電都在。全套的護甲和韌性加起來超過遊戲的上限時，超出的部分不算，上限是護甲 <t>30</t>、韌性 <t>20</t>。脱下以後，多出來的生命上限跟着去掉，血量也會降回去。"
+        },
+        {
+          "type": "h",
+          "text": "有電擋傷害"
+        },
+        {
+          "type": "p",
+          "text": "每件有電的盔甲會替你擋下它那一份傷害，頭盔 3/20、胸甲 8/20、護腿 6/20、靴子 3/20，四件都有電時整下傷害全被擋住，一點血都不掉，只是擊退照樣會有。"
+        },
+        {
+          "type": "p",
+          "text": "物品提示裏紫色的那一行寫着，它擋的是物理和元素傷害，各種傷害擋不擋得住見下表。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "傷害",
+            "用 MRU 擋嗎",
+            "其他防護"
+          ],
+          "rows": [
+            [
+              "近戰、箭等彈射物",
+              "擋",
+              "—"
+            ],
+            [
+              "站在火裏、巖漿裏，爆炸、閃電",
+              "擋",
+              "—"
+            ],
+            [
+              "走出火以後身上着火的持續燒傷",
+              "不擋",
+              "護腿在你着火時自動補抗火"
+            ],
+            [
+              "溺水",
+              "不擋",
+              "頭盔讓氧氣不會耗盡"
+            ],
+            [
+              "細雪凍傷",
+              "不擋",
+              "沒有"
+            ],
+            [
+              "自己喝的傷害藥水、中毒、凋零、飢餓",
+              "不擋",
+              "胸甲直接免疫"
+            ],
+            {
+              "if": "!module:essentialcraft5:matrix_shunt_module||!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "別人扔的噴濺傷害藥水",
+                "不擋",
+                "沒有"
+              ]
+            },
+            {
+              "if": [
+                "module:essentialcraft5:matrix_shunt_module",
+                "cfg:general.hoanna.portal_enabled"
+              ],
+              "cells": [
+                "別人扔的噴濺傷害藥水",
+                "不擋",
+                "胸甲裝上[[terminal/matrix_shunt|矩陣分流模塊]]後能把一部分改記為矩陣損傷"
+              ]
+            },
+            [
+              "軌道打擊",
+              "不擋",
+              "護甲值照樣能減免一部分"
+            ],
+            [
+              "二分場（生命直接減半）",
+              "不擋",
+              "沒有"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "同調到 2 階以後，護盾也擋怪物打來的魔法傷害，比如女巫扔來的傷害藥水；4 階起還擋一半無視護甲的傷害，見[[attunement/computer_armor]]。"
+        },
+        {
+          "type": "p",
+          "text": "每件盔甲擋一次都要花 MRU，它那一份傷害每 1 點耗 {cfg:general.computer_armor.mru_per_damage} MRU，點數向下取整，至少按 1 點算。電先從身上的{item:essentialcraft5:soul_shard}這類靈魂儲存里扣，湊不夠再扣這件盔甲自己存的。"
+        },
+        {
+          "type": "p",
+          "text": "打你的是別的玩家時，護盾一下最多擋 {cfg:general.computer_armor.pvp_shield_max_share|pct}，每擋 1 點的電費是平時的 {cfg:general.computer_armor.pvp_shield_cost_multiplier} 倍。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "矩陣二階起，靈魂儲存不夠時先扣你的[[matrix/reservoir|矩陣容量]]，最後才扣盔甲自己存的。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.enabled",
+          "text": "戴在飾品欄裏的儲存物品被[[computer/seal_field|飾品封禁場]]封住時不付這筆電，背包裏和身上別處的照常付。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "挨 8 點",
+              "頭盔 1 點 + 胸甲 3 點 + 護腿 2 點 + 靴子 1 點，一共 {cfg:general.computer_armor.mru_per_damage|mul:7} MRU"
+            ],
+            [
+              "挨一下小傷害",
+              "四件各按 1 點算，一共 {cfg:general.computer_armor.mru_per_damage|mul:4} MRU"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<w>付不起電的那件，這一下就不擋</w>，那一份傷害照常挨，這件自己一點電都沒有時也不擋。出遠門前看一眼物品提示裏的電量，背包裏帶幾件充滿的靈魂儲存最省事。"
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:infinite_mru_crystal",
+          "text": "帶着{item:essentialcraft5:infinite_mru_crystal}時這筆電全由它來付，只要每件盔甲自己存着一點電，套裝就能一直擋下去。"
+        },
+        {
+          "type": "h",
+          "text": "每件自己的本事"
+        },
+        {
+          "type": "table",
+          "widths": [
+            1,
+            4
+          ],
+          "header": [
+            "部位",
+            "效果"
+          ],
+          "rows": [
+            {
+              "if": "!cfg:general.computer_armor.helmet_saturation",
+              "cells": [
+                "{item:essentialcraft5:computer_helmet}",
+                "氧氣不會耗盡，飢餓值一直是滿的，回血按吃飽時的速度。按 {keybind:key.essentialcraft5.computer_armor_night_vision} 可以開關夜視，戴着還能隔牆看見聚集體"
+              ]
+            },
+            {
+              "if": "cfg:general.computer_armor.helmet_saturation",
+              "cells": [
+                "{item:essentialcraft5:computer_helmet}",
+                "氧氣不會耗盡，飢餓值和飽和度一直是滿的，回血很快。按 {keybind:key.essentialcraft5.computer_armor_night_vision} 可以開關夜視，戴着還能隔牆看見聚集體"
+              ]
+            },
+            [
+              "{item:essentialcraft5:computer_chestplate}",
+              "免疫魔法、凋零和飢餓傷害，自己喝的傷害藥水和中毒都算魔法，別人扔來的噴濺傷害藥水卻照樣打得到"
+            ],
+            [
+              "{item:essentialcraft5:computer_leggings}",
+              "走路快 {cfg:general.computer_armor.leggings_speed|div:0.1|pct}，跳得更高，身上着火時每秒補上 5 秒抗火"
+            ],
+            [
+              "{item:essentialcraft5:computer_boots}",
+              "免疫摔落傷害，能直接邁上一格高的方塊"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "穿齊四件"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.computer_armor.thorns_ratio>0",
+              "text": "受到近戰、彈射物或爆炸傷害時，把這一下的 {cfg:general.computer_armor.thorns_ratio|pct} 以荊棘傷害反給攻擊者，整下都擋掉了也照樣會反。"
+            },
+            "按 {keybind:key.essentialcraft5.computer_armor_boost} 朝視線方向噴射推進，冷卻 {cfg:general.computer_armor.dash_cooldown|sec}，騎乘或睡覺時用不了。",
+            {
+              "if": "cfg:general.computer_armor.dash_mru>0",
+              "text": "每次推進消耗 {cfg:general.computer_armor.dash_mru} MRU。"
+            },
+            {
+              "if": "cfg:general.computer_armor.swim_speed>0",
+              "text": "在水裏遊得快得多，能到 {cfg:general.computer_armor.swim_speed|add:1|x} 的速度。"
+            },
+            "聚集體造成的矩陣損傷和「MRU 腐化」效果的傷害全部免除，每件各擋四分之一。",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "在海納爾不再積攢輻射，只有毒霧帶來的那一份照舊，見[[hoanna/radiation]]。"
+            },
+            {
+              "if": "cfg:general.computer_seal.enabled",
+              "text": "按 {keybind:key.essentialcraft5.computer_terminal} 打開宅男終端，在裏面開啓[[computer/seal_field|飾品封禁場]]，周圍罩得住的玩家，飾品會暫時失效。"
+            },
+            "四件盔甲上各有模塊槽，能裝上第二十一章的模塊，給套裝添上回溯、相位錨這類本事，見[[terminal/install]]。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "屏幕頂部有兩個小圓，左邊的是夜視，亮着就是開着，右邊的是噴射推進，缺掉的那一塊是剩下的冷卻。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.enabled",
+          "text": "飾品封禁場開着時，夜視圓左邊還會多出一個紫圓，亮着表示正在運轉，暗着表示待機或電量不足。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "破法",
+          "text": "別人扔來的噴濺傷害藥水這類魔法傷害、全息投影直接把生命減半的二分場，還有無視護甲的傷害，套裝都擋不住。軌道打擊既不算物理也不算元素，同樣擋不住。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.computer_armor.thorns_ratio>0",
+              "text": "算出的反傷不到 0.5 點就不反，荊棘傷害本身不會再被反回去，軌道打擊、射線槍這類隔空打來、沒有東西真碰到你的傷害也不反。"
+            },
+            "夜視開沒開記在你身上，重新登錄或死亡以後都保持原樣。",
+            "穿在身上時不掉耐久，擋傷害或被護甲破壞者打中時都改成扣電。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "antigravity_board",
+      "title": "{item:essentialcraft5:computer_board}",
+      "icon": "essentialcraft5:computer_board",
+      "summary": "戴在腰帶槽裏就能飛",
+      "complete": "essentialcraft5:guide/computer/antigravity_board",
+      "optional": true,
+      "if": "bauble:essentialcraft5:computer_board",
+      "items": [
+        "essentialcraft5:computer_board"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一塊{item:essentialcraft5:computer_board}，戴在飾品欄的腰帶槽裏，就能像創造模式那樣自在地飛。四件甲旁邊畫着的那塊板，就是它。飾品欄在物品欄界面裏，由飾品模組提供。板子不需要套裝，也不耗電。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:computer_board"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：2 個壓力穩定器、1 個力場發生器、3 塊富神經元護板、2 個斥力發生器和 1 個推進引擎，前面幾篇都講過做法。單做這一塊就要 68 塊惡魔板和 14 顆風之水晶，見[[computer/costs]]。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到一塊反重力板。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "飛行速度",
+              "創造模式的 {cfg:general.computer_board.fly_speed|div:0.05|x}"
+            ],
+            [
+              "戴在",
+              "腰帶槽，同時只能戴一塊"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "飛的時候腳下會出現一塊板子，旁人也看得見。摘下板子就飛不了了，別的來源給你的飛行不受影響。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.computer_seal.slow_fall_ticks>0"
+          ],
+          "text": "被[[computer/seal_field|飾品封禁場]]封住時板子會失效，飛不起來，那一刻人要是在空中，會得到幾秒緩降，慢慢落回地面。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.computer_seal.enabled",
+            "cfg:general.computer_seal.slow_fall_ticks==0"
+          ],
+          "text": "被[[computer/seal_field|飾品封禁場]]封住時板子會失效，飛不起來，人在空中就會直接掉下去。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "和全息投影戰鬥時飛不起來，見[[hologram/summoning]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書誇它飛起來「還給你難以置信的速度」，原作裏它也確實把飛行速度拔到了創造模式的 4 倍。"
+        }
+      ]
+    },
+    {
+      "id": "seal_field",
+      "title": "飾品封禁場",
+      "icon": "essentialcraft5:computer_chestplate",
+      "summary": "讓身邊玩家的飾品暫時失效",
+      "complete": "essentialcraft5:guide/computer/seal_field",
+      "optional": true,
+      "if": "cfg:general.computer_seal.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：穿齊宅男套裝，按 {keybind:key.essentialcraft5.computer_terminal} 打開宅男終端，開啓「飾品封禁場」。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "在終端裏第一次開啓飾品封禁場。身邊沒人時它只是待機，不過開啓就算完成。"
+        },
+        {
+          "type": "h",
+          "text": "它做什麼"
+        },
+        {
+          "type": "p",
+          "text": "場運轉時，{cfg:general.computer_seal.radius} 格內被它罩住的玩家，飾品欄裏的東西會全部失效，跟沒戴一樣，持續效果停下，附加的屬性消失，別的東西也查不到它們。物品本身還在原處，不會掉落，也不會被擠出來。這裏説的飾品欄，是物品欄界面裏由飾品模組提供的那一欄。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.computer_seal.affects_self",
+          "text": "<w>場運轉時你自己的飾品也會一起失效</w>，你的飾品格上同樣會出現禁用圖示，只有待機時它才放過你。這時不會彈出「飾品被封」的提示，紫圓亮着就説明它在運轉。"
+        },
+        {
+          "type": "h",
+          "text": "罩住誰"
+        },
+        {
+          "type": "list",
+          "items": [
+            "和你在同一個世界、離你不到 {cfg:general.computer_seal.radius} 格的玩家，距離按兩人腳下的直線距離算，隔着牆也算。",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "最近 {cfg:general.computer_seal.combat_window_ticks|sec}內和你交過手，你們之間只要有一次攻擊沒被攔下就算，打中了或被盔甲、盾牌整下擋掉都算，誰先動的手也不要緊。<em>場只罩住正在和你交手的人</em>，路過的人和受到互傷保護的人都罩不到。"
+            },
+            "你們之間能互相傷害，這要求玩家之間允許互相傷害，而且你們不在同一隊。",
+            {
+              "if": "cfg:general.computer_seal.respect_claims",
+              "text": "對方站在你有權動方塊的地方，別人的領地、出生點附近這類你動不了的地方，場都伸不進去。"
+            },
+            "處於生存或冒險模式的玩家，創造和旁觀模式的玩家不受影響。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "已經被罩住的人要走到 {cfg:general.computer_seal.radius|add:2} 格以外才算離開。離開以後，或者你關掉場以後，飾品過一小會兒就會恢復，被罩住的時間至少有 {cfg:general.computer_seal.min_hold_ticks|sec}。"
+        },
+        {
+          "type": "h",
+          "text": "什麼時候運轉、耗多少電"
+        },
+        {
+          "type": "p",
+          "text": "範圍內至少有一個罩得住的人，場才會運轉，屏幕頂部夜視圓左邊的紫圓隨之亮起。沒人可罩時它轉入待機，紫圓變暗，不耗電，也不封你自己的飾品。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "運轉時每秒",
+              "{cfg:general.computer_seal.mru_base} MRU，每罩住一個別的玩家再加 {cfg:general.computer_seal.mru_per_target} MRU"
+            ],
+            {
+              "if": "cfg:general.computer_seal.affects_self",
+              "cells": [
+                "從哪裏扣",
+                "先扣身上的靈魂儲存，不夠再扣胸甲自己存的。飾品欄裏的儲存不算，運轉時它們會和別的飾品一起失效"
+              ]
+            },
+            {
+              "if": "!cfg:general.computer_seal.affects_self",
+              "cells": [
+                "從哪裏扣",
+                "先扣身上的靈魂儲存，不夠再扣胸甲自己存的，和噴射推進一樣"
+              ]
+            },
+            [
+              "電不夠時",
+              "這一秒誰都不罩，也一分不扣，並提示一次「電量不足」"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "宅男終端"
+        },
+        {
+          "type": "list",
+          "items": [
+            "戴着宅男頭盔按 {keybind:key.essentialcraft5.computer_terminal} 就能打開，再按一次或按 Esc 關閉，開着終端時遊戲不會暫停。",
+            "飾品封禁場的開關、當前狀態、每秒耗電量，以及按當前耗電還能撐多久。",
+            "夜視開關，作用和按 {keybind:key.essentialcraft5.computer_armor_night_vision} 一樣，還有噴射推進的冷卻和四件盔甲各自的電量。",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "範圍內你看得見的玩家和各自的狀態，比如壓制中、也被別人壓制、沒有交手、不能互相傷害、在你沒有權限的地方，隱身的人不會列出來，但照樣會被罩住。"
+            },
+            {
+              "if": "!cfg:general.computer_seal.require_recent_combat",
+              "text": "範圍內你看得見的玩家和各自的狀態，比如壓制中、也被別人壓制、不能互相傷害、在你沒有權限的地方，隱身的人不會列出來，但照樣會被罩住。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "被罩住的一方"
+        },
+        {
+          "type": "p",
+          "text": "被罩住的人每次進入遊戲後第一次被封，聊天欄裏會出現一句説明，告訴他是誰的封禁場、走開多遠就能恢復。之後只在屏幕下方提示一行，剛恢復不久又被封時，連這一行也沒有。"
+        },
+        {
+          "type": "p",
+          "text": "打開背包，能看到飾品格上蒙着一層暗紫和禁用圖示，滑鼠移到飾品上能看到是誰的場，快捷欄左邊也有一個同樣的小圖示。"
+        },
+        {
+          "type": "h",
+          "text": "破法"
+        },
+        {
+          "type": "list",
+          "items": [
+            "走到 {cfg:general.computer_seal.radius|add:2} 格外，或者換到別的世界。",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "別和他交手，只要最近 {cfg:general.computer_seal.combat_window_ticks|sec}內你們誰都沒打過誰，場就罩不到你，被盔甲、盾牌整下擋掉的攻擊也算打過。"
+            },
+            {
+              "if": "cfg:general.computer_seal.respect_claims",
+              "text": "站進他動不了方塊的地方，比如你自己的領地。"
+            },
+            "它只封飾品，盔甲、武器、藥水都照常管用。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "飾品額外給的槽位，比如腰帶多給的戒指槽，被封期間不會消失，裏面的東西也不會被擠出來。",
+            "死亡掉落、存檔、在背包裏挪動飾品都不受影響，只是戴着不生效。被封時照樣能戴上新的飾品，戴上的那一刻就是失效的，只許戴一件的飾品被封時也只能戴一件。",
+            "有些飾品會自己翻查飾品欄來判斷，在場內可能照樣生效，或者只失效一部分。",
+            "倒下的那一刻同樣算作沒戴，靠飾品免死或讓死後東西不掉的效果，被封時通常都不起作用。",
+            "能增加飾品欄位的飾品，比如各種腰帶、手套和披風，不受封禁場影響，戴着照常生效，多給的槽位也一直都在，放在這些槽位裏的別的飾品照樣被封。",
+            {
+              "if": "mod:enigmaticlegacy",
+              "text": "神秘遺物的七咒之戒不受封禁場影響，被封時詛咒照舊生效，佩戴時間也照常累計。"
+            },
+            {
+              "if": "cfg:general.computer_seal.slow_fall_ticks>0",
+              "text": "失效的那一刻人要是在空中，會得到 {cfg:general.computer_seal.slow_fall_ticks|sec}的緩降，飛行飾品失效時不至於摔死，靠飾品欄裏的鞘翅滑翔的人，在滑翔停下時得到。"
+            },
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "兩個穿戴者交過手、又都開着場時會互相封禁，各付各的電，幾個人的場罩住同一個人時，各自只為自己罩住的人付電。"
+            },
+            {
+              "if": "!cfg:general.computer_seal.require_recent_combat",
+              "text": "兩個穿戴者都開着場時就會互相封禁，各付各的電，幾個人的場罩住同一個人時，各自只為自己罩住的人付電。"
+            },
+            "進出提示會合並，同一個人離開後不久又回來時不再重複提示。",
+            {
+              "if": "cfg:general.computer_seal.require_recent_combat",
+              "text": "打全息投影時，不同隊又和你交過手的玩家也會被罩住，誰打中誰都算，組隊打之前先關掉場。"
+            },
+            {
+              "if": "!cfg:general.computer_seal.require_recent_combat",
+              "text": "打全息投影時，不同隊的玩家也會被罩住，組隊打之前先關掉場。"
+            },
+            "有些世界裏封禁場不起作用，在那裏打開也不運轉、不耗電，終端上會寫着「這個世界裏不起作用」，離開那個世界後就接着工作。",
+            {
+              "if": "cfg:general.computer_seal.respect_claims",
+              "text": "有人站在別人領地這類你動不了方塊的地方時，場會替你問一聲那裏能不能動，所以你偶爾會收到領地的「沒有權限」提示，不過同一個地方 5 分鐘才問一次。剛被拒過的人走出領地以後，最多過 {cfg:general.protection.probe_cache_ticks|sec}就會被罩住，電不夠時則不會去問。"
+            },
+            "創造模式下開場不耗電，你自己也不會被封。",
+            "開關狀態記在你身上，重新登錄或死亡以後都保持原樣，再穿齊四件就會接着工作。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "force_dome",
+      "title": "{item:essentialcraft5:force_dome}",
+      "icon": "essentialcraft5:force_dome",
+      "summary": "讓基地周圍不再自然刷出怪物",
+      "complete": "essentialcraft5:guide/computer/force_dome",
+      "optional": true,
+      "if": "cfg:machines.force_dome.enabled",
+      "items": [
+        "essentialcraft5:force_dome"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一台{item:essentialcraft5:force_dome}，放在基地裏接上 MRU，基地周圍就清靜了，不再自然刷出怪物。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:force_dome"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：1 個{item:essentialcraft5:force_field_generator}和 2 塊{item:essentialcraft5:force_field_plating}，做法見[[computer/force_field]]，再加 2 塊{item:essentialcraft5:neuronic_enriched_plating}和 4 塊{item:essentialcraft5:void_stone}，分別見[[hologram/neuronic_plating]]和[[hoanna/void_stone]]。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "親手放下穹頂，誰放下的，它就替誰幹活。",
+            "往界面右上角的格子裏放一顆記住了 MRU 源頭的{item:essentialcraft5:bound_gem}，和別的機器一樣接入 MRU，見[[crafting/bound_gem]]。",
+            "留意界面第一行的狀態，剛接上時可能顯示「MRU 不足！」或「正在確認領地」，過幾秒變成「工作中」就説明接好了。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "界面狀態顯示「工作中」，穹頂第一次開始工作就算完成。"
+        },
+        {
+          "type": "h",
+          "text": "它攔什麼"
+        },
+        {
+          "type": "p",
+          "text": "工作時，水平 {cfg:machines.force_dome.radius} 格內不再自然刷出怪物，夜裏和洞裏冒出的喪屍、骷髏、苦力怕，天上的夜魅，災厄巡邏隊，還有喪屍叫來的增援，都不會再出現。半徑按水平距離算，從天到地整根柱子都在範圍內。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "刷怪籠、生成蛋和指令召喚出來的怪物不攔，村莊襲擊來的災厄村民也不攔。",
+            "動物、村民、魚等不屬於怪物的生物不攔。",
+            "凋零怪、終界龍、全息投影等首領不攔。",
+            "它只管怪物刷出這一環，已經在那裏的怪不會消失，從外面走進來的也照樣進得來。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "只罩你自己能動的地方"
+        },
+        {
+          "type": "p",
+          "text": "穹頂按區塊計算，地面上 16 × 16 算一塊。範圍碰到的每一塊區塊，它都會替你問一聲能不能在那裏動方塊，問的是區塊正中、和穹頂同一高度的那一格。別人的領地、出生點附近這類你動不了的區塊，它不管，那裏照常刷怪。"
+        },
+        {
+          "type": "p",
+          "text": "你能動的區塊，問出的結果保留 {cfg:machines.force_dome.claim_cache_ticks|div:1200} 分鐘，你在線時快到期就重新問。你動不了的區塊，結果保留 {cfg:machines.force_dome.claim_cache_ticks|div:12000} 小時，到期了才再問。你下線以後，它接着用你在線時問出的結果，到期時你還沒上線的話，那些區塊先不攔，等你上線再重新確認。"
+        },
+        {
+          "type": "h",
+          "text": "耗電"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "滿負荷每秒",
+              "{cfg:machines.force_dome.mru_per_tick|mul:20} MRU，指範圍碰到的區塊全部可攔時"
+            ],
+            [
+              "只有一部分區塊可攔",
+              "按比例少扣，一半可攔就只扣一半"
+            ],
+            [
+              "能存",
+              "{cfg:machines.force_dome.capacity} MRU"
+            ],
+            [
+              "MRU 不夠時",
+              "這一秒不攔，也一分不扣，連一塊區塊一秒的費用都付不起時，也不會替你去問領地，補上 MRU 後就接着攔"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "界面"
+        },
+        {
+          "type": "list",
+          "items": [
+            "第三行統計範圍碰到的區塊，<g>可攔</g>是你能動方塊、不會刷怪的區塊，<w>未確認</w>是還沒問過或結果已經到期的區塊，暫時先不攔，<b>不可攔</b>是你動不了方塊、照常刷怪的區塊。",
+            "第四行顯示半徑和當前每秒扣除的 MRU。",
+            "顯示「沒有你能罩的區塊」時，説明範圍碰到的區塊你全都動不了，穹頂不工作，也不扣 MRU。",
+            {
+              "if": "cfg:machines.force_dome.max_per_owner>0",
+              "text": "顯示「排隊：穹頂太多」時，説明同一個人同時工作的穹頂已經到了上限 {cfg:machines.force_dome.max_per_owner} 台，先放下的優先，拆掉一台更早的，或者用紅石信號關掉它，後面這台就會接上。"
+            },
+            "受到紅石信號時暫停工作。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "穹頂開始工作之前就在附近的怪物不會消失，最好先清一遍。自己的刷怪塔要留在範圍以外，塔裏才能照常刷怪。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "替你問領地時，你偶爾會收到領地的「沒有權限」提示，你能動的區塊每 {cfg:machines.force_dome.claim_cache_ticks|div:1200} 分鐘問一次，動不了的區塊要 {cfg:machines.force_dome.claim_cache_ticks|div:12000} 小時才再問一次。鄰居後來給了你權限的話，把穹頂拆下重放，它就會馬上重新問。",
+            "穹頂看區塊正中、和穹頂同一高度的那一格，來決定從天到地的整塊區塊攔不攔。所以領地要是按立方體劃的，只圈了某幾層，或者邊界和區塊對不齊，穹頂就可能罩進鄰居領地的一部分。放在別人領地正下方或正上方的野外時，它能罩住對方那一整列，比一塊區塊還小、又不含區塊正中的領地，穹頂則看不見。",
+            "不是由玩家親手放下的穹頂，比如用指令放置的，會顯示「沒有主人」，不會工作。",
+            "同一塊區塊被幾台穹頂罩着時，只要有一台在工作就會攔截。",
+            "拆掉時只會掉出穹頂本身和綁定寶石，存着的 MRU 不會保留。",
+            "穹頂所在的地方離玩家太遠、停止運轉時，它不再付電，攔截也很快跟着停下。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "costs",
+      "title": "全套要多少",
+      "icon": "essentialcraft5:demonic_plate",
+      "summary": "套裝和反重力板的材料總賬",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "宅男套裝是整個模組裏最貴的東西。下面是把零件一層層展開、全部合在一起做時的總數，一次合成多出來的零件會留給下一件用，所以比一件件單算要省一些。"
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            2
+          ],
+          "header": [
+            "材料",
+            "只做四件",
+            "四件 + 反重力板"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:demonic_plate}",
+              "287",
+              "329"
+            ],
+            [
+              "{item:essentialcraft5:wind_gem}",
+              "48",
+              "55"
+            ],
+            [
+              "{item:essentialcraft5:void_mru_reactor}",
+              "4",
+              "5"
+            ],
+            [
+              "{item:essentialcraft5:matter_of_eternity}",
+              "2",
+              "3"
+            ],
+            [
+              "{item:essentialcraft5:elemental_gem}（做惡魔核心）",
+              "80",
+              "96"
+            ],
+            [
+              "{item:essentialcraft5:mru_resonating_crystal}",
+              "48",
+              "56"
+            ],
+            [
+              "{item:essentialcraft5:fading_crystal}",
+              "48",
+              "56"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_crystal}",
+              "44",
+              "48"
+            ],
+            [
+              "{item:essentialcraft5:pale_plate}",
+              "16",
+              "20"
+            ],
+            [
+              "{item:essentialcraft5:combined_magical_alloys}",
+              "30",
+              "34"
+            ],
+            [
+              "{item:essentialcraft5:sun_imbued_glass}",
+              "2",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:magic_purified_glass_alloy}",
+              "1",
+              "1"
+            ],
+            [
+              "四種數學核心",
+              "各 1",
+              "各 1"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "折算成原料是下面這些，同樣按全部合在一起做來算："
+        },
+        {
+          "type": "table",
+          "header": [
+            "原料",
+            "只做四件",
+            "四件 + 反重力板",
+            "用在哪"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:mithriline_crystal}",
+              "92",
+              "104",
+              "其中 48 / 56 顆要在熔爐裏轉成黯淡水晶，在工作台上做的話每顆要 17 份米斯萊粉，也可以拿共鳴水晶一換一，見[[mithriline/conversions]]"
+            ],
+            [
+              "{item:minecraft:blaze_powder}",
+              "240",
+              "272",
+              "注魔合金裏的烈焰合金"
+            ],
+            [
+              "{item:minecraft:ender_pearl}",
+              "240",
+              "272",
+              "注魔合金裏的末影鱗合金，用淡青珍珠也可以"
+            ],
+            [
+              "{item:minecraft:diamond}、{item:minecraft:emerald}",
+              "各 48",
+              "各 56",
+              "用來做共鳴水晶，淡青寶石可以頂替其中任意一樣，見[[gear/pale_gem]]"
+            ],
+            [
+              "{item:essentialcraft5:ackronite_ingot}",
+              "288",
+              "332",
+              "用來壓成惡魔板，每筆交易給 {cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 個"
+            ],
+            [
+              "{item:essentialcraft5:fortified_stone}",
+              "238",
+              "273",
+              "每塊壓成一塊魔力強化板，做這些強化石一共要用約 60 塊鐵錠"
+            ],
+            [
+              "{item:minecraft:lapis_block}、{item:minecraft:gold_ingot}",
+              "各 16",
+              "各 20",
+              "先在輻射倉裏做淡青錠，一次出 4 塊，再做成淡青板"
+            ],
+            [
+              "{item:minecraft:nether_star}",
+              "2",
+              "3",
+              "用來做永恆物質，全息投影台要用的 5~7 顆另算，見[[hologram/holopad]]"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "按每筆交易平均拿到 5~6 個錠算，只做四件要成交 50 筆左右，加上反重力板約 60 筆。",
+          "if": [
+            "cfg:general.demon.reward_min==3",
+            "cfg:general.demon.reward_max==8"
+          ]
+        },
+        {
+          "type": "table",
+          "widths": [
+            3,
+            2,
+            2
+          ],
+          "header": [
+            "單做一件",
+            "惡魔板",
+            "風之水晶"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:computer_helmet}",
+              "126",
+              "20"
+            ],
+            [
+              "{item:essentialcraft5:computer_chestplate}",
+              "105",
+              "17"
+            ],
+            [
+              "{item:essentialcraft5:computer_leggings}",
+              "96",
+              "15"
+            ],
+            [
+              "{item:essentialcraft5:computer_boots}",
+              "83",
+              "11"
+            ],
+            {
+              "if": "bauble:essentialcraft5:computer_board",
+              "cells": [
+                "{item:essentialcraft5:computer_board}",
+                "68",
+                "14"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "最花時間的三樣"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>風之水晶</em>：四件一共要 48 顆，注風一共要 {cfg:general.wind.gem_espe|mul:48} ESPE，一座祭壇的 8 根柱子在主世界每秒積攢 {cfg:machines.mithriline_crystal_pillar.espe_generated|mul:160}，在終界每秒 {cfg:machines.mithriline_crystal_pillar.espe_generated_end|mul:160}，見[[wind/wind_rune]]。",
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "text": "算下來，主世界一座祭壇要不停積攢約 33 小時，兩座約 17 小時，終界三座則不到 3 小時。"
+            },
+            {
+              "if": [
+                "cfg:general.wind.gem_espe==10000",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025",
+                "cfg:machines.mithriline_crystal_pillar.espe_generated_end==0.1"
+              ],
+              "text": "8 根柱子全換成{item:essentialcraft5:pale_crystal_pillar}，積攢快一半：一座約 22 小時，兩座約 11 小時，四座約 6 小時。"
+            },
+            {
+              "if": "cfg:general.wind.gem_espe!=10000||cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025||cfg:machines.mithriline_crystal_pillar.espe_generated_end!=0.1",
+              "text": "祭壇的柱子換成{item:essentialcraft5:pale_crystal_pillar}這類高檔的柱子，積攢得更快，倍率見[[mithriline/crystal_pillar]]。"
+            },
+            "<em>阿克羅尼特</em>：每次用 4 個錠壓出 4 塊惡魔板，四件要的 287 塊板得壓 72 次，用掉 288 個錠，每筆交易拿得到 {cfg:general.demon.reward_min}~{cfg:general.demon.reward_max} 個，見[[demons/trade]]。遇到要價太高的惡魔，就讓它離開，再召喚一隻。",
+            {
+              "if": [
+                "cfg:machines.mithriline_crystal_pillar.espe_generated==0.025"
+              ],
+              "text": "<em>黯淡水晶</em>：48 顆都要在米斯萊熔爐裏轉化，一共約 1.15 萬 ESPE，熔爐擺滿 13 根柱子時，在主世界要轉半個小時左右，見[[mithriline/conversions]]。"
+            },
+            {
+              "if": "cfg:machines.mithriline_crystal_pillar.espe_generated!=0.025",
+              "text": "<em>黯淡水晶</em>：48 顆都要在米斯萊熔爐裏轉化，一共約 1.15 萬 ESPE，熔爐的柱子最好單獨備一批，見[[mithriline/conversions]]。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎麼省時間",
+          "text": "水晶柱要人在附近才積攢，把風之祭壇和惡魔五芒星都建在終界，人在旁邊掛機，兩邊就能同時積攢。魔力工作台裝上惡魔核心後速度提到 ×16，三十份注魔合金和七十多次壓板就不再拖後腿。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.ley_condenser.enabled",
+          "text": "{item:essentialcraft5:matter_of_eternity}要的地獄之星也可以用{item:essentialcraft5:ley_condenser}凝聚出來，不用再去打凋零怪，見[[ley/condensing]]。"
+        }
+      ]
+    },
+    {
+      "id": "epilogue",
+      "title": "宅男套裝之後",
+      "icon": "essentialcraft5:computer_engine",
+      "summary": "還剩三章：模塊、暗影、九階",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "還剩三章"
+        },
+        {
+          "type": "p",
+          "text": "先輩的殘卷寫到海納爾就快寫完了，惡魔、審判庭和這身甲，殘卷裏都沒有。從挖出第一塊魔晶、積攢下第一份 MRU 起，你造過產能器和富集倉，煉過米斯萊，注過風，後來走進海納爾，和惡魔做過交易，打倒了全息投影和審判庭哨兵，如今穿上了宅男套裝。"
+        },
+        {
+          "type": "p",
+          "text": "主線還剩三章：第二十一章[[terminal/legend|終端與模塊]]給套裝裝上模塊，第二十二章去暗影腐化之地攢材料，第二十三章召出天災之心。做空白模塊要用第十九章哨兵掉的{item:essentialcraft5:inquisitorium_chip}，還沒打過哨兵的話，先回去打一場。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書裏，審判庭只是一句傳聞，全息投影台向它發出信號，應答的卻是全息投影。從回聲往後的故事是這一版續寫的。原作裏檔位最高的分類叫「有關暗影的知識」，登記在冊，卻一頁也沒寫。"
+        }
+      ]
+    }
+  ]
+}

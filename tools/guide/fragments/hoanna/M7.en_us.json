@@ -1,0 +1,284 @@
+[
+  {
+    "id": "relics",
+    "title": "What the Ruins Hold",
+    "icon": "essentialcraft5:void_core",
+    "summary": "Titanite, the three void items, Embers, accessories",
+    "complete": "essentialcraft5:guide/hoanna/relics",
+    "items": [
+      "essentialcraft5:titanite",
+      "essentialcraft5:twinkling_titanite",
+      "essentialcraft5:void_core",
+      "essentialcraft5:void_mru_reactor",
+      "essentialcraft5:acidic_ember",
+      "essentialcraft5:chaos_ember",
+      "essentialcraft5:common_ember",
+      "essentialcraft5:corrupted_ember",
+      "essentialcraft5:crystal_ember",
+      "essentialcraft5:divine_ember",
+      "essentialcraft5:magical_ember",
+      "essentialcraft5:flame_ember",
+      "essentialcraft5:concrete",
+      "essentialcraft5:levitator",
+      "essentialcraft5:spreader"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: take your first relic out of a Hoanna ruin chest. The chests at the top of ruined-town towers and in the exit rooms of old catacombs (see [[hoanna/ruins]]) share the same loot, drawn 6 to 17 times per chest."
+      },
+      {
+        "type": "items",
+        "items": [
+          "essentialcraft5:titanite",
+          "essentialcraft5:twinkling_titanite",
+          "essentialcraft5:void_plating",
+          "essentialcraft5:void_core",
+          "essentialcraft5:void_mru_reactor"
+        ]
+      },
+      {
+        "type": "items",
+        "items": [
+          "essentialcraft5:acidic_ember",
+          "essentialcraft5:chaos_ember",
+          "essentialcraft5:common_ember",
+          "essentialcraft5:corrupted_ember",
+          "essentialcraft5:crystal_ember",
+          "essentialcraft5:divine_ember",
+          "essentialcraft5:magical_ember",
+          "essentialcraft5:flame_ember"
+        ],
+        "per_row": 4
+      },
+      {
+        "type": "items",
+        "if": "bauble:essentialcraft5:mystical_accessory",
+        "items": [
+          "essentialcraft5:mystical_accessory"
+        ]
+      },
+      {
+        "type": "h",
+        "text": "Roughly per chest"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "{item:essentialcraft5:titanite}",
+            "about 4"
+          ],
+          [
+            "{item:essentialcraft5:twinkling_titanite}",
+            "about 1.3"
+          ],
+          [
+            "Void Plate, Void Core, MRU Reactor",
+            "about 0.2 each (one of each per ~5 chests)"
+          ],
+          [
+            "The 8 Embers",
+            "about 9 in total"
+          ],
+          {
+            "if": "bauble:essentialcraft5:mystical_accessory",
+            "cells": [
+              "{item:essentialcraft5:mystical_accessory}",
+              "about 0.5"
+            ]
+          },
+          [
+            "{item:essentialcraft5:magical_slag}",
+            "about 8"
+          ],
+          [
+            "Mid-game materials (Magical Essence, Magical Ingot, Magical Water, Magic Fortified Plating, the four purified alloys)",
+            "about 1.8 each"
+          ],
+          [
+            "{item:essentialcraft5:crystal_dust}",
+            "about 0.8"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "<em>Void Cores and MRU Reactors only come from these chests</em>: they cannot be mined or crafted. Void Plates can also be pressed yourself (see [[hoanna/void_plating]]). For more, find more towns and catacombs."
+      },
+      {
+        "type": "h",
+        "text": "What they are for"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Titanite and Twinkling Titanite: craft {item:essentialcraft5:void_stone} (see [[hoanna/void_stone]]).",
+          "Void Plate, Void Core, MRU Reactor: put one in the Magician Table's upgrade slot for <t>×6</t>, <t>×7.5</t> or <t>×10</t> speed (see [[crafting/magician_table]]).",
+          "Embers: no use yet. Keep them.",
+          {
+            "if": "bauble:essentialcraft5:mystical_accessory",
+            "text": "Mystical Accessory: a random necklace, belt or ring with three random MRU resistances, one of them against Hoanna radiation (see [[baubles/mystical_accessory]])."
+          }
+        ]
+      },
+      {
+        "type": "p",
+        "text": "The {item:essentialcraft5:concrete}, {item:essentialcraft5:levitator} (buried right under each corner of a house; you usually cannot see it, so dig out the block under a corner) and {item:essentialcraft5:spreader} (the small glowing post) in towns can be mined with a pickaxe and taken home as decoration. They have no recipes; towns are the only source."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "You carry any relic: Titanite, one of the three void items, an Ember or a Mystical Accessory."
+      },
+      {
+        "type": "tip",
+        "style": "lore",
+        "text": "Embers are the old fires of Hoanna, each still holding a little warmth of that world. The old Chinese translation called them \"ashes\", and it also mistranslated the Void Plate and Void Core as a \"blank plate\" and an \"invalid core\"."
+      }
+    ]
+  },
+  {
+    "id": "void_stone",
+    "title": "{item:essentialcraft5:void_stone}",
+    "icon": "essentialcraft5:void_stone",
+    "summary": "The toughest building block; casing and coil base",
+    "complete": "essentialcraft5:guide/hoanna/void_stone",
+    "items": [
+      "essentialcraft5:void_stone",
+      "essentialcraft5:void_glass",
+      "essentialcraft5:void_fence"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: turn the Titanite from the ruins into {item:essentialcraft5:void_stone}, the toughest building block of this mod and the material for the Void Plate on the next page."
+      },
+      {
+        "type": "p",
+        "text": "<em>You need</em>: 4 {item:essentialcraft5:titanite} and 1 {item:essentialcraft5:twinkling_titanite} (see [[hoanna/relics]]), plus 4 {item:essentialcraft5:obsidian_plate} (for Void Stone) or 4 {item:essentialcraft5:fortified_frame} (for Void Glass)."
+      },
+      {
+        "type": "recipe",
+        "items": [
+          "essentialcraft5:void_stone",
+          "essentialcraft5:void_glass",
+          "essentialcraft5:void_fence"
+        ]
+      },
+      {
+        "type": "p",
+        "text": "One craft gives 16 Void Stone or 32 Void Glass; 6 Void Stone (two rows of three) make 16 Void Fences."
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "Hardness / blast resistance",
+            "<t>8</t> / <t>90</t> for all three"
+          ],
+          [
+            "Void Stone",
+            "needs a pickaxe; always drops white"
+          ],
+          [
+            "Void Glass",
+            "drops even when broken by hand, but that takes about 12 seconds; a pickaxe is much faster (about 1.5 seconds with diamond); translucent dark purple; mobs do not spawn on it"
+          ],
+          [
+            "Void Fence",
+            "needs a pickaxe; connects to other stone fences"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Right-click Void Stone or Void Glass with a dye to recolor it: the dye colors the veins on its face, while the dark stone or glass underneath stays as it is. The dye is not used up. Sneak-right-click to dye the same blocks around it too (blocks where you are not allowed to build, such as someone else's claim, are skipped)."
+      },
+      {
+        "type": "h",
+        "text": "What it is for"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Blocking MRU: between you and an MRU cluster, matrix damage reaches you with a chance of <t>1/18</t> through Void Stone and <t>1/15</t> through Void Glass (default settings), better than plating (see [[alloys/plating]]).",
+          "Void Stone and Void Glass count as casing for the [[enrichment/controller]]; Void Stone works as a [[tesla/mru_coil]] base.",
+          "The Magician Table presses it into a Void Plate (next page).",
+          "The Magical Chisel carves it into patterned blocks (see [[decorations/patterns]])."
+        ]
+      },
+      {
+        "type": "tip",
+        "style": "info",
+        "text": "The floors and beams of modern shafts (see [[hoanna/ruins]]) are made of Void Stone. Bring a pickaxe."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "You have Void Stone in your inventory."
+      }
+    ]
+  },
+  {
+    "id": "void_plating",
+    "title": "{item:essentialcraft5:void_plating}",
+    "icon": "essentialcraft5:void_plating",
+    "summary": "Pressed from Void Stone; upgrades and gun parts",
+    "complete": "essentialcraft5:guide/hoanna/void_plating",
+    "items": [
+      "essentialcraft5:void_plating"
+    ],
+    "blocks": [
+      {
+        "type": "p",
+        "text": "<em>Goal</em>: press {item:essentialcraft5:void_stone} into a {item:essentialcraft5:void_plating} on the Magician Table. Chests have them too, but making your own is far more reliable."
+      },
+      {
+        "type": "recipe",
+        "item": "essentialcraft5:void_plating"
+      },
+      {
+        "type": "steps",
+        "items": [
+          "Put Void Stone in the center slot of the Magician Table and leave the four corners <em>empty</em>.",
+          "Feed the table MRU (see [[crafting/magician_table]]); one plate takes <t>1000</t> MRU.",
+          "Take the plate from the output slot on the right."
+        ]
+      },
+      {
+        "type": "h",
+        "text": "What it is for"
+      },
+      {
+        "type": "kv",
+        "rows": [
+          [
+            "Magician Table upgrade",
+            "<t>×6</t> speed in the upgrade slot"
+          ],
+          [
+            "Gun parts",
+            "stock, grip and mechanism (see [[guns/parts]])"
+          ],
+          [
+            "Sniper scope",
+            "Void Plates in both S slots: <t>12</t>× zoom (see [[guns/sniper]])"
+          ]
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Most of the stronger machines and gear later on need Void Plates, so it pays to keep a stack."
+      },
+      {
+        "type": "tip",
+        "style": "good",
+        "title": "Done when",
+        "text": "You have a Void Plate in your inventory."
+      }
+    ]
+  }
+]

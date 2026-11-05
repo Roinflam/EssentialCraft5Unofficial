@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "minecraft:chests/simple_dungeon"
+        }
+      ]
+    },
+    {
+      "name": "ancient_scroll",
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.35
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "essentialcraft5:ancient_scroll",
+          "functions": [
+            {
+              "function": "essentialcraft5:scroll_volume",
+              "min": 0,
+              "max": 4,
+              "prefer_unread": 0.75
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

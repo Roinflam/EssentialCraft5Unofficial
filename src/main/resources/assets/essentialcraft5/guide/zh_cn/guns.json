@@ -1,0 +1,977 @@
+{
+  "id": "guns",
+  "order": 95,
+  "group": "side",
+  "title": "支线 · 魔力枪械",
+  "subtitle": "用 MRU 射线开火的四种枪",
+  "icon": "essentialcraft5:pistol",
+  "entries": [
+    {
+      "id": "weapon_maker",
+      "title": "武器工作台",
+      "icon": "essentialcraft5:pistol_weapon_maker",
+      "summary": "四种工作台，各组装一种枪",
+      "complete": "essentialcraft5:guide/guns/weapon_maker",
+      "optional": true,
+      "items": [
+        "essentialcraft5:pistol_weapon_maker",
+        "essentialcraft5:rifle_weapon_maker",
+        "essentialcraft5:sniper_weapon_maker",
+        "essentialcraft5:gatling_weapon_maker"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "我管它叫爱之射线。被它打穿的人大概不会同意这个名字，可他们也没机会来跟我争了。",
+          "by": "《工坊手记》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一台武器工作台。先辈里有位工匠造过这几把枪，枪托、握把和机栓是分开打的，最后才拼到一起。枪不在合成格里合成，要在武器工作台里用核心、灵魂格物品和几种锭<em>组装</em>，每开一枪都要消耗魔力能量[[start/mru|MRU]]。工作台第三章就能做，第一把枪要等到<em>第五章</em>做出[[storage/soul_storage|灵魂格物品]]以后。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：7 块{item:essentialcraft5:fortified_stone}、1 块{item:minecraft:heavy_weighted_pressure_plate}和 1 张{item:minecraft:crafting_table}，强化石的做法见[[crafting/fortified]]，这样合出来的是手枪用的工作台。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:pistol_weapon_maker"
+        },
+        {
+          "type": "h",
+          "text": "换成另外三种"
+        },
+        {
+          "type": "p",
+          "text": "把工作台<em>单独</em>放进合成格，它会变成下一种，顺序是手枪 → 步枪 → 狙击步枪 → 加特林机枪 → 手枪，所以一台来回切换就够用，不必做四台。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:rifle_weapon_maker",
+            "essentialcraft5:sniper_weapon_maker",
+            "essentialcraft5:gatling_weapon_maker"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么组装"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "不潜行时右键工作台，就会打开组装界面。",
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "text": "核心格里放一个{item:essentialcraft5:elemental_core}或{item:essentialcraft5:pale_core}，元素核心的做法见[[elements/parts]]。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "核心格里放一个{item:essentialcraft5:elemental_core}、{item:essentialcraft5:pale_core}或{item:essentialcraft5:demonic_core}，元素核心的做法见[[elements/parts]]。"
+            },
+            "灵魂格里放一个{item:essentialcraft5:soul_sphere}、{item:essentialcraft5:dark_soul_matter}、{item:essentialcraft5:red_soul_matter}或{item:essentialcraft5:matter_of_eternity}，见[[storage/soul_storage]]。",
+            "照格子旁边的字母放锭，<t>B</t> 是枪托，<t>H</t> 是握把，<t>M</t> 是机栓，狙击步枪多一组 <t>S</t> 狙击镜。<em>同一个字母的格子要放同一种材料</em>，不同字母之间可以不同，怎么搭配见[[guns/parts]]。",
+            "右上角出现枪的预览以后，鼠标移上去能看到这把枪的全部数值，点「完成」，枪就出现在右边的输出格里。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "输出格里出现一把枪。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先充满再组装",
+          "text": "组装会用掉灵魂格物品，它里面存的 MRU 转进新枪，最多转 5000，正好是一把枪装得下的量。拿最便宜的{item:essentialcraft5:soul_sphere}先充满再放进去，新枪拿出来就是满的。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "注意",
+          "text": "东西放不进去，就是这一格不收它，鼠标移到空格子上能看到这一格收什么。\n组装时核心、灵魂格物品和每一格的材料各用掉 1 个，多放的留在格子里，可以接着造下一把。\n输出格里的枪拿走以后，才能造下一把。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书在这一页开头推想，MRU 既然是一种辐射，就有可能造出一种发射 MRU 射线、杀死所有活物的武器。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/weaponmaker/pistol_weapon_maker.json — SIS/SCS/SSS：强化石 ×7、重质测重压力板、工作台",
+        "data/essentialcraft5/recipes/weaponmaker/*_from_*.json — 单独合成循环：手枪 → 步枪 → 狙击 → 加特林 → 手枪",
+        "block/WeaponMakerBlock.java:60 — 潜行右键不开",
+        "registry/ECWeaponMaker.java:39 / 41 — 核心格 #essentialcraft5:cores/magic（src/generated/.../cores/magic.json：元素核心、淡青元素核心、恶魔核心），灵魂格 #essentialcraft5:gun_souls（灵魂球、暗黑灵魂物质、鲜红灵魂物质、永恒物质）",
+        "gun/GunAssembly.java:131 check — 同一部件每格同一种已开放材料；可选格空着或合法；输出格要空；L293 uniform",
+        "gun/GunAssembly.java:44 / 240 — 只扣用到的格各 1；灵魂格 MRU 转进新枪，最多 MAX_SOUL_TRANSFER 5000；item/MRUStaffItem.java:31 枪自带 MAX_MRU 5000；registry/ECItems.java:32 灵魂球存 5000",
+        "client/screen/WeaponMakerScreen.java:53 / 55 — 右上角预览 (153, 5) 与属性提示、「完成」按钮 (145, 20)；gun/GunType.java:68 输出格 (152, 37)、「完成」按钮（menu/WeaponMakerMenu.java:47 BUTTON_ASSEMBLE）、空格子悬停提示",
+        "工作台：强化石 ×7 + 重质测重压力板 + 工作台（第三章 crafting/fortified）；组装要核心（第一章 elements/parts）、灵魂格物品（第五章 storage/soul_storage）、锭（魔力锭第三章）— gun/GunType.java 工作台布局"
+      ]
+    },
+    {
+      "id": "parts",
+      "title": "部件与材料",
+      "icon": "essentialcraft5:magical_ingot",
+      "summary": "枪托、握把、机栓各管什么",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "每把枪由<em>枪托</em>（B）、<em>握把</em>（H）和<em>机栓</em>（M）三个部件组成，每个部件用一种锭做成，各管几项数值。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "枪托（B）",
+              "装填、射击间隔、弹量"
+            ],
+            [
+              "握把（H）",
+              "耐久、后坐"
+            ],
+            [
+              "机栓（M）",
+              "伤害、散布"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "部件管的那几项按材料的全值算，其余几项只算三分之一，三个部件加起来就是这把枪的数值。下表先按材料列出机栓和握把所管的四项。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "材料",
+            "伤害",
+            "散布（度）",
+            "耐久",
+            "后坐（度）"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_ingot}",
+              "8",
+              "3",
+              "120",
+              "6"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "11",
+              "6",
+              "160",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_ingot}",
+              "14",
+              "1",
+              "300",
+              "12"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_plating}",
+                "18",
+                "6",
+                "1200",
+                "2"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ackronite_ingot}",
+                "26",
+                "1",
+                "3000",
+                "0"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "p",
+          "text": "下表是枪托所管的三项。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "材料",
+            "装填（秒）",
+            "间隔（刻）",
+            "弹量"
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:magical_ingot}",
+              "5",
+              "6",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:pale_ingot}",
+              "8",
+              "2",
+              "2"
+            ],
+            [
+              "{item:essentialcraft5:mithriline_ingot}",
+              "12",
+              "12",
+              "12"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:void_plating}",
+                "4",
+                "4",
+                "8"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "{item:essentialcraft5:ackronite_ingot}",
+                "2",
+                "2",
+                "20"
+              ]
+            }
+          ],
+          "widths": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "type": "formula",
+          "text": "三个部件都用魔力锭：伤害 = 8（机栓）+ 8 ÷ 3（枪托）+ 8 ÷ 3（握把）≈ 13.3"
+        },
+        {
+          "type": "p",
+          "text": "算出来以后，还要按枪的种类再修正一次。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:pistol}：装填时间减半。",
+            "{item:essentialcraft5:rifle}：按住连发，不受射击间隔限制，散布 ×1.3，弹量 ×6。",
+            "{item:essentialcraft5:sniper}：伤害 ×2，散布 ÷10，射击间隔 ×9。",
+            "{item:essentialcraft5:gatling}：按住连发，不受射击间隔限制，散布 ×4.5，弹量 ×20。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "弹量最后向下取整，最少 1 发。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎么配最划算",
+          "text": "机栓只占一两格，管的却是伤害。手枪只把机栓换成米斯莱锭，多花的不过 1 块米斯莱锭，伤害就从 13.3 涨到 19.3，每发耗的 MRU 也从 133 涨到 193。\n枪托管弹量，米斯莱锭做的枪托一匣能多装好几倍，只是装填也慢得多。\n材料放好以后，鼠标移到工作台右上角的预览上就能看到最终数值，不用自己算。"
+        },
+        {
+          "type": "h",
+          "text": "透镜与瞄具"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>透镜</em>：用{item:essentialcraft5:chaos_matrix_projection}、{item:essentialcraft5:frozen_matrix_projection}、{item:essentialcraft5:magic_matrix_projection}、{item:essentialcraft5:shade_matrix_projection}这四种[[generators/projections|矩阵投影]]中的一种，它决定射线的颜色，不加任何数值。",
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+              "text": "射线打实时，四种透镜还各有一个命中效果，依次是腐蚀、冻住、驱散和吸取，见[[guns/lens_effects]]。"
+            },
+            "手枪、步枪和狙击步枪的透镜可装可不装，加特林必须装，透镜座放{item:essentialcraft5:sun_imbued_glass}，两个透镜格放同一种投影。",
+            "<em>瞄具</em>：手枪和步枪的瞄具格能放一块{item:essentialcraft5:magic_purified_glass_alloy}，拿着枪潜行时视野放大 1.2 倍。",
+            "<em>狙击镜</em>：狙击步枪必须装，镜座放{item:essentialcraft5:magic_purified_glass_alloy}，两个 <t>S</t> 格放同一种锭，魔力锭放大 3 倍，淡青锭 5 倍，米斯莱锭 7 倍。",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "两个 <t>S</t> 格放{item:essentialcraft5:void_plating}能放大 12 倍，虚空板见[[hoanna/void_plating]]。"
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "两个 <t>S</t> 格放{item:essentialcraft5:ackronite_ingot}能放大 16 倍，阿克罗尼特锭见[[demons/ackronite]]。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "后坐只对手枪和狙击步枪起作用，数值是每开一枪枪口上抬的度数。",
+            "表里的间隔是手枪、狙击步枪两发之间最少要隔的刻数，同一种枪共用这段冷却。步枪和加特林按住就能连发，不受它限制。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究书写着暗影透镜能「造成暗影伤害」，可原作里并没有这个效果，那块透镜甚至做不出来。这一版给它补上了吸取效果和辐射仓配方。"
+        }
+      ],
+      "_src": [
+        "gun/GunMaterials.java:56 BODIES — 五种材料的七项（耐久、伤害、装填、后坐 knockback、散布、speed、shots）；表里「间隔」= speed × 2 刻（GunStats.java:45 cooldownTicks）；void（虚空板）、demonic（阿克罗尼特锭）物品注册后才开放",
+        "gun/GunStats.java:63 of — 枪托主导 reload / speed / shots，握把主导 durability / knockback，机栓主导 damage / spread，其余 ÷ 3；L106 起枪种修正（加特林 speed 0 / spread ×4.5 / shots ×20，步枪 speed 0 / ×1.3 / ×6，狙击 speed ×9 / spread ÷10 / damage ×2，手枪 reload ÷2）；L40 magazine = max(1, floor(shots))",
+        "gun/GunStats.java — 手枪 B、H 魔力锭、M 米斯莱锭：伤害 14 + 8/3 + 8/3 = 19.33（按 float 算），每发 (int)(19.33 × 10) = 193 MRU",
+        "gun/GunMaterials.java:64 SCOPES（普通瞄具 1.2）、L68 SNIPER_SCOPES（3 / 5 / 7 / 12 / 16）、L76 LENSES（只有 balance，命中效果在 gun/LensEffects）、L83 镜座玻璃合金、L85 加特林透镜座日光玻璃",
+        "gun/GunType.java:26~57 — 后坐只有手枪、狙击（recoil 参数）；item/GunItem.java:161 冷却用原版 ItemCooldowns（同一种枪共用）",
+        "client/GunsClient.java:231 — 潜行时按主手枪的 zoom 放大",
+        "registry/ECMaterials.java:116 — 暗影矩阵投影：配方 data/essentialcraft5/recipes/radiating_chamber/shade_matrix_projection.json（原作没有，这里补的）；GunMaterials.java:76 LENSES 里 shade = balance 4，效果见 gun/LensEffects"
+      ]
+    },
+    {
+      "id": "pistol",
+      "title": "{item:essentialcraft5:pistol}",
+      "icon": "essentialcraft5:pistol",
+      "summary": "点一下打一发的入门枪",
+      "complete": "essentialcraft5:guide/guns/pistol",
+      "optional": true,
+      "items": [
+        "essentialcraft5:pistol"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：在{item:essentialcraft5:pistol_weapon_maker}里组装一把手枪。它是最便宜的枪，右键点一下打一发。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "要 1 个核心、1 个灵魂格物品和 5 块锭，其中枪托 3 格、机栓 1 格、握把 1 格，透镜格和瞄具格可以空着。第一把全用{item:essentialcraft5:magical_ingot}最省事，魔力锭的做法见[[crafting/magician_crafts]]。"
+        },
+        {
+          "type": "p",
+          "text": "三个部件都用魔力锭时，数值如下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每发伤害",
+              "13.3"
+            ],
+            [
+              "每发耗",
+              "133 MRU"
+            ],
+            [
+              "弹量",
+              "3 发"
+            ],
+            [
+              "射击间隔",
+              "10 刻（0.5 秒）"
+            ],
+            [
+              "装填",
+              "约 4.2 秒，装完再冷却 3 秒"
+            ],
+            [
+              "散布",
+              "5°"
+            ],
+            [
+              "后坐",
+              "枪口上抬 10°"
+            ],
+            [
+              "耐久",
+              "200 发"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一把手枪。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "list",
+          "items": [
+            "右键开一枪。同一种枪共用射击间隔，拿两把手枪轮着打也不会更快。",
+            "装了瞄具的话，潜行时视野放大 1.2 倍。",
+            "按住 Shift 看物品提示，能看到这把枪的全部数值。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "枪里自带的 5000 MRU 够魔力锭手枪打 37 发。换成米斯莱锭枪托，弹量会大得多，三个部件都用米斯莱锭时一匣有 20 发，只是每发要耗 233 MRU，装填也要 10 秒。"
+        }
+      ],
+      "_src": [
+        "gun/GunStats.java:63 — 魔力锭手枪：伤害 13.333、耐久 200、reload 5 ÷ 2 + … = 4.1667 秒 → reloadTicks 83、后坐 10、speed 5 → 间隔 10 刻、散布 5、shots 3.33 → 3 发；米斯莱手枪 20 发、伤害 23.33、装填 200 刻",
+        "gun/GunType.java:26 PISTOL — 每发 MRU = (int)(伤害 × 10) = 133 / 233；单发、有后坐、可选普通瞄具",
+        "item/GunItem.java:212 finishUsingItem — 手枪 / 狙击装填完另加 RELOAD_COOLDOWN 60 刻；L161 射击间隔用 ItemCooldowns（同种枪共用）",
+        "item/GunItem.java:429 — 提示里按住 Shift 看属性；item/MRUStaffItem.java:31 自带 5000 MRU（5000 ÷ 133 = 37 发）"
+      ]
+    },
+    {
+      "id": "rifle",
+      "title": "{item:essentialcraft5:rifle}",
+      "icon": "essentialcraft5:rifle",
+      "summary": "按住右键连发",
+      "complete": "essentialcraft5:guide/guns/rifle",
+      "optional": true,
+      "items": [
+        "essentialcraft5:rifle"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：组装一把突击步枪。<em>按住右键</em>就能连射，每 3 刻一发，对付成群的怪物最顺手。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "要 1 个核心、1 个灵魂格物品和 8 块锭，其中枪托 4 格、机栓 1 格、握把 3 格，透镜和瞄具可装可不装。"
+        },
+        {
+          "type": "p",
+          "text": "三个部件都用魔力锭时，数值如下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每发伤害",
+              "13.3"
+            ],
+            [
+              "每发耗",
+              "40 MRU"
+            ],
+            [
+              "弹量",
+              "20 发"
+            ],
+            [
+              "射速",
+              "按住时每 3 刻一发，每秒约 6.7 发"
+            ],
+            [
+              "装填",
+              "约 8.3 秒"
+            ],
+            [
+              "散布",
+              "6.5°"
+            ],
+            [
+              "耐久",
+              "200 发"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一把突击步枪。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "注意",
+          "text": "一匣 20 发 3 秒就打完了，装填却要 8 秒多，最好在打空之前往后撤。它的散布是手枪的 1.3 倍，打远处的目标容易偏。"
+        },
+        {
+          "type": "p",
+          "text": "每发只耗 40 MRU，枪里自带的 5000 MRU 能打 125 发。"
+        }
+      ],
+      "_src": [
+        "gun/GunStats.java:63 — 魔力锭步枪：伤害 13.333、shots 3.333 × 6 = 20（float）、reload 8.333 → reloadTicks 166、spread 5 × 1.3 = 6.5",
+        "gun/GunType.java:36 RIFLE — 按住每 3 刻一发，每发 (int)(伤害 × 3) = 40 MRU；没有后坐",
+        "item/MRUStaffItem.java:31 — 自带 5000 MRU（÷ 40 = 125 发）"
+      ]
+    },
+    {
+      "id": "sniper",
+      "title": "{item:essentialcraft5:sniper}",
+      "icon": "essentialcraft5:sniper",
+      "summary": "伤害翻倍，潜行开镜",
+      "complete": "essentialcraft5:guide/guns/sniper",
+      "optional": true,
+      "items": [
+        "essentialcraft5:sniper"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：组装一把狙击步枪。它伤害翻倍，几乎没有散布，只是两发之间要等很久。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "要 1 个核心、1 个灵魂格物品和 7 块锭，其中枪托 3 格、机栓 2 格、握把 2 格。狙击镜<em>必须</em>装上，镜座放 1 块{item:essentialcraft5:magic_purified_glass_alloy}，两个 <t>S</t> 格放同一种锭，玻璃合金的做法见[[alloys/purified_alloys]]。"
+        },
+        {
+          "type": "p",
+          "text": "三个部件都用魔力锭时，数值如下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每发伤害",
+              "26.7"
+            ],
+            [
+              "每发耗",
+              "266 MRU"
+            ],
+            [
+              "弹量",
+              "3 发"
+            ],
+            [
+              "射击间隔",
+              "90 刻（4.5 秒）"
+            ],
+            [
+              "装填",
+              "约 8.3 秒，装完再冷却 3 秒"
+            ],
+            [
+              "散布",
+              "0.5°"
+            ],
+            [
+              "后坐",
+              "枪口上抬 10°"
+            ],
+            [
+              "耐久",
+              "200 发"
+            ],
+            [
+              "开镜",
+              "3 倍"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一把狙击步枪。"
+        },
+        {
+          "type": "h",
+          "text": "开镜"
+        },
+        {
+          "type": "p",
+          "text": "拿着狙击步枪<em>潜行</em>就会开镜。狙击镜越好，放大得越多，魔力锭 3 倍，淡青锭 5 倍，米斯莱锭 7 倍。"
+        },
+        {
+          "type": "p",
+          "text": "两个 <t>S</t> 格放{item:essentialcraft5:void_plating}能放大 12 倍，放{item:essentialcraft5:ackronite_ingot}能放大 16 倍。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎么用",
+          "text": "狙击步枪适合在开战前先打一枪，不适合一直打下去，两发之间要隔 4.5 秒，打完 3 发还要装填 8 秒多，再冷却 3 秒。三个部件都用米斯莱锭时伤害能到 46.7，两发之间却要等 180 刻，合 9 秒。"
+        }
+      ],
+      "_src": [
+        "gun/GunStats.java:63 — 魔力锭狙击：伤害 26.667、speed 5 × 9 = 45 → 间隔 90 刻、spread 0.5、reloadTicks 166；米斯莱狙击 46.667、间隔 180 刻",
+        "gun/GunType.java:46 SNIPER — 每发 (int)(伤害 × 10) = 266 MRU；单发、有后坐、必须有狙击镜",
+        "gun/GunMaterials.java:68 SNIPER_SCOPES — 3 / 5 / 7 / 12（虚空板）/ 16（阿克罗尼特锭）倍",
+        "client/GunsClient.java:231、client/GunsClientEvents.java:42 — 潜行开镜，FOV 除以倍率；item/GunItem.java:212 装填后 60 刻冷却"
+      ]
+    },
+    {
+      "id": "gatling",
+      "title": "{item:essentialcraft5:gatling}",
+      "icon": "essentialcraft5:gatling",
+      "summary": "先转 3 秒，然后每刻一发",
+      "complete": "essentialcraft5:guide/guns/gatling",
+      "optional": true,
+      "items": [
+        "essentialcraft5:gatling"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：组装一把加特林机枪。工坊手记画着它的那一页，页边写着它太沉，抱着走不快。按住右键，它先空转 3 秒，之后每刻打出一发。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "要 1 个核心、1 个灵魂格物品和 13 块锭，其中枪托 7 格、机栓 2 格、握把 4 格。透镜<em>必须</em>装上，透镜座放{item:essentialcraft5:sun_imbued_glass}，两个透镜格放同一种矩阵投影，日光玻璃的做法见[[solar/sun_imbued_glass]]。加特林没有瞄具。"
+        },
+        {
+          "type": "p",
+          "text": "三个部件都用魔力锭时，数值如下。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "每发伤害",
+              "13.3"
+            ],
+            [
+              "每发耗",
+              "26 MRU"
+            ],
+            [
+              "弹量",
+              "66 发"
+            ],
+            [
+              "射速",
+              "按住后先转 3 秒，之后每刻一发，每秒 20 发"
+            ],
+            [
+              "装填",
+              "约 8.3 秒"
+            ],
+            [
+              "散布",
+              "22.5°"
+            ],
+            [
+              "耐久",
+              "200 发"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到一把加特林机枪。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "注意",
+          "text": "拿在主手或副手都会让你走得很慢，移动速度只剩四成，和缓慢 IV 差不多。\n一匣 66 发 3 秒多就打完了，开火时每秒耗 520 MRU，枪里自带的 5000 MRU 不到 10 秒就会用光，最好随身多带几个充满的[[storage/soul_storage|储存物品]]。"
+        },
+        {
+          "type": "p",
+          "text": "它的散布很大，适合贴近了扫一群怪物。只把枪托换成米斯莱锭，一匣就有 266 发，三个部件都用米斯莱锭有 400 发，打起来几乎不用停，只是装填要 20 秒。"
+        }
+      ],
+      "_src": [
+        "gun/GunStats.java:63 — 魔力锭加特林：shots 3.333 × 20 = 66、spread 5 × 4.5 = 22.5、reloadTicks 166；只换米斯莱枪托 13.333 × 20 = 266 发、装填 15.3 秒；三件都米斯莱 400 发、装填 20 秒（照 GunStats.of 按 float 复算）",
+        "gun/GunType.java:57 GATLING — spinUpTicks 60，之后每 1 刻一发，每发 (int)(伤害 × 2) = 26 MRU；26 × 20 = 520 MRU/秒；没有瞄具，必须透镜座 + 两格同种透镜",
+        "item/GunItem.java:75 — GATLING_SLOW −0.6 MULTIPLY_TOTAL，主手、副手各一个修饰符（约等于缓慢 IV）"
+      ]
+    },
+    {
+      "id": "firing",
+      "title": "开火、装填与修理",
+      "icon": "essentialcraft5:rifle",
+      "summary": "耗 MRU、装填、卡壳和修理",
+      "blocks": [
+        {
+          "type": "h",
+          "text": "每一发都耗 MRU"
+        },
+        {
+          "type": "p",
+          "text": "枪里不装子弹，打出去的每一道射线都是 MRU。手枪、狙击步枪每发耗的 MRU 是伤害 × 10，步枪是伤害 × 3，加特林是伤害 × 2，舍去小数。MRU 不够时这一发打不出去，也不算进发数，创造模式下不耗 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "开火时先看你身上{item:essentialcraft5:soul_sphere}这类[[storage/soul_storage|储存物品]]，它们加起来够打一发，就全从它们扣，不够时再看枪里自带的 MRU 够不够这一发，两边的 MRU 不会凑在一起用。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "充能",
+          "text": "枪自带 5000 MRU，打空以后放进[[storage/charging_chamber]]就能充回来。出门时多带几个充满的灵魂球，比跑回家充枪省事。"
+        },
+        {
+          "type": "h",
+          "text": "弹量与装填"
+        },
+        {
+          "type": "p",
+          "text": "一匣能打的发数就是弹量。打空以后像拉弓一样<em>按住右键</em>装填，中途松手就得从头来，装满才能接着打，手枪和狙击步枪装完还要再等 3 秒。"
+        },
+        {
+          "type": "p",
+          "text": "物品提示里的「已射」是这一匣已经打了几发，快打空时枪口会冒烟。"
+        },
+        {
+          "type": "h",
+          "text": "磨损、卡壳与修理"
+        },
+        {
+          "type": "p",
+          "text": "每打一发磨损加 1，物品栏里的耐久条显示的就是磨损。磨损到了耐久值以后，每发有 <w>1/4</w> 的几率卡壳，卡壳时这一匣直接作废，要重新装填，枪本身不会坏。"
+        },
+        {
+          "type": "p",
+          "text": "在{item:minecraft:anvil}里放上枪和 1 块<em>与枪托同种</em>的锭，花 4 级经验，磨损就清零了。"
+        },
+        {
+          "type": "h",
+          "text": "射线"
+        },
+        {
+          "type": "list",
+          "items": [
+            "射程 64 格，瞬间命中，打出去会留下一道持续 3 秒的光束，颜色随透镜而定。",
+            "石头、玻璃、树叶、栅栏、门这些有碰撞箱的方块都挡得住射线，草丛和花挡不住，射线也不会弄坏任何方块。",
+            "射线会穿过一条线上的所有生物，一发最多打中 {cfg:general.guns.max_targets_per_shot} 个。",
+            "射线不会打中你自己、你骑着的坐骑、你驯服的动物和你的队友。",
+            "被它打死的怪算你亲手杀的，照常掉经验，只有玩家击杀才掉的东西也会掉。",
+            "多人游戏里打别的玩家要看 PvP 规则，PvP 关着时伤不到人。",
+            "射线不算近战、弹射物，也不算元素或魔法伤害，靠 MRU 挡伤害的盔甲都挡不住它。",
+            {
+              "if": [
+                "cfg:general.guns.player_damage_multiplier!=1",
+                "cfg:general.guns.player_damage_multiplier!=0"
+              ],
+              "text": "打玩家时伤害是平时的 {cfg:general.guns.player_damage_multiplier|x}。"
+            },
+            {
+              "if": [
+                "cfg:general.guns.player_damage_multiplier==0",
+                "cfg:general.guns.matrix_damage_per_damage>0"
+              ],
+              "text": "打中玩家时对方不掉血，只有 MRU 矩阵会受损，见下文。"
+            },
+            {
+              "if": [
+                "cfg:general.guns.player_damage_multiplier==0",
+                "!cfg:general.guns.matrix_damage_per_damage"
+              ],
+              "text": "射线打中玩家没有任何效果。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "打中玩家时",
+          "text": "射线打中别的玩家时会伤到对方的 MRU 矩阵，枪的伤害每 1 点加 {cfg:general.guns.matrix_damage_per_damage} 点矩阵损伤，攒多了就会凝成[[corruption/matrix_damage|腐化效果]]。只要打中就算数，对方没掉血也一样，被 PvP 规则、队伍或领地挡下的不算，创造模式的玩家不受影响。",
+          "if": "cfg:general.guns.matrix_damage_per_damage>0"
+        },
+        {
+          "type": "p",
+          "text": "挨打的人身上会窜起品红色的电弧，屏幕边缘也泛起一圈品红。",
+          "if": "cfg:general.guns.matrix_damage_per_damage>0"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:divider_gun}不能在武器工作台上组装，只能从全息投影身上掉落，见[[hologram/divider_gun]]。",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作管这种射线叫「爱之射线」，被它打死的人，死亡消息写的也是「……被……的爱之射线贯穿了」。"
+        }
+      ],
+      "_src": [
+        "gun/GunType.java:114 mruPerShot — (int)(伤害 × 系数)，系数手枪 10、步枪 3、狙击 10、加特林 2（L26 / 36 / 46 / 57 第二个参数）",
+        "mru/MRUDrain.java:31 playerUseMRU — 身上储存物品合计 ≥ 一发才从它们扣，否则枪自带的 ≥ 一发才从枪扣，两边不合并；L80 创造模式恒成功；item/GunItem.java:267 shoot：不够不打、不计数",
+        "blockentity/ChargingChamberBlockEntity.java:48 — 充能仓 1 号格收任意带 MRU 的物品（枪继承 MRUStaffItem，自带 5000）",
+        "item/GunItem.java:212 — fired ≥ magazine 时按住装填，getUseDuration = reloadTicks；手枪 / 狙击装填完 60 刻冷却；L330 inventoryTick 快打空时冒烟",
+        "item/GunItem.java:73 / 267 — 磨损 < 耐久时每发 +1，否则每发 JAM_CHANCE 0.25 卡壳（fired = magazine）；L377 耐久条 = 磨损",
+        "gun/GunAnvilEvents.java:24 / 58 — 铁砧：枪托同种材料、COST 4 级、1 个、磨损 > 0 才有输出",
+        "gun/GunStats.java:32 RAY_RANGE 64；gun/RayShot.java — ClipContext.Block.COLLIDER、max_targets_per_shot、L223 isAlly（队伍 / 驯服）跳过射手 / 同乘；伤害源 causing = 射手",
+        "client/render/BeamEffects.java:61 — 光束寿命 60 刻，颜色按透镜",
+        "gun/RayShot.java:352 strike、L377 matrixApplies、L386 addMatrixDamage — 打中生存 / 冒险玩家加 floor(枪的伤害 × matrix_damage_per_damage)，不乘 player_damage_multiplier；gun/RayHitGate.java 判断是否被 PvP / 队伍 / 领地拦下",
+        "gun/GunMatrixFx.java、client/render/MatrixHitEffects.java — 品红电弧与屏幕边缘晕影",
+        "gun/GunConfig.java — general.guns.matrix_damage_per_damage / player_damage_multiplier / max_targets_per_shot；tools/lang/keys/ecguns.json death.attack.essentialcraft5.mru_ray「爱之射线」",
+        "util/ECDamageKinds.java — mru_ray 不算物理、元素、魔法；item/armor/MRUShield.java 只挡 coverage 给了的伤害，射线哪一套都不挡（tools/plan/batch13.md §4.4 PvP 一条）"
+      ]
+    },
+    {
+      "id": "lens_effects",
+      "title": "透镜的效果",
+      "icon": "essentialcraft5:chaos_matrix_projection",
+      "summary": "混沌腐蚀、冰冻冻住、魔力驱散、暗影吸取",
+      "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "装在枪上的四种矩阵投影除了给射线换颜色，还各有一个命中效果，在射线每次<em>打实</em>、真正伤到目标时发动，透镜的装法见[[guns/parts]]。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "透镜",
+            "效果",
+            "每打实一下"
+          ],
+          "widths": [
+            3,
+            2,
+            5
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0",
+              "cells": [
+                "{item:essentialcraft5:chaos_matrix_projection}",
+                "腐蚀",
+                "{cfg:general.guns.lens_corrosion_ticks|sec}内无法回血，再次打中会重新计时"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_freeze_per_hit>0",
+              "cells": [
+                "{item:essentialcraft5:frozen_matrix_projection}",
+                "冻住",
+                "寒冷值增加 {cfg:general.guns.lens_freeze_per_hit}，积攒到 140 时冻僵"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_dispel",
+              "cells": [
+                "{item:essentialcraft5:magic_matrix_projection}",
+                "驱散",
+                "剥掉一个有益的状态效果"
+              ]
+            },
+            {
+              "if": "cfg:general.guns.lens_drain_percent>0",
+              "cells": [
+                "{item:essentialcraft5:shade_matrix_projection}",
+                "吸取",
+                "你回复目标这一下实际损失生命的 {cfg:general.guns.lens_drain_percent|pctv}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_corrosion_ticks>0",
+          "text": "腐蚀"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_corrosion_ticks>0",
+          "text": "中了腐蚀的生物回不了血，自然回复、生命恢复、瞬间治疗和大多数吸血效果都不起作用。它身上会显示腐蚀的图标和剩余时间，喝牛奶能清掉。会自己回血的怪物和对手，挨上几枪就回不上来了。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "text": "冻住"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "text": "每打实一下，目标的寒冷值增加 {cfg:general.guns.lens_freeze_per_hit}，寒冷值越高，目标走得越慢，攒到 140 就会像陷进细雪一样冻僵，每 2 秒受一次冻伤。寒冷值每秒自然回落 40，最多攒到 180，所以停手以后目标还会再冻一小会儿。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "title": "要连着打",
+          "text": "目标挨一下以后有半秒的受击无敌，同一把枪最多每半秒对它打实一下，要冻僵就得接连打实好几下。弹匣够长的手枪、步枪和加特林攒得起来，狙击步枪两枪之间，寒冷值早就退光了。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_freeze_per_hit>0",
+          "text": "身上穿着任意一件皮革装备的生物冻不住，流浪者、北极熊、雪傀儡、凋灵这些本来就不怕冷的生物也冻不住。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_dispel",
+          "text": "驱散"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_dispel",
+          "text": "每打实一下，就剥掉目标身上一个有益的状态效果，先剥没有时限的，没有的话就剥剩余时间最长的那个。有害的效果一个也不碰，Boss 身上的效果照样能剥。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.guns.lens_drain_percent>0",
+          "text": "吸取"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.guns.lens_drain_percent>0",
+          "text": "每打实一下，你会回复目标这一下实际损失生命的 {cfg:general.guns.lens_drain_percent|pctv}，被护甲和伤害吸收挡掉的部分不算，打死目标的那一下照样回血。你自己中了腐蚀时回不了血。目标挨一下以后有半秒受击无敌，所以同时打几个目标回得更多。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.matrix_rank.enabled",
+            "cfg:general.matrix_rank.resonance.same_type_lens_multiplier>1"
+          ],
+          "text": "你的矩阵和透镜是同一种属性、并且已经有[[matrix/alignment|相性]]时，透镜的命中效果再 ×{cfg:general.matrix_rank.resonance.same_type_lens_multiplier}：腐蚀更久、冻得更深、回得更多，驱散不变。打玩家时多出来的那部分减半。"
+        },
+        {
+          "type": "h",
+          "text": "什么时候不算打实"
+        },
+        {
+          "type": "list",
+          "items": [
+            "被领地、队伍或「玩家之间不能互相伤害」的规则挡下，或者伤害被别的东西取消，都不算打实，不附加任何效果。",
+            "目标还在受击无敌中、这一下没造成伤害时，不算打实。",
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0",
+              "text": "对状态效果免疫的 Boss 不会被腐蚀。"
+            },
+            "射线打中别的玩家时的矩阵损伤照原来的规则算，和透镜效果互不相干，见[[guns/firing]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作里的四种透镜只改射线的颜色，这四种命中效果是这一版补上的。"
+        }
+      ],
+      "_src": [
+        "gun/LensEffects.java:58 / 63 / 64 — general.guns.lens_corrosion_ticks（60）/ lens_freeze_per_hit（40）/ lens_dispel（true）/ lens_drain_percent（5），定义在 :84 / :88 / :91（挂在 GunConfig 的 guns 小节里）",
+        "gun/RayShot.java:370 / 382 strike — 透镜有效果时这一下经 RayHitGate 观察，打完调 LensEffects.afterHit；不装透镜（0）没有效果（LensEffects.active）",
+        "gun/LensEffects.java:140 landed — RayHitGate.Watch.landed()（攻击没被拦、LivingDamageEvent 到了且没被取消）且 LivingHurtEvent 没被取消、伤害没被改成 0；受击无敌里同样伤害的一下 hurt 直接返回、没有 LivingDamageEvent，不算",
+        "gun/LensEffects.java:162 corrode — addEffect(腐蚀, ticks, 0, 射手)；原版 MobEffectInstance.update：同级、时长更长的覆盖，所以每打实一下重新计时",
+        "effect/EffectEvents.java:57 onCorrosionHeal — LivingHealEvent HIGH 取消（只拦走 heal 的回血）；ECEffects.CORROSION 是 HARMFUL 的普通效果，原版牛奶能清",
+        "gun/LensEffects.java:172 freeze — 冰冻刻 += lens_freeze_per_hit，封顶 getTicksRequiredToFreeze()（140）+ FREEZE_OVERFLOW（:42，40）= 180；canFreeze() 为假（皮革装备 #freeze_immune_wearables、#freeze_immune_entity_types：流浪者、北极熊、雪傀儡、凋灵）不加",
+        "原版 LivingEntity.aiStep — 不在细雪里每刻冰冻刻 −2（每秒 40）；tryAddFrost 按冰冻比例减速；isFullyFrozen 时每 40 刻挨一下冻伤；受击无敌 invulnerableTime 20、> 10 时同样伤害的 hurt 返回 false（同一把枪对同一目标每 10 刻最多打实一下）",
+        "gun/LensEffects.java:192 dispelOne — 只挑 MobEffectCategory.BENEFICIAL，无限时长优先、其余比剩余时间；removeEffect 被别的模组取消时算没剥；不看是不是 Boss",
+        "gun/GunMaterials.java:76 LENSES — 混沌 1、冰冻 2、魔力（pure）3、暗影 4",
+        "gun/LensEffects.java drain — 射手 heal(RayHitGate.Watch.dealt() × lens_drain_percent%)；dealt 是 LivingDamageEvent 跑完所有监听器后的量（已过护甲、附魔、伤害吸收）；吸取不看目标死活（打死的那一下也算），另外三种要目标还活着；heal 会被 EffectEvents.onCorrosionHeal 取消，射手挂腐蚀时回不了"
+      ]
+    }
+  ]
+}

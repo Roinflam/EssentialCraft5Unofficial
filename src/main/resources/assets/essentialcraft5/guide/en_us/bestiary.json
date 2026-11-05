@@ -1,0 +1,2741 @@
+{
+  "id": "bestiary",
+  "order": 112,
+  "group": "side",
+  "title": "Side Chapter · Bestiary",
+  "subtitle": "New monsters and how to beat them",
+  "icon": "essentialcraft5:ancient_core",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "Drops and Elites",
+      "icon": "minecraft:spawner",
+      "summary": "Which kills drop loot, and what elites are",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "The Fragments have no names for these. I wrote down only the ones I met, where I ran into them, how they fell and what they left behind. The ones I never met, I left blank.",
+          "by": "Compiler's note"
+        },
+        {
+          "type": "p",
+          "text": "This chapter gives each monster a page of its own, covering where it shows up, how to fight it and what it drops. The table below sorts them by where you meet them."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Section",
+            "Monster",
+            "Where you meet it"
+          ],
+          "rows": [
+            [
+              "Overworld",
+              "[[bestiary/elemental_wisp]]",
+              "Mines and caves below y {cfg:general.mobs.elemental_wisp.max_y}"
+            ],
+            [
+              "Overworld",
+              "[[bestiary/matrix_wraith]]",
+              "Near MRUCUs holding {cfg:general.mobs.matrix_wraith.min_presence_mru} MRU or more, in any dimension"
+            ],
+            [
+              "Overworld",
+              "[[bestiary/storm_sorcerer]]",
+              "Wind mages that spawn during thunderstorms"
+            ],
+            [
+              "Nether",
+              "[[bestiary/nether_imp]]",
+              "Nether Wastes and Soul Sand Valleys"
+            ],
+            [
+              "The End",
+              "[[bestiary/void_stalker]]",
+              "Open ground on the outer islands"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "[[bestiary/frostbitten]]",
+                "Frozen and Magic Corrupted Land, at night"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "[[bestiary/mana_prism]]",
+                "Magic and Frozen Corrupted Land, at night"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "[[bestiary/chaos_aberrant]]",
+                "Chaos and Shadow Corrupted Land, at night"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "[[bestiary/ember_spirit]]",
+                "Dreadlands and Hoanna Desert, at night"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "[[bestiary/hoanna_scavenger]]",
+                "Dreadlands and Hoanna Desert, by day too"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "[[bestiary/abyssal_eel]]",
+                "Deep water in the Hoanna Sea"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "[[bestiary/inquisitorium_patroller]]",
+                "Shadow Corrupted Land, even in light"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "[[bestiary/catacomb_revenant]]",
+                "Inside ancient catacombs"
+              ]
+            },
+            [
+              "Boss",
+              "[[bestiary/mru_golem]]",
+              "Next to the MRUCU in an ancient ruin"
+            ],
+            [
+              "Boss",
+              "[[bestiary/matrix_shade]]",
+              "Summoned with a conduit on a Soul Pentacle"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Bosses",
+                "[[bestiary/town_sentry]]",
+                "The center of a Hoanna town, waking the first time someone comes near"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Bosses",
+                "[[bestiary/abyss_tyrant]]",
+                "Called up at a sunken district's altar"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Bosses",
+                "[[bestiary/calamity_heart]]",
+                "Summoned with a Calamity Beacon in Chapter 23"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            3,
+            5
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.enabled",
+          "text": "All of them are hostile, so killing one yourself puts it in your [[matrix/codex|Matrix Codex]]. The bosses count toward the Bosses group."
+        },
+        {
+          "type": "p",
+          "text": "The eight Hoanna natives make up the Hoanna Natives group of the Matrix Codex, and [[matrix/ranks|rank 6]] needs at least 2 of them.",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.enabled"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Kill wild monsters yourself"
+        },
+        {
+          "type": "p",
+          "text": "The monster drops in this chapter, such as elemental drops, MRU Shards, blaze powder, ender pearls, Trapped Wind and Ancient Cores, only fall when <em>you kill a wild monster yourself</em>."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The monster has to have spawned naturally in the wild, or have been guarding a ruin. Anything from a spawner, a spawn egg, a dispenser or a command, or called in by another monster as backup, drops none of it.",
+            {
+              "if": "cfg:general.mobs.fair_kill_min_share>0",
+              "text": "A player has to make the kill, and players have to deal at least {cfg:general.mobs.fair_kill_min_share|pct} of the damage. Your pets' damage counts as yours, and so does burning, poison and wither damage it takes in the 5 seconds after your last hit on it. Softening it up with falls, lava, drowning or someone's machines and then landing the last hit doesn't count."
+            },
+            {
+              "if": "!cfg:general.mobs.fair_kill_min_share>0",
+              "text": "A player has to make the kill. A kill by your pet counts as yours."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The more of one kind you kill, the less they drop"
+        },
+        {
+          "type": "p",
+          "text": "Drop chances also depend on how many monsters of the same group you killed in the last hour, counting only time you were online. Up to the number in the table, nothing changes. Past it, the chance is scaled down in proportion, so killing faster won't raise what you get per hour on average. Normal play never gets near the line."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Group",
+            "Includes",
+            "Kills per hour at full chance"
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.mobs.kill_fatigue.overworld_common>0",
+              "cells": [
+                "Common",
+                "[[bestiary/elemental_wisp]], [[bestiary/matrix_wraith]], [[bestiary/void_stalker]]",
+                "{cfg:general.mobs.kill_fatigue.overworld_common}"
+              ]
+            },
+            {
+              "if": "!cfg:general.mobs.kill_fatigue.overworld_common>0",
+              "cells": [
+                "Common",
+                "[[bestiary/elemental_wisp]], [[bestiary/matrix_wraith]], [[bestiary/void_stalker]]",
+                "No limit"
+              ]
+            },
+            {
+              "if": [
+                "!cfg:general.hoanna.portal_enabled",
+                "cfg:general.mobs.kill_fatigue.ember>0"
+              ],
+              "cells": [
+                "Ember",
+                "[[bestiary/nether_imp]]",
+                "{cfg:general.mobs.kill_fatigue.ember}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.mobs.kill_fatigue.ember>0"
+              ],
+              "cells": [
+                "Ember",
+                "[[bestiary/nether_imp]], [[bestiary/ember_spirit]], and the chaotic embers from [[bestiary/chaos_aberrant]]",
+                "{cfg:general.mobs.kill_fatigue.ember}"
+              ]
+            },
+            {
+              "if": [
+                "!cfg:general.hoanna.portal_enabled",
+                "!cfg:general.mobs.kill_fatigue.ember>0"
+              ],
+              "cells": [
+                "Ember",
+                "[[bestiary/nether_imp]]",
+                "No limit"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.mobs.kill_fatigue.ember>0"
+              ],
+              "cells": [
+                "Ember",
+                "[[bestiary/nether_imp]], [[bestiary/ember_spirit]], and the chaotic embers from [[bestiary/chaos_aberrant]]",
+                "No limit"
+              ]
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.wind_storm>0",
+              "cells": [
+                "Storm",
+                "[[bestiary/storm_sorcerer]]",
+                "{cfg:general.mobs.kill_fatigue.wind_storm}"
+              ]
+            },
+            {
+              "if": "!cfg:general.mobs.kill_fatigue.wind_storm>0",
+              "cells": [
+                "Storm",
+                "[[bestiary/storm_sorcerer]]",
+                "No limit"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+              ],
+              "cells": [
+                "Hoanna common",
+                "{item:essentialcraft5:aberrant_residue} from the eight Hoanna natives",
+                "{cfg:general.mobs.kill_fatigue.hoanna_common}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+              ],
+              "cells": [
+                "Hoanna common",
+                "{item:essentialcraft5:aberrant_residue} from the eight Hoanna natives",
+                "No limit"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.mobs.kill_fatigue.hoanna_titanite>0"
+              ],
+              "cells": [
+                "Titanite",
+                "{item:essentialcraft5:titanite} from [[bestiary/hoanna_scavenger]]",
+                "{cfg:general.mobs.kill_fatigue.hoanna_titanite}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:general.mobs.kill_fatigue.hoanna_titanite>0"
+              ],
+              "cells": [
+                "Titanite",
+                "{item:essentialcraft5:titanite} from [[bestiary/hoanna_scavenger]]",
+                "No limit"
+              ]
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.elite>0",
+              "cells": [
+                "The extra elite share",
+                "Every elite",
+                "{cfg:general.mobs.kill_fatigue.elite}"
+              ]
+            },
+            {
+              "if": "!cfg:general.mobs.kill_fatigue.elite>0",
+              "cells": [
+                "The extra elite share",
+                "Every elite",
+                "No limit"
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            5,
+            3
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Everyone has their own count. Other players' kills don't go on yours, and dying doesn't reset it."
+        },
+        {
+          "type": "h",
+          "text": "Elites"
+        },
+        {
+          "type": "p",
+          "text": "Every regular monster in this chapter except the Storm Sorcerer has a {cfg:general.mobs.elite_chance|pct} chance ({cfg:general.mobs.elite_chance_hoanna|pct} in Hoanna) to spawn as an <em>elite</em> in the wild. Elites stand a size larger, have glowing markings and go by a name of their own (the Elemental Wisp's elite is the Converged Wisp). There are at most {cfg:general.mobs.elite_max_nearby} elites of a kind within {cfg:general.mobs.elite_radius} blocks, and spawners and spawn eggs never make elites."
+        },
+        {
+          "type": "p",
+          "text": "While Hoanna is in the grip of a [[hoanna/events|calamity]], native monsters are {cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier} times as likely to be elites.",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.mobs.hoanna_spawns.calamity_elite_multiplier>1"
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Health",
+              "×{cfg:general.mobs.elite_health_multiplier}"
+            ],
+            [
+              "Attack",
+              "×{cfg:general.mobs.elite_attack_multiplier}"
+            ],
+            [
+              "Armor",
+              "+{cfg:general.mobs.elite_armor_bonus}"
+            ],
+            [
+              "Knockback resistance",
+              "+{cfg:general.mobs.elite_knockback_resistance}"
+            ],
+            [
+              "Size",
+              "15% larger"
+            ],
+            [
+              "Experience",
+              "×{cfg:general.mobs.elite_xp_multiplier}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each elite also has one extra trick, described on that monster's page. Kill a wild elite yourself and it drops an extra share of materials too."
+        },
+        {
+          "type": "h",
+          "text": "Aberrant residue and hearts",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "Hoanna's natives drop {item:essentialcraft5:aberrant_residue}, elites add {item:essentialcraft5:aberrant_heart}s, and clearing a [[hoanna_explore/nests|nest]] gives both.",
+          "if": "cfg:general.hoanna.portal_enabled"
+        },
+        {
+          "type": "p",
+          "text": "They go into attunement stage-ups for Void Armor, Inquisitorium Armor, the Computer Guy's Suit and the Verdict Blade ([[attunement/stage_up]]).",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.attunement.enabled"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Weaknesses"
+        },
+        {
+          "type": "p",
+          "text": "Some monsters are weak to fire, frost, lightning or melee, and the right one deals ×{cfg:general.mobs.weakness_multiplier} damage. Some shrug off arrows, and projectiles only deal {cfg:general.mobs.resistance_multiplier|pct} of their damage to them. Each page says what that monster is weak to."
+        },
+        {
+          "type": "h",
+          "text": "Bosses"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "text": "The MRU Golem and the Matrix Specter are bosses. Everyone who takes at least {cfg:general.mobs.boss.loot_share|pct} of a boss's health off gets a full share of the loot straight into their inventory, or at their feet if it is full."
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "The MRU Golem, the Matrix Specter, the Ruin Watcher, the Abyssal Tidelord and the Heart of Calamity are bosses. Everyone who takes at least {cfg:general.mobs.boss.loot_share|pct} of a boss's health off gets a full share of the loot straight into their inventory, or at their feet if it is full."
+            },
+            "There's a cap on how much health a single hit can take, so none of them goes down to a single huge blow.",
+            "None of them, and none of their attacks, break blocks."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "None of the monsters in this chapter are in the original; they are new in this port. The Storm Sorcerer is a fourth kind added to the original Wind Mage. It looks much the same but fights differently."
+        }
+      ],
+      "items": [
+        {
+          "if": "cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:aberrant_residue",
+            "essentialcraft5:aberrant_heart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elemental_wisp",
+      "title": "{lang:entity.essentialcraft5.elemental_wisp}",
+      "icon": "essentialcraft5:elemental_wisp_spawn_egg",
+      "summary": "Elemental light that circles you underground",
+      "items": [
+        "essentialcraft5:elemental_wisp_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:elemental_wisp"
+        },
+        {
+          "type": "p",
+          "text": "An Elemental Wisp is a glowing core of one element hovering in the air. It only spawns in the dark below y {cfg:general.mobs.elemental_wisp.max_y} in the Overworld, where it can't see the sky, so you meet it mining and caving, roughly one in every forty or fifty monsters underground, with at most {cfg:general.mobs.elemental_wisp.max_nearby} within {cfg:general.mobs.elemental_wisp.nearby_radius} blocks.",
+          "if": "cfg:general.mobs.elemental_wisp.max_nearby>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.elemental_wisp.max_nearby>0",
+          "text": "It comes as fire, water, earth or air, which you can tell by the color of its light, and the element depends on the biome it spawned in: oceans, rivers, beaches, swamps and lush caves give water, hot places such as deserts, badlands and savannas give fire, mountains, hills and snowy places give air, and everywhere else gives earth."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.elemental_wisp.max_nearby>0",
+          "text": "An Elemental Wisp is a glowing core of fire, water, earth or air hovering in the air; the color of its light tells you which. In this world it doesn't spawn naturally."
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.elemental_wisp.effect_seconds>0",
+          "text": "It has only 12 health and no armor, so a sword hit or two disperses it. The trouble is that it won't hold still: it circles you a few times, then suddenly rams you. A hit leaves an effect that depends on its element: fire sets you alight, water slows you and earth gives you Mining Fatigue, each for {cfg:general.mobs.elemental_wisp.effect_seconds} seconds, while air shoves you along its charge and lifts you off your feet."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.elemental_wisp.effect_seconds>0",
+          "text": "It has only 12 health and no armor, so a sword hit or two disperses it. The trouble is that it won't hold still: it circles you a few times, then suddenly rams you. An air wisp's ram also shoves you along its charge and lifts you off your feet."
+        },
+        {
+          "type": "list",
+          "items": [
+            "It's hard to hit while it circles. When it stops, shrinks and swells up again, it's about to charge, so meet it with your sword.",
+            "A raised shield stops the ram.",
+            "Each wisp is weak to its counter and takes ×{cfg:general.mobs.weakness_multiplier} damage from it: fire wisps from freezing (powder snow, frost damage), water wisps from lightning, earth wisps from melee, air wisps from fire. Air wisps take only {cfg:general.mobs.resistance_multiplier|pct} damage from arrows and other projectiles. Fire wisps don't mind fire or lava, but water hurts them."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "Kill a wild one yourself and there is a one-in-two chance it drops the matching {item:essentialcraft5:fire_drops}, {item:essentialcraft5:water_drops}, {item:essentialcraft5:earth_drops} or {item:essentialcraft5:air_drops}. It shares a group with the Matrix Wraith and the Void Stalker, so past {cfg:general.mobs.kill_fatigue.overworld_common} of them together in an hour the drops thin out ([[bestiary/overview]])."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "Kill a wild one yourself and there is a one-in-two chance it drops the matching {item:essentialcraft5:fire_drops}, {item:essentialcraft5:water_drops}, {item:essentialcraft5:earth_drops} or {item:essentialcraft5:air_drops}, however many you kill."
+        },
+        {
+          "type": "h",
+          "text": "Elite · Converged Wisp"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.elemental_wisp.effect_seconds>0",
+          "text": "While it circles you, the Converged Wisp fires an elemental bolt every {cfg:general.mobs.elemental_wisp.elite_bolt_interval|sec}, cycling fire, water, earth and air, and each bolt carries that element's effect. It still rams you as well. Bolts are projectiles, so shields and cover stop them and armor reduces them as usual. Kill a wild one yourself and it also drops two random elemental drops."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.elemental_wisp.effect_seconds>0",
+          "text": "While it circles you, the Converged Wisp fires an elemental bolt every {cfg:general.mobs.elemental_wisp.elite_bolt_interval|sec}, cycling fire, water, earth and air, and an air bolt shoves you and lifts you off your feet. It still rams you as well. Bolts are projectiles, so shields and cover stop them and armor reduces them as usual. Kill a wild one yourself and it also drops two random elemental drops."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:elemental_wisp_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Elemental Wisps, but those are never elites and drop no elemental drops. The spawner also has to sit at y {cfg:general.mobs.elemental_wisp.max_y} or below, somewhere dark that can't see the sky, or it makes none."
+        }
+      ]
+    },
+    {
+      "id": "matrix_wraith",
+      "title": "{lang:entity.essentialcraft5.matrix_wraith}",
+      "icon": "essentialcraft5:matrix_wraith_spawn_egg",
+      "summary": "Drawn by big MRUCUs; its hits add matrix damage",
+      "items": [
+        "essentialcraft5:matrix_wraith_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:matrix_wraith"
+        },
+        {
+          "type": "p",
+          "text": "MRU gathered too thickly draws wandering things to it. Wherever an MRUCU holding {cfg:general.mobs.matrix_wraith.min_presence_mru} MRU or more sits within {cfg:general.mobs.matrix_wraith.presence_radius} blocks, extra <em>Matrix Wraiths</em> spawn in the dark nearby, up to {cfg:general.mobs.matrix_wraith.max_per_presence} per MRUCU, in any dimension. Each wraith it draws takes {cfg:general.mobs.matrix_wraith.drain_mru} MRU out of that MRUCU.",
+          "if": "cfg:general.mobs.matrix_wraith.spawn_weight>0"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.matrix_wraith.spawn_weight>0",
+          "text": "<em>Matrix Wraiths</em> are wandering things drawn by thick MRU. In this world they don't spawn naturally."
+        },
+        {
+          "type": "p",
+          "text": "An MRUCU held in an Enrichment Chamber fitted with an {item:essentialcraft5:ec_balancer} draws no wraiths. The ones you keep for condensing and collapse are held that way, so they neither attract wraiths nor lose MRU to them.",
+          "if": "cfg:general.mobs.matrix_wraith.spawn_weight>0"
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has 26 health and 2 armor, and each swipe deals 4 damage."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_wraith.matrix_damage_per_hit>0",
+          "text": "Each hit it lands also gives you {cfg:general.mobs.matrix_wraith.matrix_damage_per_hit} <em>matrix damage</em>, only to the one it hits ([[corruption/matrix_damage]])."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use melee. Arrows, tridents and other projectiles only do {cfg:general.mobs.resistance_multiplier|pct} damage to it.",
+            "Easier still, keep it from spawning: light up the area, lock the MRUCU in a chamber with a stabilizer, or bottle the whole thing in a [[gear/mrucu_container|container]].",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "Matrix rank tolerance cancels part of the matrix damage it adds ([[matrix/tolerance]])."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "Kill a wild one yourself and it drops 1–2 {item:essentialcraft5:mru_shard}s. It shares a group with the Elemental Wisp and the Void Stalker, so past {cfg:general.mobs.kill_fatigue.overworld_common} of them in an hour the drops thin out."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "Kill a wild one yourself and it drops 1–2 {item:essentialcraft5:mru_shard}s, however many you kill."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Wraiths spawn around the MRUCU. If it's already past 10,000, it also adds matrix damage to you every second you spend fighting within 12 blocks of it."
+        },
+        {
+          "type": "h",
+          "text": "Elite · Vengeful Wraith"
+        },
+        {
+          "type": "p",
+          "text": "Every {cfg:general.mobs.matrix_wraith.elite_blink_cooldown|sec} the Vengeful Wraith shrinks into a ball and, half a second later, blinks to 2 blocks behind you before it strikes. Fight with your back to a wall and there's no room for it there; it can't blink into water either. Kill a wild one yourself and it also drops 2–4 {item:essentialcraft5:mru_shard}s."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:matrix_wraith_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Matrix Wraiths, but those are never elites and drop no {item:essentialcraft5:mru_shard}s. The spawner also needs a qualifying MRUCU within {cfg:general.mobs.matrix_wraith.presence_radius} blocks, or it makes none."
+        }
+      ]
+    },
+    {
+      "id": "storm_sorcerer",
+      "title": "Storm Sorcerer",
+      "icon": "essentialcraft5:wind_keeper",
+      "summary": "The wind mage that calls lightning",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:wind_mage",
+          "nbt": "{Type:3b}",
+          "name": "entity.essentialcraft5.wind_mage.storm"
+        },
+        {
+          "type": "p",
+          "text": "The <em>Storm Sorcerer</em> is the fourth kind of wind mage, in dark blue robes crackling with sparks, with {cfg:general.mobs.storm_sorcerer.max_health} health and {cfg:general.mobs.storm_sorcerer.armor} armor, far tougher than an archmage. The others are in [[wind_mage/wind_mages]]."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.mobs.storm_sorcerer.thunder_chance>0"
+          ],
+          "text": "During a thunderstorm, {cfg:general.mobs.storm_sorcerer.thunder_chance|pct} of the wind mages that spawn in the Overworld are Storm Sorcerers. Spawn eggs and spawners never make one."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_mage.max_nearby>0",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.mobs.storm_sorcerer.hoanna_chance>0"
+          ],
+          "text": "In Hoanna it doesn't need rain. {cfg:general.mobs.storm_sorcerer.hoanna_chance|pct} of the wind mages there are Storm Sorcerers."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_mage.max_nearby>0",
+          "text": "Wind mages don't spawn on their own in this world, so you won't meet a Storm Sorcerer."
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Its gust bolt deals {cfg:general.mobs.storm_sorcerer.gust_damage} damage and blows you a long way back. Gusts are projectiles, so a shield stops them. Don't fight it near a cliff edge or lava.",
+            {
+              "if": "cfg:general.mobs.storm_sorcerer.lightning_damage>0",
+              "text": "It calls lightning. When it can see you, it marks a ring of sparks under your feet, and {cfg:general.mobs.storm_sorcerer.lightning_warning_ticks|sec} later a bolt strikes there: anyone in the ring (radius {cfg:general.mobs.storm_sorcerer.lightning_radius}) takes {cfg:general.mobs.storm_sorcerer.lightning_damage} damage that armor doesn't stop. Step out as soon as you see the sparks. The bolt sets nothing alight and breaks nothing."
+            },
+            "Like the other wind mages it likes to keep its distance, so close in from behind cover."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.kill_fatigue.wind_storm>0",
+          "text": "A Storm Sorcerer always drops an {item:essentialcraft5:imprisoned_wind}, like a Mage. Kill a wild one yourself and there is also a 25% chance of a {item:essentialcraft5:wind_keeper}. Storm Sorcerers are a group of their own, so past {cfg:general.mobs.kill_fatigue.wind_storm} in an hour the Trapped Wind thins out ([[bestiary/overview]]). There is also about a one-in-ten chance of a piece of wind mage gear, a little more with each level of Looting."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.wind_storm>0",
+          "text": "A Storm Sorcerer always drops an {item:essentialcraft5:imprisoned_wind}, like a Mage. Kill a wild one yourself and there is also a 25% chance of a {item:essentialcraft5:wind_keeper}, however many you kill. There is also about a one-in-ten chance of a piece of wind mage gear, a little more with each level of Looting."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Storm Residue",
+          "text": "The Trapped Wind it drops carries storm residue, shown in the tooltip. Breaking it adds no wind affinity and the bottle stays whole, so it is only good as a material, for a [[wind/wind_tablet]] for instance. For affinity, hunt the other wind mages ([[wind_mage/bottled_winds]])."
+        },
+        {
+          "type": "p",
+          "text": "Storm Sorcerers have no elite form."
+        }
+      ]
+    },
+    {
+      "id": "nether_imp",
+      "title": "{lang:entity.essentialcraft5.nether_imp}",
+      "icon": "essentialcraft5:nether_imp_spawn_egg",
+      "summary": "Small erratic flyers that spit embers",
+      "items": [
+        "essentialcraft5:nether_imp_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:nether_imp"
+        },
+        {
+          "type": "p",
+          "text": "Nether Imps are small flying monsters that only spawn in Nether Wastes and Soul Sand Valleys, about one in thirty-odd monsters there. There are none in Crimson Forests."
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.nether_imp.max_health} health and {cfg:general.mobs.nether_imp.armor} armor and darts about in the air, which makes it hard to aim at. Within {cfg:general.mobs.nether_imp.shoot_range} blocks it spits ember bolts at you for {cfg:general.mobs.nether_imp.bolt_damage} damage each, and a hit sets you burning for {cfg:general.mobs.nether_imp.burn_seconds} seconds; a bolt that hits the ground lights nothing, so the Nether floor doesn't catch fire. Below {cfg:general.mobs.nether_imp.flee_health|pct} health it turns and flees."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ember bolts are slow and come without warning; a few steps sideways and they miss. They are projectiles, so a shield stops them.",
+            "When it flees it flies upward and comes back {cfg:general.mobs.nether_imp.flee_ticks|sec} later; bows and crossbows can reach it. Don't chase it into a lava sea."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "if": [
+            "!cfg:general.hoanna.portal_enabled",
+            "cfg:general.mobs.kill_fatigue.ember>0"
+          ],
+          "text": "Kill a wild one yourself and it drops 1–2 {item:minecraft:blaze_powder}, plus 0–1 more per level of Looting. Nether Imps are a group of their own, so past {cfg:general.mobs.kill_fatigue.ember} in an hour the drops thin out ([[bestiary/overview]])."
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself and it drops 1–2 {item:minecraft:blaze_powder}, plus 0–1 more per level of Looting. It shares a group with the embers from [[bestiary/ember_spirit|Ember Spirits]] and [[bestiary/chaos_aberrant|Chaos Aberrations]], so past {cfg:general.mobs.kill_fatigue.ember} of them together in an hour the drops thin out ([[bestiary/overview]]).",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.mobs.kill_fatigue.ember>0"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.ember>0",
+          "text": "Kill a wild one yourself and it drops 1–2 {item:minecraft:blaze_powder}, plus 0–1 more per level of Looting, however many you kill."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Its soul can be taken with a {item:essentialcraft5:soul_scriber}, and demons sometimes ask for Nether Imp souls in trades ([[demons/soul_scriber]])."
+        },
+        {
+          "type": "h",
+          "text": "Elite · Imp Chieftain"
+        },
+        {
+          "type": "p",
+          "text": "The Imp Chieftain spits {cfg:general.mobs.nether_imp.elite_burst} ember bolts in a row. It also stops to chant for a second and calls {cfg:general.mobs.nether_imp.elite_summon_count} imps to help, and calls more after a while if they die. It holds still during that second, which is your chance; take the chieftain down first and no more come."
+        },
+        {
+          "type": "p",
+          "text": "The imps it calls drop nothing and give no experience. Kill a wild chieftain yourself and it also drops 2–4 {item:minecraft:blaze_powder}. Its soul can't be taken."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:nether_imp_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Nether Imps, but those are never elites and drop no blaze powder."
+        }
+      ]
+    },
+    {
+      "id": "void_stalker",
+      "title": "{lang:entity.essentialcraft5.void_stalker}",
+      "icon": "essentialcraft5:void_stalker_spawn_egg",
+      "summary": "Fades in and out on the outer End islands",
+      "items": [
+        "essentialcraft5:void_stalker_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:void_stalker"
+        },
+        {
+          "type": "p",
+          "text": "Void Stalkers only appear on the End's outer islands, never on the main island. While you stand on an outer island, every {cfg:general.mobs.void_stalker.spawn_interval|sec} there is a {cfg:general.mobs.void_stalker.spawn_chance|pct} chance that one rises from open end stone {cfg:general.mobs.void_stalker.spawn_min_distance}–{cfg:general.mobs.void_stalker.spawn_max_distance} blocks away, unless {cfg:general.mobs.void_stalker.spawn_max_nearby} are already within 64 blocks of that spot. They don't spawn where torches or end rods light the ground, or around players in Creative or Spectator mode. They don't take endermen's places, so the outer islands have as many endermen as ever.",
+          "if": "cfg:general.mobs.void_stalker.spawn_chance>0"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.void_stalker.spawn_chance>0",
+          "text": "Void Stalkers belong to the End's outer islands. In this world they don't spawn naturally."
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.void_stalker.max_health} health and {cfg:general.mobs.void_stalker.armor} armor and claws for {cfg:general.mobs.void_stalker.attack_damage} damage, much tougher than an enderman. It switches between two states: solid for {cfg:general.mobs.void_stalker.solid_ticks|sec}, when it can be hit, and phased for {cfg:general.mobs.void_stalker.phase_ticks|sec}, when it turns see-through and nothing touches it. Arrows and your crosshair pass right through, and it doesn't attack, but it moves 30% faster."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Before it turns see-through it flickers and makes a sound, and {cfg:general.mobs.void_stalker.warning_ticks|sec} later it phases. Strike while it's solid, back off once it starts to flicker, and save the next swing for when it reappears.",
+            {
+              "if": "cfg:general.mobs.void_stalker.rift_claw_cooldown>0",
+              "text": "When its claw lands it blinks you {cfg:general.mobs.void_stalker.blink_min_distance}–{cfg:general.mobs.void_stalker.blink_max_distance} blocks away, at most once every {cfg:general.mobs.void_stalker.rift_claw_cooldown|sec}; a hit you block with a shield doesn't count. There is always a block within 3 below where you land, and never lava, fire or cactus, so it won't drop you into the void. It never puts you behind a wall or glass, or anywhere you don't have permission to build, so you won't end up shut in a room you can't leave. You may still land near the island's edge or fall two or three blocks, so check where you are after a blink."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "Kill a wild one yourself and it drops 1–2 {item:minecraft:ender_pearl}s, plus 0–1 more per level of Looting. It shares a group with the Elemental Wisp and the Matrix Wraith, so past {cfg:general.mobs.kill_fatigue.overworld_common} of them together in an hour the drops thin out ([[bestiary/overview]])."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.kill_fatigue.overworld_common>0",
+          "text": "Kill a wild one yourself and it drops 1–2 {item:minecraft:ender_pearl}s, plus 0–1 more per level of Looting, however many you kill."
+        },
+        {
+          "type": "h",
+          "text": "Elite · Riftwalker"
+        },
+        {
+          "type": "p",
+          "text": "The Riftwalker can drag you into a rift from a distance and pull you to its side. Before it does, purple particles rise under your feet and the action bar warns you; the pull comes {cfg:general.mobs.void_stalker.pull_warning_ticks|sec} later. It only pulls players 5–{cfg:general.mobs.void_stalker.pull_range} blocks away that it can see, so duck behind a wall or a pillar when the warning shows. As with the claw, it never drags you through a wall or into a spot you don't have permission to build."
+        },
+        {
+          "type": "p",
+          "text": "It stands still while pulling, which makes a good opening. Kill a wild one yourself and it also drops 2–4 {item:minecraft:ender_pearl}s."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:void_stalker_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Void Stalkers, but those are never elites and drop no ender pearls."
+        }
+      ]
+    },
+    {
+      "id": "frostbitten",
+      "title": "{lang:entity.essentialcraft5.frostbitten}",
+      "icon": "essentialcraft5:frostbitten_spawn_egg",
+      "summary": "Frozen remains in the icy lands",
+      "items": [
+        "essentialcraft5:frostbitten_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:frostbitten"
+        },
+        {
+          "type": "p",
+          "text": "Frostbitten are human remains frozen inside a shell of ice, with crystals growing from their joints and white mist on their breath. They are commonest in the Frozen Corrupted Land, two or three at a time, with a few in the Magic Corrupted Land, and spawn at night or in the dark."
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.frostbitten.max_health} health and {cfg:general.mobs.frostbitten.armor} armor, and each melee hit deals {cfg:general.mobs.frostbitten.attack_damage} damage and adds {cfg:general.mobs.frostbitten.freeze_per_hit} frost to you. Frost works just like sinking into powder snow: the more you have, the slower you move, and at 140 you are frozen solid and keep taking damage. Out of powder snow it melts at 40 per second, so only a string of hits freezes you solid.",
+          "if": "cfg:general.mobs.frostbitten.freeze_per_hit>0"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.frostbitten.max_health} health and {cfg:general.mobs.frostbitten.armor} armor, and each melee hit deals {cfg:general.mobs.frostbitten.attack_damage} damage.",
+          "if": "!cfg:general.mobs.frostbitten.freeze_per_hit>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Wear any piece of leather armor and you won't freeze. That is the vanilla powder snow rule, and its frost follows it too.",
+            {
+              "if": [
+                "cfg:general.mobs.frostbitten.breath_interval>0",
+                "cfg:general.mobs.frostbitten.breath_health_percent>0"
+              ],
+              "text": "Every {cfg:general.mobs.frostbitten.breath_interval|sec} it breathes frost ahead of it. It stops and white mist gathers at its mouth, then {cfg:general.mobs.frostbitten.breath_charge|sec} later it sprays {cfg:general.mobs.frostbitten.breath_range} blocks forward, dealing {cfg:general.mobs.frostbitten.breath_damage} damage plus {cfg:general.mobs.frostbitten.breath_health_percent|pct} of your maximum health, and armor doesn't stop it. When the mist gathers, step aside and stay out of its face."
+            },
+            {
+              "if": [
+                "cfg:general.mobs.frostbitten.breath_interval>0",
+                "!cfg:general.mobs.frostbitten.breath_health_percent>0"
+              ],
+              "text": "Every {cfg:general.mobs.frostbitten.breath_interval|sec} it breathes frost ahead of it. It stops and white mist gathers at its mouth, then {cfg:general.mobs.frostbitten.breath_charge|sec} later it sprays {cfg:general.mobs.frostbitten.breath_range} blocks forward, dealing {cfg:general.mobs.frostbitten.breath_damage} damage, and armor doesn't stop it. When the mist gathers, step aside and stay out of its face."
+            },
+            {
+              "if": [
+                "cfg:general.mobs.frostbitten.breath_interval>0",
+                "cfg:general.mobs.frostbitten.breath_freeze_ticks>0"
+              ],
+              "text": "A breath that hits also adds {cfg:general.mobs.frostbitten.breath_freeze_ticks} frost to you."
+            },
+            "It is weak to fire: burning, lava and fireballs deal ×{cfg:general.mobs.weakness_multiplier} damage, so set it alight with Fire Aspect or Flame and the burning hits harder. Frost doesn't bother it."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "text": "Any frostbitten a player kills drops 0–2 {item:minecraft:snowball}s, with a 10% chance of {item:minecraft:ice} and an 8% chance of {item:essentialcraft5:cold_stone}."
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself and there is also a 35% chance of {item:essentialcraft5:aberrant_residue}. It shares a group with the other Hoanna natives, so past {cfg:general.mobs.kill_fatigue.hoanna_common} of them together in an hour the drops thin out ([[bestiary/overview]]).",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself and there is also a 35% chance of {item:essentialcraft5:aberrant_residue}. However many of them you kill, the chance stays the same.",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "h",
+          "text": "Elite · {lang:entity.essentialcraft5.frostbitten.elite}"
+        },
+        {
+          "type": "p",
+          "text": "The {lang:entity.essentialcraft5.frostbitten.elite} carries an ice shield in its left hand that stops arrows and other projectiles from the front, so get to its side or back before shooting. Every {cfg:general.mobs.frostbitten.elite_seal_interval|sec} it seals the ice around it: a ring of white mist rises at its feet, and {cfg:general.mobs.frostbitten.elite_seal_warning|sec} later everyone within {cfg:general.mobs.frostbitten.elite_seal_radius} blocks is frozen. Get out of the ring as soon as you see the mist.",
+          "if": "cfg:general.mobs.frostbitten.elite_seal_interval>0"
+        },
+        {
+          "type": "p",
+          "text": "The {lang:entity.essentialcraft5.frostbitten.elite} carries an ice shield in its left hand that stops arrows and other projectiles from the front, so get to its side or back before shooting.",
+          "if": "!cfg:general.mobs.frostbitten.elite_seal_interval>0"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild {lang:entity.essentialcraft5.frostbitten.elite} yourself and there is also an even chance of an extra {item:essentialcraft5:aberrant_heart}."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:frostbitten_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Frostbitten, but those are never elites and drop no aberrant residue."
+        }
+      ]
+    },
+    {
+      "id": "mana_prism",
+      "title": "{lang:entity.essentialcraft5.mana_prism}",
+      "icon": "essentialcraft5:mana_prism_spawn_egg",
+      "summary": "Floating crystals over magic lands",
+      "items": [
+        "essentialcraft5:mana_prism_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:mana_prism"
+        },
+        {
+          "type": "p",
+          "text": "Mana Prisms are floating crystals as tall as a person, with a pulsing point of MRU light at the center and three small facets turning slowly beneath. They are commonest in the Magic Corrupted Land, turn up now and then in the Frozen Corrupted Land, and spawn at night or in the dark."
+        },
+        {
+          "type": "p",
+          "text": "During a [[hoanna_explore/ley_storm|ley storm]] they spawn on all land, at most {cfg:general.mobs.hoanna_spawns.storm_prism_max_nearby} around each player.",
+          "if": [
+            "cfg:general.hoanna_events.ley_storm_enabled",
+            "cfg:general.hoanna_events.ley_storm_chance>0",
+            "cfg:general.hoanna_tide.enabled",
+            "cfg:general.mobs.hoanna_spawns.storm_prism_weight>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.mana_prism.max_health} health and {cfg:general.mobs.mana_prism.armor} armor and likes to keep its distance. Every {cfg:general.mobs.mana_prism.lock_interval|sec} it locks onto you with a thin line of light, and {cfg:general.mobs.mana_prism.lock_ticks|sec} later it fires a beam along the direction it locked."
+        },
+        {
+          "type": "p",
+          "text": "The beam deals {cfg:general.mobs.mana_prism.beam_damage} damage plus {cfg:general.mobs.mana_prism.beam_health_percent|pct} of your maximum health.",
+          "if": "cfg:general.mobs.mana_prism.beam_health_percent>0"
+        },
+        {
+          "type": "p",
+          "text": "The beam deals {cfg:general.mobs.mana_prism.beam_damage} damage.",
+          "if": "!cfg:general.mobs.mana_prism.beam_health_percent>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The beam only goes where it was aimed when the lock began. When the line touches you, take a few steps sideways and it misses.",
+            "Blocks stop the beam, so ducking behind a wall or pillar works too. The beam counts as a projectile: armor reduces it as usual, and a raised shield facing it blocks it.",
+            "It is weak to melee and takes ×{cfg:general.mobs.weakness_multiplier} damage from it, while arrows and other projectiles only deal {cfg:general.mobs.resistance_multiplier|pct} of their damage."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself for a 35% chance of {item:essentialcraft5:aberrant_residue} and a 15% chance of {item:essentialcraft5:magical_essence}. It shares a group with the other Hoanna natives, so past {cfg:general.mobs.kill_fatigue.hoanna_common} of them together in an hour the drops thin out ([[bestiary/overview]]).",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself for a 35% chance of {item:essentialcraft5:aberrant_residue} and a 15% chance of {item:essentialcraft5:magical_essence}. However many of them you kill, the chance stays the same.",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "h",
+          "text": "Elite · {lang:entity.essentialcraft5.mana_prism.elite}"
+        },
+        {
+          "type": "p",
+          "text": "The {lang:entity.essentialcraft5.mana_prism.elite} fires three beams at once in a fan, so you have to step farther to one side to get clear."
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild {lang:entity.essentialcraft5.mana_prism.elite} yourself and there is also an even chance of an extra {item:essentialcraft5:aberrant_heart}."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:mana_prism_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Mana Prisms, but those are never elites and drop no aberrant residue."
+        }
+      ]
+    },
+    {
+      "id": "chaos_aberrant",
+      "title": "{lang:entity.essentialcraft5.chaos_aberrant}",
+      "icon": "essentialcraft5:chaos_aberrant_spawn_egg",
+      "summary": "Charging beasts of the chaos lands",
+      "items": [
+        "essentialcraft5:chaos_aberrant_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:chaos_aberrant"
+        },
+        {
+          "type": "p",
+          "text": "Chaos Aberrations walk on all fours, hunched, with dark red glowing cracks split open along their backs. They are commonest in the Chaos Corrupted Land, with some in the Shadow Corrupted Land, and spawn at night or in the dark."
+        },
+        {
+          "type": "p",
+          "text": "Aberrations that spawn during an [[hoanna/events|earthquake]] are enraged from birth.",
+          "if": "cfg:general.hoanna_events.earthquake_enabled"
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.chaos_aberrant.max_health} health and {cfg:general.mobs.chaos_aberrant.armor} armor and bites for {cfg:general.mobs.chaos_aberrant.attack_damage} damage. Every {cfg:general.mobs.chaos_aberrant.charge_cooldown|sec} it charges: it lowers its head for {cfg:general.mobs.chaos_aberrant.charge_windup|sec}, dragging a mark across the ground, then rushes straight ahead.",
+          "if": "cfg:general.mobs.chaos_aberrant.charge_cooldown>0"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.chaos_aberrant.max_health} health and {cfg:general.mobs.chaos_aberrant.armor} armor and bites for {cfg:general.mobs.chaos_aberrant.attack_damage} damage.",
+          "if": "!cfg:general.mobs.chaos_aberrant.charge_cooldown>0"
+        },
+        {
+          "type": "p",
+          "text": "The charge deals {cfg:general.mobs.chaos_aberrant.charge_damage} damage plus {cfg:general.mobs.chaos_aberrant.charge_health_percent|pct} of your maximum health and knocks you flying, and armor doesn't stop it.",
+          "if": [
+            "cfg:general.mobs.chaos_aberrant.charge_cooldown>0",
+            "cfg:general.mobs.chaos_aberrant.charge_health_percent>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The charge deals {cfg:general.mobs.chaos_aberrant.charge_damage} damage and knocks you flying, and armor doesn't stop it.",
+          "if": [
+            "cfg:general.mobs.chaos_aberrant.charge_cooldown>0",
+            "!cfg:general.mobs.chaos_aberrant.charge_health_percent>0"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.chaos_aberrant.charge_cooldown>0",
+              "text": "When it lowers its head, get out of the way, and don't stand between it and a wall. If it overshoots into a wall it is stunned for a moment, which is your opening."
+            },
+            {
+              "if": "cfg:general.mobs.chaos_aberrant.frenzy_health>0",
+              "text": "Below {cfg:general.mobs.chaos_aberrant.frenzy_health|pct} health it becomes enraged and moves faster."
+            },
+            {
+              "if": "cfg:general.mobs.chaos_aberrant.split_count>0",
+              "text": "When it dies it splits into {cfg:general.mobs.chaos_aberrant.split_count} Aberrant Larvae."
+            }
+          ]
+        },
+        {
+          "type": "entity",
+          "id": "essentialcraft5:chaos_larva",
+          "height": 40,
+          "if": "cfg:general.mobs.chaos_aberrant.split_count>0"
+        },
+        {
+          "type": "p",
+          "text": "An Aberrant Larva has hardly any health and dies in one hit, and its bite barely hurts. It drops nothing, gives no experience, fades away after a while and never splits again. Aberrations from spawners and spawn eggs don't split when they die.",
+          "if": "cfg:general.mobs.chaos_aberrant.split_count>0"
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself for a 35% chance of {item:essentialcraft5:aberrant_residue} and an 8% chance of {item:essentialcraft5:chaos_ember}."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0",
+              "text": "Aberrant residue shares a group with the other Hoanna natives, so past {cfg:general.mobs.kill_fatigue.hoanna_common} of them together in an hour it thins out ([[bestiary/overview]])."
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.ember>0",
+              "text": "Chaotic embers share a group with the drops of Nether Imps and Ember Spirits, thinning out past {cfg:general.mobs.kill_fatigue.ember} kills an hour."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Elite · {lang:entity.essentialcraft5.chaos_aberrant.elite}"
+        },
+        {
+          "type": "p",
+          "text": "The {lang:entity.essentialcraft5.chaos_aberrant.elite} brings out more larvae. Keep hitting the broodmother and don't get tangled up with the larvae."
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild {lang:entity.essentialcraft5.chaos_aberrant.elite} yourself and there is also an even chance of an extra {item:essentialcraft5:aberrant_heart}."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:chaos_aberrant_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Chaos Aberrations, but those are never elites and drop no aberrant residue."
+        }
+      ]
+    },
+    {
+      "id": "ember_spirit",
+      "title": "{lang:entity.essentialcraft5.ember_spirit}",
+      "icon": "essentialcraft5:ember_spirit_spawn_egg",
+      "summary": "Drifting embers of dread and desert",
+      "items": [
+        "essentialcraft5:ember_spirit_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:ember_spirit"
+        },
+        {
+          "type": "p",
+          "text": "An Ember Spirit is a knot of ember shards tumbling around a dark fiery core. There are eight kinds, one for each ember, and each shows its ember's color. They are commonest in the Dreadlands and the Hoanna Desert, with some in the Chaos Corrupted Land, and spawn at night or in the dark."
+        },
+        {
+          "type": "p",
+          "text": "During a [[hoanna/events|sun array]] they also spawn under open sky by day.",
+          "if": "cfg:general.hoanna_events.sun_array_enabled"
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.ember_spirit.max_health} health and {cfg:general.mobs.ember_spirit.armor} armor and hovers like a blaze, firing an ember bolt every {cfg:general.mobs.ember_spirit.shoot_interval|sec}. A hit deals {cfg:general.mobs.ember_spirit.bolt_damage} damage plus an effect that depends on its ember."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ember bolts are projectiles: a shield blocks them, and stepping sideways dodges them.",
+            "Fire doesn't hurt it, but frost does: powder snow and freezing damage deal ×{cfg:general.mobs.weakness_multiplier}."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself for a 20% chance of an ember of its color and a 20% chance of {item:essentialcraft5:aberrant_residue}. Embers feed the [[void_machines/ember_forge]]. Otherwise they only turn up in the chests atop town towers, and Chaos Aberrations sometimes drop a chaotic ember."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.kill_fatigue.ember>0",
+              "text": "Embers share a group with the drops of Nether Imps and Chaos Aberrations, so past {cfg:general.mobs.kill_fatigue.ember} kills an hour they thin out ([[bestiary/overview]])."
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0",
+              "text": "Aberrant residue shares a group with the other Hoanna natives, thinning out past {cfg:general.mobs.kill_fatigue.hoanna_common} kills an hour."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Elite · {lang:entity.essentialcraft5.ember_spirit.elite}"
+        },
+        {
+          "type": "p",
+          "text": "The {lang:entity.essentialcraft5.ember_spirit.elite} carries two embers and alternates between their bolts."
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild {lang:entity.essentialcraft5.ember_spirit.elite} yourself and there is also an even chance of an extra {item:essentialcraft5:aberrant_heart}."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:ember_spirit_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Ember Spirits, but those are never elites and drop no embers or aberrant residue."
+        }
+      ]
+    },
+    {
+      "id": "hoanna_scavenger",
+      "title": "{lang:entity.essentialcraft5.hoanna_scavenger}",
+      "icon": "essentialcraft5:hoanna_scavenger_spawn_egg",
+      "summary": "Scavengers of the wastes, out by day too",
+      "items": [
+        "essentialcraft5:hoanna_scavenger_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:hoanna_scavenger"
+        },
+        {
+          "type": "p",
+          "text": "Remnant Scavengers wear rags and patched-together scraps of metal, a gas mask and a tin canister on their backs. They spawn in the Dreadlands and the Hoanna Desert at night as usual, and also by day on open ground, though only a few at a time then."
+        },
+        {
+          "type": "p",
+          "text": "During [[hoanna/events|poison fumes]] they spawn {cfg:general.mobs.hoanna_spawns.fumes_scavenger_multiplier} times as often.",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0",
+            "cfg:general.mobs.hoanna_spawns.fumes_scavenger_multiplier>1"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.hoanna_scavenger.max_health} health and {cfg:general.mobs.hoanna_scavenger.armor} armor, and its weapon is fixed when it spawns. One with a crowbar closes in and hits for {cfg:general.mobs.hoanna_scavenger.crowbar_damage}; one with a rifle aims for {cfg:general.mobs.hoanna_scavenger.rifle_aim_ticks|sec}, then fires for {cfg:general.mobs.hoanna_scavenger.rifle_damage}."
+        },
+        {
+          "type": "p",
+          "text": "Its hits also raise your radiation, by {cfg:general.mobs.hoanna_scavenger.crowbar_dose} for the crowbar and {cfg:general.mobs.hoanna_scavenger.rifle_dose} for the rifle, and armor's radiation resistance works against it as usual ([[hoanna/radiation]]).",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It stands still while aiming the rifle, so get behind a block or step out of the line.",
+            {
+              "if": "cfg:general.mobs.hoanna_scavenger.stim_health>0",
+              "text": "Once its health drops below {cfg:general.mobs.hoanna_scavenger.stim_health|pct} it injects itself and heals some health, and it needs a while before it can inject again."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself for a 15% chance of {item:essentialcraft5:titanite} and a 20% chance of {item:essentialcraft5:aberrant_residue}."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.kill_fatigue.hoanna_titanite>0",
+              "text": "Titanite is a group of its own, thinning out past {cfg:general.mobs.kill_fatigue.hoanna_titanite} scavengers an hour ([[bestiary/overview]])."
+            },
+            {
+              "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0",
+              "text": "Aberrant residue shares a group with the other Hoanna natives, thinning out past {cfg:general.mobs.kill_fatigue.hoanna_common} kills an hour."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Its soul fits in a {item:essentialcraft5:soul_scriber}, and demons sometimes ask for 2 scavenger souls in trade ([[demons/soul_scriber]])."
+        },
+        {
+          "type": "h",
+          "text": "Elite · {lang:entity.essentialcraft5.hoanna_scavenger.elite}"
+        },
+        {
+          "type": "p",
+          "text": "The {lang:entity.essentialcraft5.hoanna_scavenger.elite} carries an unfolded shield on its back that stops projectiles from the front. Partway through the fight it fires a flare and calls in {cfg:general.mobs.hoanna_scavenger.elite_summon_count} scavengers.",
+          "if": "cfg:general.mobs.hoanna_scavenger.elite_summon_count>0"
+        },
+        {
+          "type": "p",
+          "text": "The {lang:entity.essentialcraft5.hoanna_scavenger.elite} carries an unfolded shield on its back that stops projectiles from the front.",
+          "if": "!cfg:general.mobs.hoanna_scavenger.elite_summon_count>0"
+        },
+        {
+          "type": "p",
+          "text": "The scavengers it calls drop nothing, give no experience and can't have their souls taken, and neither can the captain. Kill a wild {lang:entity.essentialcraft5.hoanna_scavenger.elite} yourself and there is also an even chance of an extra {item:essentialcraft5:aberrant_heart}."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:hoanna_scavenger_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Remnant Scavengers, but those are never elites and drop no titanite or aberrant residue."
+        }
+      ]
+    },
+    {
+      "id": "abyssal_eel",
+      "title": "{lang:entity.essentialcraft5.abyssal_eel}",
+      "icon": "essentialcraft5:abyssal_eel_spawn_egg",
+      "summary": "Long eels of the Hoanna Sea",
+      "items": [
+        "essentialcraft5:abyssal_eel_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:abyssal_eel"
+        },
+        {
+          "type": "p",
+          "text": "Abyssal Eels are long eels with gray-blue glowing spots and a ring of lights in their mouths. They only spawn in the Hoanna Sea, in water at least {cfg:general.mobs.abyssal_eel.min_depth} blocks deep between y {cfg:general.mobs.abyssal_eel.min_y} and {cfg:general.mobs.abyssal_eel.max_y}, one to three at a time. Nothing else spawns in that water, so whatever you meet down there is most likely one of these."
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.abyssal_eel.max_health} health and {cfg:general.mobs.abyssal_eel.armor} armor, swims fast and only bites in water, for {cfg:general.mobs.abyssal_eel.bite_damage} damage, dragging you down for {cfg:general.mobs.abyssal_eel.drag_ticks|sec} when it connects.",
+          "if": "cfg:general.mobs.abyssal_eel.drag_ticks>0"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.abyssal_eel.max_health} health and {cfg:general.mobs.abyssal_eel.armor} armor, swims fast and only bites in water, for {cfg:general.mobs.abyssal_eel.bite_damage} damage.",
+          "if": "!cfg:general.mobs.abyssal_eel.drag_ticks>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.abyssal_eel.drag_ticks>0",
+              "text": "Swim up hard while it drags you and you can break free. Drink a Water Breathing potion or wear a Respiration helmet before diving, and being pulled under won't drown you."
+            },
+            "Out of water it flops back toward the sea, so it is much easier to fight in the shallows or on the shore."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself for a 30% chance of {item:essentialcraft5:aberrant_residue}. It shares a group with the other Hoanna natives, so past {cfg:general.mobs.kill_fatigue.hoanna_common} of them together in an hour the drops thin out ([[bestiary/overview]]).",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself for a 30% chance of {item:essentialcraft5:aberrant_residue}. However many of them you kill, the chance stays the same.",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "h",
+          "text": "Elite · {lang:entity.essentialcraft5.abyssal_eel.elite}"
+        },
+        {
+          "type": "p",
+          "text": "The first time the {lang:entity.essentialcraft5.abyssal_eel.elite} is hurt it calls {cfg:general.mobs.abyssal_eel.elite_summon_count} more eels, which drop nothing and give no experience.",
+          "if": "cfg:general.mobs.abyssal_eel.elite_summon_count>0"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild {lang:entity.essentialcraft5.abyssal_eel.elite} yourself and there is also an even chance of an extra {item:essentialcraft5:aberrant_heart}."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:abyssal_eel_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Abyssal Eels, but those are never elites and drop no aberrant residue."
+        }
+      ]
+    },
+    {
+      "id": "inquisitorium_patroller",
+      "title": "{lang:entity.essentialcraft5.inquisitorium_patroller}",
+      "icon": "essentialcraft5:inquisitorium_patroller_spawn_egg",
+      "summary": "Holographic sentries of the shadow lands",
+      "items": [
+        "essentialcraft5:inquisitorium_patroller_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:inquisitorium_patroller"
+        },
+        {
+          "type": "p",
+          "text": "Inquisitorium Patrollers are half-height cyan holograms whose legs fade away to nothing. They only spawn in the Shadow Corrupted Land, two or three at a time. They give off their own light and spawn in bright places too, so torches won't keep them away."
+        },
+        {
+          "type": "p",
+          "text": "During [[hoanna/events|Darkness]] they spawn on all land whatever the light, at most {cfg:general.mobs.hoanna_spawns.darkness_patroller_max_nearby} within 64 blocks.",
+          "if": [
+            "cfg:general.hoanna_events.darkness_enabled",
+            "cfg:general.mobs.hoanna_spawns.darkness_patroller_weight>0"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.inquisitorium_patroller.max_health} health and no armor, and hovers out of reach."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.inquisitorium_patroller.destroyer_interval>0",
+              "text": "Every {cfg:general.mobs.inquisitorium_patroller.destroyer_interval|sec} it fires an {lang:entity.essentialcraft5.armor_destroyer}. It doesn't hurt you, but each hit takes 5 durability from what you hold and from every armor piece. Armor that blocks damage with MRU, such as MHS Armor and the Void and Computer Guy's suits, loses MRU instead. It vanishes on hitting a block, so cover stops it."
+            },
+            {
+              "if": "cfg:general.mobs.inquisitorium_patroller.strike_interval>0",
+              "text": "Every {cfg:general.mobs.inquisitorium_patroller.strike_interval|sec} it marks a circle under your feet, and {cfg:general.mobs.inquisitorium_patroller.strike_warning_ticks|sec} later an {lang:entity.essentialcraft5.orbital_strike} falls on it for {cfg:general.mobs.inquisitorium_patroller.strike_damage} damage. Shields don't block it and Resistance doesn't reduce it. Step out of the circle when you see it."
+            },
+            "Like the holographic projection, it takes less from ranged attacks, so melee is faster."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself for a 20% chance of {item:essentialcraft5:aberrant_residue}. It shares a group with the other Hoanna natives, so past {cfg:general.mobs.kill_fatigue.hoanna_common} of them together in an hour the drops thin out ([[bestiary/overview]]).",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild one yourself for a 20% chance of {item:essentialcraft5:aberrant_residue}. However many of them you kill, the chance stays the same.",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "It never drops a {item:essentialcraft5:glitchy_core}. Those only come from holographic projections and Inquisitorium Sentinels ([[inquisitorium/glitchy_core]])."
+        },
+        {
+          "type": "h",
+          "text": "Elite · {lang:entity.essentialcraft5.inquisitorium_patroller.elite}"
+        },
+        {
+          "type": "p",
+          "text": "The {lang:entity.essentialcraft5.inquisitorium_patroller.elite}'s orbital strikes come three in a row, so move well clear of the circle."
+        },
+        {
+          "type": "p",
+          "text": "Kill a wild {lang:entity.essentialcraft5.inquisitorium_patroller.elite} yourself and there is also an even chance of an extra {item:essentialcraft5:aberrant_heart}."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:inquisitorium_patroller_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Inquisitorium Patrollers, but those are never elites and drop no aberrant residue."
+        }
+      ]
+    },
+    {
+      "id": "catacomb_revenant",
+      "title": "{lang:entity.essentialcraft5.catacomb_revenant}",
+      "icon": "essentialcraft5:catacomb_revenant_spawn_egg",
+      "summary": "Skeletal knights of the catacombs",
+      "items": [
+        "essentialcraft5:catacomb_revenant_spawn_egg"
+      ],
+      "if": "cfg:general.hoanna.portal_enabled",
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:catacomb_revenant"
+        },
+        {
+          "type": "p",
+          "text": "Catacomb Revenants are skeletal knights in rusted plate with pale blue spirit fire showing between their ribs. They only spawn in [[hoanna/ruins|ancient catacombs]], in the unlit parts, alongside ordinary skeletons and zombies."
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "p",
+          "text": "It has {cfg:general.mobs.catacomb_revenant.max_health} health and {cfg:general.mobs.catacomb_revenant.armor} armor and swings its sword for {cfg:general.mobs.catacomb_revenant.attack_damage} damage."
+        },
+        {
+          "type": "list",
+          "items": [
+            "It is partly spirit: arrows and other projectiles have a {cfg:general.mobs.catacomb_revenant.projectile_pass_chance|pct} chance to pass straight through, so melee is far more reliable.",
+            {
+              "if": "cfg:general.mobs.catacomb_revenant.oath_ticks>0",
+              "text": "When one revenant dies, the others within {cfg:general.mobs.catacomb_revenant.oath_radius} blocks gain Strength I for {cfg:general.mobs.catacomb_revenant.oath_ticks|sec}. Pull a group apart and fight them one at a time."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "p",
+          "text": "Kill one yourself in a catacomb for a 25% chance of {item:essentialcraft5:aberrant_residue}. It shares a group with the other Hoanna natives, so past {cfg:general.mobs.kill_fatigue.hoanna_common} of them together in an hour the drops thin out ([[bestiary/overview]]).",
+          "if": "cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "p",
+          "text": "Kill one yourself in a catacomb for a 25% chance of {item:essentialcraft5:aberrant_residue}. However many of them you kill, the chance stays the same.",
+          "if": "!cfg:general.mobs.kill_fatigue.hoanna_common>0"
+        },
+        {
+          "type": "h",
+          "text": "Elite · {lang:entity.essentialcraft5.catacomb_revenant.elite}"
+        },
+        {
+          "type": "p",
+          "text": "Every {cfg:general.mobs.catacomb_revenant.blade_interval|sec} the {lang:entity.essentialcraft5.catacomb_revenant.elite} conjures spirit blades, at most {cfg:general.mobs.catacomb_revenant.blade_count} at a time. They chase you for a while and deal {cfg:general.mobs.catacomb_revenant.blade_damage} damage, and you can knock them out of the air.",
+          "if": "cfg:general.mobs.catacomb_revenant.blade_interval>0"
+        },
+        {
+          "type": "p",
+          "text": "Kill a {lang:entity.essentialcraft5.catacomb_revenant.elite} yourself in a catacomb and there is also an even chance of an extra {item:essentialcraft5:aberrant_heart}."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:catacomb_revenant_spawn_egg} is only in the Creative inventory. Right-clicking a spawner with it makes the spawner produce Catacomb Revenants, but those are never elites and drop no aberrant residue."
+        }
+      ]
+    },
+    {
+      "id": "mru_golem",
+      "title": "{lang:entity.essentialcraft5.mru_golem}",
+      "icon": "essentialcraft5:mru_golem_spawn_egg",
+      "summary": "Guardian of the ancient ruins; drops Ancient Cores",
+      "complete": "essentialcraft5:guide/bestiary/mru_golem",
+      "optional": true,
+      "items": [
+        "essentialcraft5:ancient_core",
+        "essentialcraft5:mru_golem_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:mru_golem"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): defeat an MRU Golem and take its {item:essentialcraft5:ancient_core}."
+        },
+        {
+          "type": "p",
+          "text": "The ancient ruins are cages the forebears built to hold MRUCUs. Some still have a golem on guard. Who left it there, the Fragments do not say."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "Ancient Cores are an attunement material, used by MHS Armor, Void Armor, the Computer Guy's Suit and the Verdict Blade ([[attunement/stage_up]])."
+        },
+        {
+          "type": "h",
+          "text": "Where to look"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Overworld [[start/mrucu|ancient ruins]], usually buried in stone, with an MRUCU hanging in the middle of the cage.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "In Hoanna, {cfg:general.mobs.mru_golem.hoanna_chance|pct} of the ancient ruins have a golem."
+            },
+            "Only ruins generated after this update have golems. Where you had already explored before updating, the ruins were generated without one, so look in new ground.",
+            "With a {item:essentialcraft5:magic_monocle} you can see glowing MRUCUs through the stone. Set a [[gear/ley_detector|Ley Detector]] to its MRUCU mode and it points toward the nearest one holding {cfg:general.mobs.mru_golem.detector_min_mru} MRU or more within {cfg:general.mobs.mru_golem.detector_radius} blocks."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "How it appears"
+        },
+        {
+          "type": "p",
+          "text": "Come within {cfg:general.mobs.mru_golem.trigger_radius} blocks of the ruin's MRUCU and the golem wakes. It appears on the nearest open ground straight above the MRUCU rather than in the cage. Only if there is no open ground within {cfg:general.mobs.mru_golem.spawn_search_height} blocks up does it appear beside the MRUCU. If there isn't a 3×3×3 space beside it either, the golem can't come out. The action bar tells you so, and digging out such a space next to the MRUCU is enough. Each ruin has one golem, once.",
+          "if": "cfg:general.mobs.mru_golem.trigger_radius>0"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.mru_golem.trigger_radius>0",
+          "text": "In this world, walking up to a ruin doesn't wake the golem."
+        },
+        {
+          "type": "list",
+          "items": [
+            "It only counts if you are allowed to change blocks there. Walking past in someone else's claim does nothing. Where it stands has to be somewhere you could build too; if the ground above is in someone else's claim, it looks for a spot beside the MRUCU instead.",
+            "Only Survival and Adventure players wake it. Creative and spectators don't.",
+            "If the MRUCU is moved more than {cfg:general.mobs.mru_golem.abandon_distance} blocks from where it started, the golem never comes and the Ancient Core is gone with it. Don't drag the MRUCU with a wand before the golem is out. Once the golem is out, moving the MRUCU no longer matters; the golem stays.",
+            "An MRUCU that has been bottled in a [[gear/mrucu_container|container]] and released again calls no golem."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fighting it"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Health",
+              "{cfg:general.mobs.mru_golem.max_health}"
+            ],
+            [
+              "Armor",
+              "{cfg:general.mobs.mru_golem.armor}, armor toughness {cfg:general.mobs.mru_golem.armor_toughness}"
+            ],
+            [
+              "Knockback resistance",
+              "{cfg:general.mobs.mru_golem.knockback_resistance}, so it barely budges"
+            ],
+            {
+              "if": "cfg:general.mobs.mru_golem.per_hit_cap>0",
+              "cells": [
+                "Most per hit",
+                "{cfg:general.mobs.mru_golem.per_hit_cap}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+            "cfg:general.mobs.mru_golem.shield_range>0",
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage==40",
+            "cfg:general.mobs.mru_golem.shield_min_mru==500"
+          ],
+          "text": "It also has a <em>Concentration Shield</em>. While it is within {cfg:general.mobs.mru_golem.shield_range} blocks of its MRUCU horizontally (even with dozens of blocks of stone between them) and the MRUCU holds at least {cfg:general.mobs.mru_golem.shield_min_mru} MRU, every point of damage it takes is paid for with {cfg:general.mobs.mru_golem.shield_mru_per_damage} MRU from the MRUCU instead. A ruin MRUCU holds 5,000–10,000 MRU, enough to soak about 110–250 damage."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+            "cfg:general.mobs.mru_golem.shield_range>0",
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage!=40||cfg:general.mobs.mru_golem.shield_min_mru!=500"
+          ],
+          "text": "It also has a <em>Concentration Shield</em>. While it is within {cfg:general.mobs.mru_golem.shield_range} blocks of its MRUCU horizontally (even with dozens of blocks of stone between them) and the MRUCU holds at least {cfg:general.mobs.mru_golem.shield_min_mru} MRU, every point of damage it takes is paid for with {cfg:general.mobs.mru_golem.shield_mru_per_damage} MRU from the MRUCU instead. A ruin MRUCU holds 5,000–10,000 MRU."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+            "cfg:general.mobs.mru_golem.shield_range>0"
+          ],
+          "text": "While the glow on its body pulses brightly the shield is up; when the glow dims, it's gone."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+                "cfg:general.mobs.mru_golem.shield_range>0"
+              ],
+              "text": "Pull the MRUCU more than {cfg:general.mobs.mru_golem.shield_range} blocks away from the golem (horizontally) with an {item:essentialcraft5:mru_mover} and the shield drops. The golem never strays more than {cfg:general.mobs.mru_golem.leash_range} blocks from where the MRUCU was when it woke, so dragging the MRUCU {cfg:general.mobs.mru_golem.leash_range|addcfg:general.mobs.mru_golem.shield_range} blocks or more from that spot puts it out of reach for good. The wand only moves it where you are allowed to build ([[crafting/corruption]])."
+            },
+            {
+              "if": [
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+                "cfg:general.mobs.mru_golem.shield_range>0"
+              ],
+              "text": "You can also lure it away, but past {cfg:general.mobs.mru_golem.leash_range} blocks from the ruin (horizontally) it turns back and ignores you until it is within {cfg:general.mobs.mru_golem.leash_range|add:-4} blocks again. It doesn't attack on the way back, and for the first few steps it is still more than {cfg:general.mobs.mru_golem.shield_range} blocks from the MRUCU with no shield, which is a good moment for arrows."
+            },
+            {
+              "if": "!cfg:general.mobs.mru_golem.shield_mru_per_damage>0||!cfg:general.mobs.mru_golem.shield_range>0",
+              "text": "You can also lure it away, but past {cfg:general.mobs.mru_golem.leash_range} blocks from the ruin (horizontally) it turns back and ignores you until it is within {cfg:general.mobs.mru_golem.leash_range|add:-4} blocks again. It doesn't attack on the way back, which is a good moment for arrows."
+            },
+            {
+              "if": [
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+                "cfg:general.mobs.mru_golem.shield_range>0",
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage==40",
+                "cfg:general.mobs.mru_golem.shield_min_mru==500",
+                "cfg:general.mobs.mru_golem.max_health==120"
+              ],
+              "text": "Or just hit it. The shield stops once the MRUCU drops below {cfg:general.mobs.mru_golem.shield_min_mru} MRU, so counting the shield it takes about 230–370 damage in all."
+            },
+            {
+              "if": [
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage>0",
+                "cfg:general.mobs.mru_golem.shield_range>0",
+                "cfg:general.mobs.mru_golem.shield_mru_per_damage!=40||cfg:general.mobs.mru_golem.shield_min_mru!=500||cfg:general.mobs.mru_golem.max_health!=120"
+              ],
+              "text": "Or just hit it. The shield stops once the MRUCU drops below {cfg:general.mobs.mru_golem.shield_min_mru} MRU, and from then on every hit comes off its own health."
+            },
+            {
+              "if": "!cfg:general.mobs.mru_golem.shield_mru_per_damage>0||!cfg:general.mobs.mru_golem.shield_range>0",
+              "text": "Or just hit it. It has no shield, so it goes down once its {cfg:general.mobs.mru_golem.max_health} health is gone."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Attacks"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Attack",
+            "What it does",
+            "How to handle it"
+          ],
+          "rows": [
+            [
+              "Hammer",
+              "A close-range blow, {cfg:general.mobs.mru_golem.hammer_damage} damage",
+              "Armor reduces it. Stay out of reach."
+            ],
+            [
+              "Surge",
+              "A blue ring lights up around it and bursts {cfg:general.mobs.mru_golem.slam_warning_ticks|sec} later, radius {cfg:general.mobs.mru_golem.slam_radius}, for {cfg:general.mobs.mru_golem.slam_damage} plus {cfg:general.mobs.mru_golem.slam_health_fraction|pct} of your max health",
+              "Get out of the ring when it lights. Armor does nothing against it."
+            ],
+            {
+              "if": "cfg:general.attunement.enabled",
+              "cells": [
+                "Arc whip",
+                "An arc of lightning at {cfg:general.mobs.mru_golem.whip_min_range}–{cfg:general.mobs.mru_golem.whip_max_range} blocks, {cfg:general.mobs.mru_golem.whip_damage} damage",
+                "Stay close or get past {cfg:general.mobs.mru_golem.whip_max_range} blocks. [[attunement/mhs_armor|MHS Armor]] at attunement stage 2 blocks part of it."
+              ]
+            },
+            {
+              "if": "!cfg:general.attunement.enabled",
+              "cells": [
+                "Arc whip",
+                "An arc of lightning at {cfg:general.mobs.mru_golem.whip_min_range}–{cfg:general.mobs.mru_golem.whip_max_range} blocks, {cfg:general.mobs.mru_golem.whip_damage} damage",
+                "Stay close or get past {cfg:general.mobs.mru_golem.whip_max_range} blocks."
+              ]
+            }
+          ],
+          "widths": [
+            2,
+            5,
+            5
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The golem falls, everyone who took at least {cfg:general.mobs.boss.loot_share|pct} of its health off gets a share in their inventory, and the step is checked off."
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:ancient_core} ×1",
+            "{item:essentialcraft5:magic_fortified_plating} ×2–4",
+            "{item:essentialcraft5:mru_chunk} ×2",
+            "{cfg:general.mobs.mru_golem.xp} experience"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each player who took at least {cfg:general.mobs.boss.loot_share|pct} of its health off gets a share, dropped at their feet if their inventory is full. Damage the shield soaks up doesn't count, only health it actually loses."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.fair_kill_min_share>0",
+          "text": "Players have to deal at least {cfg:general.mobs.fair_kill_min_share|pct} of the damage. Grinding it down with lava or traps gets nothing."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Most ruins are buried, but the golem comes up on open ground straight above the MRUCU, sometimes dozens of blocks over your head. Climb back to the surface to fight it. When it wakes, the action bar tells you how many blocks above you it is."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "It is a boss. Taking at least a tenth of its health off records it in the Bosses group of your [[matrix/codex|Matrix Codex]]."
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.attunement.enabled"
+              ],
+              "text": "The surge counts as an armor-piercing heavy blow. The Computer Guy's Suit blocks {cfg:general.computer_armor.piercing_share|pct} of it from attunement stage 4, Inquisitorium Armor at stage 4 takes {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct} off, and Void Armor can't dodge it."
+            },
+            "On Peaceful it vanishes without dropping anything. Switch the difficulty back and walk up to the MRUCU again, and it comes back at full health, unless the MRUCU had been dragged far away by then.",
+            "Neither it nor its attacks break blocks."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:mru_golem_spawn_egg} is only in the Creative inventory. Using it on a spawner just releases one next to it; the spawner itself stays as it was. A golem from a spawn egg guards no MRUCU, so it has no shield, and beating it gives none of the three drops."
+        }
+      ]
+    },
+    {
+      "id": "matrix_shade",
+      "title": "{lang:entity.essentialcraft5.matrix_shade}",
+      "icon": "essentialcraft5:matrix_shade_spawn_egg",
+      "summary": "Pour your matrix damage into it, then beat it",
+      "complete": "essentialcraft5:guide/bestiary/matrix_shade",
+      "optional": true,
+      "items": [
+        "essentialcraft5:matrix_conduit",
+        "essentialcraft5:matrix_crystal",
+        "essentialcraft5:matrix_shade_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:matrix_shade"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): summon the Matrix Specter with a {item:essentialcraft5:matrix_conduit}, pour your matrix damage into it in one go, then defeat it. Once it falls, the damage you poured in is gone, and you get {item:essentialcraft5:matrix_crystal}s."
+        },
+        {
+          "type": "p",
+          "text": "The damage piled up in a matrix is normally invisible. The conduit draws it out and gathers it into a figure on the pentacle, with the matrix showing as a grid on its chest."
+        },
+        {
+          "type": "p",
+          "text": "For what matrix damage is and where it comes from, see [[corruption/matrix_damage]]."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:machines.matrix_tuner.enabled",
+            "cfg:general.hoanna.portal_enabled"
+          ],
+          "text": "The [[corruption/matrix_tuner|Matrix Tuner]] wipes it slowly. The Specter wipes it all at once. It costs no less ESPE than the tuner, and you get Matrix Crystals on top."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "Matrix Crystals are an attunement material ([[attunement/stage_up]])."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A {item:essentialcraft5:matrix_conduit}, made on the Magician Table from an {item:essentialcraft5:mru_resonating_crystal} in the middle and {item:essentialcraft5:dark_soul_matter}, any matrix projection, a {item:essentialcraft5:pale_gem} and a {item:essentialcraft5:mithriline_plate} in the corners, for 20,000 MRU.",
+            "A [[pentacle/tier_one|Soul Pentacle]] at tier 1 or higher whose center block you are allowed to build on.",
+            {
+              "if": [
+                "cfg:general.corruption.effects_enabled",
+                "cfg:general.mobs.matrix_shade.min_matrix_damage==18000"
+              ],
+              "text": "At least {cfg:general.mobs.matrix_shade.min_matrix_damage|int} matrix damage. By then you already have an even chance each minute of it setting into a corruption effect."
+            },
+            {
+              "if": "!cfg:general.corruption.effects_enabled||cfg:general.mobs.matrix_shade.min_matrix_damage!=18000",
+              "text": "At least {cfg:general.mobs.matrix_shade.min_matrix_damage|int} matrix damage."
+            },
+            {
+              "if": [
+                "cfg:general.mobs.matrix_shade.espe_per_damage==0.5",
+                "cfg:general.mobs.matrix_shade.max_absorbed==72000"
+              ],
+              "text": "Enough ESPE in the pentacle pillars. Each point of damage poured in reserves {cfg:general.mobs.matrix_shade.espe_per_damage} ESPE, and 1 ESPE in a pillar only counts as 0.36, so pouring in 72,000 takes 36,000 and actually drains 100,000 from the pillars. A tier 3 pentacle counts each point twice and drains half as much."
+            },
+            {
+              "if": "cfg:general.mobs.matrix_shade.espe_per_damage!=0.5||cfg:general.mobs.matrix_shade.max_absorbed!=72000",
+              "text": "Enough ESPE in the pentacle pillars. Each point of damage poured in reserves {cfg:general.mobs.matrix_shade.espe_per_damage} ESPE, and 1 ESPE in a pillar only counts as 0.36. A tier 3 pentacle counts each point twice and drains half as much."
+            }
+          ]
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:matrix_conduit"
+        },
+        {
+          "type": "h",
+          "text": "Summoning"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Hold the conduit and right-click the center block of the pentacle.",
+            "The Matrix Specter rises on the pentacle and your matrix damage pours into it, up to {cfg:general.mobs.matrix_shade.max_absorbed|int}.",
+            "Yours drops by that much at once, and the pillars give up the matching ESPE.",
+            "Defeat it and the damage you poured in is gone."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If something is missing, the conduit isn't used up and the action bar says what, such as damage below {cfg:general.mobs.matrix_shade.min_matrix_damage|int} or how much ESPE the pillars still lack. You can't summon a second Matrix Specter within {cfg:general.mobs.matrix_shade.exclusive_radius} blocks of one, or any on Peaceful. The conduit only works in Survival or Adventure. Leave a 3-block-tall space above the pentacle; if it can't stand there it looks a few blocks around, and if there's still no room nothing happens and nothing is used up."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The Specter falls, the matrix damage you poured into it is gone for good, everyone who took at least {cfg:general.mobs.boss.loot_share|pct} of its health off gets a share, and the step is checked off."
+        },
+        {
+          "type": "h",
+          "text": "How tough it is"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            {
+              "if": "cfg:general.mobs.matrix_shade.absorbed_per_health>0",
+              "cells": [
+                "Health",
+                "{cfg:general.mobs.matrix_shade.base_health}, plus the damage poured in ÷ {cfg:general.mobs.matrix_shade.absorbed_per_health}"
+              ]
+            },
+            {
+              "if": "!cfg:general.mobs.matrix_shade.absorbed_per_health>0",
+              "cells": [
+                "Health",
+                "{cfg:general.mobs.matrix_shade.base_health}, however much damage is poured in"
+              ]
+            },
+            [
+              "Armor",
+              "{cfg:general.mobs.matrix_shade.armor}, armor toughness {cfg:general.mobs.matrix_shade.armor_toughness}"
+            ],
+            {
+              "if": "cfg:general.mobs.matrix_shade.per_hit_cap>0",
+              "cells": [
+                "Most per hit",
+                "{cfg:general.mobs.matrix_shade.per_hit_cap}"
+              ]
+            },
+            {
+              "if": "cfg:general.mobs.matrix_shade.per_second_cap>0",
+              "cells": [
+                "Most per second",
+                "{cfg:general.mobs.matrix_shade.per_second_cap}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_shade.per_second_cap>0",
+          "text": "However hard you hit, it loses at most {cfg:general.mobs.matrix_shade.per_second_cap} health a second, so there's no rushing it. Only damage dealt by the players in the fight counts, so pets, machines and turrets can't hurt it, and anything other than melee (arrows, magic, explosions) counts {cfg:general.mobs.boss.non_melee_multiplier|pct}. Status effects other than Glowing do nothing to it, and it can't be pushed or put in a boat or minecart."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.mobs.matrix_shade.per_second_cap>0",
+          "text": "Only damage dealt by the players in the fight counts, so pets, machines and turrets can't hurt it, and anything other than melee (arrows, magic, explosions) counts {cfg:general.mobs.boss.non_melee_multiplier|pct}. Status effects other than Glowing do nothing to it, and it can't be pushed or put in a boat or minecart."
+        },
+        {
+          "type": "h",
+          "text": "Three phases"
+        },
+        {
+          "type": "p",
+          "text": "It fights in three phases, body, mind and matrix, the same three kinds of corruption the pentacle treats. Switching phase makes it untouchable for {cfg:general.mobs.matrix_shade.phase_shift_ticks|sec}, but it doesn't heal. If it's still standing after {cfg:general.mobs.matrix_shade.enrage_ticks|div:1200} minutes, the gaps between its attacks shrink by {cfg:general.mobs.matrix_shade.enrage_cooldown_multiplier|mul:-1|add:1|pct}."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Phase",
+            "Attack",
+            "How to handle it"
+          ],
+          "rows": [
+            [
+              "Body",
+              "Heavy punches at close range, {cfg:general.mobs.matrix_shade.attack_damage} damage",
+              "Armor reduces them."
+            ],
+            [
+              "Body",
+              "Sluggish grip, holding you in place",
+              "Land one hit on it to break free. While it holds you ({cfg:general.mobs.matrix_shade.grip_ticks|sec}) you can barely move."
+            ],
+            [
+              "Body",
+              "Crash, a shadow ring under you, then it lands 1 second later for {cfg:general.mobs.matrix_shade.slam_damage} plus {cfg:general.mobs.matrix_shade.slam_health_percent|pct} of your max health",
+              "Leave the ring when it appears. Armor doesn't help."
+            ],
+            [
+              "Mind",
+              "Mirror images, copies that look just like it, up to {cfg:general.mobs.matrix_shade.max_mirrors}",
+              "Look at the grid on the chest. The real one has the lit cell. Smashing a fake one backfires: Slowness for 3 seconds and 4 damage."
+            ],
+            [
+              "Mind",
+              "Mind spikes, purple crystal spikes driven into the ground, up to {cfg:general.mobs.matrix_shade.max_spikes}",
+              "While a spike stands it takes only {cfg:general.mobs.matrix_shade.spike_damage_taken|pct} damage. Each spike has 12 health; knock them down when you see them."
+            ],
+            [
+              "Mind",
+              "Whisper: it picks one fighter and whispers for 2 seconds; only that player hears it",
+              "Look away from it. If you're still facing it when the 2 seconds are up, you take {cfg:general.mobs.matrix_shade.whisper_damage} plus {cfg:general.mobs.matrix_shade.whisper_health_percent|pct} of your max health."
+            ],
+            [
+              "Matrix",
+              "Matrix arc: it hits one fighter, then jumps to the next within {cfg:general.mobs.matrix_shade.arc_chain_range} blocks, up to {cfg:general.mobs.matrix_shade.arc_max_targets} people, for {cfg:general.mobs.matrix_shade.arc_damage} plus {cfg:general.mobs.matrix_shade.arc_health_percent|pct} of max health each",
+              "Spread out so no two players stand within {cfg:general.mobs.matrix_shade.arc_chain_range} blocks."
+            ],
+            {
+              "if": "cfg:general.mobs.matrix_shade.max_pillars>0",
+              "cells": [
+                "Matrix",
+                "Disorder pillar, one under each fighter and at most {cfg:general.mobs.matrix_shade.max_pillars} at a time: a warning ring for 1.5 seconds, then a beam of light for {cfg:general.mobs.matrix_shade.pillar_damage} plus {cfg:general.mobs.matrix_shade.pillar_health_percent|pct} of your max health",
+                "Step out of the ring as soon as it lights. Armor doesn't help."
+              ]
+            },
+            [
+              "Matrix",
+              "Converge: for 2 seconds it pulls everyone in the arena toward it, and the final burst hits those within 5 blocks for {cfg:general.mobs.matrix_shade.converge_damage} plus {cfg:general.mobs.matrix_shade.converge_health_percent|pct} of max health",
+              "Sneaking halves the pull, and a raised shield stops the final burst."
+            ]
+          ],
+          "widths": [
+            1,
+            5,
+            4
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each time it changes phase, the edges of your screen slowly tint: dark red for Body, violet for Mind, magenta for Matrix. The tint stays at the edges and never blocks your view, and fades once the fight is over."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.corruption.effects_enabled",
+          "text": "This tint is the paradox view. It is not the [[corruption/paradox|Mind Paradox]] corruption effect, and it ends with the fight."
+        },
+        {
+          "type": "h",
+          "text": "Who is in the fight"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The summoner, and anyone who has since dealt it damage. Bystanders and passers-by are not in it; its attacks don't target them and it won't pull them in.",
+            {
+              "if": "cfg:general.mobs.matrix_shade.pull_range>0",
+              "text": "The arena is {cfg:general.mobs.matrix_shade.arena_radius} blocks around the pentacle's center. A fighter who gets {cfg:general.mobs.matrix_shade.pull_range}–{cfg:general.mobs.matrix_shade.escape_range} blocks from the center is dragged back near it, losing {cfg:general.mobs.boss.pull_damage} health each time. Past {cfg:general.mobs.matrix_shade.escape_range} blocks you have left the fight. It only drags you to a spot where you're allowed to act, so it never pulls you into someone else's claim. If it can't bring you back because the spot is blocked or you can't act there, and you stay more than {cfg:general.mobs.matrix_shade.pull_range} blocks out, you leave the fight after {cfg:general.mobs.boss.abandon_ticks|sec}."
+            },
+            {
+              "if": "cfg:general.mobs.matrix_shade.pull_range==0",
+              "text": "The arena is {cfg:general.mobs.matrix_shade.arena_radius} blocks around the pentacle's center. It never drags anyone back, and you can hit it from anywhere within {cfg:general.mobs.matrix_shade.escape_range} blocks. Past {cfg:general.mobs.matrix_shade.escape_range} blocks from the center you have left the fight."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "If you lose"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_shade.pull_range>0",
+          "text": "If the summoner dies, logs out, changes dimension or stays more than {cfg:general.mobs.matrix_shade.pull_range} blocks from the center for {cfg:general.mobs.matrix_shade.summoner_away_ticks|sec}, or if everyone stays away for {cfg:general.mobs.boss.abandon_ticks|sec}, the Matrix Specter fades {cfg:general.mobs.matrix_shade.dissipate_ticks|sec} later. Switching to Peaceful does the same. Being dragged back starts the summoner's count over; staying out because the drag fails, or going past {cfg:general.mobs.matrix_shade.escape_range} blocks, doesn't. If something other than the fighters finishes it, say it falls out of the world or a command removes it, that counts as a loss too, even if someone had just hit it."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.mobs.matrix_shade.pull_range==0",
+          "text": "If the summoner dies, logs out, changes dimension or stays more than {cfg:general.mobs.matrix_shade.escape_range} blocks away for over {cfg:general.mobs.matrix_shade.summoner_away_ticks|sec}, or if everyone stays away for {cfg:general.mobs.boss.abandon_ticks|sec}, the Matrix Specter fades {cfg:general.mobs.matrix_shade.dissipate_ticks|sec} later. Switching to Peaceful does the same. If something other than the fighters finishes it, say it falls out of the world or a command removes it, that counts as a loss too, even if someone had just hit it."
+        },
+        {
+          "type": "p",
+          "text": "The matrix damage poured into it goes back to the summoner in full, the reserved ESPE returns to that pentacle's pillars, and the conduit drops back. If the summoner is offline, it's returned the next time they log in. ESPE that doesn't fit in full pillars trickles back a little later. If the pentacle has been torn down, its ESPE waits until the pentacle is rebuilt in the same spot."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Losing gives all the damage back, so throwing the fight clears nothing."
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.mobs.matrix_shade.crystal_step>0",
+              "text": "{item:essentialcraft5:matrix_crystal}, 1 for everyone who gets a share, plus 1 for the summoner for every full {cfg:general.mobs.matrix_shade.crystal_step|int} damage poured in. The summoner also has to take at least {cfg:general.mobs.boss.loot_share|pct} of its health off to get a share, extra crystals included"
+            },
+            {
+              "if": "!cfg:general.mobs.matrix_shade.crystal_step>0",
+              "text": "{item:essentialcraft5:matrix_crystal}, 1 for everyone who gets a share. The summoner also has to take at least {cfg:general.mobs.boss.loot_share|pct} of its health off to get one"
+            },
+            "{item:essentialcraft5:dark_soul_matter} ×1–2",
+            "{item:essentialcraft5:mru_large_chunk}",
+            "{cfg:general.mobs.matrix_shade.experience} experience"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Pour in 72,000 and the summoner gets 4 Matrix Crystals; pour in 30,000 and they get 2.",
+          "if": [
+            "cfg:general.mobs.matrix_shade.crystal_step==24000",
+            "cfg:general.mobs.matrix_shade.max_absorbed>=72000"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You have to be allowed to build at the center block. On someone else's claim nothing is summoned and the conduit is kept.",
+            "At most {cfg:general.mobs.matrix_shade.max_absorbed|int} damage pours in; anything above that stays with you.",
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.attunement.enabled",
+                "cfg:general.mobs.matrix_shade.max_pillars>0"
+              ],
+              "text": "The crash, the whisper and the final burst of Converge are all armor-piercing heavy blows. The Computer Guy's Suit blocks {cfg:general.computer_armor.piercing_share|pct} of it from stage 4, and Inquisitorium Armor at stage 4 takes {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct} off. The disorder pillar counts as magic. The suit blocks it as magic from stage 2, and Inquisitorium Armor's magic resistance applies to it. Void Armor can't dodge either one."
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.attunement.enabled",
+                "!cfg:general.mobs.matrix_shade.max_pillars>0"
+              ],
+              "text": "The crash, the whisper and the final burst of Converge are all armor-piercing heavy blows. The Computer Guy's Suit blocks {cfg:general.computer_armor.piercing_share|pct} of it from stage 4, and Inquisitorium Armor at stage 4 takes {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct} off. Void Armor can't dodge them."
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "The Matrix Arc is an MRU discharge, so [[attunement/mhs_armor|MHS Armor]] at attunement stage 2 blocks part of it."
+            },
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "It is a boss. Taking at least a tenth of its health off records it in the Bosses group of your [[matrix/codex|Matrix Codex]]."
+            },
+            "Neither it nor its attacks break blocks.",
+            "A Matrix Specter from a spawn egg or a command has no summoner. Beating it drops nothing and gives no experience, and it clears nobody's damage."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:matrix_shade_spawn_egg} is only in the Creative inventory. Using it on a spawner just releases one next to it; the spawner itself stays as it was."
+        }
+      ]
+    },
+    {
+      "id": "town_sentry",
+      "title": "{lang:entity.essentialcraft5.town_sentry}",
+      "icon": "essentialcraft5:town_sentry_spawn_egg",
+      "summary": "A town guardian that wakes when you come near",
+      "complete": "essentialcraft5:guide/bestiary/town_sentry",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:ancient_core",
+        "essentialcraft5:aberrant_heart",
+        "essentialcraft5:town_sentry_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:town_sentry"
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): defeat a Ruin Watcher for an {item:essentialcraft5:ancient_core} and an {item:essentialcraft5:aberrant_heart}."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.town_sentry.trigger_radius>0",
+          "text": "When the towns of Hoanna burned empty, one guardian machine in each never shut down. You won't see it at first; when someone comes near the crossroads at the town's heart, it wakes beside the crossroads."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.town_sentry.trigger_radius>0",
+          "text": "When the towns of Hoanna burned empty, one guardian machine in each never shut down."
+        },
+        {
+          "type": "p",
+          "text": "Ancient Cores and Aberrant Hearts both go into attunement stage-ups ([[attunement/stage_up]]).",
+          "if": "cfg:general.attunement.enabled"
+        },
+        {
+          "type": "h",
+          "text": "Where to find it"
+        },
+        {
+          "type": "p",
+          "text": "Each [[hoanna/ruins|town]] in Hoanna has one. Come within {cfg:general.town_sentry.trigger_radius} blocks of the town center and it wakes nearby. A town only wakes once, and once it is beaten there is no other. Towns that were generated long ago have one too.",
+          "if": "cfg:general.town_sentry.trigger_radius>0"
+        },
+        {
+          "type": "p",
+          "text": "In this world, approaching a town doesn't wake a Ruin Watcher.",
+          "if": "!cfg:general.town_sentry.trigger_radius>0"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It only counts if you are allowed to build at the town center; walk past in someone else's claim and it stays asleep. Where it appears must be somewhere you can build as well.",
+            "Only Survival and Adventure count; walking past in Creative or Spectator doesn't wake it.",
+            "If there is nowhere nearby for it to stand, the action bar tells you; clear a space 3 blocks wide and 4 tall beside the town center."
+          ],
+          "if": "cfg:general.town_sentry.trigger_radius>0"
+        },
+        {
+          "type": "h",
+          "text": "How to fight it"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Health",
+              "{cfg:general.town_sentry.max_health}"
+            ],
+            [
+              "Armor",
+              "{cfg:general.town_sentry.armor}, toughness {cfg:general.town_sentry.armor_toughness}"
+            ],
+            [
+              "Knockback resistance",
+              "{cfg:general.town_sentry.knockback_resistance}, it doesn't budge"
+            ],
+            {
+              "if": "cfg:general.town_sentry.per_hit_cap>0",
+              "cells": [
+                "Most per hit",
+                "{cfg:general.town_sentry.per_hit_cap}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "It turns back once it is more than {cfg:general.town_sentry.leash_range} blocks from where it woke, so you can't lead it far."
+        },
+        {
+          "type": "h",
+          "text": "Attacks"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Attack",
+            "What it does",
+            "How to handle it"
+          ],
+          "rows": [
+            [
+              "Sweep",
+              "Sweeps the {cfg:general.town_sentry.sweep_range} blocks in front of it for {cfg:general.town_sentry.sweep_damage}",
+              "Armor works as usual; don't stay right in front of it"
+            ],
+            {
+              "if": "cfg:general.town_sentry.turret_count>0",
+              "cells": [
+                "Sentry turrets",
+                "Sets down turrets at its sides, up to {cfg:general.town_sentry.turret_count}. Each has {cfg:general.town_sentry.turret_health} health and fires every {cfg:general.town_sentry.turret_interval_ticks|sec} for {cfg:general.town_sentry.turret_damage}; a destroyed one comes back after {cfg:general.town_sentry.turret_respawn_ticks|sec}. While a turret stands, arrows and other projectiles bounce off its front",
+                "Break the turrets first; archers should go round to its side or back"
+              ]
+            },
+            {
+              "if": "cfg:general.town_sentry.alarm_count>0",
+              "cells": [
+                "Town alarm",
+                "The first time it drops to {cfg:general.town_sentry.alarm_health_fraction|pct} health it rings an alarm and calls {cfg:general.town_sentry.alarm_count} [[bestiary/hoanna_scavenger|Hoanna Scavengers]], only once",
+                "Save some attention for them as it nears half health"
+              ]
+            },
+            [
+              "Suppression",
+              "Every {cfg:general.town_sentry.suppress_cooldown_ticks|sec}, a red ring lights up on the ground and {cfg:general.town_sentry.suppress_warning_ticks|sec} later it slams down, radius {cfg:general.town_sentry.suppress_radius}, for {cfg:general.town_sentry.suppress_damage} plus {cfg:general.town_sentry.suppress_health_fraction|pct} of your maximum health",
+              "Get out of the ring as soon as it lights; armor does not help"
+            ]
+          ],
+          "widths": [
+            2,
+            5,
+            3
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The Ruin Watcher falls. Everyone who took {cfg:general.mobs.boss.loot_share|pct} or more of its health gets a share straight into their inventory, and this step is ticked."
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:ancient_core} ×1",
+            "{item:essentialcraft5:aberrant_heart} ×1",
+            "{item:essentialcraft5:titanite} ×4–8",
+            "{item:essentialcraft5:twinkling_titanite} ×1–2",
+            "{cfg:general.town_sentry.xp} experience"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Everyone who took {cfg:general.mobs.boss.loot_share|pct} or more of its health gets a share, at their feet if the inventory is full."
+        },
+        {
+          "type": "p",
+          "text": "At least {cfg:general.mobs.fair_kill_min_share|pct} of the damage has to come from players; wearing it down with lava or traps gets you nothing.",
+          "if": "cfg:general.mobs.fair_kill_min_share>0"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "The turrets and the scavengers called by the alarm drop nothing; you only fight them to take less damage."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "It is a boss, so taking a tenth or more of its health records it in the boss group of your [[matrix/codex|Matrix Codex]]."
+            },
+            {
+              "if": "cfg:general.attunement.enabled",
+              "text": "Suppression counts as an armor-ignoring blow. The Computer Guy's Suit blocks {cfg:general.computer_armor.piercing_share|pct} of it from attunement stage 4, the Inquisitorium Armor cuts it by {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct} at stage 4, and Void Armor cannot dodge it."
+            },
+            "On Peaceful it disappears and drops nothing. Turn the difficulty back up and approach the town center again, and it wakes once more at full health.",
+            "Neither it nor its attacks break blocks."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:town_sentry_spawn_egg} is only in the Creative inventory. Using it on a spawner just releases one beside it, without changing the spawner. A Ruin Watcher from a spawn egg drops nothing."
+        }
+      ]
+    },
+    {
+      "id": "abyss_tyrant",
+      "title": "{lang:entity.essentialcraft5.abyss_tyrant}",
+      "icon": "essentialcraft5:abyss_tyrant_spawn_egg",
+      "summary": "A giant eel called up at a sunken altar",
+      "complete": "essentialcraft5:guide/bestiary/abyss_tyrant",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:aberrant_heart",
+        "essentialcraft5:ancient_core",
+        "essentialcraft5:abyss_tyrant_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:abyss_tyrant",
+          "scale": 0.6
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): call up the Abyssal Tidelord at a sunken altar and defeat it."
+        },
+        {
+          "type": "p",
+          "text": "A whole district lies sunk beneath the Hoanna Sea, with an altar in the middle of its dome ([[hoanna_explore/sunken_district]]). Right-click it with Tide Crystals, and an eel far bigger than any other comes swimming out of the water around it."
+        },
+        {
+          "type": "p",
+          "text": "Aberrant Hearts and Ancient Cores both go into attunement stage-ups ([[attunement/stage_up]]).",
+          "if": "cfg:general.attunement.enabled"
+        },
+        {
+          "type": "h",
+          "text": "Summoning"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": [
+                "cfg:general.sunken_district.altar_tide_crystals>0",
+                "cfg:general.sunken_district.altar_aberrant_hearts>0"
+              ],
+              "text": "Right-click the sunken altar with a {item:essentialcraft5:tide_crystal} in either hand. You need {cfg:general.sunken_district.altar_tide_crystals} Tide Crystals and {cfg:general.sunken_district.altar_aberrant_hearts} {item:essentialcraft5:aberrant_heart} in your inventory, taken only once it appears."
+            },
+            {
+              "if": [
+                "cfg:general.sunken_district.altar_tide_crystals>0",
+                "!cfg:general.sunken_district.altar_aberrant_hearts>0"
+              ],
+              "text": "Right-click the sunken altar with a {item:essentialcraft5:tide_crystal} in either hand. You need {cfg:general.sunken_district.altar_tide_crystals} Tide Crystals in your inventory, taken only once it appears."
+            },
+            {
+              "if": [
+                "!cfg:general.sunken_district.altar_tide_crystals>0",
+                "cfg:general.sunken_district.altar_aberrant_hearts>0"
+              ],
+              "text": "Right-click the sunken altar. You need {cfg:general.sunken_district.altar_aberrant_hearts} {item:essentialcraft5:aberrant_heart} in your inventory, taken only once it appears."
+            },
+            {
+              "if": [
+                "!cfg:general.sunken_district.altar_tide_crystals>0",
+                "!cfg:general.sunken_district.altar_aberrant_hearts>0"
+              ],
+              "text": "Right-click the sunken altar; it takes nothing."
+            },
+            "You must be allowed to build at the altar, there must be no other boss within {cfg:general.sunken_district.boss_clearance} blocks, and the difficulty can't be Peaceful.",
+            "Each altar can be used once per in-game day; another sunken district has its own. The altar itself is never used up.",
+            "If something is missing, the action bar says what, and nothing is taken."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "It appears in the water outside the dome and only goes after people in the water, or anyone who has hit it. The dome is sealed glass, so you can't reach it from inside; drink Water Breathing and fight it in the water."
+        },
+        {
+          "type": "h",
+          "text": "How to fight it"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Health",
+              "{cfg:general.sunken_district.max_health}"
+            ],
+            [
+              "Armor",
+              "{cfg:general.sunken_district.armor}"
+            ],
+            [
+              "Bite",
+              "{cfg:general.sunken_district.bite_damage}"
+            ],
+            {
+              "if": "cfg:general.sunken_district.per_hit_cap>0",
+              "cells": [
+                "Most per hit",
+                "{cfg:general.sunken_district.per_hit_cap}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "It only takes damage dealt by fighting players themselves; pets, machines and turrets can't hurt it. Damage that isn't melee, such as arrows, tridents and magic, only counts for {cfg:general.mobs.boss.non_melee_multiplier|pct}. No status effect except Glowing works on it."
+        },
+        {
+          "type": "h",
+          "text": "Whirlpool",
+          "if": [
+            "cfg:general.sunken_district.vortex_interval>0",
+            "cfg:general.sunken_district.vortex_radius>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every {cfg:general.sunken_district.vortex_interval|sec} it stirs up a whirlpool for {cfg:general.sunken_district.vortex_ticks|sec}. Fighters in the water within {cfg:general.sunken_district.vortex_radius} blocks are dragged toward it and run out of breath twice as fast. Inside the dome you are safe; in the water, swim away as soon as a burst of bubbles rises around it and you hear the whirl.",
+          "if": [
+            "cfg:general.sunken_district.vortex_interval>0",
+            "cfg:general.sunken_district.vortex_radius>0"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The Abyssal Tidelord falls. Everyone who took {cfg:general.mobs.boss.loot_share|pct} or more of its health gets a share, and this step is ticked."
+        },
+        {
+          "type": "h",
+          "text": "Drops"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:aberrant_heart} ×2",
+            "{item:essentialcraft5:ancient_core} ×1",
+            "6 draws of [[hoanna/relics|Hoanna relics]]",
+            "60 experience"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each player gets one share per in-game day, whichever sunken district it is. If you already had yours today, chat tells you so and you get nothing more.",
+          "if": "cfg:general.sunken_district.daily_reward_limit"
+        },
+        {
+          "type": "p",
+          "text": "Every win pays out, however many times a day you fight it.",
+          "if": "!cfg:general.sunken_district.daily_reward_limit"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Taking turns at several altars doesn't get you more: the daily limit is per player, not per altar.",
+          "if": "cfg:general.sunken_district.daily_reward_limit"
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "It is a boss, so taking a tenth or more of its health records it in the boss group of your [[matrix/codex|Matrix Codex]]."
+            },
+            {
+              "if": "cfg:general.sunken_district.pull_range>0",
+              "text": "Fighters {cfg:general.sunken_district.pull_range}–{cfg:general.sunken_district.escape_range} blocks from the altar are dragged back near the dome, losing {cfg:general.mobs.boss.pull_damage} health each time; past {cfg:general.sunken_district.escape_range} blocks, they leave the fight."
+            },
+            {
+              "if": "!cfg:general.sunken_district.pull_range>0",
+              "text": "It doesn't drag anyone back; anyone more than {cfg:general.sunken_district.escape_range} blocks from the altar leaves the fight."
+            },
+            "If everyone stays away for {cfg:general.mobs.boss.abandon_ticks|sec}, it dissipates, and the use of the altar for that day is still spent.",
+            "The whirlpool only pulls people; it doesn't change blocks or make currents. Neither it nor its attacks break blocks.",
+            "On Peaceful it disappears and drops nothing."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:abyss_tyrant_spawn_egg} is only in the Creative inventory. Using it on a spawner just releases one beside it, without changing the spawner."
+        }
+      ]
+    },
+    {
+      "id": "calamity_heart",
+      "title": "{lang:entity.essentialcraft5.calamity_heart}",
+      "icon": "essentialcraft5:calamity_heart_spawn_egg",
+      "summary": "The last boss of the main line",
+      "complete": "essentialcraft5:guide/bestiary/calamity_heart",
+      "optional": true,
+      "if": "cfg:general.hoanna.portal_enabled",
+      "items": [
+        "essentialcraft5:calamity_remnant",
+        "essentialcraft5:calamity_heart_spawn_egg"
+      ],
+      "blocks": [
+        {
+          "type": "entity",
+          "id": "essentialcraft5:calamity_heart",
+          "scale": 0.5
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): defeat the Heart of Calamity."
+        },
+        {
+          "type": "p",
+          "text": "The final boss of Chapter 23, summoned with a Calamity Beacon. [[apex/summon]] covers summoning, [[apex/fight]] its three stages and how to dodge the four calamities, and [[apex/rewards]] its drops. This page just lists its numbers."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.calamity_heart.enchant_seal",
+          "text": "At the start it seals the enchantments of everyone fighting it; bring down the pillars to free them, see [[apex/fight]]."
+        },
+        {
+          "type": "h",
+          "text": "How tough it is"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Health",
+              "{cfg:general.calamity_heart.max_health}"
+            ],
+            [
+              "Armor",
+              "{cfg:general.calamity_heart.armor}, toughness {cfg:general.calamity_heart.armor_toughness}"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.per_hit_cap>0",
+              "cells": [
+                "Most per hit",
+                "{cfg:general.calamity_heart.per_hit_cap}"
+              ]
+            },
+            {
+              "if": "cfg:general.calamity_heart.per_second_cap>0",
+              "cells": [
+                "Most per second",
+                "{cfg:general.calamity_heart.per_second_cap}"
+              ]
+            },
+            [
+              "Pillars",
+              "4, with {cfg:general.calamity_heart.pillar_health} health each, {cfg:general.calamity_heart.main_pillar_health} for the main calamity's"
+            ],
+            {
+              "if": "cfg:general.calamity_heart.pillar_per_hit_cap>0",
+              "cells": [
+                "Pillar, most per hit",
+                "{cfg:general.calamity_heart.pillar_per_hit_cap}"
+              ]
+            },
+            [
+              "Experience",
+              "{cfg:general.calamity_heart.experience}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "No matter how hard you hit, it loses at most {cfg:general.calamity_heart.per_second_cap} health a second, so you have to wear it down. It only takes damage dealt by fighting players themselves, and damage that isn't melee only counts for {cfg:general.mobs.boss.non_melee_multiplier|pct}. No status effect except Glowing works on it, it can't be pushed, and it won't ride boats or minecarts.",
+          "if": "cfg:general.calamity_heart.per_second_cap>0"
+        },
+        {
+          "type": "p",
+          "text": "It only takes damage dealt by fighting players themselves, and damage that isn't melee only counts for {cfg:general.mobs.boss.non_melee_multiplier|pct}. No status effect except Glowing works on it, it can't be pushed, and it won't ride boats or minecarts.",
+          "if": "!cfg:general.calamity_heart.per_second_cap>0"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The Heart of Calamity falls. Everyone who took {cfg:general.mobs.boss.loot_share|pct} or more of its health gets a share, and this step is ticked."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "It is a boss, so taking a tenth or more of its health records it in the boss group of your [[matrix/codex|Matrix Codex]]."
+            },
+            "Neither it nor its attacks break or place blocks.",
+            "On Peaceful it disappears and drops nothing, and the beacon goes back to the summoner as it was."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Spawn egg",
+          "text": "The {item:essentialcraft5:calamity_heart_spawn_egg} is only in the Creative inventory. Using it on a spawner just releases one beside it, without changing the spawner. A Heart of Calamity from a spawn egg has no summoner and a random main calamity, and beating it gives nothing."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2483 @@
+{
+  "stone": {
+    "members": [
+      "minecraft:stone（Forge 自带）",
+      "fortifiedstone:*"
+    ],
+    "use": "tag",
+    "tag": "forge:stone",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：elemental_core"
+    ],
+    "notes": "原作把自己的方块登记成通用矿辞 stone，和原版/别的模组冲突（会让它能顶替原版材料）；不照搬，不加进 forge:stone。elemental_core.json 用到 stone，直接引用 forge:stone（原版石头类）即可"
+  },
+  "glass": {
+    "members": [
+      "fortifiedglass:*"
+    ],
+    "use": "tag",
+    "tag": "forge:glass",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原作把自己的方块登记成通用矿辞 glass，和原版/别的模组冲突（会让它能顶替原版材料）；不照搬，不加进 forge:glass。EC 配方没用到 glass（玻璃都用 blockGlass）"
+  },
+  "dirt": {
+    "members": [
+      "dreaddirt:*"
+    ],
+    "use": "tag",
+    "tag": "minecraft:dirt",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原作把自己的方块登记成通用矿辞 dirt，和原版/别的模组冲突（会让它能顶替原版材料）；不照搬，不加进 minecraft:dirt。EC 配方没用到"
+  },
+  "blockDirt": {
+    "members": [
+      "dreaddirt:*"
+    ],
+    "use": "tag",
+    "tag": "minecraft:dirt",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "同 dirt 的别名，不移植"
+  },
+  "log": {
+    "members": [
+      "root:*"
+    ],
+    "use": "tag",
+    "tag": "minecraft:logs",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原作把自己的方块登记成通用矿辞 log，和原版/别的模组冲突（会让它能顶替原版材料）；不照搬，不加进 minecraft:logs。根系加进原木标签会被当燃料、能合成木板；EC 配方没用到"
+  },
+  "blockLog": {
+    "members": [
+      "root:*"
+    ],
+    "use": "tag",
+    "tag": "minecraft:logs",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "同 log 的别名，不移植"
+  },
+  "fence": {
+    "members": [
+      "voidfence:*",
+      "magicfence:*",
+      "ffence:*"
+    ],
+    "use": "tag",
+    "tag": "forge:fences",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原作把自己的方块登记成通用矿辞 fence，和原版/别的模组冲突（会让它能顶替原版材料）；不照搬，不加进 forge:fences。EC 配方没用到。注意：栅栏互相连接靠的是方块标签 minecraft:fences，那是方块本身的行为，由方块表按原版做法处理，与矿辞无关"
+  },
+  "chest": {
+    "members": [
+      "chest:*"
+    ],
+    "use": "tag",
+    "tag": "forge:chests",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原作把自己的方块登记成通用矿辞 chest，和原版/别的模组冲突（会让它能顶替原版材料）；不照搬，不加进 forge:chests。魔力箱/虚空箱加进去会被别的配方当木箱用；EC 配方没用到 chest（用的是 chestWood）"
+  },
+  "blockChest": {
+    "members": [
+      "chest:*"
+    ],
+    "use": "tag",
+    "tag": "forge:chests",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "同 chest 的别名，不移植"
+  },
+  "concrete": {
+    "members": [
+      "concrete:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:concrete",
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原作把自己的混凝土登记成通用名 concrete，与别的模组（沉浸工程等）的混凝土冲突；1.20.1 原版也没有混凝土通用标签。EC 配方没用到，不建标签"
+  },
+  "blockConcrete": {
+    "members": [
+      "concrete:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:concrete",
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "同 concrete 的别名，不移植"
+  },
+  "cactus": {
+    "members": [
+      "cacti:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:dread_cactus",
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原作把恐惧仙人掌登记成 cactus，和原版仙人掌冲突；EC 配方没用到，不移植"
+  },
+  "blockCactus": {
+    "members": [
+      "cacti:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:dread_cactus",
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "同 cactus 的别名，不移植"
+  },
+  "cacti": {
+    "members": [
+      "cacti:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:dread_cactus",
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "只有恐惧仙人掌一个成员，EC 配方没用到"
+  },
+  "blockCacti": {
+    "members": [
+      "cacti:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:dread_cactus",
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "同上别名"
+  },
+  "platingMagic": {
+    "members": [
+      "magicplating:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magic_plating",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 2 个：chest_magical、magic_fence"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。"
+  },
+  "glassFortified": {
+    "members": [
+      "fortifiedglass:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:fortified_glass",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 3 个：fortified_frame、intersector、mimic"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。"
+  },
+  "stoneFortified": {
+    "members": [
+      "fortifiedstone:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:fortified_stone",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 17 个：adult_separator、block_breaker、breeder、child_separator、crafter、fortified_fence…",
+      "RecipesCore 1 处"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。"
+  },
+  "blockVoid": {
+    "members": [
+      "voidstone:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_stone",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。别名，配方没用到"
+  },
+  "blockVoidStone": {
+    "members": [
+      "voidstone:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_stone",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。别名，配方没用到"
+  },
+  "stoneVoid": {
+    "members": [
+      "voidstone:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_stone",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 2 个：chest_void、void_fence",
+      "RecipesCore 1 处"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。原作同一方块登记了 blockVoid/blockVoidStone/stoneVoid 三个名字，配方只用到 stoneVoid"
+  },
+  "glassVoid": {
+    "members": [
+      "voidglass:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_glass",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。四个别名，配方都没用到"
+  },
+  "blockGlassVoid": {
+    "members": [
+      "voidglass:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_glass",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。四个别名，配方都没用到"
+  },
+  "voidGlass": {
+    "members": [
+      "voidglass:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_glass",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。四个别名，配方都没用到"
+  },
+  "blockVoidGlass": {
+    "members": [
+      "voidglass:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_glass",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。四个别名，配方都没用到"
+  },
+  "platingPale": {
+    "members": [
+      "platingpale:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:pale_plating",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。配方没用到"
+  },
+  "platingMithriline": {
+    "members": [
+      "invertedplating:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mithriline_plating",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：wind_rune"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。原注册名 invertedPlating"
+  },
+  "platingDemonic": {
+    "members": [
+      "demonicplating:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:demonic_plating",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "BlockDyeable 的 16 色是方块状态（方块表定为不拆，COLOR 属性 + 染色），所以只有一个成员。配方没用到"
+  },
+  "iceCompressed": {
+    "members": [
+      "coldstone:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:cold_stone",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "配方没用到"
+  },
+  "chestMagical": {
+    "members": [
+      "chest:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magical_chest",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：mim_inventory_storage"
+    ],
+    "notes": ""
+  },
+  "chestVoid": {
+    "members": [
+      "chest:1"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_chest",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：mim"
+    ],
+    "notes": ""
+  },
+  "rightClicker": {
+    "members": [
+      "rightclicker:*"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:world_interactor",
+    "datagen": "不建标签：执行器已去掉（2026-09-28），建筑魔杖配方的这一格换成世界交互器 ×2（removed_redesign.md D1）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：magical_builder"
+    ],
+    "notes": "魔力执行器 6 种（普通/扩展/高级 × 是否潜行）在方块表里拆成 6 个方块，magical_builder.json 接受任意一种，所以用本模组标签。【作废 2026-09-28】执行器已随「机器不挖不放方块」去掉（batch4 §0.0），这个标签没有成员（引用它 = 空标签，配方合不出来），datagen 和配方都别再引用；建筑魔杖配方里的这 2 格已定换成世界交互器 ×2（removed_redesign.md D1 = A；第六批 6b 的配方 recipes/builder/magical_builder.json 落实，batch6b.md §4.1）"
+  },
+  "blockDropsFire": {
+    "members": [
+      "drops:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:fire_drops_cluster",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原 BlockDrops（仪式生成的魔晶簇），配方没用到"
+  },
+  "blockFireElemental": {
+    "members": [
+      "compressed:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:fire_drops_block",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：gem_fire_elemental"
+    ],
+    "notes": "压缩魔晶块；gem_fire_elemental.json 拆回魔晶"
+  },
+  "blockDropsWater": {
+    "members": [
+      "drops:1"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:water_drops_cluster",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原 BlockDrops（仪式生成的魔晶簇），配方没用到"
+  },
+  "blockWaterElemental": {
+    "members": [
+      "compressed:1"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:water_drops_block",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：gem_water_elemental"
+    ],
+    "notes": "压缩魔晶块；gem_water_elemental.json 拆回魔晶"
+  },
+  "blockDropsEarth": {
+    "members": [
+      "drops:2"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:earth_drops_cluster",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原 BlockDrops（仪式生成的魔晶簇），配方没用到"
+  },
+  "blockEarthElemental": {
+    "members": [
+      "compressed:2"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:earth_drops_block",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：gem_earth_elemental"
+    ],
+    "notes": "压缩魔晶块；gem_earth_elemental.json 拆回魔晶"
+  },
+  "blockDropsAir": {
+    "members": [
+      "drops:3"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:air_drops_cluster",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原 BlockDrops（仪式生成的魔晶簇），配方没用到"
+  },
+  "blockAirElemental": {
+    "members": [
+      "compressed:3"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:air_drops_block",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：gem_air_elemental"
+    ],
+    "notes": "压缩魔晶块；gem_air_elemental.json 拆回魔晶"
+  },
+  "blockElemental": {
+    "members": [
+      "compressed:4"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:elemental_drops_block",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 6 个：gem_elemental_block、weak_elemental_axe、weak_elemental_hoe、weak_elemental_pick、weak_elemental_shovel、weak_elemental_sword"
+    ],
+    "notes": "元素晶石块"
+  },
+  "blockMithriline": {
+    "members": [
+      "compressed:5"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mithriline_dust_block",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：mithriline_dust"
+    ],
+    "notes": "米斯莱粉末块"
+  },
+  "oreFireElemental": {
+    "members": [
+      "oredrops:1",
+      "oredrops:6",
+      "oredrops:11"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/fire_elemental",
+    "item": null,
+    "datagen": "建 forge 命名空间标签并加入本模组成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "主世界/下界/末地三种元素矿。矿石按惯例用 forge 标签（同时加进 forge:ores）；岩浆冶炼厂（OreSmeltingRecipe）按它把矿石冶成 ×3 gemFireElemental"
+  },
+  "oreWaterElemental": {
+    "members": [
+      "oredrops:2",
+      "oredrops:7",
+      "oredrops:12"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/water_elemental",
+    "item": null,
+    "datagen": "建 forge 命名空间标签并加入本模组成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "主世界/下界/末地三种元素矿。矿石按惯例用 forge 标签（同时加进 forge:ores）；岩浆冶炼厂（OreSmeltingRecipe）按它把矿石冶成 ×3 gemWaterElemental"
+  },
+  "oreEarthElemental": {
+    "members": [
+      "oredrops:3",
+      "oredrops:8",
+      "oredrops:13"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/earth_elemental",
+    "item": null,
+    "datagen": "建 forge 命名空间标签并加入本模组成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "主世界/下界/末地三种元素矿。矿石按惯例用 forge 标签（同时加进 forge:ores）；岩浆冶炼厂（OreSmeltingRecipe）按它把矿石冶成 ×3 gemEarthElemental"
+  },
+  "oreAirElemental": {
+    "members": [
+      "oredrops:4",
+      "oredrops:9",
+      "oredrops:14"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/air_elemental",
+    "item": null,
+    "datagen": "建 forge 命名空间标签并加入本模组成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "主世界/下界/末地三种元素矿。矿石按惯例用 forge 标签（同时加进 forge:ores）；岩浆冶炼厂（OreSmeltingRecipe）按它把矿石冶成 ×3 gemAirElemental"
+  },
+  "oreElemental": {
+    "members": [
+      "oredrops:0",
+      "oredrops:5",
+      "oredrops:10"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/elemental",
+    "item": null,
+    "datagen": "建 forge 命名空间标签并加入本模组成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "主世界/下界/末地三种元素矿。矿石按惯例用 forge 标签（同时加进 forge:ores）；岩浆冶炼厂（OreSmeltingRecipe）按它把矿石冶成 ×3 gemElemental"
+  },
+  "oreMithriline": {
+    "members": [
+      "oremithriline:0",
+      "oremithriline:1",
+      "oremithriline:2"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/mithriline",
+    "item": null,
+    "datagen": "建 forge 命名空间标签并加入本模组成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "主世界/下界/末地三种米斯莱矿；岩浆冶炼厂冶成 ×8 米斯莱粉（dustMithriline）"
+  },
+  "gemFireElemental": {
+    "members": [
+      "gem_elemental:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:fire_drops",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 4 个：compressed_fire_elemental、crystal_lamp_fire、gem_elemental、heating_rod"
+    ],
+    "notes": "岩浆冶炼厂的产出也按这个名字找物品，1.20.1 直接写死物品"
+  },
+  "gemWaterElemental": {
+    "members": [
+      "gem_elemental:1"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:water_drops",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 3 个：compressed_water_elemental、crystal_lamp_water、gem_elemental"
+    ],
+    "notes": "岩浆冶炼厂的产出也按这个名字找物品，1.20.1 直接写死物品"
+  },
+  "gemEarthElemental": {
+    "members": [
+      "gem_elemental:2"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:earth_drops",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 3 个：compressed_earth_elemental、crystal_lamp_earth、gem_elemental"
+    ],
+    "notes": "岩浆冶炼厂的产出也按这个名字找物品，1.20.1 直接写死物品"
+  },
+  "gemAirElemental": {
+    "members": [
+      "gem_elemental:3"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:air_drops",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 3 个：compressed_air_elemental、crystal_lamp_air、gem_elemental"
+    ],
+    "notes": "岩浆冶炼厂的产出也按这个名字找物品，1.20.1 直接写死物品"
+  },
+  "gemElemental": {
+    "members": [
+      "gem_elemental:4"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:elemental_gem",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 18 个：bound_gem、compressed_elemental、crystal_lamp_elemental、demonic_core、diamond_plate_h、diamond_plate_v…",
+      "RecipesCore 1 处"
+    ],
+    "notes": ""
+  },
+  "gemTitanite": {
+    "members": [
+      "titanite:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:titanite",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "配方里写的是笔误 genTitanite，这个正确的名字反而没人用"
+  },
+  "gemTitaniteTwinkling": {
+    "members": [
+      "twinkling_titanite:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:twinkling_titanite",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：holopad"
+    ],
+    "notes": ""
+  },
+  "genTitanite": {
+    "members": [],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:titanite",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "配方 JSON 2 个：void_glass、void_stone"
+    ],
+    "notes": "原作笔误：配方 void_glass/void_stone 用了没人登记的 genTitanite，导致这两条配方在原作里做不出来。移植时直接引用榍石，顺手修掉"
+  },
+  "genTitaniteTwinkling": {
+    "members": [],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:twinkling_titanite",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "配方 JSON 2 个：void_glass、void_stone"
+    ],
+    "notes": "同上笔误"
+  },
+  "pearlPale": {
+    "members": [
+      "genitem:38"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:pale_pearl",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：block_pale"
+    ],
+    "notes": ""
+  },
+  "essentialcraft:gemEnderPearl": {
+    "members": [
+      "minecraft:ender_pearl",
+      "genitem:38"
+    ],
+    "use": "tag",
+    "tag": "essentialcraft5:ender_pearls",
+    "item": null,
+    "datagen": "建本模组标签并加入成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 6 个：eye_of_absorption、matrix_link、mim_ejector、mim_ejector_persistant、mithriline_crystal、mru_catcher",
+      "RecipesCore 6 处"
+    ],
+    "notes": "原作自己的「末影珍珠或淡青珍珠」矿辞。标签内容：#forge:ender_pearls + essentialcraft5:pale_pearl"
+  },
+  "ingotPale": {
+    "members": [
+      "genitem:39"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:pale_ingot",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：block_pale",
+      "RecipesCore 4 处"
+    ],
+    "notes": "只此一个成员且是本模组物品；如需让别的模组认出，可另加 forge:ingots/pale，但配方里直接用物品"
+  },
+  "essentialcraft:ingotGold": {
+    "members": [
+      "genitem:39",
+      "minecraft:gold_ingot"
+    ],
+    "use": "tag",
+    "tag": "essentialcraft5:gold_ingots",
+    "item": null,
+    "datagen": "建本模组标签并加入成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 6 个：air_focus、earth_focus、fire_focus、matrix_link、mru_catcher、water_focus"
+    ],
+    "notes": "原作自己的「金锭或淡青锭」矿辞（register1 还把所有 ingotGold 成员复制进来）。标签内容：#forge:ingots/gold + essentialcraft5:pale_ingot"
+  },
+  "coreMagic": {
+    "members": [
+      "genitem:1",
+      "genitem:42",
+      "genitem:53"
+    ],
+    "use": "tag",
+    "tag": "essentialcraft5:cores/magic",
+    "item": null,
+    "datagen": "建本模组标签并加入成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 40 个：charging_chamber、cold_distillator、control_rod、corruption_cleaner、crystal_controller、crystal_extractor…",
+      "TileWeaponMaker（枪械组装检查核心）"
+    ],
+    "notes": "元素核心/淡青元素核心/恶魔核心三选一；武器台检查枪械核心也用它"
+  },
+  "coreElemental": {
+    "members": [
+      "genitem:1"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:elemental_core",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "配方没用到"
+  },
+  "corePale": {
+    "members": [
+      "genitem:42"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:pale_core",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "配方没用到"
+  },
+  "coreDemonic": {
+    "members": [
+      "genitem:53"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:demonic_core",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 4 个：demonic_crystal、force_field_core、sound_manager、vision_lense"
+    ],
+    "notes": ""
+  },
+  "plateDiamond": {
+    "members": [
+      "genitem:21"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:diamond_plate",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 3 个：magic_water_bottle、radiating_chamber、silky_upgrade",
+      "RecipesCore 4 处"
+    ],
+    "notes": ""
+  },
+  "plateEmerald": {
+    "members": [
+      "genitem:22"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:emerald_plate",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 4 个：biome_wand、magician_table、mithriline_furnace、silky_upgrade",
+      "RecipesCore 4 处"
+    ],
+    "notes": ""
+  },
+  "frameMagic": {
+    "members": [
+      "genitem:24"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:fortified_frame",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 17 个：charging_chamber、ender_generator、heat_generator、magical_quarry、magical_repairer、magical_screen…"
+    ],
+    "notes": ""
+  },
+  "frameIron": {
+    "members": [
+      "genitem:26"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:iron_support",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 2 个：magician_table、matrix_absorber"
+    ],
+    "notes": ""
+  },
+  "waterMagic": {
+    "members": [
+      "genitem:6"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magical_water",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 15 个：charm_air、charm_dust、charm_earth、charm_fire、charm_life、charm_lightning…"
+    ],
+    "notes": ""
+  },
+  "ingotThaumium": {
+    "members": [
+      "genitem:5"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magical_ingot",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 9 个：biome_wand、chaos_fork、frozen_mace、holy_mace、mithriline_ingot、mru_conversion_matrix…",
+      "RecipesCore 4 处"
+    ],
+    "notes": "原作把魔力锭登记成神秘时代的 ingotThaumium（外模组矿辞），不做联动，不建 forge:ingots/thaumium；配方直接用魔力锭"
+  },
+  "plateThaumium": {
+    "members": [
+      "genitem:34"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magic_plate",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 4 个：furnace_magic_magic、magic_plating、mim_ejector、mim_injector"
+    ],
+    "notes": "同上，魔力板冒用神秘时代的 plateThaumium"
+  },
+  "platePale": {
+    "members": [
+      "genitem:41"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:pale_plate",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 5 个：force_field_core、fortune_upgrade、furnace_magic_pale、pale_plating、vision_lense"
+    ],
+    "notes": ""
+  },
+  "plateDemonic": {
+    "members": [
+      "genitem:54"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:demonic_plate",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 9 个：demonic_core、demonic_plating、force_absorber、force_emitter、logic_core、neuronic_enriched_plating…"
+    ],
+    "notes": ""
+  },
+  "ingotDemonic": {
+    "members": [
+      "genitem:52"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:ackronite_ingot",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：demonic_crystal",
+      "RecipesCore 4 处"
+    ],
+    "notes": "阿克罗尼特锭"
+  },
+  "plateMagic": {
+    "members": [
+      "genitem:34",
+      "genitem:41",
+      "genitem:49",
+      "genitem:54"
+    ],
+    "use": "tag",
+    "tag": "essentialcraft5:plates/magic",
+    "item": null,
+    "datagen": "建本模组标签并加入成员",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 43 个：charging_chamber、cold_distillator、crystal_controller、crystal_former、darkness_obelisk、ender_generator…"
+    ],
+    "notes": "魔力板/淡青板/米斯莱板/恶魔板四选一，配方里用得最多（43 条 JSON）"
+  },
+  "alloysMagical": {
+    "members": [
+      "genitem:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:combined_magical_alloys",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 17 个：blazing_upgrade、crystal_extractor、diamond_upgrade、efficiency_upgrade、fortune_upgrade、inventory_upgrade…"
+    ],
+    "notes": ""
+  },
+  "orbGold": {
+    "members": [
+      "genitem:4"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magical_golden_orb",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 3 个：holy_mace、magnetizing_staff、staff_of_life"
+    ],
+    "notes": ""
+  },
+  "plateFortified": {
+    "members": [
+      "genitem:7"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magic_fortified_plating",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 11 个：corruption_cleaner、crafting_frame、crystal_controller、ember_forge、filter_whitelist、furnace_magic_fortified…",
+      "RecipesCore 10 处"
+    ],
+    "notes": ""
+  },
+  "plateEnder": {
+    "members": [
+      "genitem:8"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magic_purified_ender_scale_alloy",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 10 个：corruption_cleaner、diamond_upgrade、ember_forge、ender_generator、inventory_upgrade、mim_ejector…",
+      "RecipesCore 4 处"
+    ],
+    "notes": ""
+  },
+  "plateGlass": {
+    "members": [
+      "genitem:9"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magic_purified_glass_alloy",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 6 个：inventory_upgrade、magic_monocle、magical_mirror、mhs_helmet、mru_mover_2、mrucuec_holding_chamber",
+      "RecipesCore 2 处"
+    ],
+    "notes": ""
+  },
+  "ingotGoldMagical": {
+    "members": [
+      "genitem:10"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magic_purified_gold_alloy",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 11 个：charm_air、charm_dust、charm_earth、charm_fire、charm_life、charm_lightning…",
+      "RecipesCore 4 处"
+    ],
+    "notes": ""
+  },
+  "plateRedstone": {
+    "members": [
+      "genitem:11"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magic_purified_redstone_alloy",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 4 个：corruption_cleaner、efficiency_upgrade、magical_jukebox、mrucuec_redstone_controller"
+    ],
+    "notes": ""
+  },
+  "dustCrystal": {
+    "members": [
+      "genitem:20"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:crystal_dust",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 12 个：crystal_controller、crystal_extractor、crystal_former、diamond_upgrade、magical_porkchop、magical_shield…"
+    ],
+    "notes": ""
+  },
+  "dustMagic": {
+    "members": [
+      "genitem:3"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magical_essence",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "RecipesCore 1 处"
+    ],
+    "notes": "魔力精华"
+  },
+  "rodHeat": {
+    "members": [
+      "genitem:25"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:heating_rod",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 7 个：furnace_magic_fortified、heat_generator、magmatic_smeltery、matrix_absorber、mithriline_furnace、natural_furnace…"
+    ],
+    "notes": ""
+  },
+  "screenMagic": {
+    "members": [
+      "genitem:27"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:magical_screen",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 26 个：charging_chamber、cold_distillator、corruption_cleaner、crystal_controller、crystal_extractor、crystal_former…"
+    ],
+    "notes": ""
+  },
+  "mruLink": {
+    "members": [
+      "genitem:28"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:matrix_link",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 10 个：charging_chamber、magical_repairer、matrix_absorber、mru_coil、mru_coil_hardener、mrucuec_acceptor…"
+    ],
+    "notes": ""
+  },
+  "mruCatcher": {
+    "members": [
+      "genitem:29"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mru_catcher",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 26 个：charging_chamber、cold_distillator、crystal_controller、crystal_former、ender_generator、heat_generator…"
+    ],
+    "notes": ""
+  },
+  "conversionMatrix": {
+    "members": [
+      "genitem:30"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mru_conversion_matrix",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 23 个：charging_chamber、cold_distillator、crystal_controller、crystal_extractor、crystal_former、ender_generator…"
+    ],
+    "notes": ""
+  },
+  "plateObsidian": {
+    "members": [
+      "genitem:31"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:obsidian_plate",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 8 个：crystal_extractor、crystal_former、filter_blacklist、intersector、magical_shield、magician_table…"
+    ],
+    "notes": ""
+  },
+  "worldInteractor": {
+    "members": [
+      "genitem:33"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:world_interactor",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 23 个：cold_distillator、corruption_cleaner、ender_generator、heat_generator、magical_enchanter、magical_furnace…"
+    ],
+    "notes": ""
+  },
+  "gemPale": {
+    "members": [
+      "genitem:40"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:pale_gem",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：fortune_upgrade"
+    ],
+    "notes": ""
+  },
+  "plateVoid": {
+    "members": [
+      "genitem:35"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_plating",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 17 个：demonic_pentacle、ember_forge、filter_blacklist_advanced、filter_whitelist_advanced、furnace_magic_void、magical_builder…"
+    ],
+    "notes": ""
+  },
+  "coreVoid": {
+    "members": [
+      "genitem:36"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_core",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 13 个：ember_forge、holopad、magical_builder、magical_furnace、magical_teleporter、mim…"
+    ],
+    "notes": ""
+  },
+  "core_void": {
+    "members": [],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_core",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "配方 JSON 1 个：demonic_pentacle"
+    ],
+    "notes": "原作笔误：demonic_pentacle.json 写成 core_void（没人登记），恶魔五芒星在原作里做不出来；移植时改成虚空核心"
+  },
+  "reactorVoid": {
+    "members": [
+      "genitem:37"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:void_mru_reactor",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 14 个：darkness_obelisk、ember_forge、force_field_core、magical_furnace、magical_teleporter、mim…"
+    ],
+    "notes": ""
+  },
+  "focusFire": {
+    "members": [
+      "ffocus:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:fire_focus",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 10 个：biome_wand、chaos_fork、charm_fire、charm_lightning、charm_magma、charm_steam…"
+    ],
+    "notes": ""
+  },
+  "focusWater": {
+    "members": [
+      "wfocus:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:water_focus",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 10 个：biome_wand、charm_life、charm_lightning、charm_rain、charm_water、emerald_heart…"
+    ],
+    "notes": ""
+  },
+  "focusEarth": {
+    "members": [
+      "efocus:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:earth_focus",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 12 个：biome_wand、charm_dust、charm_earth、charm_life、charm_magma、emerald_heart…"
+    ],
+    "notes": ""
+  },
+  "focusAir": {
+    "members": [
+      "afocus:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:air_focus",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 11 个：biome_wand、charm_air、charm_dust、charm_rain、charm_steam、holy_mace…"
+    ],
+    "notes": ""
+  },
+  "soulShard": {
+    "members": [
+      "storage:0"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:soul_shard",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": ""
+  },
+  "soulStone": {
+    "members": [
+      "storage:1"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:soul_sphere",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "注意：矿辞 soulStone 指灵魂球（storage:1），不是灵魂石物品（ItemSoulStone）；配方没用到，不必管"
+  },
+  "darkSoulMatter": {
+    "members": [
+      "storage:2"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:dark_soul_matter",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 2 个：magnetizing_staff、mrucuec_holding_chamber"
+    ],
+    "notes": ""
+  },
+  "redSoulMatter": {
+    "members": [
+      "storage:3"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:red_soul_matter",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 23 个：biome_wand、charging_chamber、charm_air、charm_dust、charm_earth、charm_fire…"
+    ],
+    "notes": ""
+  },
+  "matterOfEternity": {
+    "members": [
+      "storage:4"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:matter_of_eternity",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 14 个：chaos_fork、darkness_obelisk、ember_forge、force_field_generator、frozen_mace、holopad…"
+    ],
+    "notes": ""
+  },
+  "ingotMagnet": {
+    "members": [
+      "genitem:43"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mru_magnet",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 4 个：mru_coil、mru_coil_hardener、reactor、reactor_support"
+    ],
+    "notes": "MRU 磁体"
+  },
+  "gemResonant": {
+    "members": [
+      "genitem:44"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mru_resonating_crystal",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 12 个：corruption_cleaner、demonic_core、elemental_axe、elemental_hoe、elemental_pick、elemental_shovel…",
+      "RecipesCore 1 处"
+    ],
+    "notes": "MRU 共鸣水晶；米斯莱熔炉的输入也用它"
+  },
+  "coreLapis": {
+    "members": [
+      "genitem:45"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:lapis_core",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "青金石核心；原作没配方没用途，死物品"
+  },
+  "dustFading": {
+    "members": [
+      "genitem:46"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:fading_dust",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：pale_crystal"
+    ],
+    "notes": ""
+  },
+  "gemFading": {
+    "members": [
+      "genitem:47"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:fading_crystal",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 3 个：force_emitter、pale_crystal、particle_catcher",
+      "RecipesCore 1 处"
+    ],
+    "notes": "米斯莱熔炉输入"
+  },
+  "gemMithrilineCrystal": {
+    "members": [
+      "genitem:48"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mithriline_crystal",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 3 个：force_absorber、mithriline_crystal、mithriline_furnace",
+      "RecipesCore 1 处"
+    ],
+    "notes": "米斯莱熔炉输入"
+  },
+  "plateMithrilineMetal": {
+    "members": [
+      "genitem:49"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mithriline_plate",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 4 个：mim_ejector_persistant、mim_injector_persistant、mithriline_plating、wind_rune"
+    ],
+    "notes": ""
+  },
+  "ingotMithrilineMetal": {
+    "members": [
+      "genitem:50"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mithriline_ingot",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 2 个：mithriline_furnace、mithriline_gem",
+      "RecipesCore 4 处"
+    ],
+    "notes": ""
+  },
+  "dustMithriline": {
+    "members": [
+      "genitem:51"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:mithriline_dust",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 7 个：compressed_mithriline、crystal_lamp_mithriline、mithriline_crystal、mithriline_furnace、mithriline_gem、mithriline_ingot…",
+      "RecipesCore 1 处"
+    ],
+    "notes": "米斯莱熔炉输入；也是岩浆冶炼厂对米斯莱矿的产出"
+  },
+  "gemWind": {
+    "members": [
+      "genitem:55"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "essentialcraft5:wind_gem",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 12 个：force_absorber、force_emitter、neuronic_enriched_plating、wind_boots、wind_chestplate、wind_elemental_axe…"
+    ],
+    "notes": ""
+  },
+  "record": {
+    "members": [
+      "record:0",
+      "record_a:0",
+      "robocalypse:0",
+      "record_secret:0"
+    ],
+    "use": "tag",
+    "tag": "minecraft:music_discs",
+    "item": null,
+    "datagen": "把 essentialcraft5:music_disc_ropocalypse 加进原版标签（原版唱片惯例）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "四张唱片里三张第三方版权唱片已删，只剩全息唱片。EC 配方没用到 record"
+  },
+  "gemCoal": {
+    "members": [
+      "minecraft:coal"
+    ],
+    "use": "tag",
+    "tag": "minecraft:coals",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 4 个：elemental_fuel_fire_0、elemental_fuel_fire_1、elemental_fuel_fire_2、elemental_fuel_fire_3"
+    ],
+    "notes": "原作只登记了煤炭（meta 0，不含木炭）。minecraft:coals 含木炭，更宽松；要严格照原作就直接用物品 minecraft:coal"
+  },
+  "gemNetherStar": {
+    "members": [
+      "minecraft:nether_star"
+    ],
+    "use": "tag",
+    "tag": "forge:nether_stars",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 6 个：reactor、spiky_shield、void_boots、void_chestplate、void_helmet、void_leggings",
+      "RecipesCore 1 处"
+    ],
+    "notes": ""
+  },
+  "gemEnderPearl": {
+    "members": [
+      "minecraft:ender_pearl",
+      "genitem:38（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:ender_pearls",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。EC 配方其实没用到它（用的是 essentialcraft:gemEnderPearl）"
+  },
+  "enderPearl": {
+    "members": [
+      "genitem:38（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:ender_pearls",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "只在配置开启时把淡青珍珠登记进来的别名。原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。EC 配方没用到"
+  },
+  "itemEnderPearl": {
+    "members": [
+      "genitem:38（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:ender_pearls",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "只在配置开启时把淡青珍珠登记进来的别名。原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。EC 配方没用到"
+  },
+  "pearlEnder": {
+    "members": [
+      "genitem:38（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:ender_pearls",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "只在配置开启时把淡青珍珠登记进来的别名。原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。EC 配方没用到"
+  },
+  "book": {
+    "members": [
+      "minecraft:book"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "minecraft:book",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：research_book_0"
+    ],
+    "notes": "Forge 1.20.1 没有书的通用标签，直接用原版物品"
+  },
+  "ingotGold": {
+    "members": [
+      "minecraft:gold_ingot（Forge 自带）",
+      "genitem:39（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:ingots/gold",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "RecipesCore 3 处"
+    ],
+    "notes": "原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。"
+  },
+  "enderEye": {
+    "members": [
+      "minecraft:ender_eye"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "minecraft:ender_eye",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 1 个：mithriline_crystal"
+    ],
+    "notes": "Forge 1.20.1 没有末影之眼的通用标签，直接用原版物品"
+  },
+  "gemDiamond": {
+    "members": [
+      "minecraft:diamond（Forge 自带）",
+      "genitem:40（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:gems/diamond",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 3 个：diamond_plate_h、diamond_plate_v、mru_mover_2",
+      "RecipesCore 4 处"
+    ],
+    "notes": "原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。"
+  },
+  "gemEmerald": {
+    "members": [
+      "minecraft:emerald（Forge 自带）",
+      "genitem:40（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:gems/emerald",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "配方 JSON 4 个：emerald_heart、emerald_plate_h、emerald_plate_v、matrix_link",
+      "RecipesCore 4 处"
+    ],
+    "notes": "原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。"
+  },
+  "gemRuby": {
+    "members": [
+      "genitem:40（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:gems/ruby",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "只在配置开启时把淡青宝石登记进来。原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。EC 配方没用到"
+  },
+  "gemSapphire": {
+    "members": [
+      "genitem:40（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:gems/sapphire",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "只在配置开启时把淡青宝石登记进来。原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。EC 配方没用到"
+  },
+  "gemPeridot": {
+    "members": [
+      "genitem:40（仅配置 allowPaleItemsInOtherRecipes 开启时）"
+    ],
+    "use": "tag",
+    "tag": "forge:gems/peridot",
+    "item": null,
+    "datagen": "无（不移植）",
+    "sources": [
+      "OreDictionaryRegistry 登记",
+      "没有任何配方或代码用到"
+    ],
+    "notes": "只在配置开启时把淡青宝石登记进来。原作配置 allowPaleItemsInOtherRecipes 开启时会把淡青物品塞进这个通用矿辞，让它顶替原版材料；这个配置不移植（标签是数据包，没法按配置开关），EC 自己要「原版或淡青」的地方用 essentialcraft5:* 自建标签。EC 配方没用到"
+  },
+  "ingotIron": {
+    "members": [
+      "minecraft:iron_ingot"
+    ],
+    "use": "tag",
+    "tag": "forge:ingots/iron",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 13 个：air_focus、control_rod、diamond_plate_h、diamond_plate_v、earth_focus、elemental_core…",
+      "RecipesCore 6 处"
+    ],
+    "notes": ""
+  },
+  "nuggetGold": {
+    "members": [
+      "minecraft:gold_nugget"
+    ],
+    "use": "tag",
+    "tag": "forge:nuggets/gold",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "RecipesCore 4 处"
+    ],
+    "notes": ""
+  },
+  "dustRedstone": {
+    "members": [
+      "minecraft:redstone"
+    ],
+    "use": "tag",
+    "tag": "forge:dusts/redstone",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 13 个：adult_separator、advanced_breaker、block_breaker、breeder、child_separator、crafter…",
+      "RecipesCore 6 处"
+    ],
+    "notes": ""
+  },
+  "dustGlowstone": {
+    "members": [
+      "minecraft:glowstone_dust"
+    ],
+    "use": "tag",
+    "tag": "forge:dusts/glowstone",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "RecipesCore 2 处"
+    ],
+    "notes": ""
+  },
+  "gemLapis": {
+    "members": [
+      "minecraft:lapis_lazuli"
+    ],
+    "use": "tag",
+    "tag": "forge:gems/lapis",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 1 个：logic_core",
+      "RecipesCore 1 处"
+    ],
+    "notes": ""
+  },
+  "gemQuartz": {
+    "members": [
+      "minecraft:quartz"
+    ],
+    "use": "tag",
+    "tag": "forge:gems/quartz",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 3 个：bound_gem、logic_core、soul_scriber",
+      "RecipesCore 2 处"
+    ],
+    "notes": ""
+  },
+  "blockLapis": {
+    "members": [
+      "minecraft:lapis_block"
+    ],
+    "use": "tag",
+    "tag": "forge:storage_blocks/lapis",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 1 个：block_pale",
+      "RecipesCore 1 处"
+    ],
+    "notes": ""
+  },
+  "blockGlass": {
+    "members": [
+      "minecraft:glass",
+      "minecraft:stained_glass:*"
+    ],
+    "use": "tag",
+    "tag": "forge:glass",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "RecipesCore 5 处",
+      "TileCrystalFormer"
+    ],
+    "notes": "原作 blockGlass 含染色玻璃，forge:glass 同样包含"
+  },
+  "cobblestone": {
+    "members": [
+      "minecraft:cobblestone"
+    ],
+    "use": "tag",
+    "tag": "forge:cobblestone",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 6 个：crystal_lamp_air、crystal_lamp_earth、crystal_lamp_elemental、crystal_lamp_fire、crystal_lamp_mithriline、crystal_lamp_water"
+    ],
+    "notes": ""
+  },
+  "obsidian": {
+    "members": [
+      "minecraft:obsidian"
+    ],
+    "use": "tag",
+    "tag": "forge:obsidian",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 1 个：obsidian_plate"
+    ],
+    "notes": ""
+  },
+  "netherrack": {
+    "members": [
+      "minecraft:netherrack"
+    ],
+    "use": "tag",
+    "tag": "forge:netherrack",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 1 个：soul_scriber"
+    ],
+    "notes": ""
+  },
+  "slimeball": {
+    "members": [
+      "minecraft:slime_ball"
+    ],
+    "use": "tag",
+    "tag": "forge:slimeballs",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 3 个：right_clicker_advanced_sneaky、right_clicker_extended_sneaky、right_clicker_normal_sneaky"
+    ],
+    "notes": ""
+  },
+  "feather": {
+    "members": [
+      "minecraft:feather"
+    ],
+    "use": "tag",
+    "tag": "forge:feathers",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 2 个：magical_wings、research_book_0"
+    ],
+    "notes": ""
+  },
+  "string": {
+    "members": [
+      "minecraft:string"
+    ],
+    "use": "tag",
+    "tag": "forge:string",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 10 个：charm_air、charm_dust、charm_earth、charm_fire、charm_life、charm_lightning…"
+    ],
+    "notes": ""
+  },
+  "leather": {
+    "members": [
+      "minecraft:leather"
+    ],
+    "use": "tag",
+    "tag": "forge:leather",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "RecipesCore 1 处"
+    ],
+    "notes": ""
+  },
+  "stickWood": {
+    "members": [
+      "minecraft:stick"
+    ],
+    "use": "tag",
+    "tag": "forge:rods/wooden",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 18 个：elemental_axe、elemental_hoe、elemental_pick、elemental_shovel、elemental_sword、magical_chisel…"
+    ],
+    "notes": ""
+  },
+  "chestWood": {
+    "members": [
+      "minecraft:chest",
+      "minecraft:trapped_chest"
+    ],
+    "use": "tag",
+    "tag": "forge:chests/wooden",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 3 个：advanced_breaker、inventory_upgrade、right_clicker_extended"
+    ],
+    "notes": ""
+  },
+  "logWood": {
+    "members": [
+      "minecraft:log:*",
+      "minecraft:log2:*"
+    ],
+    "use": "tag",
+    "tag": "minecraft:logs",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "TileUltraFlowerBurner"
+    ],
+    "notes": "超级花朵燃烧器（TileUltraFlowerBurner）烧原木用；下界菌柄不能燃烧，可考虑 minecraft:logs_that_burn"
+  },
+  "dyeBlack": {
+    "members": [
+      "minecraft:dye:0"
+    ],
+    "use": "tag",
+    "tag": "forge:dyes/black",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 1 个：research_book_0"
+    ],
+    "notes": ""
+  },
+  "dyeCyan": {
+    "members": [
+      "minecraft:dye:6"
+    ],
+    "use": "tag",
+    "tag": "forge:dyes/cyan",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 1 个：research_book_0"
+    ],
+    "notes": ""
+  },
+  "dyeMagenta": {
+    "members": [
+      "minecraft:dye:13"
+    ],
+    "use": "tag",
+    "tag": "forge:dyes/magenta",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 1 个：research_book_0"
+    ],
+    "notes": ""
+  },
+  "dyeYellow": {
+    "members": [
+      "minecraft:dye:11"
+    ],
+    "use": "tag",
+    "tag": "forge:dyes/yellow",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "配方 JSON 1 个：research_book_0"
+    ],
+    "notes": ""
+  },
+  "glowstone": {
+    "members": [
+      "minecraft:glowstone"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "minecraft:glowstone",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "配方 JSON 1 个：cold_stone"
+    ],
+    "notes": "原作 glowstone 指荧石方块；Forge 1.20.1 没有荧石方块的通用标签，直接用原版物品"
+  },
+  "workbench": {
+    "members": [
+      "minecraft:crafting_table"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "minecraft:crafting_table",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "配方 JSON 4 个：crafter、crafting_frame、mim_crafter、weapon_maker"
+    ],
+    "notes": "Forge 1.20.1 没有工作台通用标签，直接用原版物品"
+  },
+  "torch": {
+    "members": [
+      "minecraft:torch"
+    ],
+    "use": "item",
+    "tag": null,
+    "item": "minecraft:torch",
+    "datagen": "无（配方直接引用物品）",
+    "sources": [
+      "配方 JSON 6 个：crystal_lamp_air、crystal_lamp_earth、crystal_lamp_elemental、crystal_lamp_fire、crystal_lamp_mithriline、crystal_lamp_water"
+    ],
+    "notes": "Forge 1.20.1 没有火把通用标签，直接用原版物品"
+  },
+  "oreCoal": {
+    "members": [
+      "minecraft 原版矿石（Forge 自带）"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/coal",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 gemCoal（→ minecraft:coal）。1.20.1 原版矿石还有深层变种和粗矿（raw_*），forge:ores 已含深层矿；要不要也收粗矿（forge:raw_materials/*）另议。"
+  },
+  "oreIron": {
+    "members": [
+      "minecraft 原版矿石（Forge 自带）"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/iron",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotIron（→ forge:ingots/iron）。1.20.1 原版矿石还有深层变种和粗矿（raw_*），forge:ores 已含深层矿；要不要也收粗矿（forge:raw_materials/*）另议。"
+  },
+  "oreGold": {
+    "members": [
+      "minecraft 原版矿石（Forge 自带）"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/gold",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotGold（→ forge:ingots/gold）。1.20.1 原版矿石还有深层变种和粗矿（raw_*），forge:ores 已含深层矿；要不要也收粗矿（forge:raw_materials/*）另议。"
+  },
+  "oreDiamond": {
+    "members": [
+      "minecraft 原版矿石（Forge 自带）"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/diamond",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 gemDiamond（→ forge:gems/diamond）。1.20.1 原版矿石还有深层变种和粗矿（raw_*），forge:ores 已含深层矿；要不要也收粗矿（forge:raw_materials/*）另议。"
+  },
+  "oreEmerald": {
+    "members": [
+      "minecraft 原版矿石（Forge 自带）"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/emerald",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 gemEmerald（→ forge:gems/emerald）。1.20.1 原版矿石还有深层变种和粗矿（raw_*），forge:ores 已含深层矿；要不要也收粗矿（forge:raw_materials/*）另议。"
+  },
+  "oreQuartz": {
+    "members": [
+      "minecraft 原版矿石（Forge 自带）"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/quartz",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 gemQuartz（→ forge:gems/quartz）。1.20.1 原版矿石还有深层变种和粗矿（raw_*），forge:ores 已含深层矿；要不要也收粗矿（forge:raw_materials/*）另议。"
+  },
+  "oreRedstone": {
+    "members": [
+      "minecraft 原版矿石（Forge 自带）"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/redstone",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 8 个 dustRedstone（→ forge:dusts/redstone）。1.20.1 原版矿石还有深层变种和粗矿（raw_*），forge:ores 已含深层矿；要不要也收粗矿（forge:raw_materials/*）另议。"
+  },
+  "oreLapis": {
+    "members": [
+      "minecraft 原版矿石（Forge 自带）"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/lapis",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 16 个 gemLapis（→ forge:gems/lapis）。1.20.1 原版矿石还有深层变种和粗矿（raw_*），forge:ores 已含深层矿；要不要也收粗矿（forge:raw_materials/*）另议。"
+  },
+  "oreCopper": {
+    "members": [
+      "minecraft 原版矿石（Forge 自带）"
+    ],
+    "use": "tag",
+    "tag": "forge:ores/copper",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotCopper（→ forge:ingots/copper）。1.20.1 原版有铜矿，标签自带成员。1.20.1 原版矿石还有深层变种和粗矿（raw_*），forge:ores 已含深层矿；要不要也收粗矿（forge:raw_materials/*）另议。"
+  },
+  "oreTin": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/tin",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotTin（→ forge:ingots/tin）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "oreLead": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/lead",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotLead（→ forge:ingots/lead）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "oreSilver": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/silver",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotSilver（→ forge:ingots/silver）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "oreCobalt": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/cobalt",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotCobalt（→ forge:ingots/cobalt）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。钴/阿迪特是旧版匠魂的矿，1.20.1 匠魂已没有阿迪特，可以直接删掉这条。"
+  },
+  "oreArdite": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/ardite",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotArdite（→ forge:ingots/ardite）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。钴/阿迪特是旧版匠魂的矿，1.20.1 匠魂已没有阿迪特，可以直接删掉这条。"
+  },
+  "oreNickel": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/nickel",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotNickel（→ forge:ingots/nickel）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "oreAluminum": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/aluminum",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotAluminum（→ forge:ingots/aluminum）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "oreUranium": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/uranium",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotUranium（→ forge:ingots/uranium）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "oreIridium": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/iridium",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotIridium（→ forge:ingots/iridium）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "oreAlchemite": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/alchemite",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 5 个 gemAlchemite（→ forge:gems/alchemite）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。炼金石来自旧模组，1.20.1 基本不会有，可删。"
+  },
+  "oreSaltpeter": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/saltpeter",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 5 个 dustSaltpeter（→ forge:dusts/saltpeter）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "oreSulfur": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/sulfur",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 5 个 dustSulfur（→ forge:dusts/sulfur）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "orePlatinum": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/platinum",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotPlatinum（→ forge:ingots/platinum）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  },
+  "oreMithril": {
+    "members": [],
+    "use": "tag",
+    "tag": "forge:ores/mithril",
+    "item": null,
+    "datagen": "引用现成标签，不加本模组物品",
+    "sources": [
+      "OreSmeltingRecipe（岩浆冶炼厂）"
+    ],
+    "notes": "岩浆冶炼厂（OreSmeltingRecipe）的矿石输入，原作按矿辞名把矿冶成岩浆合金（magmatic_alloy 的 NBT 记矿名），再炼回 1 个 ingotMithril（→ forge:ingots/mithril）。非原版矿石：只被动引用通用标签，不写任何联动代码；标签为空时这条冶炼和对应的岩浆合金都不出现。"
+  }
+}

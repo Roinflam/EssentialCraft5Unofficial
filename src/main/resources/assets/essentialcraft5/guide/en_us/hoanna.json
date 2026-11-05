@@ -1,0 +1,1837 @@
+{
+  "id": "hoanna",
+  "order": 97,
+  "group": "main",
+  "title": "Chapter 16 · Hoanna",
+  "subtitle": "Find void materials in a ruined world",
+  "icon": "essentialcraft5:void_mru_reactor",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "legend",
+      "title": "Hoanna, the Ruined World",
+      "icon": "minecraft:dead_bush",
+      "summary": "Where this chapter goes and what to bring",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "A world where technology and magic were joined, and everything worked as it should. It c[...] The man called the Wind, and the Wind itself came to him and carried him to the land of dreams, to Hoanna, the world where anything was possible.",
+          "by": "The Legend of Hoanna"
+        },
+        {
+          "type": "p",
+          "text": "The legend called <hl>Hoanna</hl> the land of dreams. What is left is a wasteland burned out by MRU, its cities empty under a strange sky. It is a dimension of its own, reached through a portal like the Nether or the End, and no animals spawn there."
+        },
+        {
+          "type": "p",
+          "text": "You go for the <em>void materials</em>: Chapters 17 to 21, from the demons to the suit's modules, can't be done without them. At first {item:essentialcraft5:titanite}, {item:essentialcraft5:void_core} and {item:essentialcraft5:void_mru_reactor} only come from the chests the people of Hoanna left in their ruins ([[hoanna/relics]]), though {item:essentialcraft5:titanite} can also be mined in the Hoanna Desert."
+        },
+        {
+          "type": "h",
+          "text": "The road through this chapter"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": [
+                "cfg:general.wind_wish.enabled",
+                "cfg:general.wind_wish.required>0"
+              ],
+              "text": "Build up enough wind relation and fulfill enough of the wind's wishes, and the {item:essentialcraft5:wind_tablet} will answer you ([[hoanna/wind_name]]). This step takes the longest, so let it build while you do other things."
+            },
+            {
+              "if": "!cfg:general.wind_wish.enabled||!cfg:general.wind_wish.required>0",
+              "text": "Get the {item:essentialcraft5:wind_tablet} to show the wind's full true name ([[hoanna/wind_name]]). This step takes the longest, so let it build while you do other things."
+            },
+            "In the Overworld, use the tablet to turn a Nether portal into a [[hoanna/open_gate|Gate to Hoanna]], then [[hoanna/crossing|step through]].",
+            "Find a [[hoanna/ruins|ruin]] and take your first [[hoanna/relics|relics]] from its chests.",
+            "Make {item:essentialcraft5:void_stone} from Titanite, then press it into a {item:essentialcraft5:void_plating}. See [[hoanna/void_stone]] and [[hoanna/void_plating]]."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The pages in between cover the way home and what you'll face over there. Read them before you set out, and come back to them on the way."
+        },
+        {
+          "type": "h",
+          "text": "What to prepare"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<t>{cfg:general.wind.tablet_points}</t> wind relation, a measure of how fond the wind is of you. It grows slowly, mostly from drinking Air Potions ([[wind/air_potion]]).",
+            {
+              "if": [
+                "cfg:general.wind_wish.enabled",
+                "cfg:general.wind_wish.required>0"
+              ],
+              "text": "<t>{cfg:general.wind_wish.required}</t> wind wishes. Once you are Windbound, ask the wind what it wants at a Wind Rune, then do it ([[wind/wishes]])."
+            },
+            "A {item:essentialcraft5:wind_tablet}, made from 4 {item:essentialcraft5:air_focus}, 4 {item:essentialcraft5:magic_fortified_plating} and 1 {item:essentialcraft5:wind_keeper} ([[wind/wind_tablet]]).",
+            "At least {cfg:general.wind.tablet_portal_mru} MRU, either in the tablet or in soul storage you carry.",
+            "Food and torches for the other side, plus a bed and a set of armor.",
+            "From the Holograms chapter on you'll need 7–9 Nether Stars, so start collecting Wither Skeleton skulls on your trips to Nether Fortresses ([[hologram/holopad]])."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Where people get stuck"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Only <em>Archmages</em> drop the {item:essentialcraft5:wind_keeper}, and they're rare in the wild. Once you are Windbound, make a Wind Horn and blow it at night to call one; defeat it yourself and it drops one ([[wind/wind_horn]], [[wind/archmage]]).",
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "If a dungeon chest turns up a {item:essentialcraft5:wind_catcher}, wear it while drinking Air Potions. Each potion has a 15% chance to catch a {item:essentialcraft5:wind_keeper}, about one in every six or seven. It also slows your relation gains, to nothing at all without other bonuses, so take it off once you have one ([[baubles/wind_corruption]])."
+            },
+            "The 4 Windy Focuses need fuel made from air essence drawn out of crystals. New crystals are low in every element, so start raising air-rich ones early ([[essence/fuel_and_focus]], [[essence/crystal_controller]])."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "If you've forgotten what MRU or ESPE means, see [[start/glossary]]."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book calls Hoanna the first world that stood in the path of MRU's destructive force, and all it has on the place is a broken legend. In the legend the man called the wind by its name, so the book guesses that if you could learn that name, you might go there too."
+        }
+      ]
+    },
+    {
+      "id": "wind_name",
+      "title": "The Wind’s Name",
+      "icon": "essentialcraft5:wind_tablet",
+      "summary": "Enough relation and wishes, and the tablet answers",
+      "complete": "essentialcraft5:guide/hoanna/true_name",
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "<em>Goal</em>: turn every question mark on the {item:essentialcraft5:wind_tablet} into a letter and fulfill enough of the wind's wishes. The tablet answers you and opens a gate only when you have both."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_wish.enabled||!cfg:general.wind_wish.required>0",
+          "text": "<em>Goal</em>: turn every question mark on the {item:essentialcraft5:wind_tablet} into a letter. The tablet opens a gate for you only once the whole name shows."
+        },
+        {
+          "type": "p",
+          "text": "The Wind Tablet turns the sound of the wind into human words, and the fonder the wind is of you, the more of them it makes out. Hover over the tablet and you'll see 22 question marks under \"Wind Name:\". Each {cfg:general.wind.tablet_points|div:22|int} points or so of wind relation turns one into a letter, and at {cfg:general.wind.tablet_points} the whole name shows."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "Under the name there's also a \"Wind Marks\" line. Each [[wind/wishes|wish]] you fulfill for the wind adds one, up to {cfg:general.wind_wish.required}."
+        },
+        {
+          "type": "h",
+          "text": "Raising your relation"
+        },
+        {
+          "type": "p",
+          "text": "Mostly by imbuing Air Potions at a Wind Rune altar and drinking them one after another. Becoming Windbound first and wearing Wind Mage armor both speed it up a good deal. The route table on [[wind/air_potion]] compares what each route costs and how long it takes."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "Fulfilling the wind's [[wind/wishes|wishes]] raises it too, by +{cfg:general.wind_wish.points} raw relation each. Until the name is complete, though, the wind only asks for those {cfg:general.wind_wish.required}, and the rest of your relation has to come from potions."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "!cfg:general.wind_wish.required>0"
+          ],
+          "text": "The wind asks no favors until its name is complete. After that, each of its [[wind/wishes|wishes]] you fulfill adds +{cfg:general.wind_wish.points} raw relation."
+        },
+        {
+          "type": "h",
+          "text": "Saving time"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The altar only gathers ESPE while you're nearby, so imbue your potions before a long trip and take them with you ([[mithriline/crystal_pillar]]).",
+            "Pillars in the End gather much faster, {cfg:machines.mithriline_crystal_pillar.espe_generated_end} per tick against {cfg:machines.mithriline_crystal_pillar.espe_generated} in the Overworld. Building the altar in the End, or building a second one, cuts the wait several times over ([[mithriline/crystal_pillar]])."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Right-click a Nether portal with the tablet before the name is complete and all you get is \"The portal does not respond...\" above your hotbar. No MRU is spent and the portal stays as it was."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Not enough wishes",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "With the name complete but too few wishes, right-clicking a portal only gets you \"The wind is still waiting for you to fulfil its wishes\", and again no MRU is spent."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Don't break the Trapped Wind",
+          "text": "Right-clicking with a {item:essentialcraft5:wind_keeper} in hand breaks it for a little wind relation, so be careful with the one you're keeping for the tablet."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "The name in the tooltip has no question marks left and the Wind Marks are full."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "if": "!cfg:general.wind_wish.enabled||!cfg:general.wind_wish.required>0",
+          "text": "The name in the tooltip has no question marks left."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "p",
+          "text": "Wind relation is counted per player. When you play together, whoever uses the tablet on the portal needs the relation, and it doesn't matter who made the tablet."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind_wish.enabled",
+          "text": "Wishes are per player too. In a world where you had already reached the relation, or had already opened a Gate to Hoanna, before this step was added, the wish count is filled in for you, so there's nothing to go back and do."
+        }
+      ]
+    },
+    {
+      "id": "open_gate",
+      "title": "Opening the Gate",
+      "icon": "minecraft:flint_and_steel",
+      "summary": "Turn a Nether portal green with the tablet",
+      "complete": "essentialcraft5:guide/hoanna/portal",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: turn a lit Nether portal in the Overworld into a <hl>Gate to Hoanna</hl>, a green portal that leads there."
+        },
+        {
+          "type": "h",
+          "text": "You need"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A {item:essentialcraft5:wind_tablet} showing the wind's full name ([[hoanna/wind_name]]).",
+            "{cfg:general.wind.tablet_portal_mru} MRU, either in the tablet's own storage or in soul storage you carry. The tablet holds up to 5,000 and charges in a {item:essentialcraft5:charging_chamber} ([[storage/charging_chamber]]).",
+            "A lit Nether portal in the <em>Overworld</em>. Any frame size works, with an opening from 2 to 21 wide and 3 to 21 tall.",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.hoanna_portal>0"
+              ],
+              "text": "To go through it you also need matrix rank {cfg:general.matrix_rank.gates.hoanna_portal}; opening the gate itself doesn't check your rank ([[matrix/overview]])."
+            }
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Build a Nether portal in the Overworld and light it, but don't step in yet.",
+            "Hold the Wind Tablet and right-click the purple surface inside the frame.",
+            "The whole portal turns green at once, and {cfg:general.wind.tablet_portal_mru} MRU is spent."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The portal turns green and the message above your hotbar says the Gate to Hoanna is open."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<b>Only a fully lit portal in the Overworld can be changed</b>, never one in the Nether. Use the tablet on an unlit frame and it tells you to light it first. Inside someone else's claim the change is refused, not a single block changes, and <em>no</em> MRU is spent."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The MRU comes entirely from the soul storage you carry or entirely from the tablet, never from both, so half in each still isn't enough. If your soul storage has enough, it pays first.",
+            "You can't pick up a Gate to Hoanna. Break any obsidian block along the sides of the frame (corners don't count), or let an explosion reach it, and the whole gate is gone; you'll have to rebuild and light the frame and pay the MRU again."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crossing",
+      "title": "Crossing Over",
+      "icon": "minecraft:obsidian",
+      "summary": "Stand in the gate for a moment",
+      "complete": "essentialcraft5:guide/hoanna/enter",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: set foot in Hoanna for the first time."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Before you go",
+          "text": "Bring food, torches and a bed. No animals spawn over there, so food is hard to find ([[hoanna/flora]]). Sleep in your bed there once and you'll respawn there if you die, close to whatever you dropped ([[hoanna/way_home]])."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Walk into the Gate to Hoanna and stand still.",
+            "Wait {cfg:general.hoanna.portal_wait_ticks|sec} while a green glow slowly creeps in from the edges of the screen. In creative mode you go across at once.",
+            "You arrive standing in a Gate to Hoanna. The first time you cross, a 4 × 5 obsidian gate is built for you near the same coordinates."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The sky goes dark, the horizon turns a hazy yellow, and the land around you is like nothing you've seen."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<b>You can't go through while riding</b>, so dismount first. After you cross, gates won't take you again for {cfg:general.hoanna.portal_cooldown_ticks|sec}, and that time only counts down while you're outside a gate, so step out first."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Only players can cross. Items you throw in, animals and minecarts all stay behind.",
+            "If there's already a Gate to Hoanna within {cfg:general.hoanna.portal_search_radius} blocks on the other side, you come out of that one, and a new gate is built only if there isn't. A new gate goes on open ground when it can and into a cave when it can't, and out at sea it stands on a small obsidian platform laid on the water.",
+            "If every spot where you could arrive is inside someone else's claim, the gate won't send you; try again later.",
+            "The green glow never spins and causes no nausea. If it still bothers you, turn down \"{lang:options.screenEffectScale}\" under {lang:options.title} → {lang:options.accessibility.title}.",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.hoanna_portal>0"
+              ],
+              "text": "Below matrix rank {cfg:general.matrix_rank.gates.hoanna_portal}, waiting in the gate doesn't take you across, and a line above the hotbar says what rank you need and what you have. Magical Teleporters won't send you to Hoanna either. Coming back from Hoanna never checks your rank."
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.hoanna_portal>0",
+                "cfg:general.matrix_rank.gates.block_all_entries"
+              ],
+              "text": "Below matrix rank {cfg:general.matrix_rank.gates.hoanna_portal}, commands and other mods' teleports can't take you into Hoanna either, and the same line appears above the hotbar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "way_home",
+      "title": "The Way Home",
+      "icon": "minecraft:red_bed",
+      "summary": "Return gates, beds and mending a gate",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: get back to the Overworld, and learn what to do when a gate breaks or you die."
+        },
+        {
+          "type": "p",
+          "text": "Step into a Gate to Hoanna while in Hoanna and you go back to the same coordinates in the Overworld. If there's a Gate to Hoanna within {cfg:general.hoanna.portal_search_radius} blocks of that spot, usually the one you came through, you come out of it."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.homeward_compass.allow_cross_dimension",
+          "text": "You can also get home from Hoanna with the [[gear/homeward_compass|Homeward Compass]], though it can't take you into Hoanna."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "No gate is built on the way back",
+          "text": "If there's <em>no</em> Gate to Hoanna near that spot in the Overworld, because it was broken or because you mended a new gate far off in Hoanna, the gate does <em>not</em> build one for you. It sends you to your spawn point instead, which is the bed you slept in in the Overworld, or the world spawn if there is none."
+        },
+        {
+          "type": "h",
+          "text": "If you die"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Beds work in Hoanna. Sleeping in one sets your spawn point there, though it doesn't skip the night.",
+            "Respawn anchors can't set your spawn in Hoanna. Right-click a charged one and it <b>explodes</b>, just as it would in the Overworld.",
+            "Die without having slept in Hoanna and you respawn at your Overworld spawn point.",
+            "If your spawn point is in Hoanna and no gate is found when you go back, you land at the world spawn.",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "Dying doesn't clear your [[hoanna/radiation|radiation]]."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "If the gate breaks"
+        },
+        {
+          "type": "p",
+          "text": "Nether portals can't be lit in Hoanna. If the gate on that side is broken, build an empty obsidian frame again and right-click the <em>inside</em> of it with the {item:essentialcraft5:wind_tablet}, for example the top face of the bottom row. The empty frame turns straight into a Gate to Hoanna."
+        },
+        {
+          "type": "p",
+          "text": "Mending works like opening: the tablet must show the wind's name, it costs {cfg:general.wind.tablet_portal_mru} MRU, and inside someone else's claim it's refused without spending anything. Whenever you go to Hoanna, take the tablet, enough MRU and 10 obsidian, which is exactly the smallest frame without its corners."
+        }
+      ]
+    },
+    {
+      "id": "sky",
+      "title": "The Sky Here",
+      "icon": "minecraft:spyglass",
+      "summary": "Three suns, two moons and a night aurora",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Hoanna's sky is darker than the Overworld's. At noon the zenith is a dim slate violet that turns yellower toward the horizon. The yellow is dust hanging in the air, and it hasn't settled since the day Hoanna burned. Only the sky is dark; the ground is lit as brightly as at home."
+        },
+        {
+          "type": "list",
+          "items": [
+            "There are <em>three suns</em>, the main one and two faint remnant suns that rise and set with it.",
+            "At night there are <em>two moons</em>. The large one keeps the same phase as the Overworld's moon, and the small companion is always half a cycle off.",
+            {
+              "if": "cfg:general.hoanna_tide.enabled",
+              "text": "The fuller the large moon, the brighter the MRU aurora and the higher Hoanna's mana runs ([[hoanna_explore/tide]])."
+            },
+            "The night sky is scattered with faint violet stars, and an MRU aurora stretches across it, bluish violet near the horizon and shading into magenta higher up. It turns slowly with the stars.",
+            "Now and then at night a silent arc flickers over the distant horizon, at least a dozen seconds apart.",
+            "There are no clouds here."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Shared with the Overworld"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Day and night follow the Overworld, so when the sun rises there, it rises here.",
+            "So does the weather. When it rains there, it rains over the corrupted lands and the Hoanna Sea, but never over the Dreadlands or the desert."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Easier on the eyes",
+          "text": "If the arcs bother you, turn on \"{lang:options.hideLightningFlashes}\" under {lang:options.title} → {lang:options.accessibility.title}. They become much dimmer and show up half as often."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book first calls Hoanna \"the land of dreams\" and \"the world of limitless possibilities\". Only on the radiation page does it admit that this was all a lie and the place is a nuclear wasteland. What happened there, nobody knows."
+        }
+      ]
+    },
+    {
+      "id": "lands",
+      "title": "Seven Kinds of Land",
+      "icon": "essentialcraft5:dread_dirt",
+      "summary": "Corrupted lands, Dreadlands, desert and sea",
+      "items": [
+        "essentialcraft5:dread_dirt"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Hoanna has mountains, valleys and caves too, but in the corrupted lands the grass and water are slate blue, dusky violet or brick red. When Hoanna burned, all the MRU in its land and sky swung off balance at once, and the colors changed with it. The terrain doesn't line up with the Overworld's: where one side has a mountain, the other may have sea."
+        },
+        {
+          "type": "p",
+          "text": "From cold to hot come the three <em>corrupted lands</em>, Frozen, Magic and Chaos, then the <em>Dreadlands</em> and the Hoanna Desert. Damp places now and then hold a Shadow Corrupted Land, and the large waters are the Hoanna Sea."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Land",
+            "Looks like",
+            "What grows"
+          ],
+          "widths": [
+            3,
+            5,
+            5
+          ],
+          "rows": [
+            [
+              "Frozen Corrupted Land",
+              "Slate-blue grass, leaves and water, with specks drifting like fine snow; it rains but never snows",
+              "Oaks, {item:essentialcraft5:hoanna_tall_grass}, {item:essentialcraft5:green_flower}, mushrooms, sugar cane, pumpkins"
+            ],
+            [
+              "Magic Corrupted Land",
+              "Dusky violet grass, leaves and water, with faint lilac dust in the air",
+              "The same, plus the odd {item:essentialcraft5:magical_fruit_block} on the grass"
+            ],
+            [
+              "Chaos Corrupted Land",
+              "Brick-red grass and leaves, dark red water, drifting red spores",
+              "As in the Frozen Corrupted Land, plus crimson growth and dead dark oak trunks"
+            ],
+            [
+              "Shadow Corrupted Land",
+              "Charcoal grass and leaves, the darkest sky and fog of any land, drifting ash; rare, about 2% of the land",
+              "As in the Frozen Corrupted Land, plus stubs of obsidian"
+            ],
+            [
+              "Dreadlands",
+              "Dark brown {item:essentialcraft5:dread_dirt} as far as you can see; no rain",
+              "{item:minecraft:dead_bush}, mushrooms, {item:essentialcraft5:dread_cactus}, dead dark oak trunks and heaps of bone everywhere; where the radiation is worst the ground is scorched black"
+            ],
+            [
+              "Hoanna Desert",
+              "Sand and sandstone; no rain",
+              "{item:essentialcraft5:dread_cactus}, {item:minecraft:dead_bush}, mushrooms, {item:minecraft:sugar_cane} by the water, and half-buried sandstone boulders"
+            ],
+            [
+              "Hoanna Sea",
+              "Wide water over a gravel floor",
+              "Seagrass and kelp, patches of {item:essentialcraft5:abyssal_salt_crust} on the seabed, and now and then sunken debris"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each kind of land also grows a specialty found nowhere else ([[hoanna_explore/specialties]] tells you how to gather them)."
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:frost_marrow} is set into the ice spikes of the Frozen Corrupted Land.",
+            "{item:essentialcraft5:tide_bud}s grow on the grass of the Magic Corrupted Land and give {item:essentialcraft5:tide_crystal}s on spring-tide nights.",
+            "The {item:essentialcraft5:ley_vent}s of the Chaos Corrupted Land give {item:essentialcraft5:ley_crystal}s once charged.",
+            "{item:essentialcraft5:radiant_cluster}s in the most radioactive spots of the Dreadlands and the desert give {item:essentialcraft5:radiant_crystal}s.",
+            "{item:essentialcraft5:titanite_ore} is set into boulders in the Hoanna Desert.",
+            "The {item:essentialcraft5:umbral_cluster}s of the Shadow Corrupted Land give {item:essentialcraft5:umbral_crystal}s, best at night.",
+            "The {item:essentialcraft5:abyssal_salt_crust} on the floor of the Hoanna Sea gives {item:essentialcraft5:abyssal_salt}."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Underground"
+        },
+        {
+          "type": "p",
+          "text": "Underground it's much like the Overworld, with vanilla ores, the infused ores and {item:essentialcraft5:mithriline_ore} in the same amounts ([[elements/ores]]), and the usual dungeons, amethyst geodes and lava lakes."
+        },
+        {
+          "type": "p",
+          "text": "<em>Ancient ruins</em> are far more common here than in the Overworld, about one every thirty-odd chunks. Each is a stone-brick cage buried in the rock around a big MRUCU, with dungeon chests and spawners ([[start/mrucu]]). The people of Hoanna built many such cages to shut MRUCUs away, and the forebears built the ones in the Overworld after their pattern."
+        },
+        {
+          "type": "h",
+          "text": "Creatures"
+        },
+        {
+          "type": "p",
+          "text": "<b>No animals spawn here</b>, and there are no fish or squid in the water. Besides the monsters of an Overworld plain there are eight native to Hoanna, with [[bestiary/abyssal_eel|Abyssal Eels]] in the sea ([[bestiary/overview|Bestiary]]). Bring your own food or forage for it ([[hoanna/flora]])."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "text": "[[wind_mage/wind_mages|Wind Mages]] turn up here too, and still drop their bottled winds when defeated."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Careful in the desert",
+          "text": "{item:essentialcraft5:dread_cactus} pricks like a vanilla cactus and also <b>poisons you for 5 seconds</b>, so give it a wide berth when crossing the desert."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "In the original mod these lands were Chaos / Frozen / Magic / Shadow Corrupted Land, Hoanna Dreadlands and Hoanna Desert. Its Dreadlands were meant to grow dead bushes, but Dread Dirt didn't count as dirt, so not one ever grew."
+        }
+      ]
+    },
+    {
+      "id": "flora",
+      "title": "Plants of Hoanna",
+      "icon": "essentialcraft5:green_flower",
+      "summary": "Grass, flowers, cactus and fruit",
+      "complete": "essentialcraft5:guide/hoanna/flora",
+      "optional": true,
+      "items": [
+        "essentialcraft5:green_flower",
+        "essentialcraft5:hoanna_tall_grass",
+        "essentialcraft5:dread_cactus",
+        "essentialcraft5:magical_fruit_block",
+        "essentialcraft5:magical_fruit",
+        "essentialcraft5:root"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: gather any plant of Hoanna. They grow only there and nowhere in the Overworld."
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:green_flower",
+            "essentialcraft5:hoanna_tall_grass",
+            "essentialcraft5:dread_cactus",
+            "essentialcraft5:magical_fruit_block",
+            "essentialcraft5:magical_fruit"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Grass and flowers"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:hoanna_tall_grass} grows on the grass of all four corrupted lands and takes on the color of the local grass. Shears give you the grass itself; broken by hand it has a 1 in 8 chance to drop 1 {item:minecraft:wheat_seeds}, and Fortune doesn't raise that. Bone meal turns it into vanilla tall grass.",
+            "{item:essentialcraft5:green_flower} also grows in the corrupted lands, and bone meal on the grass blocks there now and then sprouts a new one."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Dread Cactus"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:dread_cactus} grows only on the sand of the Hoanna Desert, up to 3 blocks tall, and breaks if a block touches its side, just like a vanilla cactus. Touching it pricks you and also <b>poisons you for 5 seconds</b>."
+        },
+        {
+          "type": "h",
+          "text": "Magical Fruit"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:magical_fruit_block} turns up only on the grass of the <em>Magic Corrupted Land</em>, rarely, two or three at a spot, and an axe breaks it fastest. It drops 3 to 7 {item:essentialcraft5:magical_fruit}, plus 0 to 1 more per level of Fortune, up to 9; Silk Touch takes the whole block."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Hunger restored",
+              "8"
+            ],
+            [
+              "Saturation",
+              "Filled up"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Food in Hoanna"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:magical_fruit} is the most filling, but the blocks never grow back, so make them last.",
+            "Every kind of land has mushrooms; make bowls from the oaks for mushroom stew.",
+            "Plant the wheat seeds the tall grass sometimes drops and bake bread from the harvest. The oak leaves of the corrupted lands drop apples too."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have had any of Green Flower, Hoanna Tall Grass, Dread Cactus, Magical Fruit Block or Magical Fruit in your inventory."
+        },
+        {
+          "type": "h",
+          "text": "Roots"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:root} grows in the [[hoanna/ruins|Old Catacombs]]. An axe breaks it, and it's purely decorative."
+        }
+      ]
+    },
+    {
+      "id": "radiation",
+      "title": "Hoanna Radiation",
+      "icon": "essentialcraft5:delta_ring",
+      "summary": "Builds up while you stay; fades once you leave",
+      "complete": "essentialcraft5:guide/hoanna/radiation",
+      "optional": true,
+      "if": "cfg:general.radiation.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The fire that burned Hoanna left a poison behind. It settles in the flesh rather than the matrix, so ESPE can't reach it. While you are in Hoanna, <em>radiation</em> slowly builds up in your body, and past a point it starts holding your health down. Potions can't cure it. Eating [[hoanna_explore/abyssal_salt|abyssal salt]] clears part of it, and the rest only fades once you leave Hoanna."
+        },
+        {
+          "type": "h",
+          "text": "How fast it builds"
+        },
+        {
+          "type": "p",
+          "text": "How much you gain each second depends on the chunk you're standing in. Each chunk has a fixed strength between <t>0</t> and <t>5</t>, the Hoanna Desert adds <t>2</t> and the Dreadlands add <t>6</t>, while <t>1</t> fades away every second."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Ordinary chunk",
+              "about +1.5 per second on average, 10,000 in about 2 hours"
+            ],
+            [
+              "Hoanna Desert",
+              "about +3.5, 10,000 in about 48 minutes"
+            ],
+            [
+              "Dreadlands",
+              "about +7.5, 10,000 in about 22 minutes"
+            ],
+            [
+              "After you leave Hoanna",
+              "−5 per second, 10,000 gone in about half an hour"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0"
+          ],
+          "text": "During the poison fumes [[hoanna/events|calamity]], each cloud you're near adds another +200 per second that no armor or bauble reduces, enough to reach 10,000 in under a minute."
+        },
+        {
+          "type": "p",
+          "text": "Under open sky in a [[hoanna_explore/ley_storm|ley storm]] it rises by another {cfg:general.hoanna_events.ley_storm_radiation} a second, and armor blocks at most half of that.",
+          "if": [
+            "cfg:general.hoanna_events.ley_storm_enabled",
+            "cfg:general.hoanna_events.ley_storm_chance>0",
+            "cfg:general.hoanna_tide.enabled",
+            "cfg:general.hoanna_events.ley_storm_radiation>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The chunks with the strongest radiation are hotspots, and unprotected you gain 9–10 a second in a Dreadlands hotspot ([[hoanna_explore/hotspots]]). Mining a [[hoanna_explore/specialties|radiant cluster]] adds {cfg:general.hoanna_world.radiant_mining_dose}, and hits from [[bestiary/hoanna_scavenger|Remnant Scavengers]] raise it too."
+        },
+        {
+          "type": "h",
+          "text": "How to tell"
+        },
+        {
+          "type": "list",
+          "items": [
+            "As soon as you pick up any, a purple-framed radiation icon appears to the left of your hotbar. It shows how far your health is held down, with the level in the corner.",
+            "Open your inventory or chat and hover over the icon to see your current dose and how much it changes per second where you stand. A positive number means it's rising, a negative one that it's fading.",
+            "Past a dose of 1,000, a faint dark purple haze creeps in from the edges of the screen, deepening as the dose grows."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You catch your first radiation and the icon appears left of your hotbar."
+        },
+        {
+          "type": "h",
+          "text": "What it does"
+        },
+        {
+          "type": "p",
+          "text": "Every <t>10,000</t> of dose adds a level. Below 10,000 it's plain \"Radiation\" with no numeral, just an icon that costs you nothing. From 10,000 it's Radiation II, from 20,000 Radiation III, and so on."
+        },
+        {
+          "type": "p",
+          "text": "From Radiation II on it <b>holds your health down</b>. The numeral after the name is the number of levels, and each level takes {cfg:general.radiation.cap_loss_percent_per_level|pct} off your max health, so Radiation II takes {cfg:general.radiation.cap_loss_percent_per_level|mul:2|pct} and Radiation III {cfg:general.radiation.cap_loss_percent_per_level|mul:3|pct}, up to {cfg:general.radiation.max_cap_loss_percent|pct} in all and never below 1. With 100 max health at Radiation II, your health stops at {cfg:general.radiation.cap_loss_percent_per_level|mul:-200|add:100}. The icon shows the loss above it."
+        },
+        {
+          "type": "p",
+          "text": "It doesn't chip away at you. It only caps how high your health can climb, and whenever your health gets above that line it's pushed back down soon after, a little more than once a second at Radiation II and more often at higher levels. Once the dose drops below 10,000 the line is gone and you heal to full as usual."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "No cure",
+          "text": "Radiation sits in your body and isn't a potion effect. {item:minecraft:milk_bucket}, {item:essentialcraft5:magic_water_bottle}, the {item:minecraft:totem_of_undying} and curios that cleanse or block harmful effects can neither remove it nor keep it out. Dying doesn't reset it either. To bring it down, eat [[hoanna_explore/abyssal_salt|abyssal salt]] or leave Hoanna and wait."
+        },
+        {
+          "type": "h",
+          "text": "Taking less of it"
+        },
+        {
+          "type": "p",
+          "text": "Protective armor cuts how much you take in. Add up the \"Hoanna radiation resistance\" written on the four pieces and divide by 4 to get the real effect. With a full set of each kind:"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Full set",
+            "Radiation taken"
+          ],
+          "widths": [
+            3,
+            2
+          ],
+          "rows": [
+            [
+              "MHS armor ([[gear/mhs_armor]])",
+              "10% less"
+            ],
+            [
+              "Wind armor ([[wind_gear/wind_armor]])",
+              "half"
+            ],
+            [
+              "Void armor ([[gear/void_armor]])",
+              "75% less"
+            ],
+            [
+              "Computer suit ([[computer/suit]])",
+              "none from chunks at all"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:mystical_accessory",
+              "text": "The {item:essentialcraft5:mystical_accessory} from Hoanna's ruin chests carries a random Hoanna radiation resistance, and whatever it says counts in full ([[baubles/mystical_accessory]])."
+            },
+            "Spend as little time as you can in the desert and the Dreadlands, and rest in a weak chunk. The per-second number in the icon's tooltip tells you whether a spot is any good.",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "From Matrix Rank 5 you take another 5% less, counted together with accessories ([[matrix/overview]])."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "A few special baubles have to do with radiation too ([[baubles/radiation]]):"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:delta_ring",
+              "text": "{item:essentialcraft5:delta_ring}: radiation holds your health down as if its level were about halved, and the icon shows the real loss."
+            },
+            {
+              "if": "bauble:essentialcraft5:lambda_ring",
+              "text": "{item:essentialcraft5:lambda_ring}: once you leave Hoanna, radiation fades much faster, −65 per second."
+            },
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "{item:essentialcraft5:mu_ring}: you take 20 more per second in Hoanna, and in return the sun array, poison fumes and strong jolts can't touch you."
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "cfg:general.bauble_limits.xi_dose_ceiling>0"
+              ],
+              "text": "{item:essentialcraft5:xi_belt}: your hits irradiate other players, at most {cfg:general.bauble_limits.xi_dose_per_hit} per hit and never above {cfg:general.bauble_limits.xi_dose_ceiling}, and every hit you take irradiates you up to the same limit."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Not MRU radiation",
+          "text": "The \"MRU radiation\" in the Radiating Chamber and MRUCU pages is a different thing and has nothing to do with Hoanna radiation ([[crafting/radiating_chamber]])."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book says some parts of Hoanna have air that is almost clean, where you can stop and catch your breath, while in others a single breath sets your lungs on fire. As for a cure, it says there is none and only time helps, with no magical \"milk drinking\" and no \"amulets\"."
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Hoanna’s Calamities",
+      "icon": "minecraft:clock",
+      "summary": "Sun array, poison fumes, darkness and earthquakes",
+      "complete": "essentialcraft5:guide/hoanna/event",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.chance_multiplier==1",
+            "cfg:general.hoanna_events.sun_array_enabled",
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0",
+            "cfg:general.hoanna_events.darkness_enabled",
+            "cfg:general.hoanna_events.earthquake_enabled"
+          ],
+          "text": "While someone is in Hoanna, a <em>calamity</em> strikes about once every 6 in-game days on average, some 2 hours of real time."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.chance_multiplier>0",
+            "cfg:general.hoanna_events.chance_multiplier!=1||!cfg:general.hoanna_events.sun_array_enabled||!cfg:general.hoanna_events.fumes_enabled||cfg:general.hoanna_events.fumes_max_nearby==0||!cfg:general.hoanna_events.darkness_enabled||!cfg:general.hoanna_events.earthquake_enabled",
+            "cfg:general.hoanna_events.sun_array_enabled||cfg:general.hoanna_events.fumes_enabled||cfg:general.hoanna_events.darkness_enabled||cfg:general.hoanna_events.earthquake_enabled"
+          ],
+          "text": "While someone is in Hoanna, a <em>calamity</em> strikes every so often."
+        },
+        {
+          "type": "p",
+          "text": "The chat warns you in red when a calamity starts and tells you in green when it ends. A bar also pops up at the top of the screen with its name and the time left, and after 10 seconds it shrinks to a small countdown icon above the left end of your hotbar."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Calamity",
+            "Lasts",
+            "What happens",
+            "What to do"
+          ],
+          "widths": [
+            2,
+            2,
+            4,
+            4
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.hoanna_events.sun_array_enabled",
+              "cells": [
+                "Sun array",
+                "one whole day",
+                "under open sky you burn 1 point a second and catch fire",
+                "get under an opaque roof or drink Fire Resistance"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.fumes_enabled",
+                "cfg:general.hoanna_events.fumes_max_nearby>0"
+              ],
+              "cells": [
+                "Poison fumes",
+                "about 10 minutes",
+                "Poison II near the yellow-green clouds",
+                "stay 7 blocks away; walls do not help"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "Darkness",
+                "1 to 3 in-game days",
+                "the sky goes dark as night; you just cannot see far",
+                "bring torches; Night Vision still works"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.earthquake_enabled",
+                "cfg:general.hoanna_events.earthquake_push"
+              ],
+              "cells": [
+                "Earthquake",
+                "about 4 minutes",
+                "the view shakes and you get shoved around on the ground",
+                "keep away from cliff edges"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.earthquake_enabled",
+                "!cfg:general.hoanna_events.earthquake_push"
+              ],
+              "cells": [
+                "Earthquake",
+                "about 4 minutes",
+                "the view shakes gently",
+                "nothing to worry about"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled",
+                "cfg:general.radiation.enabled",
+                "cfg:general.hoanna_events.ley_storm_radiation>0"
+              ],
+              "cells": [
+                "Ley storm",
+                "about 5 minutes",
+                "only at nightfall on spring tides; crystals fall from the sky, and radiation climbs fast under open sky",
+                "collect what you want, then get under a roof"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled",
+                "!cfg:general.radiation.enabled||!cfg:general.hoanna_events.ley_storm_radiation>0"
+              ],
+              "cells": [
+                "Ley storm",
+                "about 5 minutes",
+                "only at nightfall on spring tides; crystals fall from the sky",
+                "go out and collect them"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have lived through a calamity in Hoanna yourself."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Hiding at home does not help",
+          "text": "When nobody is in Hoanna, its calamities stand still. No new one starts, and one already under way waits for someone to come back; only the sun array still ends at nightfall. You can't sit one out at home, because it picks up where it left off."
+        },
+        {
+          "type": "p",
+          "text": "Calamities <em>never touch any blocks</em>, so nothing is set on fire, blown up or reshaped."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna_events.sun_array_enabled",
+          "text": "Sun array"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna_events.sun_array_enabled",
+          "text": "It starts only at dawn and lasts the whole day, ending at nightfall. A ring of extra suns appears and embers drift down from the sky. Whenever there's open sky above your head you burn for <t>1</t> point a second and catch fire."
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.hoanna_events.sun_array_enabled",
+          "items": [
+            "Get under an <em>opaque</em> roof. Stone, wood and leaves all work, but <w>glass doesn't</w>.",
+            "Drink a potion of Fire Resistance.",
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "Or wear the {item:essentialcraft5:mu_ring}."
+            },
+            "A full set of [[gear/void_armor|Void Armor]] halves the burning, including the fire damage that follows."
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0"
+          ],
+          "text": "Poison fumes"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0"
+          ],
+          "text": "It lasts about 10 minutes. Slow-drifting yellow-green clouds appear all around, and the fog turns yellowish as you get near them. Within 7 blocks sideways and 4 up or down of a cloud you get <b>Poison II</b>, walls or no walls."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "Each cloud also adds <b>+200</b> [[hoanna/radiation|radiation]] per second, and armor and bauble resistances do <em>not</em> reduce it."
+        },
+        {
+          "type": "list",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0"
+          ],
+          "items": [
+            "The clouds can't be hit or pushed, so walk around them. They drift off on their own and dissolve after about 50 seconds, and they vanish soon after the calamity ends.",
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "The {item:essentialcraft5:mu_ring} makes you completely immune."
+            },
+            "A full set of [[gear/void_armor|Void Armor]] halves how long the poison lasts; the radiation from the clouds isn't reduced."
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna_events.darkness_enabled",
+          "text": "Darkness"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna_events.darkness_enabled",
+          "text": "It lasts 1 to 3 in-game days. The sky and the distant fog go dark together, the suns and moons disappear, and the stars and the aurora grow brighter. Torches and other lights work as usual, and so does Night Vision. The cave noises and distant monsters you sometimes hear are only ambience."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna_events.earthquake_enabled",
+          "text": "Earthquake"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.hoanna_events.earthquake_enabled",
+          "items": [
+            "It lasts about 4 minutes. The view shakes gently, but only the picture moves, and your aim stays where it was.",
+            {
+              "if": "cfg:general.hoanna_events.earthquake_push",
+              "text": "While you're on the ground you get nudged every second, and now and then a strong jolt lifts you a little. The jolt itself never hurts you, but near a cliff edge it can push you off."
+            },
+            {
+              "if": "cfg:general.hoanna_events.earthquake_push",
+              "text": "A full set of [[gear/void_armor|Void Armor]] halves the push."
+            },
+            "If the shaking bothers you, turn down \"{lang:options.screenEffectScale}\" under {lang:options.title} → {lang:options.accessibility.title}. At 0 the view doesn't shake at all.",
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "With the {item:essentialcraft5:mu_ring} you never get strong jolts."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "Void Armor's attunement stages cut the Sun Array, Poison Fumes and earthquakes further, and with all four at stage 4 they no longer affect you ([[attunement/void_armor]])."
+        },
+        {
+          "type": "h",
+          "text": "Ley storms",
+          "if": [
+            "cfg:general.hoanna_events.ley_storm_enabled",
+            "cfg:general.hoanna_events.ley_storm_chance>0",
+            "cfg:general.hoanna_tide.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The ley storm is separate from the calamities above. It can only come as night falls on the three [[hoanna_explore/tide|spring-tide]] nights, it doesn't hurt you by itself, and ley starfalls you can pick up drop from the sky ([[hoanna_explore/ley_storm]]).",
+          "if": [
+            "cfg:general.hoanna_events.ley_storm_enabled",
+            "cfg:general.hoanna_events.ley_storm_chance>0",
+            "cfg:general.hoanna_tide.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Some calamities make a Hoanna specialty come faster; ley vents, for one, charge very quickly in an earthquake. Calamities also bring more monsters, and tougher ones ([[hoanna_explore/calamity_windows]]).",
+          "if": "cfg:general.hoanna_events.earthquake_enabled"
+        },
+        {
+          "type": "p",
+          "text": "Some calamities make a Hoanna specialty come faster, and they also bring more monsters, and tougher ones ([[hoanna_explore/calamity_windows]]).",
+          "if": "!cfg:general.hoanna_events.earthquake_enabled"
+        },
+        {
+          "type": "p",
+          "if": ["cfg:general.calamity_heart.require_calamity", "cfg:general.hoanna_events.chance_multiplier>0"],
+          "text": "The last chapter of the main line has you call the [[apex/summon|Heart of Calamity]] during a calamity, and the one raging at that moment becomes its main calamity."
+        }
+      ]
+    },
+    {
+      "id": "ruins",
+      "title": "Ruins of Hoanna",
+      "icon": "essentialcraft5:fortified_stone",
+      "summary": "Destroyed towns, old catacombs and modern shafts",
+      "complete": "essentialcraft5:guide/hoanna/ruins",
+      "items": [
+        "essentialcraft5:concrete",
+        "essentialcraft5:levitator",
+        "essentialcraft5:spreader"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: find a ruin and walk in. The towns the people of Hoanna lived in, the catacombs where they buried their dead and the shafts where they dug for void stone in their last years all stand empty now. The Titanite and void materials in their chests feed the next few chapters ([[hoanna/relics]])."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Ruin",
+            "Where, how common",
+            "How to spot it",
+            "Why go"
+          ],
+          "widths": [
+            3,
+            4,
+            4,
+            3
+          ],
+          "rows": [
+            [
+              "<hl>Destroyed town</hl>",
+              "on land only, about one every 512 blocks",
+              "64-block towers, visible from far away",
+              "chests at the tower tops"
+            ],
+            [
+              "<hl>Old catacomb</hl>",
+              "underground at y 6–32, about one every 200 blocks",
+              "a square chimney rimmed with Magical Fortified Stone",
+              "the exit room chests"
+            ],
+            [
+              "<hl>Modern shaft</hl>",
+              "below sea level, about one every 250 blocks",
+              "like a vanilla mineshaft with void supports",
+              "mining Void Stone"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You walk into any destroyed town, old catacomb or modern shaft; this step checks itself off."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Finding them",
+          "text": "Look for towns first. Their towers stand 64 blocks tall and you can spot them from a hilltop a long way off, which is much quicker than hunting for catacombs. If you pass a square chimney sticking out of the ground on the way, climb down and search the catacomb below."
+        },
+        {
+          "type": "h",
+          "text": "Destroyed towns"
+        },
+        {
+          "type": "p",
+          "text": "A town is about a hundred blocks across. A few {item:essentialcraft5:concrete} roads run out from the center, rising and falling with the land, lined with houses, towers and decorations."
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Towers</em>: four stacked frames of {item:essentialcraft5:fortified_stone}, narrowing toward the top. A ring of Magical Fortified Stone about <t>57</t> blocks above the ground holds <t>4</t> chests. A town usually has two to five towers.",
+            "<em>Houses</em>: Magical Fortified Stone walls with {item:essentialcraft5:fortified_glass} windows, two to ten stories high, the rooms heaped with concrete rubble. The ground floor is mostly whole, while the floors above have partly collapsed, worse the higher you go. A {item:essentialcraft5:levitator} is buried right under each of the four corners.",
+            "<em>Spreader posts</em>: four {item:essentialcraft5:fortified_stone_fence} posts around a {item:essentialcraft5:magic_fence} post, topped with a {item:essentialcraft5:spreader}.",
+            "<em>Lamp posts</em>: a {item:essentialcraft5:void_fence} post capped with {item:essentialcraft5:void_stone}, with invisible lights beside it that keep the area lit at night.",
+            "<em>Craters</em>: blast holes in the ground and inside buildings, the biggest nearly twenty blocks across."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Climbing the towers",
+          "text": "The towers have <b>no ladders</b>, and the chests sit near the top. Bring a stack of blocks to pillar up, or scaffolding, and watch your step coming down."
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:concrete",
+            "essentialcraft5:levitator",
+            "essentialcraft5:spreader"
+          ],
+          "caption": "These three blocks have no recipes and only come from towns"
+        },
+        {
+          "type": "h",
+          "text": "Old catacombs"
+        },
+        {
+          "type": "p",
+          "text": "Catacombs lie deep in the stone, around y 6–32. Small 5-block rooms of {item:essentialcraft5:fortified_stone} are joined by corridors thirty to sixty-odd blocks long, spreading more than a hundred blocks out from the central room, and one can lie under any kind of terrain."
+        },
+        {
+          "type": "p",
+          "text": "<em>The way in</em>: a square chimney poking out of the ground, rimmed with Magical Fortified Stone and lined with a column of ladders, is a catacomb exit. Climb all the way down to reach the exit room, where a chest sits on a block of {item:essentialcraft5:void_stone} in the middle."
+        },
+        {
+          "type": "list",
+          "items": [
+            "About one room in ten is an exit room, and each has a chest. About one catacomb in five has no exit room at all, which means no chimney and no chest.",
+            "Some rooms have half caved in and are heaped with {item:essentialcraft5:concrete} rubble; others are overgrown with leaves that never wither, with {item:essentialcraft5:root} pushing up through the floor.",
+            "The walls are Magical Fortified Stone and slower to mine than stone. The corridors run long and straight, farther than you can see, so bring plenty of torches to keep from getting lost.",
+            "Dark parts of a catacomb spawn [[bestiary/catacomb_revenant|Catacomb Revenants]]. Arrows sometimes pass straight through them, so bring a good sword."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Modern shafts"
+        },
+        {
+          "type": "p",
+          "text": "Modern shafts lie below sea level and look like vanilla abandoned mineshafts, except that the supports every few blocks are made of something else. The posts are {item:essentialcraft5:void_fence}, and the beams and the patches filling gaps in the floor are {item:essentialcraft5:void_stone}. One shaft holds well over a thousand blocks of it."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Some corridors have rails, and now and then a {item:minecraft:chest_minecart} sits on them with the usual abandoned-mineshaft loot inside.",
+            "Now and then a corridor full of cobwebs hides a <b>cave spider spawner</b>. Cave spiders are poisonous, so work out how you'll break the spawner before you get close."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Out in the wilds"
+        },
+        {
+          "type": "p",
+          "text": "Away from towns and catacombs there are a few more places to find. Now and then a {item:essentialcraft5:ruin_milestone} with a glowing top stands by the way, and right-clicking it points to the nearest town ([[hoanna_explore/survey]])."
+        },
+        {
+          "type": "p",
+          "text": "In the Frozen and Chaos Corrupted Lands and the Dreadlands there is a frozen camp, chaos fissure or fallout crater every two hundred blocks or so, each with a nest at its center ([[hoanna_explore/midscapes]])."
+        },
+        {
+          "type": "p",
+          "text": "Farther out are three bigger places: [[hoanna_explore/sealed_vault|sealed vaults]] under the desert and the Dreadlands, [[hoanna_explore/sunken_district|sunken districts]] on the floor of the Hoanna Sea, and ruined [[hoanna_explore/inquisitorium_outpost|Inquisitorium outposts]] in the Shadow Corrupted Land. Put together a [[hoanna_explore/survey|survey map]] and sneak-right-click it to switch between them."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Don't linger",
+          "text": "Searching a whole ruin means a long stay in Hoanna, and your [[hoanna/radiation|radiation]] keeps climbing the whole time, fastest near the Dreadlands.",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book describes Hoanna with only a few things, a scorching sun, empty ruined cities and catacombs underground, and then calls it a terrible place."
+        }
+      ]
+    },
+    {
+      "id": "relics",
+      "title": "What the Ruins Hold",
+      "icon": "essentialcraft5:void_core",
+      "summary": "Titanite, the three void items, Embers and more",
+      "complete": "essentialcraft5:guide/hoanna/relics",
+      "items": [
+        "essentialcraft5:titanite",
+        "essentialcraft5:twinkling_titanite",
+        "essentialcraft5:void_core",
+        "essentialcraft5:void_mru_reactor",
+        "essentialcraft5:acidic_ember",
+        "essentialcraft5:chaos_ember",
+        "essentialcraft5:common_ember",
+        "essentialcraft5:corrupted_ember",
+        "essentialcraft5:crystal_ember",
+        "essentialcraft5:divine_ember",
+        "essentialcraft5:magical_ember",
+        "essentialcraft5:flame_ember",
+        "essentialcraft5:concrete",
+        "essentialcraft5:levitator",
+        "essentialcraft5:spreader"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: take your first relic out of a ruin chest. Most of what the chests hold is working material, and much of it you've made yourself, because the craft you've learned belonged to the people of Hoanna first and came down to you through the forebears. The Embers among it are what is left of Hoanna's fires, each still holding a little of that world's warmth. Chests at the tops of town towers and in catacomb exit rooms hold the same kind of loot ([[hoanna/ruins]])."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.ancient_scrolls.enabled",
+          "text": "Tower chests sometimes hold a volume of the [[scrolls/scrolls|Fragments of Essence]] too. The chest in a catacomb's exit room holds one more often, and it is always Book V."
+        },
+        {
+          "type": "p",
+          "text": "Tower and catacomb exit chests also have a 12% chance of holding a {item:essentialcraft5:torn_survey_map}. Three of them make a survey map that finds towns ([[hoanna_explore/survey]])."
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:titanite",
+            "essentialcraft5:twinkling_titanite",
+            "essentialcraft5:void_plating",
+            "essentialcraft5:void_core",
+            "essentialcraft5:void_mru_reactor"
+          ]
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:acidic_ember",
+            "essentialcraft5:chaos_ember",
+            "essentialcraft5:common_ember",
+            "essentialcraft5:corrupted_ember",
+            "essentialcraft5:crystal_ember",
+            "essentialcraft5:divine_ember",
+            "essentialcraft5:magical_ember",
+            "essentialcraft5:flame_ember"
+          ],
+          "per_row": 4
+        },
+        {
+          "type": "items",
+          "if": "bauble:essentialcraft5:mystical_accessory",
+          "items": [
+            "essentialcraft5:mystical_accessory"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Roughly per chest"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:titanite}",
+              "about 4"
+            ],
+            [
+              "{item:essentialcraft5:twinkling_titanite}",
+              "about 1.3"
+            ],
+            [
+              "Void Plate, Void Core, MRU Reactor",
+              "about 0.2 each, or one of each per 5 chests or so"
+            ],
+            [
+              "The 8 Embers",
+              "about 9 in total"
+            ],
+            {
+              "if": "bauble:essentialcraft5:mystical_accessory",
+              "cells": [
+                "{item:essentialcraft5:mystical_accessory}",
+                "about 0.5"
+              ]
+            },
+            [
+              "{item:essentialcraft5:magical_slag}",
+              "about 8"
+            ],
+            [
+              "Magical Essence, Magical Ingot, Magical Water, Magic Fortified Plate, the four purified alloys and other mid-game materials",
+              "about 1.8 each"
+            ],
+            [
+              "{item:essentialcraft5:crystal_dust}",
+              "about 0.8"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>Void Cores and MRU Reactors only come as relics</em>. They can't be mined or crafted. You can also [[hoanna/void_plating|press Void Plates]] yourself. Later, defeating a [[hologram/hologram|hologram]] drops a batch of the same relics."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>Void Cores and MRU Reactors can't be mined and have no recipe</em>. Apart from chests, the only source is [[hoanna/collapse|collapsing]] an MRUCU shut in an Enrichment Chamber. You can also [[hoanna/void_plating|press Void Plates]] yourself. Later, defeating a [[hologram/hologram|hologram]] drops a batch of the same relics."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You carry any relic: Titanite, one of the three void items or an Ember all count."
+        },
+        {
+          "type": "h",
+          "text": "How many you need"
+        },
+        {
+          "type": "p",
+          "text": "The later chapters take roughly 15 Void Cores and 12 MRU Reactors in all. The more holograms you fight, the more cores you need, and the tier 3 pentacle in Chapter 19 alone takes 4 of each. At 0.2 of each per chest, that comes to some 70 chests."
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "If you run short of chests, [[hoanna/collapse|collapse]] makes up the difference. One collapse in a chamber takes {cfg:machines.enrichment_chamber.collapse.seconds|div:60|round:1} minutes and makes 1, and several chambers can run at once."
+        },
+        {
+          "type": "p",
+          "text": "The first bill comes in the next chapter. The Demonic Pentacle and its 4 Void Crystal Pillars take 5 cores and 4 reactors, about 25 chests' worth. A town's towers hold only a dozen or so chests in all, so plan on at least two towns, and don't skip the catacombs."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Looted means empty",
+          "text": "A chest stays empty once looted. Each time you finish a tower in a town, leave a mark at its foot so you don't climb it twice."
+        },
+        {
+          "type": "h",
+          "text": "What they are for"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Titanite and Twinkling Titanite make {item:essentialcraft5:void_stone} ([[hoanna/void_stone]]). Every {item:essentialcraft5:holopad} also takes 6 Twinkling Titanite ([[hologram/holopad]]).",
+            "Right-click the {item:essentialcraft5:magician_table} with a Void Plate, Void Core or MRU Reactor to install it as an upgrade for ×6, ×7.5 or ×10 speed. An empty-handed sneak-right-click takes an installed [[storage/upgrades|upgrade]] back out, none the worse for wear.",
+            "On the main line, the [[demons/void_crystal_pillar]] and the [[demons/demonic_pentacle]] both need them, the [[hologram/holopad]] takes a Void Core, and Force Field Cores take a Reactor ([[computer/force_parts]]). The [[inquisitorium/beacon]] takes a Void Core and 5 Twinkling Titanite.",
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "text": "In Chapter 21, the [[terminal/accumulator]] takes a Reactor."
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "text": "In Chapter 21, the [[terminal/phase_anchor]] takes 2 Void Cores."
+            },
+            "Among the void machines, the two ultra generators take 2 cores and 2 reactors each ([[void_machines/ultra_heat_generator]], [[void_machines/ultra_natural_furnace]]), the [[void_machines/magical_furnace]], [[void_machines/magical_teleporter]] and [[void_machines/ember_forge]] take 1 of each, and the [[void_machines/magical_builder]] takes 1 core.",
+            "A full set of [[gear/void_armor]] takes 8 cores and 5 reactors.",
+            {
+              "if": "cfg:machines.ley_condenser.enabled",
+              "text": "The [[ley/ley_condenser]] takes 1 Void Core."
+            },
+            "Embers tossed onto the Pale Plating around the Ember Forge are forged together with focuses into a sword ([[void_machines/ember_sword]]). Each sword takes 4, and their kinds decide its effects.",
+            {
+              "if": "bauble:essentialcraft5:mystical_accessory",
+              "text": "The [[baubles/mystical_accessory]] is a random necklace, belt or ring with three random MRU resistances, one of them against Hoanna radiation."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In towns you can mine {item:essentialcraft5:concrete} and the {item:essentialcraft5:spreader}, the small glowing post, with a pickaxe and take them home as decoration. A {item:essentialcraft5:levitator} is buried right under each corner of every house; dig out the block under a corner to find it and take that too. None of the three has a recipe, so towns are the only source."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book's page on these finds is titled \"Interesting Loot\", with the subtitle \"Collectables!\". The text itself runs to two sentences: past civilizations left some loot in Hoanna, and now and then you can find chests of assorted items in its towns or underground."
+        }
+      ]
+    },
+    {
+      "id": "void_stone",
+      "title": "{item:essentialcraft5:void_stone}",
+      "icon": "essentialcraft5:void_stone",
+      "summary": "The toughest building block; casing and coil base",
+      "complete": "essentialcraft5:guide/hoanna/void_stone",
+      "items": [
+        "essentialcraft5:void_stone",
+        "essentialcraft5:void_glass",
+        "essentialcraft5:void_fence"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: turn Titanite into {item:essentialcraft5:void_stone}, the toughest building block in this mod and the material for the Void Plate on the next page. In their last years the people of Hoanna dug this stone to build walls with, because almost no MRU gets through it."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: 4 {item:essentialcraft5:titanite} and 1 {item:essentialcraft5:twinkling_titanite} from the [[hoanna/relics|ruin chests]] or from {item:essentialcraft5:titanite_ore} in the Hoanna Desert, plus 4 {item:essentialcraft5:obsidian_plate} for Void Stone, or 4 {item:essentialcraft5:fortified_frame} instead for Void Glass."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:void_stone",
+            "essentialcraft5:void_glass",
+            "essentialcraft5:void_fence"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "One craft gives 16 Void Stone or 32 Void Glass, and 6 Void Stone laid out in two rows of three make 16 Void Fences."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have Void Stone in your inventory."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "How many to make",
+          "text": "The Demonic Pentacle in the next chapter alone takes about 41, with 28 pressed into Void Plates and 13 laid under the pentacle, so three crafts (48) are enough. You can also mine it straight from a [[hoanna/ruins|modern shaft]], whose floors and beams are Void Stone."
+        },
+        {
+          "type": "h",
+          "text": "Properties"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Hardness / blast resistance",
+              "<t>8</t> / <t>90</t> for all three"
+            ],
+            [
+              "Void Stone",
+              "needs a pickaxe; always drops white"
+            ],
+            [
+              "Void Glass",
+              "Drops even when broken by hand, though that takes about 12 seconds; a pickaxe is much faster, about 1.5 seconds with diamond. Translucent dark purple, and mobs don't spawn on it"
+            ],
+            [
+              "Void Fence",
+              "needs a pickaxe; connects to other stone fences"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Right-click Void Stone or Void Glass with a dye to recolor the veins on its face; the dye isn't used up. Sneak-right-click to dye the matching blocks around it as well. Blocks where you can't build, such as in someone else's claim, are left alone."
+        },
+        {
+          "type": "h",
+          "text": "What it is for"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It blocks MRU. With it between you and an MRUCU, [[corruption/matrix_damage|matrix damage]], the lasting harm MRU does to you, gets through only 1 time in 18 for Void Stone and 1 in 15 for Void Glass, better than magic, mithriline or pale [[alloys/plating|plating]].",
+            "Void Stone and Void Glass count as shell blocks for an [[enrichment/controller|Enrichment Chamber]], and Void Stone works as a base for an [[tesla/mru_coil]].",
+            "Eight in a ring make a 117-slot Void Chest ([[logistics/void_chest]]).",
+            "The {item:essentialcraft5:magician_table} presses it into a Void Plate (next page).",
+            "In structures any color will do. The [[demons/demonic_pentacle]] takes 13, the soul pentacle's [[pentacle/tier_two|second tier]] 8, the [[void_machines/ember_forge]] 29, the [[void_machines/magical_furnace]] 29 and the [[void_machines/magical_teleporter]] 36.",
+            "The Magical Chisel carves it into patterned blocks ([[decorations/patterns]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "void_plating",
+      "title": "{item:essentialcraft5:void_plating}",
+      "icon": "essentialcraft5:void_plating",
+      "summary": "Pressed from Void Stone; upgrades and gun parts",
+      "complete": "essentialcraft5:guide/hoanna/void_plating",
+      "items": [
+        "essentialcraft5:void_plating"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: press {item:essentialcraft5:void_stone} into a {item:essentialcraft5:void_plating} on the {item:essentialcraft5:magician_table}. Chests sometimes hold them too, but making your own is far more dependable."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:void_plating"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put Void Stone in the center slot of the table and leave the four corners <em>empty</em>.",
+            "Feed the [[crafting/magician_table|table]] MRU. One plate takes {cfg:machines.magician_table.mru_usage_modifier|mul:1000|int} MRU and about 50 seconds without upgrades.",
+            "Take the plate from the output slot on the right."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have a Void Plate in your inventory."
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "Make one for the table first",
+          "text": "Install your first Void Plate as an upgrade by right-clicking the table with it, and the rest come six times faster. An installed [[storage/upgrades|upgrade]] can always be taken back out as it was, so a Void Core or Reactor can sit in there, faster still, until you need it for crafting."
+        },
+        {
+          "type": "h",
+          "text": "What it is for"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Table upgrade",
+              "right-click the table with it: <t>×6</t> speed"
+            ],
+            [
+              "Gun body",
+              "tougher and harder-hitting than Mithriline ([[guns/parts]])"
+            ],
+            [
+              "Sniper scope",
+              "Void Plates in both S slots: <t>12</t>× zoom ([[guns/sniper]])"
+            ],
+            [
+              "Void Crystal Pillar",
+              "6 each ([[demons/void_crystal_pillar]])"
+            ],
+            [
+              "Demonic Pentacle",
+              "4 in its recipe ([[demons/demonic_pentacle]])"
+            ],
+            [
+              "Void Armor",
+              "2 per piece ([[gear/void_armor]])"
+            ],
+            [
+              "Ultra generators",
+              "4 each ([[void_machines/ultra_heat_generator]], [[void_machines/ultra_natural_furnace]])"
+            ],
+            [
+              "Magical Furnace, Teleporter, Ember Forge",
+              "2 per recipe ([[void_machines/magical_furnace]], [[void_machines/magical_teleporter]], [[void_machines/ember_forge]])"
+            ],
+            [
+              "Magical Building Wand",
+              "2 in its recipe ([[void_machines/magical_builder]])"
+            ],
+            [
+              "Void Magmatic Furnace",
+              "8 around a pale magmatic furnace ([[magmatic/furnace_upgrades]])"
+            ],
+            [
+              "Advanced filter",
+              "4 plates around a plain filter upgrade it and keep its samples ([[logistics/advanced_filters]])"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "For the next chapter"
+        },
+        {
+          "type": "p",
+          "text": "The Demonic Pentacle and its 4 Void Crystal Pillars take 28 Void Plates, 13 Void Stone, 5 Void Cores and 4 Reactors in all. Cores and reactors are much harder to come by than plates, so count yours before you start ([[hoanna/relics]])."
+        }
+      ]
+    },
+    {
+      "id": "collapse",
+      "title": "MRUCU Collapse",
+      "icon": "essentialcraft5:void_mru_reactor",
+      "summary": "Shut in an MRUCU, get cores and reactors",
+      "complete": "essentialcraft5:guide/hoanna/collapse",
+      "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em>: build an Enrichment Chamber in Hoanna, shut a full MRUCU inside, and wait for it to collapse into a {item:essentialcraft5:void_core} or an {item:essentialcraft5:void_mru_reactor}. The people of Hoanna had this craft in their last years. Why it only works in Hoanna, the Fragments don't say. Ruin chests run out sooner or later, and collapse is the only way to make these two yourself."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book introduces the Enrichment Chamber by saying that before going any further, you need a way to keep those growing MRUCUs from wrecking your house. In the original, Void Cores and MRU Reactors only came from ruin chests; collapse was added in the port."
+        },
+        {
+          "type": "h",
+          "text": "What it takes"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Where",
+              "Hoanna"
+            ],
+            [
+              "Shell",
+              "A formed Enrichment Chamber ([[enrichment/controller]]) whose shell holds at least {cfg:machines.enrichment_chamber.collapse.void_casing} {item:essentialcraft5:void_stone}, {item:essentialcraft5:void_glass} and {item:essentialcraft5:demonic_plating} blocks combined"
+            ],
+            [
+              "Holding Blocks",
+              "At least 1 in the shell ([[enrichment/holding_chamber]]). The controller alone stores {cfg:machines.enrichment_chamber.max_mru}, and each Holding Block adds {cfg:machines.enrichment_chamber.mru_per_storage}"
+            ],
+            [
+              "Stabilizer",
+              "An {item:essentialcraft5:ec_balancer} in the shell ([[pentacle/ec_balancer]])"
+            ],
+            [
+              "MRUCU",
+              "One holding a full {cfg:machines.enrichment_chamber.collapse.presence_mru} MRU, shut inside"
+            ],
+            [
+              "Stored MRU",
+              "At least {cfg:machines.enrichment_chamber.collapse.mru}"
+            ],
+            [
+              "Balance",
+              "{balance:frozen} at or below {cfg:machines.enrichment_chamber.collapse.frozen_max} condenses a Void Core, {balance:chaos} at or above {cfg:machines.enrichment_chamber.collapse.chaos_min} an MRU Reactor, and anything in between does nothing"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "While every condition holds, collapse progress rises by 1 a second, and at {cfg:machines.enrichment_chamber.collapse.seconds} seconds, or {cfg:machines.enrichment_chamber.collapse.seconds|div:60|round:1} minutes, it collapses. While Hoanna has a [[hoanna/events|calamity]] going on, each second counts as {cfg:machines.enrichment_chamber.collapse.event_multiplier}."
+        },
+        {
+          "type": "p",
+          "text": "Hoanna's [[hoanna_explore/tide|mana tide]] speeds collapse up as well, from normal at the new moon to 1.5 seconds per second at the full moon. During a calamity the calamity's rate applies instead, and the two don't stack.",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "In this world the mana tide stands still, so it doesn't speed collapse up or slow it down.",
+          "if": "!cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "When it collapses, the MRUCU disappears, {cfg:machines.enrichment_chamber.collapse.mru} MRU is taken from the chamber, and a Void Core or an MRU Reactor drops in the middle of the chamber. No shell block moves and the drop never despawns. Drops of the same kind pile up together; open one shell block, take them out and put the block back. Once the pile reaches a full stack of 64, collapse holds at full progress until you take some out."
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Build an Enrichment Chamber in Hoanna with at least {cfg:machines.enrichment_chamber.collapse.void_casing} Void Stone, Void Glass or Demonic Plating blocks in the shell; the rest can be {item:essentialcraft5:fortified_stone} or {item:essentialcraft5:fortified_glass}. Add the controller, 1 Holding Block and 1 Stabilizer, and preferably a [[enrichment/monitoring|State Checker]].",
+            "Shut an MRUCU inside. Either build the shell around one that's already there, or push one in through the glass with an {item:essentialcraft5:mru_mover}.",
+            "Run a few machines that leak MRU next to the chamber until the MRUCU fills to {cfg:machines.enrichment_chamber.collapse.presence_mru} MRU. Leaked MRU goes into the nearest MRUCU within 32 blocks ([[start/mrucu]]).",
+            "Fill the chamber with {cfg:machines.enrichment_chamber.collapse.mru} MRU through an [[enrichment/io|Acceptor]] and steer its balance as you go. For a Void Core, pull from low-balance generators such as the {item:essentialcraft5:cold_distillator}; for a Reactor, from high-balance ones such as the {item:essentialcraft5:sun_ray_absorber}.",
+            "Right-click the controller or check the collapse bar on the State Checker to make sure nothing is missing, then wait."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "The first Void Core or MRU Reactor drops in the chamber. Everyone within 16 blocks of the controller at that moment gets this step ticked, and a chat message says so."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<em>Protect yourself until the Stabilizer is in.</em> A full MRUCU adds 80 [[corruption/matrix_damage|matrix damage]] per second to everyone within 12 blocks. Wear a full set of [[gear/mhs_armor]] while you grow it and push it, or build the Stabilizer in first and push the MRUCU in afterwards."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If a condition breaks partway, say the balance drifts, a shell block is opened or the stored MRU is drawn off, progress stays where it is. It only starts over from 0 when the MRUCU that was shut in is gone.",
+            "With more than one MRUCU inside, the fullest one counts. Once collapse has started it sticks with that one, and swapping in another starts over.",
+            "Collapse uses up the MRUCU. With the chamber empty, machines leaking MRU nearby feed another MRUCU within 32 blocks, or form a new one on the machine itself if there is none. To collapse again, push one into the chamber with the {item:essentialcraft5:mru_mover} and let it fill up again.",
+            "The chamber's balance is an average weighted by amount, and the MRU already stored counts too, so after switching generators it takes a while to swing over.",
+            "The State Checker shows a collapse bar to the right of the MROV. Blue means it's condensing a Void Core, red an MRU Reactor and grey that it's paused; hover over it to see what's missing.",
+            "Several chambers can collapse at the same time without affecting each other.",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "text": "A chamber that won't collapse can condense instead. With the balance near the middle and at least {cfg:machines.enrichment_chamber.condense.casing} Magic and Pale Plating blocks in the shell, the MRUCU shut inside slowly turns into a {item:essentialcraft5:condensed_matrix}. The full conditions are in [[pentacle/condensed]]."
+            },
+            {
+              "if": "cfg:machines.enrichment_chamber.shade.enabled",
+              "text": "Build the chamber near the Shadow Corrupted Land with {item:essentialcraft5:umbral_crystal}s inside and it collapses into a {item:essentialcraft5:shade_core} instead, whatever the balance ([[shade/shade_core]])."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "You'll need a lot of Void Cores and Reactors later, and the numbers are under \"How many you need\" in [[hoanna/relics]]. With collapse, running short of chests won't hold you up."
+        }
+      ]
+    }
+  ]
+}

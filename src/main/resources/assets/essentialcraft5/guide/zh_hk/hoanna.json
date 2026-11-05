@@ -1,0 +1,1840 @@
+{
+  "id": "hoanna",
+  "order": 97,
+  "group": "main",
+  "title": "第十六章 · 海納爾",
+  "subtitle": "去被毀的世界找虛空材料",
+  "icon": "essentialcraft5:void_mru_reactor",
+  "if": "cfg:general.hoanna.portal_enabled",
+  "entries": [
+    {
+      "id": "legend",
+      "title": "海納爾：被毀掉的世界",
+      "icon": "minecraft:dead_bush",
+      "summary": "本章要去哪裏、做什麼、備齊什麼",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "那是科技與魔法交融的世界，一切都運轉得好好的。它□□□□……那人呼喚了風，風便親自來到他身邊，帶他去往夢幻的大陸，去往海納爾，一個有無限可能的世界。",
+          "by": "《海納爾傳説》"
+        },
+        {
+          "type": "p",
+          "text": "傳説裏的<hl>海納爾</hl>是一片夢幻大陸，如今只剩被 MRU 燒燬的荒原，城裏沒有一個人，頭頂是一片怪異的天空。它是一個獨立的維度，和地獄、終界一樣，要穿過傳送門才能抵達，那裏也不刷動物。"
+        },
+        {
+          "type": "p",
+          "text": "去海納爾是為了<em>虛空材料</em>，第十七到二十一章的惡魔、全息、審判庭、宅男套裝和終端模塊都離不開它。{item:essentialcraft5:titanite}、{item:essentialcraft5:void_core}、{item:essentialcraft5:void_mru_reactor}這些東西起初只能從海納爾人留下的遺蹟箱子裏取，見[[hoanna/relics]]，其中{item:essentialcraft5:titanite}在海納爾沙漠裏也挖得到。"
+        },
+        {
+          "type": "h",
+          "text": "本章怎麼走"
+        },
+        {
+          "type": "steps",
+          "items": [
+            {
+              "if": [
+                "cfg:general.wind_wish.enabled",
+                "cfg:general.wind_wish.required>0"
+              ],
+              "text": "積攢夠風之好感，再替風完成足夠的心願，{item:essentialcraft5:wind_tablet}才會回應你，做法見[[hoanna/wind_name]]。這一步最花時間，可以一邊做別的事一邊慢慢積攢。"
+            },
+            {
+              "if": "!cfg:general.wind_wish.enabled||!cfg:general.wind_wish.required>0",
+              "text": "讓{item:essentialcraft5:wind_tablet}顯出風的完整真名，做法見[[hoanna/wind_name]]。這一步最花時間，可以一邊做別的事一邊慢慢積攢。"
+            },
+            "在主世界拿石板把一扇地獄傳送門換成海納爾之門，然後走進去，見[[hoanna/open_gate]]和[[hoanna/crossing]]。",
+            "找到一處[[hoanna/ruins|遺蹟]]，從箱子裏拿到第一件[[hoanna/relics|遺物]]。",
+            "拿榍石做出{item:essentialcraft5:void_stone}，再把它壓成{item:essentialcraft5:void_plating}，見[[hoanna/void_stone]]和[[hoanna/void_plating]]。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "中間幾篇講回家的路和那邊的環境、危險，出發前最好通讀一遍，到了那邊也可以隨時翻回來查。"
+        },
+        {
+          "type": "h",
+          "text": "出發前要備齊"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<t>{cfg:general.wind.tablet_points}</t> 點風之好感，這個數代表風和你有多親近，主要靠喝風之藥水一點點積攢，見[[wind/air_potion]]。",
+            {
+              "if": [
+                "cfg:general.wind_wish.enabled",
+                "cfg:general.wind_wish.required>0"
+              ],
+              "text": "<t>{cfg:general.wind_wish.required}</t> 個風之心願，受到風之眷顧以後，到風之符文前問風想要什麼，再替它辦到，見[[wind/wishes]]。"
+            },
+            "一塊{item:essentialcraft5:wind_tablet}，做它要 4 個{item:essentialcraft5:air_focus}、4 塊{item:essentialcraft5:magic_fortified_plating}和 1 個{item:essentialcraft5:wind_keeper}，見[[wind/wind_tablet]]。",
+            "至少 {cfg:general.wind.tablet_portal_mru} MRU，存在石板裏或隨身帶着的靈魂儲存裏都可以。",
+            "到那邊用得上的食物和火把，再帶一張牀、一套盔甲。",
+            "從全息投影一章起還要 7~9 顆地獄之星，現在去地獄要塞時就可以順手攢凋零怪骷髏頭了，見[[hologram/holopad]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "最容易卡住的地方"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:wind_keeper}只有<em>大法師</em>會掉，野外很難遇到大法師。受到風之眷顧以後可以做一支風之號角，夜裏吹響就能把大法師召來，親手打倒它就能拿到，見[[wind/wind_horn]]和[[wind/archmage]]。",
+            {
+              "if": "bauble:essentialcraft5:wind_catcher",
+              "text": "要是在地牢箱子裏翻到了{item:essentialcraft5:wind_catcher}，戴着它喝風之藥水，每瓶有 15% 的幾率捕到一個{item:essentialcraft5:wind_keeper}，平均六七瓶出一個。戴着它時好感漲得很慢，沒有別的加成時一點都不漲，捕到以後就摘下來，見[[baubles/wind_corruption]]。"
+            },
+            "4 個風之焦點要用的燃料，得拿從水晶裏抽出的狂風精華來做。新做的水晶各項元素都很低，風元素高的水晶要早點開始培育，見[[essence/fuel_and_focus]]和[[essence/crystal_controller]]。"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "記不清 MRU、ESPE 這些詞是什麼意思時，可以翻[[start/glossary]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書説，海納爾是第一個擋在 MRU 這股毀滅之力去路上的世界，關於它只剩一段殘缺的傳説。傳説裏那人是叫着風的名字把它喚來的，書裏便猜，只要弄清風的名字，你或許也能去一趟。"
+        }
+      ]
+    },
+    {
+      "id": "wind_name",
+      "title": "風的真名",
+      "icon": "essentialcraft5:wind_tablet",
+      "summary": "好感和心願積攢夠了，石板就肯回應",
+      "complete": "essentialcraft5:guide/hoanna/true_name",
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "<em>目標</em>：讓{item:essentialcraft5:wind_tablet}上的問號全部變成字，再攢夠風之心願，兩樣都齊了，石板才會回應你、替你開門。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.wind_wish.enabled||!cfg:general.wind_wish.required>0",
+          "text": "<em>目標</em>：讓{item:essentialcraft5:wind_tablet}上的問號全部變成字，名字顯全以後，石板才會替你開門。"
+        },
+        {
+          "type": "p",
+          "text": "風之石板能把風聲譯成人話，風和你越親近，它譯出的字就越多。把滑鼠停在石板上，「風之真名：」下面是 22 個問號，風之好感每漲約 {cfg:general.wind.tablet_points|div:22|int} 點就顯出一個字，漲到 {cfg:general.wind.tablet_points} 點時全部顯現。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "名字下面還有一行「風之印記」，每替風完成一個[[wind/wishes|心願]]就添上一個，攢到 {cfg:general.wind_wish.required} 個為止。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼漲好感"
+        },
+        {
+          "type": "p",
+          "text": "好感主要靠在風之符文祭壇上注出風之藥水，再一瓶一瓶喝下去，先受到風之眷顧、穿上風法師套裝，都能讓它漲得快不少。各條路線的花費和要等的時間，都列在[[wind/air_potion]]的路線表裏。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "替風完成[[wind/wishes|心願]]也能漲好感，每完成一個，原始值 +{cfg:general.wind_wish.points}，不過名字顯全之前，風只會託付這 {cfg:general.wind_wish.required} 個，其餘的好感還得靠藥水來攢。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "!cfg:general.wind_wish.required>0"
+          ],
+          "text": "名字顯全以後，風才會把[[wind/wishes|心願]]託付給你，從那時起，每替它完成一個，好感原始值 +{cfg:general.wind_wish.points}。"
+        },
+        {
+          "type": "h",
+          "text": "省時間的辦法"
+        },
+        {
+          "type": "list",
+          "items": [
+            "祭壇只在你待在附近時積攢 ESPE，出遠門前先把藥水注好帶在身上，見[[mithriline/crystal_pillar]]。",
+            "終界的水晶柱積攢得快得多，每刻 {cfg:machines.mithriline_crystal_pillar.espe_generated_end}，主世界只有 {cfg:machines.mithriline_crystal_pillar.espe_generated}，把祭壇搭在終界，或者多搭一座，要等的時間都能成倍縮短，見[[mithriline/crystal_pillar]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "名字還沒顯全就拿石板右鍵地獄傳送門，快捷欄上方只會出現一句「傳送門沒有回應……」，MRU 不會扣，門也不會變。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "心願沒攢夠",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "名字顯全了、心願卻還沒攢夠時右鍵傳送門，只會收到一句「風還在等你替它完成心願」，同樣不扣 MRU。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "別打碎受困之風",
+          "text": "{item:essentialcraft5:wind_keeper}拿在手裏右鍵就會碎掉，換來一點好感，留着做石板的那一個千萬別誤點。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "if": [
+            "cfg:general.wind_wish.enabled",
+            "cfg:general.wind_wish.required>0"
+          ],
+          "text": "提示裏的名字一個問號都不剩，風之印記也攢滿了。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "if": "!cfg:general.wind_wish.enabled||!cfg:general.wind_wish.required>0",
+          "text": "提示裏的名字一個問號都不剩。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "p",
+          "text": "好感按人分開算，幾個人一起玩時，誰拿石板開門，就要誰的好感夠，石板是誰做的無所謂。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind_wish.enabled",
+          "text": "心願同樣各攢各的。存檔要是在這一步加入之前就已經攢夠了好感，或者打開過海納爾之門，心願數會直接記滿，不用回頭補做。"
+        }
+      ]
+    },
+    {
+      "id": "open_gate",
+      "title": "打開海納爾之門",
+      "icon": "minecraft:flint_and_steel",
+      "summary": "用風之石板把地獄傳送門變綠",
+      "complete": "essentialcraft5:guide/hoanna/portal",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在主世界把一扇點燃的地獄傳送門換成<hl>海納爾之門</hl>，門會變成綠色，通往海納爾。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "list",
+          "items": [
+            "已經顯出完整風之真名的{item:essentialcraft5:wind_tablet}，見[[hoanna/wind_name]]。",
+            "{cfg:general.wind.tablet_portal_mru} MRU，存在石板自帶的儲存裏或身上的靈魂儲存裏都可以。石板最多存 5000，放進{item:essentialcraft5:charging_chamber}就能充能，見[[storage/charging_chamber]]。",
+            "一扇在<em>主世界</em>點燃的地獄傳送門，黑曜石框的大小隨意，內框寬 2~21、高 3~21 都可以。",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.hoanna_portal>0"
+              ],
+              "text": "要穿過去，你還得有矩陣 {cfg:general.matrix_rank.gates.hoanna_portal} 階，開門本身不看矩陣階，見[[matrix/overview]]。"
+            }
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在主世界搭好地獄傳送門，點燃它，先別走進去。",
+            "手持風之石板，右鍵門裏紫色的那一面。",
+            "整扇門一下子變成綠色，同時扣掉 {cfg:general.wind.tablet_portal_mru} MRU。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "門變成綠色，快捷欄上方顯示「傳送門染成了綠色：海納爾之門打開了」。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "只有<b>主世界</b>裏整扇點燃的門才能換，地獄裏的門不行，對着沒點燃的框用石板，它會提醒你先點燃。在別人的領地裏換門會被拒絕，門一格都不會變，MRU 也<em>不扣</em>。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "這筆 MRU 要麼全從身上的靈魂儲存里扣，要麼全從石板自己的儲存里扣，不會兩邊湊，所以兩邊各存一半照樣不夠。靈魂儲存夠用時先扣它們。",
+            "海納爾之門拿不到物品形態，打掉門框四邊上除四角以外的任意一塊黑曜石，或者門被爆炸波及，整扇門就會消失，之後得重新搭框、點燃，再花一次 MRU。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crossing",
+      "title": "穿過去",
+      "icon": "minecraft:obsidian",
+      "summary": "站進門裏等一會兒",
+      "complete": "essentialcraft5:guide/hoanna/enter",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：第一次踏上海納爾的土地。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "出發前",
+          "text": "帶上食物、火把和一張牀。那邊不刷動物，吃的不好找，見[[hoanna/flora]]。在那邊睡過一次牀，死後就會在那邊復活，回去撿東西也近，見[[hoanna/way_home]]。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "走進海納爾之門，站着別動。",
+            "等上 {cfg:general.hoanna.portal_wait_ticks|sec}，屏幕四周會慢慢泛起一圈綠色，創造模式下會立刻傳送。",
+            "然後你就站在了海納爾那邊的一扇海納爾之門裏，第一次過去時，那邊會在同一座標附近自動建起一扇 4 × 5 的黑曜石門。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "天色暗下來，地平線泛黃，四周是從沒見過的地貌。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<b>騎着東西過不了門</b>，過門前要先從坐騎上下來。過門以後 {cfg:general.hoanna.portal_cooldown_ticks|sec}內門不會再帶你走，這段時間只在你站在門外時才算，所以到了以後先走出門。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "只有玩家能過門，扔進去的物品、動物和礦車都留在原地。",
+            "那邊 {cfg:general.hoanna.portal_search_radius} 格內已經有海納爾之門時，你會落在那扇門裏，沒有才新建一扇。新門先找露天的地面，附近找不到才建進洞裏，四周全是海的話，門會立在水面上鋪出的一小塊黑曜石平台上。",
+            "那邊能落腳的地方要是全在別人的領地裏，門會拒絕送你過去，過一會兒再試就好。",
+            "那圈綠色不會轉，也不會讓人頭暈，嫌它顯眼的話，把「{lang:options.title} → {lang:options.accessibility.title}」裏的「{lang:options.screenEffectScale}」調低就行。",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.hoanna_portal>0"
+              ],
+              "text": "矩陣階不到 {cfg:general.matrix_rank.gates.hoanna_portal} 階時，站滿了也不會傳送，快捷欄上方會寫要幾階、你現在幾階。魔力傳送器同樣不往海納爾送你。從海納爾回來不看矩陣階。"
+            },
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:general.matrix_rank.gates.hoanna_portal>0",
+                "cfg:general.matrix_rank.gates.block_all_entries"
+              ],
+              "text": "矩陣階不到 {cfg:general.matrix_rank.gates.hoanna_portal} 階時，用指令或別的模組的傳送也進不了海納爾，快捷欄上方同樣會寫要幾階。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "way_home",
+      "title": "怎麼回家",
+      "icon": "minecraft:red_bed",
+      "summary": "回程的門、牀和補門",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：從海納爾回到主世界，並弄清門壞了、人死了該怎麼辦。"
+        },
+        {
+          "type": "p",
+          "text": "在海納爾走進海納爾之門，就會回到主世界的同一座標，那邊 {cfg:general.hoanna.portal_search_radius} 格內有海納爾之門的話，你會落在那扇門裏，一般就是你來時走的那扇。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.homeward_compass.allow_cross_dimension",
+          "text": "也可以用[[gear/homeward_compass|歸途羅盤]]從海納爾回家，但它不能把你傳進海納爾。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "回程不建門",
+          "text": "主世界那邊附近<em>沒有</em>海納爾之門時，比如門被拆了，或者你在海納爾走遠以後自己補了一扇門，門<em>不會</em>在主世界替你新建一扇，只會把你送回重生點，在主世界睡過牀就回到牀邊，沒睡過就回到世界出生點。"
+        },
+        {
+          "type": "h",
+          "text": "死了以後"
+        },
+        {
+          "type": "list",
+          "items": [
+            "海納爾裏能睡牀，睡過一次，重生點就設在了海納爾，只是睡覺跳不過夜晚。",
+            "重生錨在海納爾設不了重生點，充能以後再右鍵，它會和在主世界一樣<b>爆炸</b>。",
+            "沒在海納爾睡過牀就死了，會回到主世界的重生點。",
+            "重生點設在海納爾時，從海納爾回主世界又找不到門，你會落在世界出生點。",
+            {
+              "if": "cfg:general.radiation.enabled",
+              "text": "死了以後，身上的[[hoanna/radiation|輻射]]還在。"
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "門壞了怎麼辦"
+        },
+        {
+          "type": "p",
+          "text": "海納爾裏點不燃地獄傳送門，那邊的門被拆了，就重新搭一個空的黑曜石框，拿{item:essentialcraft5:wind_tablet}右鍵框的<em>內側</em>，比如框底那一排的上表面，空框會直接變成海納爾之門。"
+        },
+        {
+          "type": "p",
+          "text": "補門和開門一樣，要石板顯出風之真名，要花 {cfg:general.wind.tablet_portal_mru} MRU，在別人的領地裏同樣會被拒絕，也不扣 MRU。去海納爾時最好隨身帶上石板、足夠的 MRU 和 10 塊黑曜石，最小的門框不算四角正好是 10 塊。"
+        }
+      ]
+    },
+    {
+      "id": "sky",
+      "title": "這裏的天空",
+      "icon": "minecraft:spyglass",
+      "summary": "三個太陽、兩個月亮和夜裏的光幕",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海納爾的天空比主世界暗，白天的天頂是一片發暗的藍紫色，越靠近地平線越黃。那是空氣裏懸着的塵埃，從海納爾燒起來那天起，就再沒有落定過。天色雖暗，地面卻和主世界一樣亮。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "天上有<em>三個太陽</em>，一個主日，旁邊跟着兩個淡淡的殘日，一同東昇西落。",
+            "夜裏有<em>兩個月亮</em>，大的那個和主世界的月相一樣，小的伴月總是差半個週期。",
+            {
+              "if": "cfg:general.hoanna_tide.enabled",
+              "text": "大的月亮越圓，天上的 MRU 光幕越亮，海納爾的魔力也漲得越高，見[[hoanna_explore/tide]]。"
+            },
+            "夜空裏綴着淡紫色的星星，橫着一道 MRU 光幕，靠近地平線的地方偏藍紫，越往上越接近品紅，和星空一起慢慢轉動。",
+            "夜裏偶爾有一道無聲的電弧閃過遠處的地平線，每兩道之間至少隔十幾秒。",
+            "這裏沒有云。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "和主世界一樣的"
+        },
+        {
+          "type": "list",
+          "items": [
+            "晝夜和主世界一致，主世界天亮，這裏也天亮。",
+            "天氣也跟着主世界走，主世界下雨時，腐化之地和海納爾之海也下雨，恐懼之地和沙漠卻從來不下。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "看着不舒服",
+          "text": "嫌電弧晃眼，可以在「{lang:options.title} → {lang:options.accessibility.title}」裏打開「{lang:options.hideLightningFlashes}」，電弧會暗下去很多，出現的次數也少一半。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書起初把海納爾叫作「夢幻大陸」「充滿無限可能的世界」，到講輻射的那一頁才改口，説那些全是謊話，這裏其實是一片核荒漠，至於出過什麼事，沒人知道。"
+        }
+      ]
+    },
+    {
+      "id": "lands",
+      "title": "七種地貌",
+      "icon": "essentialcraft5:dread_dirt",
+      "summary": "腐化之地、恐懼之地、沙漠和海",
+      "items": [
+        "essentialcraft5:dread_dirt"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "海納爾同樣有山、河谷和洞穴，腐化之地的草木和水卻是灰藍、暗紫、磚紅這些顏色。海納爾燒起來時，整片天地的 MRU 一齊偏轉，地上的顏色就是那時變的。這裏的地形和主世界對不上，同一個座標在這邊是山，到了那邊可能是海。"
+        },
+        {
+          "type": "p",
+          "text": "從冷到熱，先是冰凍、魔力、混沌三種<em>腐化之地</em>，再是<em>恐懼之地</em>和海納爾沙漠，潮濕的地方偶爾會有暗影腐化之地，大片的水域是海納爾之海。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "地貌",
+            "看起來",
+            "長什麼"
+          ],
+          "widths": [
+            3,
+            5,
+            5
+          ],
+          "rows": [
+            [
+              "冰凍腐化之地",
+              "草、樹葉和水都是灰藍色，空中飄着細雪似的小點，只下雨不下雪",
+              "橡樹、{item:essentialcraft5:hoanna_tall_grass}、{item:essentialcraft5:green_flower}、蘑菇、甘蔗、南瓜"
+            ],
+            [
+              "魔力腐化之地",
+              "草、樹葉和水都是暗紫色，空中飄着淡紫的細塵",
+              "同上，草地上偶爾長着{item:essentialcraft5:magical_fruit_block}"
+            ],
+            [
+              "混沌腐化之地",
+              "草和樹葉磚紅，水暗紅，空中飄着紅色孢子",
+              "和冰凍腐化之地一樣，另有緋紅菌叢和枯死的深色橡木"
+            ],
+            [
+              "暗影腐化之地",
+              "草和樹葉灰黑，天和霧在幾種地貌裏最暗，飄着灰燼，很少見，約佔陸地的 2%",
+              "和冰凍腐化之地一樣，另有黑曜石殘柱"
+            ],
+            [
+              "恐懼之地",
+              "滿眼暗褐色的{item:essentialcraft5:dread_dirt}，不下雨",
+              "{item:minecraft:dead_bush}、蘑菇、{item:essentialcraft5:dread_cactus}，滿地枯死的深色橡木和一堆堆白骨；輻射最重的地方地面燒得焦黑"
+            ],
+            [
+              "海納爾沙漠",
+              "沙子和砂巖，不下雨",
+              "{item:essentialcraft5:dread_cactus}、{item:minecraft:dead_bush}、蘑菇，水邊有{item:minecraft:sugar_cane}，沙裏半埋着砂巖巨石"
+            ],
+            [
+              "海納爾之海",
+              "大片的水，底下鋪着沙礫",
+              "海草、海帶，海底一片片{item:essentialcraft5:abyssal_salt_crust}，偶爾有沉沒的殘骸"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每種地貌還各長着一樣別處沒有的特產，怎麼採見[[hoanna_explore/specialties]]。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "冰凍腐化之地的冰刺裏嵌着{item:essentialcraft5:frost_marrow}。",
+            "魔力腐化之地的草地上長着{item:essentialcraft5:tide_bud}，大潮夜收{item:essentialcraft5:tide_crystal}。",
+            "混沌腐化之地的{item:essentialcraft5:ley_vent}攢滿能以後收{item:essentialcraft5:ley_crystal}。",
+            "恐懼之地和沙漠裏輻射最強的地方長着{item:essentialcraft5:radiant_cluster}，挖出{item:essentialcraft5:radiant_crystal}。",
+            "海納爾沙漠的巨石上嵌着{item:essentialcraft5:titanite_ore}。",
+            "暗影腐化之地的{item:essentialcraft5:umbral_cluster}夜裏收{item:essentialcraft5:umbral_crystal}。",
+            "海納爾之海的海底挖{item:essentialcraft5:abyssal_salt_crust}出{item:essentialcraft5:abyssal_salt}。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "地下"
+        },
+        {
+          "type": "p",
+          "text": "地下和主世界差不多，原版的礦、[[elements/ores|藴魔礦石]]和{item:essentialcraft5:mithriline_ore}都有，數量也一樣，地牢、紫水晶洞和巖漿湖照常生成。"
+        },
+        {
+          "type": "p",
+          "text": "<em>上古遺蹟</em>比主世界密得多，平均三十來個區塊就有一座。它是埋在石頭裏的石磚籠子，正中懸着一大團 MRU，帶有地牢箱子和刷怪籠，見[[start/mrucu]]。海納爾人當年砌了很多這樣的籠子關聚集體，主世界那些是先輩照他們的法子砌的。"
+        },
+        {
+          "type": "h",
+          "text": "生物"
+        },
+        {
+          "type": "p",
+          "text": "這裏<b>不刷動物</b>，水裏也沒有魚和墨魚。刷的怪除了主世界平原上那些，還有八種海納爾本地的怪，海里有[[bestiary/abyssal_eel|淵鰻]]，見[[bestiary/overview|異獸錄]]。吃的要自己帶，或者就地找，見[[hoanna/flora]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.wind_mage.max_nearby>0",
+          "text": "[[wind_mage/wind_mages|風法師]]在這裏也會出現，打倒以後同樣會掉瓶裝的風。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "沙漠裏小心",
+          "text": "{item:essentialcraft5:dread_cactus}和原版仙人掌一樣扎人，碰到還會<b>中毒 5 秒</b>，在沙漠裏趕路時離它遠一點。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作裏這幾片土地叫作 Chaos / Frozen / Magic / Shadow Corrupted Land、Hoanna Dreadlands 和 Hoanna Desert。原作給恐懼之地安排了枯萎的灌木，可恐懼泥土不算泥土，結果一株也沒長出來。"
+        }
+      ]
+    },
+    {
+      "id": "flora",
+      "title": "海納爾的植物",
+      "icon": "essentialcraft5:green_flower",
+      "summary": "花草、恐懼仙人掌和魔力果實",
+      "complete": "essentialcraft5:guide/hoanna/flora",
+      "optional": true,
+      "items": [
+        "essentialcraft5:green_flower",
+        "essentialcraft5:hoanna_tall_grass",
+        "essentialcraft5:dread_cactus",
+        "essentialcraft5:magical_fruit_block",
+        "essentialcraft5:magical_fruit",
+        "essentialcraft5:root"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：採到一樣海納爾的植物。它們只長在海納爾，主世界找不到。"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:green_flower",
+            "essentialcraft5:hoanna_tall_grass",
+            "essentialcraft5:dread_cactus",
+            "essentialcraft5:magical_fruit_block",
+            "essentialcraft5:magical_fruit"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "花草"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:hoanna_tall_grass}長在四種腐化之地的草地上，顏色隨當地的草變化。用剪刀剪能得到它本身，徒手挖有 1/8 的幾率掉 1 個{item:minecraft:wheat_seeds}，幸運不會提高這個幾率。對它用骨粉，會長成原版的高草叢。",
+            "{item:essentialcraft5:green_flower}也長在腐化之地，在那裏的草方塊上用骨粉，偶爾會冒出新的綠花。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "恐懼仙人掌"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:dread_cactus}只長在海納爾沙漠的沙子上，最高 3 格，旁邊貼着方塊就會碎，這些都和原版仙人掌一樣。碰到它會被扎傷，還會<b>中毒 5 秒</b>。"
+        },
+        {
+          "type": "h",
+          "text": "魔力果實"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:magical_fruit_block}只出現在<em>魔力腐化之地</em>的草地上，很少見，一處只有兩三塊，用斧子挖得快些。挖掉以後掉 3~7 個{item:essentialcraft5:magical_fruit}，幸運每級多掉 0~1 個，最多 9 個，用絲綢之觸能把整塊搬走。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "恢復飢餓",
+              "8 點"
+            ],
+            [
+              "飽和度",
+              "補滿"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "在海納爾吃什麼"
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:magical_fruit}最頂餓，可果實塊挖掉就不會再長，找到以後要省着吃。",
+            "每種地貌裏都有蘑菇，拿橡木做幾個碗就能燉蘑菇煲。",
+            "草叢偶爾掉的小麥種子可以種下，收了麥子做麪包，腐化之地的橡樹葉還會掉蘋果。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "物品欄裏有過綠花、草叢、恐懼仙人掌、魔力果實塊或魔力果實中的任意一樣。"
+        },
+        {
+          "type": "h",
+          "text": "根系"
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna/ruins|古代墓穴]]里長着{item:essentialcraft5:root}，斧子挖得動，只能拿來裝飾。"
+        }
+      ]
+    },
+    {
+      "id": "radiation",
+      "title": "海納爾輻射",
+      "icon": "essentialcraft5:delta_ring",
+      "summary": "待得越久攢得越多，離開才會慢慢散",
+      "complete": "essentialcraft5:guide/hoanna/radiation",
+      "optional": true,
+      "if": "cfg:general.radiation.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "那場大火留下的毒至今還在海納爾，它積在血肉裏，不在矩陣裏，ESPE 也夠不着它。在海納爾逗留時，身上會慢慢積起<em>輻射</em>，積到一定程度就會壓低你的生命。藥水治不了它，吃[[hoanna_explore/abyssal_salt|淵鹽]]能清掉一部分，剩下的要離開海納爾，等它自己散去。"
+        },
+        {
+          "type": "h",
+          "text": "漲得多快"
+        },
+        {
+          "type": "p",
+          "text": "每秒漲多少看你站在哪個區塊，每個區塊有一個固定的強度，在 <t>0~5</t> 之間，海納爾沙漠再加 <t>2</t>，恐懼之地再加 <t>6</t>，輻射自己每秒也會消散 <t>1</t>。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "普通區塊",
+              "平均每秒約 +1.5，約 2 小時積攢到 1 萬"
+            ],
+            [
+              "海納爾沙漠",
+              "平均約 +3.5，約 48 分鐘積攢到 1 萬"
+            ],
+            [
+              "恐懼之地",
+              "平均約 +7.5，約 22 分鐘積攢到 1 萬"
+            ],
+            [
+              "離開海納爾以後",
+              "每秒 −5，1 萬約半小時散盡"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0"
+          ],
+          "text": "趕上毒霧這場[[hoanna/events|天災]]時，靠近霧團每秒還要再 +200，盔甲和飾品都擋不住，不到一分鐘就能積到 1 萬。"
+        },
+        {
+          "type": "p",
+          "text": "[[hoanna_explore/ley_storm|地脈風暴]]裏站在露天，每秒再 +{cfg:general.hoanna_events.ley_storm_radiation}，盔甲最多替你擋一半。",
+          "if": [
+            "cfg:general.hoanna_events.ley_storm_enabled",
+            "cfg:general.hoanna_events.ley_storm_chance>0",
+            "cfg:general.hoanna_tide.enabled",
+            "cfg:general.hoanna_events.ley_storm_radiation>0"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "輻射最強的那些區塊叫熱點，不穿防護時，恐懼之地的熱點裏每秒漲 9~10，見[[hoanna_explore/hotspots]]。挖一塊[[hoanna_explore/specialties|輻晶簇]]漲 {cfg:general.hoanna_world.radiant_mining_dose}，被[[bestiary/hoanna_scavenger|遺民拾荒者]]打中也會漲。"
+        },
+        {
+          "type": "h",
+          "text": "看得出來嗎"
+        },
+        {
+          "type": "list",
+          "items": [
+            "一沾上輻射，快捷欄左邊就會多出一個紫框的輻射圖示，上面寫着生命被壓低了多少，右下角標着等級。",
+            "打開背包或聊天欄，把滑鼠停在圖示上，能看到現在的劑量和這裏每秒的變化量，正數是在漲，負數是在消散。",
+            "劑量超過 1000 以後，屏幕四周會泛起一圈淡淡的暗紫，劑量越高，顏色越濃。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "第一次沾上輻射，快捷欄左邊出現輻射圖示。"
+        },
+        {
+          "type": "h",
+          "text": "有什麼後果"
+        },
+        {
+          "type": "p",
+          "text": "劑量每滿 <t>1 萬</t>升一級。不到 1 萬時是不帶數字的「輻射」，只亮一個圖示，什麼都不扣，從 1 萬起是輻射 II，2 萬起是輻射 III，往上依此類推。"
+        },
+        {
+          "type": "p",
+          "text": "從輻射 II 起，<b>生命會被壓低</b>，名字後面是幾就算幾級，每級壓低最大生命的 {cfg:general.radiation.cap_loss_percent_per_level|pct}，輻射 II 壓低 {cfg:general.radiation.cap_loss_percent_per_level|mul:2|pct}，輻射 III 壓低 {cfg:general.radiation.cap_loss_percent_per_level|mul:3|pct}，合計最多壓低 {cfg:general.radiation.max_cap_loss_percent|pct}，最少留 1 點。比如最大生命是 100、中了輻射 II，血量最多隻能回到 {cfg:general.radiation.cap_loss_percent_per_level|mul:-200|add:100}。壓低了多少，圖示上方直接寫着。"
+        },
+        {
+          "type": "p",
+          "text": "它壓住的只是血量能回到的那條線，不會一下一下地扣血，血量回到線以上時，很快又會被壓回去，輻射 II 平均每秒一次多，等級越高壓得越勤。劑量降到 1 萬以下，這條線就沒了，血量照常回滿。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "沒有解藥",
+          "text": "輻射積在體內，不算藥水效果，{item:minecraft:milk_bucket}、{item:essentialcraft5:magic_water_bottle}、{item:minecraft:totem_of_undying}和能清除或免疫負面效果的飾品，都去不掉也擋不住它。死了劑量也不會清零。要降下來，只能吃[[hoanna_explore/abyssal_salt|淵鹽]]，或者離開海納爾等它自己散去。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼少吃一點"
+        },
+        {
+          "type": "p",
+          "text": "穿上防護盔甲能少吃一些輻射，四件盔甲上寫的「海納爾輻射抗性」加起來再除以 4，就是實際的效果，各套穿齊四件時如下表。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "整套盔甲",
+            "少吃多少"
+          ],
+          "widths": [
+            3,
+            2
+          ],
+          "rows": [
+            [
+              "[[gear/mhs_armor]]",
+              "少 10%"
+            ],
+            [
+              "[[wind_gear/wind_armor]]",
+              "少一半"
+            ],
+            [
+              "[[gear/void_armor]]",
+              "少 75%"
+            ],
+            [
+              "[[computer/suit]]",
+              "區塊輻射完全不吃"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:mystical_accessory",
+              "text": "海納爾遺蹟箱子裏的{item:essentialcraft5:mystical_accessory}帶着隨機的海納爾輻射抗性，上面寫多少，就直接少吃多少，見[[baubles/mystical_accessory]]。"
+            },
+            "少在沙漠和恐懼之地逗留，歇腳時挑個強度低的區塊，圖示提示裏那個每秒的變化量能告訴你這裏合不合適。",
+            {
+              "if": "cfg:general.matrix_rank.enabled",
+              "text": "矩陣五階起，輻射再少吃 5%，和飾品那一項算在一起，見[[matrix/overview]]。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "有幾件特殊飾品也和輻射有關，見[[baubles/radiation]]。"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "bauble:essentialcraft5:delta_ring",
+              "text": "{item:essentialcraft5:delta_ring}讓輻射壓低生命時只按一半左右的等級算，圖示上寫的是實際壓低的量。"
+            },
+            {
+              "if": "bauble:essentialcraft5:lambda_ring",
+              "text": "{item:essentialcraft5:lambda_ring}讓輻射在你離開海納爾以後散得快得多，每秒 −65。"
+            },
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "戴上{item:essentialcraft5:mu_ring}，在海納爾裏每秒要多吃 20 輻射，換來的是不怕日陣、毒霧和強震。"
+            },
+            {
+              "if": [
+                "bauble:essentialcraft5:xi_belt",
+                "cfg:general.bauble_limits.xi_dose_ceiling>0"
+              ],
+              "text": "{item:essentialcraft5:xi_belt}會讓你打中的其他玩家吃到輻射，每一下最多 {cfg:general.bauble_limits.xi_dose_per_hit}，加到 {cfg:general.bauble_limits.xi_dose_ceiling} 為止，你自己捱打時也會吃輻射，上限相同。"
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "別和 MRU 輻射搞混",
+          "text": "輻射倉和 MRU 聚集體那幾篇説的「MRU 輻射」是另一回事，跟這裏的海納爾輻射沒有關係，見[[crafting/radiating_chamber]]。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究書説，海納爾有的地方空氣幾乎是乾淨的，能停下來喘口氣，有的地方吸一口，肺裏就像着了火。至於解藥，書裏説一樣也沒有，能治它的只有時間，喝魔力牛奶、戴護身符都不管用。"
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": "海納爾的天災",
+      "icon": "minecraft:clock",
+      "summary": "日陣、毒霧、黑暗和地震",
+      "complete": "essentialcraft5:guide/hoanna/event",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.chance_multiplier==1",
+            "cfg:general.hoanna_events.sun_array_enabled",
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0",
+            "cfg:general.hoanna_events.darkness_enabled",
+            "cfg:general.hoanna_events.earthquake_enabled"
+          ],
+          "text": "有人待在海納爾時，平均每 6 個遊戲日左右就會降下一場<em>天災</em>，合現實時間約 2 小時。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.chance_multiplier>0",
+            "cfg:general.hoanna_events.chance_multiplier!=1||!cfg:general.hoanna_events.sun_array_enabled||!cfg:general.hoanna_events.fumes_enabled||cfg:general.hoanna_events.fumes_max_nearby==0||!cfg:general.hoanna_events.darkness_enabled||!cfg:general.hoanna_events.earthquake_enabled",
+            "cfg:general.hoanna_events.sun_array_enabled||cfg:general.hoanna_events.fumes_enabled||cfg:general.hoanna_events.darkness_enabled||cfg:general.hoanna_events.earthquake_enabled"
+          ],
+          "text": "有人待在海納爾時，每隔一陣子就會降下一場<em>天災</em>。"
+        },
+        {
+          "type": "p",
+          "text": "天災開始時聊天欄會用紅字提醒，結束時用綠字，屏幕頂部還會彈出一條提示條，寫明是哪種天災、還剩多久，10 秒後它縮成一個帶倒計時的小圖示，挪到快捷欄左端的上方。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "天災",
+            "持續",
+            "會怎樣",
+            "怎麼辦"
+          ],
+          "widths": [
+            2,
+            2,
+            4,
+            4
+          ],
+          "rows": [
+            {
+              "if": "cfg:general.hoanna_events.sun_array_enabled",
+              "cells": [
+                "日陣",
+                "一整個白天",
+                "頭頂見天，每秒灼燒 1 點並着火",
+                "躲到不透光的屋頂下，或喝抗火藥水"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.fumes_enabled",
+                "cfg:general.hoanna_events.fumes_max_nearby>0"
+              ],
+              "cells": [
+                "毒霧",
+                "約 10 分鐘",
+                "黃綠色霧團附近中毒 II",
+                "離霧團 7 格以外，牆擋不住"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna_events.darkness_enabled",
+              "cells": [
+                "黑暗",
+                "1~3 個遊戲日",
+                "天暗得像夜裏，只是看不清",
+                "帶夠火把，夜視藥水照樣有用"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.earthquake_enabled",
+                "cfg:general.hoanna_events.earthquake_push"
+              ],
+              "cells": [
+                "地震",
+                "約 4 分鐘",
+                "畫面晃動，站在地上會被推來推去",
+                "遠離懸崖邊"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.earthquake_enabled",
+                "!cfg:general.hoanna_events.earthquake_push"
+              ],
+              "cells": [
+                "地震",
+                "約 4 分鐘",
+                "畫面輕微晃動",
+                "不用管它"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled",
+                "cfg:general.radiation.enabled",
+                "cfg:general.hoanna_events.ley_storm_radiation>0"
+              ],
+              "cells": [
+                "地脈風暴",
+                "約 5 分鐘",
+                "只在大潮夜天黑時來，天上往下落晶體，站在露天輻射漲得快",
+                "撿夠了就躲到屋頂下"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna_events.ley_storm_enabled",
+                "cfg:general.hoanna_events.ley_storm_chance>0",
+                "cfg:general.hoanna_tide.enabled",
+                "!cfg:general.radiation.enabled||!cfg:general.hoanna_events.ley_storm_radiation>0"
+              ],
+              "cells": [
+                "地脈風暴",
+                "約 5 分鐘",
+                "只在大潮夜天黑時來，天上往下落晶體",
+                "出去撿"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "在海納爾親身遇上一場天災，這一步就打勾了。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "躲回家沒用",
+          "text": "海納爾裏沒人時，天災會停住，正在鬧的那場停在原處，新的也不會來，等有人回來再接着走，只有日陣例外，天一黑就散。回主世界躲不過去，回來以後還得熬完剩下的時間。"
+        },
+        {
+          "type": "p",
+          "text": "天災<em>不會動任何方塊</em>，不會放火、炸東西，也不會改變地形。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna_events.sun_array_enabled",
+          "text": "日陣"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna_events.sun_array_enabled",
+          "text": "日陣只在黎明時開始，持續一整個白天，天一黑就散。這時天上會多出一圈殘日，餘燼從空中紛紛飄落，只要頭頂看得見天，每秒就會被灼燒 <t>1</t> 點，身上着火。"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.hoanna_events.sun_array_enabled",
+          "items": [
+            "躲到<em>不透光</em>的屋頂下，石頭、木頭、樹葉都可以，<w>玻璃擋不住</w>。",
+            "喝抗火藥水。",
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "或者戴{item:essentialcraft5:mu_ring}。"
+            },
+            "穿齊一套[[gear/void_armor|虛空套裝]]，灼燒只受一半，隨後身上着火的那幾下也一樣。"
+          ]
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0"
+          ],
+          "text": "毒霧"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0"
+          ],
+          "text": "毒霧持續約 10 分鐘，四處會冒出慢慢飄動的黃綠色霧團，走近時周圍的霧氣也會發黃。離一團霧水平 7 格、上下 4 格以內，就會<b>中毒 II</b>，隔着牆也一樣。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0",
+            "cfg:general.radiation.enabled"
+          ],
+          "text": "每團霧還會讓[[hoanna/radiation|輻射]]每秒 <b>+200</b>，盔甲和飾品的抗性對這部分<em>不起作用</em>。"
+        },
+        {
+          "type": "list",
+          "if": [
+            "cfg:general.hoanna_events.fumes_enabled",
+            "cfg:general.hoanna_events.fumes_max_nearby>0"
+          ],
+          "items": [
+            "霧團打不散，也推不動，只能繞着走，它們會自己飄開，大約 50 秒後散掉，天災結束以後也很快就沒了。",
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "戴{item:essentialcraft5:mu_ring}完全不受影響。"
+            },
+            "穿齊一套[[gear/void_armor|虛空套裝]]，中毒的時長減半；霧團加的輻射照樣不減。"
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna_events.darkness_enabled",
+          "text": "黑暗"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna_events.darkness_enabled",
+          "text": "黑暗持續 1~3 個遊戲日，天空和遠處的霧一起暗下去，太陽和月亮都看不見了，星星和光幕倒更亮。火把等光源照常發光，夜視藥水照樣有用。偶爾聽到的洞穴怪聲和遠處的怪物叫聲只是環境音。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna_events.earthquake_enabled",
+          "text": "地震"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.hoanna_events.earthquake_enabled",
+          "items": [
+            "地震持續約 4 分鐘，畫面會輕輕晃動，晃的只是畫面，你的朝向不會跟着偏。",
+            {
+              "if": "cfg:general.hoanna_events.earthquake_push",
+              "text": "站在地上時每秒會被推一下，偶爾還有一次強震把人掀起一點，強震本身不會摔傷你，可站在懸崖邊時可能被推下去。"
+            },
+            {
+              "if": "cfg:general.hoanna_events.earthquake_push",
+              "text": "穿齊一套[[gear/void_armor|虛空套裝]]，被推的力道減半。"
+            },
+            "嫌晃，可以把「{lang:options.title} → {lang:options.accessibility.title}」裏的「{lang:options.screenEffectScale}」調低，調到 0 就一點也不晃了。",
+            {
+              "if": "bauble:essentialcraft5:mu_ring",
+              "text": "戴{item:essentialcraft5:mu_ring}不會遇到強震。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.attunement.enabled",
+          "text": "虛空套裝同調升階以後，日陣、毒霧、地震這三樣減得更多，四件都到 4 階起完全不受，見[[attunement/void_armor]]。"
+        },
+        {
+          "type": "h",
+          "text": "地脈風暴",
+          "if": [
+            "cfg:general.hoanna_events.ley_storm_enabled",
+            "cfg:general.hoanna_events.ley_storm_chance>0",
+            "cfg:general.hoanna_tide.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "地脈風暴不算在上面那幾種裏，只在[[hoanna_explore/tide|大潮]]那三夜、天剛黑時才可能來，它本身不傷人，天上會落下能撿的地脈落晶，見[[hoanna_explore/ley_storm]]。",
+          "if": [
+            "cfg:general.hoanna_events.ley_storm_enabled",
+            "cfg:general.hoanna_events.ley_storm_chance>0",
+            "cfg:general.hoanna_tide.enabled"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "有幾種天災會讓某樣海納爾特產來得快，比如地震時地脈噴口攢得飛快；天災裏刷的怪也會變多、變強，見[[hoanna_explore/calamity_windows]]。",
+          "if": "cfg:general.hoanna_events.earthquake_enabled"
+        },
+        {
+          "type": "p",
+          "text": "有幾種天災會讓某樣海納爾特產來得快，天災裏刷的怪也會變多、變強，見[[hoanna_explore/calamity_windows]]。",
+          "if": "!cfg:general.hoanna_events.earthquake_enabled"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.calamity_heart.require_calamity",
+            "cfg:general.hoanna_events.chance_multiplier>0"
+          ],
+          "text": "主線最後一章要趕在天災裏召[[apex/summon|天災之心]]，它的主災就是召喚那一刻正鬧的那一場。"
+        }
+      ]
+    },
+    {
+      "id": "ruins",
+      "title": "海納爾的遺蹟",
+      "icon": "essentialcraft5:fortified_stone",
+      "summary": "城鎮廢墟、古代墓穴和現代礦井",
+      "complete": "essentialcraft5:guide/hoanna/ruins",
+      "items": [
+        "essentialcraft5:concrete",
+        "essentialcraft5:levitator",
+        "essentialcraft5:spreader"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：找到一處遺蹟，走進去。海納爾人住過的城鎮、埋葬死者的墓穴，還有他們末年挖虛空石的礦井，如今都空着。[[hoanna/relics|箱子裏的榍石和虛空材料]]是後面幾章的原料。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "遺蹟",
+            "在哪、多密",
+            "怎麼認出來",
+            "去幹什麼"
+          ],
+          "widths": [
+            3,
+            4,
+            4,
+            3
+          ],
+          "rows": [
+            [
+              "<hl>城鎮廢墟</hl>",
+              "只在陸地上，約每 512 格一座",
+              "64 格高的塔，老遠就能看見",
+              "塔頂的箱子"
+            ],
+            [
+              "<hl>古代墓穴</hl>",
+              "地下 y 6~32，約每 200 格一座",
+              "地面上一圈魔力強化石圍着的方形煙囱",
+              "出口房間的箱子"
+            ],
+            [
+              "<hl>現代礦井</hl>",
+              "海平面以下，約每 250 格一座",
+              "像原版廢棄礦井，支架是虛空材料",
+              "直接挖虛空石"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "走進任意一處城鎮廢墟、古代墓穴或現代礦井，這一步就會打勾。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "怎麼找",
+          "text": "先找城鎮，塔有 64 格高，站在山上老遠就能看見，比找墓穴快得多。路上碰到從地裏冒出來的方形煙囱，再順手下去翻墓穴。"
+        },
+        {
+          "type": "h",
+          "text": "城鎮廢墟"
+        },
+        {
+          "type": "p",
+          "text": "城鎮方圓約一百格，幾條{item:essentialcraft5:concrete}路從鎮中心伸向四方，隨地形起伏，路兩旁散落着房子、塔和裝飾。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>塔</em>：{item:essentialcraft5:fortified_stone}搭的骨架疊了四層，越往上越細，離地約 <t>57</t> 格處有一圈魔力強化石，上面放着 <t>4</t> 個箱子，一座城鎮一般有兩到五座塔。",
+            "<em>房子</em>：魔力強化石牆配{item:essentialcraft5:fortified_glass}窗，兩到十層不等，屋裏堆着混凝土碎塊。一樓基本完好，二樓往上塌了一部分，越往上越破，四個牆角的正下方各埋着一個{item:essentialcraft5:levitator}。",
+            "<em>散射柱</em>：四根{item:essentialcraft5:fortified_stone_fence}圍着一根{item:essentialcraft5:magic_fence}，頂上是{item:essentialcraft5:spreader}。",
+            "<em>燈柱</em>：{item:essentialcraft5:void_fence}上頂着一塊{item:essentialcraft5:void_stone}，旁邊藏着看不見的光源，夜裏附近也是亮的。",
+            "<em>彈坑</em>：地上和樓裏都有炸出來的坑，最大的將近二十格寬。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "爬塔",
+          "text": "塔裏<b>沒有梯子</b>，箱子又在快到塔頂的地方，帶一組方塊墊着往上爬，或者帶上腳手架，下來時當心摔着。"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:concrete",
+            "essentialcraft5:levitator",
+            "essentialcraft5:spreader"
+          ],
+          "caption": "這三種方塊沒有配方，只能從城鎮裏挖"
+        },
+        {
+          "type": "h",
+          "text": "古代墓穴"
+        },
+        {
+          "type": "p",
+          "text": "墓穴深埋在大約 y 6~32 的石頭裏，一間間 5 格見方的{item:essentialcraft5:fortified_stone}小屋，由三十多到六十多格長的走廊連成一大片，從中間那間往外能鋪開一百多格，哪種地貌下面都可能有。"
+        },
+        {
+          "type": "p",
+          "text": "<em>入口</em>：地面上露出一圈魔力強化石、內壁掛着一整列梯子的方形煙囱，就是墓穴的出口，順着梯子一直爬到底是出口房間，房間正中的一塊{item:essentialcraft5:void_stone}上放着一個箱子。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "大約每十間屋子裏有一間出口房間，每間出口房間都有一個箱子。約五分之一的墓穴一間出口房間也沒有，地面上看不到煙囱，裏面也沒有箱子。",
+            "有的屋子塌了一半，地上堆着{item:essentialcraft5:concrete}碎塊，有的長滿了不會枯萎的樹葉，{item:essentialcraft5:root}從地板底下紮上來。",
+            "牆是魔力強化石砌的，比石頭難挖。走廊又長又直，一眼望不到頭，帶夠火把，免得在裏面迷路。",
+            "墓穴裏暗的地方會刷[[bestiary/catacomb_revenant|墓穴守靈]]，箭打它時不時會直接穿過去，帶把好劍下去。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "現代礦井"
+        },
+        {
+          "type": "p",
+          "text": "現代礦井在海平面以下，樣子像原版的廢棄礦井，只是每隔幾格一組的支架換了材料，立柱是{item:essentialcraft5:void_fence}，橫樑和補在空處的地板是{item:essentialcraft5:void_stone}，一座礦井能挖出上千塊虛空石。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "有的走廊鋪着鐵軌，偶爾停着一輛{item:minecraft:chest_minecart}，車裏裝的是原版廢棄礦井的那套戰利品。",
+            "偶爾會碰到掛滿蜘蛛網的走廊，裏面藏着<b>洞穴蜘蛛刷怪籠</b>，洞穴蜘蛛咬人會中毒，靠近之前先想好怎麼拆掉刷怪籠。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "荒野裏"
+        },
+        {
+          "type": "p",
+          "text": "城鎮和墓穴之外，荒野裏還有幾處地方。路邊偶爾立着頂上發光的{item:essentialcraft5:ruin_milestone}，右鍵它會指出最近一座城鎮，見[[hoanna_explore/survey]]。"
+        },
+        {
+          "type": "p",
+          "text": "冰凍腐化之地、混沌腐化之地和恐懼之地裏，每隔兩百來格有一處冰封營地、混沌裂隙或輻射隕坑，正中守着一處巢穴，見[[hoanna_explore/midscapes]]。"
+        },
+        {
+          "type": "p",
+          "text": "再往遠處，還有三種大一些的地方：沙漠和恐懼之地地下的[[hoanna_explore/sealed_vault|封印寶庫]]，海納爾之海海底的[[hoanna_explore/sunken_district|沉沒城區]]，暗影腐化之地裏被毀的[[hoanna_explore/inquisitorium_outpost|審判庭前哨]]。拼一張[[hoanna_explore/survey|勘測圖]]，潛行右鍵就能換着找它們。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "別待太久",
+          "text": "翻遍一處遺蹟要在海納爾待很久，這期間[[hoanna/radiation|輻射]]一直在漲，靠近恐懼之地的遺蹟漲得更快。",
+          "if": "cfg:general.radiation.enabled"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書描寫海納爾，先列出烈日、空無一人的廢城和地下的墓穴，然後説這是個糟透了的地方。"
+        }
+      ]
+    },
+    {
+      "id": "relics",
+      "title": "遺蹟裏的東西",
+      "icon": "essentialcraft5:void_core",
+      "summary": "榍石、虛空三件、餘燼等",
+      "complete": "essentialcraft5:guide/hoanna/relics",
+      "items": [
+        "essentialcraft5:titanite",
+        "essentialcraft5:twinkling_titanite",
+        "essentialcraft5:void_core",
+        "essentialcraft5:void_mru_reactor",
+        "essentialcraft5:acidic_ember",
+        "essentialcraft5:chaos_ember",
+        "essentialcraft5:common_ember",
+        "essentialcraft5:corrupted_ember",
+        "essentialcraft5:crystal_ember",
+        "essentialcraft5:divine_ember",
+        "essentialcraft5:magical_ember",
+        "essentialcraft5:flame_ember",
+        "essentialcraft5:concrete",
+        "essentialcraft5:levitator",
+        "essentialcraft5:spreader"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：從遺蹟的箱子裏拿到第一件遺物。箱子裏多是幹活用的材料，不少你自己也做過，你學的手藝本來就是海納爾人的，經先輩傳了下來。混在其中的餘燼是海納爾燒剩的火種，還存着那個世界的一點餘温。城鎮塔頂的箱子和墓穴出口房間的箱子，開出來的是同一套東西，見[[hoanna/ruins]]。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.ancient_scrolls.enabled",
+          "text": "塔頂的箱子偶爾還壓着一卷[[scrolls/scrolls|源質殘卷]]，墓穴出口那個箱子開出殘卷的機會更大，開出來的總是卷五。"
+        },
+        {
+          "type": "p",
+          "text": "塔頂和墓穴出口的箱子還有 12% 的幾率多一張{item:essentialcraft5:torn_survey_map}，湊夠三張能拼成一張找城鎮用的勘測圖，見[[hoanna_explore/survey]]。"
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:titanite",
+            "essentialcraft5:twinkling_titanite",
+            "essentialcraft5:void_plating",
+            "essentialcraft5:void_core",
+            "essentialcraft5:void_mru_reactor"
+          ]
+        },
+        {
+          "type": "items",
+          "items": [
+            "essentialcraft5:acidic_ember",
+            "essentialcraft5:chaos_ember",
+            "essentialcraft5:common_ember",
+            "essentialcraft5:corrupted_ember",
+            "essentialcraft5:crystal_ember",
+            "essentialcraft5:divine_ember",
+            "essentialcraft5:magical_ember",
+            "essentialcraft5:flame_ember"
+          ],
+          "per_row": 4
+        },
+        {
+          "type": "items",
+          "if": "bauble:essentialcraft5:mystical_accessory",
+          "items": [
+            "essentialcraft5:mystical_accessory"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "一個箱子大約開出"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "{item:essentialcraft5:titanite}",
+              "約 4 個"
+            ],
+            [
+              "{item:essentialcraft5:twinkling_titanite}",
+              "約 1.3 個"
+            ],
+            [
+              "虛空板、虛空核心、MRU 反應核",
+              "各約 0.2 個，大約每 5 箱各出 1 個"
+            ],
+            [
+              "8 種餘燼",
+              "合計約 9 個"
+            ],
+            {
+              "if": "bauble:essentialcraft5:mystical_accessory",
+              "cells": [
+                "{item:essentialcraft5:mystical_accessory}",
+                "約 0.5 件"
+              ]
+            },
+            [
+              "{item:essentialcraft5:magical_slag}",
+              "約 8 個"
+            ],
+            [
+              "魔力精華、魔力錠、魔力水、魔力強化板、四種純化合金等中期材料",
+              "各約 1.8 個"
+            ],
+            [
+              "{item:essentialcraft5:crystal_dust}",
+              "約 0.8 個"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>虛空核心和 MRU 反應核只能從遺物裏來</em>，世界裏挖不到，也做不出來。虛空板除了開箱，也能自己[[hoanna/void_plating|壓制]]。後面打倒[[hologram/hologram]]，還會掉一批同樣的遺物。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "<em>虛空核心和 MRU 反應核挖不到，也沒有合成配方</em>，除了開箱，只能讓富集倉裏關着的聚集體[[hoanna/collapse|坍縮]]出來。虛空板除了開箱，也能自己[[hoanna/void_plating|壓制]]。後面打倒[[hologram/hologram]]，還會掉一批同樣的遺物。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裏有了任意一件遺物，榍石、虛空三件或餘燼都算。"
+        },
+        {
+          "type": "h",
+          "text": "要攢多少"
+        },
+        {
+          "type": "p",
+          "text": "後面幾章一共大約要 15 個虛空核心和 12 個反應核，全息投影打的場數越多，核心要得越多，第十九章的 3 檔五芒星一下子就要 4 對。按每箱各 0.2 個算，得開 70 來個箱子。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+          "text": "箱子開得不夠，可以靠[[hoanna/collapse|坍縮]]來補，一座倉坍縮一次要 {cfg:machines.enrichment_chamber.collapse.seconds|div:60|round:1} 分鐘，出 1 個，幾座倉可以同時開工。"
+        },
+        {
+          "type": "p",
+          "text": "最近的一筆開銷在下一章，惡魔五芒星連同 4 根虛空水晶柱要 5 個核心和 4 個反應核，約合 25 箱。一座城鎮的塔頂一共只有十來個箱子，至少得翻遍兩座城鎮，墓穴的箱子也別放過。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "開過就空",
+          "text": "箱子開過一次就空了，不會再刷新，在城鎮裏每爬完一座塔，順手在塔腳做個記號，免得白爬第二趟。"
+        },
+        {
+          "type": "h",
+          "text": "有什麼用"
+        },
+        {
+          "type": "list",
+          "items": [
+            "榍石和閃耀榍石拿來做{item:essentialcraft5:void_stone}，見[[hoanna/void_stone]]，每台{item:essentialcraft5:holopad}還要 6 個閃耀榍石，見[[hologram/holopad]]。",
+            "拿虛空板、虛空核心或 MRU 反應核右鍵{item:essentialcraft5:magician_table}，就能把它裝成升級，速度分別 ×6、×7.5、×10，裝上的[[storage/upgrades|升級]]隨時可以空手潛行右鍵原樣取回，不會損耗。",
+            "主線上的[[demons/void_crystal_pillar]]和[[demons/demonic_pentacle]]都要用它們，[[hologram/holopad]]要虛空核心，力場核心要反應核，見[[computer/force_parts]]，[[inquisitorium/beacon]]要 1 個虛空核心和 5 個閃耀榍石。",
+            {
+              "if": "module:essentialcraft5:accumulator_module",
+              "text": "第二十一章的[[terminal/accumulator]]要 1 個反應核。"
+            },
+            {
+              "if": "module:essentialcraft5:phase_anchor_module",
+              "text": "第二十一章的[[terminal/phase_anchor]]要 2 個虛空核心。"
+            },
+            "虛空機器裏，[[void_machines/ultra_heat_generator]]和[[void_machines/ultra_natural_furnace]]兩台終極產能器各要 2 個核心和 2 個反應核，[[void_machines/magical_furnace]]、[[void_machines/magical_teleporter]]、[[void_machines/ember_forge]]各要 1 個核心和 1 個反應核，[[void_machines/magical_builder]]要 1 個核心。",
+            "一整套[[gear/void_armor]]要 8 個核心和 5 個反應核。",
+            {
+              "if": "cfg:machines.ley_condenser.enabled",
+              "text": "[[ley/ley_condenser]]要 1 個虛空核心。"
+            },
+            "把餘燼扔到餘燼鍛爐旁的淡青護板上，就能和焦點一起鍛成[[void_machines/ember_sword]]，每把劍用 4 個，劍的效果由余燼的種類決定。",
+            {
+              "if": "bauble:essentialcraft5:mystical_accessory",
+              "text": "[[baubles/mystical_accessory]]隨機是項鍊、腰帶或戒指，帶着三項隨機的 MRU 抗性，其中一項擋的是海納爾輻射。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "城鎮裏的{item:essentialcraft5:concrete}和會發光的小柱子{item:essentialcraft5:spreader}都能用鎬挖回家當裝飾，每棟房子四個牆角正下方還各埋着一個{item:essentialcraft5:levitator}，挖開牆角下面那一格就能找到，也可以挖回去。這三種方塊沒有配方，只能從城鎮裏取。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書講遺物的那一頁叫「有趣的寶藏」，副標題是「可以收集它們！」。正文只有兩句，説過去的文明在海納爾留下了一些東西，城鎮裏和地底下偶爾能翻到裝着各樣物品的箱子。"
+        }
+      ]
+    },
+    {
+      "id": "void_stone",
+      "title": "{item:essentialcraft5:void_stone}",
+      "icon": "essentialcraft5:void_stone",
+      "summary": "最結實的建材，能當外殼和線圈底座",
+      "complete": "essentialcraft5:guide/hoanna/void_stone",
+      "items": [
+        "essentialcraft5:void_stone",
+        "essentialcraft5:void_glass",
+        "essentialcraft5:void_fence"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：用榍石做出{item:essentialcraft5:void_stone}，它是本模組最結實的建材，也是下一篇虛空板的原料。海納爾人末年挖這種石頭砌牆，是因為它幾乎不透 MRU。"
+        },
+        {
+          "type": "p",
+          "text": "<em>準備</em>：4 個{item:essentialcraft5:titanite}和 1 個{item:essentialcraft5:twinkling_titanite}，[[hoanna/relics|遺蹟的箱子]]裏有，海納爾沙漠的{item:essentialcraft5:titanite_ore}也挖得出來，做虛空石還要 4 塊{item:essentialcraft5:obsidian_plate}，做虛空玻璃則換成 4 個{item:essentialcraft5:fortified_frame}。"
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:void_stone",
+            "essentialcraft5:void_glass",
+            "essentialcraft5:void_fence"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "合成一次能得到 16 塊虛空石或 32 塊虛空玻璃，6 塊虛空石擺成兩行三列，能做出 16 段虛空柵欄。"
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裏有了虛空石。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "做多少",
+          "text": "下一章光是惡魔五芒星就要約 41 塊，28 塊壓成虛空板，13 塊鋪在五芒星腳下，合成 3 次共 48 塊就夠。也可以去[[hoanna/ruins|現代礦井]]直接挖，那裏的地板和橫樑都是虛空石。"
+        },
+        {
+          "type": "h",
+          "text": "方塊性質"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "硬度 / 抗爆",
+              "都是 <t>8</t> / <t>90</t>"
+            ],
+            [
+              "虛空石",
+              "需要用鎬挖，挖下來總是白色"
+            ],
+            [
+              "虛空玻璃",
+              "空手也能挖下來，只是要十來秒，用鎬快得多，鑽石鎬約 1.5 秒。外觀是半透明的深紫色，怪物不會在上面生成"
+            ],
+            [
+              "虛空柵欄",
+              "需要用鎬挖，能和別的石質柵欄相連"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "拿染料右鍵虛空石或虛空玻璃，能給表面那幾道紋路換顏色，染料不會用掉。潛行右鍵會把周圍一片同種方塊一起染上，你不能放方塊的地方，比如別人的領地，不會被連帶染色。"
+        },
+        {
+          "type": "h",
+          "text": "有什麼用"
+        },
+        {
+          "type": "list",
+          "items": [
+            "它擋得住 MRU，你和 MRU 聚集體之間隔着它時，[[corruption/matrix_damage|矩陣損傷]]這種 MRU 留在人身上的暗傷，落到你身上的幾率只剩虛空石 1/18、虛空玻璃 1/15，比魔力、米斯萊、淡青[[alloys/plating|護板]]都好。",
+            "虛空石和虛空玻璃能當[[enrichment/controller|富集倉]]的外殼，虛空石還能當[[tesla/mru_coil]]的底座。",
+            "8 塊圍成一圈能做出 117 格的[[logistics/void_chest]]。",
+            "在{item:essentialcraft5:magician_table}上可以壓成虛空板，見下一篇。",
+            "搭結構時用哪種顏色都行，[[demons/demonic_pentacle]]要 13 塊，[[pentacle/tier_two|靈魂五芒星]]的 2 檔要 8 塊，[[void_machines/ember_forge]]要 29 塊，[[void_machines/magical_furnace]]同樣要 29 塊，[[void_machines/magical_teleporter]]要 36 塊。",
+            "魔力鑿能把虛空石鑿成[[decorations/patterns|花紋方塊]]。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "void_plating",
+      "title": "{item:essentialcraft5:void_plating}",
+      "icon": "essentialcraft5:void_plating",
+      "summary": "魔力工作台壓虛空石，升級、槍身都要",
+      "complete": "essentialcraft5:guide/hoanna/void_plating",
+      "items": [
+        "essentialcraft5:void_plating"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在{item:essentialcraft5:magician_table}上把{item:essentialcraft5:void_stone}壓成{item:essentialcraft5:void_plating}。箱子裏也能開到它，但自己做要穩定得多。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:void_plating"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把虛空石放進工作台正中那一格，四個角<em>留空</em>。",
+            "給[[crafting/magician_table|工作台]]接上 MRU，一塊虛空板要 {cfg:machines.magician_table.mru_usage_modifier|mul:1000|int} MRU，不裝升級時大約 50 秒做好一塊。",
+            "做好的虛空板從右邊的產物格取出。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "背包裏有了虛空板。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "先做一塊裝上",
+          "text": "第一塊虛空板先拿着右鍵工作台，裝成升級，後面的就能快 6 倍，裝上的[[storage/upgrades|升級]]隨時可以原樣取回。手頭的虛空核心和反應核也可以先裝上，速度更快，等要拿去合成時再取下來。"
+        },
+        {
+          "type": "h",
+          "text": "有什麼用"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "工作台升級",
+              "拿着右鍵工作台裝上，速度 <t>×6</t>"
+            ],
+            [
+              "槍身材料",
+              "比米斯萊錠更耐用、傷害更高，見[[guns/parts]]"
+            ],
+            [
+              "狙擊鏡",
+              "兩個 S 格都放虛空板時是 <t>12</t> 倍，見[[guns/sniper]]"
+            ],
+            [
+              "虛空水晶柱",
+              "每根 6 塊，見[[demons/void_crystal_pillar]]"
+            ],
+            [
+              "惡魔五芒星",
+              "配方要 4 塊，見[[demons/demonic_pentacle]]"
+            ],
+            [
+              "虛空套裝",
+              "每件 2 塊，見[[gear/void_armor]]"
+            ],
+            [
+              "終極產能器",
+              "兩台各要 4 塊，見[[void_machines/ultra_heat_generator]]和[[void_machines/ultra_natural_furnace]]"
+            ],
+            [
+              "魔力熔爐、魔力傳送器、餘燼鍛爐",
+              "配方各要 2 塊，見[[void_machines/magical_furnace]]、[[void_machines/magical_teleporter]]、[[void_machines/ember_forge]]"
+            ],
+            [
+              "建築魔杖",
+              "配方要 2 塊，見[[void_machines/magical_builder]]"
+            ],
+            [
+              "虛空巖漿熔爐",
+              "8 塊圍住一台淡青巖漿熔爐，見[[magmatic/furnace_upgrades]]"
+            ],
+            [
+              "高級過濾器",
+              "4 塊加一個普通過濾器升級而成，樣本會原樣保留，見[[logistics/advanced_filters]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "下一章要備的"
+        },
+        {
+          "type": "p",
+          "text": "惡魔五芒星連同 4 根虛空水晶柱，一共要 28 塊虛空板、13 塊虛空石、5 個虛空核心和 4 個反應核。核心和反應核比虛空板難攢得多，開工前先數一數夠不夠，來源見[[hoanna/relics]]。"
+        }
+      ]
+    },
+    {
+      "id": "collapse",
+      "title": "聚集體坍縮",
+      "icon": "essentialcraft5:void_mru_reactor",
+      "summary": "富集倉關住聚集體，凝出核心和反應核",
+      "complete": "essentialcraft5:guide/hoanna/collapse",
+      "if": "cfg:machines.enrichment_chamber.collapse.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>：在海納爾搭一座富集倉，把一團存滿的 MRU 聚集體關在裏面，等它坍縮成{item:essentialcraft5:void_core}或{item:essentialcraft5:void_mru_reactor}。這門手藝海納爾人末年就有，為什麼只有在海納爾才做得成，殘卷裏沒有寫。遺蹟的箱子總有開完的一天，想自己做出這兩樣東西，只有坍縮這一條路。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作研究書講富集倉時説，要接着往下走，先得有辦法管住那些越長越大的聚集體，免得它們毀了你的房子。在原作裏，虛空核心和反應核只能從遺蹟箱子裏開，坍縮是移植時才加上的。"
+        },
+        {
+          "type": "h",
+          "text": "要滿足的條件"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "在哪",
+              "海納爾"
+            ],
+            [
+              "外殼",
+              "一座成形的[[enrichment/controller|富集倉]]，外殼裏的{item:essentialcraft5:void_stone}、{item:essentialcraft5:void_glass}、{item:essentialcraft5:demonic_plating}合計至少 {cfg:machines.enrichment_chamber.collapse.void_casing} 塊"
+            ],
+            [
+              "存儲方塊",
+              "外殼上至少有 1 個[[enrichment/holding_chamber]]，控制器自己只能存 {cfg:machines.enrichment_chamber.max_mru}，每個存儲方塊再多存 {cfg:machines.enrichment_chamber.mru_per_storage}"
+            ],
+            [
+              "穩定器",
+              "外殼上砌一塊{item:essentialcraft5:ec_balancer}，見[[pentacle/ec_balancer]]"
+            ],
+            [
+              "聚集體",
+              "倉裏關着一團存滿 {cfg:machines.enrichment_chamber.collapse.presence_mru} MRU 的聚集體"
+            ],
+            [
+              "倉裏的 MRU",
+              "至少 {cfg:machines.enrichment_chamber.collapse.mru}"
+            ],
+            [
+              "平衡值",
+              "處於{balance:frozen}、不高於 {cfg:machines.enrichment_chamber.collapse.frozen_max} 時凝出虛空核心，處於{balance:chaos}、不低於 {cfg:machines.enrichment_chamber.collapse.chaos_min} 時凝出 MRU 反應核，介於兩者之間時進度不動"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "條件全部滿足時，坍縮進度每秒 +1，攢滿 {cfg:machines.enrichment_chamber.collapse.seconds} 秒就會坍縮，合 {cfg:machines.enrichment_chamber.collapse.seconds|div:60|round:1} 分鐘。海納爾正鬧[[hoanna/events|天災]]時，每秒按 {cfg:machines.enrichment_chamber.collapse.event_multiplier} 秒算。"
+        },
+        {
+          "type": "p",
+          "text": "海納爾的[[hoanna_explore/tide|魔力潮汐]]也會讓坍縮快一些，新月時照常，滿月時每秒按 1.5 秒算。趕上天災時按天災那份算，兩樣不疊在一起。",
+          "if": "cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "這個世界的魔力潮汐停住了，坍縮不會因為潮汐變快或變慢。",
+          "if": "!cfg:general.hoanna_tide.enabled"
+        },
+        {
+          "type": "p",
+          "text": "坍縮時聚集體會消失，倉里扣掉 {cfg:machines.enrichment_chamber.collapse.mru} MRU，倉的正中掉出一個虛空核心或 MRU 反應核。外殼一格都不會動，掉出來的東西也不會消失，同一種產物堆在一起，拆開一塊外殼進去拿，再補上就好。那一堆滿一組 64 個時，坍縮停在滿格，拿走一些才會繼續。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼做"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "在海納爾搭一座富集倉，外殼裏的虛空石、虛空玻璃和惡魔護板合計湊夠 {cfg:machines.enrichment_chamber.collapse.void_casing} 塊，其餘部分用{item:essentialcraft5:fortified_stone}、{item:essentialcraft5:fortified_glass}都行，再砌上控制器、1 個存儲方塊和 1 塊穩定器，最好再加一個[[enrichment/monitoring|狀態檢測器]]。",
+            "把一團聚集體關進去，可以圍着現成的聚集體砌外殼，也可以隔着強化玻璃拿{item:essentialcraft5:mru_mover}把它推進去。",
+            "在倉旁開幾台會漏 MRU 的機器，讓聚集體長滿 {cfg:machines.enrichment_chamber.collapse.presence_mru} MRU，漏出來的 MRU 會匯進 32 格內最近的聚集體，見[[start/mrucu]]。",
+            "用[[enrichment/io|接收器]]往倉裏灌夠 {cfg:machines.enrichment_chamber.collapse.mru} MRU，同時把平衡值調過去，要虛空核心就從{item:essentialcraft5:cold_distillator}等平衡值低的產能器拉 MRU，要反應核就從{item:essentialcraft5:sun_ray_absorber}等平衡值高的產能器拉。",
+            "右鍵控制器，或者看狀態檢測器上的坍縮條，確認什麼都不缺，然後等着它坍縮。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "倉裏掉出第一個虛空核心或 MRU 反應核，坍縮那一刻待在控制器 16 格內的人都會打上這一步的勾，聊天欄裏也會提示一聲。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>裝上穩定器之前，先做好防護</em>，存滿的聚集體每秒會給 12 格內的人加 80 點[[corruption/matrix_damage|矩陣損傷]]。養它、推它的時候穿一整套[[gear/mhs_armor]]，或者先砌好穩定器，再把聚集體推進倉裏。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "list",
+          "items": [
+            "平衡值跑偏、外殼被拆開一塊、存量被抽走，這類條件中途斷掉時，進度停在原處，不會清零，只有關着的那團聚集體沒了，進度才從 0 開始。",
+            "倉裏不止一團時，按存量最多的那團算，開始坍縮以後就認準它，換一團進去要從頭算。",
+            "坍縮會用掉那團聚集體，倉裏空了以後，旁邊漏 MRU 的機器會把 MRU 匯進 32 格內別的聚集體，一團都沒有就在機器那一格重新凝出一團。想接着坍縮，得再用{item:essentialcraft5:mru_mover}把一團推進倉裏，等它重新長滿。",
+            "倉裏的平衡值按存量加權平均，原先存着的 MRU 也算在內，換了產能器以後，要灌上一陣才偏得過來。",
+            "狀態檢測器上 MROV 的右邊會多出一條坍縮進度，藍色是在凝虛空核心，紅色是在凝反應核，停着時是灰色，滑鼠放上去能看到還缺什麼。",
+            "幾座倉可以一起坍縮，互不影響。",
+            {
+              "if": [
+                "cfg:general.matrix_rank.enabled",
+                "cfg:machines.enrichment_chamber.condense.enabled"
+              ],
+              "text": "不坍縮的倉可以拿來凝結。平衡值落在中間、外殼裏的魔力護板和淡青護板夠 {cfg:machines.enrichment_chamber.condense.casing} 塊時，關着的聚集體會慢慢凝成{item:essentialcraft5:condensed_matrix}，全部條件見[[pentacle/condensed]]。"
+            },
+            {
+              "if": "cfg:machines.enrichment_chamber.shade.enabled",
+              "text": "倉搭在暗影腐化之地附近、裏面又丟着{item:essentialcraft5:umbral_crystal}時，坍縮出來的是{item:essentialcraft5:shade_core}，平衡值偏到哪頭都一樣，見[[shade/shade_core]]。"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "後面要用到很多虛空核心和反應核，具體數量見[[hoanna/relics]]的「要攢多少」，有了坍縮，箱子沒開夠也不會卡在這裏。"
+        }
+      ]
+    }
+  ]
+}

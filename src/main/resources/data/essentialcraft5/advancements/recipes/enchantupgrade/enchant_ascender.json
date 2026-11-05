@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_enchant_amplifier": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essentialcraft5:enchant_amplifier"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "essentialcraft5:enchantupgrade/enchant_ascender"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_enchant_amplifier",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "essentialcraft5:enchantupgrade/enchant_ascender"
+    ]
+  },
+  "sends_telemetry_event": false
+}

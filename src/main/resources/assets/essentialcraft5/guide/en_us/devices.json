@@ -1,0 +1,790 @@
+{
+  "id": "devices",
+  "order": 86,
+  "group": "side",
+  "title": "Side Chapter · Magical Devices",
+  "subtitle": "MRU instead of experience and chores",
+  "icon": "essentialcraft5:magical_repairer",
+  "entries": [
+    {
+      "id": "magical_repairer",
+      "title": "{item:essentialcraft5:magical_repairer}",
+      "icon": "essentialcraft5:magical_repairer",
+      "summary": "Mend tools with MRU",
+      "complete": "essentialcraft5:guide/devices/magical_repairer",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_repairer"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "To mend a pickaxe you first had to go out and kill things for experience, then go to the anvil. That never sat right with me. Now mending takes only MRU and enchanting takes no experience. The anvil is still in its corner, under a layer of dust.",
+          "by": "Workshop Notebook"
+        },
+        {
+          "type": "p",
+          "text": "The first four machines in this chapter spend MRU in place of the experience, lapis and effort vanilla asks for. Their parts are much alike, and the usual Magician Table parts ([[crafting/magician_crafts]]) are enough, so you can come here any time after Chapter 3. Only the jukebox also needs two {item:essentialcraft5:magic_purified_redstone_alloy}s from Chapter 6."
+        },
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:magical_repairer} and mend tools, weapons and armor with MRU, with no experience and no anvil."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: one each of {item:essentialcraft5:fortified_frame}, {item:essentialcraft5:magical_screen}, {item:essentialcraft5:mru_catcher}, {item:essentialcraft5:elemental_core}, {item:essentialcraft5:magic_plate}, {item:essentialcraft5:matrix_link} and {item:essentialcraft5:world_interactor}, plus two {item:essentialcraft5:mru_conversion_matrix}es."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_repairer"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a {item:essentialcraft5:bound_gem} linked to a generator or another MRU source into the gem slot ([[crafting/bound_gem]]).",
+            "Put the item to mend into the slot on the right.",
+            "It restores 1 point of durability per tick at {cfg:machines.magical_repairer.mru_usage} MRU a point, until the item is whole."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU capacity",
+              "{cfg:machines.magical_repairer.max_mru} MRU"
+            ],
+            [
+              "Per point",
+              "{cfg:machines.magical_repairer.mru_usage} MRU"
+            ],
+            [
+              "Speed",
+              "up to 1 point per tick"
+            ],
+            [
+              "One heat generator with lava on all four sides (16 MRU a tick)",
+              "about {cfg:machines.magical_repairer.mru_usage|div:320|round:1} s per point; a diamond pickaxe from 0 to full takes about {cfg:machines.magical_repairer.mru_usage|mul:1561|div:19200|int} minutes"
+            ],
+            [
+              "Diamond pickaxe, 0 to full (1,561 points)",
+              "{cfg:machines.magical_repairer.mru_usage|mul:1561} MRU"
+            ],
+            {
+              "if": "cfg:machines.magical_repairer.generate_corruption",
+              "cells": [
+                "Leak per working tick",
+                "0–{cfg:machines.magical_repairer.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Anything that wears out and may be repaired can be mended, such as tools, weapons, armor, fishing rods and elytra. Put in something that can't be repaired and the screen says \"{lang:gui.essentialcraft5.repairer.cannot}\". Armor that can be attuned, such as MHS Armor and Wind Armor, won't combine in a crafting grid or grindstone, but it can be mended here."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have a repairer. The durability bar of the item inside climbs, and purple sparks rise from the machine."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "<w>It is very hungry for MRU.</w> Repairing at full speed takes {cfg:machines.magical_repairer.mru_usage} MRU every tick, far more than one heat generator makes, so with just one it repairs slowly. For big jobs like a diamond pickaxe, connect it to an [[enrichment/controller|Enrichment Chamber]]. Gear with Mending hardly needs it."
+        },
+        {
+          "type": "h",
+          "text": "An automatic repair line"
+        },
+        {
+          "type": "p",
+          "text": "Hoppers and pipes only insert damaged items, and only pull out items that are fully repaired or can't be repaired, never half-mended ones. With one hopper above to feed tools and one below to collect them, you have an automatic repair line."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A redstone signal stops it.",
+            {
+              "if": "cfg:machines.magical_repairer.generate_corruption",
+              "text": "While working it leaks MRU, so nearby MRUCUs slowly grow ([[crafting/corruption]])."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magical_enchanter",
+      "title": "{item:essentialcraft5:magical_enchanter}",
+      "icon": "essentialcraft5:magical_enchanter",
+      "summary": "Bookshelves and MRU, no experience",
+      "complete": "essentialcraft5:guide/devices/magical_enchanter",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_enchanter"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:magical_enchanter}. It needs no experience and no lapis, only MRU and the bookshelves around it, and the books it makes are <em>ordinary enchanted books</em> you can use on an anvil."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: a vanilla {item:minecraft:enchanting_table}, an {item:minecraft:enchanted_book} (any enchantment will do), one each of {item:essentialcraft5:magical_screen}, {item:essentialcraft5:mru_catcher}, {item:essentialcraft5:world_interactor}, {item:essentialcraft5:mru_conversion_matrix} and {item:essentialcraft5:elemental_core}, and two {item:essentialcraft5:magic_plate}s."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_enchanter"
+        },
+        {
+          "type": "h",
+          "text": "Where the level comes from"
+        },
+        {
+          "type": "p",
+          "text": "Its level is the number of bookshelves in the 5×5 area around it, from its own layer up through 3 layers, 74 blocks not counting itself, up to {cfg:machines.magical_enchanter.max_enchant_level}. Shelves may touch it, and blocks in between don't matter."
+        },
+        {
+          "type": "structure",
+          "key": {
+            "B": "minecraft:bookshelf",
+            "E": "essentialcraft5:magical_enchanter"
+          },
+          "anchor": "E",
+          "layers": [
+            {
+              "pattern": [
+                "BBBBB",
+                "B   B",
+                "B E B",
+                "B   B",
+                "BBBBB"
+              ]
+            },
+            {
+              "pattern": [
+                "BBBBB",
+                "B   B",
+                "B   B",
+                "B   B",
+                "BBBBB"
+              ]
+            }
+          ],
+          "caption": "Example: the outer ring two layers high, 32 bookshelves, level 32. A bookshelf anywhere in the 5×5, three-layer area counts."
+        },
+        {
+          "type": "p",
+          "text": "The number at the right end of the status bar is the current level, updated every second. Blocks from other mods that boost enchanting count with their own values."
+        },
+        {
+          "type": "h",
+          "text": "How to enchant"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a {item:essentialcraft5:bound_gem} linked to an MRU source into the gem slot.",
+            "Put in the item to enchant, or a book, and leave the output slot empty.",
+            "It first rolls the enchantments at <em>the level it has at that moment</em>, the same way a vanilla table does, so treasure enchantments never come up. Then it spends {cfg:machines.magical_enchanter.mru_usage} MRU per tick and finishes after level × 10 ticks.",
+            "The result goes into the output slot, and it only starts on the next one after you take that out by hand or by hopper."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Level cap",
+              "{cfg:machines.magical_enchanter.max_enchant_level}"
+            ],
+            [
+              "MRU per tick",
+              "{cfg:machines.magical_enchanter.mru_usage}"
+            ],
+            [
+              "Time",
+              "level × 10 ticks; {cfg:machines.magical_enchanter.max_enchant_level|mul:10|sec} at the cap"
+            ],
+            [
+              "MRU per item",
+              "level × {cfg:machines.magical_enchanter.mru_usage|mul:10} MRU"
+            ],
+            {
+              "if": "cfg:machines.magical_enchanter.generate_corruption",
+              "cells": [
+                "Leak per working tick",
+                "0–{cfg:machines.magical_enchanter.max_corruption_gen} MRU"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Books become enchanted books and keep <em>every</em> enchantment rolled, where a vanilla table drops one at random from books. You can put in a whole stack of books and it does one at a time. Items that are already enchanted can't be enchanted again."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have the enchanter. An enchanted book or enchanted item appears in the output slot."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "A higher level is not always better. Vanilla offers each enchantment level only within a certain range, and armor enchantments such as Protection, Fire, Blast and Projectile Protection and Feather Falling grow rare past level 40 and almost never appear above 45. When enchanting armor, remove some shelves and keep the level around 30, the most a vanilla table gives."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Running short of MRU, a redstone signal or a full output slot only <em>pauses</em> it, and the progress and rolled enchantments are kept. Only swapping the item starts it over.",
+            "Hoppers only insert enchantable items and only pull from the output slot.",
+            {
+              "if": "cfg:machines.magical_enchanter.generate_corruption",
+              "text": "While working it leaks MRU ([[crafting/corruption]])."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "potion_spreader",
+      "title": "{item:essentialcraft5:potion_spreader}",
+      "icon": "essentialcraft5:potion_spreader",
+      "summary": "Potion effects over a whole area",
+      "complete": "essentialcraft5:guide/devices/potion_spreader",
+      "optional": true,
+      "items": [
+        "essentialcraft5:potion_spreader"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:potion_spreader} to keep potion effects on the creatures around it, such as night vision and speed all over your base."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: two {item:essentialcraft5:world_interactor}s, two {item:essentialcraft5:magic_plate}s, and one each of {item:essentialcraft5:fortified_frame}, {item:essentialcraft5:mru_catcher}, {item:essentialcraft5:elemental_core}, {item:essentialcraft5:magical_screen} and {item:essentialcraft5:mru_conversion_matrix}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:potion_spreader"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a {item:essentialcraft5:bound_gem} linked to an MRU source into the gem slot.",
+            "Put potions into the 8 slots on the left. Drinkable, splash and lingering potions all work.",
+            "It loads one potion at a time, using up the bottle too, and applies <em>all</em> of its effects.",
+            "Every creature within 8 blocks that doesn't have the effect yet gets it, with the potion's own duration and level, at {cfg:machines.potion_spreader.mru_usage} MRU per effect per creature."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Range",
+              "a 17×17×17 cube centered on it"
+            ],
+            [
+              "Per effect applied",
+              "{cfg:machines.potion_spreader.mru_usage} MRU"
+            ],
+            [
+              "Uses per potion",
+              "{cfg:machines.potion_spreader.max_spread_amount}"
+            ],
+            [
+              "Check interval",
+              "10 ticks after applying something, otherwise 20"
+            ],
+            [
+              "MRU capacity",
+              "{cfg:machines.potion_spreader.max_mru} MRU"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each check that applies any effect to anyone counts as one \"use\" of the potion, and when the uses run out it loads the next bottle. The bottle in the middle of the screen shows how much is left; hover over it to see the effects."
+        },
+        {
+          "type": "p",
+          "text": "Effects are only renewed once they run out, so a bottle lasts a long time. One 8-minute long Night Vision potion with {cfg:machines.potion_spreader.max_spread_amount} uses keeps one player covered for {cfg:machines.potion_spreader.max_spread_amount|mul:8} minutes."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have a spreader. Potion particles swirl around the creatures nearby, and the bottle on the screen slowly empties."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "If it is just for you, put it in a room animals and monsters can't reach. Every creature in range gets the effects, animals and monsters included. Their renewals eat the potion's uses and MRU too, and monsters get buffs like Strength and Speed."
+        },
+        {
+          "type": "h",
+          "text": "Limits"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Harmful effects such as Slowness, Poison and Weakness <em>only go to hostile mobs</em>. Players, animals, villagers, pets and name-tagged or leashed monsters never get them, so a spreader next to your neighbor won't put bad effects on their livestock or pets.",
+            "Potions of Harming cannot be put in.",
+            {
+              "if": "cfg:machines.potion_spreader.forbidden_effects",
+              "text": "Potions with the Wither effect cannot be put in either."
+            },
+            "Instant Health is never given to the undead, since it would hurt them. Others only get it once they are missing at least one dose worth of health, 4 points for Instant Health and 8 for Instant Health II.",
+            "A redstone signal stops it.",
+            {
+              "if": "cfg:machines.potion_spreader.generate_corruption",
+              "text": "Each effect applied leaks 0–{cfg:machines.potion_spreader.max_corruption_gen} MRU ([[crafting/corruption]])."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original spreader gave harmful effects to players as well. Put a Potion of Harming in it and it became a machine that hurt everyone nearby."
+        }
+      ]
+    },
+    {
+      "id": "magical_jukebox",
+      "title": "{item:essentialcraft5:magical_jukebox}",
+      "icon": "essentialcraft5:magical_jukebox",
+      "summary": "Music, paid for in MRU",
+      "complete": "essentialcraft5:guide/devices/magical_jukebox",
+      "optional": true,
+      "items": [
+        "essentialcraft5:magical_jukebox"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build a {item:essentialcraft5:magical_jukebox}, a jukebox that runs on MRU. Redstone replays it, and with hoppers it becomes an automatic music player. The forebear who kept the Workshop Notebook liked music while he worked, and he probably built this one for himself."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: a vanilla {item:minecraft:jukebox}, two {item:essentialcraft5:magic_purified_redstone_alloy}s ([[alloys/purified_alloys]]), two {item:essentialcraft5:elemental_gem}s, and one each of {item:essentialcraft5:magic_plate}, {item:essentialcraft5:mru_catcher}, {item:essentialcraft5:world_interactor} and {item:essentialcraft5:magical_screen}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:magical_jukebox"
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a {item:essentialcraft5:bound_gem} linked to an MRU source into the gem slot.",
+            "Put a music disc in the top-left slot. Once the machine holds {cfg:machines.magical_jukebox.mru_usage} MRU it plays the disc, paying that much each time, and it doesn't repeat by itself.",
+            "When a redstone signal switches on, it plays the disc again from the start for another {cfg:machines.magical_jukebox.mru_usage} MRU. Two starts are at least 5 seconds apart, and a signal that stays on doesn't keep replaying it.",
+            "Take the disc out to stop."
+          ]
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU capacity",
+              "{cfg:machines.magical_jukebox.max_mru} MRU"
+            ],
+            [
+              "Per play",
+              "{cfg:machines.magical_jukebox.mru_usage} MRU"
+            ],
+            [
+              "Minimum gap between starts",
+              "5 seconds"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Automatic playlist"
+        },
+        {
+          "type": "p",
+          "text": "Hoppers and pipes can only pull a disc out once it has finished. A disc that hasn't played yet, say while MRU is short, stays in and waits. Only music discs can be inserted. With a hopper full of discs above and an empty hopper below, it plays them one after another."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have the jukebox. Put in a disc and music plays while notes float up above it."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Parrots only dance to a vanilla jukebox, and allays just twitch on and off instead of dancing. Sculk sensors don't hear it at all."
+        }
+      ]
+    },
+    {
+      "id": "enchant_amplifier",
+      "title": "{item:essentialcraft5:enchant_amplifier}",
+      "icon": "essentialcraft5:enchant_amplifier",
+      "summary": "Raise an enchanted book from level 1 to 25",
+      "complete": "essentialcraft5:guide/devices/enchant_amplifier",
+      "optional": true,
+      "items": [
+        "essentialcraft5:enchant_amplifier"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build an {item:essentialcraft5:enchant_amplifier}. It raises the <em>one enchantment</em> on an enchanted book level by level, up to level 25. Every level costs MRU and materials, and the higher ones need ESPE too."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: a {item:essentialcraft5:magical_enchanter}, which the recipe uses up, plus four {item:essentialcraft5:pale_plate}s, two {item:essentialcraft5:elemental_core}s, one {item:minecraft:lapis_block} and one {item:essentialcraft5:mru_resonating_crystal}."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:enchant_amplifier"
+        },
+        {
+          "type": "h",
+          "text": "Which books it takes"
+        },
+        {
+          "type": "p",
+          "text": "It only takes enchanted books with <em>exactly one enchantment</em>, whether from the vanilla table, the Magical Enchanter or loot. With several enchantments the machine can't tell which one to raise, so it refuses the book."
+        },
+        {
+          "type": "p",
+          "text": "The enchantment must have more than one level and must not be a curse. Frost Walker, Swift Sneak and Riptide are refused by default, and Fortune and Looting stop at level 10, because at dozens of levels they would reshape the world or multiply drops many times over."
+        },
+        {
+          "type": "h",
+          "text": "How to raise a book"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put a {item:essentialcraft5:bound_gem} linked to an MRU source in the gem slot.",
+            "Put the book in the leftmost slot and the materials for the next level in the two slots beside it. Hover over the status bar to see everything that level costs.",
+            "The machine takes the materials for a step all at once, then draws MRU and ESPE as the step goes on. When the step is done, the book gains a level and stays in the first slot for the next one.",
+            "The book only moves to the output slot once it reaches the target level, which you set with the four buttons at the top right (−5, −1, +1, +5). The default is 25."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What each level costs"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU",
+              "{cfg:machines.enchant_amplifier.mru_multiplier|mul:2000} × level²"
+            ],
+            [
+              "ESPE",
+              "{cfg:machines.enchant_amplifier.espe_multiplier|mul:50} × (level − 8), none up to level 8"
+            ],
+            [
+              "Time",
+              "{cfg:machines.enchant_amplifier.time_multiplier|mul:300} + {cfg:machines.enchant_amplifier.time_multiplier|mul:60} × level ticks"
+            ],
+            [
+              "Example: to level 25",
+              "{cfg:machines.enchant_amplifier.mru_multiplier|mul:1250000} MRU, {cfg:machines.enchant_amplifier.espe_multiplier|mul:850} ESPE, {cfg:machines.enchant_amplifier.time_multiplier|mul:1800|sec}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "To level",
+            "Slot 1",
+            "Slot 2"
+          ],
+          "rows": [
+            [
+              "2–5",
+              "{item:minecraft:lapis_lazuli} ×8",
+              "Common essence ×2"
+            ],
+            [
+              "6–10",
+              "{item:minecraft:lapis_block} ×2",
+              "Uncommon essence ×3"
+            ],
+            [
+              "11–15",
+              "{item:minecraft:diamond} ×2",
+              "Rare essence ×3"
+            ],
+            [
+              "16–20",
+              "{item:essentialcraft5:mithriline_ingot} ×3",
+              "Exceptional essence ×3"
+            ],
+            [
+              "21–25",
+              "{item:essentialcraft5:mithriline_ingot} ×5",
+              "Exceptional essence ×6"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Essences come in four elements, fire, water, earth and air. Any one will do, as long as each slot holds a single kind."
+        },
+        {
+          "type": "p",
+          "text": "Going from level 1 all the way to 25 takes 24 steps, which add up to {cfg:machines.enchant_amplifier.time_multiplier|mul:26640|sec} by default."
+        },
+        {
+          "type": "h",
+          "text": "Where the ESPE comes from"
+        },
+        {
+          "type": "p",
+          "text": "ESPE is drawn from around the machine, with no wiring. Around it at its own height, leaving a one-block gap, is a ring of eight spots: front, back, left, right and the four diagonals. Stand a {item:essentialcraft5:mithriline_crystal_pillar} on each, with its base level with the machine. From level 9 on, without pillars the machine just waits at \"Short of ESPE\"."
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": [
+                "essentialcraft5:mithriline_crystal_pillar",
+                "essentialcraft5:pale_crystal_pillar",
+                "essentialcraft5:void_crystal_pillar",
+                "essentialcraft5:demonic_crystal_pillar"
+              ],
+              "label": "Any crystal pillar"
+            },
+            "R": "essentialcraft5:enchant_amplifier"
+          },
+          "anchor": "R",
+          "pattern": [
+            "C C C",
+            "     ",
+            "C R C",
+            "     ",
+            "C C C"
+          ],
+          "caption": "A ring of 8 crystal pillars of any kind, one block apart, at the machine's height."
+        },
+        {
+          "type": "h",
+          "text": "Using the finished book"
+        },
+        {
+          "type": "p",
+          "text": "A vanilla anvil cuts enchantments back to the vanilla maximum, and books from these two machines are no exception. To put one onto gear at its full level, you need another mod that can apply enchantments above the cap."
+        },
+        {
+          "type": "p",
+          "text": "Don't merge high-level books with each other at an anvil either, since the level gets cut back the same way."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have the amplifier. Put in a book with a single enchantment, plus the materials, and it climbs level by level until it appears in the output slot."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Take the book out or swap it mid-step and that step's materials are lost, with progress starting over.",
+            "Missing MRU or ESPE, a full output slot or a redstone signal only pause it, and progress is saved.",
+            "Hoppers and pipes only feed the matching slots, books into the first and materials into the two material slots, and only the output slot can be drained.",
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "text": "A book at level 25 can go on to the {item:essentialcraft5:enchant_ascender} to be pushed further."
+            }
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/enchantupgrade/enchant_amplifier.json — PLP/CTC/PRP：淡青板 ×4、青金石块、元素核心 ×2、魔力附魔台、MRU 共振水晶",
+        "enchant/EnchantUpgrades.java Tier.AMPLIFIER — minLevel 1、cap 25；step() 里 mruBase = 2000·n²、espeBase = 50·(n−8)（n>8）、ticksBase = 300 + 60·n；materialA / materialB 按 n 分段（青金石 ×8、青金石块 ×2、钻石 ×2、米斯莱锭 ×3 / ×5；普通 ×2、罕见 ×3、稀有 ×3、卓越 ×3 / ×6）",
+        "enchant/EnchantUpgrades.java DEFAULT_CAPS — frost_walker、swift_sneak、riptide = 0（不收），fortune、looting = 10；cap() 还排除只有一级的和诅咒",
+        "blockentity/EnchantUpgraderBlockEntity.java run() — 先一次扣材料，再按 ⌊T·(p+1)/N⌋ − ⌊T·p/N⌋ 边走边扣 MRU、ESPE；走满书升一级留在输入格，到目标才送输出格；SOURCES 八个 ESPE 位置；书拿走 / 换了就 resetStep（材料不退）",
+        "menu/EnchantUpgraderMenu.java clickMenuButton — 目标等级按钮 −5 / −1 / +1 / +5；不改原版铁砧（超上限的书在铁砧上照原版砍回上限）"
+      ]
+    },
+    {
+      "id": "enchant_ascender",
+      "title": "{item:essentialcraft5:enchant_ascender}",
+      "icon": "essentialcraft5:enchant_ascender",
+      "if": "cfg:general.hoanna.portal_enabled",
+      "summary": "Push a level 25 book up to level 50",
+      "complete": "essentialcraft5:guide/devices/enchant_ascender",
+      "optional": true,
+      "items": [
+        "essentialcraft5:enchant_ascender"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): build an {item:essentialcraft5:enchant_ascender}. The Fragments have no such machine, and its demonic plates and math core were only found after the Fragments ended. It carries on where the {item:essentialcraft5:enchant_amplifier} stops and pushes a book that already has level 25 up to <em>level 50</em>. It is the most demanding machine in the mod, with rare materials and a very long run time, and every step is paid for with the owner's matrix."
+        },
+        {
+          "type": "p",
+          "text": "<em>You need</em>: an {item:essentialcraft5:enchant_amplifier}, which the recipe uses up, plus a {item:minecraft:nether_star}, four {item:essentialcraft5:demonic_plate}s, one {item:essentialcraft5:void_core}, one {item:essentialcraft5:matter_of_eternity} and a math core, any one of addition, subtraction, multiplication or division."
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:enchant_ascender"
+        },
+        {
+          "type": "h",
+          "text": "How it differs from the amplifier"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It only takes books that already have level 25. Push lower ones through the amplifier first.",
+            "Every step needs the machine's <em>owner</em> online, with a Soul Pentacle of at least tier {cfg:machines.enchant_ascender.required_pentacle_tier} opened, the tier that can cure matrix effects. An Ascender whose owner was never recorded doesn't run.",
+            "When a step finishes, a chunk of matrix damage lands on the owner, {cfg:machines.enchant_ascender.matrix_damage_base} for the step to level 26 and {cfg:machines.enchant_ascender.matrix_damage_per_level} more for each level above that.",
+            "If the damage cap leaves no room for the next step, the machine waits. High damage draws [[corruption/matrix_damage|corruption effects]], and each one drawn takes a chunk off your damage and frees up room. Cure the effects you draw at a [[pentacle/pentacle|Soul Pentacle]].",
+            {
+              "if": "cfg:machines.matrix_tuner.enabled",
+              "text": "The matrix damage ascending piles up can also be worn away bit by bit on a [[corruption/matrix_tuner|Matrix Tuner]]."
+            }
+          ]
+        },
+        {
+          "type": "h",
+          "text": "What each level costs"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "MRU",
+              "{cfg:machines.enchant_ascender.mru_multiplier|mul:4500} × level²"
+            ],
+            [
+              "ESPE",
+              "{cfg:machines.enchant_ascender.espe_multiplier|mul:300} × (level − 20)"
+            ],
+            [
+              "Time",
+              "{cfg:machines.enchant_ascender.time_multiplier|mul:900} + {cfg:machines.enchant_ascender.time_multiplier|mul:180} × (level − 25) ticks"
+            ],
+            [
+              "Example: to level 50",
+              "{cfg:machines.enchant_ascender.mru_multiplier|mul:11250000} MRU, {cfg:machines.enchant_ascender.espe_multiplier|mul:9000} ESPE, {cfg:machines.enchant_ascender.time_multiplier|mul:5400|sec}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "To level",
+            "Slot 1",
+            "Slot 2"
+          ],
+          "rows": [
+            [
+              "26–30",
+              "{item:essentialcraft5:demonic_core} ×2",
+              "Exceptional essence ×12"
+            ],
+            [
+              "31–40",
+              "{item:essentialcraft5:matter_of_eternity} ×1",
+              "{item:essentialcraft5:demonic_plate} ×8"
+            ],
+            [
+              "41–50",
+              "{item:minecraft:nether_star} ×4",
+              "{item:essentialcraft5:matter_of_eternity} ×1"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "ESPE is drawn the same way as for the amplifier, from the eight pillar spots around it. This machine needs much more, and the higher the pillar tier, the faster it fills. A slot holds only one Matter of Eternity, and each step uses exactly that one; any MRU stored in it is lost, so an empty one will do."
+        },
+        {
+          "type": "structure",
+          "key": {
+            "C": {
+              "block": [
+                "essentialcraft5:mithriline_crystal_pillar",
+                "essentialcraft5:pale_crystal_pillar",
+                "essentialcraft5:void_crystal_pillar",
+                "essentialcraft5:demonic_crystal_pillar"
+              ],
+              "label": "Any crystal pillar"
+            },
+            "R": "essentialcraft5:enchant_ascender"
+          },
+          "anchor": "R",
+          "pattern": [
+            "C C C",
+            "     ",
+            "C R C",
+            "     ",
+            "C C C"
+          ],
+          "caption": "Same ring as the amplifier: 8 crystal pillars one block apart at the same height; higher tiers fill faster."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Endless energy does not get you around it",
+          "text": "The 25 steps need materials gathered piece by piece and take {cfg:machines.enchant_ascender.time_multiplier|mul:81000|sec} by default. Their matrix damage adds up to about 800,000, nearly three times the cap, so the machine has to stop and wait at least twice, and the corruption effects you draw along the way need curing. There is no doing it in one run."
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "This step is checked off as soon as you have the ascender. Put in a level 25 one-enchantment book with the materials while the owner is online, and it climbs step by step to level 50."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Applying a finished book to gear works as with the amplifier, and a vanilla anvil cuts it back to the cap.",
+            "Taking the book out mid-step loses that step's materials. Missing materials, MRU or ESPE, or no room in the matrix, only pause it, and progress is saved.",
+            "As with the amplifier, Fortune and Looting stop at level 10, and Frost Walker, Swift Sneak and Riptide are refused."
+          ]
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/enchantupgrade/enchant_ascender.json — DSD/VAE/DCD：恶魔板 ×4、下界之星、虚空核心、增幅台、永恒物质、#math_cores",
+        "enchant/EnchantUpgrades.java Tier.ASCENDER — minLevel 25、cap 50；step() 里 mruBase = 4500·n²、espeBase = 300·(n−20)、ticksBase = 900 + 180·(n−25)、矩阵损伤 = matrix_damage_base + matrix_damage_per_level·(n−26)；materialA / materialB：26~30 恶魔核心 ×2 + 卓越精华 ×12，31~40 永恒物质 ×1 + 恶魔板 ×8，41~50 下界之星 ×4 + 永恒物质 ×1（永恒物质一组只有 1 个，每格数量不超过一组，GameTest enchantUpgradeMaterialsFitOneSlot）",
+        "blockentity/EnchantUpgraderBlockEntity.java gate() — onlineOwner 在线、PlayerData.getPentacleTier() ≥ required_pentacle_tier、CorruptionEffects.matrixRoom ≥ 这一步的损伤；开步前和最后一刻各查一次；completeStep 里 addMatrixDamage 记到主人身上",
+        "估算：Σ(n=26..50) (900 + 180·(n−25)) = 22500 + 58500 = 81000 刻 = 4050 秒；Σ 矩阵损伤 = 25 × 8000 + 2000 × (0 + … + 24) = 800000，上限 288000；增幅台 Σ(n=2..25) (300 + 60·n) = 26640 刻（api/CorruptionEffects.java max_matrix_damage）"
+      ]
+    }
+  ]
+}

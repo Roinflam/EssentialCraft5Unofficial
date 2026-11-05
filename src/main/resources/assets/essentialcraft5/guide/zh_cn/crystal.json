@@ -1,0 +1,334 @@
+{
+  "id": "crystal",
+  "order": 66,
+  "group": "main",
+  "title": "第八章 · 元素水晶",
+  "subtitle": "培育水晶，建起月亮井",
+  "icon": "essentialcraft5:crystal_former",
+  "entries": [
+    {
+      "id": "crystal_former",
+      "title": "{item:essentialcraft5:crystal_former}",
+      "icon": "essentialcraft5:crystal_former",
+      "summary": "水、玻璃、钻石，外加大量 MRU",
+      "complete": "essentialcraft5:guide/crystal/crystal_former",
+      "items": [
+        "essentialcraft5:crystal_former"
+      ],
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "从前 MRU 浓得化不开的地方，会自己长出水晶，一夜就成。世界变过一回，它们一颗也不剩了。我们照旧法子造出来的，生下来很小，要种下去慢慢养大。",
+          "by": "《源质残卷·卷三》"
+        },
+        {
+          "type": "p",
+          "text": "<em>目标</em>：造一台{item:essentialcraft5:crystal_former}，做出第一颗{item:essentialcraft5:elemental_crystal}。元素水晶是会自己慢慢长大的方块，月亮井要用它，下一章的几台机器也都围着它转。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "本章要准备什么",
+          "text": "做一颗水晶要 10 万 MRU 和一颗钻石，一台四面都是岩浆的热力产能器约 5 分钟就能攒够。最慢的是月亮井要用的魔力矩阵投影，辐射仓要做约 17 分钟，而且只认平衡值在 0.5~1.5 之间的 MRU，最好让它先开工。水晶长满约需 41 分钟，这段时间可以去忙别的。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：2 份{item:essentialcraft5:crystal_dust}，做法见[[alloys/crystal_dust]]，再加上几样前面做过的零件，魔力屏幕、MRU 收集器、魔力板、元素核心和 MRU 转换矩阵各 1 个，以及 2 块{item:essentialcraft5:obsidian_plate}。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:crystal_former"
+        },
+        {
+          "type": "h",
+          "text": "摆法"
+        },
+        {
+          "type": "items",
+          "items": [
+            "minecraft:water_bucket",
+            "minecraft:glass",
+            "minecraft:diamond",
+            "essentialcraft5:elemental_crystal"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "界面右半边是 3×3 的材料区，最下面一排放 3 桶{item:minecraft:water_bucket}。",
+            "中间一排左右两格各放一块{item:minecraft:glass}，染色玻璃、遮光玻璃等都可以，正中留空。",
+            "最上面一排正中放一颗{item:minecraft:diamond}。",
+            "最左上角是绑定宝石格，做好的水晶出现在宝石格和材料区中间的那一格。"
+          ]
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把绑定宝石绑到 MRU 源上，最好绑上一章富集仓的输出器，然后放进宝石格。",
+            "材料齐全、产物格空着、又没有红石信号时，它每刻消耗 {cfg:machines.crystal_former.mru_usage} MRU，做满 {cfg:machines.crystal_former.ticks_required} 刻，历时{cfg:machines.crystal_former.ticks_required|sec}，出一颗大小为 1 的元素水晶。",
+            "做好时 3 个水桶变成空桶留在原格，两格玻璃和钻石各用掉 1 个。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "产物格里出现一颗元素水晶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "它自己只存得下 {cfg:machines.crystal_former.max_mru} MRU，源头每刻供不上 {cfg:machines.crystal_former.mru_usage} MRU 就会做做停停，总耗能不变，只是慢一些，接在富集仓上最省心。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:machines.crystal_former.generate_corruption",
+          "text": "它工作时每刻往周围漏 0~{cfg:machines.crystal_former.max_corruption_gen} MRU，附近会聚出一团 MRU 聚集体，见[[start/mrucu]]，最好放得离你常待的地方远一些。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "进度会存下来，中途拿走材料也不丢，补齐后接着做。",
+            "漏斗能往这几格补材料，两格玻璃轮流补，也能抽走做好的水晶和用过的空桶，装着水的桶抽不走。",
+            "鼠标停在界面的进度箭头上，能看到它眼下卡在哪一步。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书说，古时的水晶是 MRU 的主要来源，像磁石一样把世上的 MRU 往身边吸。照残存的知识重造的头一颗几乎当场就碎了，后来才有了成型器，用钻石、水、玻璃和大量 MRU 造出最小、却相当结实的一颗。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/crystal/crystal_former.json — SMP/DCD/OXO：魔力屏幕、MRU 收集器、#plates/magic、水晶粉 ×2、#cores/magic、黑曜石板 ×2、MRU 转换矩阵",
+        "menu/CrystalFormerMenu.java:45-52 — 宝石格 (26,5)、产物格 (82,5)、水桶 2~4 号在最下一排、玻璃 5/6 号在中间一排两侧、钻石 7 号在最上一排正中",
+        "blockentity/CrystalFormerBlockEntity.java:28-48（类注释）— 材料齐全、产物格空、无红石时每 tick 扣 mru_usage、进度 +1，到 ticks_required 出一颗大小 1、四元素全 0 的水晶；水桶变空桶，玻璃和钻石各扣 1；材料不齐进度保留、进度存盘",
+        "blockentity/CrystalFormerBlockEntity.java:61-71 — max_mru（DEVICE_MAX_MRU 5000）、mru_usage 100、ticks_required 1000、generate_corruption、max_corruption_gen 2；L218 工作时 ECCorruption.randomIncreaseAt",
+        "blockentity/CrystalFormerBlockEntity.java:160-161、179 — 漏斗补玻璃两格轮流；只能抽走空桶（2~4 号格里是 Items.BUCKET 时）",
+        "data/essentialcraft5/recipes/radiating_chamber/magic_matrix_projection.json — 20000 刻、平衡值 0.50000006~1.4999999；empty_matrix_projection.json 1000 刻",
+        "tools/plan/progression.md「按章节」第 8 章 — 成型器 10 万 MRU（一台热力产能器约 5 分钟）、魔力投影 2.1 万刻（17.5 分钟）、水晶长满 41 分钟",
+        "原作 en_US.lang essentialcraft.page.crystals_1~5 — 古代水晶的来历（小知识）"
+      ]
+    },
+    {
+      "id": "elemental_crystal",
+      "title": "{item:essentialcraft5:elemental_crystal}",
+      "icon": "essentialcraft5:elemental_crystal",
+      "summary": "种下去，慢慢长大",
+      "complete": "essentialcraft5:guide/crystal/elemental_crystal",
+      "items": [
+        "essentialcraft5:elemental_crystal"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：把刚做出来的{item:essentialcraft5:elemental_crystal}放下，让它长大。月亮井只要一颗水晶，大小不限，刚做出来的也行，下一章的水晶提取器却要用长大的水晶，所以最好多做几颗。"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "把水晶贴在任意方块的任意一个完整面上，它就从那一面往外长。",
+            "刚放下时大小只有 1，小得几乎看不见，之后每刻长 {cfg:machines.elemental_crystal.growth_modifier|mul:0.002} 点，从 1 长到 100 约要 41 分钟。",
+            "它越长越亮，长满时亮度为 15。生长期间顶上飘着附魔台那样的字符粒子，粒子不再冒出来，就是长满了。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "身上有一颗任意大小的元素水晶。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "<em>一定要用镐挖</em>，空手或用别的工具挖什么也不掉，长了半小时的水晶就白费了。它只在所在区块加载时生长，人走远了就会停下。"
+        },
+        {
+          "type": "h",
+          "text": "元素"
+        },
+        {
+          "type": "p",
+          "text": "每颗水晶都带着火、水、地、风四种元素，每种在 0~100 之间，刚做出来时全是 0。生长期间每刻有 {cfg:machines.elemental_crystal.mutation_chance|pct} 的几率突变，随机挑一种元素变动 −2~+2，结果总在 0~100 之间，长满以后就不再变了。"
+        },
+        {
+          "type": "p",
+          "text": "任它自己长的话，长满时每种元素一般只有两三点，有时某一种还是 0。下一章的提取器能抽出什么由元素决定，想让哪种元素高一些，就要趁水晶还在生长时用[[essence/crystal_controller]]喂它精华。"
+        },
+        {
+          "type": "p",
+          "text": "物品的颜色偏向数值最高的那种元素，火偏暗红，水偏蓝，地偏深绿，风偏灰。物品提示里写着大小和四种元素的数值。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "省时间",
+          "text": "最好一次多做几颗一起养。月亮井要用掉一颗，下一章的提取器和控制器各要守着一颗，元素又是随机的，多几颗才挑得出最好的。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "list",
+          "items": [
+            "用镐挖下来以后，大小和四种元素都留在物品里，放回去还能接着长。",
+            "支撑它的方块被拆掉时，水晶会掉成物品，数据同样保留。"
+          ]
+        }
+      ],
+      "_src": [
+        "blockentity/ElementalCrystalBlockEntity.java:25-45（类注释）— 大小 < 100 时每 tick 长 0.002 × growth_modifier，1 → 100 要 49 500 tick；每 tick mutation_chance 几率突变（nextInt(3) − nextInt(3)，L172），夹在 0~100；长满后不长不变",
+        "blockentity/ElementalCrystalBlockEntity.java:51-60 — 配置 mutation_chance 0.001、growth_modifier 1.0；L66 BASE_GROWTH 0.002",
+        "blockentity/ElementalCrystalBlockEntity.java:142-148 — 生长时客户端每 tick 冒 ParticleTypes.ENCHANT；L183-188 lightFor：亮度 = 大小 / 100 × 15",
+        "block/ElementalCrystalBlock.java:96-110 — 贴在点击的那一面，canSurvive 要支撑面 isFaceSturdy；L32-50 支撑没了掉落保留数据",
+        "registry/ECCrystal.java:54-64 — requiresCorrectToolForDrops（镐）；src/generated/.../loot_tables/blocks/elemental_crystal.json — copy_nbt 复制 size/fire/water/earth/air",
+        "item/ElementalCrystalItem.java:47-51、116-132 — 物品颜色 = 中性色权重 10 + 四元素加权：火 (130,33,11)、水 (50,152,212)、地 (17,79,28)、风 (133,141,146)",
+        "tools/plan/progression.md「拖沓」第 4 条 — 按代码模拟，长满平均每种 2~3 点，风元素是 0 的占 25%"
+      ]
+    },
+    {
+      "id": "moon_well",
+      "title": "{item:essentialcraft5:moon_well}",
+      "icon": "essentialcraft5:moon_well",
+      "summary": "越深越好",
+      "complete": "essentialcraft5:guide/crystal/moon_well",
+      "items": [
+        "essentialcraft5:moon_well"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>：造一台{item:essentialcraft5:moon_well}，它每天夜里借月光产出 MRU，不用燃料，平衡值是 {cfg:machines.moon_well.balance}。先辈夜里取 MRU，用的就是这样一口井。"
+        },
+        {
+          "type": "p",
+          "text": "<em>准备</em>：一颗大小不限的{item:essentialcraft5:elemental_crystal}和一个{item:essentialcraft5:magic_matrix_projection}，再加 2 块魔力板，以及魔力屏幕、MRU 收集器、元素核心、MRU 转换矩阵、世界交互器各 1 个。"
+        },
+        {
+          "type": "recipe",
+          "item": "essentialcraft5:moon_well"
+        },
+        {
+          "type": "h",
+          "text": "魔力矩阵投影"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "先在辐射仓里拿灵魂石做一个{item:essentialcraft5:empty_matrix_projection}，做法见[[generators/projections]]。",
+            "再用平衡值在 0.5~1.5 之间的 MRU 照它 2 万刻，约 17 分钟。",
+            {
+              "if": "cfg:machines.heat_generator.balance<0",
+              "text": "热力产能器放下时平衡值是随机的，大约一半的几率落在 0.5~1.5 之间，挑出这样的一台，单独给它接一台辐射仓。"
+            },
+            "也可以拿{item:essentialcraft5:intersector}把一路冰冻、一路混沌的 MRU 混成中间的平衡值，见[[enrichment/intersector]]。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "平衡值会混",
+          "text": "机器里存着的 MRU 会和新拉进来的按量混合，辐射仓之前吃过混沌或冰冻的 MRU，平衡值就可能落到范围外。用一台空的辐射仓最稳妥，存着的 MRU 用光以后，平衡值也会完全换成新源头的。"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "聚集体会被喂大",
+          "text": "照这块投影要 2 万刻，辐射仓这期间一直在漏 MRU，会往 32 格内的聚集体里灌进约 1 万，正好到伤人的界线。最好把辐射仓放在离你常待的地方 13 格以外，或者照完后用{item:essentialcraft5:mru_mover}把聚集体挪走，见[[start/mrucu]]。",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen==1"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "聚集体会被喂大",
+          "text": "照这块投影要 2 万刻，辐射仓这期间一直在漏 MRU，附近的聚集体会越长越大。最好把辐射仓放在离你常待的地方 13 格以外，或者照完后用{item:essentialcraft5:mru_mover}把聚集体挪走，见[[start/mrucu]]。",
+          "if": [
+            "cfg:machines.radiating_chamber.generate_corruption",
+            "cfg:machines.radiating_chamber.max_corruption_gen!=1"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "怎么放"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "放在主世界里<em>正上方看得到天空</em>的地方，玻璃不会挡住天空，遮光玻璃、树叶和水则会挡住。",
+            "放得越低越好，在 y=0 及以下满产，每往上 1 格少产 1/{cfg:machines.moon_well.max_height}，到 y={cfg:machines.moon_well.max_height} 就完全不产。",
+            "把用 MRU 的机器或富集仓接收器的绑定宝石绑到它身上就行，它自己最多存 {cfg:machines.moon_well.max_mru} MRU。"
+          ]
+        },
+        {
+          "type": "table",
+          "header": [
+            "月相",
+            "每刻产量（y=0 以下）"
+          ],
+          "rows": [
+            [
+              "满月",
+              "{cfg:machines.moon_well.max_mru_generated} MRU"
+            ],
+            [
+              "亏凸月、盈凸月",
+              "{cfg:machines.moon_well.max_mru_generated|mul:0.75} MRU"
+            ],
+            [
+              "上弦月、下弦月",
+              "{cfg:machines.moon_well.max_mru_generated|mul:0.5} MRU"
+            ],
+            [
+              "残月、蛾眉月",
+              "{cfg:machines.moon_well.max_mru_generated|mul:0.25} MRU"
+            ],
+            [
+              "新月",
+              "不产"
+            ]
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "夜里它存着的 MRU 在往上涨。界面上的产量只按月相和高度算，白天或头顶被挡住时也照样显示，要看存量涨没涨才准。"
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "实用摆法",
+          "text": "挖一口竖井直到 y=0 以下，把月亮井放在井底，井口盖上玻璃挡怪，就能满产。它白天和新月时不产，下界和末地没有天空也不产，收到红石信号时会停机。"
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "原作的研究书说，光子本身不带 MRU，月光穿过空气时却会顺路捎上一些，走得越远捎得越多，捎多少还要看月相，没有月亮的夜里就什么也捎不来。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/crystal/moon_well.json — SGM/ICX/PJP：魔力屏幕、元素水晶、MRU 收集器、世界交互器、#cores/magic、MRU 转换矩阵、#plates/magic ×2、魔力矩阵投影",
+        "blockentity/MoonWellBlockEntity.java:15-28（类注释）、74-78 — 产量 = max_mru_generated × |1 − 月相 × 0.25| × 高度系数（y ≥ max_height 为 0，否则 min(1, 1 − y / max_height)）",
+        "blockentity/MoonWellBlockEntity.java:82 — 新月（月相 4）、白天、canSeeSky(上方) 不成立时不产；L63 有红石信号停机",
+        "原版 BlockAndTintGetter.canSeeSky = 天空光照 ≥ 15：普通 / 染色玻璃 getLightBlock 0 不减；树叶、水为 1；TintedGlassBlock.getLightBlock = 15，挡",
+        "blockentity/MoonWellBlockEntity.java:40-45 — max_mru（GENERATOR_MAX_MRU 10000）、balance 1.0、max_mru_generated 60、max_height 80",
+        "menu/MoonWellMenu.java:21 — 界面的产量取 potentialGeneration（L72-73：不看昼夜和天空，只按月相和高度）",
+        "data/essentialcraft5/recipes/radiating_chamber/magic_matrix_projection.json — 空白投影、mru 20000（刻）、平衡值 (0.5, 1.5)；empty_matrix_projection.json — 灵魂石 1000 刻",
+        "config_keys machines.heat_generator.balance — -1 时放下随机 [0, 2)；0.5~1.5 约一半",
+        "mru/MRUStorage.java:117-131 — pullFrom 按量加权平均；存量为 0 时平衡值就是源头的",
+        "原作 en_US.lang essentialcraft.page.moonWell_1~2 — 月光捎带 MRU 的说法（小知识）",
+        "radiating_chamber 每刻漏 0~1 MRU（平均 0.5），魔力投影 2 万刻 → 约 1 万；聚集体 12.5 格内伤人"
+      ]
+    }
+  ]
+}

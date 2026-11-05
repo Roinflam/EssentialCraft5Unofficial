@@ -1,0 +1,1165 @@
+{
+  "id": "matrix",
+  "order": 6,
+  "group": "start",
+  "title": "Matrix Ranks at a Glance",
+  "subtitle": "Nine ranks, the Codex, trials, Alignment",
+  "icon": "essentialcraft5:soul_stone",
+  "if": "cfg:general.matrix_rank.enabled",
+  "entries": [
+    {
+      "id": "overview",
+      "title": "Your Matrix",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "What matrix ranks are and what each gives",
+      "blocks": [
+        {
+          "type": "quote",
+          "text": "A matrix is not fixed at birth. Kept long enough by a mind, it thickens layer by layer and can bear more. Each new layer, though, we had to earn through an ordeal first.",
+          "by": "Fragments of Essence, Book II"
+        },
+        {
+          "type": "p",
+          "text": "The [[mru/soul_stone|MRU Matrix]] you carry has nine ranks, called <hl>matrix ranks</hl>, and you start at rank 0. There is no experience bar. You break through one rank at a time. For each one, meet its Codex requirement and gather its offerings and energy, then win a trial at the {item:essentialcraft5:matrix_crucible}."
+        },
+        {
+          "type": "h",
+          "text": "What a breakthrough takes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<em>Codex</em>: how many kinds of hostile mob you have killed yourself. Some ranks also ask for kills in the Nether, in Hoanna or of bosses ([[matrix/codex]]).",
+            "<em>Offerings and energy</em>: a few materials placed in the Crucible, plus UBMRU, MRU or ESPE. The energy is paid when the trial starts; the offerings are only used up if you win.",
+            "<em>Trial</em>: defeat a group of Matrix Echoes that wear your own face, right beside the Crucible ([[matrix/crucible]])."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Each breakthrough is a step in the main line, one every few chapters from Chapter 2 on. Here is the overview; [[matrix/ranks]] lists what each rank takes."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Rank",
+            "Name",
+            "Chapter",
+            "New ability",
+            "Reservoir"
+          ],
+          "rows": [
+            [
+              "1",
+              "Awareness",
+              "2",
+              "See MRUCUs while holding your Soul Stone",
+              "—"
+            ],
+            [
+              "2",
+              "Drawing",
+              "5",
+              "Matrix Reservoir: store MRU in yourself",
+              "{cfg:general.matrix_rank.pool_per_rank|mul:1}"
+            ],
+            [
+              "3",
+              "Temper",
+              "10",
+              "Alignment I; weapons gain Matrix Traits",
+              "{cfg:general.matrix_rank.pool_per_rank|mul:2}"
+            ],
+            [
+              "4",
+              "Refining",
+              "12",
+              "Matrix Siphon",
+              "{cfg:general.matrix_rank.pool_per_rank|mul:3}"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "cells": [
+                "5",
+                "Crossing",
+                "15",
+                "+5% Hoanna Radiation resistance",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled||!cfg:general.radiation.enabled",
+              "cells": [
+                "5",
+                "Crossing",
+                "15",
+                "More reservoir and tolerance",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "6",
+                "Covenant",
+                "17",
+                "Alignment II",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:5}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "7",
+                "Scrutiny",
+                "19",
+                "Matrix Fortitude",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:6}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "8",
+                "Shade",
+                "22",
+                "Shade Alignment (straight at II)",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:7}"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "9",
+                "Essence",
+                "23",
+                "Alignment III",
+                "{cfg:general.matrix_rank.pool_per_rank|mul:8}"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Every rank also adds {cfg:general.matrix_rank.tolerance_per_rank|pct} <em>tolerance</em>, which only offsets the matrix damage the ranks themselves bring ([[matrix/tolerance]])."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "The Crucible lists nine ranks. Rank 8 comes in Chapter 22, and rank 9 in Chapter 23 as the last step of the main line ([[shade/rank_8]], [[apex/rank_9]])."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "The Crucible lists nine ranks. From rank 6 on you need kills in Hoanna, so without Hoanna, rank 5 is as far as you can go."
+        },
+        {
+          "type": "h",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0||cfg:general.matrix_rank.gates.holopad>0"
+          ],
+          "text": "Gates"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            {
+              "if": "cfg:general.matrix_rank.gates.hoanna_portal>0",
+              "cells": [
+                "Gate to Hoanna",
+                "Below rank {cfg:general.matrix_rank.gates.hoanna_portal}, standing in the gate doesn't take you across, and Magical Teleporters won't send you to Hoanna either ([[hoanna/crossing]])"
+              ]
+            },
+            {
+              "if": "cfg:general.matrix_rank.gates.holopad>0",
+              "cells": [
+                "Holopad",
+                "Below rank {cfg:general.matrix_rank.gates.holopad}, it won't summon the Holographic Projection ([[hologram/holopad]])"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.gates.hoanna_portal>0||cfg:general.matrix_rank.gates.holopad>0"
+          ],
+          "text": "Gates only stop you going in. Coming back from Hoanna never checks your rank."
+        },
+        {
+          "type": "h",
+          "text": "Checking your rank"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The tooltip of the {item:essentialcraft5:soul_stone} bound to you shows your rank, Codex count, reservoir and Alignment. Only you can see those lines.",
+            "The Crucible's screen lists the nine ranks on the left and the next rank's requirements on the right, ticking off the ones you meet. Your Codex is underneath, one page per group."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "codex",
+      "title": "The Matrix Codex",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "A record of what you have killed yourself",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Your <hl>Matrix Codex</hl> records which kinds of hostile mob you have killed with your own hand. Each kind is recorded once, the first time, so it counts kinds, not kills. The Codex is the first requirement of every rank; [[matrix/ranks]] lists how many each needs."
+        },
+        {
+          "type": "p",
+          "text": "When you kill a new kind, a line such as \"Matrix Codex +1: Zombie (9 / 13, rank 3 needs 13)\" appears above the hotbar."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.first_kill_ubmru_multiplier>0",
+          "text": "The kill that adds a new kind also gives an extra {cfg:general.matrix_rank.first_kill_ubmru_multiplier|pct} of its normal UBMRU."
+        },
+        {
+          "type": "h",
+          "text": "What counts"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Only hostile mobs count. Zombies, skeletons, spiders, creepers, endermen, witches and phantoms all do; villagers, animals and iron golems don't. Hostile mobs added by other mods count as well.",
+            "The killing blow has to be yours. Melee, bows, tridents and guns all work; kills by pets or by someone else's finishing blow don't. If you hit it and it falls or burns to death within 5 seconds, it still counts as yours.",
+            "Bosses are the exception. For the Wither, the Ender Dragon, the Holographic Projection, the Inquisitorium Sentinel and other bosses, everyone who dealt at least a tenth of its health gets it recorded, not only whoever landed the last hit. For bosses that cap each hit, such as the MRU Golem and the Matrix Specter, only the damage that actually lands counts.",
+            "A mob saved by a Totem of Undying didn't die. Matrix Echoes, holographic decoys and the like are never recorded.",
+            "Mobs from spawners and mob farms can be recorded too, but only once per kind, so farming them gains nothing."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Groups"
+        },
+        {
+          "type": "p",
+          "text": "Besides the total, some ranks ask for a number of kinds from one group:"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Group",
+            "What counts"
+          ],
+          "rows": [
+            [
+              "Nether",
+              "The nine Nether mobs, wherever you kill them: blazes, ghasts, magma cubes, wither skeletons, piglins, piglin brutes, hoglins, zoglins and zombified piglins"
+            ],
+            [
+              "Expedition",
+              "Pillagers, vindicators, evokers, vexes, ravagers, guardians, elder guardians and wardens; one raid or one ocean monument will do"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna",
+                "Kinds killed in Hoanna, kept as a separate list, so a kind you already have from the Overworld counts again when killed there"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Hoanna natives",
+                "The eight monsters native to Hoanna ([[bestiary/overview]])"
+              ]
+            },
+            [
+              "Bosses",
+              "The Wither, the Ender Dragon, the Holographic Projection, the Inquisitorium Sentinel and other bosses"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "End",
+                "Shulkers and the Ender Dragon"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Essential Craft creatures",
+                "This mod's own monsters: everything in the bestiary, plus the likes of wind mages and the Holographic Projection ([[bestiary/overview]])"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "title": "On Peaceful",
+          "text": "On Peaceful no hostile mobs spawn, so the Codex requirement counts as met. Back on another difficulty your real Codex counts again, but ranks you have already reached stay."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Codex is kept on you and survives death.",
+            "It holds up to {cfg:general.matrix_rank.codex_max_entries} kinds."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crucible",
+      "title": "{item:essentialcraft5:matrix_crucible}",
+      "icon": "essentialcraft5:matrix_crucible",
+      "summary": "Reserve, site, starting and failing",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The {item:essentialcraft5:matrix_crucible} is where you break through to a new rank. You can make it in Chapter 2 ([[mru/crucible]]). It holds up to {cfg:machines.matrix_crucible.max_mru} MRU, pulled from generators with a [[crafting/bound_gem|Bound Gem]], and has a few offering slots that only take items placed by hand; hoppers can't fill them."
+        },
+        {
+          "type": "p",
+          "text": "A Crucible belongs to whoever placed it. Whether anyone else can use it depends on whether the claim lets them touch that block."
+        },
+        {
+          "type": "h",
+          "text": "The trial reserve"
+        },
+        {
+          "type": "p",
+          "text": "Ranks 1 and 2 cost UBMRU, but UBMRU is lost when you die, and the Matrix Destructor from Chapter 2 keeps draining it. Sneak-right-click any Crucible while holding your bound {item:essentialcraft5:soul_stone} and the UBMRU you carry goes into your <em>trial reserve</em>."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The reserve is kept on you and works at any Crucible.",
+            "It survives death and can only be spent on trials.",
+            "It holds up to what your next rank needs; anything more stays on you. If you rank up and the reserve is over the new limit, the extra goes back to you.",
+            "You can't add to it while a trial is running. Wait until it ends."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Take your Soul Stone out of the Matrix Destructor while you save up. Until its buffer is full it converts your UBMRU every tick, and you won't build any up."
+        },
+        {
+          "type": "h",
+          "text": "The site"
+        },
+        {
+          "type": "p",
+          "text": "For ranks 1 to 3 the Crucible is enough. From rank 4, a finished [[pentacle/pentacle|Soul Pentacle]] has to stand within 8 blocks of it, at the tier shown below. The trial's ESPE is drawn from that pentacle's pillars and counted with the same discount as when the pentacle cures corruption effects."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Rank 4",
+              "Tier 0"
+            ],
+            [
+              "Rank 5",
+              "Tier 1"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Rank 6",
+                "Tier 2"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "Rank 7",
+                "Tier 3"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "The pentacle must be your own or one you are allowed to change. Someone else's doesn't count: the screen says it isn't yours, and none of its ESPE is drawn."
+        },
+        {
+          "type": "h",
+          "text": "Starting a trial"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put this rank's offerings in the Crucible and have the energy ready.",
+            "Stand within 3 blocks of it with your bound Soul Stone in your main hand, open the screen and press the start button.",
+            "It only works once every line on the right is ticked. You also need at least half your health, no cooldown, and no other trial running.",
+            "The energy is paid the moment it starts. UBMRU comes from your trial reserve first and then from you, MRU from the Crucible, ESPE from the pentacle's pillars. The offerings are locked in their slots and only used up if you win."
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "text": "Fighting the echoes"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "text": "<em>Matrix Echoes</em> keep appearing on open ground {cfg:general.matrix_rank.trial.spawn_radius_min} to {cfg:general.matrix_rank.trial.spawn_radius_max} blocks from the Crucible. They wear your own face, half transparent and tinted by your matrix type. A progress bar only you can see sits at the top of the screen. Defeat enough of them before time runs out and you win; [[matrix/ranks]] lists the count and time limit for each rank."
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "items": [
+            "Echoes only attack you and only take your damage and your potions, so nobody else can help or get in your way.",
+            "They drop nothing, give no experience or UBMRU, never enter the Codex and don't break blocks.",
+            "If there is no open ground around the Crucible, or the ground isn't yours to change, no echo can appear there and the trial won't start. Nothing is paid.",
+            "Once it has started, if the ground where echoes appeared stops being yours to change, or something keeps stopping them from appearing, the trial stops and the energy is refunded. If those spots are just blocked by blocks or liquid, the clock keeps running.",
+            "Put the Crucible on open, flat ground. An echo stuck behind a wall or in a pit, unable to reach you, is moved next to you after a few seconds."
+          ]
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+          "text": "Trials send out no echoes. Each one is a <em>channel</em> instead: stay within 3 blocks of the Crucible without moving or taking damage until time is up. It takes {cfg:general.matrix_rank.trial.peaceful_channel_seconds} seconds plus 10 per rank, and moving or getting hurt breaks it. The channel has its own time limit, twice the standing time plus 60 seconds, shown on the progress bar. If you haven't stood long enough by then, the trial fails."
+        },
+        {
+          "type": "h",
+          "text": "Failing"
+        },
+        {
+          "type": "p",
+          "text": "The trial fails if you die, log out, change dimension, move more than {cfg:general.matrix_rank.trial.leave_radius} blocks from the Crucible, the Crucible is broken, or you run out of time (for a channel, if you haven't stood long enough). The energy already paid is not refunded, the offerings stay in their slots (or drop on the spot if the Crucible was broken), and you can't start another for {cfg:general.matrix_rank.trial.fail_cooldown_seconds} seconds, even if you log out and back in."
+        },
+        {
+          "type": "h",
+          "text": "Winning"
+        },
+        {
+          "type": "p",
+          "text": "When you win, your rank goes up by one, the offerings are used up and the new rank's name appears on screen. A breakthrough also strains your matrix: you take {cfg:general.matrix_rank.trial.success_matrix_damage_per_rank} × your new rank in matrix damage, reduced by your [[matrix/tolerance|tolerance]]."
+        },
+        {
+          "type": "tip",
+          "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+          "style": "info",
+          "title": "On Peaceful",
+          "text": "On Peaceful there are no echoes. The trial becomes a <em>channel</em>: stay within 3 blocks of the Crucible without moving or taking damage for {cfg:general.matrix_rank.trial.peaceful_channel_seconds} seconds plus 10 per rank. Moving or getting hurt breaks it. The channel has its own time limit, twice the standing time plus 60 seconds, shown on the progress bar. If you haven't stood long enough by then, the trial fails."
+        }
+      ]
+    },
+    {
+      "id": "ranks",
+      "title": "What each rank takes",
+      "icon": "essentialcraft5:matrix_crucible",
+      "summary": "Codex, offerings, energy and echoes",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "The Reward rows leave out tolerance, which every rank gives. ESPE amounts are after the pentacle's discount, as its screen shows them."
+        },
+        {
+          "type": "h",
+          "text": "Rank 1 · Awareness (Chapter 2)"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "4 kinds in total"
+            ],
+            [
+              "Site",
+              "The Crucible alone"
+            ],
+            [
+              "Offerings",
+              "4 each of {item:essentialcraft5:fire_drops}, {item:essentialcraft5:water_drops}, {item:essentialcraft5:earth_drops} and {item:essentialcraft5:air_drops}"
+            ],
+            [
+              "Energy",
+              "5,000 UBMRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "2 in all, up to 2 at once; 20 health, 4 damage a hit; 70 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:10} seconds"
+              ]
+            },
+            [
+              "Reward",
+              "Matrix Vision: with your bound Soul Stone in either hand you can see MRUCUs and how much they hold"
+            ],
+            [
+              "Step",
+              "[[mru/rank_1]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Rank 2 · Drawing (Chapter 5)"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "8 in total, 2 of them from the Nether"
+            ],
+            [
+              "Site",
+              "The Crucible alone"
+            ],
+            [
+              "Offerings",
+              "2 {item:essentialcraft5:mru_shard}, 2 {item:essentialcraft5:obsidian_plate}, 4 {item:essentialcraft5:magical_ingot}"
+            ],
+            [
+              "Energy",
+              "20,000 UBMRU, plus 2,000 MRU in the Crucible"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "3 in all, up to 2 at once; 32 health, 5 damage a hit; 80 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:20} seconds"
+              ]
+            },
+            [
+              "Reward",
+              "[[matrix/reservoir|Matrix Reservoir]] of {cfg:general.matrix_rank.pool_per_rank|mul:1} MRU"
+            ],
+            [
+              "Step",
+              "[[storage/rank_2]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Rank 3 · Temper (Chapter 10)"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "13 in total, 3 from the Nether; your matrix type must not be Neutral"
+            ],
+            [
+              "Site",
+              "The Crucible alone"
+            ],
+            [
+              "Offerings",
+              "4 essences from Chapter 9, all of one kind and stacked in one slot (any element, any rarity, but not mixed), 1 {item:essentialcraft5:combined_magical_alloys}, 1 {item:essentialcraft5:sun_imbued_glass}"
+            ],
+            [
+              "Energy",
+              "10,000 MRU"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "4 in all, up to 3 at once; 44 health, 6 damage a hit; 90 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:30} seconds"
+              ]
+            },
+            [
+              "Reward",
+              "[[matrix/alignment|Alignment]] I, and weapons with Matrix Traits start working; reservoir {cfg:general.matrix_rank.pool_per_rank|mul:2}"
+            ],
+            [
+              "Step",
+              "[[solar/rank_3]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Rank 4 · Refining (Chapter 12)"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "17 in total, 4 from the Nether"
+            ],
+            [
+              "Site",
+              "A tier 0 Soul Pentacle"
+            ],
+            [
+              "Offerings",
+              "1 {item:essentialcraft5:condensed_matrix}, 4 {item:essentialcraft5:mithriline_ingot}, 2 {item:essentialcraft5:pale_block}"
+            ],
+            [
+              "Energy",
+              "20,000 MRU + 2,000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "5 in all, up to 3 at once; 56 health, 7 damage a hit; 100 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:40} seconds"
+              ]
+            },
+            [
+              "Reward",
+              "[[matrix/reservoir|Matrix Siphon]]; reservoir {cfg:general.matrix_rank.pool_per_rank|mul:3}"
+            ],
+            [
+              "Step",
+              "[[pentacle/rank_4]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Rank 5 · Crossing (Chapter 15)"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Codex",
+              "21 in total, 4 from the Nether, including a [[wind_mage/wind_mages|wind mage]] and at least 1 expedition kind"
+            ],
+            [
+              "Site",
+              "A tier 1 Soul Pentacle"
+            ],
+            [
+              "Offerings",
+              "1 {item:essentialcraft5:condensed_matrix}, 1 {item:essentialcraft5:wind_gem}, 1 {item:essentialcraft5:air_focus}, 4 {item:essentialcraft5:mithriline_ingot}"
+            ],
+            [
+              "Energy",
+              "40,000 MRU + 4,000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "6 in all, up to 3 at once; 68 health, 8 damage a hit; 110 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:50} seconds"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.radiation.enabled"
+              ],
+              "cells": [
+                "Reward",
+                "+5% Hoanna Radiation resistance; reservoir {cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled||!cfg:general.radiation.enabled",
+              "cells": [
+                "Reward",
+                "Reservoir {cfg:general.matrix_rank.pool_per_rank|mul:4}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.matrix_rank.gates.hoanna_portal==5"
+              ],
+              "cells": [
+                "Gate",
+                "Gate to Hoanna"
+              ]
+            },
+            [
+              "Step",
+              "[[logistics/rank_5]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Rank 6 · Covenant (Chapter 17)"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "Codex",
+              "24 in total, at least 4 of them killed in Hoanna and 2 of them Hoanna natives"
+            ],
+            [
+              "Site",
+              "A tier 2 Soul Pentacle"
+            ],
+            [
+              "Offerings",
+              "2 {item:essentialcraft5:condensed_matrix}, 1 {item:essentialcraft5:void_mru_reactor}, 4 {item:essentialcraft5:ackronite_ingot}, 4 of any one [[hoanna_explore/specialties|Hoanna specialty]]"
+            ],
+            [
+              "Energy",
+              "60,000 MRU + 6,000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "7 in all, up to 3 at once; 80 health, 9 damage a hit; 120 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:60} seconds"
+              ]
+            },
+            [
+              "Reward",
+              "Alignment II; reservoir {cfg:general.matrix_rank.pool_per_rank|mul:5}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.gates.holopad==6",
+              "cells": [
+                "Gate",
+                "Holopad"
+              ]
+            },
+            [
+              "Step",
+              "[[demons/rank_6]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Rank 7 · Scrutiny (Chapter 19)"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "Codex",
+              "27 in total, at least 2 of them bosses"
+            ],
+            [
+              "Site",
+              "A tier 3 Soul Pentacle"
+            ],
+            [
+              "Offerings",
+              "2 {item:essentialcraft5:condensed_matrix}, 2 {item:essentialcraft5:demonic_core}, 1 math core (addition, subtraction, multiplication or division)"
+            ],
+            [
+              "Energy",
+              "80,000 MRU + 8,000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "8 in all, up to 4 at once; 92 health, 10 damage a hit; 130 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:70} seconds"
+              ]
+            },
+            [
+              "Reward",
+              "[[matrix/tolerance|Matrix Fortitude]]; reservoir {cfg:general.matrix_rank.pool_per_rank|mul:6}"
+            ],
+            [
+              "Step",
+              "[[inquisitorium/rank_7]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Rank 8 · Shade (Chapter 22)"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "Codex",
+              "30 in total, at least 8 of them killed in Hoanna, 1 from the End and 3 Essential Craft creatures"
+            ],
+            [
+              "Site",
+              "A tier 4 Soul Pentacle"
+            ],
+            [
+              "Offerings",
+              "3 {item:essentialcraft5:condensed_matrix}, 1 {item:essentialcraft5:shade_core}, 1 {item:essentialcraft5:matter_of_eternity}, 8 {item:essentialcraft5:umbral_crystal}"
+            ],
+            [
+              "Energy",
+              "100,000 MRU + 12,000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "9 in all, up to 4 at once; 104 health, 11 damage a hit; 140 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:80} seconds"
+              ]
+            },
+            [
+              "Reward",
+              "Shade Alignment (straight at II); reservoir {cfg:general.matrix_rank.pool_per_rank|mul:7}"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.gates.calamity_beacon==8",
+              "cells": [
+                "Gate",
+                "Calamity Beacon"
+              ]
+            },
+            [
+              "Step",
+              "[[shade/rank_8]]"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Rank 9 · Essence (Chapter 23)"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "rows": [
+            [
+              "Codex",
+              "33 in total, including the Heart of Calamity"
+            ],
+            [
+              "Site",
+              "A tier 4 Soul Pentacle"
+            ],
+            [
+              "Offerings",
+              "3 {item:essentialcraft5:condensed_matrix}, 2 {item:essentialcraft5:shade_core}, 1 {item:essentialcraft5:calamity_remnant}"
+            ],
+            [
+              "Energy",
+              "100,000 MRU + 16,000 ESPE"
+            ],
+            {
+              "if": "cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Echoes",
+                "10 in all, up to 4 at once; 116 health, 12 damage a hit; 150 seconds"
+              ]
+            },
+            {
+              "if": "!cfg:general.matrix_rank.trial.mobs_enabled",
+              "cells": [
+                "Channel",
+                "{cfg:general.matrix_rank.trial.peaceful_channel_seconds|add:90} seconds"
+              ]
+            },
+            [
+              "Reward",
+              "Alignment III; reservoir {cfg:general.matrix_rank.pool_per_rank|mul:8}"
+            ],
+            [
+              "Step",
+              "[[apex/rank_9]]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alignment",
+      "title": "Alignment and Matrix Traits",
+      "icon": "essentialcraft5:chaos_matrix_projection",
+      "summary": "From rank 3, your matrix type matters",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Your matrix type is set by the last [[gear/projection_use|Matrix Projection]] you absorbed, and is one of Neutral, Chaos, Frozen, Magic or Shade. From rank 3 your type gives you a passive called <hl>Alignment</hl>: Alignment I at rank 3, II at rank 6 and III at rank 9. Neutral has none, which is why rank 3 asks for a type other than Neutral."
+        },
+        {
+          "type": "p",
+          "text": "To change type, absorb a different projection, at the same cost as before. Your Alignment level carries over."
+        },
+        {
+          "type": "h",
+          "text": "The four Alignments"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Type",
+            "Alignment",
+            "I / II / III"
+          ],
+          "rows": [
+            [
+              "Chaos",
+              "Agitation: your melee and projectile hits deal more damage",
+              "{cfg:general.matrix_rank.resonance.chaos.damage_bonus|at:0|sign|pct} / {cfg:general.matrix_rank.resonance.chaos.damage_bonus|at:1|sign|pct} / {cfg:general.matrix_rank.resonance.chaos.damage_bonus|at:2|sign|pct}"
+            ],
+            [
+              "Frozen",
+              "Stasis: you take less melee damage, and living things that hit you in melee start to freeze",
+              "−{cfg:general.matrix_rank.resonance.frozen.melee_reduction|at:0|pct} / −{cfg:general.matrix_rank.resonance.frozen.melee_reduction|at:1|pct} / −{cfg:general.matrix_rank.resonance.frozen.melee_reduction|at:2|pct}; attacker freezes +{cfg:general.matrix_rank.resonance.frozen.retaliation_freeze_ticks|at:0} / +{cfg:general.matrix_rank.resonance.frozen.retaliation_freeze_ticks|at:1} / +{cfg:general.matrix_rank.resonance.frozen.retaliation_freeze_ticks|at:2} ticks"
+            ],
+            [
+              "Magic",
+              "Clarity: carried items from this mod use less MRU, and each siphon draws more",
+              "Cost −{cfg:general.matrix_rank.resonance.magic.cost_discount|at:0|pct} / −{cfg:general.matrix_rank.resonance.magic.cost_discount|at:1|pct} / −{cfg:general.matrix_rank.resonance.magic.cost_discount|at:2|pct}; siphon limit +{cfg:general.matrix_rank.resonance.magic.siphon_bonus|at:0|pct} / +{cfg:general.matrix_rank.resonance.magic.siphon_bonus|at:1|pct} / +{cfg:general.matrix_rank.resonance.magic.siphon_bonus|at:2|pct}"
+            ],
+            [
+              "Shade",
+              "Devouring: less magic damage from attackers; only from rank 8, starting at II",
+              "— / −{cfg:general.matrix_rank.resonance.shade.magic_reduction|at:1|pct} / −{cfg:general.matrix_rank.resonance.shade.magic_reduction|at:2|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Frozen Alignment doesn't reduce damage that ignores armor. At 140 frozen ticks the attacker is frozen solid.",
+            "Magic Alignment's discount doesn't apply to the MRU shield armor spends blocking damage.",
+            "Shade Alignment doesn't reduce damage with no attacker, such as corruption effects or MRU Corruption."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Matrix Traits"
+        },
+        {
+          "type": "p",
+          "text": "A weapon with Matrix Traits adds one more effect, based on your matrix type, whenever it lands a hit, as long as your Alignment is at least I. That means Shade traits also wait until rank 8. Each trigger costs {cfg:general.matrix_rank.resonance.trait_mru_cost} MRU, taken from your [[storage/soul_storage|soul storage]] first and then from your [[matrix/reservoir|reservoir]], with the Magic discount applied. If you can't pay there's no effect, but the hit still lands."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Type",
+            "On hit"
+          ],
+          "rows": [
+            [
+              "Chaos",
+              "The target gets Corrosion for {cfg:general.guns.lens_corrosion_ticks|sec} and can't heal while it lasts; targets already corroded take {cfg:general.matrix_rank.resonance.chaos.trait_bonus_vs_corroded|pct} more"
+            ],
+            [
+              "Frozen",
+              "The target gains {cfg:general.guns.lens_freeze_per_hit} frozen ticks; frozen-solid targets take {cfg:general.matrix_rank.resonance.frozen.trait_bonus_vs_frozen|pct} more"
+            ],
+            [
+              "Magic",
+              "Removes one beneficial effect from the target, at most once every {cfg:general.matrix_rank.resonance.magic.trait_dispel_cooldown_ticks|sec} per target"
+            ],
+            [
+              "Shade",
+              "{cfg:general.guns.lens_drain_percent|pctv} of the hit's damage heals you"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Higher Alignment makes traits stronger, ×{cfg:general.matrix_rank.resonance.trait_level_multipliers|at:0} at I, ×{cfg:general.matrix_rank.resonance.trait_level_multipliers|at:1} at II and ×{cfg:general.matrix_rank.resonance.trait_level_multipliers|at:2} at III. That applies to durations, frozen ticks and the heal share, but not to the extra damage against corroded or frozen targets. The {item:essentialcraft5:holy_mace}'s traits are {cfg:general.staffs.holy_mace_trait_multiplier} times as strong as other weapons'."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Weapons with Matrix Traits: the {item:essentialcraft5:elemental_sword}, {item:essentialcraft5:wind_elemental_sword}, {item:essentialcraft5:chaos_fork}, {item:essentialcraft5:frozen_mace}, {item:essentialcraft5:holy_mace} and {item:essentialcraft5:forged_elemental_sword}."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "text": "Weapons with Matrix Traits: the {item:essentialcraft5:elemental_sword}, {item:essentialcraft5:wind_elemental_sword}, {item:essentialcraft5:chaos_fork}, {item:essentialcraft5:frozen_mace} and {item:essentialcraft5:holy_mace}."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.attunement.enabled"
+          ],
+          "text": "The {item:essentialcraft5:verdict_blade} has Matrix Traits too, {cfg:general.verdict_blade.trait_multiplier} times as strong as on ordinary weapons with Traits."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "if": "cfg:general.guns.lens_corrosion_ticks>0||cfg:general.guns.lens_freeze_per_hit>0||cfg:general.guns.lens_dispel||cfg:general.guns.lens_drain_percent>0",
+              "text": "A gun lens of the same type as your matrix works at {cfg:general.matrix_rank.resonance.same_type_lens_multiplier} times its usual strength once your Alignment is at least I ([[guns/lens_effects]])."
+            },
+            "The highest level of the effects the {item:essentialcraft5:chaos_fork} and {item:essentialcraft5:frozen_mace} put on a target goes up by your Alignment level. This doesn't apply against players or to the Strength the Chaos Fork gives you ([[staffs/matrix_weapons]]).",
+            "Against players, the durations, healing and bonus percentages of Alignment and traits are scaled to {cfg:general.attunement.pvp_effect_scale|pct}."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reservoir",
+      "title": "Matrix Reservoir and Siphon",
+      "icon": "essentialcraft5:soul_stone",
+      "summary": "Store MRU in yourself, draw it from MRUCUs",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "From rank 2 your matrix can hold MRU itself. This is your <hl>Matrix Reservoir</hl>, with room for {cfg:general.matrix_rank.pool_per_rank} × (rank − 1): {cfg:general.matrix_rank.pool_per_rank|mul:1} at rank 2, {cfg:general.matrix_rank.pool_per_rank|mul:6} at rank 7."
+        },
+        {
+          "type": "p",
+          "text": "The UBMRU you carry is converted into it automatically at the [[mru/matrix_absorber|Matrix Destructor]]'s rate of 10 UBMRU to 1 MRU, up to {cfg:general.matrix_rank.pool_absorb_per_second} MRU per second, until it is full."
+        },
+        {
+          "type": "p",
+          "text": "Only UBMRU above your <em>reserve line</em> is converted. The line is {cfg:general.matrix_rank.pool_absorb_reserve} UBMRU, so the few special baubles that charge UBMRU always have something left to draw on. Your Soul Stone's tooltip shows the current line."
+        },
+        {
+          "type": "p",
+          "if": "bauble:essentialcraft5:theta_belt",
+          "text": "While you wear the {item:essentialcraft5:theta_belt}, the line is five times as high."
+        },
+        {
+          "type": "p",
+          "text": "Converting is on by default. Sneak + right-click with your bound Soul Stone in your main hand to switch it; holding it in your off hand doesn't count. From Rank 4, doing this while an MRUCU is within 5 blocks starts a siphon instead (see below)."
+        },
+        {
+          "type": "h",
+          "text": "What pays first"
+        },
+        {
+          "type": "p",
+          "text": "When this mod's carried items or shield armor need MRU, it comes from your [[storage/soul_storage|soul storage]] first, then from your reservoir, and only then from the item's own charge."
+        },
+        {
+          "type": "tip",
+          "style": "bad",
+          "title": "Death empties it",
+          "text": "<b>When you die, the MRU in your reservoir is gone.</b> Changing dimension or logging out keeps it."
+        },
+        {
+          "type": "h",
+          "text": "Matrix Siphon (rank 4)"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Sneak with your bound Soul Stone in your main hand, aim at an MRUCU within 5 blocks and hold right-click.",
+            "After a full second, up to {cfg:general.matrix_rank.siphon.amount} MRU flows from it into your reservoir.",
+            "You take {cfg:general.matrix_rank.siphon.matrix_damage} matrix damage, reduced by tolerance, and must wait {cfg:general.matrix_rank.siphon.cooldown_ticks|sec} before the next one."
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "The MRUCU has to be somewhere you are allowed to change, just as with the {item:essentialcraft5:mrucu_container}.",
+            "You can't siphon one that a stabilizer is holding, one in a flask, or one inside someone else's chamber you aren't allowed to change.",
+            "Magic Alignment lets each siphon draw more ([[matrix/alignment]])."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tolerance",
+      "title": "Tolerance and Matrix Fortitude",
+      "icon": "essentialcraft5:player_pentacle",
+      "summary": "Only offsets the damage ranks bring",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Each rank adds {cfg:general.matrix_rank.tolerance_per_rank|pct} <hl>tolerance</hl>. Tolerance only covers the matrix damage the ranks themselves bring, the hit you take when a trial succeeds and the cost of a Matrix Siphon, which is divided by 1 plus your tolerance."
+        },
+        {
+          "type": "p",
+          "text": "The matrix damage a [[bestiary/matrix_wraith|Matrix Wraith]] adds when it hits you is reduced the same way."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.matrix_rank.tolerance_per_rank==0.1",
+          "text": "At rank 7, for example, tolerance is 70%, so trial and siphon damage is divided by 1.7."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Rank 7's <hl>Matrix Fortitude</hl> multiplies that damage by a further {cfg:general.matrix_rank.stability.matrix_damage_multiplier}, on top of tolerance."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.matrix_rank.tolerance_per_rank==0.1",
+            "cfg:general.matrix_rank.stability.matrix_damage_multiplier==0.8"
+          ],
+          "text": "At rank 7 the two together leave about 47% of the original."
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "What it doesn't touch",
+          "text": "Matrix damage from the older sources, such as leaking machines, MRUCUs, Inquisitorium Sentinels and MRU guns, isn't reduced at all, and neither are the odds, thresholds and lingering effects of corruption. Matrix ranks are not corruption resistance, and the MRUCUs in your base still need keeping under control ([[crafting/corruption]])."
+        }
+      ]
+    }
+  ]
+}
