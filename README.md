@@ -33,8 +33,8 @@ Everything from the original is ported, except what was removed on purpose (list
 ![Hoanna at night: a destroyed town under two moons and the MRU aurora](https://cdn.modrinth.com/data/cached_images/9f39cdb206736a3f4e91ce0d03d5e3d21f622eed_0.webp)
 *Hoanna at night: a destroyed town under two moons and the MRU aurora*
 
-![The Heart of Calamity: cracks in the ground give warning before lances of light strike](https://cdn.modrinth.com/data/cached_images/fe988ba829a2d50e809f93625c1ebee50e9c89db.jpg)
-*The Heart of Calamity: cracks in the ground give warning before lances of light strike*
+![The Heart of Calamity and its four pillars](https://cdn.modrinth.com/data/cached_images/25c3ad67124eb3190d78410c3b8d16079538c368.png)
+*The Heart of Calamity and its four pillars*
 
 ![The Verdict Blade's Judgment strikes the hostile creatures all around](https://cdn.modrinth.com/data/cached_images/1a7e92c79499b27d9168aab3609ae4ff4dc02707.jpg)
 *The Verdict Blade's Judgment strikes the hostile creatures all around*
@@ -120,8 +120,8 @@ python tools/guide/make_traditional.py --lang-only   # rebuilds the zh_tw / zh_h
 ![海纳尔的夜晚：双月与 MRU 光幕下的城镇废墟](https://cdn.modrinth.com/data/cached_images/9f39cdb206736a3f4e91ce0d03d5e3d21f622eed_0.webp)
 *海纳尔的夜晚：双月与 MRU 光幕下的城镇废墟*
 
-![天灾之心：地面先裂出纹路示警，随后光束落下](https://cdn.modrinth.com/data/cached_images/fe988ba829a2d50e809f93625c1ebee50e9c89db.jpg)
-*天灾之心：地面先裂出纹路示警，随后光束落下*
+![天灾之心与四根灾柱](https://cdn.modrinth.com/data/cached_images/25c3ad67124eb3190d78410c3b8d16079538c368.png)
+*天灾之心与四根灾柱*
 
 ![裁决之刃的「断罪」：电弧同时打击周围的敌对生物](https://cdn.modrinth.com/data/cached_images/1a7e92c79499b27d9168aab3609ae4ff4dc02707.jpg)
 *裁决之刃的「断罪」：电弧同时打击周围的敌对生物*
