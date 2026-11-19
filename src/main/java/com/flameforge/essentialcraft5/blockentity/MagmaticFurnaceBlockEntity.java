@@ -1,5 +1,6 @@
 package com.flameforge.essentialcraft5.blockentity;
 
+import com.flameforge.essentialcraft5.ambience.AmbienceParticles;
 import com.flameforge.essentialcraft5.ambience.MachineAmbience;
 import com.flameforge.essentialcraft5.ambience.MachineAmbiences;
 import com.flameforge.essentialcraft5.block.MagmaticFurnaceBlock;
@@ -292,8 +293,8 @@ public class MagmaticFurnaceBlockEntity extends MRUBlockEntity {
         double along = random.nextDouble() * 0.6 - 0.3;
         double dx = facing.getAxis() == Direction.Axis.X ? facing.getStepX() * 0.52 : along;
         double dz = facing.getAxis() == Direction.Axis.Z ? facing.getStepZ() * 0.52 : along;
-        level.addParticle(ParticleTypes.SMOKE, x + dx, y, z + dz, 0, 0, 0);
-        level.addParticle(ParticleTypes.FLAME, x + dx, y, z + dz, 0, 0, 0);
+        AmbienceParticles.add(level, ParticleTypes.SMOKE, x + dx, y, z + dz, 0, 0, 0);
+        AmbienceParticles.add(level, ParticleTypes.FLAME, x + dx, y, z + dz, 0, 0, 0);
     }
 
     // ------------------------------------------------------------------

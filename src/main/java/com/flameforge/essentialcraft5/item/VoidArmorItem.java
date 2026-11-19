@@ -9,7 +9,9 @@ import com.flameforge.essentialcraft5.item.armor.ConfiguredArmorStats;
 import com.flameforge.essentialcraft5.item.armor.ECArmorItem;
 import com.flameforge.essentialcraft5.item.armor.IMRUShieldArmor;
 import com.flameforge.essentialcraft5.item.armor.MRUShield;
+import com.flameforge.essentialcraft5.item.attunement.ArmorGrowth;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
+import com.flameforge.essentialcraft5.item.attunement.AttunementStageLines;
 import com.flameforge.essentialcraft5.mru.MRUItemStorage;
 import com.flameforge.essentialcraft5.registry.ECTags;
 import com.flameforge.essentialcraft5.registry.ECVoidArmor;
@@ -21,6 +23,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -76,7 +79,7 @@ import java.util.function.Consumer;
  * 各阶每件的数都一样，全套 2 阶的减半是乘在最后的倍率（见上）。
  * 护腿原作写着「能相位偏移穿过怪物」，代码里没有任何实现，不做，也不写这行提示。
  */
-public class VoidArmorItem extends ECArmorItem implements IMRUShieldArmor, IMRUResistanceItem, CreativeVariants {
+public class VoidArmorItem extends ECArmorItem implements IMRUShieldArmor, IMRUResistanceItem, CreativeVariants, AttunementStageLines {
 
     /** 四件的份额加起来是这么多（原作 damageReduceAmount / 20） */
     public static final int TOTAL_SHARES = MRUShield.TOTAL_SHARES;
@@ -142,9 +145,11 @@ public class VoidArmorItem extends ECArmorItem implements IMRUShieldArmor, IMRUR
         return (int) Math.min(Integer.MAX_VALUE, capacity);
     }
 
-    /** 这一阶的单价倍数：3 阶起 {@value #DISCOUNT}，之前 1 */
+    /**
+     * 这一阶的单价倍数：3 阶起 {@value #DISCOUNT}，再乘 1 − {@code general.gear_growth.void_armor.shield_discount}（默认 1 阶起 −5%）
+     */
     public static double priceMultiplier(int stage) {
-        return stage >= DISCOUNT_STAGE ? DISCOUNT : 1D;
+        return (stage >= DISCOUNT_STAGE ? DISCOUNT : 1D) * (1D - ArmorGrowth.voidShieldDiscount(stage));
     }
 
     /** 这一件挡物理伤害时每点的单价（0 阶原价 × 阶的倍数） */
@@ -189,19 +194,49 @@ public class VoidArmorItem extends ECArmorItem implements IMRUShieldArmor, IMRUR
      */
     @Override
     public @Nullable Coverage coverage(ItemStack stack, DamageSource source) {
-        if (source.is(DamageTypeTags.BYPASSES_ARMOR)) {
-            return null;
-        }
         int stage = Attunement.stage(stack);
         double price = priceMultiplier(stage);
         int share = share(getType());
+        if (source.is(DamageTypeTags.BYPASSES_ARMOR)) {
+            // 3 阶起无视护甲的也分走一部分：新覆盖面（MRUShield 只给有攻击者、不是玩家的，扣电不认无尽晶体）；
+            // 魔法照旧不挡（带 bypasses_armor 的魔法伤害不少，不排除的话等于 3 阶起偷偷挡魔法）
+            double piercing = ArmorGrowth.voidPiercingShare();
+            if (stage >= ArmorGrowth.voidPiercingStage() && piercing > 0D && !ECDamageKinds.isMagic(source)) {
+                return new Coverage(share * piercing, price * ArmorGrowth.voidPiercingPrice(), true);
+            }
+            return null;
+        }
+        Coverage coverage = null;
         if (ECDamageKinds.isPhysical(source)) {
-            return new Coverage(share, price, false);
+            coverage = new Coverage(share, price, false);
+        } else if (stage >= ELEMENTAL_STAGE && ECDamageKinds.isElemental(source) && !ECDamageKinds.isMagic(source)) {
+            coverage = new Coverage(share, price * ELEMENTAL_PRICE_MULTIPLIER, false);
         }
-        if (stage >= ELEMENTAL_STAGE && ECDamageKinds.isElemental(source) && !ECDamageKinds.isMagic(source)) {
-            return new Coverage(share, price * ELEMENTAL_PRICE_MULTIPLIER, false);
-        }
-        return null;
+        // 攻击者是别的玩家：四件合计最多挡 pvp_shield_max_share、单价 × pvp_shield_cost_multiplier（同宅男套装）
+        return coverage != null && otherPlayer(source.getEntity(), stack, getType())
+                ? coverage.scaled(ArmorGrowth.voidPvpShare(), ArmorGrowth.voidPvpPrice()) : coverage;
+    }
+
+    /** 攻击者是别的玩家（不是穿着这一件的人自己：自己点的 TNT、自己射的箭照原样挡） */
+    private static boolean otherPlayer(@Nullable Entity attacker, ItemStack stack, Type type) {
+        return attacker instanceof Player player && player.getItemBySlot(type.getSlot()) != stack;
+    }
+
+    /**
+     * 同调提示框第 stage 阶那一行：闪避按 {@code general.gear_growth.void_armor.dodge}（过 {@code caps.dodge}），单价、分担无视护甲按现在的配置填
+     */
+    @Override
+    public @Nullable Component attunementStageLine(ItemStack stack, int stage) {
+        String key = "tooltip.essentialcraft5.attunement.void_armor.stage_" + stage;
+        String dodge = AttunementStageLines.percent(VoidArmorEvents.dodgeChance(stage));
+        return switch (stage) {
+            case 1 -> Component.translatable(key, dodge, AttunementStageLines.percent(ArmorGrowth.voidShieldDiscount(stage)));
+            case 2 -> Component.translatable(key, dodge);
+            case 3 -> Component.translatable(key, dodge, roundPrice(priceMultiplier(stage)),
+                    AttunementStageLines.percent(ArmorGrowth.voidPiercingShare()), AttunementStageLines.number(ArmorGrowth.voidPiercingPrice()));
+            case 4 -> Component.translatable(key, dodge);
+            default -> null;
+        };
     }
 
     // ------------------------------------------------------------------
@@ -346,13 +381,12 @@ public class VoidArmorItem extends ECArmorItem implements IMRUShieldArmor, IMRUR
         super.appendHoverText(stack, level, tooltip, flag);
         Type type = getType();
         int stage = Attunement.stage(stack);
-        String description = descriptionKey(type);
+        // 胸甲的闪避率已经写在同调词条里，这里不再重复一行
+        String description = type == Type.CHESTPLATE ? null : descriptionKey(type);
         if (description != null) {
-            Component line = switch (type) {
-                case CHESTPLATE -> Component.translatable(description, percent(VoidArmorEvents.dodgeChance(stage)));
-                case BOOTS -> Component.translatable(description, percent(VoidArmorEvents.fallReduction(stage)));
-                default -> Component.translatable(description);
-            };
+            Component line = type == Type.BOOTS
+                    ? Component.translatable(description, percent(VoidArmorEvents.fallReduction(stage)))
+                    : Component.translatable(description);
             tooltip.add(line.copy().withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         }
         int price = price(stack);
@@ -362,12 +396,12 @@ public class VoidArmorItem extends ECArmorItem implements IMRUShieldArmor, IMRUR
                     .withStyle(ChatFormatting.DARK_PURPLE));
         }
         MRUStaffItem.mruTooltip(stack, tooltip);
-        // 全套那几行写 0 阶的数：全套的阶要看另外三件，这里拿不到玩家；各阶加强后的数在同调那几行（AttunementTooltips）里逐阶列出
-        tooltip.add(Component.translatable("tooltip.essentialcraft5.void_armor.fullset").withStyle(ChatFormatting.GRAY));
+        // 全套那两行写 0 阶的数，升阶后的数写在同一行后半句：全套的阶要看另外三件，这里拿不到玩家。
+        // 对玩家的护盾、闪避上限写在手册里，提示框不再单列
         tooltip.add(Component.translatable("tooltip.essentialcraft5.void_armor.fullset.riposte",
-                percent(VoidArmorEvents.RIPOSTE_BONUS), VoidArmorEvents.RIPOSTE_WINDOW / 20).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+                percent(VoidArmorEvents.RIPOSTE_BONUS), VoidArmorEvents.RIPOSTE_WINDOW / 20).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.essentialcraft5.void_armor.fullset.ward", percent(VoidArmorEvents.WARD_BASE))
-                .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+                .withStyle(ChatFormatting.GRAY));
         if (MRUVision.grantsVision(stack)) {
             tooltip.add(Component.translatable("tooltip.essentialcraft5.mru_vision.worn").withStyle(ChatFormatting.DARK_AQUA));
         }

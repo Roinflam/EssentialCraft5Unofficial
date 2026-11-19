@@ -11,7 +11,7 @@
       "id": "overview",
       "title": "What attunement is",
       "icon": "essentialcraft5:mhs_chestplate",
-      "summary": "Gear that grows closer to you with use",
+      "summary": "Gear that grows closer to its wearer in combat",
       "blocks": [
         {
           "type": "quote",
@@ -20,16 +20,16 @@
         },
         {
           "type": "p",
-          "text": "Some gear grows closer to you the more you fight in it. This is <hl>attunement</hl>. Each piece keeps its own count of <em>attunement points</em>, and once it has enough for its stage you can raise it a stage at the [[crafting/magician_table|Magician Table]] with a few materials. Each stage gives the set new abilities."
+          "text": "Some gear grows closer to its wearer through combat. This is called <hl>attunement</hl>. Each piece records its own <em>attunement points</em>, and once a stage is full, the piece can be raised one stage at the [[crafting/magician_table|Magician Table]] with materials. Higher stages give the gear more effects."
         },
         {
           "type": "p",
           "if": "cfg:general.matrix_rank.enabled",
-          "text": "Attunement stages are not the same as your own [[matrix/overview|matrix rank]]. Your rank belongs to you; a stage belongs to one piece of gear. How far a piece can be raised does depend on the rank of whoever wears it, though ([[attunement/stage_up]])."
+          "text": "Attunement stages are separate from a player's own [[matrix/overview|matrix rank]]: the rank belongs to the player, the stage belongs to the gear. How far a piece can be raised depends on the matrix rank of its wearer. See [[attunement/stage_up]]."
         },
         {
           "type": "h",
-          "text": "What can be attuned"
+          "text": "Attunable gear"
         },
         {
           "type": "table",
@@ -88,45 +88,134 @@
                 "5",
                 "[[attunement/verdict_blade]]"
               ]
-            }
+            },
+            [
+              "The four MRU guns",
+              "4",
+              "[[guns/gun_attunement]]"
+            ]
           ]
         },
         {
           "type": "p",
-          "text": "Every piece builds attunement points as you fight with it on or in hand. Once a stage is full you raise it, and what each stage adds is on that set's page in the table above. When you move up to a better armor set, half of what the old set saved up can go across through [[attunement/transfer]]."
+          "text": "Gear builds attunement points while worn or held in combat. Once a stage is full, it can be raised, and what each stage adds is on that gear's page in the table above. When switching to a better armor set or another gun, half of the old piece's points can be passed on through [[attunement/transfer]]."
         },
         {
           "type": "p",
           "if": "cfg:general.hoanna.portal_enabled",
-          "text": "Once an {item:essentialcraft5:forged_elemental_sword} reaches attunement stage 2, it can be reforged into a {item:essentialcraft5:verdict_blade} at the Magician Table ([[attunement/verdict_blade]])."
+          "text": "Once an {item:essentialcraft5:forged_elemental_sword} reaches attunement stage 2, it can be reforged into a {item:essentialcraft5:verdict_blade} at the Magician Table. See [[attunement/verdict_blade]]."
         },
         {
           "type": "h",
-          "text": "What every stage gives"
+          "text": "Effects at every stage"
         },
         {
           "type": "list",
           "items": [
-            "Each stage adds {cfg:general.attunement.health_per_stage} max health to that armor piece (2 is one heart).",
+            "Each stage raises that armor piece's base attributes, such as max health and armor. They are added straight to the attributes in the tooltip, and each set's values are on its own page. 2 max health is one heart.",
             {
-              "if": "cfg:general.hoanna.portal_enabled",
-              "text": "Four Computer Guy's Suit pieces at stage 5 add {cfg:general.attunement.health_per_stage|mul:20} in all."
+              "if": [
+                "cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage<0",
+                "cfg:general.gear_growth.wind_armor.base_stats.health_per_stage<0"
+              ],
+              "text": "MHS Armor and Wind Armor gain {cfg:general.gear_growth.armor.health_per_stage} max health per piece per stage."
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.gear_growth.void_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage>=0"
+              ],
+              "text": "Void Armor gains {cfg:general.gear_growth.void_armor.base_stats.health_per_stage} max health per piece per stage, Inquisitorium Armor {cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage} and the Computer Guy's Suit {cfg:general.gear_growth.computer_armor.base_stats.health_per_stage}."
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage>=0"
+              ],
+              "text": "Four Computer Guy's Suit pieces at stage 5 add {cfg:general.gear_growth.computer_armor.base_stats.health_per_stage|mul:20} max health in total."
             },
             {
               "if": "cfg:general.hoanna.portal_enabled",
-              "text": "Each stage adds {cfg:general.attunement.damage_per_stage|pct} to a weapon's attack damage, {cfg:general.attunement.damage_per_stage|mul:5|pct} at stage 5."
+              "text": "Each stage raises a blade's attack damage by a share of its original value. The increase is shown in the attack damage line of the tooltip. See [[attunement/ember_sword]] and [[attunement/verdict_blade]]."
             },
-            "Raising a stage loses nothing. Enchantments, dye, installed modules and stored MRU all stay.",
-            "From stage 3 the item shimmers like an enchanted one."
+            "Each stage adds {cfg:general.gear_growth.weapon.damage_per_stage|pct} <hl>bonus damage</hl> to an MRU gun, applied to each hit that lands. The damage per shot shown while holding Shift already includes it. See [[attunement/gear_stats]].",
+            "Raising a stage loses nothing: enchantments, dye, fitted modules and stored MRU are all kept.",
+            "Higher stages give the item an enchantment glint. It usually appears from stage 3, and gear whose highest stage is 2 glints once maxed."
           ]
         },
         {
           "type": "p",
-          "text": "Armor abilities come in two kinds. The shield share and cost, what the shield blocks, how much MRU a piece holds and its module slots belong to one piece and follow that piece's own stage. Where a page says \"with the full set on\" or \"with all four at stage n\", the ability needs all four pieces on and goes by the lowest stage among them. With a piece missing you don't get it."
+          "text": "Against other players, the durations and bonus damage of these effects are only {cfg:general.attunement.pvp_effect_scale|pct} of normal. Each page notes which effects this applies to."
+        },
+        {
+          "type": "h",
+          "text": "Attunement stats"
         },
         {
           "type": "p",
-          "text": "Against other players, the durations and bonus damage these abilities give are only {cfg:general.attunement.pvp_effect_scale|pct} of normal; each page says which ones."
+          "text": "Attunable gear shows an <hl>Attunement stats</hl> block in its tooltip, listing the effects currently active and their values, such as bonus damage, lifesteal and dodge. Changes at the next stage are listed after them in grey."
+        },
+        {
+          "type": "p",
+          "text": "At its highest stage, each piece of gear <hl>awakens</hl> a unique ability, described on its own page. Until then, the Attunement stats block shows in grey the stage that unlocks it."
+        },
+        {
+          "type": "p",
+          "text": "Armor stats fall into two groups, full-set and per-piece:"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Full set",
+              "Bonus damage, lifesteal, cooldown reduction and awakenings, by the lowest stage among the four pieces"
+            ],
+            [
+              "Per piece",
+              "Dodge chance follows the chestplate's stage. Shield cost, movement speed and attack speed follow each piece's own stage"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Shared caps"
+        },
+        {
+          "type": "p",
+          "text": "This mod's bonus damage is <em>added directly</em>: +30% and +15% make +45%. Damage reduction is added the same way."
+        },
+        {
+          "type": "p",
+          "text": "The sums are capped, and anything above the cap is lost:"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Bonus damage cap",
+              "+{cfg:general.gear_growth.caps.pool_mob|pct} against ordinary creatures, +{cfg:general.gear_growth.caps.pool_boss|pct} against bosses, +{cfg:general.gear_growth.caps.pool_player|pct} against players"
+            ],
+            [
+              "Damage reduction cap",
+              "{cfg:general.gear_growth.caps.reduction|pct}, or {cfg:general.gear_growth.caps.reduction_player|pct} when hit by a player"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Armor penetration, lifesteal and dodge have caps of their own. See [[attunement/gear_stats]]."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.gear_growth.scars.max_level>0",
+          "text": "Battle scars"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.scars.max_level>0",
+          "text": "Once gear reaches its highest stage, attunement points no longer go to waste. They build up as <hl>battle scars</hl> instead, and each level strengthens the gear further. See [[attunement/battle_scars]]."
         },
         {
           "type": "h",
@@ -134,13 +223,31 @@
         },
         {
           "type": "p",
-          "text": "The tooltip shows two lines such as \"Attunement ◆◆◇◇◇ (2 / 5)\" and \"Attunement points 650 / 1,600\": the stage it is at out of the highest, then the points it has toward the next stage and how many it needs. Effects you already have are in white, the rest in grey. Hold Shift to see the materials and matrix rank the next stage needs."
+          "text": "Below the highest stage, the tooltip shows two lines such as \"Attunement ◆◆◇◇◇ Stage 2 / 5\" and \"Attunement points 650 / 1,600\": the current stage out of the highest, then the points gathered toward the next stage and the points needed. Effects already gained are in white, the rest in grey. Hold Shift to see the materials and matrix rank the next stage needs."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.scars.max_level>0",
+          "text": "At the highest stage the two lines merge into one with the battle scar progress, such as \"Attunement ◆◆◆◆ Maxed · Battle scars 6,500 / 8,000\"."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.gear_growth.scars.max_level>0",
+          "text": "At the highest stage the two lines merge into one, such as \"Attunement ◆◆◆◆ Maxed\"."
+        },
+        {
+          "type": "p",
+          "text": "The name changes colour with the stage. At stage 1 it takes the main colour of the item's own texture, such as <c:ED85E3>magenta</c> for the Verdict Blade, <c:F787BC>rose</c> for MRU guns and <c:FF816F>coral</c> for the Ember Sword. Each stage after that leans further toward MRU <c:B08AFF>violet</c>, and once maxed the whole name shades from its own colour through <c:B08AFF>violet</c> to matrix <c:EF7CCD>magenta</c>. Gear with battle scars also shows a \"✦\" and its scar level after the name."
+        },
+        {
+          "type": "p",
+          "text": "A row of small diamonds sits in the <em>top-left corner</em> of the item slot, one lit per stage in the same colour as the name, so the stage shows at a glance even in a chest. A maxed MRU gun also shows an upright charge bar on the left of its slot. When the bar is full, the Overload Ray is ready."
         },
         {
           "type": "tip",
           "style": "warn",
           "title": "Pitfall",
-          "text": "Armor that can be attuned won't combine in a crafting grid or grindstone. That kind of repair makes a brand-new piece, and the attunement and stored MRU would be lost. Mend worn pieces in the [[devices/magical_repairer]], or combine two at an anvil (the right-hand one is used up)."
+          "text": "Attunable armor can't be combined in a crafting grid or grindstone. That repair produces a brand-new piece, and the attunement and stored MRU are lost. Repair worn pieces in the [[devices/magical_repairer]], or combine two at an anvil, which uses up the right-hand piece."
         }
       ]
     },
@@ -204,6 +311,10 @@
           ]
         },
         {
+          "type": "p",
+          "text": "MRU guns gain points by firing: with an attuned gun in your main hand, rays that land on hostile mobs count just as above ([[guns/gun_attunement]])."
+        },
+        {
           "type": "h",
           "text": "Two rules against farming"
         },
@@ -252,8 +363,7 @@
         },
         {
           "type": "p",
-          "if": "cfg:general.hoanna.portal_enabled",
-          "text": "Weapons have a budget of their own that grows and fills the same way. The two are spent separately, so your armor and your weapon don't compete."
+          "text": "Weapons have a budget of their own, shared by swords and guns, that grows and fills the same way. The two are spent separately, so your armor and your weapon don't compete."
         },
         {
           "type": "p",
@@ -382,6 +492,7 @@
           "items": [
             "The points only fill the new piece's stage 0, up to full; they never skip it past a stage.",
             "Transfers only go from a lower set to a higher one, in this order: MHS armor, Wind armor, Void or Inquisitorium armor, then the Computer Guy's Suit.",
+            "MRU guns can transfer to one another too, any of the four to any other ([[guns/gun_attunement]]). Nothing transfers between swords and guns, or between guns and armor.",
             {
               "if": "cfg:general.hoanna.portal_enabled",
               "text": "Crafting Void Armor uses up the MHS piece whole, and its stage and points don't carry over. To keep them, craft the void piece from a fresh MHS piece, then transfer from the attuned one to the new void piece."
@@ -395,53 +506,295 @@
       ]
     },
     {
-      "id": "mhs_armor",
-      "title": "Attuning MHS Armor",
-      "icon": "essentialcraft5:mhs_chestplate",
-      "summary": "A bigger shield share and more charge",
+      "id": "gear_stats",
+      "title": "Attunement Stats and Caps",
+      "icon": "essentialcraft5:pistol",
+      "summary": "Bonus damage, lifesteal, dodge: added, then capped",
       "blocks": [
         {
           "type": "p",
-          "text": "[[gear/mhs_armor|MHS Armor]] goes up to attunement stage 2. At stage 0 it already has its Matrix Buffer, with each charged piece blocking a share of the hit, and each stage makes the share bigger and the battery larger."
+          "text": "Attunable gear carries <hl>attunement stats</hl>, listed in the \"Attunement stats\" block of its tooltip. A weapon's stats only apply to hits the wielder lands <em>personally</em> with it in the main hand: a sword must strike with the wielder's own swing, and a gun with a ray the wielder fired. Hits from accessories, reflected damage and area damage don't count."
+        },
+        {
+          "type": "p",
+          "text": "Most armor stats need <em>all four pieces of one set</em> and use the lowest stage among them, so a missing piece or two mixed sets give nothing. Bonus damage from armor also only applies to hits the wearer lands personally."
+        },
+        {
+          "type": "p",
+          "text": "The following are exceptions and work on a single piece:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Dodge chance: depends only on the Void Armor chestplate's stage, with no need for the full set.",
+            "Shield cost: follows each piece's own stage.",
+            "Movement speed and attack speed: each piece gives a quarter, so even one piece helps, and all four together give the full value in the table."
+          ]
         },
         {
           "type": "h",
-          "text": "What each stage does"
+          "text": "The stats"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Bonus damage",
+              "Raises the damage of the hit. MRU guns gain +{cfg:general.gear_growth.weapon.damage_per_stage|pct} per stage, and battle scars add more once maxed. A blade's stage bonus goes into its attack damage instead"
+            ],
+            [
+              "Lifesteal",
+              "Restores health equal to part of the damage the hit finally deals. No healing while corroded"
+            ],
+            [
+              "Armor penetration",
+              "The target's armor and toughness count as that much lower, so heavily armored targets lose more health. No effect on damage that already ignores armor"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.gear_growth.verdict_blade.execute_bonus>0"
+              ],
+              "cells": [
+                "Execute",
+                "Further bonus damage while the target is below {cfg:general.gear_growth.verdict_blade.execute_threshold|pct} of its max health. Not against bosses or players"
+              ]
+            },
+            [
+              "Cooldown reduction",
+              "Shortens skill and post-reload cooldowns. From stage 4 the Computer Guy's Suit also shortens the Rewind module and Overload Barrier cooldowns"
+            ],
+            [
+              "MRU per shot",
+              "An MRU gun spends that much less MRU per shot"
+            ],
+            [
+              "Dodge",
+              "The chance of a Void Armor chestplate to dodge an enemy attack, by the chestplate's stage. Capped lower against players"
+            ],
+            [
+              "Shield cost",
+              "How much less MRU the MHS or Void shield spends per point blocked, by that piece's own stage"
+            ],
+            [
+              "Move and attack speed",
+              "MHS Armor's movement speed and Wind Armor's attack speed. The table shows the total for four pieces, and each piece gives a quarter"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Added together, then capped"
+        },
+        {
+          "type": "p",
+          "text": "This mod's bonus damage, whether from MRU gun stages, battle scars, Execute, set effects or matrix traits, is all <em>added together</em>, held to a cap and applied once. So +30% and +15% make +45%, that is ×1.45, rather than ×1.3 and then ×1.15."
+        },
+        {
+          "type": "p",
+          "text": "Damage reduction works the same way: 35% and 15% make 50% off, rather than keeping 65% and then 85% of that. The Inquisitorium Armor's magic and boss resistance and the battle scars of every armor set all go into this sum."
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Bonus damage cap",
+              "+{cfg:general.gear_growth.caps.pool_mob|pct} against ordinary creatures, +{cfg:general.gear_growth.caps.pool_boss|pct} against bosses, +{cfg:general.gear_growth.caps.pool_player|pct} against players"
+            ],
+            [
+              "Damage reduction cap",
+              "{cfg:general.gear_growth.caps.reduction|pct}, or {cfg:general.gear_growth.caps.reduction_player|pct} when another player is the attacker"
+            ],
+            [
+              "Armor penetration cap",
+              "{cfg:general.gear_growth.caps.armor_pen|pct}, or {cfg:general.gear_growth.caps.armor_pen_player|pct} against players"
+            ],
+            [
+              "Lifesteal per second cap",
+              "{cfg:general.gear_growth.caps.lifesteal_per_second|pct} of max health. Lifesteal from players first counts only {cfg:general.gear_growth.caps.lifesteal_player_scale|pct}, up to {cfg:general.gear_growth.caps.lifesteal_per_second_player|pct} a second"
+            ],
+            [
+              "Cooldown reduction cap",
+              "{cfg:general.gear_growth.caps.cooldown_reduction|pct}"
+            ],
+            [
+              "Dodge cap",
+              "{cfg:general.gear_growth.caps.dodge|pct}, or {cfg:general.gear_growth.caps.dodge_player|pct} when the attacker is a player"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "A blade's attack damage from stages sits in its attributes and is not added into the sum above, but it is held to the same cap: the multiplier from the attuned attack damage is multiplied by the summed bonus, and the product cannot exceed the cap. Sweeps and Judgment deal damage from attack damage, so they grow with stage and are capped the same way."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.offense_scale!=1",
+          "text": "The summed bonus damage is first multiplied by {cfg:general.gear_growth.offense_scale|x}, then capped as above."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.defense_scale!=1",
+          "text": "The summed damage reduction is first multiplied by {cfg:general.gear_growth.defense_scale|x}, then capped as above."
+        },
+        {
+          "type": "p",
+          "text": "Against other players, bonus damage from stages and battle scars counts only {cfg:general.attunement.pvp_effect_scale|pct} of normal, and so does a blade's attuned attack damage, then the total is held to the player cap."
+        },
+        {
+          "type": "p",
+          "text": "Damage stopped entirely by a shield or a dodge isn't damage reduction and is resolved separately. Bonuses and reductions from <em>other mods</em> stay out of this sum too. They multiply by their own rules outside it, and these caps don't apply to them."
+        },
+        {
+          "type": "h",
+          "text": "Area damage"
+        },
+        {
+          "type": "p",
+          "text": "Awakenings that strike a whole area, such as the MRU guns' Overload Ray, deal separate <hl>area damage</hl>. It gets none of the bonus damage above, doesn't trigger lifesteal, extra strikes or matrix traits, and earns no attunement points. Named, tamed or leashed creatures are not hit."
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.gear_growth.aoe_hits_players",
+          "text": "Area damage never hits players."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.aoe_hits_players",
+          "text": "Area damage also hits players, with claims, teams and the rules on whether players can hurt each other still applying."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.aoe_scale!=1",
+          "text": "All area damage is multiplied by {cfg:general.gear_growth.aoe_scale|x}."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Strikes based on the target's max health, such as the {item:essentialcraft5:verdict_blade}'s Verdict and Final Verdict, have a fixed maximum per hit that other bonuses can't exceed."
+        }
+      ]
+    },
+    {
+      "id": "battle_scars",
+      "title": "Battle Scars",
+      "icon": "essentialcraft5:verdict_blade",
+      "summary": "Points past the top stage sharpen weapons and toughen armor",
+      "if": "cfg:general.gear_growth.scars.max_level>0",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Once a weapon or armor piece reaches its highest stage, its attunement points continue as <hl>battle scars</hl>: one level per {cfg:general.gear_growth.scars.points_per_level} points, up to {cfg:general.gear_growth.scars.max_level} levels. They are earned the same way as before and still go through the [[attunement/budget|attunement budget]]. At the top level they stop accumulating and take no budget."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.scars.weapon_per_level>0",
+          "text": "Each scar level adds {cfg:general.gear_growth.scars.weapon_per_level|pct} bonus damage to that weapon. It adds up with the stage bonus and is held to the same [[attunement/gear_stats|shared caps]]."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.scars.weapon_per_level>0",
+            "cfg:general.gear_growth.scars.max_level==10"
+          ],
+          "text": "All 10 levels add {cfg:general.gear_growth.scars.weapon_per_level|mul:10|pct} in total."
+        },
+        {
+          "type": "h",
+          "text": "Scars on armor",
+          "if": "cfg:general.gear_growth.scars.armor_per_level>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.scars.armor_per_level>0",
+          "text": "Each armor piece earns its own scars. When a full set is worn, the level that counts is the <em>lowest</em> among the four pieces. Each level reduces damage taken by another {cfg:general.gear_growth.scars.armor_per_level|pct}, added into the damage reduction sum and held to the same [[attunement/gear_stats|shared caps]]. If one piece has no scars yet, the set stays at level 0, so all four should be trained together."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.scars.armor_per_level>0",
+            "cfg:general.gear_growth.scars.max_level==10"
+          ],
+          "text": "With all four at level 10, damage taken is reduced by {cfg:general.gear_growth.scars.armor_per_level|mul:10|pct} in total. Scars can't reduce damage that ignores invulnerability, such as /kill or falling out of the world."
+        },
+        {
+          "type": "h",
+          "text": "Reading them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "At the highest stage, battle scars are shown after the attunement line of the tooltip, with the points gathered and the points the next level needs, such as \"Attunement ◆◆◆◆ Maxed · Battle scars 6,500 / 8,000\". At the top level it reads \"Battle scars full\". The current level is the \"✦\" mark after the item name.",
+            "From the first level, the name of a weapon or armor piece ends in a violet \"✦\" and the level. At the top level the mark turns magenta.",
+            "Each new level is announced on the action bar with a sound.",
+            "Holding Shift shows, on weapons, this mod's combined bonus damage cap, the number of bosses felled and the total damage dealt. On armor it shows this mod's combined damage reduction cap, and once scars are earned, the damage reduction they give."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Battle scars don't carry over: after an [[attunement/transfer]] or a reforging, the new piece starts from zero, and the old piece in a transfer loses its scars as well."
+        }
+      ]
+    },
+    {
+      "id": "mhs_armor",
+      "title": "Attuning MHS Armor",
+      "icon": "essentialcraft5:mhs_chestplate",
+      "summary": "A larger shield share and MRU capacity, a cheaper shield, more speed",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[gear/mhs_armor|MHS Armor]] can be attuned up to stage 2. Stage 0 already has the Matrix Buffer: while charged, each piece blocks a share of every hit. Higher stages raise the shield share and MRU capacity, lower the shield cost and add movement speed."
+        },
+        {
+          "type": "p",
+          "text": "Shield share, MRU capacity and shield cost follow each piece's own stage, and each piece provides a quarter of the movement speed. Afterflow and Surge need all four pieces at the required stage."
+        },
+        {
+          "type": "h",
+          "text": "Effects by stage"
         },
         {
           "type": "table",
           "header": [
             "Stage",
-            "Shield share (head / chest / legs / feet, out of 20)",
-            "Charge per piece",
-            "Also"
+            "Shield share (head / chest / legs / feet)",
+            "MRU per piece",
+            "Other effects"
           ],
           "widths": [
             1,
             4,
             2,
-            4
+            5
           ],
           "rows": [
             [
               "0",
               "{cfg:general.mhs_armor.shares_helmet|at:0} / {cfg:general.mhs_armor.shares_chestplate|at:0} / {cfg:general.mhs_armor.shares_leggings|at:0} / {cfg:general.mhs_armor.shares_boots|at:0}",
               "{cfg:general.mhs_armor.max_mru|at:0} MRU",
-              "Blocks physical and elemental damage, {cfg:general.mhs_armor.mru_per_damage} MRU per point"
+              "Blocks physical and elemental damage at {cfg:general.mhs_armor.mru_per_damage} MRU per point blocked"
             ],
             [
               "1",
               "{cfg:general.mhs_armor.shares_helmet|at:1} / {cfg:general.mhs_armor.shares_chestplate|at:1} / {cfg:general.mhs_armor.shares_leggings|at:1} / {cfg:general.mhs_armor.shares_boots|at:1}",
               "{cfg:general.mhs_armor.max_mru|at:1} MRU",
-              "Afterflow"
+              "Shield cost -{cfg:general.gear_growth.mhs_armor.shield_discount|stage:1|pct}, movement speed +{cfg:general.gear_growth.mhs_armor.move_speed|stage:1|pct} across all four pieces. Full set: Afterflow"
             ],
             [
               "2",
               "{cfg:general.mhs_armor.shares_helmet|at:2} / {cfg:general.mhs_armor.shares_chestplate|at:2} / {cfg:general.mhs_armor.shares_leggings|at:2} / {cfg:general.mhs_armor.shares_boots|at:2}",
               "{cfg:general.mhs_armor.max_mru|at:2} MRU",
-              "50% MRU Corruption resistance per piece; also blocks MRU discharges from monsters"
+              "Shield cost -{cfg:general.gear_growth.mhs_armor.shield_discount|stage:2|pct}, movement speed +{cfg:general.gear_growth.mhs_armor.move_speed|stage:2|pct} across all four pieces. 50% MRU Corruption resistance per piece. Blocks MRU discharges from monsters"
             ]
           ]
+        },
+        {
+          "type": "p",
+          "text": "Shield shares are counted out of 20, and the table lists each piece's shares. The shield cost discount lowers the cost of each point blocked and doesn't affect MRU already stored. Each piece provides a quarter of the movement speed, so one or two pieces still give part of it, and all four give the number in the table. Neither counts toward the [[attunement/gear_stats|bonus damage and damage reduction sums]]."
         },
         {
           "type": "h",
@@ -450,20 +803,114 @@
         },
         {
           "type": "p",
-          "text": "With all four pieces at stage 1, each time the shield takes its share of a hit you get Haste I for {cfg:general.mhs_armor.afterflow_ticks|sec}, at most once every {cfg:general.mhs_armor.afterflow_cooldown|sec}. If a player dealt the hit, the Haste lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long.",
+          "text": "With all four pieces at stage 1, each time the shield takes a share of a hit, the wearer gets Haste I for {cfg:general.mhs_armor.afterflow_ticks|sec}, at most once every {cfg:general.mhs_armor.afterflow_cooldown|sec}. If the attacker is a player, Haste lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long.",
           "if": "cfg:general.mhs_armor.afterflow_ticks>0"
         },
         {
           "type": "h",
-          "text": "MRU discharges (stage 2)"
+          "text": "Blocking MRU discharges (stage 2)"
         },
         {
           "type": "p",
-          "text": "From stage 2 the shield also blocks MRU discharges that a monster aims at you. Discharges with no attacker, such as those from machines or MRUCUs, still get through."
+          "text": "A piece at stage 2 also blocks its share of MRU discharges that monsters aim at the wearer. Discharges with no attacker, such as those from machines or MRUCUs, still get through."
         },
         {
           "type": "p",
-          "text": "A stage 2 piece has 50% MRU Corruption resistance instead of 25%. With all four at stage 2, each MRU Corruption hit drops from {cfg:general.corruption.mru_corruption_health_percent|mul:0.75|pct} to {cfg:general.corruption.mru_corruption_health_percent|mul:0.5|pct} of your max health."
+          "text": "A piece at stage 2 has 50% MRU Corruption resistance instead of 25%. With all four pieces at stage 2, each MRU Corruption hit drops from {cfg:general.corruption.mru_corruption_health_percent|mul:0.75|pct} to {cfg:general.corruption.mru_corruption_health_percent|mul:0.5|pct} of the wearer's max health."
+        },
+        {
+          "type": "h",
+          "text": "Surge (stage {cfg:general.gear_growth.mhs_armor.surge.stage} awakening)",
+          "if": [
+            "cfg:general.gear_growth.mhs_armor.surge.ratio>0",
+            "cfg:general.gear_growth.mhs_armor.surge.max>0"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.mhs_armor.surge.ratio>0",
+            "cfg:general.gear_growth.mhs_armor.surge.max>0"
+          ],
+          "text": "With all four pieces at stage {cfg:general.gear_growth.mhs_armor.surge.stage}, {cfg:general.gear_growth.mhs_armor.surge.ratio|pct} of every point the shield blocks is stored as <hl>Surge</hl>, up to {cfg:general.gear_growth.mhs_armor.surge.max}. Once the stored Surge reaches {cfg:general.gear_growth.mhs_armor.surge.threshold}, the next melee hit the wearer lands personally releases it on up to {cfg:general.gear_growth.mhs_armor.surge.max_targets} enemies within {cfg:general.gear_growth.mhs_armor.surge.radius} blocks. Each target takes damage equal to the stored Surge, and the store then drops to zero. Surge isn't saved and is cleared on logout."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.mhs_armor.surge.ratio>0",
+            "cfg:general.gear_growth.mhs_armor.surge.max>0"
+          ],
+          "text": "The release is [[attunement/gear_stats|area damage]]: it gets no bonus damage, doesn't trigger lifesteal or matrix traits, and earns no attunement points. Named, tamed and leashed creatures are not affected."
+        },
+        {
+          "type": "h",
+          "text": "Base attributes"
+        },
+        {
+          "type": "p",
+          "text": "Each stage raises the piece's armor, armor toughness and max health. They are added straight to the \"When on Body\" attributes in the tooltip, by each piece's own stage."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Armor (head / chest / legs / feet)",
+            "Toughness per piece"
+          ],
+          "widths": [
+            1,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "0",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:0|addcfg:general.mhs_armor.armor_helmet} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:0|addcfg:general.mhs_armor.armor_chestplate} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:0|addcfg:general.mhs_armor.armor_leggings} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:0|addcfg:general.mhs_armor.armor_boots}",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.toughness|stage:0|addcfg:general.mhs_armor.toughness}"
+            ],
+            [
+              "1",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:1|addcfg:general.mhs_armor.armor_helmet} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:1|addcfg:general.mhs_armor.armor_chestplate} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:1|addcfg:general.mhs_armor.armor_leggings} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:1|addcfg:general.mhs_armor.armor_boots}",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.toughness|stage:1|addcfg:general.mhs_armor.toughness}"
+            ],
+            [
+              "2",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:2|addcfg:general.mhs_armor.armor_helmet} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:2|addcfg:general.mhs_armor.armor_chestplate} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:2|addcfg:general.mhs_armor.armor_leggings} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:2|addcfg:general.mhs_armor.armor_boots}",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.toughness|stage:2|addcfg:general.mhs_armor.toughness}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:1==1",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:1==1",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:1==1",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:1==1",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:2==2",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:2==2",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:2==2",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:2==2",
+            "cfg:general.mhs_armor.armor_helmet==3",
+            "cfg:general.mhs_armor.armor_chestplate==8",
+            "cfg:general.mhs_armor.armor_leggings==6",
+            "cfg:general.mhs_armor.armor_boots==3"
+          ],
+          "text": "The four pieces total 20 armor at stage 0, 24 at stage 1 and 28 at stage 2."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage>=0",
+          "text": "Each stage adds {cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage} max health per piece, {cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage|mul:8} in total for four pieces at stage 2."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage<0",
+          "text": "Each stage adds {cfg:general.gear_growth.armor.health_per_stage} max health per piece, {cfg:general.gear_growth.armor.health_per_stage|mul:8} in total for four pieces at stage 2."
+        },
+        {
+          "type": "p",
+          "text": "Vanilla counts at most 30 armor and 20 armor toughness, and anything above that has no effect. The armor icons above the hotbar show at most 20 points, and armor beyond that is still counted."
         },
         {
           "type": "h",
@@ -503,7 +950,7 @@
       "id": "wind_armor",
       "title": "Attuning Wind Armor",
       "icon": "essentialcraft5:wind_chestplate",
-      "summary": "More deflections, another jump in midair",
+      "summary": "More frequent deflections, an extra midair jump, faster attacks",
       "blocks": [
         {
           "type": "p",
@@ -511,16 +958,16 @@
             "cfg:general.wind_armor.air_jump_velocity>0",
             "cfg:general.wind_armor.air_jumps|stage:2>0"
           ],
-          "text": "[[wind_gear/wind_armor|Wind Armor]] goes up to attunement stage 3. The full set has Windwalk from the start, and stages shorten the gap between deflections and add another midair jump. Each row in the table below needs all four pieces at that stage."
+          "text": "[[wind_gear/wind_armor|Wind Armor]] can be attuned up to stage 3. The full set grants Windwalk from stage 0. Higher stages shorten the interval between deflections and add another midair jump. Except for attack speed, each effect in the table below needs all four pieces at that stage."
         },
         {
           "type": "p",
           "if": "!cfg:general.wind_armor.air_jump_velocity>0 || !cfg:general.wind_armor.air_jumps|stage:2>0",
-          "text": "[[wind_gear/wind_armor|Wind Armor]] goes up to attunement stage 3. The full set has Windwalk from the start, and stages shorten the gap between deflections. Each row in the table below needs all four pieces at that stage."
+          "text": "[[wind_gear/wind_armor|Wind Armor]] can be attuned up to stage 3. The full set grants Windwalk from stage 0. Higher stages shorten the interval between deflections. Except for attack speed, each effect in the table below needs all four pieces at that stage."
         },
         {
           "type": "h",
-          "text": "What each stage does"
+          "text": "Effects by stage"
         },
         {
           "type": "table",
@@ -540,7 +987,7 @@
               ],
               "cells": [
                 "0",
-                "Windwalk: one incoming projectile turned aside every {cfg:general.wind_armor.deflect_cooldown_ticks|stage:0|sec}"
+                "Windwalk: deflects one incoming projectile every {cfg:general.wind_armor.deflect_cooldown_ticks|stage:0|sec}"
               ]
             },
             {
@@ -550,7 +997,7 @@
               ],
               "cells": [
                 "0",
-                "Windwalk: every incoming projectile passes through you"
+                "Windwalk: deflects every incoming projectile"
               ]
             },
             {
@@ -567,7 +1014,7 @@
               "if": "cfg:general.wind_armor.fall_damage_multiplier<1",
               "cells": [
                 "0",
-                "Windwalk: fall damage cut to {cfg:general.wind_armor.fall_damage_multiplier|pct}"
+                "Windwalk: fall damage reduced to {cfg:general.wind_armor.fall_damage_multiplier|pct}"
               ]
             },
             {
@@ -577,7 +1024,7 @@
               ],
               "cells": [
                 "1",
-                "A deflection every {cfg:general.wind_armor.deflect_cooldown_ticks|stage:1|sec}"
+                "Deflection interval shortened to {cfg:general.wind_armor.deflect_cooldown_ticks|stage:1|sec}"
               ]
             },
             {
@@ -587,13 +1034,20 @@
               ],
               "cells": [
                 "1",
-                "Every incoming projectile is turned aside"
+                "Deflects every incoming projectile"
               ]
             },
             [
               "1",
               "No knockback while sneaking"
             ],
+            {
+              "if": "cfg:general.gear_growth.wind_armor.attack_speed|stage:1>0",
+              "cells": [
+                "1",
+                "Attack speed +{cfg:general.gear_growth.wind_armor.attack_speed|stage:1|pct} across all four pieces, a quarter from each"
+              ]
+            },
             {
               "if": [
                 "cfg:general.wind_armor.air_jump_velocity>0",
@@ -608,7 +1062,14 @@
               "if": "cfg:general.wind_armor.sprint_speed_bonus>0",
               "cells": [
                 "2",
-                "{cfg:general.wind_armor.sprint_speed_bonus|pct} faster while sprinting"
+                "Movement speed +{cfg:general.wind_armor.sprint_speed_bonus|pct} while sprinting"
+              ]
+            },
+            {
+              "if": "cfg:general.gear_growth.wind_armor.damage|stage:2>0",
+              "cells": [
+                "2",
+                "Bonus damage +{cfg:general.gear_growth.wind_armor.damage|stage:2|pct} on hits the wearer lands personally"
               ]
             },
             {
@@ -618,7 +1079,7 @@
               ],
               "cells": [
                 "3",
-                "A deflection every {cfg:general.wind_armor.deflect_cooldown_ticks|stage:3|sec}"
+                "Deflection interval shortened to {cfg:general.wind_armor.deflect_cooldown_ticks|stage:3|sec}"
               ]
             },
             {
@@ -628,7 +1089,7 @@
               ],
               "cells": [
                 "3",
-                "Every incoming projectile is turned aside"
+                "Deflects every incoming projectile"
               ]
             },
             {
@@ -638,10 +1099,14 @@
               ],
               "cells": [
                 "3",
-                "A Tailwind for {cfg:general.wind_armor.tailwind_ticks|sec} after deflecting a projectile from an enemy, with +{cfg:general.wind_armor.tailwind_speed_bonus|pct} movement speed and +{cfg:general.wind_armor.tailwind_attack_speed_bonus|pct} attack speed"
+                "Tailwind for {cfg:general.wind_armor.tailwind_ticks|sec} after deflecting a projectile from an enemy, with movement speed +{cfg:general.wind_armor.tailwind_speed_bonus|pct} and attack speed +{cfg:general.wind_armor.tailwind_attack_speed_bonus|pct}"
               ]
             }
           ]
+        },
+        {
+          "type": "p",
+          "text": "Each piece provides a quarter of the attack speed, so one or two pieces still give part of it. The bonus damage and Storm Step need all four pieces and follow the lowest stage among them. Bonus damage is added to other bonuses before the cap applies, see [[attunement/gear_stats|Attunement Stats and Caps]]."
         },
         {
           "type": "h",
@@ -650,7 +1115,7 @@
         },
         {
           "type": "p",
-          "text": "A deflected projectile passes straight through you. Arrows, tridents, fireballs and anything else someone else shoots or throws count; your own don't. A fireball that passes through still explodes behind you.",
+          "text": "A deflected projectile passes through the wearer. Arrows, tridents, fireballs and other projectiles shot or thrown by others can be deflected, but not the wearer's own. A fireball that passes through still explodes behind the wearer.",
           "if": "cfg:general.wind_armor.deflect"
         },
         {
@@ -659,7 +1124,7 @@
             "cfg:general.wind_armor.deflect",
             "cfg:general.wind_armor.tailwind_ticks>0"
           ],
-          "text": "The stage 3 Tailwind only comes from projectiles shot by enemies, meaning hostile mobs, bosses and players who can hurt you. Projectiles from dispensers or teammates don't count."
+          "text": "The stage 3 Tailwind only triggers when deflecting a projectile shot by an enemy, meaning a hostile mob, a boss or a player who can hurt the wearer. Projectiles from dispensers or teammates don't count."
         },
         {
           "type": "p",
@@ -667,7 +1132,7 @@
             "cfg:general.wind.deflect_points",
             "cfg:general.wind_armor.deflect"
           ],
-          "text": "If you also have the [[wind_mage/deflect|Wind Deflection]] pact, the shorter of the two cooldowns applies, halved."
+          "text": "With the [[wind_mage/deflect|Wind Deflection]] pact also in place, the shorter of the two cooldowns applies, halved."
         },
         {
           "type": "h",
@@ -679,11 +1144,110 @@
         },
         {
           "type": "p",
-          "text": "Press jump again while in the air to jump once more. Your jumps come back when you land.",
+          "text": "Press jump again while in midair to jump once more. Jumps are restored on landing.",
           "if": [
             "cfg:general.wind_armor.air_jump_velocity>0",
             "cfg:general.wind_armor.air_jumps|stage:0>0 || cfg:general.wind_armor.air_jumps|stage:1>0 || cfg:general.wind_armor.air_jumps|stage:2>0 || cfg:general.wind_armor.air_jumps|stage:3>0"
           ]
+        },
+        {
+          "type": "h",
+          "text": "Storm Step (stage {cfg:general.gear_growth.wind_armor.storm_step.stage} awakening)",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:3>0"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:3>0"
+          ],
+          "text": "With all four pieces at stage {cfg:general.gear_growth.wind_armor.storm_step.stage}, every midair jump releases a ring of wind at the wearer's feet. Up to {cfg:general.gear_growth.wind_armor.storm_step.max_targets} hostile creatures within {cfg:general.gear_growth.wind_armor.storm_step.radius} blocks are pushed outward and get Slowness I for {cfg:general.gear_growth.wind_armor.storm_step.slow_ticks|sec}. The ring deals no damage and doesn't affect players. For {cfg:general.gear_growth.wind_armor.storm_step.window|sec} after the jump, the next melee hit the wearer lands personally gets +{cfg:general.gear_growth.wind_armor.storm_step.bonus|pct} bonus damage. If no hit lands in time, the bonus is lost, and the next midair jump starts the timer again."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:3>0"
+          ],
+          "text": "This bonus goes into the [[attunement/gear_stats|bonus damage sum]] with all other bonuses and counts for only {cfg:general.attunement.pvp_effect_scale|pct} against players."
+        },
+        {
+          "type": "h",
+          "text": "Base attributes"
+        },
+        {
+          "type": "p",
+          "text": "Each stage raises the piece's armor, armor toughness and max health. They are added straight to the \"When on Body\" attributes in the tooltip, by each piece's own stage."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Armor (head / chest / legs / feet)",
+            "Toughness per piece"
+          ],
+          "widths": [
+            1,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "0",
+              "{cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:0|add:4} / {cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:0|add:10} / {cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:0|add:7} / {cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:0|add:4}",
+              "{cfg:general.gear_growth.wind_armor.base_stats.toughness|stage:0|add:2.5}"
+            ],
+            [
+              "1",
+              "{cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:1|add:4} / {cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:1|add:10} / {cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:1|add:7} / {cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:1|add:4}",
+              "{cfg:general.gear_growth.wind_armor.base_stats.toughness|stage:1|add:2.5}"
+            ],
+            [
+              "2",
+              "{cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:2|add:4} / {cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:2|add:10} / {cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:2|add:7} / {cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:2|add:4}",
+              "{cfg:general.gear_growth.wind_armor.base_stats.toughness|stage:2|add:2.5}"
+            ],
+            [
+              "3",
+              "{cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:3|add:4} / {cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:3|add:10} / {cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:3|add:7} / {cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:3|add:4}",
+              "{cfg:general.gear_growth.wind_armor.base_stats.toughness|stage:3|add:2.5}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:1==0",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:2==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:3==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:1==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:2==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:3==2",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:1==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:2==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:3==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:1==0",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:2==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:3==1"
+          ],
+          "text": "The four pieces total 25, 27, 29 and 30 armor by stage, reaching the vanilla limit when maxed."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.wind_armor.base_stats.health_per_stage>=0",
+          "text": "Each stage adds {cfg:general.gear_growth.wind_armor.base_stats.health_per_stage} max health per piece, {cfg:general.gear_growth.wind_armor.base_stats.health_per_stage|mul:12} in total for four pieces at stage 3."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.wind_armor.base_stats.health_per_stage<0",
+          "text": "Each stage adds {cfg:general.gear_growth.armor.health_per_stage} max health per piece, {cfg:general.gear_growth.armor.health_per_stage|mul:12} in total for four pieces at stage 3."
+        },
+        {
+          "type": "p",
+          "text": "Vanilla counts at most 30 armor and 20 armor toughness, and anything above that has no effect. The armor icons above the hotbar show at most 20 points, and armor beyond that is still counted."
         },
         {
           "type": "h",
@@ -739,16 +1303,20 @@
       "id": "void_armor",
       "title": "Attuning Void Armor",
       "icon": "essentialcraft5:void_chestplate",
-      "summary": "More dodges, elemental cover from stage 3",
+      "summary": "Higher dodge chance, a cheaper shield, elemental cover from stage 3",
       "if": "cfg:general.hoanna.portal_enabled",
       "blocks": [
         {
           "type": "p",
-          "text": "[[gear/void_armor|Void Armor]] goes up to attunement stage 4. With the full set on, stage 0 already gives Void Riposte and halves Hoanna's calamity effects. Higher stages raise the dodge chance and the charge, and from stage 3 the shield blocks elemental damage too."
+          "text": "[[gear/void_armor|Void Armor]] can be attuned up to stage 4. With the full set worn, stage 0 already grants Void Riposte and halves the effects of Hoanna's calamities. Higher stages raise the dodge chance, lower the shield cost and add bonus damage to hits the wearer lands personally. From stage 3 the shield also blocks elemental damage and takes a share of armor-piercing damage from monsters, and the highest stage unlocks Afterimage."
+        },
+        {
+          "type": "p",
+          "text": "Dodge chance depends only on the chestplate's stage. MRU capacity and shield cost follow each piece's own stage. Each piece's shield blocks its own share, and a piece with no MRU stored in itself does not block. Bonus damage, Void Riposte, Phase Shift, Afterimage and the protection against calamities and radiation need the full set."
         },
         {
           "type": "h",
-          "text": "What each stage does"
+          "text": "Effects by stage"
         },
         {
           "type": "table",
@@ -763,29 +1331,33 @@
           "rows": [
             [
               "0",
-              "{cfg:general.void_armor.max_mru} MRU per piece, {cfg:general.void_armor.mru_per_damage} MRU per point blocked; chestplate dodges 20%; with the full set, Void Riposte +50% and calamities halved"
+              "{cfg:general.void_armor.max_mru} MRU per piece, {cfg:general.void_armor.mru_per_damage} MRU per point blocked. Chestplate dodge chance {cfg:general.gear_growth.void_armor.dodge|stage:0|pct}. Full set: Void Riposte +50% and calamity effects halved"
             ],
             [
               "1",
-              "Chestplate dodges 25% of enemy attacks and inflicts Mire when it does; {cfg:general.void_armor.max_mru|mul:2} MRU per piece"
+              "Chestplate dodge chance {cfg:general.gear_growth.void_armor.dodge|stage:1|pct}, and its dodges trigger Mire. {cfg:general.void_armor.max_mru|mul:2} MRU per piece. The shield costs another {cfg:general.gear_growth.void_armor.shield_discount|stage:1|pct} less per point"
             ],
             [
               "2",
-              "Full set: Void Riposte +75%, calamities cut to a quarter, Hoanna Radiation builds up half as fast again; the boots stop all fall damage"
+              "Chestplate dodge chance {cfg:general.gear_growth.void_armor.dodge|stage:2|pct}. The boots negate all fall damage. Full set: Void Riposte +75%, calamity effects cut to a quarter, Hoanna Radiation builds up half as fast again, and bonus damage +{cfg:general.gear_growth.void_armor.damage|stage:2|pct} on hits the wearer lands personally"
             ],
             [
               "3",
-              "The shield also blocks fire, explosion and lightning damage at twice the cost per point; the cost per point drops to {cfg:general.void_armor.mru_per_damage|mul:0.875|int} MRU"
+              "Chestplate dodge chance {cfg:general.gear_growth.void_armor.dodge|stage:3|pct}. The shield also blocks fire, explosion and lightning damage at twice the cost per point of physical damage. The cost per point drops to {cfg:general.void_armor.mru_per_damage|mul:0.875|int} MRU, with the stage 1 discount applied on top. That piece's shield also takes {cfg:general.gear_growth.void_armor.piercing_share|pct} of armor-piercing damage from monsters, at {cfg:general.gear_growth.void_armor.piercing_price_multiplier} times the usual cost per point"
             ],
             [
               "4",
-              "Chestplate dodges 30% of enemy attacks; full set: Phase Shift after a dodge, and calamities no longer affect you"
+              "Chestplate dodge chance {cfg:general.gear_growth.void_armor.dodge|stage:4|pct}. Full set: Phase Shift after a dodge, and immunity to calamity effects"
             ]
           ]
         },
         {
           "type": "p",
-          "text": "The extra dodge chance from stages 1 and 4 only counts for attacks from enemies. Falls, burning, corruption and other damage with no attacker stay at 20%. Of the elemental damage the shield blocks from stage 3, the damage you keep taking while on fire and freezing in powder snow ignore armor, so they still get through."
+          "text": "The extra dodge chance only applies to attacks from living creatures. Falls, burning, corruption and other damage with no attacker stay at the stage 0 chance of {cfg:general.gear_growth.void_armor.dodge|stage:0|pct}. Dodge chance never exceeds {cfg:general.gear_growth.caps.dodge|pct}. Of the elemental damage blocked from stage 3, the damage from staying on fire and from freezing in powder snow ignores armor and still gets through."
+        },
+        {
+          "type": "p",
+          "text": "The share of armor-piercing damage only covers sources with an attacker, such as monsters. Damage from players, damage with no attacker and magic damage are not covered. Its cost is never paid from an {item:essentialcraft5:infinite_mru_crystal}, and nothing is taken if the charge can't pay. Bonus damage goes into the [[attunement/gear_stats|bonus damage sum]] with all other bonuses and counts for only {cfg:general.attunement.pvp_effect_scale|pct} against players."
         },
         {
           "type": "h",
@@ -793,7 +1365,7 @@
         },
         {
           "type": "p",
-          "text": "With the full set on, for 3 seconds after the chestplate dodges a hit from a creature, your next solid melee hit deals 50% more damage, or 75% once all four are at stage 2. Against a player only {cfg:general.attunement.pvp_effect_scale|pct} of that bonus counts."
+          "text": "With the full set, for 3 seconds after the chestplate dodges an attack from a living creature, the next melee hit the wearer lands deals 50% more damage, or 75% once all four pieces are at stage 2. Against a player, only {cfg:general.attunement.pvp_effect_scale|pct} of that bonus counts."
         },
         {
           "type": "h",
@@ -801,7 +1373,7 @@
         },
         {
           "type": "p",
-          "text": "Once the chestplate is at stage 1, whenever it dodges a hit from a creature, the attacker gets Slowness II for 1 second. Only the chestplate's stage matters here. If the attacker is a player it lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long."
+          "text": "Once the chestplate is at stage 1, each time it dodges an attack from a living creature, the attacker gets Slowness II for 1 second. Mire depends only on the chestplate's stage. If the attacker is a player, the duration is only {cfg:general.attunement.pvp_effect_scale|pct}."
         },
         {
           "type": "h",
@@ -809,7 +1381,34 @@
         },
         {
           "type": "p",
-          "text": "With all four at stage 4, after the chestplate dodges a hit from a creature you take no damage at all for half a second, except from things like /kill or falling out of the world. If a player made the attack, Phase Shift lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long. Right after you take a hit, a hit of the same strength or weaker can't land for a short moment anyway, so Phase Shift mostly stops a heavier blow, or rapid-fire bullets and spells that ignore that window."
+          "text": "With all four pieces at stage 4, after the chestplate dodges an attack from a living creature, the wearer is immune to all damage for 0.5 seconds. Damage that ignores invulnerability, such as /kill or falling out of the world, still applies, and so do attacks that can't be dodged, such as the big strikes of the Calamity Heart. If the attacker is a player, Phase Shift lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long."
+        },
+        {
+          "type": "p",
+          "text": "Right after taking a hit, a hit of the same strength or weaker can't land for a short moment anyway. Phase Shift mainly stops heavier blows, and rapid bullets or spells that ignore that window."
+        },
+        {
+          "type": "h",
+          "text": "Afterimage (stage {cfg:general.gear_growth.void_armor.afterimage.stage} awakening)",
+          "if": "cfg:general.gear_growth.void_armor.afterimage.ratio>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.afterimage.ratio>0",
+          "text": "With all four pieces at stage {cfg:general.gear_growth.void_armor.afterimage.stage}, when the chestplate dodges an attack from a living creature, it leaves an afterimage in place that explodes {cfg:general.gear_growth.void_armor.afterimage.delay|sec} later. The explosion deals {cfg:general.gear_growth.void_armor.afterimage.ratio|pct} of the dodged damage to each of up to {cfg:general.gear_growth.void_armor.afterimage.max_targets} enemies within {cfg:general.gear_growth.void_armor.afterimage.radius} blocks, at most {cfg:general.gear_growth.void_armor.afterimage.cap} per target, and the targets hit get Slowness II for {cfg:general.gear_growth.void_armor.afterimage.slow_ticks|sec}. It can trigger at most once every {cfg:general.gear_growth.void_armor.afterimage.cooldown|sec}."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.afterimage.ratio>0",
+          "text": "The explosion is [[attunement/gear_stats|area damage]]: it gets no bonus damage, doesn't trigger lifesteal or matrix traits, and earns no attunement points. Attacks that can't be dodged, such as the big strikes of the Calamity Heart, leave no afterimage."
+        },
+        {
+          "type": "h",
+          "text": "Against players"
+        },
+        {
+          "type": "p",
+          "text": "When another player attacks, the four shields together block at most {cfg:general.gear_growth.void_armor.pvp_shield_max_share|pct} of each hit, at {cfg:general.gear_growth.void_armor.pvp_shield_cost_multiplier} times the usual cost per point, and the chestplate's dodge chance is capped at {cfg:general.gear_growth.caps.dodge_player|pct}. The wearer's own TNT and arrows don't count and are blocked as usual. The share of armor-piercing damage described above doesn't apply against players."
         },
         {
           "type": "h",
@@ -817,12 +1416,46 @@
         },
         {
           "type": "p",
-          "text": "With the full set on, the Sun Array's burning, an earthquake's push and the poison from Poison Fumes in Hoanna's [[hoanna/events|calamities]] are halved. With all four at stage 2 they are cut to a quarter, and at stage 4 they no longer affect you. For about 11 seconds after the Sun Array burns you, all burning damage is cut this way, no matter what set you on fire."
+          "text": "With the full set, the Sun Array's burning, an earthquake's push and the poison duration of Poison Fumes in Hoanna's [[hoanna/events|calamities]] are halved. With all four pieces at stage 2 they are cut to a quarter, and at stage 4 the wearer is immune to them. For about 11 seconds after the Sun Array burns the wearer, all burning damage is reduced the same way, whatever the source of the fire."
         },
         {
           "type": "p",
           "if": "cfg:general.radiation.enabled",
-          "text": "With all four at stage 2, [[hoanna/radiation|Hoanna Radiation]] builds up in you at half the rate again. That half comes off after armor, baubles and every other resistance are counted, so on its own it never cuts radiation to nothing."
+          "text": "With all four pieces at stage 2, [[hoanna/radiation|Hoanna Radiation]] builds up half as fast again. The ×0.5 multiplier is applied after armor, baubles and every other resistance are counted, so Void Armor alone never makes the wearer immune to radiation. Sources such as mining Radiant Clusters and ley storms have a floor: at least half of their radiation always builds up, however high the resistance."
+        },
+        {
+          "type": "h",
+          "text": "Base attributes"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.base_stats.health_per_stage>=0",
+          "text": "Each stage adds {cfg:general.gear_growth.void_armor.base_stats.health_per_stage} max health per piece, {cfg:general.gear_growth.void_armor.base_stats.health_per_stage|mul:16} in total for four pieces at stage 4."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.base_stats.health_per_stage<0",
+          "text": "Each stage adds {cfg:general.gear_growth.armor.health_per_stage} max health per piece, {cfg:general.gear_growth.armor.health_per_stage|mul:16} in total for four pieces at stage 4."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.base_stats.knockback|stage:4>0",
+          "text": "At stage 4, each piece's knockback resistance rises from {cfg:general.void_armor.knockback_resistance|pct} to {cfg:general.gear_growth.void_armor.base_stats.knockback|stage:4|addcfg:general.void_armor.knockback_resistance|pct}, {cfg:general.gear_growth.void_armor.base_stats.knockback|stage:4|addcfg:general.void_armor.knockback_resistance|mul:4|min:1|pct} for all four."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.void_armor.base_stats.armor_helmet|stage:4==0",
+            "cfg:general.gear_growth.void_armor.base_stats.armor_chestplate|stage:4==0",
+            "cfg:general.gear_growth.void_armor.base_stats.armor_leggings|stage:4==0",
+            "cfg:general.gear_growth.void_armor.base_stats.armor_boots|stage:4==0",
+            "cfg:general.gear_growth.void_armor.base_stats.toughness|stage:4==0"
+          ],
+          "text": "This set's stage 0 armor and armor toughness already reach the vanilla limits (at most 30 armor and 20 toughness count), so they do not grow with stage."
+        },
+        {
+          "type": "p",
+          "text": "These values are added straight to the \"When on Body\" attributes in the tooltip, by each piece's own stage."
         },
         {
           "type": "h",
@@ -872,47 +1505,65 @@
       "id": "inquisitorium_armor",
       "title": "Attuning Inquisitorium Armor",
       "icon": "essentialcraft5:inquisitorium_chestplate",
-      "summary": "More magic resistance, a Bulwark from stage 3",
+      "summary": "Magic and boss resistance rise by stage, a Bulwark from stage 3",
       "if": "cfg:general.hoanna.portal_enabled",
       "blocks": [
         {
           "type": "p",
-          "text": "[[inquisitorium/armor|Inquisitorium Armor]] goes up to attunement stage 4. It needs no charge, and with the full set on it has Inquisitorium Law from stage 0; the higher it goes, the better it stands up to bosses and spells. Apart from never losing durability, which each piece has on its own, everything in the table below needs the full set and goes by its lowest stage."
+          "text": "[[inquisitorium/armor|Inquisitorium Armor]] can be attuned up to stage 4. It uses no MRU, and the full set has Inquisitorium Law from stage 0. Higher stages improve its resistance to bosses and spells, and the highest stage can sentence a convicted target."
+        },
+        {
+          "type": "p",
+          "text": "Except for the lack of durability loss, which each piece has on its own, every effect in the table below needs the full set and follows the lowest stage among the four pieces. Magic and boss resistance go into the damage reduction sum and are added to other reductions before the cap applies, see [[attunement/gear_stats|Attunement Stats and Caps]]."
         },
         {
           "type": "h",
-          "text": "What each stage does"
+          "text": "Effects by stage"
         },
         {
           "type": "table",
           "header": [
             "Stage",
-            "Effect"
+            "Magic resistance",
+            "Boss damage reduction",
+            "Other effects"
           ],
           "widths": [
             1,
-            7
+            2,
+            2,
+            8
           ],
           "rows": [
             [
               "0",
-              "Inquisitorium Law: {cfg:general.inquisitorium_armor.magic_resistance|pct} magic resistance, {cfg:general.inquisitorium_armor.boss_resistance|pct} less damage from bosses, Edict, Conviction +{cfg:general.inquisitorium_armor.conviction_bonus|pct}; no durability loss while worn"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:0|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:0|pct}",
+              "Inquisitorium Law: Edict cuts harmful effects to {cfg:general.gear_growth.inquisitorium_armor.edict_reduction|stage:0|mul:-1|add:1|pct} of their duration, Conviction +{cfg:general.inquisitorium_armor.conviction_bonus|pct}. No durability loss while worn"
             ],
             [
               "1",
-              "{cfg:general.inquisitorium_armor.magic_resistance_stage_1|pct} magic resistance; Absolution"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:1|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:1|pct}",
+              "Edict cuts harmful effects to {cfg:general.gear_growth.inquisitorium_armor.edict_reduction|stage:1|mul:-1|add:1|pct} of their duration. Absolution"
             ],
             [
               "2",
-              "Conviction +{cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct}, and another {cfg:general.inquisitorium_armor.conviction_boss_bonus_stage_2|pct} against bosses"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:2|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:2|pct}",
+              "Conviction +{cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct}, plus another {cfg:general.inquisitorium_armor.conviction_boss_bonus_stage_2|pct} against bosses. Lifesteal {cfg:general.gear_growth.inquisitorium_armor.lifesteal|stage:2|pct} on the wearer's own hits against convicted targets"
             ],
             [
               "3",
-              "Inquisitorium Bulwark: for a hit with an attacker, only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct} of the part above {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} of your max health after armor gets through"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:3|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:3|pct}",
+              "Inquisitorium Bulwark: for a hit with an attacker, only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct} of the part above {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} of max health after armor gets through"
             ],
             [
               "4",
-              "{cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct} less armor-piercing damage (other than magic) that has an attacker; the Bulwark starts at {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct} and lets only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct} of the rest through"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:4|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:4|pct}",
+              "Armor-piercing damage with an attacker is reduced by {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct}, except magic damage. The Bulwark threshold becomes {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct}, and only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct} of the part above it gets through"
             ]
           ]
         },
@@ -923,12 +1574,17 @@
         {
           "type": "list",
           "items": [
-            "Magic resistance: magic damage that has an attacker is cut by {cfg:general.inquisitorium_armor.magic_resistance|pct}, or {cfg:general.inquisitorium_armor.magic_resistance_stage_1|pct} from stage 1. Damage with no attacker, such as corruption or MRU Corruption, isn't reduced.",
-            "Damage from bosses is cut by {cfg:general.inquisitorium_armor.boss_resistance|pct}.",
-            "Edict: harmful effects on you last only about {cfg:general.inquisitorium_armor.edict_reduction|mul:-1|add:1|pct} as long.",
-            "Conviction: any creature that hits you is convicted for {cfg:general.inquisitorium_armor.conviction_ticks|sec}, up to {cfg:general.inquisitorium_armor.conviction_max_targets|raw} at a time, with a puff of particles when it happens. Your own hits on a convicted target deal {cfg:general.inquisitorium_armor.conviction_bonus|pct} more damage, or {cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct} from stage 2. Reflected damage, damage dealt by baubles and the Verdict Blade's Verdict get no bonus.",
-            "Against players, only {cfg:general.attunement.pvp_effect_scale|pct} of the Conviction bonus counts."
+            "Magic resistance: magic damage that has an attacker is reduced by the figure in the table. Damage with no attacker, such as corruption or MRU Corruption, isn't reduced.",
+            "Boss damage reduction: damage from bosses is reduced by the figure in the table.",
+            "Edict: harmful effects on the wearer last about as long as the table gives for that stage.",
+            "Conviction: a living creature that hits the wearer is convicted for {cfg:general.inquisitorium_armor.conviction_ticks|sec}, up to {cfg:general.inquisitorium_armor.conviction_max_targets|raw} at a time, and a spear of light descends on it. The wearer's own hits on a convicted target deal {cfg:general.inquisitorium_armor.conviction_bonus|pct} more damage, or {cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct} from stage 2. Reflected damage, damage dealt by baubles and the Verdict Blade's Verdict get no bonus.",
+            "Against players, the extra damage from Conviction counts for only {cfg:general.attunement.pvp_effect_scale|pct}."
           ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.lifesteal|stage:2>0",
+          "text": "The lifesteal from stage 2 only applies to hits the wearer lands personally on convicted targets, and heals based on the damage that hit finally dealt. It shares the per-second healing cap with all other lifesteal, see [[attunement/gear_stats]]."
         },
         {
           "type": "h",
@@ -936,7 +1592,7 @@
         },
         {
           "type": "p",
-          "text": "With all four at stage 1, killing a convicted target with your own hand clears one harmful effect from you, at most once every {cfg:general.inquisitorium_armor.absolution_cooldown|sec}."
+          "text": "With all four pieces at stage 1, killing a convicted target personally removes one harmful effect from the wearer, at most once every {cfg:general.inquisitorium_armor.absolution_cooldown|sec}."
         },
         {
           "type": "h",
@@ -944,20 +1600,74 @@
         },
         {
           "type": "p",
-          "text": "With all four at stage 3, when a hit with an attacker gets past your armor, only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct} of the part above {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} of your max health gets through. From stage 4 it starts at {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct}, and only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct} of the excess gets through."
+          "text": "With all four pieces at stage 3, when a hit with an attacker gets past armor, only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct} of the part above {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} of the wearer's max health gets through. From stage 4 the threshold becomes {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct}, and only {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct} of the part above it gets through. The threshold follows the wearer's max health at the time, and each attunement stage adds max health to every piece, so more health means a higher threshold."
         },
         {
           "type": "kv",
+          "if": [
+            "cfg:general.inquisitorium_armor.bulwark_threshold_stage_3==0.3",
+            "cfg:general.inquisitorium_armor.bulwark_reduction_stage_3==0.5",
+            "cfg:general.inquisitorium_armor.bulwark_threshold_stage_4==0.25",
+            "cfg:general.inquisitorium_armor.bulwark_reduction_stage_4==0.6"
+          ],
           "rows": [
             [
-              "100 max health, a 60-point hit after armor",
-              "45 at stage 3, 39 at stage 4"
+              "A hit worth 60% of max health after armor",
+              "45% taken at stage 3, 39% at stage 4"
+            ],
+            [
+              "A hit worth 150% of max health after armor",
+              "90% taken at stage 3, 75% at stage 4, still lethal at low health"
             ]
           ]
         },
         {
           "type": "p",
-          "text": "The Bulwark only takes the edge off heavy hits. A blow worth several times your health will still kill you."
+          "text": "The Bulwark only softens heavy hits. A single hit worth several times the wearer's max health still can't be survived."
+        },
+        {
+          "type": "h",
+          "text": "Sentence (stage {cfg:general.gear_growth.inquisitorium_armor.sentence.stage} awakening)",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.sentence.hits>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.sentence.hits>0",
+          "text": "With all four pieces at stage {cfg:general.gear_growth.inquisitorium_armor.sentence.stage}, a target the wearer convicted is sentenced once it takes {cfg:general.gear_growth.inquisitorium_armor.sentence.hits} of the wearer's own landed hits, at most once every {cfg:general.gear_growth.inquisitorium_armor.sentence.cooldown|sec} per target. An ordinary creature takes one more hit that ignores armor, worth {cfg:general.gear_growth.inquisitorium_armor.sentence.percent|pctv} of its max health, up to {cfg:general.gear_growth.inquisitorium_armor.sentence.cap} damage. A boss takes no extra hit. Instead, that hit gets {cfg:general.gear_growth.inquisitorium_armor.sentence.boss_pool|pct} more bonus damage, still within the boss bonus damage cap. Players are never sentenced."
+        },
+        {
+          "type": "h",
+          "text": "Base attributes"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage>=0",
+          "text": "Each stage adds {cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage} max health per piece, {cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage|mul:16} in total for four pieces at stage 4."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage<0",
+          "text": "Each stage adds {cfg:general.gear_growth.armor.health_per_stage} max health per piece, {cfg:general.gear_growth.armor.health_per_stage|mul:16} in total for four pieces at stage 4."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.base_stats.knockback|stage:4>0",
+          "text": "At stage 4, each piece's knockback resistance rises from {cfg:general.inquisitorium_armor.knockback_resistance|pct} to {cfg:general.gear_growth.inquisitorium_armor.base_stats.knockback|stage:4|addcfg:general.inquisitorium_armor.knockback_resistance|pct}, {cfg:general.gear_growth.inquisitorium_armor.base_stats.knockback|stage:4|addcfg:general.inquisitorium_armor.knockback_resistance|mul:4|min:1|pct} for all four."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.armor_helmet|stage:4==0",
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.armor_chestplate|stage:4==0",
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.armor_leggings|stage:4==0",
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.armor_boots|stage:4==0",
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.toughness|stage:4==0"
+          ],
+          "text": "This set's stage 0 armor and armor toughness already reach the vanilla limits (at most 30 armor and 20 toughness count), so they do not grow with stage."
+        },
+        {
+          "type": "p",
+          "text": "These values are added straight to the \"When on Body\" attributes in the tooltip, by each piece's own stage."
         },
         {
           "type": "h",
@@ -999,7 +1709,7 @@
         },
         {
           "type": "p",
-          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Math cores drop from the Holographic Projection ([[hologram/math_cores]])."
+          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Math cores drop from the Holographic Projection, see [[hologram/math_cores]]."
         }
       ]
     },
@@ -1007,16 +1717,20 @@
       "id": "computer_armor",
       "title": "Attuning the Computer Guy's Suit",
       "icon": "essentialcraft5:computer_chestplate",
-      "summary": "More module slots, a wider shield",
+      "summary": "More module slots, a wider shield, self-repair from stage 3",
       "if": "cfg:general.hoanna.portal_enabled",
       "blocks": [
         {
           "type": "p",
-          "text": "The [[computer/suit|Computer Guy's Suit]] goes up to attunement stage 5. Stage 0 is the suit as you know it, and every stage adds something. Chapter 21 of the main line asks you to raise all four pieces to stage 2 ([[terminal/attuned]])."
+          "text": "The [[computer/suit|Computer Guy's Suit]] can be attuned up to stage 5. Stage 0 is the suit's original form, and each stage adds one ability. Chapter 21 of the main line requires all four pieces at stage 2, see [[terminal/attuned]]."
+        },
+        {
+          "type": "p",
+          "text": "Shield cost and module slots follow each piece's own stage. Bonus damage, Matrix Repair, cooldown reduction, the Overload Barrier and the Overcharge Pulse need all four pieces and follow the lowest stage among them."
         },
         {
           "type": "h",
-          "text": "What each stage does"
+          "text": "Effects by stage"
         },
         {
           "type": "table",
@@ -1027,43 +1741,43 @@
           "rows": [
             [
               "1",
-              "Chestplate module slots go up to {cfg:general.computer_modules.slots_chestplate|add:1|min:4}; the shield's cost per point blocked drops to {cfg:general.computer_armor.stage_price_multipliers|at:1|pct} of {cfg:general.computer_armor.mru_per_damage} MRU"
+              "Chestplate module slots go up to {cfg:general.computer_modules.slots_chestplate|add:1|min:4}. The shield's cost per point blocked drops to {cfg:general.computer_armor.stage_price_multipliers|at:1|pct} of {cfg:general.computer_armor.mru_per_damage} MRU. Bonus damage +{cfg:general.gear_growth.computer_armor.damage|stage:1|pct} on hits the wearer lands personally"
             ],
             [
               "2",
-              "The shield also blocks magic damage from monsters, at {cfg:general.computer_armor.magic_price_multiplier} times the cost per point"
+              "The shield also blocks magic damage from monsters, at {cfg:general.computer_armor.magic_price_multiplier} times the cost per point. Bonus damage +{cfg:general.gear_growth.computer_armor.damage|stage:2|pct}"
             ],
             [
               "3",
-              "Helmet module slots go up to {cfg:general.computer_modules.slots_helmet|add:1|min:4} and leggings to {cfg:general.computer_modules.slots_leggings|add:1|min:4}; Matrix Repair"
+              "Helmet module slots go up to {cfg:general.computer_modules.slots_helmet|add:1|min:4} and leggings to {cfg:general.computer_modules.slots_leggings|add:1|min:4}. Full set: Matrix Repair"
             ],
             [
               "4",
-              "The cost drops to {cfg:general.computer_armor.stage_price_multipliers|at:4|pct} of {cfg:general.computer_armor.mru_per_damage} MRU; {cfg:general.computer_armor.piercing_share|pct} of armor-piercing damage from monsters (other than magic) is blocked, at {cfg:general.computer_armor.piercing_price_multiplier} times the cost per point"
+              "The cost drops to {cfg:general.computer_armor.stage_price_multipliers|at:4|pct} of {cfg:general.computer_armor.mru_per_damage} MRU. The shield takes {cfg:general.computer_armor.piercing_share|pct} of armor-piercing damage from monsters, except magic damage, at {cfg:general.computer_armor.piercing_price_multiplier} times the cost per point. Rewind Module and Overload Barrier cooldowns are cut by {cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4|pct}"
             ],
             [
               "5",
-              "Boot module slots go up to {cfg:general.computer_modules.slots_boots|add:1|min:4}; Overload Barrier"
+              "Boot module slots go up to {cfg:general.computer_modules.slots_boots|add:1|min:4}. Full set: Overload Barrier"
             ]
           ]
         },
         {
           "type": "h",
-          "text": "A wider shield (stages 2 and 4)"
+          "text": "Shield coverage (stages 2 and 4)"
         },
         {
           "type": "list",
           "items": [
-            "The magic damage blocked from stage 2 has to come from a mob aimed at you, such as a witch's Harming potion, an evoker's fangs or a warden's sonic boom. Damage with no attacker, such as corruption effects, MRU Corruption or poison, still isn't blocked, and neither is damage from players (see Against players below).",
+            "The magic damage blocked from stage 2 must come from a monster attacking the wearer, such as a witch's Harming potion, an evoker's fangs or a warden's sonic boom. Damage with no attacker, such as corruption effects, MRU Corruption or poison, is still not blocked, and neither is damage from players, see Against players below.",
             {
               "if": "module:essentialcraft5:matrix_shunt_module",
-              "text": "With a [[terminal/matrix_shunt|Matrix Shunt Module]] on the chestplate, the shunt takes its half first and the shield blocks what is left."
+              "text": "With a [[terminal/matrix_shunt|Matrix Shunt Module]] on the chestplate, the shunt takes its half first and the shield blocks the rest."
             },
-            "From stage 4 the shield also takes part of armor-piercing damage that isn't magic, when a monster deals it. Vanilla has almost none of this; it mostly comes from other mods' skills.",
-            "For these two new kinds of damage, no MRU is taken from an {item:essentialcraft5:infinite_mru_crystal}; only your other soul storage, your reservoir and the armor's own charge pay, and if they can't, the damage isn't blocked.",
+            "From stage 4 the shield also takes part of armor-piercing damage that isn't magic, when a monster deals it. Vanilla has almost none of this, and it mostly comes from skills in other mods.",
+            "For these two new kinds of damage, no MRU is taken from an {item:essentialcraft5:infinite_mru_crystal}. Only other soul storage, the matrix reservoir and the armor's own charge pay, and the damage isn't blocked if they can't.",
             {
               "if": "bauble:essentialcraft5:eta_amulet",
-              "text": "While you wear an {item:essentialcraft5:eta_amulet}, at any stage, the extra half of damage it makes you take isn't blocked by the shield and goes straight to your health."
+              "text": "While an {item:essentialcraft5:eta_amulet} is worn, at any stage, the extra half of damage it causes isn't blocked by the shield and goes straight to health."
             }
           ]
         },
@@ -1073,7 +1787,7 @@
         },
         {
           "type": "p",
-          "text": "With all four at stage 3, after {cfg:general.computer_armor.repair_delay|sec} without taking damage you heal {cfg:general.computer_armor.repair_percent|pct} of your max health every second, at {cfg:general.computer_armor.repair_mru_per_health} MRU per point healed. It doesn't work while you are corroded, and if your healing is halved it heals half as much and you only pay for what actually comes back."
+          "text": "With all four pieces at stage 3, after {cfg:general.computer_armor.repair_delay|sec} without taking damage, the wearer heals {cfg:general.gear_growth.computer_armor.repair_percent|pct} of max health every second, at {cfg:general.computer_armor.repair_mru_per_health} MRU per point healed. It doesn't work while the wearer is corroded. If healing is halved, it heals half as much, and MRU is paid only for what is actually healed."
         },
         {
           "type": "h",
@@ -1081,7 +1795,40 @@
         },
         {
           "type": "p",
-          "text": "With all four at stage 5, when the shield blocks a single hit of at least {cfg:general.computer_armor.overload_threshold|pct} of your max health, you take no damage at all for the next {cfg:general.computer_armor.overload_duration|sec} (except from things like /kill or falling out of the world). It then needs {cfg:general.computer_armor.overload_cooldown|sec} before it can trigger again, even if you log out and back in."
+          "text": "With all four pieces at stage 5, when the shield blocks a single hit of at least {cfg:general.computer_armor.overload_threshold|pct} of the wearer's max health, the wearer is immune to all damage for the next {cfg:general.computer_armor.overload_duration|sec}, except damage such as /kill or falling out of the world. It then needs {cfg:general.gear_growth.computer_armor.overload_cooldown|sec} before it can trigger again, and cooldown reduction from stage 4 applies. Logging out and back in doesn't reset the cooldown."
+        },
+        {
+          "type": "h",
+          "text": "Cooldown reduction (stage 4)",
+          "if": "cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4>0",
+          "text": "With all four pieces at stage 4, the Overload Barrier cooldown is cut by {cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4|pct}. This adds up with other cooldown reduction, up to {cfg:general.gear_growth.caps.cooldown_reduction|pct} in total, see [[attunement/gear_stats]]."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4>0",
+            "module:essentialcraft5:rewind_module"
+          ],
+          "text": "With a [[terminal/rewind|Rewind Module]] fitted, its cooldown is cut by the same amount."
+        },
+        {
+          "type": "h",
+          "text": "Overcharge Pulse (stage {cfg:general.gear_growth.computer_armor.overcharge_pulse.stage} awakening)",
+          "if": "cfg:general.gear_growth.computer_armor.overcharge_pulse.ratio>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.overcharge_pulse.ratio>0",
+          "text": "With all four pieces at stage {cfg:general.gear_growth.computer_armor.overcharge_pulse.stage}, the Overload Barrier releases a pulse as it goes up. Up to {cfg:general.gear_growth.computer_armor.overcharge_pulse.max_targets} enemies within {cfg:general.gear_growth.computer_armor.overcharge_pulse.radius} blocks each take {cfg:general.gear_growth.computer_armor.overcharge_pulse.ratio|pct} of the hit the shield blocked, at most {cfg:general.gear_growth.computer_armor.overcharge_pulse.cap} damage per target, and get Slowness III for {cfg:general.gear_growth.computer_armor.overcharge_pulse.slow_ticks|sec}. The pulse follows the Overload Barrier and has no cooldown of its own."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.overcharge_pulse.ratio>0",
+          "text": "The pulse is [[attunement/gear_stats|area damage]]: it gets no bonus damage, doesn't trigger lifesteal or matrix traits, and earns no attunement points."
         },
         {
           "type": "h",
@@ -1089,7 +1836,41 @@
         },
         {
           "type": "p",
-          "text": "When a player hits you, the shield blocks at most {cfg:general.computer_armor.pvp_shield_max_share|pct} of that hit, at {cfg:general.computer_armor.pvp_shield_cost_multiplier} times the cost per point, and the two kinds of damage added at stages 2 and 4 aren't blocked against players at all. If a player's hit sets off the Overload Barrier, it lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long."
+          "text": "When another player attacks, the shield blocks at most {cfg:general.computer_armor.pvp_shield_max_share|pct} of each hit, at {cfg:general.computer_armor.pvp_shield_cost_multiplier} times the usual cost per point. The two kinds of damage added at stages 2 and 4 aren't blocked against players. If a player's hit triggers the Overload Barrier, it lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long."
+        },
+        {
+          "type": "h",
+          "text": "Base attributes"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage>=0",
+          "text": "Each stage adds {cfg:general.gear_growth.computer_armor.base_stats.health_per_stage} max health per piece, {cfg:general.gear_growth.computer_armor.base_stats.health_per_stage|mul:20} in total for four pieces at stage 5."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage<0",
+          "text": "Each stage adds {cfg:general.gear_growth.armor.health_per_stage} max health per piece, {cfg:general.gear_growth.armor.health_per_stage|mul:20} in total for four pieces at stage 5."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.base_stats.knockback|stage:5>0",
+          "text": "At stage 5, each piece's knockback resistance rises from {cfg:general.computer_armor.knockback_resistance|pct} to {cfg:general.gear_growth.computer_armor.base_stats.knockback|stage:5|addcfg:general.computer_armor.knockback_resistance|pct}, {cfg:general.gear_growth.computer_armor.base_stats.knockback|stage:5|addcfg:general.computer_armor.knockback_resistance|mul:4|min:1|pct} for all four."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.computer_armor.base_stats.armor_helmet|stage:5==0",
+            "cfg:general.gear_growth.computer_armor.base_stats.armor_chestplate|stage:5==0",
+            "cfg:general.gear_growth.computer_armor.base_stats.armor_leggings|stage:5==0",
+            "cfg:general.gear_growth.computer_armor.base_stats.armor_boots|stage:5==0",
+            "cfg:general.gear_growth.computer_armor.base_stats.toughness|stage:5==0"
+          ],
+          "text": "This set's stage 0 armor and armor toughness already reach the vanilla limits (at most 30 armor and 20 toughness count), so they do not grow with stage."
+        },
+        {
+          "type": "p",
+          "text": "These values are added straight to the \"When on Body\" attributes in the tooltip, by each piece's own stage."
         },
         {
           "type": "h",
@@ -1110,7 +1891,7 @@
             ],
             [
               "2",
-              "Any math core for the chestplate, a {item:essentialcraft5:logic_core} for the other three; 2 {item:essentialcraft5:tide_crystal}, 1 {item:essentialcraft5:demonic_core}",
+              "Any math core for the chestplate or a {item:essentialcraft5:logic_core} for each of the other three, plus 2 {item:essentialcraft5:tide_crystal} and 1 {item:essentialcraft5:demonic_core}",
               "70,000"
             ],
             [
@@ -1147,7 +1928,7 @@
         },
         {
           "type": "p",
-          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Math cores drop from the Holographic Projection ([[hologram/math_cores]])."
+          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Math cores drop from the Holographic Projection, see [[hologram/math_cores]]."
         }
       ]
     },
@@ -1155,45 +1936,106 @@
       "id": "ember_sword",
       "title": "Attuning the Ember Elemental Sword",
       "icon": "essentialcraft5:forged_elemental_sword",
-      "summary": "Longer effects, then a reforging",
+      "summary": "Lifesteal and Element Burst, reforgeable at stage 2",
       "if": "cfg:general.hoanna.portal_enabled",
       "blocks": [
         {
           "type": "p",
-          "text": "The [[void_machines/ember_sword|Ember Elemental Sword]] goes up to attunement stage 2, gaining points as you fight with it in your main hand ([[attunement/points]]). Once it reaches stage 2, it can be reforged into a {item:essentialcraft5:verdict_blade}."
+          "text": "The [[void_machines/ember_sword|Ember Elemental Sword]] can be attuned up to stage 2 and gains points while used in the main hand in combat, as described in [[attunement/points]]. At stage 2 it can be reforged into a {item:essentialcraft5:verdict_blade}."
         },
         {
           "type": "h",
-          "text": "What each stage does"
+          "text": "Effects by stage"
         },
         {
           "type": "table",
           "header": [
             "Stage",
-            "Effect"
+            "Attack",
+            "Lifesteal",
+            "Other effects"
           ],
           "widths": [
             1,
+            2,
+            2,
             7
           ],
           "rows": [
             [
               "1",
+              "+{cfg:general.gear_growth.ember_sword.attack_per_stage|mul:1|pct}",
+              "{cfg:general.gear_growth.ember_sword.lifesteal|stage:1|pct}",
               "The primary element's on-hit effect and the right-click effect last {cfg:general.ember_sword.stage1_duration_multiplier} times as long"
             ],
             [
               "2",
-              "Ember pair on-hit effects cost only {cfg:general.ember_sword.stage2_ember_cost_multiplier|mul:50} MRU per hit and last {cfg:general.ember_sword.stage2_ember_duration_multiplier} times as long"
+              "+{cfg:general.gear_growth.ember_sword.attack_per_stage|mul:2|pct}",
+              "{cfg:general.gear_growth.ember_sword.lifesteal|stage:2|pct}",
+              "Ember pair on-hit effects cost only {cfg:general.ember_sword.stage2_ember_cost_multiplier|mul:50} MRU each and last {cfg:general.ember_sword.stage2_ember_duration_multiplier} times as long"
             ]
           ]
         },
         {
           "type": "p",
-          "text": "On other players, only {cfg:general.attunement.pvp_effect_scale|pct} of the extra duration from these stages counts."
+          "text": "The Attack column is the attack damage gained over stage 0, as a share of the attack damage the item originally shows, at least 1 per stage and rounded to 0.5. It is added straight to the attack damage in the tooltip, separate from bonus damage, and is held to the same [[attunement/gear_stats|bonus damage cap]]. Against players it counts only {cfg:general.attunement.pvp_effect_scale|pct}."
         },
         {
           "type": "p",
-          "text": "Each stage also adds {cfg:general.attunement.damage_per_stage|pct} attack damage, {cfg:general.attunement.damage_per_stage|mul:2|pct} at stage 2."
+          "if": "cfg:general.gear_growth.ember_sword.attack_per_stage==0.1",
+          "text": "For example, an Ember Elemental Sword with the best embers shows 45 attack damage, which becomes 49.5 at stage 1 and 54 at stage 2."
+        },
+        {
+          "type": "p",
+          "text": "Against other players, the extra duration from these stages counts for only {cfg:general.attunement.pvp_effect_scale|pct}. How lifesteal is calculated and capped is described in [[attunement/gear_stats]]."
+        },
+        {
+          "type": "p",
+          "text": "Lifesteal restores health based on the damage the hit finally deals. The ember pairs that heal a flat 1 or 3 health are independent of lifesteal, and both apply when present together."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.gear_growth.ember_sword.burst.chance>0",
+          "text": "Element Burst (stage {cfg:general.gear_growth.ember_sword.burst.stage} awakening)"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.ember_sword.burst.chance>0",
+          "text": "From stage {cfg:general.gear_growth.ember_sword.burst.stage}, each hit has a {cfg:general.gear_growth.ember_sword.burst.chance|pct} chance to burst the sword's primary element around the target, affecting up to {cfg:general.gear_growth.ember_sword.burst.max_targets} foes within {cfg:general.gear_growth.ember_sword.burst.radius} blocks, at most once every {cfg:general.gear_growth.ember_sword.burst.cooldown|sec}. A sword with a combined primary element picks one element at random each time."
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.gear_growth.ember_sword.burst.chance>0",
+          "rows": [
+            [
+              "Fire",
+              "Each target takes {cfg:general.gear_growth.ember_sword.burst.fire_damage} plus {cfg:general.gear_growth.ember_sword.burst.fire_percent|pctv} of its max health and burns for 3 s. Bosses take only the {cfg:general.gear_growth.ember_sword.burst.fire_damage}"
+            ],
+            {
+              "if": "cfg:general.gear_growth.ember_sword.burst.fire_cap>0",
+              "cells": [
+                "Fire cap",
+                "A single fire burst deals at most {cfg:general.gear_growth.ember_sword.burst.fire_cap} damage to each target, bosses included"
+              ]
+            },
+            [
+              "Water",
+              "Each target receives Slowness II and Weakness for {cfg:general.gear_growth.ember_sword.burst.debuff_ticks|sec}"
+            ],
+            [
+              "Earth",
+              "The wielder gains Resistance for {cfg:general.gear_growth.ember_sword.burst.debuff_ticks|sec}, and each target takes {cfg:general.gear_growth.ember_sword.burst.quake_damage} damage"
+            ],
+            [
+              "Air",
+              "Nearby targets are knocked outward, and the wielder gains Speed II for 2 s"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.ember_sword.burst.chance>0",
+          "text": "The burst deals [[attunement/gear_stats|area damage]]. It receives no bonus damage and triggers no ember effects, matrix traits or attunement points. Against other players, the Water slow lasts only {cfg:general.attunement.pvp_effect_scale|pct} as long."
         },
         {
           "type": "h",
@@ -1225,7 +2067,7 @@
         },
         {
           "type": "p",
-          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Once it reaches stage 2, read on in [[attunement/verdict_blade]]."
+          "text": "The matrix rank required for each stage is listed in [[attunement/stage_up]]. At stage 2, continue with [[attunement/verdict_blade]]."
         }
       ]
     },
@@ -1233,7 +2075,7 @@
       "id": "verdict_blade",
       "title": "{item:essentialcraft5:verdict_blade}",
       "icon": "essentialcraft5:verdict_blade",
-      "summary": "Reforged ember sword; big foes take more",
+      "summary": "Reforged ember sword, adds damage by max health",
       "complete": "essentialcraft5:guide/attunement/verdict_blade",
       "optional": true,
       "if": "cfg:general.hoanna.portal_enabled",
@@ -1243,7 +2085,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "<em>Goal</em> (optional): reforge an {item:essentialcraft5:forged_elemental_sword} at attunement stage 2 into a {item:essentialcraft5:verdict_blade}. Every fully charged hit that lands adds damage based on the target's max health, and from stage 2 it can strike a whole ring of enemies around you at once."
+          "text": "<em>Goal</em> (optional): reforge an {item:essentialcraft5:forged_elemental_sword} at attunement stage 2 into a {item:essentialcraft5:verdict_blade}. Each fully charged hit adds damage based on the target's max health, and from stage 2 it can strike a whole ring of nearby enemies at once."
         },
         {
           "type": "p",
@@ -1255,13 +2097,13 @@
             "cfg:general.matrix_rank.enabled",
             "cfg:general.attunement.rank_gate"
           ],
-          "text": "The table also checks the Matrix Rank recorded on the sword, which has to be at least {cfg:general.attunement.rank_gate|at:2}. Hold the Ember Elemental Sword in your main hand for a few seconds and it records your current Matrix Rank ([[attunement/stage_up]])."
+          "text": "The Magician Table also checks the Matrix Rank recorded on the sword, which must be at least {cfg:general.attunement.rank_gate|at:2}. Holding the Ember Elemental Sword in the main hand for a few seconds records the current Matrix Rank, as described in [[attunement/stage_up]]."
         },
         {
           "type": "steps",
           "items": [
-            "Put the Ember Elemental Sword in the middle of the [[crafting/magician_table|Magician Table]] and the materials in the corners.",
-            "When the table is done, take out your {item:essentialcraft5:verdict_blade}."
+            "Place the Ember Elemental Sword in the center of the [[crafting/magician_table|Magician Table]] and the materials in the corners.",
+            "When crafting completes, the result is a {item:essentialcraft5:verdict_blade}."
           ]
         },
         {
@@ -1275,16 +2117,16 @@
         {
           "type": "list",
           "items": [
-            "The elements and ember pairs set at the forge, the enchantments and the stored MRU all carry over.",
-            "Attunement starts again at stage 0, with half of the sword's total points brought across, up to a full stage 0.",
-            "On-hit and right-click element and ember effects work as before, with the durations and costs of a stage 2 Ember Elemental Sword."
+            "The primary and secondary elements and ember pairs set at the forge, the enchantments and the stored MRU all carry over.",
+            "Attunement restarts at stage 0. Half of the sword's total points carries over, up to a full stage 0.",
+            "On-hit and right-click element and ember effects are unchanged, with the durations and MRU costs of a stage 2 Ember Elemental Sword."
           ]
         },
         {
           "type": "tip",
           "style": "good",
           "title": "Done when",
-          "text": "You have a {item:essentialcraft5:verdict_blade}."
+          "text": "A {item:essentialcraft5:verdict_blade} has been obtained."
         },
         {
           "type": "h",
@@ -1295,7 +2137,7 @@
           "rows": [
             [
               "Attack damage",
-              "6 more than the Ember Elemental Sword it came from, about 51 with the best embers"
+              "6 higher than the Ember Elemental Sword it was reforged from, about 51 with the best embers. Stages raise it further, as shown under the stage effects below"
             ],
             [
               "Attack speed",
@@ -1303,11 +2145,11 @@
             ],
             [
               "Durability",
-              "Never lost"
+              "Does not lose durability"
             ],
             [
               "MRU",
-              "Holds 50,000 MRU; costs come from the storage items you carry first"
+              "Stores 50,000 MRU. Costs are paid from carried storage items first"
             ],
             {
               "if": "cfg:general.matrix_rank.enabled",
@@ -1325,13 +2167,13 @@
         },
         {
           "type": "p",
-          "text": "Each time a fully charged hit lands on a target that isn't a player, sweeps and Judgment included, a second strike follows right after. At stage 0 it deals {cfg:general.verdict_blade.verdict.percent|pctv} of the target's max health, capped at {cfg:general.verdict_blade.verdict.cap} a strike, and higher stages deal more. It ignores armor and costs {cfg:general.verdict_blade.verdict.mru} MRU each time; without the MRU it doesn't happen.",
+          "text": "Each time a fully charged hit lands on a non-player target, an additional strike follows at the end of that tick. Sweeps and Judgment hits count. At stage 0 it deals {cfg:general.verdict_blade.verdict.percent|pctv} of the target's max health, up to {cfg:general.verdict_blade.verdict.cap} per strike, and higher stages deal more. The strike ignores armor and costs {cfg:general.verdict_blade.verdict.mru} MRU each time. Without enough MRU, it does not occur.",
           "if": "cfg:general.verdict_blade.verdict.cap>0"
         },
         {
           "type": "p",
           "if": "cfg:general.verdict_blade.verdict.cap>0",
-          "text": "A swing made before the attack indicator fills up gets no second strike."
+          "text": "A swing made before the attack indicator is full does not trigger Verdict."
         },
         {
           "type": "p",
@@ -1339,16 +2181,16 @@
             "cfg:general.verdict_blade.verdict.cap>0",
             "cfg:general.verdict_blade.verdict.pvp_percent>0"
           ],
-          "text": "It strikes players too, for {cfg:general.verdict_blade.verdict.pvp_percent|pctv} of their max health, capped at {cfg:general.verdict_blade.verdict.cap} a strike; neither number grows with the stage."
+          "text": "It also applies to players, dealing {cfg:general.verdict_blade.verdict.pvp_percent|pctv} of their max health, up to {cfg:general.verdict_blade.verdict.cap} per strike. Neither value changes with the stage."
         },
         {
           "type": "p",
-          "text": "Against a 20-health zombie that is only {cfg:general.verdict_blade.verdict.percent|mul:0.2} at stage 0; the more health the target has, the more it adds.",
+          "text": "For example, against a 20-health zombie it adds only {cfg:general.verdict_blade.verdict.percent|mul:0.2} at stage 0. The more health the target has, the more damage it adds.",
           "if": "cfg:general.verdict_blade.verdict.cap>0"
         },
         {
           "type": "p",
-          "text": "Bosses never get the second strike.",
+          "text": "Verdict never triggers against bosses.",
           "if": "cfg:general.verdict_blade.verdict.cap>0"
         },
         {
@@ -1358,21 +2200,21 @@
         {
           "type": "p",
           "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
-          "text": "From stage 2, hold right-click for at least {cfg:general.verdict_blade.judgment.charge_ticks|sec} and let go. Up to {cfg:general.verdict_blade.judgment.max_targets} hostile mobs within {cfg:general.verdict_blade.judgment.radius} blocks each take a hit worth {cfg:general.verdict_blade.judgment.damage_multiplier|pct} of your current attack damage, which also sets off Verdict. Each use costs {cfg:general.verdict_blade.judgment.mru} MRU, with a {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec} cooldown at stage 2 that drops by {cfg:general.verdict_blade.judgment.cooldown_per_stage|sec} per stage after that."
+          "text": "From stage 2, hold right-click for at least {cfg:general.verdict_blade.judgment.charge_ticks|sec} and release. Up to {cfg:general.verdict_blade.judgment.max_targets} hostile mobs within {cfg:general.verdict_blade.judgment.radius} blocks each take one hit worth {cfg:general.verdict_blade.judgment.damage_multiplier|pct} of the current attack damage, which also triggers Verdict. Each use costs {cfg:general.verdict_blade.judgment.mru} MRU. The cooldown is {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec} at stage 2 and drops by {cfg:general.verdict_blade.judgment.cooldown_per_stage|sec} per stage after that. From stage 3 it is shortened further, as shown in the table below."
         },
         {
           "type": "p",
           "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
-          "text": "Judgment only strikes hostile mobs and bosses. Villagers, pets and players are never caught in it, and neither are hostile mobs with a name or on a lead. If it hits nothing, it costs no MRU and starts no cooldown. From stage 2, right-click no longer blocks; it charges Judgment instead."
+          "text": "Judgment only strikes hostile mobs and bosses. Villagers, pets and players are never struck, nor are hostile mobs with a name or on a lead. If it hits nothing, it costs no MRU and starts no cooldown. From stage 2, right-click no longer blocks and charges Judgment instead."
         },
         {
           "type": "p",
           "if": "cfg:general.verdict_blade.judgment.damage_multiplier<=0",
-          "text": "Judgment is turned off. From stage 2, right-click still no longer blocks."
+          "text": "Judgment is disabled. From stage 2, right-click still no longer blocks."
         },
         {
           "type": "p",
-          "text": "From stage 5, bosses caught by Judgment are {lang:effect.essentialcraft5.bisected} for {cfg:general.verdict_blade.judgment.bisect_ticks|sec}, dealing half damage and receiving half healing.",
+          "text": "From stage 5, bosses struck by Judgment are {lang:effect.essentialcraft5.bisected} for {cfg:general.verdict_blade.judgment.bisect_ticks|sec}, dealing half damage and receiving half healing.",
           "if": [
             "cfg:general.verdict_blade.judgment.bisect_ticks>0",
             "cfg:general.verdict_blade.judgment.damage_multiplier>0"
@@ -1380,69 +2222,201 @@
         },
         {
           "type": "h",
-          "text": "What each stage does"
+          "text": "Effects by stage"
         },
         {
           "type": "table",
-          "if": [
-            "cfg:general.verdict_blade.verdict.cap>0",
-            "cfg:general.verdict_blade.judgment.damage_multiplier>0",
-            "cfg:general.verdict_blade.judgment.bisect_ticks>0"
-          ],
+          "if": "cfg:general.verdict_blade.verdict.cap>0",
           "header": [
             "Stage",
-            "Verdict (max health / cap per strike)",
-            "Also"
+            "Attack",
+            "Verdict",
+            "Lifesteal",
+            "Pen.",
+            "Judgment cooldown"
           ],
           "widths": [
             1,
+            2,
             3,
-            4
+            2,
+            2,
+            3
           ],
           "rows": [
             [
               "0",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:0|pct}",
               "{cfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap}",
-              "Nothing"
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:0|pct}"
             ],
             [
               "1",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:1|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:1|addcfg:general.verdict_blade.verdict.cap}",
-              "Nothing"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:1|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:1|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:1|pct}"
             ],
             [
               "2",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:2|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:2|addcfg:general.verdict_blade.verdict.cap}",
-              "Judgment, {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec} cooldown"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:2|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:2|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:2|pct}"
             ],
             [
               "3",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:3|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:3|addcfg:general.verdict_blade.verdict.cap}",
-              "Judgment cooldown {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-3|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:3|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:3|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:3|pct}"
             ],
             [
               "4",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:4|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:4|addcfg:general.verdict_blade.verdict.cap}",
-              "Judgment cooldown {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-4|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:4|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:4|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:4|pct}"
             ],
             [
               "5",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:5|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:5|addcfg:general.verdict_blade.verdict.cap}",
-              "Judgment cooldown {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-5|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}; bosses become {lang:effect.essentialcraft5.bisected}"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:5|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:5|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:5|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.verdict_blade.verdict.cap<=0",
+          "header": [
+            "Stage",
+            "Attack",
+            "Lifesteal",
+            "Pen.",
+            "Judgment cooldown"
+          ],
+          "widths": [
+            1,
+            2,
+            2,
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "0",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:0|pct}"
+            ],
+            [
+              "1",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:1|pct}"
+            ],
+            [
+              "2",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:2|pct}"
+            ],
+            [
+              "3",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:3|pct}"
+            ],
+            [
+              "4",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:4|pct}"
+            ],
+            [
+              "5",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:5|pct}"
             ]
           ]
         },
         {
           "type": "p",
-          "if": [
-            "cfg:general.verdict_blade.verdict.cap>0",
-            "cfg:general.verdict_blade.judgment.damage_multiplier<=0||cfg:general.verdict_blade.judgment.bisect_ticks<=0"
-          ],
-          "text": "Each stage adds {cfg:general.verdict_blade.verdict.percent_per_stage|pctv} of max health to Verdict and {cfg:general.verdict_blade.verdict.cap_per_stage} to its cap."
+          "if": "cfg:general.verdict_blade.verdict.cap>0",
+          "text": "The Verdict column shows the extra strike as a share of the target's max health, followed by the most it adds per strike. Pen. is armor penetration. The cooldown column shows how much shorter Judgment's cooldown becomes."
         },
         {
           "type": "p",
-          "text": "Each stage also adds {cfg:general.attunement.damage_per_stage|pct} attack damage, {cfg:general.attunement.damage_per_stage|mul:5|pct} at stage 5."
+          "text": "The Attack column is the attack damage gained over stage 0, as a share of the attack damage the item originally shows, at least 1 per stage and rounded to 0.5. It is added straight to the attack damage in the tooltip, separate from bonus damage, and is held to the same [[attunement/gear_stats|bonus damage cap]]. Against players it counts only {cfg:general.attunement.pvp_effect_scale|pct}."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.verdict_blade.attack_per_stage==0.08",
+          "text": "For example, a Verdict Blade with 51 attack damage has 55, 59, 63, 67.5 and 71.5 at stages 1 to 5. One with 10 attack damage gains the minimum of 1 per stage, reaching 15 at stage 5."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "Judgment unlocks at stage 2. Its cooldown reduction is capped at {cfg:general.gear_growth.caps.cooldown_reduction|pct}."
+        },
+        {
+          "type": "p",
+          "text": "Lifesteal restores health based on the damage the hit finally deals. Armor penetration makes the target's armor count as that much lower. Verdict already ignores armor and is unaffected by it. How these are calculated and capped is described in [[attunement/gear_stats]]."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.gear_growth.verdict_blade.execute_bonus>0",
+          "text": "Execute (from stage {cfg:general.gear_growth.verdict_blade.execute_stage})"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.verdict_blade.execute_bonus>0",
+          "text": "While the target is below {cfg:general.gear_growth.verdict_blade.execute_threshold|pct} of its max health, the hit gains another {cfg:general.gear_growth.verdict_blade.execute_bonus|pct} bonus damage, added together with other bonuses. Execute does not apply to bosses or players."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "Final Verdict (stage {cfg:general.gear_growth.verdict_blade.final_verdict.stage} awakening)"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "At this stage, every target struck by Judgment receives a <hl>verdict seal</hl> for {cfg:general.gear_growth.verdict_blade.final_verdict.mark_ticks|sec}. Landing another hit on it personally within that time bursts the seal:"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "items": [
+            {
+              "if": "cfg:general.gear_growth.verdict_blade.final_verdict.cap>0",
+              "text": "Ordinary targets: an additional strike at the end of that tick, dealing {cfg:general.gear_growth.verdict_blade.final_verdict.percent|pctv} of the target's max health, up to {cfg:general.gear_growth.verdict_blade.final_verdict.cap}, ignoring armor and costing no MRU."
+            },
+            "Bosses: no additional strike. Instead, the hit that bursts the seal gains another {cfg:general.gear_growth.verdict_blade.final_verdict.boss_pool|pct} bonus damage, still subject to the boss cap.",
+            "Judgment's own hit never bursts a seal, and neither do Verdict's extra strike or area damage. A seal can only be burst by the player who placed it."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "title": "How to use it",
+          "text": "Use Judgment to seal nearby enemies, then strike them one by one, bursting a seal with each hit. Against a boss, follow Judgment with a high-damage hit."
         },
         {
           "type": "h",
@@ -1514,7 +2488,7 @@
         },
         {
           "type": "p",
-          "text": "The matrix rank each stage needs is in [[attunement/stage_up]]. Math cores drop from the Holographic Projection ([[hologram/math_cores]])."
+          "text": "The matrix rank required for each stage is listed in [[attunement/stage_up]]. Math cores drop from defeated Holographic Projections, as described in [[hologram/math_cores]]."
         }
       ]
     }

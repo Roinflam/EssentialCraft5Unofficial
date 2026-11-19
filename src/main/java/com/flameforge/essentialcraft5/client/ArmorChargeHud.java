@@ -70,6 +70,8 @@ public final class ArmorChargeHud {
     static final String DESC_CHAMBER_KEY = "hud." + EssentialCraft5.MODID + ".armor_charge.desc.chamber";
     static final String HITS_KEY = "tooltip." + EssentialCraft5.MODID + ".armor_charge.full_hits";
     static final String FREE_KEY = "tooltip." + EssentialCraft5.MODID + ".armor_charge.free";
+    static final String WITH_MRU_KEY = "tooltip." + EssentialCraft5.MODID + ".armor_charge.with_mru";
+    static final String WITH_MRU_FREE_KEY = "tooltip." + EssentialCraft5.MODID + ".armor_charge.with_mru.free";
     /** MRU 那一行的键（{@code MRUStaffItem.mruTooltip}），提示行插在它后面 */
     private static final String MRU_LINE_KEY = "tooltip." + EssentialCraft5.MODID + ".mru";
 
@@ -202,7 +204,8 @@ public final class ArmorChargeHud {
     @SubscribeEvent
     public static void onArmorChargeTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
-        if (!(stack.getItem() instanceof IMRUShieldArmor)) {
+        if (!(stack.getItem() instanceof IMRUShieldArmor) || AttunementTooltips.holdsBackNotes(event)) {
+            // 同调装备没按住 Shift 时 MRU 行收起来了，这一句跟着收
             return;
         }
         Level level = event.getEntity() != null ? event.getEntity().level() : Minecraft.getInstance().level;
@@ -215,21 +218,31 @@ public final class ArmorChargeHud {
         if (hits == ArmorCharge.NOT_SHIELDED) {
             return;
         }
+        List<Component> tooltip = event.getToolTip();
+        int at = mruLine(tooltip);
+        if (at >= 0) {
+            // 找到 MRU 那一行就把满电次数并进去，原地替换，省一行
+            Component mru = tooltip.get(at);
+            Component merged = hits == ArmorCharge.FREE
+                    ? Component.translatable(WITH_MRU_FREE_KEY, mru)
+                    : Component.translatable(WITH_MRU_KEY, mru, Math.round(ArmorCharge.SAMPLE_DAMAGE), grouped(hits));
+            tooltip.set(at, merged.copy().withStyle(mru.getStyle()));
+            return;
+        }
         Component line = hits == ArmorCharge.FREE
                 ? Component.translatable(FREE_KEY).withStyle(ChatFormatting.GRAY)
                 : Component.translatable(HITS_KEY, Math.round(ArmorCharge.SAMPLE_DAMAGE), grouped(hits)).withStyle(ChatFormatting.GRAY);
-        List<Component> tooltip = event.getToolTip();
-        tooltip.add(afterMruLine(tooltip), line);
+        tooltip.add(line);
     }
 
-    /** MRU 那一行后面的位置；找不到就放最后 */
-    private static int afterMruLine(List<Component> tooltip) {
+    /** MRU 那一行的下标；找不到返回 -1 */
+    private static int mruLine(List<Component> tooltip) {
         for (int i = 0; i < tooltip.size(); i++) {
             if (tooltip.get(i).getContents() instanceof TranslatableContents contents && MRU_LINE_KEY.equals(contents.getKey())) {
-                return i + 1;
+                return i;
             }
         }
-        return tooltip.size();
+        return -1;
     }
 
     /** 模组总线：登记快捷栏旁那一层 */

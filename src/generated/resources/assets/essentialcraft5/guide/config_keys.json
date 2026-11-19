@@ -69,7 +69,7 @@
     },
     "general.attunement.damage_per_stage": {
       "type": "double",
-      "comment": "Weapon damage per stage, as a fraction (0.03 = x1.03 per stage).\n武器每阶的攻击倍率（0.03 = 每阶 ×1.03）\nRange: 0.0 ~ 1.0",
+      "comment": "No longer read: replaced by general.gear_growth.weapon.damage_per_stage (now a damage bonus, not an attribute).\n已由 general.gear_growth.weapon.damage_per_stage 接管（改成增伤池，不再是属性倍率），不再读\nRange: 0.0 ~ 1.0",
       "default": 0.03,
       "max": 1.0,
       "min": 0.0
@@ -86,7 +86,7 @@
     },
     "general.attunement.health_per_stage": {
       "type": "double",
-      "comment": "Max health each armor piece adds per stage (2 = one heart).\n盔甲每阶每件加的最大生命（2 = 一颗心）\nRange: 0.0 ~ 20.0",
+      "comment": "No longer read: replaced by general.gear_growth.armor.health_per_stage.\n已由 general.gear_growth.armor.health_per_stage 接管，不再读\nRange: 0.0 ~ 20.0",
       "default": 1.0,
       "max": 20.0,
       "min": 0.0
@@ -252,12 +252,106 @@
       "comment": "Item ids listed here have no effect when worn and are not generated in dungeon chests.\nUseful on PvP servers, e.g. [\"essentialcraft5:zeta_amulet\", \"essentialcraft5:sigma_ring\"].\n列在这里的饰品（注册名）戴着不生效，也不会出现在地牢箱子里。PvP 服可以关 ζ、σ",
       "default": []
     },
+    "general.builder.allow_container_items": {
+      "type": "boolean",
+      "comment": "Take building material from carried containers that expose an item handler (bags, backpacks), one level deep.\nThe Salvage module puts removed blocks into those containers regardless of this; keep a container out of both with the tag essentialcraft5:builder_container_blacklist.\n从身上带着的、给了物品处理能力的随身容器（背包类）里取料，只看一层。\n回收模块往这些容器里放拆下的东西不看这一项；某种容器两样都不想让碰，就把它放进物品标签 essentialcraft5:builder_container_blacklist",
+      "default": true
+    },
+    "general.builder.ascended.cells_per_tick": {
+      "type": "int",
+      "comment": "Blocks one wand may place, remove or swap per tick.\n一根魔杖每刻最多放、拆、换几格\nRange: 1 ~ 4096",
+      "default": 128,
+      "max": 4096,
+      "min": 1
+    },
+    "general.builder.ascended.cost_multiplier": {
+      "type": "double",
+      "comment": "MRU per block is multiplied by this and rounded down.\n每格 MRU 乘这个倍率、向下取整\nRange: 0.0 ~ 1.0",
+      "default": 0.8,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.builder.ascended.max_point_distance": {
+      "type": "int",
+      "comment": "Largest straight-line distance between the two points, in blocks.\n两个点的直线距离上限（格）\nRange: 1 ~ 256",
+      "default": 96,
+      "max": 256,
+      "min": 1
+    },
+    "general.builder.ascended.max_reach": {
+      "type": "int",
+      "comment": "How close the player must stay to the work, in blocks; walking farther away stops it.\n玩家离施工范围多远以内才能开工（格），施工途中走远了就停\nRange: 1 ~ 256",
+      "default": 96,
+      "max": 256,
+      "min": 1
+    },
+    "general.builder.ascended.max_side": {
+      "type": "int",
+      "comment": "Longest side of a plane or line, in blocks.\n铺面、直线一次最长几格（边长）\nRange: 1 ~ 256",
+      "default": 96,
+      "max": 256,
+      "min": 1
+    },
+    "general.builder.ascended.max_volume": {
+      "type": "int",
+      "comment": "Largest selection in blocks (hard_max_volume still applies).\n一次最多几格（仍受 hard_max_volume 限制）\nRange: 1 ~ 65536",
+      "default": 16384,
+      "max": 65536,
+      "min": 1
+    },
     "general.builder.cells_per_tick": {
       "type": "int",
       "comment": "Blocks one wand may place, remove or swap per tick (blocks that need nothing done are not counted).\n一根魔杖每刻最多放、拆、换几格（不用动的格子不算）\nRange: 1 ~ 4096",
       "default": 64,
       "max": 4096,
       "min": 1
+    },
+    "general.builder.denied_limit": {
+      "type": "int",
+      "comment": "A job stops after this many blocks were refused (claims and protection).\n一个任务累计被拒（领地、保护）这么多格就停下\nRange: 1 ~ 65536",
+      "default": 256,
+      "max": 65536,
+      "min": 1
+    },
+    "general.builder.denied_streak_limit": {
+      "type": "int",
+      "comment": "While probing before each block (probe_after_denied), a job stops after this many blocks in a row were refused when actually placed or broken; any success resets the count. Jobs that are not probing are only limited by denied_limit. 0 = no limit.\n先探后放时，一个任务连续这么多格真放 / 真拆被拒就停下，中间成功放下或拆掉一格就重新数；没在先探后放的任务只受 denied_limit 管；0 = 不限\nRange: 0 ~ 65536",
+      "default": 8,
+      "max": 65536,
+      "min": 0
+    },
+    "general.builder.disabled_dimensions": {
+      "type": "list",
+      "comment": "Dimensions where wands may not start work or undo (ids such as minecraft:the_end).\n这些维度里魔杖不能开工、不能撤销（维度 id，例 minecraft:the_end）",
+      "default": []
+    },
+    "general.builder.face_scan_per_tick": {
+      "type": "int",
+      "comment": "Blocks one Surface measurement may look at per tick before work starts; it also shares max_millis_per_tick with the work itself.\n沿面开工前测量时，每个测量每刻最多读几格；同时和施工共用 max_millis_per_tick\nRange: 16 ~ 4096",
+      "default": 1024,
+      "max": 4096,
+      "min": 16
+    },
+    "general.builder.hard_max_volume": {
+      "type": "int",
+      "comment": "No wand may change more blocks than this in one go, whatever its tier and modules.\n不论哪一档、装了什么模块，一次最多改这么多格\nRange: 1 ~ 65536",
+      "default": 32768,
+      "max": 65536,
+      "min": 1
+    },
+    "general.builder.material_pause_seconds": {
+      "type": "int",
+      "comment": "When material or MRU runs out, wait this many seconds for a refill before ending (0 = end at once).\n材料或 MRU 用完时暂停等补料的秒数，超时才结束（0 = 用完就结束）\nRange: 0 ~ 600",
+      "default": 30,
+      "max": 600,
+      "min": 0
+    },
+    "general.builder.max_aim_distance": {
+      "type": "int",
+      "comment": "Plane, Wall and Surface can be aimed at blocks as far away as the wand's work range (max_reach of its tier, plus the Reach module); this caps that distance, in blocks.\nWhen work starts the server traces the player's line of sight itself and only accepts the same block or one right next to it. Aiming never loads chunks. Line always uses normal reach.\n铺面、竖墙、沿面可以瞄准施工距离以内的方块（所在档位的 max_reach，装远域时再加 reach_bonus），这里是瞄准距离的上限（格）。\n开工时服务端按玩家视线重新计算点中的格子，只认同一格或紧挨着的一格；瞄准不会加载区块。直线只认原版交互距离内的方块\nRange: 5 ~ 256",
+      "default": 128,
+      "max": 256,
+      "min": 5
     },
     "general.builder.max_cells_per_tick_total": {
       "type": "int",
@@ -266,6 +360,27 @@
       "max": 16384,
       "min": 1
     },
+    "general.builder.max_hardness": {
+      "type": "double",
+      "comment": "Clearing and replacing leave blocks harder than this alone (-1 = no limit, as in the original).\n清除、替换不碰硬度高于它的方块（-1 = 不限，同原作）\nRange: -1.0 ~ 1000000.0",
+      "default": -1.0,
+      "max": 1000000.0,
+      "min": -1.0
+    },
+    "general.builder.max_jobs_total": {
+      "type": "int",
+      "comment": "Jobs that may run at the same time on the server; more wait in line.\n全服同时在做的任务数，多出来的排队\nRange: 1 ~ 256",
+      "default": 16,
+      "max": 256,
+      "min": 1
+    },
+    "general.builder.max_millis_per_tick": {
+      "type": "double",
+      "comment": "Milliseconds all wands on the server may spend per tick together; the rest waits for the next tick.\n全服所有魔杖合计每刻最多花几毫秒，超了这刻就收手、剩下的下刻接着做\nRange: 0.05 ~ 50.0",
+      "default": 2.0,
+      "max": 50.0,
+      "min": 0.05
+    },
     "general.builder.max_point_distance": {
       "type": "int",
       "comment": "Largest straight-line distance between the two points, in blocks (the original's value).\n两个点的直线距离上限（格，原作的值）\nRange: 1 ~ 256",
@@ -273,10 +388,24 @@
       "max": 256,
       "min": 1
     },
+    "general.builder.max_queued_per_player": {
+      "type": "int",
+      "comment": "Jobs one player may have waiting behind the running one (0 = must wait until it ends).\n每人在做的任务后面最多再排几个（0 = 做完才能开下一个）\nRange: 0 ~ 8",
+      "default": 1,
+      "max": 8,
+      "min": 0
+    },
     "general.builder.max_reach": {
       "type": "int",
       "comment": "How close the player must stay to the selection, in blocks; walking farther away stops the work.\n玩家离选区多远以内才能开工（格），施工途中走远了就停\nRange: 1 ~ 256",
       "default": 64,
+      "max": 256,
+      "min": 1
+    },
+    "general.builder.max_side": {
+      "type": "int",
+      "comment": "Longest side of a plane or line laid in one go, in blocks.\n铺面、直线一次最长几格（边长）\nRange: 1 ~ 256",
+      "default": 48,
       "max": 256,
       "min": 1
     },
@@ -286,6 +415,121 @@
       "default": 4096,
       "max": 32768,
       "min": 1
+    },
+    "general.builder.modules.efficiency.cost_multiplier": {
+      "type": "double",
+      "comment": "MRU per block is multiplied by this (0 = building costs no MRU).\n每格 MRU 乘这个倍率（0 = 不耗 MRU）\nRange: 0.0 ~ 1.0",
+      "default": 0.6,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.builder.modules.haste.cells_multiplier": {
+      "type": "double",
+      "comment": "Blocks per tick for this wand are multiplied by this (the server-wide limits still apply).\n这根魔杖每刻最多几格乘这个倍率（全服每刻格数和耗时的上限照旧）\nRange: 1.0 ~ 16.0",
+      "default": 2.0,
+      "max": 16.0,
+      "min": 1.0
+    },
+    "general.builder.modules.mix.max_kinds": {
+      "type": "int",
+      "comment": "How many kinds of blocks one mixing table may hold; extra entries on a wand are ignored.\n一张混铺表最多几种方块；魔杖上多出来的不生效\nRange: 1 ~ 4",
+      "default": 4,
+      "max": 4,
+      "min": 1
+    },
+    "general.builder.modules.range.side_multiplier": {
+      "type": "double",
+      "comment": "Longest side of a plane or line is multiplied by this.\n铺面、直线的边长乘这个倍率\nRange: 1.0 ~ 4.0",
+      "default": 1.4,
+      "max": 4.0,
+      "min": 1.0
+    },
+    "general.builder.modules.range.volume_multiplier": {
+      "type": "double",
+      "comment": "Largest selection is multiplied by this (hard_max_volume still applies).\n一次最多几格乘这个倍率（仍受 hard_max_volume 限制）\nRange: 1.0 ~ 16.0",
+      "default": 2.0,
+      "max": 16.0,
+      "min": 1.0
+    },
+    "general.builder.modules.reach.reach_bonus": {
+      "type": "int",
+      "comment": "Added to how far the player may stand from the work, in blocks. The whole selection must still be in loaded chunks.\n施工距离加这么多格。整个范围仍要在已加载的区块里，所以超出服务器视距的部分用不上\nRange: 0 ~ 256",
+      "default": 32,
+      "max": 256,
+      "min": 0
+    },
+    "general.builder.modules.salvage.discard_max": {
+      "type": "int",
+      "comment": "How many items the discard list may hold; extra entries on a wand are ignored.\n丢弃清单最多几项；魔杖上多出来的不生效\nRange: 0 ~ 64",
+      "default": 16,
+      "max": 64,
+      "min": 0
+    },
+    "general.builder.paver.cells_per_tick": {
+      "type": "int",
+      "comment": "Blocks one wand may place, remove or swap per tick.\n一根魔杖每刻最多放、拆、换几格\nRange: 1 ~ 4096",
+      "default": 8,
+      "max": 4096,
+      "min": 1
+    },
+    "general.builder.paver.max_point_distance": {
+      "type": "int",
+      "comment": "Largest straight-line distance between the two points, in blocks.\n两个点的直线距离上限（格）\nRange: 1 ~ 256",
+      "default": 16,
+      "max": 256,
+      "min": 1
+    },
+    "general.builder.paver.max_reach": {
+      "type": "int",
+      "comment": "How close the player must stay to the work, in blocks; walking farther away stops it.\n玩家离施工范围多远以内才能开工（格），施工途中走远了就停\nRange: 1 ~ 256",
+      "default": 32,
+      "max": 256,
+      "min": 1
+    },
+    "general.builder.paver.max_side": {
+      "type": "int",
+      "comment": "Longest side of a plane or line, in blocks.\n铺面、直线一次最长几格（边长）\nRange: 1 ~ 256",
+      "default": 16,
+      "max": 256,
+      "min": 1
+    },
+    "general.builder.paver.max_volume": {
+      "type": "int",
+      "comment": "Largest selection in blocks (hard_max_volume still applies).\n一次最多几格（仍受 hard_max_volume 限制）\nRange: 1 ~ 65536",
+      "default": 256,
+      "max": 65536,
+      "min": 1
+    },
+    "general.builder.probe_after_denied": {
+      "type": "boolean",
+      "comment": "After the first refusal, ask the protection check before each block instead of placing and being refused.\n第一次被拒以后，每格先探测能不能动、放行才真放（不再每格真发事件被拒）",
+      "default": true
+    },
+    "general.builder.show_material_in_hand": {
+      "type": "boolean",
+      "comment": "While a block is placed, the hand reported to server plugins holds one of that block, even when the material came from the inventory or a carried container.\nPlugins that judge a placement by the item in hand then see the same as when the player places it by hand. Off = the hand keeps whatever it holds.\n放每一格时，报给服务端插件的那只手临时拿着 1 个这种方块（材料来自背包或随身容器时也一样），\n按手里物品判断放置的插件看到的和玩家亲手放置相同；关掉后那只手保持原样",
+      "default": true
+    },
+    "general.builder.undo_window_seconds": {
+      "type": "int",
+      "comment": "How long the last placement can be undone, in seconds (0 = undo off).\n最近一次放置在多少秒内能撤销（0 = 关掉撤销）\nRange: 0 ~ 86400",
+      "default": 600,
+      "max": 86400,
+      "min": 0
+    },
+    "general.builder.vfx_lead_ticks": {
+      "type": "int",
+      "comment": "Ticks between showing a block in flight and actually placing it (0 = no flight effect, place at once).\nMaterials and MRU are only taken when the block is placed.\n方块飞向目标的特效比真正放下提前的刻数（0 = 不显示飞行特效，立即放置）。\n材料和 MRU 在方块真正放下时才扣除。\nRange: 0 ~ 40",
+      "default": 10,
+      "max": 40,
+      "min": 0
+    },
+    "general.builder.vfx_send_radius": {
+      "type": "int",
+      "comment": "Players within this many blocks of the work area receive the flight effect; the caster always does.\n距施工范围不超过该格数的玩家可看到飞行特效，施法者本人始终可见\nRange: 0 ~ 256",
+      "default": 64,
+      "max": 256,
+      "min": 0
     },
     "general.calamity_heart.arena_radius": {
       "type": "double",
@@ -988,7 +1232,7 @@
     },
     "general.computer_armor.overload_cooldown": {
       "type": "int",
-      "comment": "Overload Barrier: cooldown in ticks (kept across relogging).\n过载屏障：冷却多少刻（退出重进不清）\nRange: 0 ~ 72000",
+      "comment": "No longer read: superseded by general.gear_growth.computer_armor.overload_cooldown (kept so old config files still load).\n已由 general.gear_growth.computer_armor.overload_cooldown 接管，不再读（留着是为了老配置文件照常加载）\nOverload Barrier: cooldown in ticks (kept across relogging).\n过载屏障：冷却多少刻（退出重进不清）\nRange: 0 ~ 72000",
       "default": 1200,
       "max": 72000,
       "min": 0
@@ -1051,7 +1295,7 @@
     },
     "general.computer_armor.repair_percent": {
       "type": "double",
-      "comment": "Matrix Repair: fraction of max health healed per second.\n矩阵修复：每秒回最大生命的比例（0.01 = 1%）\nRange: 0.0 ~ 1.0",
+      "comment": "No longer read: superseded by general.gear_growth.computer_armor.repair_percent (kept so old config files still load).\n已由 general.gear_growth.computer_armor.repair_percent 接管，不再读（留着是为了老配置文件照常加载）\nMatrix Repair: fraction of max health healed per second.\n矩阵修复：每秒回最大生命的比例（0.01 = 1%）\nRange: 0.0 ~ 1.0",
       "default": 0.01,
       "max": 1.0,
       "min": 0.0
@@ -1834,6 +2078,1136 @@
       "max": 10000,
       "min": 0
     },
+    "general.gear_growth.aoe_hits_players": {
+      "type": "boolean",
+      "comment": "Area damage from gear awakenings also hits players (PvP, teams and claims still apply).\n装备觉醒的范围伤害也打玩家（PvP、队伍、领地照常管）",
+      "default": false
+    },
+    "general.gear_growth.aoe_scale": {
+      "type": "double",
+      "comment": "Scale on area damage from gear awakenings (Element Burst, Overload Ray ...).\n装备觉醒的范围伤害（元素爆发、过载射线……）乘的倍数\nRange: 0.0 ~ 5.0",
+      "default": 1.0,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.armor.health_per_stage": {
+      "type": "double",
+      "comment": "Max health each armor piece adds per stage (2 = one heart). Replaces general.attunement.health_per_stage.\n盔甲每阶每件加的最大生命（2 = 一颗心）。接管 general.attunement.health_per_stage\nRange: 0.0 ~ 20.0",
+      "default": 2.0,
+      "max": 20.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.armor_pen": {
+      "type": "double",
+      "comment": "Most armor and toughness ignored by armor penetration.\n护甲穿透最多无视几成护甲和韧性\nRange: 0.0 ~ 1.0",
+      "default": 0.3,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.armor_pen_player": {
+      "type": "double",
+      "comment": "Same, against players.\n同上，打玩家\nRange: 0.0 ~ 1.0",
+      "default": 0.15,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.cooldown_reduction": {
+      "type": "double",
+      "comment": "Most cooldown reduction from gear stats.\n装备词条的冷却缩减最多几成\nRange: 0.0 ~ 0.9",
+      "default": 0.4,
+      "max": 0.9,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.dodge": {
+      "type": "double",
+      "comment": "Most dodge chance from gear.\n装备给的闪避几率最多几成\nRange: 0.0 ~ 1.0",
+      "default": 0.35,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.dodge_player": {
+      "type": "double",
+      "comment": "Same, when the attacker is a player.\n同上，攻击者是玩家时\nRange: 0.0 ~ 1.0",
+      "default": 0.15,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.lifesteal_per_second": {
+      "type": "double",
+      "comment": "Most health lifesteal gives back per second, as a fraction of your max health.\n吸血每秒最多回最大生命的几成\nRange: 0.0 ~ 1.0",
+      "default": 0.06,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.lifesteal_per_second_player": {
+      "type": "double",
+      "comment": "Same, for lifesteal from hitting players.\n同上，打玩家吸到的部分\nRange: 0.0 ~ 1.0",
+      "default": 0.03,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.lifesteal_player_scale": {
+      "type": "double",
+      "comment": "Lifesteal from hitting players is multiplied by this.\n打玩家时吸血量乘的倍数\nRange: 0.0 ~ 1.0",
+      "default": 0.5,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.pool_boss": {
+      "type": "double",
+      "comment": "Same, against bosses (#forge:bosses and this mod's bosses).\n同上，打首领（#forge:bosses 和本模组的首领）\nRange: 0.0 ~ 10.0",
+      "default": 0.5,
+      "max": 10.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.pool_mob": {
+      "type": "double",
+      "comment": "Most extra damage from the bonus pool against ordinary creatures (1.0 = up to x2).\n增伤池打普通生物最多多打几成（1.0 = 最多 ×2）\nRange: 0.0 ~ 10.0",
+      "default": 1.0,
+      "max": 10.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.pool_player": {
+      "type": "double",
+      "comment": "Same, against players.\n同上，打玩家\nRange: 0.0 ~ 10.0",
+      "default": 0.3,
+      "max": 10.0,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.reduction": {
+      "type": "double",
+      "comment": "Most damage the reduction pool takes off a hit.\n减伤池一下最多减掉几成\nRange: 0.0 ~ 0.95",
+      "default": 0.6,
+      "max": 0.95,
+      "min": 0.0
+    },
+    "general.gear_growth.caps.reduction_player": {
+      "type": "double",
+      "comment": "Same, when the attacker is another player.\n同上，攻击者是别的玩家时\nRange: 0.0 ~ 0.95",
+      "default": 0.4,
+      "max": 0.95,
+      "min": 0.0
+    },
+    "general.gear_growth.computer_armor.base_stats.armor_boots": {
+      "type": "list",
+      "comment": "Extra armor on the boots.\n靴子多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.computer_armor.base_stats.armor_chestplate": {
+      "type": "list",
+      "comment": "Extra armor on the chestplate.\n胸甲多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.computer_armor.base_stats.armor_helmet": {
+      "type": "list",
+      "comment": "Extra armor on the helmet.\n头盔多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.computer_armor.base_stats.armor_leggings": {
+      "type": "list",
+      "comment": "Extra armor on the leggings.\n护腿多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.computer_armor.base_stats.health_per_stage": {
+      "type": "double",
+      "comment": "Max health each piece adds per stage; -1 uses armor.health_per_stage.\n每阶每件加的最大生命；-1 = 沿用 armor.health_per_stage\nRange: -1.0 ~ 20.0",
+      "default": 3.0,
+      "max": 20.0,
+      "min": -1.0
+    },
+    "general.gear_growth.computer_armor.base_stats.knockback": {
+      "type": "list",
+      "comment": "Extra knockback resistance per piece (1 = 100%).\n每件多几点击退抗性（1 = 100%）",
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.025
+      ]
+    },
+    "general.gear_growth.computer_armor.base_stats.toughness": {
+      "type": "list",
+      "comment": "Extra armor toughness per piece.\n每件多几点盔甲韧性",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.computer_armor.cooldown_reduction": {
+      "type": "list",
+      "comment": "Cooldown reduction for the Rewind module and Overload Barrier (capped by caps.cooldown_reduction).\n回溯模块、过载屏障的冷却缩减（受 caps.cooldown_reduction 封顶）",
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.15
+      ]
+    },
+    "general.gear_growth.computer_armor.damage": {
+      "type": "list",
+      "comment": "Damage bonus on your own hits (bonus pool).\n亲手打的增伤（进增伤池）",
+      "default": [
+        0.0,
+        0.04,
+        0.08
+      ]
+    },
+    "general.gear_growth.computer_armor.overcharge_pulse.cap": {
+      "type": "double",
+      "comment": "Cap on that damage.\n这一下的封顶\nRange: 0.0 ~ 10000.0",
+      "default": 40.0,
+      "max": 10000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.computer_armor.overcharge_pulse.max_targets": {
+      "type": "int",
+      "comment": "Most creatures hit.\n最多打几个\nRange: 1 ~ 64",
+      "default": 12,
+      "max": 64,
+      "min": 1
+    },
+    "general.gear_growth.computer_armor.overcharge_pulse.radius": {
+      "type": "double",
+      "comment": "Pulse radius in blocks.\n半径（格）\nRange: 0.5 ~ 16.0",
+      "default": 6.0,
+      "max": 16.0,
+      "min": 0.5
+    },
+    "general.gear_growth.computer_armor.overcharge_pulse.ratio": {
+      "type": "double",
+      "comment": "Damage as a fraction of the blocked hit.\n伤害是被挡那一下的几成\nRange: 0.0 ~ 5.0",
+      "default": 0.5,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.computer_armor.overcharge_pulse.slow_ticks": {
+      "type": "int",
+      "comment": "Ticks of Slowness III on creatures it hits.\n被打到的缓慢 III 几刻\nRange: 0 ~ 1200",
+      "default": 40,
+      "max": 1200,
+      "min": 0
+    },
+    "general.gear_growth.computer_armor.overcharge_pulse.stage": {
+      "type": "int",
+      "comment": "Stage that unlocks Overcharge Pulse.\n几阶解锁\nRange: 0 ~ 5",
+      "default": 5,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.computer_armor.overload_cooldown": {
+      "type": "int",
+      "comment": "Overload Barrier: cooldown in ticks before cooldown reduction.\n过载屏障：冷却多少刻（冷却缩减之前）\nRange: 0 ~ 72000",
+      "default": 900,
+      "max": 72000,
+      "min": 0
+    },
+    "general.gear_growth.computer_armor.repair_percent": {
+      "type": "double",
+      "comment": "Matrix Repair: fraction of max health healed per second.\n矩阵修复：每秒回最大生命的比例\nRange: 0.0 ~ 1.0",
+      "default": 0.015,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.defense_scale": {
+      "type": "double",
+      "comment": "Scale on this mod's whole damage reduction pool (before the caps).\n本模组减伤池整体乘的倍数（在封顶之前乘）\nRange: 0.0 ~ 5.0",
+      "default": 1.0,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.ember_sword.attack_per_stage": {
+      "type": "double",
+      "comment": "Attack damage added per stage, as a fraction of the base attack damage shown on the item (at least 1 per stage, rounded to 0.5).\n每阶加的攻击伤害，按物品原本显示的攻击伤害算比例（每阶至少 1 点，取到 0.5）\nRange: 0.0 ~ 1.0",
+      "default": 0.1,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.ember_sword.burst.chance": {
+      "type": "double",
+      "comment": "Chance per hit.\n每下的几率\nRange: 0.0 ~ 1.0",
+      "default": 0.15,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.ember_sword.burst.cooldown": {
+      "type": "int",
+      "comment": "Ticks before it can trigger again for the same wielder.\n同一名持剑人多少刻才能再触发\nRange: 0 ~ 1200",
+      "default": 40,
+      "max": 1200,
+      "min": 0
+    },
+    "general.gear_growth.ember_sword.burst.debuff_ticks": {
+      "type": "int",
+      "comment": "Water: ticks of Slowness II and Weakness; Earth: ticks of your Resistance.\n水：缓慢 II、虚弱的刻数；地：自己抗性提升的刻数\nRange: 0 ~ 1200",
+      "default": 60,
+      "max": 1200,
+      "min": 0
+    },
+    "general.gear_growth.ember_sword.burst.fire_cap": {
+      "type": "double",
+      "comment": "Fire: most health each target loses from one burst, bosses included; 0 = no cap.\n火：每个目标这一下最多掉多少血（首领同样封顶）；0 = 不封顶\nRange: 0.0 ~ 100000.0",
+      "default": 100.0,
+      "max": 100000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.ember_sword.burst.fire_damage": {
+      "type": "double",
+      "comment": "Fire: flat damage to each target.\n火：每个目标的固定伤害\nRange: 0.0 ~ 1000.0",
+      "default": 4.0,
+      "max": 1000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.ember_sword.burst.fire_percent": {
+      "type": "double",
+      "comment": "Fire: plus this percent of the target's max health (not for bosses).\n火：再加目标最大生命的百分之几（首领不加）\nRange: 0.0 ~ 100.0",
+      "default": 2.0,
+      "max": 100.0,
+      "min": 0.0
+    },
+    "general.gear_growth.ember_sword.burst.max_targets": {
+      "type": "int",
+      "comment": "Most creatures hit.\n最多打几个\nRange: 1 ~ 64",
+      "default": 8,
+      "max": 64,
+      "min": 1
+    },
+    "general.gear_growth.ember_sword.burst.quake_damage": {
+      "type": "double",
+      "comment": "Earth: damage to each target.\n地：每个目标的伤害\nRange: 0.0 ~ 1000.0",
+      "default": 3.0,
+      "max": 1000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.ember_sword.burst.radius": {
+      "type": "double",
+      "comment": "Radius in blocks.\n半径（格）\nRange: 0.5 ~ 16.0",
+      "default": 3.0,
+      "max": 16.0,
+      "min": 0.5
+    },
+    "general.gear_growth.ember_sword.burst.stage": {
+      "type": "int",
+      "comment": "Stage that unlocks Element Burst.\n几阶解锁\nRange: 0 ~ 5",
+      "default": 2,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.ember_sword.lifesteal": {
+      "type": "list",
+      "comment": "Lifesteal by stage.\n按阶的吸血",
+      "default": [
+        0.0,
+        0.04,
+        0.04
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.base_stats.armor_boots": {
+      "type": "list",
+      "comment": "Extra armor on the boots.\n靴子多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.base_stats.armor_chestplate": {
+      "type": "list",
+      "comment": "Extra armor on the chestplate.\n胸甲多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.base_stats.armor_helmet": {
+      "type": "list",
+      "comment": "Extra armor on the helmet.\n头盔多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.base_stats.armor_leggings": {
+      "type": "list",
+      "comment": "Extra armor on the leggings.\n护腿多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.base_stats.health_per_stage": {
+      "type": "double",
+      "comment": "Max health each piece adds per stage; -1 uses armor.health_per_stage.\n每阶每件加的最大生命；-1 = 沿用 armor.health_per_stage\nRange: -1.0 ~ 20.0",
+      "default": 3.0,
+      "max": 20.0,
+      "min": -1.0
+    },
+    "general.gear_growth.inquisitorium_armor.base_stats.knockback": {
+      "type": "list",
+      "comment": "Extra knockback resistance per piece (1 = 100%).\n每件多几点击退抗性（1 = 100%）",
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.025
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.base_stats.toughness": {
+      "type": "list",
+      "comment": "Extra armor toughness per piece.\n每件多几点盔甲韧性",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.boss_resistance": {
+      "type": "list",
+      "comment": "Damage reduction against bosses by stage (reduction pool).\n按阶的首领减伤（进减伤池）",
+      "default": [
+        0.15,
+        0.15,
+        0.18,
+        0.21,
+        0.25
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.edict_reduction": {
+      "type": "list",
+      "comment": "Edict: how much sooner harmful effects wear off, by stage (at most 0.9).\n律令：有害效果的时长缩短几成，按阶（最多 0.9）",
+      "default": [
+        0.4,
+        0.5
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.lifesteal": {
+      "type": "list",
+      "comment": "Lifesteal on your own hits against targets you convicted.\n亲手打被你定罪的目标时的吸血",
+      "default": [
+        0.0,
+        0.0,
+        0.02
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.magic_resistance": {
+      "type": "list",
+      "comment": "Magic resistance by stage (reduction pool).\n按阶的抗魔（进减伤池）",
+      "default": [
+        0.35,
+        0.45,
+        0.45,
+        0.5,
+        0.55
+      ]
+    },
+    "general.gear_growth.inquisitorium_armor.sentence.boss_pool": {
+      "type": "double",
+      "comment": "Bosses: the sentencing hit gets this much extra in the bonus pool (still capped by caps.pool_boss).\n首领：宣判的那一下增伤池再加这么多（照样受 caps.pool_boss 封顶）\nRange: 0.0 ~ 5.0",
+      "default": 0.4,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.inquisitorium_armor.sentence.cap": {
+      "type": "double",
+      "comment": "Cap on that hit.\n这一下的封顶\nRange: 0.0 ~ 100000.0",
+      "default": 100.0,
+      "max": 100000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.inquisitorium_armor.sentence.cooldown": {
+      "type": "int",
+      "comment": "Ticks before the same target can be sentenced again.\n同一个目标多少刻才能再宣判一次\nRange: 0 ~ 72000",
+      "default": 200,
+      "max": 72000,
+      "min": 0
+    },
+    "general.gear_growth.inquisitorium_armor.sentence.hits": {
+      "type": "int",
+      "comment": "Landed hits needed.\n要打实几下\nRange: 1 ~ 100",
+      "default": 5,
+      "max": 100,
+      "min": 1
+    },
+    "general.gear_growth.inquisitorium_armor.sentence.percent": {
+      "type": "double",
+      "comment": "Ordinary targets: extra hit of this percent of max health (armor-piercing).\n普通目标：补最大生命的百分之几（无视护甲）\nRange: 0.0 ~ 100.0",
+      "default": 5.0,
+      "max": 100.0,
+      "min": 0.0
+    },
+    "general.gear_growth.inquisitorium_armor.sentence.stage": {
+      "type": "int",
+      "comment": "Stage that unlocks Sentence.\n几阶解锁\nRange: 0 ~ 5",
+      "default": 4,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.mhs_armor.base_stats.armor_boots": {
+      "type": "list",
+      "comment": "Extra armor on the boots.\n靴子多几点护甲",
+      "default": [
+        0.0,
+        1.0,
+        2.0
+      ]
+    },
+    "general.gear_growth.mhs_armor.base_stats.armor_chestplate": {
+      "type": "list",
+      "comment": "Extra armor on the chestplate.\n胸甲多几点护甲",
+      "default": [
+        0.0,
+        1.0,
+        2.0
+      ]
+    },
+    "general.gear_growth.mhs_armor.base_stats.armor_helmet": {
+      "type": "list",
+      "comment": "Extra armor on the helmet.\n头盔多几点护甲",
+      "default": [
+        0.0,
+        1.0,
+        2.0
+      ]
+    },
+    "general.gear_growth.mhs_armor.base_stats.armor_leggings": {
+      "type": "list",
+      "comment": "Extra armor on the leggings.\n护腿多几点护甲",
+      "default": [
+        0.0,
+        1.0,
+        2.0
+      ]
+    },
+    "general.gear_growth.mhs_armor.base_stats.health_per_stage": {
+      "type": "double",
+      "comment": "Max health each piece adds per stage; -1 uses armor.health_per_stage.\n每阶每件加的最大生命；-1 = 沿用 armor.health_per_stage\nRange: -1.0 ~ 20.0",
+      "default": -1.0,
+      "max": 20.0,
+      "min": -1.0
+    },
+    "general.gear_growth.mhs_armor.base_stats.knockback": {
+      "type": "list",
+      "comment": "Extra knockback resistance per piece (1 = 100%).\n每件多几点击退抗性（1 = 100%）",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.mhs_armor.base_stats.toughness": {
+      "type": "list",
+      "comment": "Extra armor toughness per piece.\n每件多几点盔甲韧性",
+      "default": [
+        0.0,
+        1.0,
+        2.0
+      ]
+    },
+    "general.gear_growth.mhs_armor.move_speed": {
+      "type": "list",
+      "comment": "Movement speed bonus of the four pieces together (each piece gives a quarter).\n四件合计的移速加成（每件给四分之一）",
+      "default": [
+        0.0,
+        0.05
+      ]
+    },
+    "general.gear_growth.mhs_armor.shield_discount": {
+      "type": "list",
+      "comment": "Shield MRU cost discount.\n护盾单价折扣",
+      "default": [
+        0.0,
+        0.1
+      ]
+    },
+    "general.gear_growth.mhs_armor.surge.max": {
+      "type": "double",
+      "comment": "Most stored.\n最多存多少\nRange: 0.0 ~ 10000.0",
+      "default": 30.0,
+      "max": 10000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.mhs_armor.surge.max_targets": {
+      "type": "int",
+      "comment": "Most creatures hit.\n最多打几个\nRange: 1 ~ 64",
+      "default": 8,
+      "max": 64,
+      "min": 1
+    },
+    "general.gear_growth.mhs_armor.surge.radius": {
+      "type": "double",
+      "comment": "Release radius in blocks.\n放出的半径（格）\nRange: 0.5 ~ 16.0",
+      "default": 3.0,
+      "max": 16.0,
+      "min": 0.5
+    },
+    "general.gear_growth.mhs_armor.surge.ratio": {
+      "type": "double",
+      "comment": "Fraction of blocked damage stored.\n挡下的伤害存几成\nRange: 0.0 ~ 5.0",
+      "default": 0.5,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.mhs_armor.surge.stage": {
+      "type": "int",
+      "comment": "Stage that unlocks Surge.\n几阶解锁\nRange: 0 ~ 5",
+      "default": 2,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.mhs_armor.surge.threshold": {
+      "type": "double",
+      "comment": "Stored amount needed before it releases.\n存到多少才放\nRange: 0.0 ~ 10000.0",
+      "default": 15.0,
+      "max": 10000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.mru_gun.accumulate_ratio": {
+      "type": "double",
+      "comment": "Most banked damage added to one shot, as a fraction of that shot.\n一发最多补这一发的几倍\nRange: 0.0 ~ 5.0",
+      "default": 1.0,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.mru_gun.accumulate_stage": {
+      "type": "int",
+      "comment": "Stage from which ray damage swallowed by hurt immunity is banked and added to the next shot (like the Accumulator module).\n几阶起射线被受击无敌吞掉的伤害记账、补进下一发（同累加器模块）\nRange: 0 ~ 5",
+      "default": 2,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.mru_gun.armor_pen": {
+      "type": "list",
+      "comment": "Armor penetration by stage.\n按阶的护甲穿透",
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        0.2,
+        0.2
+      ]
+    },
+    "general.gear_growth.mru_gun.mru_discount": {
+      "type": "list",
+      "comment": "MRU per shot discount by stage.\n按阶的每发 MRU 折扣",
+      "default": [
+        0.0,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ]
+    },
+    "general.gear_growth.mru_gun.overload.max_targets": {
+      "type": "int",
+      "comment": "Most creatures hit by the burst.\n爆发最多打几个\nRange: 1 ~ 64",
+      "default": 8,
+      "max": 64,
+      "min": 1
+    },
+    "general.gear_growth.mru_gun.overload.radius": {
+      "type": "double",
+      "comment": "Burst radius in blocks.\n爆发半径（格）\nRange: 0.5 ~ 16.0",
+      "default": 3.0,
+      "max": 16.0,
+      "min": 0.5
+    },
+    "general.gear_growth.mru_gun.overload.ratio": {
+      "type": "double",
+      "comment": "Burst damage to each target, as a fraction of that shot's damage.\n爆发对每个目标的伤害是这一发的几成\nRange: 0.0 ~ 5.0",
+      "default": 0.6,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.mru_gun.overload.shots": {
+      "type": "int",
+      "comment": "Landed shots to charge (rifles, shotguns, gatlings).\n充满要打实几发（步枪、霰弹、加特林）\nRange: 1 ~ 1000",
+      "default": 12,
+      "max": 1000,
+      "min": 1
+    },
+    "general.gear_growth.mru_gun.overload.shots_single": {
+      "type": "int",
+      "comment": "Same, for pistols and snipers.\n同上，手枪、狙击\nRange: 1 ~ 1000",
+      "default": 3,
+      "max": 1000,
+      "min": 1
+    },
+    "general.gear_growth.mru_gun.overload.stage": {
+      "type": "int",
+      "comment": "Stage that unlocks Overload Ray.\n几阶解锁\nRange: 0 ~ 5",
+      "default": 4,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.mru_gun.reload_cooldown_reduction": {
+      "type": "list",
+      "comment": "Reload cooldown reduction by stage (capped by caps.cooldown_reduction).\n按阶的装填冷却缩减（受 caps.cooldown_reduction 封顶）",
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        0.2,
+        0.2
+      ]
+    },
+    "general.gear_growth.offense_scale": {
+      "type": "double",
+      "comment": "Scale on this mod's whole damage bonus pool (before the caps).\n本模组增伤池整体乘的倍数（在封顶之前乘）\nRange: 0.0 ~ 5.0",
+      "default": 1.0,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.scars.armor_per_level": {
+      "type": "double",
+      "comment": "Damage reduction per scar level of a full armor set (lowest piece counts).\n全套盔甲每级战痕减伤（按四件里最低的算）\nRange: 0.0 ~ 1.0",
+      "default": 0.01,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.scars.max_level": {
+      "type": "int",
+      "comment": "Highest scar level (0 = no scars).\n战痕最高几级（0 = 不攒战痕）\nRange: 0 ~ 100",
+      "default": 10,
+      "max": 100,
+      "min": 0
+    },
+    "general.gear_growth.scars.points_per_level": {
+      "type": "int",
+      "comment": "Points per scar level.\n每级战痕要多少点\nRange: 1 ~ 1000000",
+      "default": 2000,
+      "max": 1000000,
+      "min": 1
+    },
+    "general.gear_growth.scars.weapon_per_level": {
+      "type": "double",
+      "comment": "Weapon damage bonus per scar level (bonus pool).\n武器每级战痕增伤（进增伤池）\nRange: 0.0 ~ 1.0",
+      "default": 0.01,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.verdict_blade.armor_pen": {
+      "type": "list",
+      "comment": "Armor penetration by stage.\n按阶的护甲穿透",
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        0.15,
+        0.15,
+        0.25
+      ]
+    },
+    "general.gear_growth.verdict_blade.attack_per_stage": {
+      "type": "double",
+      "comment": "Attack damage added per stage, as a fraction of the base attack damage shown on the item (at least 1 per stage, rounded to 0.5).\n每阶加的攻击伤害，按物品原本显示的攻击伤害算比例（每阶至少 1 点，取到 0.5）\nRange: 0.0 ~ 1.0",
+      "default": 0.08,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.verdict_blade.cap_per_stage": {
+      "type": "double",
+      "comment": "Verdict: added cap per stage. Replaces general.verdict_blade.verdict.cap_per_stage.\n裁断：每阶封顶再加多少。接管 general.verdict_blade.verdict.cap_per_stage\nRange: 0.0 ~ 100000.0",
+      "default": 20.0,
+      "max": 100000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.verdict_blade.execute_bonus": {
+      "type": "double",
+      "comment": "Execute bonus (bonus pool).\n斩杀加成（进增伤池）\nRange: 0.0 ~ 5.0",
+      "default": 0.2,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.verdict_blade.execute_stage": {
+      "type": "int",
+      "comment": "Stage that unlocks Execute.\n几阶解锁斩杀\nRange: 0 ~ 5",
+      "default": 4,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.verdict_blade.execute_threshold": {
+      "type": "double",
+      "comment": "Execute: targets below this fraction of max health take the execute bonus (not bosses, not players).\n斩杀：生命低于最大生命这个比例的目标吃斩杀加成（首领、玩家不算）\nRange: 0.0 ~ 1.0",
+      "default": 0.3,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.verdict_blade.final_verdict.boss_pool": {
+      "type": "double",
+      "comment": "Bosses: the detonating hit gets this much extra in the bonus pool (still capped by caps.pool_boss).\n首领：引爆的那一下增伤池再加这么多（照样受 caps.pool_boss 封顶）\nRange: 0.0 ~ 5.0",
+      "default": 0.4,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.verdict_blade.final_verdict.cap": {
+      "type": "double",
+      "comment": "Cap on that detonation.\n这一下的封顶\nRange: 0.0 ~ 100000.0",
+      "default": 120.0,
+      "max": 100000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.verdict_blade.final_verdict.mark_ticks": {
+      "type": "int",
+      "comment": "Ticks the mark lasts.\n罪印挂几刻\nRange: 1 ~ 6000",
+      "default": 100,
+      "max": 6000,
+      "min": 1
+    },
+    "general.gear_growth.verdict_blade.final_verdict.percent": {
+      "type": "double",
+      "comment": "Ordinary targets: detonation deals this percent of max health (armor-piercing).\n普通目标：引爆补最大生命的百分之几（无视护甲）\nRange: 0.0 ~ 100.0",
+      "default": 6.0,
+      "max": 100.0,
+      "min": 0.0
+    },
+    "general.gear_growth.verdict_blade.final_verdict.stage": {
+      "type": "int",
+      "comment": "Stage that unlocks Final Verdict.\n几阶解锁终审\nRange: 0 ~ 5",
+      "default": 5,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.verdict_blade.judgment_cooldown_reduction": {
+      "type": "list",
+      "comment": "Extra Judgment cooldown reduction by stage (capped by caps.cooldown_reduction).\n按阶的断罪冷却再打折（受 caps.cooldown_reduction 封顶）",
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        0.2,
+        0.2,
+        0.2
+      ]
+    },
+    "general.gear_growth.verdict_blade.lifesteal": {
+      "type": "list",
+      "comment": "Lifesteal by stage (entry i = stage i).\n按阶的吸血（第 i 项 = i 阶）",
+      "default": [
+        0.0,
+        0.02,
+        0.02,
+        0.02,
+        0.04,
+        0.04
+      ]
+    },
+    "general.gear_growth.verdict_blade.percent_per_stage": {
+      "type": "double",
+      "comment": "Verdict: added percent of max health per stage. Replaces general.verdict_blade.verdict.percent_per_stage.\n裁断：每阶再加最大生命的百分之几。接管 general.verdict_blade.verdict.percent_per_stage\nRange: 0.0 ~ 100.0",
+      "default": 1.0,
+      "max": 100.0,
+      "min": 0.0
+    },
+    "general.gear_growth.void_armor.afterimage.cap": {
+      "type": "double",
+      "comment": "Cap on that damage.\n这一下的封顶\nRange: 0.0 ~ 10000.0",
+      "default": 40.0,
+      "max": 10000.0,
+      "min": 0.0
+    },
+    "general.gear_growth.void_armor.afterimage.cooldown": {
+      "type": "int",
+      "comment": "Ticks before it can trigger again.\n多少刻才能再触发\nRange: 0 ~ 6000",
+      "default": 100,
+      "max": 6000,
+      "min": 0
+    },
+    "general.gear_growth.void_armor.afterimage.delay": {
+      "type": "int",
+      "comment": "Ticks before it bursts.\n多少刻后炸开\nRange: 1 ~ 200",
+      "default": 20,
+      "max": 200,
+      "min": 1
+    },
+    "general.gear_growth.void_armor.afterimage.max_targets": {
+      "type": "int",
+      "comment": "Most creatures hit.\n最多打几个\nRange: 1 ~ 64",
+      "default": 8,
+      "max": 64,
+      "min": 1
+    },
+    "general.gear_growth.void_armor.afterimage.radius": {
+      "type": "double",
+      "comment": "Burst radius in blocks.\n半径（格）\nRange: 0.5 ~ 16.0",
+      "default": 3.0,
+      "max": 16.0,
+      "min": 0.5
+    },
+    "general.gear_growth.void_armor.afterimage.ratio": {
+      "type": "double",
+      "comment": "Burst damage as a fraction of the dodged hit.\n炸开的伤害是被躲开那一下的几成\nRange: 0.0 ~ 5.0",
+      "default": 0.6,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.void_armor.afterimage.slow_ticks": {
+      "type": "int",
+      "comment": "Ticks of Slowness II on creatures it hits.\n被炸到的缓慢 II 几刻\nRange: 0 ~ 1200",
+      "default": 40,
+      "max": 1200,
+      "min": 0
+    },
+    "general.gear_growth.void_armor.afterimage.stage": {
+      "type": "int",
+      "comment": "Stage that unlocks Afterimage.\n几阶解锁\nRange: 0 ~ 5",
+      "default": 4,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.void_armor.base_stats.armor_boots": {
+      "type": "list",
+      "comment": "Extra armor on the boots.\n靴子多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.void_armor.base_stats.armor_chestplate": {
+      "type": "list",
+      "comment": "Extra armor on the chestplate.\n胸甲多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.void_armor.base_stats.armor_helmet": {
+      "type": "list",
+      "comment": "Extra armor on the helmet.\n头盔多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.void_armor.base_stats.armor_leggings": {
+      "type": "list",
+      "comment": "Extra armor on the leggings.\n护腿多几点护甲",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.void_armor.base_stats.health_per_stage": {
+      "type": "double",
+      "comment": "Max health each piece adds per stage; -1 uses armor.health_per_stage.\n每阶每件加的最大生命；-1 = 沿用 armor.health_per_stage\nRange: -1.0 ~ 20.0",
+      "default": 3.0,
+      "max": 20.0,
+      "min": -1.0
+    },
+    "general.gear_growth.void_armor.base_stats.knockback": {
+      "type": "list",
+      "comment": "Extra knockback resistance per piece (1 = 100%).\n每件多几点击退抗性（1 = 100%）",
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.025
+      ]
+    },
+    "general.gear_growth.void_armor.base_stats.toughness": {
+      "type": "list",
+      "comment": "Extra armor toughness per piece.\n每件多几点盔甲韧性",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.void_armor.damage": {
+      "type": "list",
+      "comment": "Damage bonus on your own hits (bonus pool).\n亲手打的增伤（进增伤池）",
+      "default": [
+        0.0,
+        0.0,
+        0.08
+      ]
+    },
+    "general.gear_growth.void_armor.dodge": {
+      "type": "list",
+      "comment": "Chestplate dodge chance against attacks from other creatures, by chestplate stage (capped by caps.dodge / caps.dodge_player).\n胸甲闪避别的生物攻击的几率，按胸甲的阶（受 caps.dodge / caps.dodge_player 封顶）",
+      "default": [
+        0.2,
+        0.25,
+        0.27,
+        0.3,
+        0.35
+      ]
+    },
+    "general.gear_growth.void_armor.piercing_price_multiplier": {
+      "type": "double",
+      "comment": "Cost per point for it, times the usual (never paid from infinite MRU crystals).\n这种每点电费是平时的几倍（不从无尽 MRU 晶体扣）\nRange: 0.0 ~ 100.0",
+      "default": 3.0,
+      "max": 100.0,
+      "min": 0.0
+    },
+    "general.gear_growth.void_armor.piercing_share": {
+      "type": "double",
+      "comment": "Fraction of that damage the shield takes (all four pieces together).\n这种伤害护盾分走几成（四件合计）\nRange: 0.0 ~ 1.0",
+      "default": 0.4,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.void_armor.piercing_stage": {
+      "type": "int",
+      "comment": "Piece stage from which the shield also takes part of armor-piercing damage from monsters.\n这件几阶起护盾也分走怪物打来的无视护甲伤害\nRange: 0 ~ 5",
+      "default": 3,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.void_armor.pvp_shield_cost_multiplier": {
+      "type": "double",
+      "comment": "When another player attacks, cost per point times this.\n攻击者是别的玩家时每点电费乘的倍数\nRange: 0.0 ~ 100.0",
+      "default": 2.0,
+      "max": 100.0,
+      "min": 0.0
+    },
+    "general.gear_growth.void_armor.pvp_shield_max_share": {
+      "type": "double",
+      "comment": "When another player attacks, the shield takes at most this fraction of the hit (all four pieces together).\n攻击者是别的玩家时，护盾这一下最多挡几成（四件合计）\nRange: 0.0 ~ 1.0",
+      "default": 0.5,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.void_armor.shield_discount": {
+      "type": "list",
+      "comment": "Shield MRU cost discount by piece stage (on top of the stage-3 7/8 price).\n按这件的阶的护盾单价折扣（在 3 阶 7/8 价之外再打）",
+      "default": [
+        0.0,
+        0.05
+      ]
+    },
+    "general.gear_growth.weapon.damage_per_stage": {
+      "type": "double",
+      "comment": "Damage bonus per attunement stage for MRU guns (goes into the bonus pool). Replaces general.attunement.damage_per_stage. Blades grow their attack damage attribute instead (verdict_blade / ember_sword attack_per_stage).\nMRU 枪械每阶增伤（进增伤池）。接管 general.attunement.damage_per_stage。刀剑改为随阶提高属性栏攻击伤害（见 verdict_blade / ember_sword 的 attack_per_stage）\nRange: 0.0 ~ 1.0",
+      "default": 0.08,
+      "max": 1.0,
+      "min": 0.0
+    },
+    "general.gear_growth.wind_armor.attack_speed": {
+      "type": "list",
+      "comment": "Attack speed bonus of the four pieces together (each piece gives a quarter).\n四件合计的攻速加成（每件给四分之一）",
+      "default": [
+        0.0,
+        0.06
+      ]
+    },
+    "general.gear_growth.wind_armor.base_stats.armor_boots": {
+      "type": "list",
+      "comment": "Extra armor on the boots.\n靴子多几点护甲",
+      "default": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    "general.gear_growth.wind_armor.base_stats.armor_chestplate": {
+      "type": "list",
+      "comment": "Extra armor on the chestplate.\n胸甲多几点护甲",
+      "default": [
+        0.0,
+        1.0,
+        1.0,
+        2.0
+      ]
+    },
+    "general.gear_growth.wind_armor.base_stats.armor_helmet": {
+      "type": "list",
+      "comment": "Extra armor on the helmet.\n头盔多几点护甲",
+      "default": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    "general.gear_growth.wind_armor.base_stats.armor_leggings": {
+      "type": "list",
+      "comment": "Extra armor on the leggings.\n护腿多几点护甲",
+      "default": [
+        0.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "general.gear_growth.wind_armor.base_stats.health_per_stage": {
+      "type": "double",
+      "comment": "Max health each piece adds per stage; -1 uses armor.health_per_stage.\n每阶每件加的最大生命；-1 = 沿用 armor.health_per_stage\nRange: -1.0 ~ 20.0",
+      "default": -1.0,
+      "max": 20.0,
+      "min": -1.0
+    },
+    "general.gear_growth.wind_armor.base_stats.knockback": {
+      "type": "list",
+      "comment": "Extra knockback resistance per piece (1 = 100%).\n每件多几点击退抗性（1 = 100%）",
+      "default": [
+        0.0
+      ]
+    },
+    "general.gear_growth.wind_armor.base_stats.toughness": {
+      "type": "list",
+      "comment": "Extra armor toughness per piece.\n每件多几点盔甲韧性",
+      "default": [
+        0.0,
+        1.0,
+        2.0,
+        2.5
+      ]
+    },
+    "general.gear_growth.wind_armor.damage": {
+      "type": "list",
+      "comment": "Damage bonus on your own hits (bonus pool).\n亲手打的增伤（进增伤池）",
+      "default": [
+        0.0,
+        0.0,
+        0.1
+      ]
+    },
+    "general.gear_growth.wind_armor.storm_step.bonus": {
+      "type": "double",
+      "comment": "That hit's bonus (bonus pool).\n那一下的增伤（进增伤池）\nRange: 0.0 ~ 5.0",
+      "default": 0.3,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.wind_armor.storm_step.knockback": {
+      "type": "double",
+      "comment": "Horizontal knockback strength.\n水平击退力度\nRange: 0.0 ~ 5.0",
+      "default": 0.8,
+      "max": 5.0,
+      "min": 0.0
+    },
+    "general.gear_growth.wind_armor.storm_step.max_targets": {
+      "type": "int",
+      "comment": "Most creatures pushed.\n最多推几个\nRange: 1 ~ 64",
+      "default": 8,
+      "max": 64,
+      "min": 1
+    },
+    "general.gear_growth.wind_armor.storm_step.radius": {
+      "type": "double",
+      "comment": "Ring radius in blocks.\n风环半径（格）\nRange: 0.5 ~ 16.0",
+      "default": 3.0,
+      "max": 16.0,
+      "min": 0.5
+    },
+    "general.gear_growth.wind_armor.storm_step.slow_ticks": {
+      "type": "int",
+      "comment": "Ticks of Slowness I on enemies in the ring.\n风环里的敌人缓慢 I 几刻\nRange: 0 ~ 1200",
+      "default": 20,
+      "max": 1200,
+      "min": 0
+    },
+    "general.gear_growth.wind_armor.storm_step.stage": {
+      "type": "int",
+      "comment": "Stage that unlocks Storm Step.\n几阶解锁\nRange: 0 ~ 5",
+      "default": 3,
+      "max": 5,
+      "min": 0
+    },
+    "general.gear_growth.wind_armor.storm_step.window": {
+      "type": "int",
+      "comment": "Ticks after the jump in which your next melee hit gets the bonus.\n空中跳以后多少刻内的下一下近战有加成\nRange: 0 ~ 1200",
+      "default": 40,
+      "max": 1200,
+      "min": 0
+    },
     "general.give_research_book_on_first_join": {
       "type": "boolean",
       "comment": "Give every player a Research Book (a step-by-step tutorial) the first time they join.\n玩家第一次进服时送一本研究手册（流程教程），每人只送一次",
@@ -2403,7 +3777,7 @@
     },
     "general.inquisitorium_armor.boss_resistance": {
       "type": "double",
-      "comment": "Full set: damage from an attacker in #forge:bosses is reduced by this fraction (0 = off).\n全套首领减伤：攻击者在 #forge:bosses 里时减掉的比例（0 = 不减）\nRange: 0.0 ~ 1.0",
+      "comment": "No longer read: superseded by general.gear_growth.inquisitorium_armor.boss_resistance (kept so old config files still load).\n已由 general.gear_growth.inquisitorium_armor.boss_resistance 接管，不再读（留着是为了老配置文件照常加载）\nFull set: damage from an attacker in #forge:bosses is reduced by this fraction (0 = off).\n全套首领减伤：攻击者在 #forge:bosses 里时减掉的比例（0 = 不减）\nRange: 0.0 ~ 1.0",
       "default": 0.15,
       "max": 1.0,
       "min": 0.0
@@ -2480,7 +3854,7 @@
     },
     "general.inquisitorium_armor.edict_reduction": {
       "type": "double",
-      "comment": "Full set Edict: harmful effects wear off this much sooner (0.4 = they last about 60% as long; 0 = off).\nEffects with infinite duration and effects in the essentialcraft5:unfilterable tag are left alone; to keep Edict off an effect (for example another mod's cooldown made as a harmful effect), add it to that tag (the Matrix Filter module will then let it through too).\n全套律令：有害效果的时长缩短的比例（0.4 = 约剩六成；0 = 不缩）\n无限时长的、essentialcraft5:unfilterable 标签里的效果不缩；不想让律令缩某个效果（比如别的模组做成有害效果的冷却），把它加进这个标签（矩阵过滤模块同样不再拦它）\nRange: 0.0 ~ 0.9",
+      "comment": "No longer read: superseded by general.gear_growth.inquisitorium_armor.edict_reduction (kept so old config files still load).\n已由 general.gear_growth.inquisitorium_armor.edict_reduction 接管，不再读（留着是为了老配置文件照常加载）\nFull set Edict: harmful effects wear off this much sooner (0.4 = they last about 60% as long; 0 = off).\nEffects with infinite duration and effects in the essentialcraft5:unfilterable tag are left alone; to keep Edict off an effect (for example another mod's cooldown made as a harmful effect), add it to that tag (the Matrix Filter module will then let it through too).\n全套律令：有害效果的时长缩短的比例（0.4 = 约剩六成；0 = 不缩）\n无限时长的、essentialcraft5:unfilterable 标签里的效果不缩；不想让律令缩某个效果（比如别的模组做成有害效果的冷却），把它加进这个标签（矩阵过滤模块同样不再拦它）\nRange: 0.0 ~ 0.9",
       "default": 0.4,
       "max": 0.9,
       "min": 0.0
@@ -2499,14 +3873,14 @@
     },
     "general.inquisitorium_armor.magic_resistance": {
       "type": "double",
-      "comment": "Full set: magic damage from an attacker is reduced by this fraction (with or without bypasses_armor; damage with no attacker, such as corruption, is not reduced; 0 = off).\n全套抗魔：有攻击者的魔法伤害减掉的比例（带不带 bypasses_armor 都算；腐化这类没有攻击者的不减；0 = 不减）\nRange: 0.0 ~ 1.0",
+      "comment": "No longer read: superseded by general.gear_growth.inquisitorium_armor.magic_resistance (kept so old config files still load).\n已由 general.gear_growth.inquisitorium_armor.magic_resistance 接管，不再读（留着是为了老配置文件照常加载）\nFull set: magic damage from an attacker is reduced by this fraction (with or without bypasses_armor; damage with no attacker, such as corruption, is not reduced; 0 = off).\n全套抗魔：有攻击者的魔法伤害减掉的比例（带不带 bypasses_armor 都算；腐化这类没有攻击者的不减；0 = 不减）\nRange: 0.0 ~ 1.0",
       "default": 0.35,
       "max": 1.0,
       "min": 0.0
     },
     "general.inquisitorium_armor.magic_resistance_stage_1": {
       "type": "double",
-      "comment": "Attunement stage 1 (all four pieces): magic resistance becomes this fraction.\n同调 1 阶（四件都到）：抗魔换成这个比例\nRange: 0.0 ~ 1.0",
+      "comment": "No longer read: superseded by general.gear_growth.inquisitorium_armor.magic_resistance (kept so old config files still load).\n已由 general.gear_growth.inquisitorium_armor.magic_resistance 接管，不再读（留着是为了老配置文件照常加载）\nAttunement stage 1 (all four pieces): magic resistance becomes this fraction.\n同调 1 阶（四件都到）：抗魔换成这个比例\nRange: 0.0 ~ 1.0",
       "default": 0.45,
       "max": 1.0,
       "min": 0.0
@@ -5270,7 +6644,7 @@
     },
     "general.verdict_blade.verdict.cap_per_stage": {
       "type": "double",
-      "comment": "Added cap per attunement stage.\n每阶封顶再加多少\nRange: 0.0 ~ 100000.0",
+      "comment": "No longer read: replaced by general.gear_growth.verdict_blade.cap_per_stage.\n已由 general.gear_growth.verdict_blade.cap_per_stage 接管，不再读\nRange: 0.0 ~ 100000.0",
       "default": 10.0,
       "max": 100000.0,
       "min": 0.0
@@ -5291,7 +6665,7 @@
     },
     "general.verdict_blade.verdict.percent_per_stage": {
       "type": "double",
-      "comment": "Added percent per attunement stage.\n每阶再加百分之几\nRange: 0.0 ~ 100.0",
+      "comment": "No longer read: replaced by general.gear_growth.verdict_blade.percent_per_stage.\n已由 general.gear_growth.verdict_blade.percent_per_stage 接管，不再读\nRange: 0.0 ~ 100.0",
       "default": 0.5,
       "max": 100.0,
       "min": 0.0

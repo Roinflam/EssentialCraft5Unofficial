@@ -9,7 +9,9 @@ import com.flameforge.essentialcraft5.item.armor.ArmorBonus;
 import com.flameforge.essentialcraft5.item.armor.ConfiguredArmorStats;
 import com.flameforge.essentialcraft5.item.armor.IMRUShieldArmor;
 import com.flameforge.essentialcraft5.item.armor.MRUShield;
+import com.flameforge.essentialcraft5.item.attunement.ArmorGrowth;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
+import com.flameforge.essentialcraft5.item.attunement.AttunementStageLines;
 import com.flameforge.essentialcraft5.mru.MRUItemStorage;
 import com.flameforge.essentialcraft5.registry.ECComputer;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
@@ -80,9 +82,9 @@ import java.util.function.Consumer;
  *   <li><b>余流</b>（四件都到 1 阶）、脱下夹回生命：见 {@link MHSArmorEvents}。</li>
  *   <li>PvP：份额最多 45%，本来就不到一半，不另限份额、不加价；新覆盖面（放电）对玩家攻击者不生效（{@link MRUShield} 统一守）。</li>
  * </ul>
- * 同调家族 {@code mhs_armor}（最高 2 阶，升阶配方 {@code data/essentialcraft5/recipes/attunement/mhs_*.json}）；每阶 +1 生命由同调框架给（{@code AttunementBonuses}）。
+ * 同调家族 {@code mhs_armor}（最高 2 阶，升阶配方 {@code data/essentialcraft5/recipes/attunement/mhs_*.json}）；每阶的生命、护甲、韧性由同调框架并进本体那几条修饰符（{@code AttunementBonuses}、{@code ArmorBaseStats}）。
  */
-public class MHSArmorItem extends ArmorItem implements IMRUResistanceItem, IMRUShieldArmor, CreativeVariants {
+public class MHSArmorItem extends ArmorItem implements IMRUResistanceItem, IMRUShieldArmor, CreativeVariants, AttunementStageLines {
 
     /** 原作 armorEC3Magic_0（头盔、胸甲、靴子）/ _1（护腿） */
     private static final ResourceLocation TEXTURE_OUTER = EssentialCraft5.id("textures/special/armor/armorec3magic_0.png");
@@ -166,13 +168,40 @@ public class MHSArmorItem extends ArmorItem implements IMRUResistanceItem, IMRUS
         int stage = Attunement.stage(stack);
         ECGear.MHSConfig.Values values = ECGear.MHSConfig.values();
         int share = values.share(getType(), stage);
+        // 单价按阶打折：general.gear_growth.mhs_armor.shield_discount（默认 1 阶起 −10%）
+        double price = 1D - ArmorGrowth.mhsShieldDiscount(stage);
         if (!source.is(DamageTypeTags.BYPASSES_ARMOR) && shields(stack, source)) {
-            return new Coverage(share, 1D, false);
+            return new Coverage(share, price, false);
         }
         if (stage >= DISCHARGE_STAGE && source.is(ECDamageTypes.MRU_DISCHARGE)) {
-            return new Coverage(share, values.dischargePriceMultiplier(), true);
+            return new Coverage(share, price * values.dischargePriceMultiplier(), true);
         }
         return null;
+    }
+
+    /** 四件这一阶合计挡几成（份额 / 20） */
+    public static double totalShare(int stage) {
+        ECGear.MHSConfig.Values values = ECGear.MHSConfig.values();
+        int sum = 0;
+        for (Type type : new Type[]{Type.HELMET, Type.CHESTPLATE, Type.LEGGINGS, Type.BOOTS}) {
+            sum += values.share(type, stage);
+        }
+        return sum / (double) MRUShield.TOTAL_SHARES;
+    }
+
+    /** 同调提示框第 stage 阶那一行：份额、容量、单价折扣、余流按现在的配置填 */
+    @Override
+    public @Nullable Component attunementStageLine(ItemStack stack, int stage) {
+        ECGear.MHSConfig.Values values = ECGear.MHSConfig.values();
+        String key = "tooltip.essentialcraft5.attunement.mhs_armor.stage_" + stage;
+        String share = AttunementStageLines.percent(totalShare(stage));
+        String mru = String.valueOf(ECGear.MHSConfig.maxMru(stage));
+        return switch (stage) {
+            case AFTERFLOW_STAGE -> Component.translatable(key, share, mru, AttunementStageLines.percent(ArmorGrowth.mhsShieldDiscount(stage)),
+                    AttunementStageLines.seconds(values.afterflowTicks()), AttunementStageLines.seconds(values.afterflowCooldown()));
+            case DISCHARGE_STAGE -> Component.translatable(key, share, mru);
+            default -> null;
+        };
     }
 
     // ------------------------------------------------------------------
@@ -372,5 +401,11 @@ public class MHSArmorItem extends ArmorItem implements IMRUResistanceItem, IMRUS
         public float getKnockbackResistance() {
             return 0F;
         }
+    }
+
+    /** 名字随同调阶变色、满阶渐变、带战痕后缀（{@code item/attunement/AttunementLook}） */
+    @Override
+    public net.minecraft.network.chat.Component getName(ItemStack stack) {
+        return com.flameforge.essentialcraft5.item.attunement.AttunementLook.name(stack, super.getName(stack));
     }
 }

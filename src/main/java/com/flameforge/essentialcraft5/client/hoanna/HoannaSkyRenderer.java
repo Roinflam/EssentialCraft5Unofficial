@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *       顶点 alpha 恒为 1，淡入淡出全走 {@code setShaderColor}（{@code position_tex_color} 的 0.1 丢弃阈值）。</li>
  *   <li><b>星星</b>、<b>MRU 光幕</b>（{@code sky_extras}）：同一姿态，随夜空慢慢转，本身不做动画。</li>
  *   <li><b>远空电弧</b>（{@code sky_extras}）：由 {@link HoannaEventVisuals} 按 {@link HoannaVisuals.ArcLimiter} 排期；{@code position_color}、加色、
- *       <b>不写深度</b>（天空阶段写深度会挡住远处地形和远景模组的远景；所以不能用 ArcRenderer / {@code RenderType.lightning()}）。
+ *       <b>不写深度</b>（天空阶段写深度会挡住远处地形和远景模组的远景；所以不能用 {@code RenderType.lightning()}）。
  *       形状用 {@link ArcEffect#planar} 在（方位角, 高度角）平面上生成、贴到半径 90 的天球上，出现时烘成一个 VBO。</li>
  *   <li>收尾：{@code setShaderColor(1,1,1,1)}、{@code depthMask(true)}、{@code disableBlend}、{@code defaultBlendFunc}；剔除只在地平线带、光幕、电弧前后关开。</li>
  * </ol>

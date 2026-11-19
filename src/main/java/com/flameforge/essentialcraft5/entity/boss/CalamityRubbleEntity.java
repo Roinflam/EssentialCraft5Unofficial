@@ -1,5 +1,6 @@
 package com.flameforge.essentialcraft5.entity.boss;
 
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECCalamityHeart;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -28,6 +29,8 @@ public class CalamityRubbleEntity extends Entity {
     public static final double FALL_HEIGHT = 14D;
     /** 砸多大一圈（水平） */
     public static final double RADIUS = 1.5D;
+    /** 落地画面里尘土的颜色（石灰） */
+    private static final int RUBBLE_DUST = 0x8C8478;
 
     @Nullable
     private CalamityHeartEntity heart;
@@ -53,6 +56,12 @@ public class CalamityRubbleEntity extends Entity {
         return groundY;
     }
 
+    /** 加进世界后调一次：落点的预警圈发给客户端（{@link BossWarnings}），落多久就预警多久 */
+    public void announce() {
+        int ticks = (int) Math.ceil((getY() - groundY) / Math.max(1.0E-3D, speed));
+        BossWarnings.circle(this, null, new Vec3(getX(), groundY, getZ()), RADIUS, ticks, BossWarnings.DANGER);
+    }
+
     @Override
     protected void defineSynchedData() {
     }
@@ -65,11 +74,9 @@ public class CalamityRubbleEntity extends Entity {
         }
         CalamityHeartEntity owner = heart;
         if (!armed || owner == null || owner.isRemoved() || !owner.isAlive() || owner.dissipating()) {
+            BossWarnings.cancel(this);
             discard();
             return;
-        }
-        if (tickCount % 2 == 0) {
-            server.sendParticles(ParticleTypes.LARGE_SMOKE, getX(), groundY + 0.1D, getZ(), 4, RADIUS * 0.5D, 0.02D, RADIUS * 0.5D, 0D);
         }
         double next = getY() - speed;
         if (next > groundY) {
@@ -92,6 +99,9 @@ public class CalamityRubbleEntity extends Entity {
         }
         server.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.STONE.defaultBlockState()), getX(), groundY + 0.2D, getZ(),
                 20, 0.5D, 0.2D, 0.5D, 0.1D);
+        // 砸地的冲击、火星、尘土由客户端画（FX_RUBBLE，地震的熔橙 + 石灰色）
+        BossWarnings.resolve(this, S2CBossWarningPacket.FX_RUBBLE, new Vec3(getX(), groundY, getZ()), RADIUS, 0D, Vec3.ZERO, 0, BossWarnings.QUAKE,
+                RUBBLE_DUST);
         server.playSound(null, getX(), groundY, getZ(), ECCalamityHeart.SOUND_RUBBLE.get(), SoundSource.HOSTILE, 1.5F, 0.7F);
         armed = false;
         discard();

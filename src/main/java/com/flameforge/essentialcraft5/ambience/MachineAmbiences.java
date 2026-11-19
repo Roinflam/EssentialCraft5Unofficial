@@ -169,14 +169,14 @@ public final class MachineAmbiences {
     /** 带颜色的尘粒，往上慢慢飘。scale 是粒子大小，rise 是每刻上升速度，spread 是水平散开的范围（格） */
     private static Fx dust(float r, float g, float b, float scale, double rise, double spread) {
         DustParticleOptions options = new DustParticleOptions(new Vector3f(r, g, b), scale);
-        return (level, x, y, z, random) -> level.addParticle(options,
+        return (level, x, y, z, random) -> AmbienceParticles.add(level, options,
                 x + (random.nextDouble() - 0.5D) * spread, y + (random.nextDouble() - 0.5D) * 0.3D, z + (random.nextDouble() - 0.5D) * spread,
                 0.0D, rise, 0.0D);
     }
 
     /** 原版粒子，在 spread 范围内随机出现，竖直速度 rise */
     private static Fx plain(ParticleOptions type, double spread, double rise) {
-        return (level, x, y, z, random) -> level.addParticle(type,
+        return (level, x, y, z, random) -> AmbienceParticles.add(level, type,
                 x + (random.nextDouble() - 0.5D) * spread, y + (random.nextDouble() - 0.5D) * 0.3D, z + (random.nextDouble() - 0.5D) * spread,
                 0.0D, rise, 0.0D);
     }
@@ -194,7 +194,7 @@ public final class MachineAmbiences {
         return (level, x, y, z, random) -> {
             double angle = random.nextDouble() * Math.PI * 2.0D;
             double distance = radius * (0.6D + random.nextDouble() * 0.4D);
-            level.addParticle(type, x, y, z,
+            AmbienceParticles.add(level, type, x, y, z,
                     Math.cos(angle) * distance, random.nextDouble() * 0.8D, Math.sin(angle) * distance);
         };
     }

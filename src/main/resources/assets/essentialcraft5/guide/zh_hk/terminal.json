@@ -532,6 +532,15 @@
           "text": "冷卻還沒結束，或者身上的 MRU 不夠付一次，回溯就不會發動，也什麼都不扣。退出遊戲再進來、死亡之後，冷卻都不會清零。"
         },
         {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4>0"
+          ],
+          "text": "宅男套裝四件都同調到 4 階以後，這個冷卻會縮短 {cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4|pct}，見[[attunement/computer_armor]]。"
+        },
+        {
           "type": "h",
           "text": "什麼時候救"
         },

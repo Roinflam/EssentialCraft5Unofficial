@@ -756,7 +756,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "<em>Goal</em> (optional): craft a Magical Building Wand, mark out an area, and fill it, clear it or swap every block in it for another in one go. It runs on MRU, finishes an area in a few seconds and puts whatever it breaks straight into your inventory."
+          "text": "<em>Goal</em> (optional): craft a Magical Building Wand and fill an area, clear it or swap every block in it for another in one go. It is the second tier of the building wand: compared with the [[gear/paving_wand|Paving Wand]] it adds four modes that remove or replace blocks, two more shapes, Wall and Surface, and handles far more blocks per job. It runs on MRU and puts whatever it breaks straight into your inventory."
         },
         {
           "type": "h",
@@ -764,7 +764,7 @@
         },
         {
           "type": "p",
-          "text": "{item:essentialcraft5:world_interactor} ×2, {item:essentialcraft5:void_plating} ×2, {item:essentialcraft5:void_core} ×1, {item:essentialcraft5:whitelist_filter} ×2, {item:essentialcraft5:magical_digger} ×1 and {item:essentialcraft5:magic_plate} ×1, where pale, mithriline or demonic plates also work for the last one. It comes out in Fill mode."
+          "text": "{item:essentialcraft5:world_interactor} ×2, {item:essentialcraft5:void_plating} ×2, {item:essentialcraft5:void_core} ×1, {item:essentialcraft5:whitelist_filter} ×2, {item:essentialcraft5:magical_digger} ×1 and {item:essentialcraft5:magic_plate} ×1, where pale, mithriline or demonic plates also work for the last one. It comes out in Fill mode with the Two Points shape."
         },
         {
           "type": "recipe",
@@ -775,6 +775,15 @@
           "text": "The World Interacting Device is made on an ordinary crafting table ([[crafting/magician_crafts]]). Void Plates are covered in [[hoanna/void_plating]] and cores in [[hoanna/relics]], filters in [[logistics/filters]] and the digger in [[gear/magical_digger]]."
         },
         {
+          "type": "p",
+          "text": "If you already have a Paving Wand, put it in place of either whitelist filter in the recipe to upgrade it straight into a Magical Building Wand. Stored MRU, the selected block and fitted modules are kept."
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:builder/magical_builder_from_paver",
+          "caption": "Either the upper or the lower filter can be replaced"
+        },
+        {
           "type": "h",
           "text": "How to do it"
         },
@@ -783,7 +792,7 @@
           "items": [
             "Holding the wand, right-click one block to set the first corner and another to set the second. The box between them is the selection, outlined in magenta while the wand is in your main hand.",
             "Sneak + right-click a block to <hl>select</hl> it. Fill and Replace All place that block, and Remove Selected and Remove All But Selected compare against it.",
-            "For the modes that place blocks, Fill and Replace All, carry the selected block's item in your inventory, then right-click the air to start. The wand works through the area block by block, so keep holding it and stay close while it works.",
+            "For the modes that place blocks, Fill and Replace All, carry the selected block's item, then right-click the air to start. The wand works through the area block by block, so keep holding it and stay close while it works.",
             "Sneak + right-click the air to stop. If nothing is running, this clears both corners instead, while the selected block stays. Once both corners are set, this is also how you clear them to start a new selection."
           ]
         },
@@ -791,7 +800,109 @@
           "type": "tip",
           "style": "good",
           "title": "Done when",
-          "text": "With the wand in your main hand you see a magenta selection box; right-clicking the air starts the work, and chat reports how many blocks were changed."
+          "text": "With the wand in your main hand you see a magenta selection box; right-clicking the air starts the work, and when it finishes you are told how many blocks were changed."
+        },
+        {
+          "type": "p",
+          "text": "The Plane and Line shapes, the wand key, the Blueprint Table, where materials come from and how undo works are all the same as for the Paving Wand; see [[gear/paving_wand]]."
+        },
+        {
+          "type": "h",
+          "text": "The three tiers"
+        },
+        {
+          "type": "p",
+          "text": "The building wand comes in three tiers: tier 1 is the [[gear/paving_wand|Paving Wand]], tier 2 is this one, and tier 3 is the [[void_machines/ascended_builder|Ascended Magical Building Wand]], made from this one on a Magician Table."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stat",
+            "Tier 1",
+            "Tier 2",
+            "Tier 3"
+          ],
+          "widths": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "rows": [
+            [
+              "Modes",
+              "Fill only",
+              "<t>5</t>",
+              "<t>5</t>"
+            ],
+            [
+              "Shapes",
+              "Two Points, Plane, Line",
+              "adds Wall and Surface",
+              "as tier 2"
+            ],
+            [
+              "Largest job",
+              "{cfg:general.builder.paver.max_volume} blocks",
+              "{cfg:general.builder.max_volume} blocks",
+              "{cfg:general.builder.ascended.max_volume} blocks"
+            ],
+            [
+              "Sides",
+              "{cfg:general.builder.paver.max_side} blocks",
+              "{cfg:general.builder.max_side} blocks",
+              "{cfg:general.builder.ascended.max_side} blocks"
+            ],
+            [
+              "Corners at most",
+              "{cfg:general.builder.paver.max_point_distance} apart",
+              "{cfg:general.builder.max_point_distance} apart",
+              "{cfg:general.builder.ascended.max_point_distance} apart"
+            ],
+            [
+              "Work range",
+              "{cfg:general.builder.paver.max_reach} blocks",
+              "{cfg:general.builder.max_reach} blocks",
+              "{cfg:general.builder.ascended.max_reach} blocks"
+            ],
+            [
+              "Per tick",
+              "{cfg:general.builder.paver.cells_per_tick} blocks",
+              "{cfg:general.builder.cells_per_tick} blocks",
+              "{cfg:general.builder.ascended.cells_per_tick} blocks"
+            ],
+            [
+              "MRU per block",
+              "place <t>25</t>",
+              "place <t>25</t>, remove <t>250</t>, swap <t>300</t>",
+              "place {cfg:general.builder.ascended.cost_multiplier|mul:25|int}, remove {cfg:general.builder.ascended.cost_multiplier|mul:250|int}, swap {cfg:general.builder.ascended.cost_multiplier|mul:300|int}"
+            ],
+            [
+              "Own MRU",
+              "<t>5,000</t>",
+              "<t>5,000</t>",
+              "<t>20,000</t>"
+            ],
+            {
+              "if": "cfg:general.builder.undo_window_seconds>0",
+              "cells": [
+                "Undo",
+                "last <t>1</t>",
+                "last <t>1</t>",
+                "last <t>3</t>"
+              ]
+            },
+            [
+              "Module slots",
+              "<t>2</t>",
+              "<t>3</t>",
+              "<t>4</t>"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Fitted modules change these limits further; see [[void_machines/builder_module]]."
         },
         {
           "type": "h",
@@ -838,10 +949,99 @@
           ]
         },
         {
+          "type": "p",
+          "text": "The MRU in this table is the tier 2 price; for tier 3, see the previous section."
+        },
+        {
           "type": "tip",
           "style": "info",
           "title": "Switching modes",
-          "text": "Put the wand alone in a crafting grid to switch to the next mode: Fill → Remove All → Remove Selected → Remove All But Selected → Replace All → Fill. Stored MRU, both corners and the selected block are kept."
+          "text": "Put the wand alone in a crafting grid to switch to the next mode: Fill → Remove All → Remove Selected → Remove All But Selected → Replace All → Fill. You can also pick a mode directly on the Area page of the Blueprint Table. Stored MRU, both corners, the selected block and fitted modules are kept."
+        },
+        {
+          "type": "h",
+          "text": "Wall"
+        },
+        {
+          "type": "p",
+          "text": "From tier 2 on there are two more shapes, <hl>Wall</hl> and <hl>Surface</hl>. Both are picked on the Area page of the Blueprint Table, and a single right-click starts the work. In Fill mode a Wall rises from the block just outside the face you click, centred on the crosshair and spreading to your left and right. When removing or replacing it starts from the clicked block itself; see \"Range when removing or replacing\" below."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Default size is <t>5</t> wide and <t>4</t> high. Hold the wand key and scroll to change the width; add sneak to change the height. With an even width the extra block goes to your right.",
+            "Click the bottom face of a block and the wall starts from the block below it and grows downwards, so it can hang from a ceiling.",
+            "Right-click the air and the wall stands one block in front of you, rising from the layer at your feet.",
+            "Width and height are each at most the side limit, and width times height at most the largest job; if it is too big, the height is cut first."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Surface"
+        },
+        {
+          "type": "p",
+          "text": "Surface takes the face you click and follows the connected blocks of the same kind, covering the whole layer outside that face. It is handy for putting a layer over uneven ground or facing a whole wall. The area is decided by the connected blocks, so there is no size to adjust."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Blocks count as connected when they are the same kind, the face pointing the same way is exposed, and what lies outside it is air, grass, water or something else that can be replaced. A step of one block up or down still connects; two or more does not.",
+            "Measured from where you clicked, the whole patch fits inside the side limit each way and holds at most the largest job; anything beyond that is cut off, keeping the part nearest to where you clicked, and the start message says so.",
+            "After the right-click the wand first spends a few ticks <hl>measuring</hl> the connected patch, then starts; meanwhile the line below the crosshair says it is measuring. Right-clicking again during that time does not start a second job, and sneak + right-click the air cancels.",
+            "If the face you clicked is covered by another block, there is nothing to follow and you are told so."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Aiming range"
+        },
+        {
+          "type": "p",
+          "text": "Plane, Wall and Surface can be aimed at any block within work range. With the crosshair on a distant block, the area there is marked out as usual, and a right-click starts the work there. The work range of each tier is listed in the tier table above."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Two Points and Line cannot aim at long range; they still use the normal interaction distance.",
+            "The face you click in the distance must be clearly visible. If something is in the way, or it is too far to pin down, you are told the face can't be made out; try again from another angle.",
+            "The whole area must still be within work range, and its chunks must be loaded."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Range when removing or replacing"
+        },
+        {
+          "type": "p",
+          "text": "Remove All, Remove Selected, Remove All But Selected and Replace All act on blocks that are already there, so in these modes a Plane, Line or Wall starts from the clicked block itself, not the block outside it."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Plane: click a top or bottom face and the layer the clicked block sits in is worked on, centred on that block. Click a side face and the layer runs from the clicked block into the blocks behind it.",
+            "Wall: click a top or side face and it rises from the clicked block; click a bottom face and it hangs down from the clicked block. On a side face the wall spreads along the clicked face, so that wall itself is worked on.",
+            "Line: starts from the clicked block and still runs in the direction you face.",
+            "Right-clicking the air starts from the same place as in Fill mode."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "In these modes a Surface acts on the connected layer of blocks itself, so you can strip or swap a whole patch of ground or a wall's facing. Fill is unaffected and still lays its layer outside."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.builder.undo_window_seconds>0",
+          "text": "Undo"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.builder.undo_window_seconds>0",
+          "items": [
+            "Hold the wand key and right-click, or click Undo last on the Blueprint Table, to undo the last placement; the rules are in [[gear/paving_wand]]. Tier 2 can only undo the most recent one; tier 3 can undo the last 3, one after another.",
+            "Blocks broken by the removing modes cannot be put back. With Replace All only the placed blocks are undone, and the blocks that were swapped out do not come back.",
+            "If the last job was a removal, finished or not, neither the wand key with right-click nor Undo last reaches back to an earlier placement; you are told that the last job was a removal, which cannot be undone. A placement made after the removal can be undone as usual."
+          ]
         },
         {
           "type": "h",
@@ -872,7 +1072,15 @@
           "type": "tip",
           "style": "warn",
           "title": "Pitfall",
-          "text": "Blocks in someone else's claim are left alone and cost nothing, but once 256 have been refused the wand stops, so keep your selection out of other people's claims. Bedrock, barriers and blocks such as chests, furnaces, signs and machines are skipped in every mode, and water and lava are skipped when removing."
+          "text": "Blocks in someone else's claim are left alone and cost nothing, but once {cfg:general.builder.denied_limit} have been refused the wand stops. After the first refusal it asks before placing each block instead of bumping into every one, so keep your selection out of other people's claims. When the whole job is done, the message says how many blocks were left unchanged for lack of permission. Bedrock, barriers and blocks such as chests, furnaces, signs and machines are skipped in every mode, and water and lava are skipped when removing."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.builder.denied_streak_limit>0",
+            "cfg:general.builder.probe_after_denied"
+          ],
+          "text": "Some claims allow breaking but not placing, so the check passes and the actual placement is refused. The wand also stops after {cfg:general.builder.denied_streak_limit} actual placements or removals in a row are refused; any block changed in between resets the count. With Replace All, blocks in such claims are removed but cannot be replaced; the end message reports how many on a separate line."
         },
         {
           "type": "h",
@@ -882,7 +1090,7 @@
           "type": "kv",
           "rows": [
             [
-              "Largest area",
+              "Largest job",
               "{cfg:general.builder.max_volume} blocks"
             ],
             [
@@ -890,36 +1098,369 @@
               "{cfg:general.builder.max_point_distance} blocks apart"
             ],
             [
-              "To start, stay within",
-              "{cfg:general.builder.max_reach} blocks of the area"
+              "Work range",
+              "within {cfg:general.builder.max_reach} blocks"
             ],
             [
               "Speed",
               "up to {cfg:general.builder.cells_per_tick} blocks per tick"
+            ],
+            [
+              "Plane, Line and Wall sides",
+              "up to {cfg:general.builder.max_side} blocks"
+            ],
+            {
+              "if": "cfg:general.builder.material_pause_seconds>0",
+              "cells": [
+                "Wait for materials",
+                "{cfg:general.builder.material_pause_seconds} seconds"
+              ]
+            },
+            {
+              "if": "cfg:general.builder.undo_window_seconds>0",
+              "cells": [
+                "Undo window",
+                "{cfg:general.builder.undo_window_seconds} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Broken blocks go into your inventory, and what doesn't fit drops at your feet; with a Salvage Module fitted they go into carried containers first, see [[void_machines/builder_module]]. Drops follow each block's own loot table, as if mined with the right tool but no enchantments. Stone gives cobblestone, diamond ore gives one diamond, and glass, ice and other blocks that need Silk Touch give nothing.",
+            "Doors, tall flowers and extended pistons come off whole. Removing works from the top layer down, so sand and gravel don't fall.",
+            "Doors, beds, tall flowers and blocks such as chests, signs, campfires and machines can't be selected. If Replace All may break a block but not place one there, the spot is left as air and is charged as a removal.",
+            "With a block in your off hand, Fill and Replace All place that block instead of the selected one.",
+            "How placed blocks face, spots where a block can't stay, falling blocks, queueing and Creative mode work the same as for the Paving Wand; see [[gear/paving_wand]]. In Creative mode, broken blocks give nothing back either."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "<em>Further reading</em>: tier 3 in [[void_machines/ascended_builder]], modules in [[void_machines/builder_module]]; for plain mining without a selection, the [[gear/magical_digger]] is handier."
+        },
+        {
+          "type": "tip",
+          "style": "lore",
+          "text": "The original research book subtitled it with a single line of code, world.edit();. Its first page said the wand can do almost anything, then reminded you that with great power comes great responsibility."
+        }
+      ]
+    },
+    {
+      "id": "ascended_builder",
+      "title": "Ascended Magical Building Wand",
+      "icon": "essentialcraft5:magical_builder_fill",
+      "summary": "Ascend it on a Magician Table: bigger jobs, less MRU",
+      "complete": "essentialcraft5:guide/void_machines/ascended_builder",
+      "optional": true,
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): ascend a Magical Building Wand to tier 3 on a Magician Table. Afterwards one job can cover {cfg:general.builder.ascended.max_volume} blocks instead of {cfg:general.builder.max_volume}, work range and speed both go up, each block costs {cfg:general.builder.ascended.cost_multiplier|pct} of the usual MRU, and there is one more module slot."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "Put a Magical Building Wand in the centre of a Magician Table, in any mode, and around it {item:essentialcraft5:demonic_core} ×2, {item:essentialcraft5:void_mru_reactor} ×1 and {item:essentialcraft5:ackronite_ingot} ×1. The craft takes 100,000 MRU."
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:builder/magical_builder_ascend"
+        },
+        {
+          "type": "p",
+          "text": "The Magician Table is covered in [[crafting/magician_table]], demonic cores and ackronite in [[demons/ackronite]], and the MRU reactor in [[hoanna/relics]]."
+        },
+        {
+          "type": "h",
+          "text": "How to do it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put the Magical Building Wand in the centre slot of the Magician Table and lay out the other ingredients around it as the recipe shows.",
+            "Supply the Magician Table with MRU; when the progress bar fills you get the ascended wand.",
+            "The wand keeps its mode, stored MRU, both corners, selected block, shape and fitted modules, and its own MRU capacity goes from 5,000 to 20,000."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have the ascended wand in your inventory. Its name becomes Ascended Magical Building Wand, it gets a new look, and its tooltip says Tier 3."
+        },
+        {
+          "type": "h",
+          "text": "What changes"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Largest job",
+              "{cfg:general.builder.max_volume} → {cfg:general.builder.ascended.max_volume} blocks"
+            ],
+            [
+              "Plane, Line and Wall sides",
+              "{cfg:general.builder.max_side} → {cfg:general.builder.ascended.max_side} blocks"
+            ],
+            [
+              "Corners at most",
+              "{cfg:general.builder.max_point_distance} → {cfg:general.builder.ascended.max_point_distance} blocks apart"
+            ],
+            [
+              "Work range",
+              "{cfg:general.builder.max_reach} → {cfg:general.builder.ascended.max_reach} blocks"
+            ],
+            [
+              "Per tick",
+              "{cfg:general.builder.cells_per_tick} → {cfg:general.builder.ascended.cells_per_tick} blocks"
+            ],
+            [
+              "MRU per block",
+              "place {cfg:general.builder.ascended.cost_multiplier|mul:25|int}, remove {cfg:general.builder.ascended.cost_multiplier|mul:250|int}, swap {cfg:general.builder.ascended.cost_multiplier|mul:300|int}"
+            ],
+            [
+              "Own MRU",
+              "5,000 → 20,000"
+            ],
+            {
+              "if": "cfg:general.builder.undo_window_seconds>0",
+              "cells": [
+                "Undo",
+                "last 1 → last 3"
+              ]
+            },
+            [
+              "Module slots",
+              "3 → 4"
             ]
           ]
         },
         {
           "type": "list",
           "items": [
-            "Blocks face the way they would if you placed them by hand from where you stand, so stairs and the like follow the direction you face. Slabs go in as bottom halves, candles and sea pickles as one, and crops start freshly planted.",
-            "If the new block can't stay in a spot, such as a flower on stone or kelp out of water, or someone is standing there, the spot is left untouched and costs nothing. Replace All won't break the old block first either. The chat message at the end says how many spots were skipped.",
-            "It only uses items that aren't renamed and hold nothing. It stops when they run out or MRU runs short, and keeps what is already done.",
-            "Broken blocks go into your inventory, and what doesn't fit drops at your feet. Drops follow each block's own loot table, as if mined with the right tool but no enchantments. Stone gives cobblestone, diamond ore gives one diamond, and glass, ice and other blocks that need Silk Touch give nothing.",
-            "Doors, tall flowers and extended pistons come off whole. Removing works from the top layer down, so sand and gravel don't fall.",
-            "Doors, beds, tall flowers and blocks such as chests, signs, campfires and machines can't be selected. If Replace All may break a block but not place one there, the spot is left as air and costs 250.",
-            "It stops if you change what's in your hand, walk more than {cfg:general.builder.max_reach} blocks away or change dimension. One area per player at a time.",
-            "In Creative mode it costs no MRU or materials and gives nothing back."
+            {
+              "if": "cfg:general.builder.undo_window_seconds>0",
+              "text": "Undoing in turn: hold the wand key and right-click once to undo the latest placement; do it again to undo the one before that, up to 3 back. Each one must be undone within {cfg:general.builder.undo_window_seconds} seconds of being placed. If a removal was done in between, only the placements made after it can be undone."
+            },
+            "The ascended wand can still switch modes in a crafting grid, and stays tier 3 afterwards.",
+            "An ascended wand cannot be ascended again; put in the centre slot of a Magician Table, it does not start."
           ]
         },
         {
           "type": "p",
-          "text": "<em>Further reading</em>: batteries to carry for the wand in [[storage/soul_storage]]; for plain mining without a selection, the [[gear/magical_digger]] is handier."
+          "text": "<em>Further reading</em>: what to put in the extra module slot is covered in [[void_machines/builder_module]]."
+        }
+      ]
+    },
+    {
+      "id": "builder_module",
+      "title": "Building Wand Modules",
+      "icon": "essentialcraft5:builder_module_range",
+      "summary": "Range, Haste, Efficiency, Reach, Mixing, Salvage",
+      "complete": "essentialcraft5:guide/void_machines/builder_module",
+      "optional": true,
+      "items": [
+        "essentialcraft5:builder_module_range",
+        "essentialcraft5:builder_module_haste",
+        "essentialcraft5:builder_module_efficiency",
+        "essentialcraft5:builder_module_reach",
+        "essentialcraft5:builder_module_mix",
+        "essentialcraft5:builder_module_salvage"
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): craft a wand module and fit it to a Magical Building Wand or Paving Wand. Modules let the wand cover more blocks per job, work faster, use less MRU or reach farther, lay several kinds of blocks mixed together, or put what it breaks straight into carried containers."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "All six modules are made on an ordinary crafting table, with no fixed pattern."
+        },
+        {
+          "type": "recipe",
+          "items": [
+            "essentialcraft5:builder_module_range",
+            "essentialcraft5:builder_module_haste",
+            "essentialcraft5:builder_module_efficiency",
+            "essentialcraft5:builder_module_reach",
+            "essentialcraft5:builder_module_mix",
+            "essentialcraft5:builder_module_salvage"
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "{item:essentialcraft5:pale_plate}: see [[alloys/pale]]; {item:essentialcraft5:elemental_core}: see [[elements/parts]].",
+            "{item:essentialcraft5:magic_purified_redstone_alloy}: see [[alloys/purified_alloys]]; {item:essentialcraft5:air_focus}: see [[essence/fuel_and_focus]].",
+            "{item:essentialcraft5:mru_resonating_crystal}: see [[alloys/resonating_crystal]]; {item:essentialcraft5:soul_shard}: see [[storage/soul_storage]].",
+            "{item:essentialcraft5:eye_of_absorption}: see [[crafting/radiating_chamber]]; {item:essentialcraft5:world_interactor}: see [[crafting/magician_crafts]].",
+            "{item:essentialcraft5:crystal_dust}: see [[alloys/crystal_dust]]; {item:essentialcraft5:whitelist_filter}: see [[logistics/filters]]; {item:essentialcraft5:magical_chest}: see [[logistics/magical_chest]]."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Fitting and removing"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Put one wand and one module in a crafting grid with nothing else; the result is the wand with that module fitted. One module goes in at a time, and stored MRU and settings are kept.",
+            "The Paving Wand has 2 module slots, the Magical Building Wand 3 and the Ascended Magical Building Wand 4. Each kind of module fits only once, and nothing more fits once the slots are full.",
+            "Modules are removed on the Modules page of the Blueprint Table: click the × next to a module and it goes back to your inventory, or drops at your feet if your inventory is full. The same page can also switch a single module off; a switched-off module still takes up its slot.",
+            "Modules cannot be fitted or removed while a job is running, paused or queued."
+          ]
         },
         {
           "type": "tip",
-          "style": "lore",
-          "text": "The original research book subtitled it with a single line of code, world.edit();. Its first page said the wand can do almost anything, then reminded you that with great power comes great responsibility."
+          "style": "good",
+          "title": "Done when",
+          "text": "You have any one module in your inventory. Once one is fitted, the wand's tooltip gains a Modules line listing what is fitted and how many slots are used."
+        },
+        {
+          "type": "p",
+          "text": "Fitted modules stay on the wand when it is upgraded to the next tier or switched to another mode, and an upgrade never has fewer slots."
+        },
+        {
+          "type": "h",
+          "text": "Six modules"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Module",
+            "Effect",
+            "Fits"
+          ],
+          "widths": [
+            3,
+            7,
+            2
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:builder_module_range}",
+              "Blocks per job ×{cfg:general.builder.modules.range.volume_multiplier}, sides ×{cfg:general.builder.modules.range.side_multiplier}",
+              "all tiers"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_haste}",
+              "Blocks per tick ×{cfg:general.builder.modules.haste.cells_multiplier}",
+              "all tiers"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_efficiency}",
+              "MRU per block ×{cfg:general.builder.modules.efficiency.cost_multiplier}",
+              "all tiers"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_reach}",
+              "Work range +{cfg:general.builder.modules.reach.reach_bonus} blocks; Plane, Wall and Surface can be aimed as far as the work range",
+              "all tiers"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_mix}",
+              "Lays up to {cfg:general.builder.modules.mix.max_kinds} kinds of blocks mixed in set proportions",
+              "all tiers"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_salvage}",
+              "Broken blocks go into carried containers first; a discard list can be set",
+              "tier 2 up"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Range, Haste, Efficiency"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Range raises the blocks per job and the side length, rounded down; how far apart the two corners of Two Points can be does not change. Whatever is fitted, one job never goes over {cfg:general.builder.hard_max_volume} blocks.",
+            "Haste lets this wand do more per tick, but when many players are building at once they share the total per tick, so the real speed may not reach the full multiple.",
+            "Efficiency discounts the wand's own price, rounded down. For an ascended wand the ascended price is taken first, then the Efficiency multiplier.",
+            "The actual limits with modules fitted are shown in the wand's tooltip and on the Modules page of the Blueprint Table."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Reach"
+        },
+        {
+          "type": "p",
+          "text": "Reach adds {cfg:general.builder.modules.reach.reach_bonus} blocks to the work range, so the job keeps going even if you walk a little farther away. Plane, Wall and Surface can be aimed as far as the work range, so they reach farther as well."
+        },
+        {
+          "type": "h",
+          "text": "Mixing"
+        },
+        {
+          "type": "p",
+          "text": "With a Mixing Module, Fill and Replace All can lay several kinds of blocks mixed in set proportions, for patterned floors or weathered-looking walls. The proportions are kept in the wand's <hl>mix table</hl>."
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Open the Blueprint Table and go to the Blocks page; the mix table is on the right.",
+            "Click Add one, then click a block in the list on the left to add it to the table, starting at weight 1. Up to {cfg:general.builder.modules.mix.max_kinds} kinds.",
+            "Each block's weight is a whole number from 1 to 9, set with the − and + buttons beside it. The higher the weight, the more of it is laid, and its percentage is shown next to it. Click × to take a kind out."
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "While the table has blocks in it, the wand lays from the table and ignores the selected block and the block in your off hand; with an empty table it lays the selected block as usual.",
+            "Which kind goes in each spot is worked out from its position, so the pattern drawn on the blueprint is what you get. The same table gives a different pattern in a different place, and setting the table again changes the pattern too.",
+            "When one kind runs out, the other kinds in the table fill in; the job only pauses when they have all run out.",
+            "If you don't carry everything needed, the wand lists how much of each kind you carry and how much is needed before starting; click again to start anyway.",
+            "With Replace All, every kind in the table counts as the selected block, and spots that already hold one of them are left alone. The removing modes don't mix.",
+            "On undo, each spot refunds the kind that was actually laid there."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Salvage"
+        },
+        {
+          "type": "p",
+          "text": "With a Salvage Module, whatever the removing modes and Replace All break goes into the containers you carry first, then your inventory, and drops at your feet if both are full. The Salvage Module only fits tier 2 and above."
+        },
+        {
+          "type": "steps",
+          "if": "cfg:general.builder.modules.salvage.discard_max>0",
+          "items": [
+            "Open the Blueprint Table and go to the Modules page; the <hl>discard list</hl> is on the right.",
+            "The candidates list items already on the list first, then items you have recently broken, then blocks you carry. Click one to add it to the list; red-framed items are on the list, and clicking again takes them off.",
+            "Items on the list are thrown away as they are broken, going neither into containers nor your inventory. The list holds up to {cfg:general.builder.modules.salvage.discard_max} kinds."
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Containers are filled in the same order materials are taken from them: bag-like items in your inventory, off hand, armor and accessory slots, outermost layer only.",
+            "While another container screen is open, broken items skip carried containers and go straight to your inventory.",
+            {
+              "if": "cfg:general.builder.modules.salvage.discard_max>0",
+              "text": "The discard list matches by item type, ignoring enchantments and names."
+            },
+            "Materials refunded by undo skip Salvage and go straight to your inventory."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "if": "cfg:general.builder.modules.salvage.discard_max>0",
+          "title": "Pitfall",
+          "text": "Anything on the discard list is gone as soon as it is broken and cannot be recovered. Check the list before breaking anything rare."
         }
       ]
     },
@@ -1314,7 +1855,7 @@
         {
           "type": "p",
           "if": "cfg:general.attunement.enabled",
-          "text": "Fighting with it builds attunement points, up to stage 2. Its effects then last longer and cost less MRU, and a stage 2 sword can be reforged into a {item:essentialcraft5:verdict_blade} ([[attunement/ember_sword]])."
+          "text": "Fighting with it builds attunement points, up to stage 2: each stage raises its attack damage by {cfg:general.gear_growth.ember_sword.attack_per_stage|pct} of the original, stage 1 adds lifesteal, and stage 2 awakens <hl>Element Burst</hl>, a chance to blast the primary element around the target. A stage 2 sword can also be reforged into a {item:essentialcraft5:verdict_blade} ([[attunement/ember_sword]])."
         },
         {
           "type": "h",

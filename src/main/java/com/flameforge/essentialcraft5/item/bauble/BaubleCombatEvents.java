@@ -3,6 +3,7 @@ package com.flameforge.essentialcraft5.item.bauble;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.IPlayerData;
 import com.flameforge.essentialcraft5.gun.RayHitGate;
+import com.flameforge.essentialcraft5.item.attunement.GearPool;
 import com.flameforge.essentialcraft5.registry.ECBaubles;
 import com.flameforge.essentialcraft5.util.ECHurtWindow;
 import com.flameforge.essentialcraft5.util.ECShieldBlocks;
@@ -42,7 +43,7 @@ import java.util.WeakHashMap;
  *   <li>ζ 护身符：你打中目标时扣 300 UBMRU、清掉目标的无敌帧（点多快打多快）。</li>
  *   <li>η 护身符：你造成的和你受到的伤害都 ×2。</li>
  *   <li>θ 腰带：受到致命伤时扣「伤害 × 5000」UBMRU 抵掉这一下，之后冷却 {@code bauble_limits.theta_cooldown_ticks}（默认 30 秒）。</li>
- *   <li>ι 指环：你打出的伤害 10% 拆出来，改成本 tick 末的一下无视护甲的魔法伤害，打完清掉目标的无敌帧。</li>
+ *   <li>ι 指环：你打出的伤害 10% 拆出来，改成本 tick 末的一下无视护甲的魔法伤害，打完把目标的无敌窗口放回原样（不清无敌帧，见 {@link #flushIota}）。</li>
  *   <li>σ 指环：受到有来源的伤害时 10% 原样反给来源（本 tick 末，原来那一下真打到自己才反）、自己免伤。</li>
  *   <li>ψ 指环：怪物盯上你时改去打附近别的敌对生物。</li>
  *   <li>υ 指环：离末影人最近（16 格内）的是你时，它不能瞬移。</li>
@@ -205,6 +206,10 @@ public final class BaubleCombatEvents {
     }
 
     private static void splitIota(LivingHurtEvent event, Player attacker, LivingEntity target) {
+        // 裁断 / 终审 / 范围技是数定好、有封顶的补伤：拆出去的那份换了伤害源，封顶夹不到它，所以不拆
+        if (GearPool.skipsOffense(event.getSource())) {
+            return;
+        }
         float amount = event.getAmount();
         float part = amount * IOTA_FRACTION;
         if (part <= 0F || PENDING.size() >= MAX_PENDING) {

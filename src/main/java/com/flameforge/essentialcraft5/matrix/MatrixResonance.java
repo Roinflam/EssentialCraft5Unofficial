@@ -4,6 +4,7 @@ import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.IPlayerData;
 import com.flameforge.essentialcraft5.api.MatrixRanks;
 import com.flameforge.essentialcraft5.item.attunement.AttunementConfig;
+import com.flameforge.essentialcraft5.item.attunement.GearPool;
 import com.flameforge.essentialcraft5.item.bauble.BaubleEffects;
 import com.flameforge.essentialcraft5.player.PlayerDataEvents;
 import com.flameforge.essentialcraft5.registry.ECTags;
@@ -17,9 +18,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -268,28 +266,13 @@ public final class MatrixResonance {
         return level <= 0 ? 0D : MatrixResonanceConfig.shadeMagicReduction(level);
     }
 
-    /** Forge 总线（类名带模块前缀，见 tools/check_event_handlers.py） */
-    @Mod.EventBusSubscriber(modid = EssentialCraft5.MODID)
-    public static final class MatrixResonanceEvents {
-
-        private MatrixResonanceEvents() {
-        }
-
-        /** 躁动增伤、凝滞 / 吞噬减伤（NORMAL，不收已取消的） */
-        @SubscribeEvent
-        public static void matrixResonanceHurt(LivingHurtEvent event) {
-            LivingEntity victim = event.getEntity();
-            float amount = event.getAmount();
-            if (victim.level().isClientSide() || !(amount > 0F)) {
-                return;
-            }
-            DamageSource source = event.getSource();
-            double factor = 1D + chaosBonus(source, victim);
-            factor *= 1D - frozenReduction(source, victim);
-            factor *= 1D - shadeReduction(source, victim);
-            if (factor != 1D) {
-                event.setAmount((float) Math.max(0D, amount * factor));
-            }
-        }
+    /**
+     * 躁动增伤、凝滞 / 吞噬减伤进总闸的池子（{@code item/attunement/GearPool}，由 {@code ECAttunement.init} 调）：
+     * 以前在这里的 {@code LivingHurtEvent} 里各自连乘，现在相加后由 {@code GearCombatEvents} 一处乘、过封顶。
+     */
+    public static void registerGearSources() {
+        GearPool.registerOffense("chaos", context -> chaosBonus(context.source(), context.target()));
+        GearPool.registerDefense("frozen", context -> frozenReduction(context.source(), context.target()));
+        GearPool.registerDefense("shade", context -> shadeReduction(context.source(), context.target()));
     }
 }

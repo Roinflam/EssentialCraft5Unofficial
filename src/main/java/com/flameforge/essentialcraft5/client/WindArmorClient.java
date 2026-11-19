@@ -1,5 +1,6 @@
 package com.flameforge.essentialcraft5.client;
 
+import com.flameforge.essentialcraft5.client.vfx.gear.GearVfx;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.item.WindGearEvents;
 import net.minecraft.client.Minecraft;
@@ -69,6 +70,7 @@ public final class WindArmorClient {
         if (WindGearEvents.airJump(player, used)) {
             used++;
             WindGearEvents.airJumpEffects(player);
+            GearVfx.localAirJump(player);
         }
     }
 }

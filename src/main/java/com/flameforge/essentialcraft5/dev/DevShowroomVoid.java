@@ -77,14 +77,14 @@ import java.util.function.IntFunction;
  * 展示厅的第六批 6b 部分（虚空机器，{@link DevShowroom} 调，只在 -PecShowroom / -PecShowroom6b 时跑）。
  * <p>
  * <b>场景</b>（04_scene_*，和前几批一样沿 X 排在方块排北边，镜头从南边朝北拍）：
- * 建筑魔杖的选区框（主手拿着才画）、全部替换做完的样子、清一块 16³ 石头（4096 格正好是体积上限）开工前 / 施工中 / 做完，
+ * 创世神之杖的选区框（主手拿着才画）、全部替换做完的样子、清一块 16³ 石头（4096 格正好是体积上限）开工前 / 施工中 / 做完，
  * 同时记客户端帧时间，再摆回去用「直接 setBlock、没有粒子」按同样速度清一遍作对照（batch6b §8，结果写进日志和 run/screenshots/ec5_builder_frametime.txt）；
  * 成形的魔力传送器（客户端假装在蓄能，看粒子）、成形的魔力熔炉（顶上扔一组原木，等它熔完看四个角）；
  * 普通 / 终极热力产能器各四面隔一格放岩浆（岩浆用玻璃围住）、普通 / 终极自然熔炉在烧东西（看两台 OBJ 换贴图对不对）；
  * 无尽道具：无尽 MRU 源和周围几台吃 MRU 的机器、四块热源围着的热力产能器、冷源旁的冷凝器、无尽 ESPE 源旁的米斯莱熔炉；
  * 最后真坐一次传送器往返：主世界 → 海纳尔（y 200 的平台）→ 主世界，每段拍蓄能和到达各一张，日志里记每段到没到、扣了多少。
  * <p>
- * <b>界面</b>（02_gui_*）：虚空箱、手持高级白名单 / 黑名单过滤器、快捷栏里五根记了不同方块的建筑魔杖（物品格右下角的方块角标）、
+ * <b>界面</b>（02_gui_*）：虚空箱、手持高级白名单 / 黑名单过滤器、快捷栏里五根记了不同方块的创世神之杖（物品格右下角的方块角标）、
  * 无尽道具和两件原作死物品的图标、场景里成形的传送器 / 熔炉、预热过的终极热力产能器、在烧原木的终极自然熔炉、被无尽 MRU 源补满的充能仓。
  * 只拍 6b（-PecShowroom6b）时另摆一排 6b 方块（全量时它们在方块排里），每台有界面的机器也拍一张。
  */
@@ -175,7 +175,7 @@ public final class DevShowroomVoid {
         player.getInventory().setItem(player.getInventory().selected, stack);
     }
 
-    // ================================================================ 建筑魔杖
+    // ================================================================ 创世神之杖
 
     /**
      * 选区框：6 × 4 × 6 的选区，里面摆几格石头和一根橡木原木（看框是不是隔着方块也看得见），选定橡木木板；
@@ -223,13 +223,13 @@ public final class DevShowroomVoid {
     // ---------------------------------------------------------------- 清 16³ 与帧时间
 
     private static final int CUBE = 16;
-    /** 对照组每刻删几格（和建筑魔杖每任务每刻的默认上限一样） */
+    /** 对照组每刻删几格（和创世神之杖每任务每刻的默认上限一样） */
     private static final int PLAIN_PER_TICK = 64;
     /** 帧记录：开着时每帧记一条 {时刻, 帧间隔} */
     private static volatile boolean recording;
     private static final List<long[]> FRAMES = new ArrayList<>();
     private static long lastFrame;
-    /** A = 建筑魔杖清（每格 destroyBlock，有破碎粒子和声音）；B = 同样的顺序和速度直接 setBlock 成空气（没有粒子），作对照 */
+    /** A = 创世神之杖清（每格 destroyBlock，有破碎粒子和声音）；B = 同样的顺序和速度直接 setBlock 成空气（没有粒子），作对照 */
     private static volatile long startA;
     private static volatile long endA;
     private static volatile long startB;
@@ -263,7 +263,7 @@ public final class DevShowroomVoid {
         UUID player = jobPlayer;
         if (player != null && endA == 0L && !BuilderJobs.isRunning(player)) {
             endA = System.nanoTime();
-            EssentialCraft5.LOGGER.info("[showroom] 清 16³（建筑魔杖）做完：{}，服务端 {} 刻", BuilderJobs.lastResult(player),
+            EssentialCraft5.LOGGER.info("[showroom] 清 16³（创世神之杖）做完：{}，服务端 {} 刻", BuilderJobs.lastResult(player),
                     event.getServer().getTickCount() - startTick);
             jobPlayer = null;
         }
@@ -356,7 +356,7 @@ public final class DevShowroomVoid {
                 mc.options.enableVsync().get(), mc.getWindow().getWidth(), mc.getWindow().getHeight(), mc.options.guiScale().get()));
         text.append(window("A wand (batch removal, <=4 effects/tick)", frames, 0L, startA, endA));
         text.append(window("B plain setBlock (no particles)", frames, endA, startB, endB));
-        EssentialCraft5.LOGGER.info("[showroom] 建筑魔杖清 16³ 帧时间：{}", text.toString().replace(System.lineSeparator(), " | "));
+        EssentialCraft5.LOGGER.info("[showroom] 创世神之杖清 16³ 帧时间：{}", text.toString().replace(System.lineSeparator(), " | "));
         try {
             File dir = new File(mc.gameDirectory, "screenshots");
             dir.mkdirs();

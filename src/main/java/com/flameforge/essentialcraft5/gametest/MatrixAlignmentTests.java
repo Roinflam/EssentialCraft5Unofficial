@@ -331,7 +331,7 @@ public final class MatrixAlignmentTests {
             zombie.invulnerableTime = 0;
             zombie.hurt(player.damageSources().playerAttack(player), 4F);
             MatrixTraits.flush();
-            helper.assertTrue(Math.abs(seen[0] - 4F * 1.05F * 1.1F) < EPS, "付得起：相性 ×1.05、腐蚀中再 ×1.1，实际 " + seen[0]);
+            helper.assertTrue(Math.abs(seen[0] - 4F * (1F + 0.05F + 0.1F)) < EPS, "付得起：相性 +5%、腐蚀中特性 +10%，进增伤池相加，实际 " + seen[0]);
         } finally {
             off.run();
         }
@@ -738,7 +738,7 @@ public final class MatrixAlignmentTests {
             MatrixTraits.flush();
             longer.hurt(player.damageSources().playerAttack(player), 4F);
             int applied = MatrixTraits.flush();
-            helper.assertTrue(Math.abs(seen[0] - 4F * 1.05F * 1.1F) < EPS, "吃了相性 ×1.05 和特性 ×1.1，实际 " + seen[0]);
+            helper.assertTrue(Math.abs(seen[0] - 4F * (1F + 0.05F + 0.1F)) < EPS, "吃了相性 +5% 和特性 +10%（池里相加），实际 " + seen[0]);
             MobEffectInstance kept = longer.getEffect(ECEffects.CORROSION.get());
             helper.assertTrue(kept != null && kept.getDuration() > 60, "已有更长的腐蚀，没被换成 60 刻，实际 " + kept);
             helper.assertTrue(applied == 1 && mru(storage) == 950, "效果没加上也照扣一次：结算 " + applied + "，剩 " + mru(storage));
@@ -764,7 +764,7 @@ public final class MatrixAlignmentTests {
 
     /**
      * 对玩家叠满时的总乘数（batch13.md §3.2 / §12.4）：特性 +10%、躁动 +15% 打玩家时各乘 pvp_effect_scale；
-     * 九阶混沌拿元素剑打挂着腐蚀的玩家，LivingHurtEvent 里 4 → 4 × (1 + 0.15 × s) × (1 + 0.10 × s)
+     * 九阶混沌拿元素剑打挂着腐蚀的玩家，LivingHurtEvent 里 4 → 4 × (1 + 0.15 × s + 0.10 × s)（两项都进增伤池，相加后过打玩家的池上限）
      */
     @GameTest(template = EMPTY)
     public static void traitPvpTotalMultiplier(GameTestHelper helper) {
@@ -798,7 +798,7 @@ public final class MatrixAlignmentTests {
             off.run();
             server.setPvpAllowed(pvp);
         }
-        double expected = 4D * (1D + 0.15D * scale) * (1D + 0.10D * scale);
+        double expected = 4D * (1D + 0.15D * scale + 0.10D * scale);
         helper.assertTrue(Math.abs(seen[0] - expected) < EPS, "叠满的总乘数应为 " + expected / 4D + "，实际 " + seen[0] / 4F);
         helper.succeed();
     }

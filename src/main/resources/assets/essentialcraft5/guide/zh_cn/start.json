@@ -1901,22 +1901,56 @@
               "同调预算",
               "每小时 {cfg:general.attunement.budget_per_hour}，最多存 {cfg:general.attunement.budget_cap}"
             ],
+            {
+              "if": [
+                "cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage<0",
+                "cfg:general.gear_growth.wind_armor.base_stats.health_per_stage<0"
+              ],
+              "cells": [
+                "每阶生命",
+                "魔力防护、风之每件 +{cfg:general.gear_growth.armor.health_per_stage}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.gear_growth.void_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage>=0"
+              ],
+              "cells": [
+                "每阶生命（海纳尔套装）",
+                "虚空每件 +{cfg:general.gear_growth.void_armor.base_stats.health_per_stage}，审判庭 +{cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage}，宅男 +{cfg:general.gear_growth.computer_armor.base_stats.health_per_stage}"
+              ]
+            },
             [
-              "每阶生命",
-              "每件 +{cfg:general.attunement.health_per_stage}"
+              "武器打实一下",
+              "{cfg:general.attunement.points_hit} 点；击杀 {cfg:general.attunement.points_kill} 点，首领 {cfg:general.attunement.points_boss_kill} 点"
+            ],
+            [
+              "每阶增伤",
+              "魔力枪械 +{cfg:general.gear_growth.weapon.damage_per_stage|pct}"
             ],
             {
               "if": "cfg:general.hoanna.portal_enabled",
               "cells": [
-                "武器打实一下",
-                "{cfg:general.attunement.points_hit} 点；击杀 {cfg:general.attunement.points_kill} 点，首领 {cfg:general.attunement.points_boss_kill} 点"
+                "每阶攻击",
+                "按刀剑原有攻击，余烬元素剑 +{cfg:general.gear_growth.ember_sword.attack_per_stage|pct}，裁决之刃 +{cfg:general.gear_growth.verdict_blade.attack_per_stage|pct}"
               ]
             },
+            [
+              "增伤合计最多",
+              "怪 +{cfg:general.gear_growth.caps.pool_mob|pct}，首领 +{cfg:general.gear_growth.caps.pool_boss|pct}，玩家 +{cfg:general.gear_growth.caps.pool_player|pct}"
+            ],
+            [
+              "减伤合计最多",
+              "{cfg:general.gear_growth.caps.reduction|pct}，对玩家 {cfg:general.gear_growth.caps.reduction_player|pct}"
+            ],
             {
-              "if": "cfg:general.hoanna.portal_enabled",
+              "if": "cfg:general.gear_growth.scars.max_level>0",
               "cells": [
-                "每阶攻击",
-                "武器 +{cfg:general.attunement.damage_per_stage|pct}"
+                "战痕",
+                "满阶后每 {cfg:general.gear_growth.scars.points_per_level} 点一级，最多 {cfg:general.gear_growth.scars.max_level} 级，武器每级增伤 +{cfg:general.gear_growth.scars.weapon_per_level|pct}"
               ]
             }
           ]
@@ -1935,7 +1969,8 @@
         "registry/ECInquisitorium.java Rules — general.inquisitorium.*（decode_tolerance 0.02、decode_ticks 1000、decode_mru 5000、arrive_radius 32、max_health 800、echo_ratio 0.5、matrix_damage_per_hit 1000）",
         "blockentity/ForceDomeBlockEntity.java:107 Config.define — machines.force_dome.radius / mru_per_tick / max_per_owner / claim_cache_ticks；:220 DENIED_CACHE_MULTIPLIER 动不了的区块记 6 倍长（代码常量）；:325 costPerSecond 按可拦区块比例",
         "item/module/SurvivalModuleConfig.java、registry/ECCombatModules.java — general.computer_modules.{rewind,matrix_filter,matrix_shunt,accumulator,shred,phase_anchor}.*（第十批 10c）",
-        "tools/plan/batch13.md §2.5 — 天灾信标门 general.matrix_rank.gates.calamity_beacon 8（0 = 不设门，那一行藏掉）"
+        "tools/plan/batch13.md §2.5 — 天灾信标门 general.matrix_rank.gates.calamity_beacon 8（0 = 不设门，那一行藏掉）",
+        "item/attunement/GearGrowthConfig — 同调每阶：盔甲生命 ArmorBaseStats.healthPerStage（<家族>.base_stats.health_per_stage，−1 = 沿用 armor.health_per_stage；魔力防护、风之 −1，三套海纳尔套装 3，那一行带门条件）、枪 weapon.damage_per_stage（进增伤池，枪不带门条件）、刀剑 ember_sword / verdict_blade.attack_per_stage（属性栏攻击，AttunementBonuses.bladeAttackBonus，带门条件）；caps.pool_mob / pool_boss / pool_player（管属性栏同调攻击 × 增伤池的乘积，GearCombatEvents.factor）、caps.reduction / reduction_player；scars.points_per_level / max_level / weapon_per_level"
       ]
     }
   ]

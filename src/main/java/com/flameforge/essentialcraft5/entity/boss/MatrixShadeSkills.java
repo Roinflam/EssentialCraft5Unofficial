@@ -1,5 +1,6 @@
 package com.flameforge.essentialcraft5.entity.boss;
 
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
 import com.flameforge.essentialcraft5.registry.ECMatrixShade;
 import com.flameforge.essentialcraft5.util.ECProtection;
@@ -64,6 +65,10 @@ public final class MatrixShadeSkills {
     public static final double SLAM_RADIUS = 3D;
     /** 收束结束时冲击的半径 */
     public static final double CONVERGE_SHOCK_RADIUS = 5D;
+    /** 矩阵电弧画面上每一跳晚几刻（只是画面，伤害同一刻结算） */
+    public static final int ARC_HOP_DELAY = 2;
+    /** 收束预警里往里收的环从场地边收到圆心要几刻 */
+    public static final double CONVERGE_RING_TICKS = 40D;
     /** 收束每刻往它身边拉的速度（潜行减半） */
     public static final double CONVERGE_PULL = 0.09D;
     /** 招式够得着的距离（离它多远以内的参战者会被选中） */
@@ -242,10 +247,36 @@ public final class MatrixShadeSkills {
         if (shade.level() instanceof ServerLevel server) {
             onStart(server, skill, target);
         }
+        announce(skill);
     }
 
-    /** 打断正在蓄的招（换相、散去、被删掉）；已经放出去的技能实体不收 */
+    /**
+     * 起手时把这一招的预警发给客户端（{@link BossWarnings}，客户端自己画完）：坠身是落点的圈；收束是它身边的冲击圈（跟着它）
+     * 加一道从场地边往里收的环（拉人的那 40 刻）。别的招没有地面预警。
+     */
+    private void announce(Skill skill) {
+        switch (skill) {
+            case SLAM -> {
+                if (castPos != null) {
+                    BossWarnings.circle(shade, null, castPos, SLAM_RADIUS, skill.windup, BossWarnings.DANGER);
+                }
+            }
+            case CONVERGE -> {
+                double radius = ECMatrixShade.Config.values().fight().arenaRadius();
+                Vec3 at = groundUnder(shade);
+                BossWarnings.circle(shade, shade, at, CONVERGE_SHOCK_RADIUS, skill.windup, BossWarnings.DANGER);
+                BossWarnings.ring(shade, shade, at, radius, 2D, -radius / CONVERGE_RING_TICKS, 0.6D, 0, BossWarnings.MATRIX);
+            }
+            default -> {
+            }
+        }
+    }
+
+    /** 打断正在蓄的招（换相、散去、被删掉）；已经放出去的技能实体不收。蓄到一半被打断时客户端的预警一起撤掉 */
     public void cancelCast() {
+        if (casting != null && castTicks < casting.windup) {
+            BossWarnings.cancel(shade);
+        }
         casting = null;
         castTicks = 0;
         castTarget = null;
@@ -306,11 +337,6 @@ public final class MatrixShadeSkills {
 
     private void whileCasting(ServerLevel server, Skill skill, @Nullable ServerPlayer target) {
         switch (skill) {
-            case SLAM -> {
-                if (castPos != null && castTicks % 4 == 1) {
-                    ring(server, castPos, SLAM_RADIUS, ParticleTypes.LARGE_SMOKE, 20);
-                }
-            }
             case CONVERGE -> pull(server);
             case ARC -> {
                 if (castTicks % 3 == 0) {
@@ -411,7 +437,8 @@ public final class MatrixShadeSkills {
                 shade.moveTo(old.x, old.y, old.z, shade.getYRot(), shade.getXRot());
             }
         }
-        server.sendParticles(ParticleTypes.EXPLOSION, pos.x, pos.y + 0.2D, pos.z, 3, 1D, 0.2D, 1D, 0D);
+        // 落地的冲击由客户端画（FX_SLAM）
+        BossWarnings.resolve(shade, S2CBossWarningPacket.FX_SLAM, pos, SLAM_RADIUS, BossWarnings.DANGER);
         server.playSound(null, pos.x, pos.y, pos.z, ECMatrixShade.SOUND_SLAM.get(), SoundSource.HOSTILE, 2F, 0.8F);
         for (ServerPlayer player : targets()) {
             if (horizontal(player.position(), pos) <= SLAM_RADIUS && Math.abs(player.getY() - pos.y) <= 2.5D) {
@@ -445,6 +472,11 @@ public final class MatrixShadeSkills {
         if (spawned.isEmpty()) {
             return;
         }
+        // 每个镜影现身的地方、它自己原来站的地方都闪一下（客户端画，FX_MIRROR）：换位以后分不清哪个是真身
+        for (MatrixShadeMirror mirror : spawned) {
+            BossWarnings.resolve(mirror, S2CBossWarningPacket.FX_MIRROR, mirror.position(), mirror.getBbHeight(), BossWarnings.MATRIX);
+        }
+        BossWarnings.resolve(shade, S2CBossWarningPacket.FX_MIRROR, shade.position(), shade.getBbHeight(), BossWarnings.MATRIX);
         server.playSound(null, shade.getX(), shade.getY(), shade.getZ(), ECMatrixShade.SOUND_MIRROR.get(), SoundSource.HOSTILE, 1.5F, 1F);
         MatrixShadeMirror swap = spawned.get(shade.getRandom().nextInt(spawned.size()));
         Vec3 mine = shade.position();
@@ -476,6 +508,9 @@ public final class MatrixShadeSkills {
                 continue;
             }
             shade.skills().track(KIND_SPIKE, spike);
+            // 钉子到它身上的连线（客户端画，FX_LINK，跟着两头走；钉子碎了 / 没了就断）
+            BossWarnings.attach(spike, shade, S2CBossWarningPacket.FX_LINK, spike.position().add(0D, spike.getBbHeight() * 0.5D, 0D), 0D,
+                    MatrixShadeSpike.LIFE, MatrixShadeSpike.LINK_COLOR);
             server.playSound(null, at.x, at.y, at.z, ECMatrixShade.SOUND_SPIKE.get(), SoundSource.HOSTILE, 1.5F, 1F);
             for (ServerPlayer player : targets()) {
                 player.displayClientMessage(Component.translatable("message.essentialcraft5.matrix_shade.spike"), true);
@@ -497,7 +532,8 @@ public final class MatrixShadeSkills {
         int max = Math.max(1, s.arcMaxTargets());
         while (next != null && hit.size() < max) {
             Vec3 to = next.position().add(0D, next.getBbHeight() * 0.5D, 0D);
-            line(server, from, to);
+            // 每一跳一道电弧（客户端画，FX_ARC）；伤害照旧同一刻结算，画面上一跳晚 2 刻，看得出是从谁跳到谁
+            BossWarnings.resolve(shade, S2CBossWarningPacket.FX_ARC, from, 0D, 0D, to.subtract(from), hit.size() * ARC_HOP_DELAY, BossWarnings.MATRIX, 0);
             hit(next, ECDamageTypes.mruDischarge(shade), s.arcDamage(), s.arcPercent());
             hit.add(next);
             done.add(next.getUUID());
@@ -536,6 +572,7 @@ public final class MatrixShadeSkills {
             pillar.bind(shade);
             if (server.addFreshEntity(pillar) && !pillar.isRemoved()) {
                 shade.skills().track(KIND_PILLAR, pillar);
+                BossWarnings.circle(pillar, null, at, MatrixShadePillar.RADIUS, MatrixShadePillar.WARN, BossWarnings.MATRIX);
             }
         }
     }
@@ -555,14 +592,12 @@ public final class MatrixShadeSkills {
             player.push(push.x, push.y, push.z);
             player.hurtMarked = true;
         }
-        if (castTicks % 4 == 0) {
-            ring(server, to, Math.max(2D, radius * (1D - castTicks / 40D)), ParticleTypes.REVERSE_PORTAL, 24);
-        }
     }
 
     /** 收束结束：5 格内没举盾的挨冲击并被弹开 */
     private void converge(ServerLevel server) {
-        server.sendParticles(ParticleTypes.SONIC_BOOM, shade.getX(), shade.getY() + 1D, shade.getZ(), 1, 0D, 0D, 0D, 0D);
+        // 冲击由客户端画（FX_SHOCK）
+        BossWarnings.resolve(shade, S2CBossWarningPacket.FX_SHOCK, groundUnder(shade), CONVERGE_SHOCK_RADIUS, BossWarnings.MATRIX);
         for (ServerPlayer player : targets()) {
             if (player.distanceTo(shade) > CONVERGE_SHOCK_RADIUS || player.isBlocking()) {
                 continue;
@@ -658,15 +693,6 @@ public final class MatrixShadeSkills {
             double angle = Math.PI * 2D * i / points;
             server.sendParticles(particle, center.x + Math.cos(angle) * radius, center.y + 0.1D, center.z + Math.sin(angle) * radius,
                     1, 0D, 0D, 0D, 0D);
-        }
-    }
-
-    private static void line(ServerLevel server, Vec3 from, Vec3 to) {
-        Vec3 delta = to.subtract(from);
-        int steps = Mth.clamp((int) (delta.length() * 3D), 2, 48);
-        for (int i = 0; i <= steps; i++) {
-            Vec3 at = from.add(delta.scale(i / (double) steps));
-            server.sendParticles(ParticleTypes.ELECTRIC_SPARK, at.x, at.y, at.z, 1, 0.05D, 0.05D, 0.05D, 0D);
         }
     }
 

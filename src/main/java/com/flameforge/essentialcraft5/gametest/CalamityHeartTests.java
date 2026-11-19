@@ -5,6 +5,7 @@ import com.flameforge.essentialcraft5.api.IPlayerData;
 import com.flameforge.essentialcraft5.entity.PoisonFumeEntity;
 import com.flameforge.essentialcraft5.entity.boss.BossDaily;
 import com.flameforge.essentialcraft5.entity.boss.BossRoster;
+import com.flameforge.essentialcraft5.entity.boss.BossWarnings;
 import com.flameforge.essentialcraft5.entity.boss.CalamityHeartContracts;
 import com.flameforge.essentialcraft5.entity.boss.CalamityHeartEntity;
 import com.flameforge.essentialcraft5.entity.boss.CalamityHeartSkills;
@@ -19,6 +20,7 @@ import com.flameforge.essentialcraft5.item.CalamityBeaconItem;
 import com.flameforge.essentialcraft5.loot.condition.CalamityMainCondition;
 import com.flameforge.essentialcraft5.matrix.MatrixRank;
 import com.flameforge.essentialcraft5.player.PlayerDataEvents;
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECBossFramework;
 import com.flameforge.essentialcraft5.registry.ECCalamityHeart;
 import com.flameforge.essentialcraft5.registry.ECEffects;
@@ -1112,6 +1114,239 @@ public final class CalamityHeartTests {
                 cleanup(helper, rig);
             }
         });
+    }
+
+    /**
+     * 特效大改第 1 批：各招起手只发一次预警包（类型、大小、时长、配色、跟随对得上），预警期不再逐刻发；打断（失衡开始）发撤销、
+     * 没有进行中的预警时不再发；落石每块一个落点圈（所属是那块石头，落多久预警多久）
+     */
+    @GameTest(template = LARGE, batch = BATCH, timeoutTicks = 200)
+    public static void calamityHeartWarningPackets(GameTestHelper helper) {
+        whenSky(helper, () -> {
+            // 不要开场和封印，但反噬 / 归心伤害得照默认（安静配置里是 0，不放招）
+            ECCalamityHeart.Config.Fury f = DEFAULTS.fury();
+            ECCalamityHeart.Config.Fury fury = new ECCalamityHeart.Config.Fury(0, false, false, f.backlashDamage(), f.backlashPercent(),
+                    f.backlashRadius(), f.backlashWarnTicks(), f.convergeDamage(), f.convergePercent(), f.convergeRadius(), f.convergeWarnTicks(),
+                    0, 0, f.volleyLines());
+            ECCalamityHeart.Config.Values cfg = local(quickSkills());
+            scope(helper, new ECCalamityHeart.Config.Values(cfg.summon(), cfg.fight(), cfg.skills(), fury));
+            BossWarnings.captureForTest();
+            Rig rig = null;
+            try {
+                rig = summon(helper, "ch-warn", beacon(false), 0);
+                CalamityHeartEntity heart = rig.heart();
+                ServerPlayer fighter = rig.summoner();
+                CalamityHeartSkills skills = heart.heartSkills();
+                ECCalamityHeart.Config.Skills k = ECCalamityHeart.Config.values().skills();
+                ECCalamityHeart.Config.Fury u = ECCalamityHeart.Config.values().fury();
+                double arena = ECCalamityHeart.Config.values().fight().arenaRadius();
+                BossWarnings.clearForTest(heart);
+
+                skills.start(CalamityHeartSkills.Skill.PRISM, fighter);
+                List<S2CBossWarningPacket> sent = BossWarnings.sentForTest(heart);
+                int lines = skills.pending(CalamityHeartSkills.Skill.PRISM);
+                helper.assertTrue(lines > 0 && sent.size() == lines, "天光棱线：每条一个包，实际 " + sent.size() + " / " + lines);
+                for (S2CBossWarningPacket p : sent) {
+                    helper.assertTrue(p.kind() == S2CBossWarningPacket.LINE && !p.has(S2CBossWarningPacket.FLAG_TETHER)
+                                    && Math.abs(p.size() - arena) < EPS && Math.abs(p.size2() - CalamityHeartSkills.PRISM_WIDTH) < EPS
+                                    && p.duration() == k.prismWarnTicks() && p.color() == BossWarnings.SOLAR && Math.abs(p.y() - heart.floorTop()) < EPS,
+                            "棱线：贴地线、半长 = 场地半径、半宽 = 打击宽度、日阵金，实际 " + p);
+                }
+                for (int i = 0; i < 2; i++) {
+                    skills.tickEffects(helper.getLevel());
+                }
+                helper.assertTrue(BossWarnings.sentForTest(heart).size() == lines, "预警期不再逐刻发包");
+
+                skills.start(CalamityHeartSkills.Skill.MARK, fighter);
+                S2CBossWarningPacket mark = lastWarning(heart);
+                helper.assertTrue(mark.kind() == S2CBossWarningPacket.COLUMN && mark.follow() == fighter.getId()
+                                && Math.abs(mark.size() - CalamityHeartSkills.MARK_COLUMN) < EPS && mark.duration() == k.markWarnTicks(),
+                        "烈日标记：跟着被标记的人的光柱，实际 " + mark);
+
+                skills.start(CalamityHeartSkills.Skill.BREATH, fighter);
+                S2CBossWarningPacket breath = lastWarning(heart);
+                helper.assertTrue(breath.kind() == S2CBossWarningPacket.CIRCLE && breath.has(S2CBossWarningPacket.FLAG_SECTOR)
+                                && breath.follow() == heart.getId() && Math.abs(breath.size() - k.breathRange()) < EPS
+                                && Math.abs(breath.size2() - Math.acos(CalamityHeartSkills.BREATH_COS)) < EPS && breath.color() == BossWarnings.CORROSION
+                                && breath.duration() == k.breathWarnTicks(),
+                        "吐息：跟着它的扇形，半径 = 射程、半角 = arccos(0.766)、腐蚀绿，实际 " + breath);
+
+                skills.start(CalamityHeartSkills.Skill.NOON, fighter);
+                S2CBossWarningPacket noon = lastWarning(heart);
+                helper.assertTrue(noon.kind() == S2CBossWarningPacket.CIRCLE && Math.abs(noon.size() - Math.min(12D, arena)) < EPS
+                        && noon.duration() == k.noonWarnTicks(), "正午：场地中心的圆，实际 " + noon);
+
+                int before = BossWarnings.sentForTest(heart).size();
+                skills.start(CalamityHeartSkills.Skill.SHOCKWAVE, fighter);
+                sent = BossWarnings.sentForTest(heart);
+                helper.assertTrue(sent.size() - before == k.quakeRings(), "震波：每圈一个包，实际 " + (sent.size() - before));
+                for (int i = 0; i < k.quakeRings(); i++) {
+                    S2CBossWarningPacket ring = sent.get(before + i);
+                    double end = arena + CalamityHeartSkills.REACH_SLACK;
+                    int delay = Math.max(1, k.ringWarnTicks()) * (i + 1);
+                    helper.assertTrue(ring.kind() == S2CBossWarningPacket.RING && ring.size() == 0F && Math.abs(ring.size2() - end) < EPS
+                                    && Math.abs(ring.dirX() - CalamityHeartSkills.RING_SPEED) < EPS
+                                    && Math.abs(ring.dirY() - CalamityHeartSkills.RING_BAND) < EPS
+                                    && ring.delay() == delay && ring.duration() == delay + (int) Math.ceil(end / CalamityHeartSkills.RING_SPEED),
+                            "震波：蓄力 = 预警刻 × 第几圈，每刻扩 0.6 格到场地外，实际 " + ring);
+                }
+
+                Vec3 base = heart.position().add(3D, 0D, 0D);
+                helper.assertTrue(skills.backlash(helper.getLevel(), base), "反噬放出来了");
+                S2CBossWarningPacket backlash = lastWarning(heart);
+                helper.assertTrue(backlash.kind() == S2CBossWarningPacket.CIRCLE && backlash.has(S2CBossWarningPacket.FLAG_PILLAR)
+                                && Math.abs(backlash.size() - u.backlashRadius()) < EPS
+                                && Math.abs(backlash.size2() - ECCalamityHeart.CALAMITY_PILLAR.get().getHeight()) < EPS
+                                && backlash.duration() == u.backlashWarnTicks() && backlash.color() == BossWarnings.DANGER,
+                        "反噬：灾柱脚下的圆 + 柱顶聚能（柱高 = 灾柱高度）、危险红，实际 " + backlash);
+
+                helper.assertTrue(skills.converge(helper.getLevel()), "归心放出来了");
+                S2CBossWarningPacket converge = lastWarning(heart);
+                helper.assertTrue(converge.kind() == S2CBossWarningPacket.SAFE_ZONE && Math.abs(converge.size() - u.convergeRadius()) < EPS
+                                && Math.abs(converge.size2() - Math.max(u.convergeRadius(), arena)) < EPS && converge.duration() == u.convergeWarnTicks()
+                                && converge.color() == CalamityHeartSkills.CONVERGE_COLOR && converge.color2() == BossWarnings.DANGER,
+                        "四灾归心：安全圈 + 从场地边往里收，安全圈金、圈外危险红，实际 " + converge);
+
+                skills.cancelCast();
+                S2CBossWarningPacket cancel = lastWarning(heart);
+                helper.assertTrue(cancel.kind() == S2CBossWarningPacket.CANCEL && cancel.owner() == heart.getId(), "打断发撤销，实际 " + cancel);
+                int count = BossWarnings.sentForTest(heart).size();
+                skills.cancelCast();
+                helper.assertTrue(BossWarnings.sentForTest(heart).size() == count, "没有进行中的预警时打断不再发");
+
+                skills.start(CalamityHeartSkills.Skill.RUBBLE, fighter);
+                List<Entity> rocks = new ArrayList<>(heart.skills().alive(CalamityHeartSkills.KIND_RUBBLE));
+                helper.assertTrue(!rocks.isEmpty(), "有落石");
+                for (Entity rock : rocks) {
+                    List<S2CBossWarningPacket> own = BossWarnings.sentForTest(rock);
+                    CalamityRubbleEntity r = (CalamityRubbleEntity) rock;
+                    helper.assertTrue(own.size() == 1 && own.get(0).kind() == S2CBossWarningPacket.CIRCLE
+                                    && Math.abs(own.get(0).size() - CalamityRubbleEntity.RADIUS) < EPS && own.get(0).duration() == k.rubbleWarnTicks()
+                                    && Math.abs(own.get(0).y() - r.groundY()) < EPS,
+                            "落石：落点一个圆，落多久预警多久，实际 " + own);
+                    BossWarnings.clearForTest(rock);
+                }
+            } finally {
+                if (rig != null && rig.outcome().heart() != null) {
+                    BossWarnings.clearForTest(rig.outcome().heart());
+                }
+                cleanup(helper, rig);
+            }
+        });
+    }
+
+    /**
+     * 特效大改第 2 批：招式落下时发结算画面（{@code RESOLVE}，单独记，不混进预警包）——反噬（半径、灾柱高）、归心（安全圈、场地半径、两种颜色）、
+     * 棱线（中点、半长向量、半宽）、合相技起手（这一对的两种相色）、垂死反扑、崩解脉冲；一次性画面不记进「进行中的预警」，之后打断不为它们发撤销
+     */
+    @GameTest(template = LARGE, batch = BATCH, timeoutTicks = 200)
+    public static void calamityHeartResolvePackets(GameTestHelper helper) {
+        whenSky(helper, () -> {
+            ECCalamityHeart.Config.Fury f = DEFAULTS.fury();
+            ECCalamityHeart.Config.Fury fury = new ECCalamityHeart.Config.Fury(0, false, false, f.backlashDamage(), f.backlashPercent(),
+                    f.backlashRadius(), f.backlashWarnTicks(), f.convergeDamage(), f.convergePercent(), f.convergeRadius(), f.convergeWarnTicks(),
+                    0, 0, f.volleyLines());
+            ECCalamityHeart.Config.Values cfg = local(quickSkills());
+            scope(helper, new ECCalamityHeart.Config.Values(cfg.summon(), cfg.fight(), cfg.skills(), fury));
+            BossWarnings.captureForTest();
+            Rig rig = null;
+            try {
+                rig = summon(helper, "ch-resolve", beacon(false), 0);
+                CalamityHeartEntity heart = rig.heart();
+                ServerPlayer fighter = rig.summoner();
+                // 只看画面，人不能被打死（打死会散去、把招清掉）
+                fighter.setInvulnerable(true);
+                CalamityHeartSkills skills = heart.heartSkills();
+                ECCalamityHeart.Config.Fury u = ECCalamityHeart.Config.values().fury();
+                ECCalamityHeart.Config.Skills k = ECCalamityHeart.Config.values().skills();
+                double arena = ECCalamityHeart.Config.values().fight().arenaRadius();
+                BossWarnings.clearForTest(heart);
+
+                Vec3 base = heart.position().add(3D, 0D, 0D);
+                helper.assertTrue(skills.backlash(helper.getLevel(), base), "反噬放出来了");
+                helper.assertTrue(skills.converge(helper.getLevel()), "归心放出来了");
+                skills.start(CalamityHeartSkills.Skill.PRISM, fighter);
+                helper.assertTrue(BossWarnings.resolvedForTest(heart).isEmpty(), "预警期不发结算画面");
+                int ticks = Math.max(k.prismWarnTicks(), Math.max(u.backlashWarnTicks(), u.convergeWarnTicks())) + 1;
+                for (int i = 0; i < ticks; i++) {
+                    skills.tickEffects(helper.getLevel());
+                }
+                List<S2CBossWarningPacket> res = BossWarnings.resolvedForTest(heart);
+                S2CBossWarningPacket backlash = only(res, S2CBossWarningPacket.FX_BACKLASH);
+                helper.assertTrue(backlash.kind() == S2CBossWarningPacket.RESOLVE && !backlash.persistent() && Math.abs(backlash.x() - base.x) < EPS
+                                && Math.abs(backlash.size() - u.backlashRadius()) < EPS
+                                && Math.abs(backlash.size2() - ECCalamityHeart.CALAMITY_PILLAR.get().getHeight()) < EPS && backlash.color() == CalamityHeartSkills.BACKLASH_COLOR,
+                        "反噬落下：灾柱脚下、半径、柱高、火红，实际 " + backlash);
+                S2CBossWarningPacket converge = only(res, S2CBossWarningPacket.FX_CONVERGE);
+                helper.assertTrue(Math.abs(converge.size() - u.convergeRadius()) < EPS && Math.abs(converge.size2() - Math.max(u.convergeRadius(), arena)) < EPS
+                                && converge.color() == CalamityHeartSkills.CONVERGE_COLOR && converge.color2() == heart.mainAspect().color(),
+                        "归心落下：安全圈半径、场地半径、金 / 主灾色，实际 " + converge);
+                List<S2CBossWarningPacket> prisms = all(res, S2CBossWarningPacket.FX_PRISM);
+                helper.assertTrue(!prisms.isEmpty(), "棱线落下发了画面");
+                for (S2CBossWarningPacket p : prisms) {
+                    double half = Math.hypot(p.dirX(), p.dirZ());
+                    helper.assertTrue(Math.abs(half - arena) < 1.0E-3D && p.dirY() == 0F && Math.abs(p.size2() - CalamityHeartSkills.PRISM_WIDTH) < EPS
+                                    && p.color() == BossWarnings.SOLAR && Math.abs(p.y() - heart.floorTop()) < EPS,
+                            "棱线落下：贴地、半长向量 = 场地半径、半宽 = 打击宽度、日阵金，实际 " + p);
+                }
+                helper.assertTrue(BossWarnings.sentForTest(heart).stream().noneMatch(p -> p.kind() == S2CBossWarningPacket.RESOLVE),
+                        "结算画面不混进预警包的记录");
+
+                BossWarnings.clearForTest(heart);
+                skills.combo(helper.getLevel(), 0);
+                S2CBossWarningPacket combo = only(BossWarnings.resolvedForTest(heart), S2CBossWarningPacket.FX_COMBO);
+                helper.assertTrue(combo.color() == CalamityHeartEntity.Aspect.SUN_ARRAY.color() && combo.color2() == CalamityHeartEntity.Aspect.FUMES.color()
+                                && combo.dirY() > 0F, "合相技 · 蚀日起手：日阵金 + 毒雾绿，带离地高度，实际 " + combo);
+                skills.combo(helper.getLevel(), 3);
+                List<S2CBossWarningPacket> combos = all(BossWarnings.resolvedForTest(heart), S2CBossWarningPacket.FX_COMBO);
+                helper.assertTrue(combos.size() == 2 && combos.get(1).color() == CalamityHeartEntity.Aspect.EARTHQUAKE.color()
+                        && combos.get(1).color2() == CalamityHeartEntity.Aspect.SUN_ARRAY.color(), "合相技 · 熔裂起手：地震 + 日阵，实际 " + combos);
+                skills.deathThroe(helper.getLevel(), 1);
+                S2CBossWarningPacket throe = only(BossWarnings.resolvedForTest(heart), S2CBossWarningPacket.FX_THROE);
+                helper.assertTrue(throe.color() == CalamityHeartEntity.COLLAPSE_COLOR && throe.dirY() >= 0F, "垂死反扑起手，实际 " + throe);
+
+                // 先把合相技 / 反扑带出来的预警撤掉；之后只放一次性画面（脉冲），再打断不该为它发撤销
+                skills.cancelCast();
+                int count = BossWarnings.sentForTest(heart).size();
+                heart.pulse(helper.getLevel());
+                S2CBossWarningPacket pulse = only(BossWarnings.resolvedForTest(heart), S2CBossWarningPacket.FX_PULSE);
+                helper.assertTrue(Math.abs(pulse.y() - heart.floorTop()) < EPS && pulse.size() > 0F, "崩解脉冲：本体脚下的地面，实际 " + pulse);
+                skills.cancelCast();
+                helper.assertTrue(BossWarnings.sentForTest(heart).size() == count, "一次性画面不算进行中的预警：之后打断不为它发撤销");
+            } finally {
+                if (rig != null && rig.outcome().heart() != null) {
+                    BossWarnings.clearForTest(rig.outcome().heart());
+                }
+                cleanup(helper, rig);
+            }
+        });
+    }
+
+    /** 这一种画面恰好一个 */
+    private static S2CBossWarningPacket only(List<S2CBossWarningPacket> sent, int style) {
+        List<S2CBossWarningPacket> list = all(sent, style);
+        if (list.size() != 1) {
+            throw new IllegalStateException("画面 " + style + " 应该恰好一个，实际 " + list.size() + "：" + sent);
+        }
+        return list.get(0);
+    }
+
+    private static List<S2CBossWarningPacket> all(List<S2CBossWarningPacket> sent, int style) {
+        List<S2CBossWarningPacket> out = new ArrayList<>();
+        for (S2CBossWarningPacket p : sent) {
+            if (p.kind() == S2CBossWarningPacket.RESOLVE && p.style() == style) {
+                out.add(p);
+            }
+        }
+        return out;
+    }
+
+    private static S2CBossWarningPacket lastWarning(Entity owner) {
+        List<S2CBossWarningPacket> sent = BossWarnings.sentForTest(owner);
+        if (sent.isEmpty()) {
+            throw new IllegalStateException("没发预警包");
+        }
+        return sent.get(sent.size() - 1);
     }
 
     /** 熄光：预警后熄光、首领带熄光标记，期间一次暗袭（站着不动的挨、跑开的不挨），到点自己结束；拿火把的人算拿着光源 */

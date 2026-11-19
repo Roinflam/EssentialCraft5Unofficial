@@ -273,7 +273,6 @@ final class DevShowroomBatch13e {
         scene("b13e_town_sentry_front", turrets, at(base, 5.5, 3.5, 5.5), at(base, 0.5, 2.5, -3.5), 20);
         scene("b13e_town_sentry_suppress", turrets.andThen(p -> {
             sentry.beginSuppress();
-            sentry.suppressWarning();
         }), at(base, 0.5, 9.0, 4.5), at(base, 0.5, 1.0, -3.5), 5);
     }
 

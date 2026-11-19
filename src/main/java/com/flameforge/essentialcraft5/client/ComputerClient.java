@@ -314,6 +314,11 @@ public final class ComputerClient {
         return BOARD_FLYERS.contains(player.getId());
     }
 
+    /** 脚下正画着反重力板（尾迹 client/vfx/gear/BoardJetFx 跟着它） */
+    public static boolean ridingBoard(Player player) {
+        return isBoardFlying(player) && CuriosCompat.has(player, ECComputer.COMPUTER_BOARD.get());
+    }
+
     /** 飞行状态包（ECComputer 登记的客户端处理器调） */
     public static void onBoardFlyingPacket(S2CBoardFlyingPacket packet) {
         if (packet.flying()) {

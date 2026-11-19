@@ -1,5 +1,6 @@
 package com.flameforge.essentialcraft5.blockentity;
 
+import com.flameforge.essentialcraft5.ambience.AmbienceParticles;
 import com.flameforge.essentialcraft5.api.IHotBlock;
 import com.flameforge.essentialcraft5.config.ECConfig;
 import com.flameforge.essentialcraft5.menu.HeatGeneratorMenu;
@@ -234,14 +235,14 @@ public class HeatGeneratorBlockEntity extends RandomBalanceBlockEntity {
         double z = worldPosition.getZ();
         Direction side = Direction.Plane.HORIZONTAL.getRandomDirection(random);
         // 位置照抄原作：x + 0.725 + (偏移 - 0.5) / 2.2，落在各侧面中间
-        level.addParticle(ParticleTypes.FLAME, x + 0.725 + (side.getStepX() - 0.5) / 2.2, y + 0.4,
+        AmbienceParticles.add(level, ParticleTypes.FLAME, x + 0.725 + (side.getStepX() - 0.5) / 2.2, y + 0.4,
                 z + 0.725 + (side.getStepZ() - 0.5) / 2.2, 0, 0, 0);
         if (random.nextInt(4) == 0) {
-            level.addParticle(ParticleTypes.FLAME, x + 0.5 + (random.nextFloat() - random.nextFloat()) * 0.2, y + 0.65,
+            AmbienceParticles.add(level, ParticleTypes.FLAME, x + 0.5 + (random.nextFloat() - random.nextFloat()) * 0.2, y + 0.65,
                     z + 0.5 + (random.nextFloat() - random.nextFloat()) * 0.2, 0, 0.01, 0);
         }
         if (random.nextInt(4) == 0) {
-            level.addParticle(ParticleTypes.SMOKE, x + 0.5 + (random.nextFloat() - random.nextFloat()) * 0.05, y + 0.8,
+            AmbienceParticles.add(level, ParticleTypes.SMOKE, x + 0.5 + (random.nextFloat() - random.nextFloat()) * 0.05, y + 0.8,
                     z + 0.5 + (random.nextFloat() - random.nextFloat()) * 0.05, 0, 0, 0);
         }
     }

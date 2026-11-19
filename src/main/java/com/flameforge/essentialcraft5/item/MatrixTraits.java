@@ -83,7 +83,7 @@ import java.util.function.Supplier;
  * 另外两件早期武器的修补（batch13.md §4.6）挂在同一个增伤监听器里：神圣重锤打亡灵（{@link MobType#UNDEAD}）+{@code general.staffs.holy_mace_undead_bonus}（50%）。
  * 混沌之叉、冰冻重锤叠效果的等级上限 + 相性级在 {@link MatrixWeaponItem}。
  * <p>
- * 时序：增伤在 {@code LivingHurtEvent} NORMAL（和相性的增减伤同一档，乘法叠加，护盾盔甲在 LOW）。只在服务端。每刻最多记 {@value #MAX_PENDING} 条。
+ * 时序：特性增伤进总闸的池子（{@code GearCombatEvents}，{@code LivingHurtEvent} NORMAL，和相性、定罪、同调阶等相加后封顶），神圣重锤打亡灵在本类 NORMAL 单独乘（护盾盔甲在 LOW）。只在服务端。每刻最多记 {@value #MAX_PENDING} 条。
  */
 public final class MatrixTraits {
 
@@ -288,7 +288,20 @@ public final class MatrixTraits {
         return applied;
     }
 
-    /** 记下这一刻这名玩家对这个目标给过特性增伤（{@link MatrixTraitEvents#matrixTraitHurt} 调） */
+    /**
+     * 特性增伤进总闸的池子（{@code item/attunement/GearPool}，{@code ECAttunement.init} 调）：被问到、给了增伤时照旧记下（打实以后扣 MRU）。
+     */
+    public static void registerGearSources() {
+        com.flameforge.essentialcraft5.item.attunement.GearPool.registerOffense("trait", context -> {
+            double trait = traitBonus(context.source(), context.target());
+            if (trait > 0D && context.source().getEntity() instanceof ServerPlayer player) {
+                markBonus(player, context.target());
+            }
+            return trait;
+        });
+    }
+
+    /** 记下这一刻这名玩家对这个目标给过特性增伤（池子问到 {@link #registerGearSources} 登记的来源时调） */
     private static void markBonus(ServerPlayer player, LivingEntity target) {
         if (BONUS_GIVEN.size() < MAX_PENDING) {
             BONUS_GIVEN.add(new HitKey(player.getUUID(), target, true));
@@ -430,7 +443,10 @@ public final class MatrixTraits {
         private MatrixTraitEvents() {
         }
 
-        /** 特性增伤、神圣重锤打亡灵（NORMAL，不收已取消的） */
+        /**
+         * 神圣重锤打亡灵（NORMAL，不收已取消的）：武器本身的克制（同原版亡灵杀手），不进总闸的池子，单独乘。
+         * 特性 +10% 进池子（{@link #registerGearSources}）。
+         */
         @SubscribeEvent
         public static void matrixTraitHurt(LivingHurtEvent event) {
             LivingEntity target = event.getEntity();
@@ -438,14 +454,9 @@ public final class MatrixTraits {
             if (target.level().isClientSide() || !(amount > 0F)) {
                 return;
             }
-            DamageSource source = event.getSource();
-            double trait = traitBonus(source, target);
-            if (trait > 0D && source.getEntity() instanceof ServerPlayer player) {
-                markBonus(player, target);
-            }
-            double factor = (1D + trait) * (1D + holyMaceBonus(source, target));
-            if (factor != 1D) {
-                event.setAmount((float) (amount * factor));
+            double holy = holyMaceBonus(event.getSource(), target);
+            if (holy > 0D) {
+                event.setAmount((float) (amount * (1D + holy)));
             }
         }
 
@@ -482,7 +493,8 @@ public final class MatrixTraits {
         @SubscribeEvent
         public static void matrixTraitTooltip(ItemTooltipEvent event) {
             ItemStack stack = event.getItemStack();
-            if (!isAttuned(stack)) {
+            // 同调装备没按住 Shift 时，矩阵特性几行和物品说明一起收起
+            if (!isAttuned(stack) || com.flameforge.essentialcraft5.client.AttunementTooltips.holdsBackNotes(event)) {
                 return;
             }
             Player viewer = event.getEntity() != null ? event.getEntity()

@@ -3,12 +3,12 @@ package com.flameforge.essentialcraft5.entity.boss;
 import com.flameforge.essentialcraft5.entity.PoisonFumeEntity;
 import com.flameforge.essentialcraft5.hoanna.HoannaHazards;
 import com.flameforge.essentialcraft5.network.S2CBossFxPacket;
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECCalamityHeart;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
 import com.flameforge.essentialcraft5.registry.ECEffects;
 import com.flameforge.essentialcraft5.registry.ECHoannaHazards;
 import com.flameforge.essentialcraft5.util.ECProtection;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -21,7 +21,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -77,6 +76,8 @@ public final class CalamityHeartSkills {
     public static final double PRISM_WIDTH = 1.5D;
     /** 暗袭：落下时离起手那刻的位置这么近算打中 */
     public static final double STRIKE_RADIUS = 1.8D;
+    /** 烈日标记的预警光柱多高（格） */
+    public static final double MARK_COLUMN = 8D;
     /** 腐蚀吐息锥形的半角余弦（约 40°） */
     public static final double BREATH_COS = 0.766D;
     /** 震波每刻往外扩多少格 */
@@ -98,9 +99,17 @@ public final class CalamityHeartSkills {
     public static final double BACKLASH_LIFT = 0.35D;
     /** 灾柱反噬：和灾柱脚下高差超过这么多不挨 */
     public static final double BACKLASH_HEIGHT = 4D;
-    /** 反噬预警圈的颜色、归心安全圈的颜色 */
+    /** 灾柱反噬炸开的火红（预警圈仍用危险红，读招要紧）、归心安全圈的颜色 */
     public static final int BACKLASH_COLOR = 0xD0281E;
     public static final int CONVERGE_COLOR = 0xFFD27A;
+
+    /** 合相技每一对的两相（顺序同 {@link #combo} 的 pair：蚀日、坠夜、瘴影、熔裂），起手画面取这两种颜色 */
+    private static final CalamityHeartEntity.Aspect[][] COMBO_ASPECTS = {
+            {CalamityHeartEntity.Aspect.SUN_ARRAY, CalamityHeartEntity.Aspect.FUMES},
+            {CalamityHeartEntity.Aspect.DARKNESS, CalamityHeartEntity.Aspect.EARTHQUAKE},
+            {CalamityHeartEntity.Aspect.DARKNESS, CalamityHeartEntity.Aspect.FUMES},
+            {CalamityHeartEntity.Aspect.EARTHQUAKE, CalamityHeartEntity.Aspect.SUN_ARRAY},
+    };
 
     /** 招式的种类：轮着放的普通招、灾柱倒下时的残响、别的时机放的特殊招（不进轮换） */
     public enum Kind {
@@ -331,20 +340,20 @@ public final class CalamityHeartSkills {
         switch (skill) {
             case PRISM -> prisms(server, k);
             case MARK -> {
-                effects.add(new Mark(target.getUUID(), k.markWarnTicks()));
+                add(new Mark(target.getUUID(), k.markWarnTicks()));
                 target.displayClientMessage(Component.translatable("message.essentialcraft5.calamity_heart.mark"), true);
                 server.playSound(null, target.getX(), target.getY(), target.getZ(), ECCalamityHeart.SOUND_MARK.get(), SoundSource.HOSTILE, 1.5F, 1.2F);
             }
             case MIASMA -> fumes(server, KIND_FUME, k.maxFumes(), k.fumesPerCast(), k.fumeTicks());
             case BREATH -> {
                 Vec3 dir = new Vec3(target.getX() - heart.getX(), 0D, target.getZ() - heart.getZ());
-                effects.add(new Breath(dir.lengthSqr() < 1.0E-6D ? new Vec3(1D, 0D, 0D) : dir.normalize(), k.breathWarnTicks()));
+                add(new Breath(dir.lengthSqr() < 1.0E-6D ? new Vec3(1D, 0D, 0D) : dir.normalize(), k.breathWarnTicks()));
             }
             case BLACKOUT -> beginBlackout(k.blackoutWarnTicks(), k.blackoutTicks(), k.blackoutStrikes(), false);
             case SHOCKWAVE -> rings(k.quakeRings(), k.ringWarnTicks());
             case RUBBLE -> rubble(server, k);
             case NOON -> {
-                effects.add(new Noon(k.noonWarnTicks()));
+                add(new Noon(k.noonWarnTicks()));
                 heart.tell("message.essentialcraft5.calamity_heart.echo.sun_array");
             }
             case PERVADE -> {
@@ -376,17 +385,25 @@ public final class CalamityHeartSkills {
         }
     }
 
-    /** 打断还在预警的招（失衡开始） */
+    /** 打断还在预警的招（失衡开始）；客户端的预警一起撤掉 */
     public void cancelCast() {
         effects.clear();
+        BossWarnings.cancel(heart);
     }
 
     /** 打断一切：预警中的招、熄光（崩解、散去、死亡、移出世界） */
     public void cancelAll(ServerLevel server) {
         effects.clear();
+        BossWarnings.cancel(heart);
         if (blackoutActive()) {
             endBlackout();
         }
+    }
+
+    /** 加一个预警中的招，同时把预警发给附近的客户端（{@link BossWarnings}，客户端自己画完，预警期不再逐刻发粒子） */
+    private void add(Effect effect) {
+        effects.add(effect);
+        effect.announce();
     }
 
     // ------------------------------------------------------------------
@@ -406,7 +423,7 @@ public final class CalamityHeartSkills {
             Vec3 through = targets.isEmpty() ? center : targets.get(heart.getRandom().nextInt(targets.size())).position();
             double angle = heart.getRandom().nextDouble() * Math.PI;
             Vec3 dir = new Vec3(Math.cos(angle), 0D, Math.sin(angle));
-            effects.add(new Prism(new Vec3(through.x, heart.floorTop(), through.z), dir, radius, s().prismWarnTicks()));
+            add(new Prism(new Vec3(through.x, heart.floorTop(), through.z), dir, radius, s().prismWarnTicks()));
         }
         server.playSound(null, heart.getX(), heart.getY(), heart.getZ(), ECCalamityHeart.SOUND_PRISM.get(), SoundSource.HOSTILE, 1.5F, 1.4F);
     }
@@ -421,7 +438,7 @@ public final class CalamityHeartSkills {
         double base = (crossTurn++ & 7) * Math.PI / 8D;
         for (int i = 0; i < lines; i++) {
             double angle = base + Math.PI * i / lines;
-            effects.add(new Prism(through, new Vec3(Math.cos(angle), 0D, Math.sin(angle)), radius, s().prismWarnTicks()));
+            add(new Prism(through, new Vec3(Math.cos(angle), 0D, Math.sin(angle)), radius, s().prismWarnTicks()));
         }
         server.playSound(null, heart.getX(), heart.getY(), heart.getZ(), ECCalamityHeart.SOUND_PRISM.get(), SoundSource.HOSTILE, 2F, 1.1F);
     }
@@ -525,7 +542,7 @@ public final class CalamityHeartSkills {
             List<ServerPlayer> targets = targets(reach());
             if (!targets.isEmpty()) {
                 ServerPlayer target = targets.get(heart.getRandom().nextInt(targets.size()));
-                effects.add(new Strike(target.getUUID(), target.position(), heart.position().add(0D, heart.getBbHeight() * 0.5D, 0D),
+                add(new Strike(target.getUUID(), target.position(), heart.position().add(0D, heart.getBbHeight() * 0.5D, 0D),
                         s().strikeWarnTicks(), blackoutFumes));
             }
         }
@@ -549,7 +566,7 @@ public final class CalamityHeartSkills {
     private void rings(int count, int warn) {
         Vec3 origin = new Vec3(heart.getX(), heart.floorTop(), heart.getZ());
         for (int i = 0; i < count; i++) {
-            effects.add(new Ring(origin, Math.max(1, warn) * (i + 1)));
+            add(new Ring(origin, Math.max(1, warn) * (i + 1)));
         }
     }
 
@@ -573,6 +590,7 @@ public final class CalamityHeartSkills {
             rock.bind(heart, new Vec3(near.getX() + ox, near.getY(), near.getZ() + oz), k.rubbleWarnTicks());
             if (server.addFreshEntity(rock) && !rock.isRemoved()) {
                 heart.skills().track(KIND_RUBBLE, rock);
+                rock.announce();
             }
         }
     }
@@ -587,7 +605,7 @@ public final class CalamityHeartSkills {
         if (!(u.backlashDamage() > 0D) && !(u.backlashPercent() > 0D)) {
             return false;
         }
-        effects.add(new Backlash(base, u.backlashRadius(), u.backlashWarnTicks()));
+        add(new Backlash(base, u.backlashRadius(), u.backlashWarnTicks()));
         server.playSound(null, base.x, base.y, base.z, ECCalamityHeart.SOUND_PULSE.get(), SoundSource.HOSTILE, 2F, 1.4F);
         return true;
     }
@@ -598,7 +616,7 @@ public final class CalamityHeartSkills {
         if (!(u.convergeDamage() > 0D) && !(u.convergePercent() > 0D)) {
             return false;
         }
-        effects.add(new Converge(new Vec3(heart.getX(), heart.floorTop(), heart.getZ()), u.convergeRadius(), u.convergeWarnTicks()));
+        add(new Converge(new Vec3(heart.getX(), heart.floorTop(), heart.getZ()), u.convergeRadius(), u.convergeWarnTicks()));
         server.playSound(null, heart.getX(), heart.getY(), heart.getZ(), ECCalamityHeart.SOUND_ECHO.get(), SoundSource.HOSTILE, 3F, 0.6F);
         return true;
     }
@@ -609,7 +627,13 @@ public final class CalamityHeartSkills {
      */
     public void combo(ServerLevel server, int pair) {
         ECCalamityHeart.Config.Skills k = s();
-        switch (Math.floorMod(pair, 4)) {
+        int which = Math.floorMod(pair, 4);
+        // 起手：这一对的两种相色在它身上合成一股炸开（客户端画，FX_COMBO）；之后各招的预警、结算照常
+        CalamityHeartEntity.Aspect[] two = COMBO_ASPECTS[which];
+        double lift = heart.getY() + heart.getBbHeight() * 0.5D - heart.floorTop();
+        BossWarnings.resolve(heart, S2CBossWarningPacket.FX_COMBO, heart.position().add(0D, heart.getBbHeight() * 0.5D, 0D), heart.getBbWidth() * 0.5D,
+                0D, new Vec3(0D, lift, 0D), 0, two[0].color(), two[1].color());
+        switch (which) {
             case 0 -> {
                 cross(server, COMBO_LINES);
                 fumes(server, KIND_FUME, k.maxFumes(), COMBO_FUMES, k.fumeTicks());
@@ -618,8 +642,8 @@ public final class CalamityHeartSkills {
                 int warn = Math.max(1, k.blackoutWarnTicks());
                 int length = Math.max(1, k.blackoutTicks());
                 beginBlackout(warn, length, 0, false);
-                effects.add(new Volley(warn + length / 3, k.rubbleCount()));
-                effects.add(new Volley(warn + length * 2 / 3, k.rubbleCount()));
+                add(new Volley(warn + length / 3, k.rubbleCount()));
+                add(new Volley(warn + length * 2 / 3, k.rubbleCount()));
             }
             case 2 -> beginBlackout(k.blackoutWarnTicks(), k.blackoutTicks(), COMBO_STRIKES, true);
             default -> {
@@ -634,6 +658,11 @@ public final class CalamityHeartSkills {
 
     /** 垂死反扑（崩解里每 {@code collapse_echo_interval} 刻本体调）：n 是这一轮崩解里的第几次（从 0 起），双数断层、单数棱线齐射 */
     public void deathThroe(ServerLevel server, int n) {
+        // 每一次反扑先从它身上炸出一圈（客户端画，FX_THROE）
+        double lift = heart.getY() + heart.getBbHeight() * 0.5D - heart.floorTop();
+        BossWarnings.resolve(heart, S2CBossWarningPacket.FX_THROE, heart.position().add(0D, heart.getBbHeight() * 0.5D, 0D),
+                Math.min(12D, ECCalamityHeart.Config.values().fight().arenaRadius()), 0D, new Vec3(0D, lift, 0D), 0,
+                CalamityHeartEntity.COLLAPSE_COLOR, 0);
         if ((n & 1) == 0) {
             rings(s().faultRings(), s().ringWarnTicks());
             server.playSound(null, heart.getX(), heart.getY(), heart.getZ(), ECCalamityHeart.SOUND_QUAKE.get(), SoundSource.HOSTILE, 2.5F, 0.5F);
@@ -660,11 +689,6 @@ public final class CalamityHeartSkills {
         MatrixShadeSkills.ring(server, center, radius, particle, points);
     }
 
-    private static DustParticleOptions dust(int color, float size) {
-        float[] rgb = CalamityHeartEntity.rgb(color);
-        return new DustParticleOptions(new Vector3f(rgb[0], rgb[1], rgb[2]), size);
-    }
-
     // ------------------------------------------------------------------
     // 预警中的招
     // ------------------------------------------------------------------
@@ -688,7 +712,13 @@ public final class CalamityHeartSkills {
             return true;
         }
 
-        abstract void warn(ServerLevel server);
+        /** 起手时调一次：把预警发给客户端（{@link BossWarnings}）；没有预警画面的招不覆盖 */
+        void announce() {
+        }
+
+        /** 预警期每刻（多数招的预警画面都交给客户端了，这里留给要逐刻判断的） */
+        void warn(ServerLevel server) {
+        }
 
         abstract void resolve(ServerLevel server);
     }
@@ -707,24 +737,15 @@ public final class CalamityHeartSkills {
         }
 
         @Override
-        void warn(ServerLevel server) {
-            if (ticks % 4 != 0) {
-                return;
-            }
-            DustParticleOptions gold = dust(0xFFD27A, 1.2F);
-            for (double t = -radius; t <= radius; t += 1D) {
-                Vec3 at = through.add(dir.scale(t));
-                server.sendParticles(gold, at.x, through.y + 0.1D, at.z, 1, 0.05D, 0D, 0.05D, 0D);
-            }
+        void announce() {
+            BossWarnings.line(heart, through.subtract(dir.scale(radius)), through.add(dir.scale(radius)), PRISM_WIDTH, ticks, BossWarnings.SOLAR);
         }
 
+        /** 落下：沿线立起一道光墙（客户端画，{@code FX_PRISM}） */
         @Override
         void resolve(ServerLevel server) {
             Vec3 center = heart.arenaCenter();
-            for (double t = -radius; t <= radius; t += 2D) {
-                Vec3 at = through.add(dir.scale(t));
-                server.sendParticles(ParticleTypes.END_ROD, at.x, through.y + 0.5D, at.z, 2, 0.1D, 0.6D, 0.1D, 0.02D);
-            }
+            BossWarnings.resolve(heart, S2CBossWarningPacket.FX_PRISM, through, radius, PRISM_WIDTH, dir.scale(radius), 0, BossWarnings.SOLAR, 0);
             ECCalamityHeart.Config.Skills k = s();
             for (ServerPlayer player : targets(Double.MAX_VALUE)) {
                 if (onPrism(through, dir, center, radius, player.position())
@@ -744,12 +765,13 @@ public final class CalamityHeartSkills {
             this.target = target;
         }
 
+        /** 被标记的人头顶一根跟着人走的光柱（高 {@value #MARK_COLUMN} 格） */
         @Override
-        void warn(ServerLevel server) {
-            ServerPlayer player = ECProtection.onlinePlayer(server.getServer(), target);
-            if (player != null && player.level() == server && ticks % 3 == 0) {
-                for (int dy = 2; dy <= 8; dy += 2) {
-                    server.sendParticles(ParticleTypes.END_ROD, player.getX(), player.getY() + dy, player.getZ(), 1, 0.05D, 0.3D, 0.05D, 0D);
+        void announce() {
+            if (heart.level() instanceof ServerLevel server) {
+                ServerPlayer player = ECProtection.onlinePlayer(server.getServer(), target);
+                if (player != null && player.level() == server) {
+                    BossWarnings.column(heart, player, player.position(), MARK_COLUMN, 1D, ticks, BossWarnings.SOLAR);
                 }
             }
         }
@@ -761,7 +783,11 @@ public final class CalamityHeartSkills {
                 return;
             }
             server.playSound(null, player.getX(), player.getY(), player.getZ(), ECCalamityHeart.SOUND_MARK.get(), SoundSource.HOSTILE, 2F, 0.6F);
-            if (HoannaHazards.exposedToSky(server, player)) {
+            boolean exposed = HoannaHazards.exposedToSky(server, player);
+            // 光柱砸下来（客户端画）；有遮挡时 size2 = 0，光打在遮挡上散掉
+            BossWarnings.resolve(heart, S2CBossWarningPacket.FX_SUNFALL, player.position(), MARK_COLUMN, exposed ? 1D : 0D, Vec3.ZERO, 0,
+                    BossWarnings.SOLAR, 0);
+            if (exposed) {
                 hit(player, ECDamageTypes.calamitySolar(heart), 0D, s().markPercent());
             }
         }
@@ -774,14 +800,15 @@ public final class CalamityHeartSkills {
         }
 
         @Override
-        void warn(ServerLevel server) {
-            if (ticks % 5 == 0) {
-                ring(server, heart.arenaCenter(), Math.min(12D, ECCalamityHeart.Config.values().fight().arenaRadius()), ParticleTypes.END_ROD, 32);
-            }
+        void announce() {
+            BossWarnings.circle(heart, null, heart.arenaCenter(), Math.min(12D, ECCalamityHeart.Config.values().fight().arenaRadius()), ticks,
+                    BossWarnings.SOLAR);
         }
 
         @Override
         void resolve(ServerLevel server) {
+            BossWarnings.resolve(heart, S2CBossWarningPacket.FX_NOON, heart.arenaCenter(), Math.min(12D, ECCalamityHeart.Config.values().fight().arenaRadius()),
+                    BossWarnings.SOLAR);
             for (ServerPlayer player : targets(Double.MAX_VALUE)) {
                 if (HoannaHazards.exposedToSky(server, player)) {
                     hit(player, ECDamageTypes.calamitySolar(heart), 0D, s().noonPercent());
@@ -799,17 +826,11 @@ public final class CalamityHeartSkills {
             this.dir = dir;
         }
 
+        /** 扇形预警跟着它的水平位置走（结算按结算那一刻它在哪算） */
         @Override
-        void warn(ServerLevel server) {
-            if (ticks % 3 != 0) {
-                return;
-            }
-            DustParticleOptions green = dust(0xA8C83A, 1.3F);
-            double range = s().breathRange();
-            for (double t = 1D; t <= range; t += 1.5D) {
-                Vec3 at = heart.position().add(dir.scale(t));
-                server.sendParticles(green, at.x, heart.floorTop() + 0.3D, at.z, 2, t * 0.25D, 0.05D, t * 0.25D, 0D);
-            }
+        void announce() {
+            BossWarnings.sector(heart, heart, new Vec3(heart.getX(), heart.floorTop(), heart.getZ()), s().breathRange(), dir, Math.acos(BREATH_COS),
+                    ticks, BossWarnings.CORROSION);
         }
 
         @Override
@@ -849,28 +870,36 @@ public final class CalamityHeartSkills {
             this.fume = fume;
         }
 
-        /** 轨迹只发给拿着光源的参战者（熄光时只有他们看得见） */
+        /** 已经发过轨迹的人（熄光中途才拿起光源的，下次检查时补发剩下的时长） */
+        final Set<UUID> told = new HashSet<>();
+
         @Override
-        void warn(ServerLevel server) {
-            if (ticks % 2 != 0) {
+        void announce() {
+            warn(null);
+        }
+
+        /** 轨迹（空中瞄准线 + 落点圈）只发给拿着光源的参战者（熄光时只有他们看得见）；每 2 刻看一次有没有新拿起光源的人 */
+        @Override
+        void warn(@Nullable ServerLevel server) {
+            if (server != null && ticks % 2 != 0) {
                 return;
             }
-            DustParticleOptions trail = dust(0xB070FF, 1F);
-            Vec3 delta = aim.add(0D, 1D, 0D).subtract(from);
-            int steps = Mth.clamp((int) (delta.length() * 2D), 2, 48);
+            List<ServerPlayer> viewers = new ArrayList<>();
             for (ServerPlayer viewer : targets(Double.MAX_VALUE)) {
-                if (!CalamityHeartEntity.holdsLight(viewer)) {
-                    continue;
+                if (CalamityHeartEntity.holdsLight(viewer) && told.add(viewer.getUUID())) {
+                    viewers.add(viewer);
                 }
-                for (int i = 0; i <= steps; i++) {
-                    Vec3 at = from.add(delta.scale(i / (double) steps));
-                    server.sendParticles(viewer, trail, false, at.x, at.y, at.z, 1, 0D, 0D, 0D, 0D);
-                }
+            }
+            if (!viewers.isEmpty()) {
+                BossWarnings.tether(heart, from, aim.add(0D, 1D, 0D), ticks, BossWarnings.SHADOW, viewers);
+                BossWarnings.circleFor(heart, aim, STRIKE_RADIUS, ticks, BossWarnings.SHADOW, viewers);
             }
         }
 
+        /** 落下：影刃从出手点扑到落点（客户端画，{@code FX_STRIKE}；落点画面谁都看得见，轨迹预警只给拿光源的人） */
         @Override
         void resolve(ServerLevel server) {
+            BossWarnings.resolve(heart, S2CBossWarningPacket.FX_STRIKE, aim, STRIKE_RADIUS, 0D, from.subtract(aim), 0, BossWarnings.SHADOW, 0);
             if (fume) {
                 fumeAt(server, aim, KIND_FUME, s().maxFumes(), s().fumeTicks());
             }
@@ -901,21 +930,22 @@ public final class CalamityHeartSkills {
             this.delay = delay;
         }
 
+        /** 蓄力 delay 刻、再每刻往外扩 {@value #RING_SPEED} 格直到场地外，整条时间轴一次发给客户端 */
+        @Override
+        void announce() {
+            BossWarnings.ring(heart, null, origin, 0D, ECCalamityHeart.Config.values().fight().arenaRadius() + REACH_SLACK, RING_SPEED, RING_BAND,
+                    delay, BossWarnings.QUAKE);
+        }
+
         @Override
         boolean tick(ServerLevel server) {
             if (delay > 0) {
-                if (delay % 3 == 0) {
-                    ring(server, origin, 1.5D, ParticleTypes.CRIT, 12);
-                }
                 if (--delay == 0) {
                     server.playSound(null, origin.x, origin.y, origin.z, ECCalamityHeart.SOUND_QUAKE.get(), SoundSource.HOSTILE, 2F, 0.6F);
                 }
                 return false;
             }
             radius += RING_SPEED;
-            if (heart.tickCount % 2 == 0) {
-                ring(server, origin, radius, ParticleTypes.CAMPFIRE_COSY_SMOKE, Mth.clamp((int) (radius * 4D), 12, 96));
-            }
             ECCalamityHeart.Config.Skills k = s();
             for (ServerPlayer player : targets(Double.MAX_VALUE)) {
                 if (struck.contains(player.getUUID()) || !player.onGround() || Math.abs(player.getY() - origin.y) > 3D) {
@@ -934,10 +964,6 @@ public final class CalamityHeartSkills {
         }
 
         @Override
-        void warn(ServerLevel server) {
-        }
-
-        @Override
         void resolve(ServerLevel server) {
         }
     }
@@ -949,10 +975,6 @@ public final class CalamityHeartSkills {
         Volley(int ticks, int count) {
             super(Skill.VOLLEY, ticks);
             this.count = count;
-        }
-
-        @Override
-        void warn(ServerLevel server) {
         }
 
         @Override
@@ -972,18 +994,18 @@ public final class CalamityHeartSkills {
             this.radius = radius;
         }
 
+        /** 灾柱脚下的预警圈，柱顶聚能（柱高取灾柱实体的高度） */
         @Override
-        void warn(ServerLevel server) {
-            if (ticks % 3 == 0) {
-                ring(server, base.add(0D, 0.1D, 0D), radius, dust(BACKLASH_COLOR, 1.5F), Mth.clamp((int) (radius * 5D), 16, 64));
-            }
+        void announce() {
+            BossWarnings.pillarCircle(heart, base, radius, ECCalamityHeart.CALAMITY_PILLAR.get().getHeight(), ticks, BossWarnings.DANGER);
         }
 
         @Override
         void resolve(ServerLevel server) {
             ECCalamityHeart.Config.Fury u = u();
-            server.sendParticles(ParticleTypes.EXPLOSION, base.x, base.y + 1D, base.z, 3, 0.8D, 0.5D, 0.8D, 0D);
-            ring(server, base.add(0D, 0.3D, 0D), radius, ParticleTypes.FLAME, Mth.clamp((int) (radius * 5D), 16, 64));
+            // 火柱冲天 + 冲击波（客户端画，FX_BACKLASH）
+            BossWarnings.resolve(heart, S2CBossWarningPacket.FX_BACKLASH, base, radius, ECCalamityHeart.CALAMITY_PILLAR.get().getHeight(), Vec3.ZERO, 0,
+                    BACKLASH_COLOR, 0);
             server.playSound(null, base.x, base.y, base.z, ECCalamityHeart.SOUND_PILLAR_BREAK.get(), SoundSource.HOSTILE, 2.5F, 1.3F);
             for (ServerPlayer player : targets(Double.MAX_VALUE)) {
                 double dx = player.getX() - base.x;
@@ -1014,23 +1036,20 @@ public final class CalamityHeartSkills {
             this.total = Math.max(1, ticks);
         }
 
-        /** 安全圈常亮；外面一圈主灾颜色的光从场地边上往里收，收到安全圈那一刻落下 */
+        /** 安全圈常亮；圈外是危险区，一道危险红的环从场地边上往里收，收到安全圈那一刻落下 */
         @Override
-        void warn(ServerLevel server) {
-            if (ticks % 4 != 0) {
-                return;
-            }
-            ring(server, origin.add(0D, 0.1D, 0D), radius, dust(CONVERGE_COLOR, 1.6F), Mth.clamp((int) (radius * 5D), 16, 64));
+        void announce() {
             double arena = Math.max(radius, ECCalamityHeart.Config.values().fight().arenaRadius());
-            double closing = radius + (arena - radius) * ticks / total;
-            ring(server, origin.add(0D, 0.3D, 0D), closing, dust(heart.mainAspect().color(), 1.3F), Mth.clamp((int) (closing * 3D), 16, 96));
+            BossWarnings.safeZone(heart, origin, radius, arena, total, CONVERGE_COLOR, BossWarnings.DANGER);
         }
 
         @Override
         void resolve(ServerLevel server) {
             ECCalamityHeart.Config.Fury u = u();
             server.playSound(null, origin.x, origin.y, origin.z, ECCalamityHeart.SOUND_COLLAPSE.get(), SoundSource.HOSTILE, 3F, 1.2F);
-            ring(server, origin.add(0D, 0.5D, 0D), radius, ParticleTypes.END_ROD, Mth.clamp((int) (radius * 5D), 16, 64));
+            // 圈外整片炸开、安全圈亮一下（客户端画，FX_CONVERGE）
+            double arena = Math.max(radius, ECCalamityHeart.Config.values().fight().arenaRadius());
+            BossWarnings.resolve(heart, S2CBossWarningPacket.FX_CONVERGE, origin, radius, arena, Vec3.ZERO, 0, CONVERGE_COLOR, heart.mainAspect().color());
             for (ServerPlayer player : targets(Double.MAX_VALUE)) {
                 if (Math.hypot(player.getX() - origin.x, player.getZ() - origin.z) > radius) {
                     hit(player, ECDamageTypes.calamity(heart), u.convergeDamage(), u.convergePercent());

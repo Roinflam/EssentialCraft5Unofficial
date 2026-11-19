@@ -15,8 +15,9 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 /**
- * 失序之柱的画法：预警的 1.5 秒里地上一个圈（贴图左半边），圈里一个从外往里收的小圈当倒计时；炸开以后一根光柱（贴图右半边，十字两片）在 1 秒里淡掉。
- * 全亮、半透明，不受光照。贴图 {@code textures/entity/disorder_pillar/disorder_pillar.png}（64 × 32：左半 32 × 32 是圈，右半是柱子的竖纹；灰度，按顶点颜色染成品红）。
+ * 失序之柱的画法：预警的 1.5 秒里地上的圈由首领预警包画（{@code client/vfx/warn}，起手时服务端发），这里不画；
+ * 炸开以后一根光柱（贴图右半边，十字两片）在 1 秒里淡掉；地上不再画圈（结算不标范围，落点交给 {@code FX_DISORDER} 的裂纹和柱脚电晕）。
+ * 全亮、半透明，不受光照。贴图 {@code textures/entity/disorder_pillar/disorder_pillar.png}（64 × 32：左半 32 × 32 是圈，现在没用到；右半是柱子的竖纹；灰度，按顶点颜色染成品红）。
  * 客户端只按自己的 tickCount 算进度（实体加进客户端的那一刻和服务端差不了一两刻）。只在客户端加载。
  */
 public class DisorderPillarRenderer extends EntityRenderer<MatrixShadePillar> {
@@ -36,33 +37,17 @@ public class DisorderPillarRenderer extends EntityRenderer<MatrixShadePillar> {
         VertexConsumer buffer = buffers.getBuffer(RenderType.entityTranslucentEmissive(TEXTURE));
         float radius = MatrixShadePillar.RADIUS;
         pose.pushPose();
-        if (age < MatrixShadePillar.WARN) {
-            float progress = age / MatrixShadePillar.WARN;
-            int alpha = (int) (110 + 120 * progress);
-            flat(pose, buffer, radius, 0.03F, alpha);
-            flat(pose, buffer, Math.max(0.2F, radius * (1F - progress)), 0.05F, 200);
-        } else {
+        if (age >= MatrixShadePillar.WARN) {
             float fade = 1F - Mth.clamp((age - MatrixShadePillar.WARN) / MatrixShadePillar.LINGER, 0F, 1F);
             int alpha = (int) (230 * fade);
             if (alpha > 4) {
                 float half = radius * 0.6F;
                 column(pose, buffer, half, alpha, 0F);
                 column(pose, buffer, half, alpha, 90F);
-                flat(pose, buffer, radius, 0.03F, alpha / 2);
             }
         }
         pose.popPose();
         super.render(entity, yaw, partialTick, pose, buffers, light);
-    }
-
-    /** 地上的圈：边长 2r 的方片，贴图左半 */
-    private static void flat(PoseStack pose, VertexConsumer buffer, float r, float y, int alpha) {
-        Matrix4f m = pose.last().pose();
-        Matrix3f n = pose.last().normal();
-        vertex(buffer, m, n, -r, y, -r, 0F, 0F, alpha, 0F, 1F, 0F);
-        vertex(buffer, m, n, -r, y, r, 0F, 1F, alpha, 0F, 1F, 0F);
-        vertex(buffer, m, n, r, y, r, 0.5F, 1F, alpha, 0F, 1F, 0F);
-        vertex(buffer, m, n, r, y, -r, 0.5F, 0F, alpha, 0F, 1F, 0F);
     }
 
     /** 竖着的一片光柱（宽 2·half、高 {@link #HEIGHT}），绕 Y 转 angle 度；贴图右半 */

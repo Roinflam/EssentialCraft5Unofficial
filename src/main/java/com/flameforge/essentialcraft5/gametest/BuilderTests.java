@@ -76,7 +76,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
 /**
- * 建筑魔杖（ECBuilder，第六批 6b M1，batch6b §4.1）的 GameTest：
+ * 创世神之杖（ECBuilder，第六批 6b M1，batch6b §4.1）的 GameTest：
  * <ul>
  *   <li>选点：两个点和维度写进 NBT、潜行选定方块、能选和不能选的方块、两点距离和选区格数的上限、右键方块走 onItemUseFirst、假玩家什么都不做。</li>
  *   <li>填充 / 清除 / 清除选定方块 / 清除选定以外 / 全部替换：只按做成的格子收费、材料和掉落进出背包、被拒的格子不动不扣、
@@ -115,29 +115,46 @@ public final class BuilderTests {
     @BeforeBatch(batch = BUDGET_BATCH)
     public static void builderBudgetBefore(ServerLevel level) {
         BuilderJobs.clearAll();
+        ECBuilder.Config.Test.materialPauseSeconds = 0;
+        ECBuilder.Config.Test.maxJobsTotal = 256;
+        // 这一 batch 测的是格数预算的平分，耗时预算放大到不起作用
+        ECBuilder.Config.Test.maxMillisPerTick = 1000D;
         ECBuilder.Config.setTestOverrides(null, 8, 8);
     }
 
     @AfterBatch(batch = BUDGET_BATCH)
     public static void builderBudgetAfter(ServerLevel level) {
         ECBuilder.Config.setTestOverrides(null, null, null);
+        ECBuilder.Config.Test.reset();
         BuilderJobs.clearAll();
     }
 
     @BeforeBatch(batch = SLOW_BATCH)
     public static void builderSlowBefore(ServerLevel level) {
         BuilderJobs.clearAll();
+        ECBuilder.Config.Test.materialPauseSeconds = 0;
+        ECBuilder.Config.Test.maxJobsTotal = 256;
         ECBuilder.Config.setTestOverrides(null, 1, 1);
     }
 
     @AfterBatch(batch = SLOW_BATCH)
     public static void builderSlowAfter(ServerLevel level) {
         ECBuilder.Config.setTestOverrides(null, null, null);
+        ECBuilder.Config.Test.reset();
         BuilderJobs.clearAll();
+    }
+
+    /** 这些老测试按「材料 / MRU 用完就结束」写的，暂停关掉；同一 batch 同时跑的任务超过默认全服名额，名额放大 */
+    @BeforeBatch(batch = BATCH)
+    public static void builderBefore(ServerLevel level) {
+        BuilderJobs.clearAll();
+        ECBuilder.Config.Test.materialPauseSeconds = 0;
+        ECBuilder.Config.Test.maxJobsTotal = 256;
     }
 
     @AfterBatch(batch = BATCH)
     public static void builderAfter(ServerLevel level) {
+        ECBuilder.Config.Test.reset();
         BuilderJobs.clearAll();
     }
 
@@ -277,7 +294,7 @@ public final class BuilderTests {
             helper.assertTrue(m.bottomUp() == (m == BuilderMode.FILL || m == BuilderMode.REPLACE_ALL), m + " 的施工方向不对");
             helper.assertTrue(BuilderMode.of(new ItemStack(ECBuilder.item(m))) == m, m + " 的物品认不出模式");
         }
-        helper.assertTrue(BuilderMode.of(new ItemStack(Items.STICK)) == null, "木棍不是建筑魔杖");
+        helper.assertTrue(BuilderMode.of(new ItemStack(Items.STICK)) == null, "木棍不是创世神之杖");
         helper.succeed();
     }
 
@@ -514,7 +531,9 @@ public final class BuilderTests {
                     claims.close();
                     assertResult(helper, player, BuilderJobs.StopReason.FINISHED, 17);
                     helper.assertTrue(helper.getBlockState(denied).isAir(), "被拒的格子应还是空气");
-                    helper.assertTrue(claims.places(denied) == 1, "被拒的格子应只问一次，实际 " + claims.places(denied));
+                    // 开工前探测可能已经探到它（之后先探后放、不再真放），所以真放置事件 0 或 1 次
+                    helper.assertTrue(claims.places(denied) <= 1 && claims.places(denied) + claims.probes(denied) >= 1,
+                            "被拒的格子应问到、最多真放一次，实际放置 " + claims.places(denied) + "、探测 " + claims.probes(denied));
                     helper.assertTrue(countBox(helper, A, B, Blocks.OAK_PLANKS) == 17, "其余 17 格照填");
                     helper.assertTrue(count(player, Items.OAK_PLANKS) == 64 - 17, "被拒那格的木板应放回，剩 " + count(player, Items.OAK_PLANKS));
                     helper.assertTrue(mru(stack) == FULL - 17 * PLACE, "只扣做成的 17 格，实际 " + mru(stack));
@@ -620,14 +639,17 @@ public final class BuilderTests {
                     claims.close();
                     assertResult(helper, player, BuilderJobs.StopReason.FINISHED, 17);
                     helper.assertTrue(helper.getBlockState(denied).is(Blocks.STONE), "被拒的格子不动");
-                    helper.assertTrue(claims.breaks(denied) == 1, "被拒的格子应只问一次，实际 " + claims.breaks(denied));
+                    // 开工前探测会先探到这一格、之后一律先探后放，真破坏事件最多一次（探测事件另算，见 Claims.probes）
+                    helper.assertTrue(claims.breaks(denied) >= 1 && claims.breaks(denied) - claims.probes(denied) <= 1,
+                            "被拒的格子应问到、最多真问一次，实际 " + claims.breaks(denied) + "（探测 " + claims.probes(denied) + "）");
                     helper.assertTrue(count(player, Items.COBBLESTONE) == 17 && itemEntities(helper, 5, 4, 5) == 0, "只有 17 格的圆石，地上没有掉落物");
                     helper.assertTrue(mru(stack) == FULL - 17 * BREAK, "只扣 17 格，实际 " + mru(stack));
                     // 每格走的是同一条删除路径：其余每格都正好问过一次
                     for (BlockPos pos : BlockPos.betweenClosed(A, B)) {
                         BlockPos cell = pos.immutable();
                         if (!cell.equals(denied)) {
-                            helper.assertTrue(claims.breaks(cell) == 1, cell.toShortString() + " 应正好发一次破坏事件，实际 " + claims.breaks(cell));
+                            int real = claims.breaks(cell) - claims.probes(cell);
+                            helper.assertTrue(real == 1, cell.toShortString() + " 应正好发一次真破坏事件，实际 " + real);
                         }
                     }
                     BuilderJobs.Result result = BuilderJobs.lastResult(player.getUUID());
@@ -809,7 +831,7 @@ public final class BuilderTests {
                 .thenSucceed();
     }
 
-    /** 只拒放置、放行破坏的格子：石头拆了、格子留成空气、圆石照给、只扣 250、木板没少 */
+    /** 只拒放置、放行破坏的格子：石头拆了、格子留成空气、圆石照给、只扣 250、木板没少；这一格记作「只拆未放」，不算做成 */
     @GameTest(template = EMPTY, batch = BATCH, timeoutTicks = 200)
     public static void builderReplaceDenyPlace(GameTestHelper helper) {
         BlockPos cell = new BlockPos(2, 1, 2);
@@ -822,9 +844,10 @@ public final class BuilderTests {
                 .thenWaitUntil(() -> helper.assertTrue(!BuilderJobs.isRunning(player.getUUID()), "还在施工"))
                 .thenExecute(() -> {
                     claims.close();
-                    assertResult(helper, player, BuilderJobs.StopReason.FINISHED, 1);
+                    assertResult(helper, player, BuilderJobs.StopReason.FINISHED, 0);
+                    helper.assertTrue(BuilderJobs.lastResult(player.getUUID()).brokenOnly() == 1, "应记 1 格只拆未放");
                     helper.assertTrue(helper.getBlockState(cell).isAir(), "放置被拒的格子应留成空气");
-                    helper.assertTrue(claims.breaks(cell) == 1 && claims.places(cell) == 1, "破坏、放置各问一次");
+                    helper.assertTrue(claims.breaks(cell) - claims.probes(cell) == 1 && claims.places(cell) == 1, "破坏、放置各真问一次（探测不算）");
                     helper.assertTrue(count(player, Items.COBBLESTONE) == 1 && count(player, Items.OAK_PLANKS) == 64, "圆石照给、木板没少");
                     helper.assertTrue(mru(stack) == FULL - BREAK, "只按拆收 250，实际 " + mru(stack));
                 })
@@ -850,7 +873,8 @@ public final class BuilderTests {
                     assertResult(helper, player, BuilderJobs.StopReason.OUT_OF_MATERIAL, 0);
                     helper.assertTrue(countBox(helper, A, b, Blocks.STONE) == 3, "石头不应被拆");
                     for (BlockPos pos : BlockPos.betweenClosed(A, b)) {
-                        helper.assertTrue(claims.breaks(pos.immutable()) == 0, "没材料时不应发破坏事件");
+                        BlockPos cell = pos.immutable();
+                        helper.assertTrue(claims.breaks(cell) - claims.probes(cell) == 0, "没材料时不应发真破坏事件（开工前探测的不算）");
                     }
                     helper.assertTrue(mru(stack) == FULL && count(player, Items.OAK_PLANKS) == 64 && count(player, Items.COBBLESTONE) == 0,
                             "什么都不扣、改过名的木板没动");
@@ -993,7 +1017,8 @@ public final class BuilderTests {
         ServerPlayer player = bigCreativeJob(helper);
         ItemStack stack = player.getMainHandItem();
         start(helper, player);
-        helper.assertTrue(BuilderJobs.start(player, InteractionHand.MAIN_HAND) == BuilderJobs.StartResult.BUSY, "有活在做时再开应被拒");
+        helper.assertTrue(BuilderJobs.start(player, InteractionHand.MAIN_HAND) == BuilderJobs.StartResult.QUEUED, "有活在做时再开一单应排队");
+        helper.assertTrue(BuilderJobs.start(player, InteractionHand.MAIN_HAND) == BuilderJobs.StartResult.BUSY, "排队名额用完再开应被拒");
         helper.assertTrue(BuilderJobs.isRunning(player.getUUID()), "原来的活应照跑");
         int[] stoppedAt = {-1};
         helper.startSequence()
@@ -1001,7 +1026,7 @@ public final class BuilderTests {
                 .thenExecute(() -> {
                     player.setShiftKeyDown(true);
                     stack.getItem().use(helper.getLevel(), player, InteractionHand.MAIN_HAND);
-                    helper.assertTrue(!BuilderJobs.isRunning(player.getUUID()), "潜行对空气右键应停下");
+                    helper.assertTrue(!BuilderJobs.isRunning(player.getUUID()), "潜行对空气右键应停下（排队的一起清掉）");
                     BuilderJobs.Result result = BuilderJobs.lastResult(player.getUUID());
                     helper.assertTrue(result != null && result.reason() == BuilderJobs.StopReason.STOPPED && result.done() < BIG, "应是自己停下的");
                     helper.assertTrue(BuilderSelection.hasBothPoints(stack), "停下时两个点应留着");
@@ -1081,7 +1106,7 @@ public final class BuilderTests {
     // ------------------------------------------------------------------
 
     /**
-     * 批量写法 {@code harvestGuarded(…, true)}（建筑魔杖用）：放行的格子删掉、交出掉落，被拒的格子不动、返回 null；两种结论都不写探测缓存，
+     * 批量写法 {@code harvestGuarded(…, true)}（创世神之杖用）：放行的格子删掉、交出掉落，被拒的格子不动、返回 null；两种结论都不写探测缓存，
      * 之后对同一格 check 要重新探测一次。对照：4 参版照旧写缓存，之后的 check 命中缓存、不再探测
      */
     @GameTest(template = EMPTY)
@@ -1118,7 +1143,7 @@ public final class BuilderTests {
 
     /**
      * 整片选区都在别人的领地里（486 格石头全拒）：被拒累计 {@value BuilderJobs#DENIED_LIMIT} 格就停在「没有权限」，
-     * 正好发了这么多次破坏事件，一格没动、不扣 MRU、没有掉落
+     * 发的破坏事件（含探测）在这个数加开工前抽样数以内，一格没动、不扣 MRU、没有掉落
      */
     @GameTest(template = EMPTY_LARGE, batch = BATCH, timeoutTicks = 200)
     public static void builderStopsAfterDeniedLimit(GameTestHelper helper) {
@@ -1137,7 +1162,9 @@ public final class BuilderTests {
                     for (BlockPos pos : BlockPos.betweenClosed(BIG_A, BIG_B)) {
                         breaks += claims.breaks(pos.immutable());
                     }
-                    helper.assertTrue(breaks == BuilderJobs.DENIED_LIMIT, "应正好问了 " + BuilderJobs.DENIED_LIMIT + " 格就停，实际 " + breaks);
+                    // 破坏事件里含开工前探测的那几格（最多 PRE_PROBE_SAMPLES 次），之后一律先探后放，所以总数在上限和上限 + 抽样数之间
+                    helper.assertTrue(breaks >= BuilderJobs.DENIED_LIMIT && breaks <= BuilderJobs.DENIED_LIMIT + BuilderJobs.PRE_PROBE_SAMPLES,
+                            "应问了 " + BuilderJobs.DENIED_LIMIT + " 格左右就停，实际 " + breaks);
                     helper.assertTrue(BuilderJobs.lastResult(player.getUUID()).denied() == BuilderJobs.DENIED_LIMIT, "被拒计数应到上限");
                     helper.assertTrue(countBox(helper, BIG_A, BIG_B, Blocks.STONE) == BIG, "一格都不应动");
                     helper.assertTrue(mru(stack) == FULL && count(player, Items.COBBLESTONE) == 0, "不扣 MRU、没有掉落，实际 MRU " + mru(stack));
@@ -1265,7 +1292,8 @@ public final class BuilderTests {
                     helper.assertTrue(BuilderJobs.lastResult(poppy.getUUID()).skipped() == 1 && BuilderJobs.lastResult(dry.getUUID()).skipped() == 1,
                             "两格都应记成放不下、跳过");
                     helper.assertTrue(helper.getBlockState(poppyCell).is(Blocks.STONE) && helper.getBlockState(dryCell).is(Blocks.STONE), "放不下的格子连拆都不拆");
-                    helper.assertTrue(claims.breaks(poppyCell) == 0 && claims.breaks(dryCell) == 0, "放不下的格子不发破坏事件");
+                    helper.assertTrue(claims.breaks(poppyCell) - claims.probes(poppyCell) == 0 && claims.breaks(dryCell) - claims.probes(dryCell) == 0,
+                            "放不下的格子不发真破坏事件（开工前探测的不算）");
                     helper.assertTrue(mru(poppyWand) == FULL && mru(dryWand) == FULL, "放不下的格子不收钱");
                     helper.assertTrue(count(poppy, Items.POPPY) == 8 && count(dry, Items.KELP) == 8 && count(dry, Items.COBBLESTONE) == 0, "材料不动、没有掉落");
 
@@ -1301,8 +1329,9 @@ public final class BuilderTests {
                     assertResult(helper, player, BuilderJobs.StopReason.FINISHED, 1);
                     helper.assertTrue(BuilderJobs.lastResult(player.getUUID()).skipped() == 2, "玩家站着的两格应记成放不下");
                     helper.assertTrue(helper.getBlockState(feet).is(Blocks.STONE) && helper.getBlockState(head).is(Blocks.STONE), "玩家站着的两格不动");
-                    helper.assertTrue(claims.breaks(feet) == 0 && claims.breaks(head) == 0, "玩家站着的两格不发破坏事件");
-                    helper.assertTrue(helper.getBlockState(free).is(Blocks.OAK_PLANKS) && claims.breaks(free) == 1, "旁边那格照换");
+                    helper.assertTrue(claims.breaks(feet) - claims.probes(feet) == 0 && claims.breaks(head) - claims.probes(head) == 0,
+                            "玩家站着的两格不发真破坏事件（开工前探测的不算）");
+                    helper.assertTrue(helper.getBlockState(free).is(Blocks.OAK_PLANKS) && claims.breaks(free) - claims.probes(free) == 1, "旁边那格照换");
                     helper.assertTrue(mru(stack) == FULL - REPLACE && count(player, Items.COBBLESTONE) == 1 && count(player, Items.OAK_PLANKS) == 63,
                             "只收 300、圆石 1、木板用掉 1，实际 MRU " + mru(stack));
                 })

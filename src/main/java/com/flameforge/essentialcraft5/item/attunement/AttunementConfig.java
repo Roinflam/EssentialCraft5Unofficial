@@ -78,9 +78,11 @@ public final class AttunementConfig {
         pointsPvp = builder.comment("Points when the other side is a player (0 = fights between players give nothing).",
                         "对面是玩家时给几点（0 = 玩家之间打不攒）")
                 .defineInRange("points_pvp", 0, 0, 10_000);
-        healthPerStage = builder.comment("Max health each armor piece adds per stage (2 = one heart).", "盔甲每阶每件加的最大生命（2 = 一颗心）")
+        healthPerStage = builder.comment("No longer read: replaced by general.gear_growth.armor.health_per_stage.",
+                        "已由 general.gear_growth.armor.health_per_stage 接管，不再读")
                 .defineInRange("health_per_stage", 1D, 0D, 20D);
-        damagePerStage = builder.comment("Weapon damage per stage, as a fraction (0.03 = x1.03 per stage).", "武器每阶的攻击倍率（0.03 = 每阶 ×1.03）")
+        damagePerStage = builder.comment("No longer read: replaced by general.gear_growth.weapon.damage_per_stage (now a damage bonus, not an attribute).",
+                        "已由 general.gear_growth.weapon.damage_per_stage 接管（改成增伤池，不再是属性倍率），不再读")
                 .defineInRange("damage_per_stage", 0.03D, 0D, 1D);
         pvpEffectScale = builder.comment("Scale on durations, drains and bonus percentages of matrix affinities, matrix traits and attunement effects when the target is a player.",
                         "相性、矩阵特性、同调效果打在玩家身上时，时长、吸取和增伤百分比乘的倍数")
@@ -143,12 +145,9 @@ public final class AttunementConfig {
         return ECConfig.get(pointsPvp);
     }
 
+    /** 盔甲每阶每件的最大生命：读 {@code general.gear_growth.armor.health_per_stage}（老键 {@code attunement.health_per_stage} 不再读） */
     public static double healthPerStage() {
-        return ECConfig.get(healthPerStage);
-    }
-
-    public static double damagePerStage() {
-        return ECConfig.get(damagePerStage);
+        return GearGrowthConfig.armorHealthPerStage();
     }
 
     public static double pvpEffectScale() {

@@ -14,6 +14,7 @@ import com.flameforge.essentialcraft5.item.VoidArmorEvents;
 import com.flameforge.essentialcraft5.item.VoidArmorItem;
 import com.flameforge.essentialcraft5.item.armor.IMRUShieldArmor;
 import com.flameforge.essentialcraft5.item.armor.MRUShield;
+import com.flameforge.essentialcraft5.item.attunement.ArmorGrowth;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
 import com.flameforge.essentialcraft5.item.attunement.AttunementConfig;
 import com.flameforge.essentialcraft5.item.attunement.AttunementGains;
@@ -300,21 +301,35 @@ public final class Batch13cPrepTests {
         IMRUShieldArmor.Coverage arc = MRUShield.coverageFor(victim, mhsTwo, ECDamageTypes.mruDischarge(zombie));
         helper.assertTrue(arc != null && arc.extended(), "魔力防护 2 阶挡怪打出的 mru_discharge（新覆盖面）：" + arc);
 
+        // 虚空 3 阶起分走怪物打来的无视护甲伤害的 40%（gear_growth.void_armor.piercing_*，新覆盖面）：aberrant_strike 照份额挡；
+        // matrix_rend 是魔法，虚空照旧不挡（放到最后断言，挂了不挡住后面审判庭那段）
+        ItemStack voidThree = attuned(new ItemStack(ECVoidArmor.VOID_CHESTPLATE.get()), VoidArmorItem.ELEMENTAL_STAGE);
         for (int stage : new int[]{0, VoidArmorItem.ELEMENTAL_STAGE}) {
             ItemStack voidChest = attuned(new ItemStack(ECVoidArmor.VOID_CHESTPLATE.get()), stage);
             VoidArmorItem item = (VoidArmorItem) voidChest.getItem();
             IMRUShieldArmor.Coverage onBolt = item.coverage(voidChest, bolt);
             helper.assertTrue(onBolt != null && !onBolt.extended(), "虚空 " + stage + " 阶按物理挡 mob_bolt：" + onBolt);
-            helper.assertTrue(item.coverage(voidChest, strike) == null && item.coverage(voidChest, rend) == null, "虚空 " + stage + " 阶不挡两种大招");
+            IMRUShieldArmor.Coverage onStrike = item.coverage(voidChest, strike);
+            if (stage >= ArmorGrowth.voidPiercingStage()) {
+                helper.assertTrue(onStrike != null && onStrike.extended()
+                                && Math.abs(onStrike.share() - VoidArmorItem.share(chestType) * ArmorGrowth.voidPiercingShare()) < EPS
+                                && Math.abs(onStrike.priceMultiplier() - VoidArmorItem.priceMultiplier(stage) * ArmorGrowth.voidPiercingPrice()) < EPS,
+                        "虚空 " + stage + " 阶分走 aberrant_strike 的 40%（×3 价、新覆盖面）：" + onStrike);
+                helper.assertTrue(MRUShield.coverageFor(victim, voidChest, ECDamageTypes.aberrantStrike(rival)) == null, "虚空分担无视护甲不对玩家攻击者生效");
+            } else {
+                helper.assertTrue(onStrike == null && item.coverage(voidChest, rend) == null, "虚空 " + stage + " 阶不挡两种大招");
+            }
         }
 
-        ECInquisitorium.Config.Law law = ECInquisitorium.Config.law();
-        ECInquisitorium.Config.Attuned inq = ECInquisitorium.Config.attuned();
         int[] stages = {0, InquisitoriumArmorEvents.ABSOLUTION_STAGE, InquisitoriumArmorEvents.BULWARK_STAGE, InquisitoriumArmorEvents.TOP_STAGE};
+        // 抗魔按阶读 general.gear_growth.inquisitorium_armor.magic_resistance（0 / 1 / 3 / 4 阶 35 / 45 / 50 / 55%）
+        double[] resist = {0.35D, 0.45D, 0.5D, 0.55D};
+        ECInquisitorium.Config.Attuned inq = ECInquisitorium.Config.attuned();
         try {
-            for (int stage : stages) {
+            for (int i = 0; i < stages.length; i++) {
+                int stage = stages[i];
                 inquisitoriumSuit(victim, stage);
-                double magic = 1D - (stage >= InquisitoriumArmorEvents.ABSOLUTION_STAGE ? inq.magicResistance() : law.magicResistance());
+                double magic = 1D - resist[i];
                 close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, bolt), 1D, "审判庭 " + stage + " 阶不减 mob_bolt");
                 close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, rend), magic, "审判庭 " + stage + " 阶按抗魔减 matrix_rend");
                 close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, strike),
@@ -325,6 +340,8 @@ public final class Batch13cPrepTests {
                 victim.setItemSlot(slot, ItemStack.EMPTY);
             }
         }
+        IMRUShieldArmor.Coverage voidRend = ((VoidArmorItem) voidThree.getItem()).coverage(voidThree, rend);
+        helper.assertTrue(voidRend == null, "虚空 3 阶照旧不挡魔法（matrix_rend 带 bypasses_armor 也不算无视护甲那一条）：" + voidRend);
         helper.succeed();
     }
 
@@ -353,7 +370,7 @@ public final class Batch13cPrepTests {
         float bareBolt = lost(victim, ECDamageTypes.mobBolt(zombie), 4F);
         inquisitoriumSuit(victim, 0);
         try {
-            double expected = bare * (1D - ECInquisitorium.Config.law().magicResistance());
+            double expected = bare * (1D - ArmorGrowth.inqMagicResistance(0));
             close(helper, lost(victim, ECDamageTypes.matrixRend(zombie), 4F), expected, "审判庭 0 阶挨 matrix_rend 按抗魔少掉（裸身掉 " + bare + "）");
             // 光束没有直接实体、不碰护甲以外的东西；审判庭不减，掉的血只看护甲，比裸身少但不为 0
             float suitBolt = lost(victim, ECDamageTypes.mobBolt(zombie), 4F);

@@ -905,6 +905,199 @@
           "text": "In the original, all four lenses only changed the ray's color. These on-hit effects were added in this version."
         }
       ]
+    },
+    {
+      "id": "gun_attunement",
+      "title": "Gun Attunement",
+      "icon": "essentialcraft5:rifle",
+      "summary": "Gains points by firing, Overload Ray at the top stage",
+      "if": "cfg:general.attunement.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "All four MRU guns can be [[attunement/overview|attuned]], up to stage 4. They gain points by <em>firing</em>: with the gun in the main hand, each ray that lands on a hostile mob gives {cfg:general.attunement.points_hit}, killing it gives another {cfg:general.attunement.points_kill}, and killing a boss gives {cfg:general.attunement.points_boss_kill}."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The shot must be fired by the player personally, with the gun in the main hand. Hits from lenses, accessories and area damage do not count.",
+            "The rules on targets and farming are the same as for swords, as described in [[attunement/points]].",
+            "Guns and swords share one weapon [[attunement/budget|attunement budget]]."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Effects by stage"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Stage",
+            "Bonus",
+            "Less MRU per shot",
+            "Armor pen.",
+            "Shorter reload cooldown"
+          ],
+          "widths": [
+            1,
+            2,
+            3,
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "1",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:1|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:1|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:1|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:1|pct}"
+            ],
+            [
+              "2",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:2|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:2|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:2|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:2|pct}"
+            ],
+            [
+              "3",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:3|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:3|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:3|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:3|pct}"
+            ],
+            [
+              "4",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:4|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:4|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:4|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:4|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "MRU per shot and the reload cooldown follow the gun that fires, including the off-hand. Bonus damage, armor penetration and Ballistic Build-up below follow the gun in the main hand. Only the Pistol and Sniper Rifle have a reload cooldown, and it is shortened by at most {cfg:general.gear_growth.caps.cooldown_reduction|pct}. How these are calculated is described in [[attunement/gear_stats]]."
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+          "text": "Ballistic Build-up (from stage {cfg:general.gear_growth.mru_gun.accumulate_stage})"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+          "text": "After a creature is hit, it is immune for about half a second, and rays landing in that time are absorbed entirely. Once the gun in the main hand reaches this stage, the absorbed damage is recorded and added to the next shot that actually lands, up to {cfg:general.gear_growth.mru_gun.accumulate_ratio|pct} of that shot."
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+          "text": "Hurt immunity is not cleared by this. A record with nothing added for {cfg:general.computer_modules.accumulator.forget_ticks|sec} is discarded. Rapid-fire guns such as the Assault Rifle and Gatling Gun benefit the most."
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+            "cfg:general.hoanna.portal_enabled",
+            "module:essentialcraft5:accumulator_module"
+          ],
+          "text": "The Computer Guy's Suit [[terminal/accumulator]] works the same way. With both active, the larger limit per shot applies."
+        },
+        {
+          "type": "h",
+          "text": "Overload Ray (stage {cfg:general.gear_growth.mru_gun.overload.stage} awakening)"
+        },
+        {
+          "type": "p",
+          "text": "At this stage, every shot that lands adds one charge to the gun: {cfg:general.gear_growth.mru_gun.overload.shots} landed shots fill an Assault Rifle or Gatling Gun, and {cfg:general.gear_growth.mru_gun.overload.shots_single} fill a Pistol or Sniper Rifle. When full, a sound plays, a notice appears on the action bar and the charge bar beside the slot shows full."
+        },
+        {
+          "type": "p",
+          "text": "The next shot after a full charge always releases it, hit or miss. Centered on the first target the shot lands on, or on the end of the beam if it misses, up to {cfg:general.gear_growth.mru_gun.overload.max_targets} targets within {cfg:general.gear_growth.mru_gun.overload.radius} blocks each take {cfg:general.gear_growth.mru_gun.overload.ratio|pct} of that shot's damage. The charge then empties, and the releasing shot adds no charge."
+        },
+        {
+          "type": "p",
+          "text": "The Overload Ray deals [[attunement/gear_stats|area damage]]. It receives no bonus damage, grants no attunement points and triggers no matrix traits."
+        },
+        {
+          "type": "h",
+          "text": "Stage-up materials"
+        },
+        {
+          "type": "table",
+          "header": [
+            "To",
+            "Corners",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1",
+              "2 {item:essentialcraft5:magic_plate}, 1 {item:essentialcraft5:pale_ingot}, 1 {item:essentialcraft5:pale_gem}",
+              "20,000"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "2",
+                "2 {item:essentialcraft5:mithriline_plate}, 1 {item:essentialcraft5:matrix_crystal}, 1 {item:essentialcraft5:void_plating}",
+                "40,000"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "3",
+                "2 {item:essentialcraft5:demonic_plate}, 8 {item:essentialcraft5:aberrant_residue}, 1 {item:essentialcraft5:void_mru_reactor}",
+                "70,000"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.shade.enabled"
+              ],
+              "cells": [
+                "4",
+                "1 {item:essentialcraft5:calamity_remnant}, 4 {item:essentialcraft5:umbral_crystal}, 1 {item:essentialcraft5:demonic_core}, 1 {item:minecraft:nether_star}",
+                "120,000"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:machines.enrichment_chamber.shade.enabled"
+              ],
+              "cells": [
+                "4",
+                "Out of reach for now",
+                "120,000"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "2–4",
+                "Out of reach for now",
+                "40,000–120,000"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "As with other attuned gear, place the gun with full attunement points in the center of the [[crafting/magician_table|Magician Table]] with the materials in the corners. The matrix rank required for each stage is listed in [[attunement/stage_up]]."
+        },
+        {
+          "type": "h",
+          "text": "Switching guns"
+        },
+        {
+          "type": "p",
+          "text": "When switching to another kind of gun, half of the old gun's points can be transferred to the new one, in the same way as [[attunement/transfer]]: the new gun in the center, the old gun top-left, 2 {item:essentialcraft5:crystal_dust} top-right and 1 {item:essentialcraft5:combined_magical_alloys} bottom-left. Points can pass between any of the four guns, but not between swords and guns."
+        }
+      ]
     }
   ]
 }

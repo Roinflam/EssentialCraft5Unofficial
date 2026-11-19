@@ -1,6 +1,7 @@
 package com.flameforge.essentialcraft5.blockentity;
 
 import com.flameforge.essentialcraft5.advancement.StructureFormedTrigger;
+import com.flameforge.essentialcraft5.ambience.AmbienceParticles;
 import com.flameforge.essentialcraft5.api.IESPEHandler;
 import com.flameforge.essentialcraft5.demon.DemonTrades;
 import com.flameforge.essentialcraft5.demon.DemonWant;
@@ -274,7 +275,7 @@ public class DemonicPentacleBlockEntity extends BlockEntity {
             long time = level.getGameTime();
             for (int i = 0; i < 4; i++) {
                 double angle = Math.toRadians(((time + 9L * i) % 36L) * 10L);
-                level.addParticle(ParticleTypes.SMOKE, worldPosition.getX() + 0.5D + Math.sin(angle) * 1.1D, worldPosition.getY(),
+                AmbienceParticles.add(level, ParticleTypes.SMOKE, worldPosition.getX() + 0.5D + Math.sin(angle) * 1.1D, worldPosition.getY(),
                         worldPosition.getZ() + 0.5D + Math.cos(angle) * 1.1D, 0D, 0.1D, 0D);
             }
         }
@@ -294,8 +295,8 @@ public class DemonicPentacleBlockEntity extends BlockEntity {
             }
             double x = at.getX() + 0.5D;
             double z = at.getZ() + 0.5D;
-            level.addParticle(dust, x, at.getY() + movement / 30D, z, 0D, 0D, 0D);
-            level.addParticle(dust, x, at.getY() + 2D + movement / 30D, z, 0D, 0D, 0D);
+            AmbienceParticles.add(level, dust, x, at.getY() + movement / 30D, z, 0D, 0D, 0D);
+            AmbienceParticles.add(level, dust, x, at.getY() + 2D + movement / 30D, z, 0D, 0D, 0D);
         }
     }
 

@@ -119,6 +119,41 @@ minecraft {
                 property 'essentialcraft5.showroom', 'true'
                 property 'essentialcraft5.showroom.batch12Only', 'true'
             }
+            // -PecShowroomGear：只拍武器防具成长加强（02_gui_gear_*：物品格阶位菱形、名字颜色、裁决之刃 / 余烬元素剑提示框的同调词条，界面缩放 2 / 3 / 4 各一张）
+            if (project.hasProperty('ecShowroomGear')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.gearOnly', 'true'
+            }
+            // -PecShowroomBase：只拍升阶后的基础属性（ec5_base_*：满余烬两把剑、五套胸甲的 0 阶 / 满阶提示框，缩放 3）
+            if (project.hasProperty('ecShowroomBase')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.gearOnly', 'true'
+                property 'essentialcraft5.showroom.baseStats', 'true'
+            }
+            // -PecShowroomEnch：只拍带附魔的同调装备提示框（ec5_02_gui_ench_*：满阶裁决之刃、余烬元素剑、步枪、审判庭胸甲，带 / 不带附魔对照，不按 / 按住 Shift，缩放 2 / 3）
+            if (project.hasProperty('ecShowroomEnch')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.gearOnly', 'true'
+                property 'essentialcraft5.showroom.enchanted', 'true'
+            }
+            // -PecShowroomWindow=1920x1080：展示厅窗口换成这个尺寸（默认 1280x720）
+            if (project.hasProperty('ecShowroomWindow')) {
+                def size = project.property('ecShowroomWindow').toString().split('x')
+                property 'essentialcraft5.showroom.width', size[0]
+                property 'essentialcraft5.showroom.height', size[1]
+            }
+            // -PecShowroomBuilder：只拍建筑魔杖升级第 1 批的客户端部分（ec5_04_scene_builder_*：铺面 / 直线虚影、准星下提示、待确认、暂停、施工中、撤销后，缩放 3 / 2；手册形状与撤销两节）
+            if (project.hasProperty('ecShowroomBuilder')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.builderOnly', 'true'
+            }
+            // -PecShowroomBuilderPanel：只拍建筑魔杖面板「蓝图台」（ec5_04_scene_builder_panel_*：1920×1080 下缩放 2 / 3 / 4 × 三页 × 空闲 / 施工中 / 暂停，
+            // 再加 854×480、640×480 两个小窗口的三页空闲；版面坐标打在日志「[showroom] builder panel」）
+            if (project.hasProperty('ecShowroomBuilderPanel')) {
+                property 'essentialcraft5.showroom', 'true'
+                property 'essentialcraft5.showroom.builderOnly', 'true'
+                property 'essentialcraft5.showroom.builderPanel', 'true'
+            }
             // -PecShowroom13a：只拍第十三批 13a（ec5_b13a_*：淬炼台与五种着色的回响、首领血条、成功标题、引导；凝结中的富集仓与状态检测器；淬炼台界面、灵魂石 / 重锤 / 同调各阶提示框、5 阶宅男终端「模块」页、本批手册页）
             if (project.hasProperty('ecShowroom13a')) {
                 property 'essentialcraft5.showroom', 'true'
@@ -171,6 +206,10 @@ minecraft {
         // 顺带验证专用服不会加载到客户端类
         gameTestServer {
             workingDirectory project.file('run-gametest')
+            // 建筑魔杖飞行特效的提前量：整轮测试按这个刻数跑（例：-PecBuilderLead=0 确认关掉特效时施工和以前一样）
+            if (project.hasProperty('ecBuilderLead')) {
+                property 'essentialcraft5.builder.vfxLeadTicks', project.findProperty('ecBuilderLead')
+            }
         }
 
         data {
@@ -267,6 +306,30 @@ if (project.hasProperty('botaniaRuntimeJar') || project.hasProperty('patchouliRu
     botaniaRuntime = [localRuntimeJar('botaniaRuntimeJar', 'botania'), localRuntimeJar('patchouliRuntimeJar', 'patchouli')]
 }
 
+// -PextraRuntimeJars=<jar>[,<jar>…]：开发环境运行时（runClient / runServer / runGameTestServer）另外挂几个正式版模组 jar，
+// 手动实测本模组和别的模组一起用的情形（例：建筑魔杖从背包类模组的随身容器里取料）。正式版 jar 是 SRG 名，直接丢进 run/mods
+// 会在 mixin 应用时就崩，所以照 -PcuriosRuntimeJar 的写法拷进 build/ 下的平铺仓库、按坐标经 fg.deobf 反混淆。不加这个参数时和以前完全一样
+def extraRuntime = []
+if (project.hasProperty('extraRuntimeJars')) {
+    def extraDir = new File(projectDir, 'build/extra-runtime')
+    project.property('extraRuntimeJars').toString().split(',').each { String path ->
+        def src = file(path.trim())
+        if (!src.isFile()) {
+            throw new GradleException("extraRuntimeJars 里的文件不存在：${src}")
+        }
+        // 坐标：模块名取文件名（去掉 .jar、非字母数字换成 -），「版本」取文件大小和修改时间（换一份 jar 坐标就变）
+        def name = src.name.replaceAll(/\.jar$/, '').replaceAll(/[^A-Za-z0-9]+/, '-').toLowerCase()
+        def stamp = Long.toHexString(src.length() * 31L + src.lastModified())
+        def target = new File(extraDir, "${name}-${stamp}.jar")
+        if (!target.exists()) {
+            extraDir.mkdirs()
+            java.nio.file.Files.copy(src.toPath(), target.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+        }
+        extraRuntime << "extralocal:${name}:${stamp}".toString()
+    }
+    repositories { flatDir { dirs extraDir } }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
@@ -277,6 +340,8 @@ dependencies {
     // 植物魔法只挂 api（全工程只有 compat/botania/BotaniaManaBridge 用到它）；运行期默认不带，见上面的 -PbotaniaRuntimeJar
     compileOnly fg.deobf("vazkii.botania:Botania:${botania_version}:api")
     botaniaRuntime.each { runtimeOnly fg.deobf(it) }
+    // 实测用的别的模组，见上面的 -PextraRuntimeJars
+    extraRuntime.each { runtimeOnly fg.deobf(it) }
 
     // JEI 只挂 api（compat/jei 里的分类由 JEI 按 @JeiPlugin 找到再加载，没装 JEI 时这些类不会被碰到）；
     // 运行期默认不带，加 -PjeiRuntime（-PecShowroomJei 自动带上）时开发环境挂完整的 JEI

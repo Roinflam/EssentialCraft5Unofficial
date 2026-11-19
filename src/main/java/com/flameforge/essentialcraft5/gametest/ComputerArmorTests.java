@@ -1,5 +1,7 @@
 package com.flameforge.essentialcraft5.gametest;
 
+import com.flameforge.essentialcraft5.network.GearFx;
+import com.flameforge.essentialcraft5.network.S2CGearFxPacket;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.ECCapabilities;
 import com.flameforge.essentialcraft5.api.IMRUHandlerItem;
@@ -56,6 +58,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.gametest.GameTestHolder;
 import net.minecraftforge.gametest.PrefixGameTestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -895,10 +898,19 @@ public final class ComputerArmorTests {
         player.setYRot(45F);
         Vec3 look = player.getLookAngle();
         player.hurtMarked = false;
-        helper.assertTrue(ComputerArmorEvents.tryDash(player), "全套能冲");
-        helper.assertTrue(player.getDeltaMovement().distanceTo(look.scale(3D)) < 1e-6 && player.hurtMarked,
-                "速度应设成视线 × 3 并标记同步，实际 " + player.getDeltaMovement());
-        helper.assertFalse(ComputerArmorEvents.tryDash(player), "冷却内再按无效");
+        List<S2CGearFxPacket> sent = new ArrayList<>();
+        S2CGearFxPacket.setTestSink(sent::add);
+        try {
+            helper.assertTrue(ComputerArmorEvents.tryDash(player), "全套能冲");
+            helper.assertTrue(player.getDeltaMovement().distanceTo(look.scale(3D)) < 1e-6 && player.hurtMarked,
+                    "速度应设成视线 × 3 并标记同步，实际 " + player.getDeltaMovement());
+            helper.assertFalse(ComputerArmorEvents.tryDash(player), "冷却内再按无效");
+        } finally {
+            S2CGearFxPacket.setTestSink(null);
+        }
+        long dashes = sent.stream().filter(p -> p.kind() == GearFx.JET_DASH && p.entity() == player.getId()).count();
+        helper.assertTrue(dashes == 1 && sent.stream().anyMatch(p -> p.kind() == GearFx.JET_DASH && Math.abs(p.param() - 3F) < 1e-4),
+                "冲出去发一个喷射事件（param = 速度 3），冷却内按的不发，实际 " + dashes);
 
         ServerPlayer spectator = ProtectionFrameworkTests.realPlayer(helper);
         wear(spectator, 0, 0, 0, 0);

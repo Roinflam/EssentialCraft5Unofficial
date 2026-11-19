@@ -2,6 +2,7 @@ package com.flameforge.essentialcraft5.client.render;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.blockentity.WindRuneBlockEntity;
+import com.flameforge.essentialcraft5.client.vfx.machine.MachineVfx;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.LightTexture;
@@ -52,6 +53,7 @@ public class WindRuneRenderer implements BlockEntityRenderer<WindRuneBlockEntity
         vertex(consumer, matrix, normal, 2F, -1F, 1F, 1F, c);
         vertex(consumer, matrix, normal, -1F, -1F, 1F, 0F, c);
         vertex(consumer, matrix, normal, -1F, 2F, 0F, 0F, c);
+        MachineVfx.submit(MachineVfx.WIND, be, be.getBlockPos().getX() + 0.5D, be.getBlockPos().getY(), be.getBlockPos().getZ() + 0.5D);
     }
 
     private static void vertex(VertexConsumer consumer, Matrix4f matrix, Matrix3f normal, float x, float z, float u, float v, float c) {

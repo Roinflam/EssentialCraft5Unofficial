@@ -11,7 +11,7 @@
       "id": "overview",
       "title": "同調是什麼",
       "icon": "essentialcraft5:mhs_chestplate",
-      "summary": "裝備穿久了，跟你越來越合",
+      "summary": "裝備在實戰中與穿戴者逐漸契合",
       "blocks": [
         {
           "type": "quote",
@@ -20,22 +20,22 @@
         },
         {
           "type": "p",
-          "text": "有些裝備會在實戰裡跟你越來越合，這叫<hl>同調</hl>。每件裝備自己記著攢了多少<em>同調度</em>，攢滿這一階，就能拿到[[crafting/magician_table|魔力工作台]]上用材料升一階。階越高，這套裝備的本事越多。"
+          "text": "部分裝備在實戰中會逐漸與穿戴者契合，稱為<hl>同調</hl>。每件裝備各自記錄積累的<em>同調度</em>，本階積滿後，可在[[crafting/magician_table|魔力工作台]]上消耗材料升一階。階數越高，裝備獲得的效果越多。"
         },
         {
           "type": "p",
           "if": "cfg:general.matrix_rank.enabled",
-          "text": "同調階和你自己的[[matrix/overview|矩陣階]]不是一回事：矩陣階是你這個人的，同調階是這件裝備的。不過裝備升到第幾階，要看穿它的人有幾階矩陣，見[[attunement/stage_up]]。"
+          "text": "同調階與玩家自身的[[matrix/overview|矩陣階]]不同：矩陣階屬於玩家，同調階屬於裝備。裝備能升至第幾階，取決於穿戴者的矩陣階，見[[attunement/stage_up]]。"
         },
         {
           "type": "h",
-          "text": "能同調的裝備"
+          "text": "可同調的裝備"
         },
         {
           "type": "table",
           "header": [
             "裝備",
-            "最高",
+            "最高階",
             "詳見"
           ],
           "rows": [
@@ -88,59 +88,166 @@
                 "5 階",
                 "[[attunement/verdict_blade]]"
               ]
-            }
+            },
+            [
+              "四種魔力槍械",
+              "4 階",
+              "[[guns/gun_attunement]]"
+            ]
           ]
         },
         {
           "type": "p",
-          "text": "每套裝備都是穿著、拿著打仗來攢同調度，攢滿一階就拿去升階，每一階多什麼本事寫在上表各自那一篇。換成更好的一套盔甲時，舊的那套攢下的可以用[[attunement/transfer]]轉一半過去。"
+          "text": "裝備在穿戴或手持作戰時積累同調度，積滿一階後即可升階，各階效果見上表對應的條目。更換更好的盔甲套裝或更換槍械時，可透過[[attunement/transfer]]將舊裝備積累的一半轉給新裝備。"
         },
         {
           "type": "p",
           "if": "cfg:general.hoanna.portal_enabled",
-          "text": "{item:essentialcraft5:forged_elemental_sword}升到同調 2 階以後，還能在魔力工作台上升格成{item:essentialcraft5:verdict_blade}，見[[attunement/verdict_blade]]。"
+          "text": "{item:essentialcraft5:forged_elemental_sword}達到同調 2 階後，可在魔力工作台升格為{item:essentialcraft5:verdict_blade}，見[[attunement/verdict_blade]]。"
         },
         {
           "type": "h",
-          "text": "每一階都有的"
+          "text": "各階通用效果"
         },
         {
           "type": "list",
           "items": [
-            "盔甲每升一階，這一件多 {cfg:general.attunement.health_per_stage} 點最大生命（2 點是一顆心）。",
+            "盔甲每升一階，該件的最大生命、護甲等基礎屬性隨之提高，直接計入物品提示中的屬性，各套裝的數值見對應條目。2 點最大生命為一顆心。",
             {
-              "if": "cfg:general.hoanna.portal_enabled",
-              "text": "宅男套裝四件都升滿五階，一共多 {cfg:general.attunement.health_per_stage|mul:20} 點。"
+              "if": [
+                "cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage<0",
+                "cfg:general.gear_growth.wind_armor.base_stats.health_per_stage<0"
+              ],
+              "text": "魔力防護套裝與風之護甲每階每件增加 {cfg:general.gear_growth.armor.health_per_stage} 點最大生命。"
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.gear_growth.void_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage>=0"
+              ],
+              "text": "虛空套裝每階每件增加 {cfg:general.gear_growth.void_armor.base_stats.health_per_stage} 點最大生命，審判庭套裝為 {cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage} 點，宅男套裝為 {cfg:general.gear_growth.computer_armor.base_stats.health_per_stage} 點。"
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage>=0"
+              ],
+              "text": "宅男套裝四件均升至 5 階時，共增加 {cfg:general.gear_growth.computer_armor.base_stats.health_per_stage|mul:20} 點最大生命。"
             },
             {
               "if": "cfg:general.hoanna.portal_enabled",
-              "text": "武器每升一階，攻擊力多 {cfg:general.attunement.damage_per_stage|pct}，升滿五階多 {cfg:general.attunement.damage_per_stage|mul:5|pct}。"
+              "text": "刀劍每升一階，攻擊傷害按原有數值的一定比例提高，直接計入物品提示中的攻擊傷害，見[[attunement/ember_sword]]與[[attunement/verdict_blade]]。"
             },
-            "升階不會丟掉任何東西：附魔、染色、裝好的模組、存著的 MRU 都原樣留著。",
-            "3 階起，物品上會泛起附魔那樣的光澤。"
+            "魔力槍械每升一階，<hl>增傷</hl>提高 {cfg:general.gear_growth.weapon.damage_per_stage|pct}，在每次命中時計入。按住 Shift 檢視的單發傷害已包含這部分，見[[attunement/gear_stats]]。",
+            "升階不會損失任何內容：附魔、染色、已安裝的模組與儲存的 MRU 均保留。",
+            "階數較高時，物品會顯示附魔光澤。一般從 3 階起顯示，最高階為 2 的裝備在滿階時顯示。"
           ]
         },
         {
           "type": "p",
-          "text": "盔甲的本事分兩種。護盾份額和電費、護盾擋哪些傷害、能存多少 MRU、模組槽，這些長在某一件上，按那一件自己的階算。各篇寫著「四件穿齊」「四件都到幾階」的是全套的本事，要四件都穿著，按四件裡最低的那一階算，少穿一件就沒有。"
-        },
-        {
-          "type": "p",
-          "text": "對上別的玩家時，這些本事給的持續時間和多出來的傷害只有平時的 {cfg:general.attunement.pvp_effect_scale|pct}，各篇會寫明是哪幾樣。"
+          "text": "與其他玩家對戰時，這些效果提供的持續時間與額外傷害只有平時的 {cfg:general.attunement.pvp_effect_scale|pct}，各條目會註明適用的效果。"
         },
         {
           "type": "h",
-          "text": "看一件裝備的同調"
+          "text": "同調詞條"
         },
         {
           "type": "p",
-          "text": "物品提示裡寫著「同調 ◆◆◇◇◇（2 / 5 階）」和「同調度 650 / 1600」這樣兩行：前一行是現在幾階、最高几階，後一行是這一階攢了多少、要攢多少。已經有的階效果是白字，還沒到的是灰字。按住 Shift，能看到升下一階要的材料和矩陣階。"
+          "text": "可同調的裝備在物品提示中顯示<hl>同調詞條</hl>，列出當前生效的效果與數值，例如增傷、吸血、閃避。下一階的變化以灰字列在後面。"
+        },
+        {
+          "type": "p",
+          "text": "裝備升至最高階後會<hl>覺醒</hl>一項專屬技能，詳見各裝備的條目。尚未覺醒時，同調詞條中以灰字註明解鎖所需的階數。"
+        },
+        {
+          "type": "p",
+          "text": "盔甲的詞條分為全套生效和單件生效兩類："
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "全套生效",
+              "增傷、吸血、冷卻縮減和覺醒，按四件中最低的階數計算"
+            ],
+            [
+              "單件生效",
+              "閃避率取決於胸甲的階數；護盾單價、移動速度、攻擊速度按每件各自的階數計算"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "合計上限"
+        },
+        {
+          "type": "p",
+          "text": "本模組提供的增傷<em>直接相加</em>：+30% 與 +15% 合計為 +45%。傷害減免同樣相加計算。"
+        },
+        {
+          "type": "p",
+          "text": "相加後的數值設有上限，超出部分不計："
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "增傷上限",
+              "對普通生物 +{cfg:general.gear_growth.caps.pool_mob|pct}，對首領 +{cfg:general.gear_growth.caps.pool_boss|pct}，對玩家 +{cfg:general.gear_growth.caps.pool_player|pct}"
+            ],
+            [
+              "減傷上限",
+              "{cfg:general.gear_growth.caps.reduction|pct}，受到玩家攻擊時為 {cfg:general.gear_growth.caps.reduction_player|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "護甲穿透、吸血、閃避也各有上限，詳見[[attunement/gear_stats]]。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.gear_growth.scars.max_level>0",
+          "text": "戰痕"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.scars.max_level>0",
+          "text": "裝備升至最高階後，同調度不會溢位，而是繼續積累為<hl>戰痕</hl>，每一級都會進一步強化裝備，見[[attunement/battle_scars]]。"
+        },
+        {
+          "type": "h",
+          "text": "檢視同調狀態"
+        },
+        {
+          "type": "p",
+          "text": "未滿階時，物品提示中顯示「同調 ◆◆◇◇◇ 2 / 5 階」與「同調度 650 / 1600」兩行：前一行為當前階數與最高階數，後一行為本階已積累與所需的同調度。已獲得的階效果顯示為白字，未獲得的顯示為灰字。按住 Shift 可檢視升下一階所需的材料與矩陣階。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.scars.max_level>0",
+          "text": "升至最高階後，這兩行合併為一行，並附上戰痕進度，例如「同調 ◆◆◆◆ 滿階 · 戰痕 6500 / 8000」。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.gear_growth.scars.max_level>0",
+          "text": "升至最高階後，這兩行合併為「同調 ◆◆◆◆ 滿階」一行。"
+        },
+        {
+          "type": "p",
+          "text": "名稱顏色隨階數變化。1 階為裝備自身貼圖的主色，例如裁決之刃為<c:ED85E3>品紅</c>、MRU 槍為<c:F787BC>玫粉</c>、餘燼劍為<c:FF816F>珊瑚紅</c>。此後每升一階，顏色向 MRU <c:B08AFF>紫羅蘭</c>靠近一些，滿階後整個名稱由自身色漸變至<c:B08AFF>紫羅蘭</c>，再到矩陣<c:EF7CCD>品紅</c>。裝備積累出戰痕後，名稱後附「✦」與戰痕等級。"
+        },
+        {
+          "type": "p",
+          "text": "物品格<em>左上角</em>有一排小菱形，亮起的數量等於當前階數，顏色與名稱相同，放在箱子中也能直接辨認。魔力槍械滿階後，物品格左側顯示一條豎向充能條，充滿後即可發動過載射線。"
         },
         {
           "type": "tip",
           "style": "warn",
           "title": "坑",
-          "text": "能同調的盔甲不能放進工作台或砂輪兩件並一件修，那樣修出來的是新的一件，同調和存著的 MRU 全沒了。磨損了的放進[[devices/magical_repairer]]修，或者在鐵砧上兩件合修（右邊那件會被吃掉）。"
+          "text": "可同調的盔甲不能在工作台或砂輪上兩件合一修理，否則產出的是新的一件，同調與儲存的 MRU 將全部丟失。磨損的盔甲可放入[[devices/magical_repairer]]修理，或在鐵砧上兩件合修，右側一件會被消耗。"
         }
       ]
     },
@@ -204,6 +311,10 @@
           ]
         },
         {
+          "type": "p",
+          "text": "魔力槍械靠開槍攢：主手拿著同調的槍，射線打實敵對生物也照上面這樣算，見[[guns/gun_attunement]]。"
+        },
+        {
           "type": "h",
           "text": "防掛機的兩條"
         },
@@ -252,8 +363,7 @@
         },
         {
           "type": "p",
-          "if": "cfg:general.hoanna.portal_enabled",
-          "text": "武器另有一份預算，漲法、上限都和盔甲的一樣，兩份各扣各的，穿著甲練劍不會互相搶。"
+          "text": "武器另有一份預算，劍和槍共用這一份，漲法、上限都和盔甲的一樣。兩份各扣各的，穿著甲練武器不會互相搶。"
         },
         {
           "type": "p",
@@ -382,6 +492,7 @@
           "items": [
             "轉過來的點只往新件的 0 階裡填，最多填滿，不會直接跨階。",
             "只能從檔次低的一套轉到檔次高的一套，依次是魔力防護套裝、風之護甲、虛空套裝或審判庭套裝、宅男套裝。",
+            "魔力槍械之間也能轉，四種槍隨便轉，見[[guns/gun_attunement]]。劍和槍之間、槍和盔甲之間不能轉。",
             {
               "if": "cfg:general.hoanna.portal_enabled",
               "text": "用魔力防護合成虛空套裝時，那件魔力防護整件用掉，它的同調階和同調度都帶不過去。想留著，就另做一件魔力防護拿去合成，再把攢了點數的那件轉給新做出來的虛空套裝。"
@@ -395,14 +506,252 @@
       ]
     },
     {
-      "id": "mhs_armor",
-      "title": "魔力防護套裝的同調",
-      "icon": "essentialcraft5:mhs_chestplate",
-      "summary": "護盾份額變大，存電變多",
+      "id": "gear_stats",
+      "title": "同調詞條與合計上限",
+      "icon": "essentialcraft5:pistol",
+      "summary": "增傷、吸血、閃避等詞條的計算與上限",
       "blocks": [
         {
           "type": "p",
-          "text": "[[gear/mhs_armor|魔力防護套裝]]最高同調到 2 階。它 0 階就帶著矩陣緩衝，存著 MRU 時每件替你擋一份傷害，往上每階份額更大、能存的電更多。"
+          "text": "可同調的裝備帶有<hl>同調詞條</hl>，顯示在物品提示的「同調詞條」一欄。武器的詞條只在玩家<em>親手</em>用主手中的該武器命中時生效：劍須由玩家揮劍命中，槍須為玩家開槍發出的射線。飾品、反傷與範圍傷害均不計入。"
+        },
+        {
+          "type": "p",
+          "text": "盔甲的詞條大多需要<em>四件穿戴同一套</em>，按四件中最低的階數計算，缺少一件或混穿兩套時不生效。盔甲提供的增傷同樣只在親手命中時生效。"
+        },
+        {
+          "type": "p",
+          "text": "以下幾項例外，單件即可生效："
+        },
+        {
+          "type": "list",
+          "items": [
+            "閃避率：只取決於虛空胸甲的階數，無須穿齊四件。",
+            "護盾單價：按每件各自的階數計算。",
+            "移動速度、攻擊速度：每件提供四分之一，單穿一件也有效果，四件穿齊時為表中的完整數值。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "詞條一覽"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "增傷",
+              "提高本次傷害。魔力槍械每階 +{cfg:general.gear_growth.weapon.damage_per_stage|pct}，滿階後積累的戰痕進一步提高。刀劍的同調階加成計入攻擊傷害，不在此列"
+            ],
+            [
+              "吸血",
+              "按本次最終造成的傷害回復一定比例的生命。處於腐蝕狀態時無法回復"
+            ],
+            [
+              "護甲穿透",
+              "目標的護甲與韌性按降低該比例計算，對重甲目標效果更明顯。本身無視護甲的傷害不受影響"
+            ],
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.gear_growth.verdict_blade.execute_bonus>0"
+              ],
+              "cells": [
+                "斬殺",
+                "目標生命低於最大生命的 {cfg:general.gear_growth.verdict_blade.execute_threshold|pct} 時，本次增傷進一步提高。對首領和玩家無效"
+              ]
+            },
+            [
+              "冷卻縮減",
+              "縮短技能與裝填後的冷卻。宅男套裝 4 階起還縮短回溯模組和過載屏障的冷卻"
+            ],
+            [
+              "每發 MRU",
+              "魔力槍械每次射擊消耗的 MRU 降低該比例"
+            ],
+            [
+              "閃避",
+              "虛空胸甲閃避敵人攻擊的機率，按胸甲的階數計算。受到玩家攻擊時上限更低"
+            ],
+            [
+              "護盾單價",
+              "魔力防護、虛空套裝的護盾每抵擋 1 點傷害消耗的 MRU 降低該比例，按該件自身的階數計算"
+            ],
+            [
+              "移速、攻速",
+              "魔力防護的移動速度與風之護甲的攻擊速度。表中為四件合計的數值，每件提供四分之一"
+            ]
+          ]
+        },
+        {
+          "type": "h",
+          "text": "先相加，後封頂"
+        },
+        {
+          "type": "p",
+          "text": "本模組提供的增傷，無論來自魔力槍械的同調階、戰痕、斬殺，還是套裝效果、矩陣特性，都先<em>相加</em>，再按上限擷取，最後只乘算一次。例如 +30% 與 +15% 合計為 +45%，即 ×1.45，而非先 ×1.3 再 ×1.15。"
+        },
+        {
+          "type": "p",
+          "text": "傷害減免同理：35% 與 15% 合計減免 50%，而非先保留 65% 再保留其中的 85%。審判庭套裝的抗魔、首領減傷，以及各套盔甲積累的戰痕，均計入這份減傷合計。"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "增傷合計上限",
+              "對普通生物 +{cfg:general.gear_growth.caps.pool_mob|pct}，對首領 +{cfg:general.gear_growth.caps.pool_boss|pct}，對玩家 +{cfg:general.gear_growth.caps.pool_player|pct}"
+            ],
+            [
+              "減傷合計上限",
+              "{cfg:general.gear_growth.caps.reduction|pct}，受到其他玩家攻擊時為 {cfg:general.gear_growth.caps.reduction_player|pct}"
+            ],
+            [
+              "護甲穿透上限",
+              "{cfg:general.gear_growth.caps.armor_pen|pct}，對玩家為 {cfg:general.gear_growth.caps.armor_pen_player|pct}"
+            ],
+            [
+              "每秒吸血上限",
+              "最大生命的 {cfg:general.gear_growth.caps.lifesteal_per_second|pct}。對玩家吸血時先只按 {cfg:general.gear_growth.caps.lifesteal_player_scale|pct} 計算，每秒最多 {cfg:general.gear_growth.caps.lifesteal_per_second_player|pct}"
+            ],
+            [
+              "冷卻縮減上限",
+              "{cfg:general.gear_growth.caps.cooldown_reduction|pct}"
+            ],
+            [
+              "閃避上限",
+              "{cfg:general.gear_growth.caps.dodge|pct}，攻擊者為玩家時為 {cfg:general.gear_growth.caps.dodge_player|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "刀劍同調階提高的攻擊傷害計入屬性欄，不參與上述相加，但同樣受增傷合計上限限制：屬性欄中同調攻擊帶來的倍數與相加後的增傷相乘，乘積超過上限時按上限計算。橫掃與斷罪按攻擊傷害計算，同樣隨階數提高並受此上限限制。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.offense_scale!=1",
+          "text": "相加後的增傷先乘以 {cfg:general.gear_growth.offense_scale|x}，再按上述上限擷取。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.defense_scale!=1",
+          "text": "相加後的傷害減免先乘以 {cfg:general.gear_growth.defense_scale|x}，再按上述上限擷取。"
+        },
+        {
+          "type": "p",
+          "text": "與其他玩家對戰時，同調階與戰痕提供的增傷只按平時的 {cfg:general.attunement.pvp_effect_scale|pct} 計算，刀劍屬性欄中的同調攻擊同樣按此折算，再按對玩家的上限擷取。"
+        },
+        {
+          "type": "p",
+          "text": "護盾抵擋、閃避這類整次免除的傷害不計入傷害減免，各自獨立結算。<em>其他模組</em>提供的增傷與減傷也不計入這份合計，按其自身規則在外部另行乘算，不受此處上限限制。"
+        },
+        {
+          "type": "h",
+          "text": "範圍傷害"
+        },
+        {
+          "type": "p",
+          "text": "滿階覺醒中波及一片區域的攻擊，例如魔力槍械的過載射線，屬於單獨結算的<hl>範圍傷害</hl>：不享受上述增傷，不會再觸發吸血、補傷和矩陣特性，也不積累同調度。已命名、已馴服或拴著拴繩的生物不受影響。"
+        },
+        {
+          "type": "p",
+          "if": "!cfg:general.gear_growth.aoe_hits_players",
+          "text": "範圍傷害不會傷害玩家。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.aoe_hits_players",
+          "text": "範圍傷害也會傷害玩家，領地、隊伍及玩家之間能否互相傷害的規則照常生效。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.aoe_scale!=1",
+          "text": "範圍傷害的數值均乘以 {cfg:general.gear_growth.aoe_scale|x}。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "{item:essentialcraft5:verdict_blade}的裁斷、終審等按目標最大生命計算的傷害，單次上限固定，其他增傷無法使其超出。"
+        }
+      ]
+    },
+    {
+      "id": "battle_scars",
+      "title": "戰痕",
+      "icon": "essentialcraft5:verdict_blade",
+      "summary": "滿階後繼續積累，強化武器增傷與盔甲減傷",
+      "if": "cfg:general.gear_growth.scars.max_level>0",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "武器和盔甲升至最高階後，同調度不再停止積累，而是轉為<hl>戰痕</hl>：每積累 {cfg:general.gear_growth.scars.points_per_level} 點升一級，最高 {cfg:general.gear_growth.scars.max_level} 級。積累方式與平時相同，同樣受[[attunement/budget|同調預算]]限制。達到最高階後不再積累，也不佔用預算。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.scars.weapon_per_level>0",
+          "text": "每級戰痕使該武器的增傷提高 {cfg:general.gear_growth.scars.weapon_per_level|pct}，與同調階的增傷相加，同樣受[[attunement/gear_stats|合計上限]]限制。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.scars.weapon_per_level>0",
+            "cfg:general.gear_growth.scars.max_level==10"
+          ],
+          "text": "10 級合計提高 {cfg:general.gear_growth.scars.weapon_per_level|mul:10|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "盔甲的戰痕",
+          "if": "cfg:general.gear_growth.scars.armor_per_level>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.scars.armor_per_level>0",
+          "text": "盔甲每件各自積累戰痕。穿戴同一套的四件時，按四件中戰痕等級<em>最低</em>的一件計算：每級使受到的傷害降低 {cfg:general.gear_growth.scars.armor_per_level|pct}，計入減傷合計，與其他傷害減免一同受[[attunement/gear_stats|合計上限]]限制。若有一件尚未積累戰痕，整套按 0 級計算，因此需要四件一同積累。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.scars.armor_per_level>0",
+            "cfg:general.gear_growth.scars.max_level==10"
+          ],
+          "text": "四件均達到 10 級時，合計減傷 {cfg:general.gear_growth.scars.armor_per_level|mul:10|pct}。/kill、掉出世界等無視無敵的傷害不受戰痕減免。"
+        },
+        {
+          "type": "h",
+          "text": "檢視方式"
+        },
+        {
+          "type": "list",
+          "items": [
+            "升至最高階後，戰痕寫在物品提示中同調那一行的後面，顯示已積累的點數與下一級所需的點數，例如「同調 ◆◆◆◆ 滿階 · 戰痕 6500 / 8000」，滿級後顯示「戰痕已滿」。當前等級見物品名稱後面的「✦」。",
+            "積累出第一級後，武器與盔甲的名稱後附紫羅蘭色的「✦」與等級，戰痕滿級時變為品紅色。",
+            "每升一級，動作欄會顯示提示並播放音效。",
+            "按住 Shift 時，武器顯示本模組增傷的合計上限、擊敗首領的數量與累計造成的傷害。盔甲顯示本模組減傷的合計上限，積累出戰痕後還顯示戰痕提供的傷害減免。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "戰痕不隨裝備轉移：進行[[attunement/transfer]]或升格後，新裝備從零積累，轉移時的舊裝備也會清空戰痕。"
+        }
+      ]
+    },
+    {
+      "id": "mhs_armor",
+      "title": "魔力防護套裝的同調",
+      "icon": "essentialcraft5:mhs_chestplate",
+      "summary": "提高護盾份額與 MRU 容量，降低護盾單價，提高移動速度",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "[[gear/mhs_armor|魔力防護套裝]]最高可同調至 2 階。0 階即帶有矩陣緩衝，儲有 MRU 時每件按份額抵擋一部分傷害。隨階數提高，護盾份額增大，MRU 容量增加，護盾單價降低，移動速度提高。"
+        },
+        {
+          "type": "p",
+          "text": "護盾份額、MRU 容量與護盾單價按每件各自的階數計算，移動速度由每件各提供四分之一。餘流與回湧需要四件均達到對應階數。"
         },
         {
           "type": "h",
@@ -412,36 +761,40 @@
           "type": "table",
           "header": [
             "階",
-            "護盾份額（頭 / 胸 / 腿 / 靴，共 20 份）",
-            "每件存電",
-            "另外"
+            "護盾份額（頭 / 胸 / 腿 / 靴）",
+            "每件 MRU 容量",
+            "其他效果"
           ],
           "widths": [
             1,
             4,
             2,
-            4
+            5
           ],
           "rows": [
             [
               "0",
               "{cfg:general.mhs_armor.shares_helmet|at:0} / {cfg:general.mhs_armor.shares_chestplate|at:0} / {cfg:general.mhs_armor.shares_leggings|at:0} / {cfg:general.mhs_armor.shares_boots|at:0}",
               "{cfg:general.mhs_armor.max_mru|at:0} MRU",
-              "擋物理和元素傷害，每擋 1 點要 {cfg:general.mhs_armor.mru_per_damage} MRU"
+              "抵擋物理與元素傷害，每抵擋 1 點消耗 {cfg:general.mhs_armor.mru_per_damage} MRU"
             ],
             [
               "1",
               "{cfg:general.mhs_armor.shares_helmet|at:1} / {cfg:general.mhs_armor.shares_chestplate|at:1} / {cfg:general.mhs_armor.shares_leggings|at:1} / {cfg:general.mhs_armor.shares_boots|at:1}",
               "{cfg:general.mhs_armor.max_mru|at:1} MRU",
-              "餘流"
+              "護盾單價 −{cfg:general.gear_growth.mhs_armor.shield_discount|stage:1|pct}，四件合計移動速度 +{cfg:general.gear_growth.mhs_armor.move_speed|stage:1|pct}。全套：餘流"
             ],
             [
               "2",
               "{cfg:general.mhs_armor.shares_helmet|at:2} / {cfg:general.mhs_armor.shares_chestplate|at:2} / {cfg:general.mhs_armor.shares_leggings|at:2} / {cfg:general.mhs_armor.shares_boots|at:2}",
               "{cfg:general.mhs_armor.max_mru|at:2} MRU",
-              "MRU 腐化抗性每件 50%；也擋怪物放的 MRU 放電"
+              "護盾單價 −{cfg:general.gear_growth.mhs_armor.shield_discount|stage:2|pct}，四件合計移動速度 +{cfg:general.gear_growth.mhs_armor.move_speed|stage:2|pct}。每件 MRU 腐化抗性 50%。可抵擋怪物的 MRU 放電"
             ]
           ]
+        },
+        {
+          "type": "p",
+          "text": "護盾份額以 20 份為滿，表中為每件的份數。護盾單價的折扣降低的是每抵擋 1 點傷害的消耗，不影響已儲存的 MRU。移動速度由每件各提供四分之一，只穿一兩件也能獲得一部分，四件穿齊時為表中數值。這兩項都不計入[[attunement/gear_stats|增傷、減傷合計]]。"
         },
         {
           "type": "h",
@@ -450,20 +803,114 @@
         },
         {
           "type": "p",
-          "text": "四件都到 1 階以後，護盾每替你分擔一下傷害，你就得到{cfg:general.mhs_armor.afterflow_ticks|sec}挖掘加速 I，{cfg:general.mhs_armor.afterflow_cooldown|sec}裡最多一次。打你的是玩家時，挖掘加速的時長只有平時的 {cfg:general.attunement.pvp_effect_scale|pct}。",
+          "text": "四件均達到 1 階後，護盾每分擔一次傷害，穿戴者獲得挖掘加速 I，持續 {cfg:general.mhs_armor.afterflow_ticks|sec}，每 {cfg:general.mhs_armor.afterflow_cooldown|sec}最多觸發一次。攻擊者為玩家時，挖掘加速的持續時間只有 {cfg:general.attunement.pvp_effect_scale|pct}。",
           "if": "cfg:general.mhs_armor.afterflow_ticks>0"
         },
         {
           "type": "h",
-          "text": "擋 MRU 放電（2 階）"
+          "text": "抵擋 MRU 放電（2 階）"
         },
         {
           "type": "p",
-          "text": "2 階起，護盾也擋怪物衝你放的 MRU 放電。機器、聚集體這類沒有攻擊者的放電照樣不擋。"
+          "text": "達到 2 階的盔甲，護盾還可按份額抵擋怪物對穿戴者釋放的 MRU 放電。機器、聚集體等沒有攻擊者的放電仍無法抵擋。"
         },
         {
           "type": "p",
-          "text": "2 階的那件，MRU 腐化抗性從 25% 升到 50%。四件都到 2 階時，「MRU 腐化」每次的傷害從最大生命的 {cfg:general.corruption.mru_corruption_health_percent|mul:0.75|pct} 降到 {cfg:general.corruption.mru_corruption_health_percent|mul:0.5|pct}。"
+          "text": "達到 2 階的盔甲，MRU 腐化抗性由 25% 提高到 50%。四件均達到 2 階時，「MRU 腐化」每次造成的傷害由最大生命的 {cfg:general.corruption.mru_corruption_health_percent|mul:0.75|pct} 降至 {cfg:general.corruption.mru_corruption_health_percent|mul:0.5|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "回湧（{cfg:general.gear_growth.mhs_armor.surge.stage} 階覺醒）",
+          "if": [
+            "cfg:general.gear_growth.mhs_armor.surge.ratio>0",
+            "cfg:general.gear_growth.mhs_armor.surge.max>0"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.mhs_armor.surge.ratio>0",
+            "cfg:general.gear_growth.mhs_armor.surge.max>0"
+          ],
+          "text": "四件均達到 {cfg:general.gear_growth.mhs_armor.surge.stage} 階後，護盾每抵擋 1 點傷害，其中 {cfg:general.gear_growth.mhs_armor.surge.ratio|pct} 積蓄為<hl>回湧值</hl>，最多積蓄 {cfg:general.gear_growth.mhs_armor.surge.max}。回湧值達到 {cfg:general.gear_growth.mhs_armor.surge.threshold} 後，穿戴者下一次親手近戰命中時，對周圍 {cfg:general.gear_growth.mhs_armor.surge.radius} 格內最多 {cfg:general.gear_growth.mhs_armor.surge.max_targets} 個敵人各釋放一次，每個目標受到的傷害等於當前的回湧值，釋放後清零。回湧值不會儲存，下線後清空。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.mhs_armor.surge.ratio>0",
+            "cfg:general.gear_growth.mhs_armor.surge.max>0"
+          ],
+          "text": "釋放的傷害屬於[[attunement/gear_stats|範圍傷害]]：不享受增傷，不會再觸發吸血、矩陣特性等效果，也不積累同調度。命名、馴服或拴繩的生物不受影響。"
+        },
+        {
+          "type": "h",
+          "text": "基礎屬性"
+        },
+        {
+          "type": "p",
+          "text": "每升一階，該件的護甲值、盔甲韌性與最大生命隨之提高，直接計入物品提示中「穿在身上時」的屬性，按每件各自的階數計算。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "階",
+            "護甲值（頭 / 胸 / 腿 / 靴）",
+            "每件盔甲韌性"
+          ],
+          "widths": [
+            1,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "0",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:0|addcfg:general.mhs_armor.armor_helmet} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:0|addcfg:general.mhs_armor.armor_chestplate} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:0|addcfg:general.mhs_armor.armor_leggings} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:0|addcfg:general.mhs_armor.armor_boots}",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.toughness|stage:0|addcfg:general.mhs_armor.toughness}"
+            ],
+            [
+              "1",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:1|addcfg:general.mhs_armor.armor_helmet} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:1|addcfg:general.mhs_armor.armor_chestplate} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:1|addcfg:general.mhs_armor.armor_leggings} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:1|addcfg:general.mhs_armor.armor_boots}",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.toughness|stage:1|addcfg:general.mhs_armor.toughness}"
+            ],
+            [
+              "2",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:2|addcfg:general.mhs_armor.armor_helmet} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:2|addcfg:general.mhs_armor.armor_chestplate} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:2|addcfg:general.mhs_armor.armor_leggings} / {cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:2|addcfg:general.mhs_armor.armor_boots}",
+              "{cfg:general.gear_growth.mhs_armor.base_stats.toughness|stage:2|addcfg:general.mhs_armor.toughness}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:1==1",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:1==1",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:1==1",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:1==1",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_helmet|stage:2==2",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_chestplate|stage:2==2",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_leggings|stage:2==2",
+            "cfg:general.gear_growth.mhs_armor.base_stats.armor_boots|stage:2==2",
+            "cfg:general.mhs_armor.armor_helmet==3",
+            "cfg:general.mhs_armor.armor_chestplate==8",
+            "cfg:general.mhs_armor.armor_leggings==6",
+            "cfg:general.mhs_armor.armor_boots==3"
+          ],
+          "text": "四件護甲值合計由 0 階的 20 點提高到 1 階的 24 點、2 階的 28 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage>=0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage} 點，四件均達到 2 階時共提高 {cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage|mul:8} 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage<0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.armor.health_per_stage} 點，四件均達到 2 階時共提高 {cfg:general.gear_growth.armor.health_per_stage|mul:8} 點。"
+        },
+        {
+          "type": "p",
+          "text": "原版的護甲值最多計 30 點，盔甲韌性最多計 20 點，超出部分不起作用。物品欄上方的護甲圖示最多顯示 20 點，超出的部分不顯示，但照常計算。"
         },
         {
           "type": "h",
@@ -472,7 +919,7 @@
         {
           "type": "table",
           "header": [
-            "升到",
+            "升至",
             "四角",
             "MRU"
           ],
@@ -495,7 +942,7 @@
         },
         {
           "type": "p",
-          "text": "每一階要的矩陣階見[[attunement/stage_up]]。"
+          "text": "各階所需的矩陣階見[[attunement/stage_up]]。"
         }
       ]
     },
@@ -503,7 +950,7 @@
       "id": "wind_armor",
       "title": "風之護甲的同調",
       "icon": "essentialcraft5:wind_chestplate",
-      "summary": "偏轉更勤，空中多跳一次",
+      "summary": "偏轉更頻繁，空中可多跳一次，攻擊速度提高",
       "blocks": [
         {
           "type": "p",
@@ -511,12 +958,12 @@
             "cfg:general.wind_armor.air_jump_velocity>0",
             "cfg:general.wind_armor.air_jumps|stage:2>0"
           ],
-          "text": "[[wind_gear/wind_armor|風之護甲]]最高同調到 3 階。四件穿齊就有御風，升階讓偏轉的間隔更短，在空中也能多跳一次。下表每一階的效果，都要四件都到那一階才有。"
+          "text": "[[wind_gear/wind_armor|風之護甲]]最高可同調至 3 階。四件穿齊即擁有御風，升階後偏轉間隔縮短，空中也能多跳一次。下表中除攻擊速度外，各階效果都需要四件均達到該階。"
         },
         {
           "type": "p",
           "if": "!cfg:general.wind_armor.air_jump_velocity>0 || !cfg:general.wind_armor.air_jumps|stage:2>0",
-          "text": "[[wind_gear/wind_armor|風之護甲]]最高同調到 3 階。四件穿齊就有御風，升階讓偏轉的間隔更短。下表每一階的效果，都要四件都到那一階才有。"
+          "text": "[[wind_gear/wind_armor|風之護甲]]最高可同調至 3 階。四件穿齊即擁有御風，升階後偏轉間隔縮短。下表中除攻擊速度外，各階效果都需要四件均達到該階。"
         },
         {
           "type": "h",
@@ -540,7 +987,7 @@
               ],
               "cells": [
                 "0",
-                "御風：每 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:0|sec}偏開一個飛來的彈射物"
+                "御風：每 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:0|sec}偏轉一個飛來的彈射物"
               ]
             },
             {
@@ -550,7 +997,7 @@
               ],
               "cells": [
                 "0",
-                "御風：飛來的彈射物每一個都從你身上穿過去"
+                "御風：偏轉所有飛來的彈射物"
               ]
             },
             {
@@ -560,14 +1007,14 @@
               ],
               "cells": [
                 "0",
-                "御風：在空中能再跳 {cfg:general.wind_armor.air_jumps|stage:0} 次"
+                "御風：空中可再跳 {cfg:general.wind_armor.air_jumps|stage:0} 次"
               ]
             },
             {
               "if": "cfg:general.wind_armor.fall_damage_multiplier<1",
               "cells": [
                 "0",
-                "御風：摔落傷害只剩 {cfg:general.wind_armor.fall_damage_multiplier|pct}"
+                "御風：摔落傷害降至 {cfg:general.wind_armor.fall_damage_multiplier|pct}"
               ]
             },
             {
@@ -577,7 +1024,7 @@
               ],
               "cells": [
                 "1",
-                "偏轉每 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:1|sec}一次"
+                "偏轉間隔縮短為 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:1|sec}"
               ]
             },
             {
@@ -587,13 +1034,20 @@
               ],
               "cells": [
                 "1",
-                "飛來的彈射物每一個都偏開"
+                "偏轉所有飛來的彈射物"
               ]
             },
             [
               "1",
-              "潛行時不會被擊退"
+              "潛行時不受擊退"
             ],
+            {
+              "if": "cfg:general.gear_growth.wind_armor.attack_speed|stage:1>0",
+              "cells": [
+                "1",
+                "四件合計攻擊速度 +{cfg:general.gear_growth.wind_armor.attack_speed|stage:1|pct}，每件提供四分之一"
+              ]
+            },
             {
               "if": [
                 "cfg:general.wind_armor.air_jump_velocity>0",
@@ -601,14 +1055,21 @@
               ],
               "cells": [
                 "2",
-                "空中能跳 {cfg:general.wind_armor.air_jumps|stage:2} 次"
+                "空中可再跳 {cfg:general.wind_armor.air_jumps|stage:2} 次"
               ]
             },
             {
               "if": "cfg:general.wind_armor.sprint_speed_bonus>0",
               "cells": [
                 "2",
-                "疾跑時移動速度再快 {cfg:general.wind_armor.sprint_speed_bonus|pct}"
+                "疾跑時移動速度 +{cfg:general.wind_armor.sprint_speed_bonus|pct}"
+              ]
+            },
+            {
+              "if": "cfg:general.gear_growth.wind_armor.damage|stage:2>0",
+              "cells": [
+                "2",
+                "親手攻擊增傷 +{cfg:general.gear_growth.wind_armor.damage|stage:2|pct}"
               ]
             },
             {
@@ -618,7 +1079,7 @@
               ],
               "cells": [
                 "3",
-                "偏轉每 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:3|sec}一次"
+                "偏轉間隔縮短為 {cfg:general.wind_armor.deflect_cooldown_ticks|stage:3|sec}"
               ]
             },
             {
@@ -628,7 +1089,7 @@
               ],
               "cells": [
                 "3",
-                "飛來的彈射物每一個都偏開"
+                "偏轉所有飛來的彈射物"
               ]
             },
             {
@@ -638,10 +1099,14 @@
               ],
               "cells": [
                 "3",
-                "偏開敵人射來的彈射物以後 {cfg:general.wind_armor.tailwind_ticks|sec}內順風，移動速度 +{cfg:general.wind_armor.tailwind_speed_bonus|pct}、攻擊速度 +{cfg:general.wind_armor.tailwind_attack_speed_bonus|pct}"
+                "偏轉敵人射來的彈射物後獲得順風，持續 {cfg:general.wind_armor.tailwind_ticks|sec}，移動速度 +{cfg:general.wind_armor.tailwind_speed_bonus|pct}，攻擊速度 +{cfg:general.wind_armor.tailwind_attack_speed_bonus|pct}"
               ]
             }
           ]
+        },
+        {
+          "type": "p",
+          "text": "攻擊速度由每件各提供四分之一，只穿一兩件也能獲得一部分。親手攻擊的增傷和風暴步需要四件穿齊，按四件中最低的階數計算。增傷與其他增傷相加後再計算上限，見[[attunement/gear_stats|同調詞條與合計上限]]。"
         },
         {
           "type": "h",
@@ -650,7 +1115,7 @@
         },
         {
           "type": "p",
-          "text": "偏開的彈射物會從你身上穿過去，箭、三叉戟、火球這類別人射來、扔來的都算，你自己射出去的不算。火球穿過去以後照樣會在你身後炸開。",
+          "text": "被偏轉的彈射物會穿過穿戴者的身體。箭、三叉戟、火球等他人射出或投擲的彈射物都可偏轉，穿戴者自己射出的不算。火球穿過後仍會在身後爆炸。",
           "if": "cfg:general.wind_armor.deflect"
         },
         {
@@ -659,7 +1124,7 @@
             "cfg:general.wind_armor.deflect",
             "cfg:general.wind_armor.tailwind_ticks>0"
           ],
-          "text": "3 階的順風只在偏開敵人射來的彈射物時才有，敵人是指敵對生物、首領和能傷到你的玩家。發射器射出來的、隊友扔來的都不算。"
+          "text": "3 階的順風只在偏轉敵人射來的彈射物時觸發。敵人指敵對生物、首領以及能對穿戴者造成傷害的玩家，發射器射出的、隊友投擲的彈射物都不算。"
         },
         {
           "type": "p",
@@ -667,7 +1132,7 @@
             "cfg:general.wind.deflect_points",
             "cfg:general.wind_armor.deflect"
           ],
-          "text": "已經立了[[wind_mage/deflect|風之偏轉]]契約的話，兩邊的冷卻取短的那個再減半。"
+          "text": "已立下[[wind_mage/deflect|風之偏轉]]契約時，兩者的冷卻取較短的一個，再減半。"
         },
         {
           "type": "h",
@@ -679,11 +1144,110 @@
         },
         {
           "type": "p",
-          "text": "人在半空時再按一下跳躍鍵，就會往上再跳一次，落地以後次數回滿。",
+          "text": "身處半空時再按一次跳躍鍵，可向上再跳一次，落地後次數恢復。",
           "if": [
             "cfg:general.wind_armor.air_jump_velocity>0",
             "cfg:general.wind_armor.air_jumps|stage:0>0 || cfg:general.wind_armor.air_jumps|stage:1>0 || cfg:general.wind_armor.air_jumps|stage:2>0 || cfg:general.wind_armor.air_jumps|stage:3>0"
           ]
+        },
+        {
+          "type": "h",
+          "text": "風暴步（{cfg:general.gear_growth.wind_armor.storm_step.stage} 階覺醒）",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:3>0"
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:3>0"
+          ],
+          "text": "四件均達到 {cfg:general.gear_growth.wind_armor.storm_step.stage} 階後，每次空中跳都會在腳下釋放一圈風環，將 {cfg:general.gear_growth.wind_armor.storm_step.radius} 格內最多 {cfg:general.gear_growth.wind_armor.storm_step.max_targets} 個敵對生物向外推開，並使其獲得緩慢 I，持續 {cfg:general.gear_growth.wind_armor.storm_step.slow_ticks|sec}。風環不造成傷害，也不影響玩家。空中跳後 {cfg:general.gear_growth.wind_armor.storm_step.window|sec}內，穿戴者下一次親手近戰命中增傷 +{cfg:general.gear_growth.wind_armor.storm_step.bonus|pct}。時限內未命中則作廢，下一次空中跳重新計時。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.wind_armor.air_jump_velocity>0",
+            "cfg:general.wind_armor.air_jumps|stage:3>0"
+          ],
+          "text": "這部分增傷與其他增傷一同計入[[attunement/gear_stats|增傷合計]]，對玩家時只按 {cfg:general.attunement.pvp_effect_scale|pct} 計算。"
+        },
+        {
+          "type": "h",
+          "text": "基礎屬性"
+        },
+        {
+          "type": "p",
+          "text": "每升一階，該件的護甲值、盔甲韌性與最大生命隨之提高，直接計入物品提示中「穿在身上時」的屬性，按每件各自的階數計算。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "階",
+            "護甲值（頭 / 胸 / 腿 / 靴）",
+            "每件盔甲韌性"
+          ],
+          "widths": [
+            1,
+            5,
+            2
+          ],
+          "rows": [
+            [
+              "0",
+              "{cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:0|add:4} / {cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:0|add:10} / {cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:0|add:7} / {cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:0|add:4}",
+              "{cfg:general.gear_growth.wind_armor.base_stats.toughness|stage:0|add:2.5}"
+            ],
+            [
+              "1",
+              "{cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:1|add:4} / {cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:1|add:10} / {cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:1|add:7} / {cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:1|add:4}",
+              "{cfg:general.gear_growth.wind_armor.base_stats.toughness|stage:1|add:2.5}"
+            ],
+            [
+              "2",
+              "{cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:2|add:4} / {cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:2|add:10} / {cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:2|add:7} / {cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:2|add:4}",
+              "{cfg:general.gear_growth.wind_armor.base_stats.toughness|stage:2|add:2.5}"
+            ],
+            [
+              "3",
+              "{cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:3|add:4} / {cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:3|add:10} / {cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:3|add:7} / {cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:3|add:4}",
+              "{cfg:general.gear_growth.wind_armor.base_stats.toughness|stage:3|add:2.5}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:1==0",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:2==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_helmet|stage:3==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:1==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:2==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_chestplate|stage:3==2",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:1==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:2==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_leggings|stage:3==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:1==0",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:2==1",
+            "cfg:general.gear_growth.wind_armor.base_stats.armor_boots|stage:3==1"
+          ],
+          "text": "四件護甲值合計依次為 25、27、29、30 點，滿階時正好達到原版上限。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.wind_armor.base_stats.health_per_stage>=0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.wind_armor.base_stats.health_per_stage} 點，四件均達到 3 階時共提高 {cfg:general.gear_growth.wind_armor.base_stats.health_per_stage|mul:12} 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.wind_armor.base_stats.health_per_stage<0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.armor.health_per_stage} 點，四件均達到 3 階時共提高 {cfg:general.gear_growth.armor.health_per_stage|mul:12} 點。"
+        },
+        {
+          "type": "p",
+          "text": "原版的護甲值最多計 30 點，盔甲韌性最多計 20 點，超出部分不起作用。物品欄上方的護甲圖示最多顯示 20 點，超出的部分不顯示，但照常計算。"
         },
         {
           "type": "h",
@@ -692,7 +1256,7 @@
         {
           "type": "table",
           "header": [
-            "升到",
+            "升至",
             "四角",
             "MRU"
           ],
@@ -731,7 +1295,7 @@
         },
         {
           "type": "p",
-          "text": "每一階要的矩陣階見[[attunement/stage_up]]。"
+          "text": "各階所需的矩陣階見[[attunement/stage_up]]。"
         }
       ]
     },
@@ -739,12 +1303,16 @@
       "id": "void_armor",
       "title": "虛空套裝的同調",
       "icon": "essentialcraft5:void_chestplate",
-      "summary": "閃避更多，3 階起也擋元素",
+      "summary": "提高閃避率，降低護盾消耗，3 階起抵擋元素傷害",
       "if": "cfg:general.hoanna.portal_enabled",
       "blocks": [
         {
           "type": "p",
-          "text": "[[gear/void_armor|虛空套裝]]最高同調到 4 階。四件穿齊時，0 階就有虛空回擊，海納爾天災的懲罰也只受一半；往上閃避機率更高、存的電更多，3 階起護盾也擋元素傷害。"
+          "text": "[[gear/void_armor|虛空套裝]]最高可同調至 4 階。穿齊四件時，0 階即擁有虛空回擊，海納爾天災的影響也減半。隨階數提高，閃避率上升，護盾消耗降低，親手攻擊的增傷提高。3 階起護盾還能抵擋元素傷害，並承擔怪物無視護甲傷害的一部分，最高階解鎖殘像。"
+        },
+        {
+          "type": "p",
+          "text": "閃避率只取決於胸甲的階數，MRU 容量與護盾單價按每件各自的階數計算。護盾由各件按份額抵擋，某件自身儲存的 MRU 為 0 時，該件不抵擋。增傷、虛空回擊、相位、殘像以及對天災和輻射的減免需要四件穿齊。"
         },
         {
           "type": "h",
@@ -763,29 +1331,33 @@
           "rows": [
             [
               "0",
-              "每件存 {cfg:general.void_armor.max_mru} MRU，每擋 1 點要 {cfg:general.void_armor.mru_per_damage} MRU；胸甲閃避 20%；四件穿齊有虛空回擊 +50%，天災減半"
+              "每件 MRU 容量 {cfg:general.void_armor.max_mru}，每抵擋 1 點傷害消耗 {cfg:general.void_armor.mru_per_damage} MRU。胸甲閃避率 {cfg:general.gear_growth.void_armor.dodge|stage:0|pct}。全套：虛空回擊 +50%，天災影響減半"
             ],
             [
               "1",
-              "胸甲閃避敵人攻擊 25%，閃開時給打你的掛上滯澀；每件存 {cfg:general.void_armor.max_mru|mul:2} MRU"
+              "胸甲閃避率 {cfg:general.gear_growth.void_armor.dodge|stage:1|pct}，閃避時觸發滯澀。每件 MRU 容量 {cfg:general.void_armor.max_mru|mul:2}。護盾單價再降低 {cfg:general.gear_growth.void_armor.shield_discount|stage:1|pct}"
             ],
             [
               "2",
-              "全套虛空回擊 +75%，天災只剩四分之一，海納爾輻射再慢一半；靴子免掉摔落傷害"
+              "胸甲閃避率 {cfg:general.gear_growth.void_armor.dodge|stage:2|pct}。靴子免疫摔落傷害。全套：虛空回擊 +75%，天災影響降至四分之一，海納爾輻射積累速度再減半，親手攻擊增傷 +{cfg:general.gear_growth.void_armor.damage|stage:2|pct}"
             ],
             [
               "3",
-              "護盾也擋火、爆炸、閃電傷害，這種每點貴一倍；每擋 1 點降到 {cfg:general.void_armor.mru_per_damage|mul:0.875|int} MRU"
+              "胸甲閃避率 {cfg:general.gear_growth.void_armor.dodge|stage:3|pct}。護盾可抵擋火焰、爆炸、閃電傷害，每點消耗為物理傷害的兩倍。每抵擋 1 點傷害的消耗降至 {cfg:general.void_armor.mru_per_damage|mul:0.875|int} MRU，1 階起的折扣另行疊加。該件護盾還承擔怪物無視護甲傷害的 {cfg:general.gear_growth.void_armor.piercing_share|pct}，每點消耗為平時的 {cfg:general.gear_growth.void_armor.piercing_price_multiplier} 倍"
             ],
             [
               "4",
-              "胸甲閃避敵人攻擊 30%；全套閃開以後有相位，天災完全不受"
+              "胸甲閃避率 {cfg:general.gear_growth.void_armor.dodge|stage:4|pct}。全套：閃避後獲得相位，免疫天災影響"
             ]
           ]
         },
         {
           "type": "p",
-          "text": "1 階、4 階加上去的閃避機率只算敵人打來的攻擊，摔落、著火、腐化這類沒有攻擊者的傷害照舊是 20%。3 階起擋的元素傷害裡，著火以後一直掉的血和在細雪裡的凍傷無視護甲，照舊不擋。"
+          "text": "閃避率提高的部分只對活物發起的攻擊生效。摔落、著火、腐化等沒有攻擊者的傷害，閃避率仍為 0 階的 {cfg:general.gear_growth.void_armor.dodge|stage:0|pct}。閃避率最高不超過 {cfg:general.gear_growth.caps.dodge|pct}。3 階起抵擋的元素傷害中，著火後持續損失的生命與細雪中的凍傷無視護甲，仍無法抵擋。"
+        },
+        {
+          "type": "p",
+          "text": "承擔無視護甲傷害的效果只針對怪物等有攻擊者的來源，玩家造成的傷害、沒有攻擊者的傷害以及魔法傷害都不在其內。這部分消耗不從{item:essentialcraft5:infinite_mru_crystal}中扣除，MRU 不足時不予承擔。親手攻擊的增傷與其他增傷一同計入[[attunement/gear_stats|增傷合計]]，對玩家時只按 {cfg:general.attunement.pvp_effect_scale|pct} 計算。"
         },
         {
           "type": "h",
@@ -793,7 +1365,7 @@
         },
         {
           "type": "p",
-          "text": "四件穿齊時，胸甲閃開活物打來的一下以後，3 秒內你下一次近戰打實多 50% 傷害，四件都到 2 階起多 75%。打在玩家身上時，多出來的傷害只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+          "text": "穿齊四件時，胸甲閃避活物的一次攻擊後，3 秒內下一次親手近戰命中的傷害提高 50%，四件均達到 2 階起提高 75%。對玩家時，額外傷害只按 {cfg:general.attunement.pvp_effect_scale|pct} 計算。"
         },
         {
           "type": "h",
@@ -801,7 +1373,7 @@
         },
         {
           "type": "p",
-          "text": "胸甲到了 1 階，它每閃開活物打來的一下，打你的那個就掛上 1 秒緩慢 II。這一條只看胸甲的階，不用四件都到。打你的是玩家時，時長只有 {cfg:general.attunement.pvp_effect_scale|pct}。"
+          "text": "胸甲達到 1 階後，每次閃避活物的攻擊，都會使攻擊者獲得緩慢 II，持續 1 秒。滯澀只取決於胸甲的階數，無須四件達標。攻擊者為玩家時，持續時間只有 {cfg:general.attunement.pvp_effect_scale|pct}。"
         },
         {
           "type": "h",
@@ -809,7 +1381,34 @@
         },
         {
           "type": "p",
-          "text": "四件都到 4 階以後，胸甲閃開活物打來的一下，接下來半秒裡什麼傷害都傷不到你，/kill、掉出世界這類除外。打你的是玩家時，相位的時長只有 {cfg:general.attunement.pvp_effect_scale|pct}。捱了一下以後，同樣重或更輕的一下本來就有一小會兒打不進來，相位多擋下的是更重的一擊，以及連發的子彈、法術這類不受這段間隔限制的傷害。"
+          "text": "四件均達到 4 階後，胸甲閃避活物的一次攻擊，隨後 0.5 秒內免疫一切傷害。/kill、掉出世界等無視無敵的傷害除外，無法閃避的大招同樣無法抵擋，例如天災之心的招式。攻擊者為玩家時，相位持續時間只有 {cfg:general.attunement.pvp_effect_scale|pct}。"
+        },
+        {
+          "type": "p",
+          "text": "受到一次攻擊後，同等或更輕的攻擊本就會在短時間內無法生效。相位額外抵擋的是更重的攻擊，以及連發的子彈、法術等不受該間隔限制的傷害。"
+        },
+        {
+          "type": "h",
+          "text": "殘像（{cfg:general.gear_growth.void_armor.afterimage.stage} 階覺醒）",
+          "if": "cfg:general.gear_growth.void_armor.afterimage.ratio>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.afterimage.ratio>0",
+          "text": "四件均達到 {cfg:general.gear_growth.void_armor.afterimage.stage} 階後，胸甲閃避活物的一次攻擊時，會在原地留下殘影，{cfg:general.gear_growth.void_armor.afterimage.delay|sec}後爆炸。爆炸對 {cfg:general.gear_growth.void_armor.afterimage.radius} 格內最多 {cfg:general.gear_growth.void_armor.afterimage.max_targets} 個敵人各造成所閃避傷害的 {cfg:general.gear_growth.void_armor.afterimage.ratio|pct}，單個目標最多受到 {cfg:general.gear_growth.void_armor.afterimage.cap} 點傷害，被命中的目標獲得緩慢 II，持續 {cfg:general.gear_growth.void_armor.afterimage.slow_ticks|sec}。每 {cfg:general.gear_growth.void_armor.afterimage.cooldown|sec}最多觸發一次。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.afterimage.ratio>0",
+          "text": "爆炸屬於[[attunement/gear_stats|範圍傷害]]：不享受增傷，不會再觸發吸血、矩陣特性等效果，也不積累同調度。無法閃避的傷害不會產生殘像，例如天災之心的大招。"
+        },
+        {
+          "type": "h",
+          "text": "對玩家"
+        },
+        {
+          "type": "p",
+          "text": "受到其他玩家攻擊時，四件護盾合計單次最多抵擋 {cfg:general.gear_growth.void_armor.pvp_shield_max_share|pct} 的傷害，每點消耗為平時的 {cfg:general.gear_growth.void_armor.pvp_shield_cost_multiplier} 倍，胸甲閃避率最高為 {cfg:general.gear_growth.caps.dodge_player|pct}。自己點燃的 TNT、自己射出的箭不在此列，照常抵擋。上文承擔無視護甲傷害的效果對玩家無效。"
         },
         {
           "type": "h",
@@ -817,12 +1416,46 @@
         },
         {
           "type": "p",
-          "text": "四件穿齊時，海納爾[[hoanna/events|天災]]裡日陣的灼燒、地震的推力和毒霧的中毒時長都減半；四件都到 2 階起只剩四分之一，都到 4 階起完全不受。日陣燒過你以後約 11 秒裡，身上著火掉的血都這樣減，不管火是誰點的。"
+          "text": "穿齊四件時，海納爾[[hoanna/events|天災]]中日陣的灼燒、地震的推力與毒霧的中毒時長均減半。四件均達到 2 階起降至四分之一，均達到 4 階起完全免疫。被日陣灼燒後約 11 秒內，身上著火造成的傷害均按此比例降低，與火源無關。"
         },
         {
           "type": "p",
           "if": "cfg:general.radiation.enabled",
-          "text": "四件都到 2 階時，[[hoanna/radiation|海納爾輻射]]在你身上積攢得再慢一半。這一半是在盔甲、飾品和別的抗性都算完以後再減的，只靠它不會把輻射完全免掉。"
+          "text": "四件均達到 2 階時，[[hoanna/radiation|海納爾輻射]]的積累速度再減半。×0.5 的倍率在盔甲、飾品等全部抗性計算完畢後再乘上，因此僅憑虛空套裝無法完全免疫輻射。挖掘輻晶簇、地脈風暴等來源設有下限，無論抗性多高，至少按一半積累。"
+        },
+        {
+          "type": "h",
+          "text": "基礎屬性"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.base_stats.health_per_stage>=0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.void_armor.base_stats.health_per_stage} 點，四件均達到 4 階時共提高 {cfg:general.gear_growth.void_armor.base_stats.health_per_stage|mul:16} 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.base_stats.health_per_stage<0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.armor.health_per_stage} 點，四件均達到 4 階時共提高 {cfg:general.gear_growth.armor.health_per_stage|mul:16} 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.void_armor.base_stats.knockback|stage:4>0",
+          "text": "4 階時每件的擊退抗性由 {cfg:general.void_armor.knockback_resistance|pct} 提高到 {cfg:general.gear_growth.void_armor.base_stats.knockback|stage:4|addcfg:general.void_armor.knockback_resistance|pct}，四件合計 {cfg:general.gear_growth.void_armor.base_stats.knockback|stage:4|addcfg:general.void_armor.knockback_resistance|mul:4|min:1|pct}。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.void_armor.base_stats.armor_helmet|stage:4==0",
+            "cfg:general.gear_growth.void_armor.base_stats.armor_chestplate|stage:4==0",
+            "cfg:general.gear_growth.void_armor.base_stats.armor_leggings|stage:4==0",
+            "cfg:general.gear_growth.void_armor.base_stats.armor_boots|stage:4==0",
+            "cfg:general.gear_growth.void_armor.base_stats.toughness|stage:4==0"
+          ],
+          "text": "這套盔甲 0 階的護甲值與盔甲韌性已達到原版的計算上限（護甲值最多計 30 點，盔甲韌性最多計 20 點），因此不隨階數提高。"
+        },
+        {
+          "type": "p",
+          "text": "以上數值直接計入物品提示中「穿在身上時」的屬性，按每件各自的階數計算。"
         },
         {
           "type": "h",
@@ -831,7 +1464,7 @@
         {
           "type": "table",
           "header": [
-            "升到",
+            "升至",
             "四角",
             "MRU"
           ],
@@ -864,7 +1497,7 @@
         },
         {
           "type": "p",
-          "text": "每一階要的矩陣階見[[attunement/stage_up]]。"
+          "text": "各階所需的矩陣階見[[attunement/stage_up]]。"
         }
       ]
     },
@@ -872,12 +1505,16 @@
       "id": "inquisitorium_armor",
       "title": "審判庭套裝的同調",
       "icon": "essentialcraft5:inquisitorium_chestplate",
-      "summary": "抗魔更多，3 階起削平重擊",
+      "summary": "逐階提高抗魔與首領減傷，3 階起削弱重擊",
       "if": "cfg:general.hoanna.portal_enabled",
       "blocks": [
         {
           "type": "p",
-          "text": "[[inquisitorium/armor|審判庭套裝]]最高同調到 4 階。它不用電，四件穿齊 0 階就有審判庭之律，越往上越扛得住首領和法術。除了不掉耐久是每件自己的，下表別的效果都要四件穿齊，按四件裡最低的階算。"
+          "text": "[[inquisitorium/armor|審判庭套裝]]最高可同調至 4 階。套裝不消耗 MRU，四件穿齊時 0 階即擁有審判庭之律。隨階數提高，對首領和法術的抵抗力增強，最高階可對被定罪的目標執行宣判。"
+        },
+        {
+          "type": "p",
+          "text": "除穿戴時不損失耐久按每件計算外，下表其他效果都需要四件穿齊，按四件中最低的階數計算。抗魔與首領減傷計入減傷合計，與其他減傷相加後再計算上限，見[[attunement/gear_stats|同調詞條與合計上限]]。"
         },
         {
           "type": "h",
@@ -887,32 +1524,46 @@
           "type": "table",
           "header": [
             "階",
-            "效果"
+            "抗魔",
+            "首領減傷",
+            "其他效果"
           ],
           "widths": [
             1,
-            7
+            2,
+            2,
+            8
           ],
           "rows": [
             [
               "0",
-              "審判庭之律：抗魔 {cfg:general.inquisitorium_armor.magic_resistance|pct}、首領的傷害少受 {cfg:general.inquisitorium_armor.boss_resistance|pct}、律令、定罪 +{cfg:general.inquisitorium_armor.conviction_bonus|pct}；穿著不掉耐久"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:0|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:0|pct}",
+              "審判庭之律：律令使有害效果持續時間降至 {cfg:general.gear_growth.inquisitorium_armor.edict_reduction|stage:0|mul:-1|add:1|pct}，定罪增傷 +{cfg:general.inquisitorium_armor.conviction_bonus|pct}。穿戴時不損失耐久"
             ],
             [
               "1",
-              "抗魔 {cfg:general.inquisitorium_armor.magic_resistance_stage_1|pct}；赦罪"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:1|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:1|pct}",
+              "律令使有害效果持續時間降至 {cfg:general.gear_growth.inquisitorium_armor.edict_reduction|stage:1|mul:-1|add:1|pct}。獲得赦罪"
             ],
             [
               "2",
-              "定罪 +{cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct}，對首領再多 {cfg:general.inquisitorium_armor.conviction_boss_bonus_stage_2|pct}"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:2|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:2|pct}",
+              "定罪增傷 +{cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct}，對首領再增加 {cfg:general.inquisitorium_armor.conviction_boss_bonus_stage_2|pct}。親手攻擊被定罪的目標時吸血 {cfg:general.gear_growth.inquisitorium_armor.lifesteal|stage:2|pct}"
             ],
             [
               "3",
-              "審判庭的壁壘：有攻擊者的一下，護甲後超過最大生命 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} 的部分只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct}"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:3|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:3|pct}",
+              "審判庭的壁壘：有攻擊者的單次傷害經護甲減免後，超過最大生命 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} 的部分只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct}"
             ],
             [
               "4",
-              "有攻擊者的無視護甲傷害（魔法以外）少受 {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct}；壁壘從 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct} 算起，超出的只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct}"
+              "{cfg:general.gear_growth.inquisitorium_armor.magic_resistance|stage:4|pct}",
+              "{cfg:general.gear_growth.inquisitorium_armor.boss_resistance|stage:4|pct}",
+              "有攻擊者的無視護甲傷害降低 {cfg:general.inquisitorium_armor.piercing_resistance_stage_4|pct}，魔法傷害除外。壁壘的門檻為 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct}，超出部分只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct}"
             ]
           ]
         },
@@ -923,12 +1574,17 @@
         {
           "type": "list",
           "items": [
-            "抗魔：有攻擊者的魔法傷害少受 {cfg:general.inquisitorium_armor.magic_resistance|pct}，1 階起少受 {cfg:general.inquisitorium_armor.magic_resistance_stage_1|pct}。腐化、「MRU 腐化」這類沒有攻擊者的傷害不減。",
-            "首領打來的傷害少受 {cfg:general.inquisitorium_armor.boss_resistance|pct}。",
-            "律令：身上的有害效果，持續時間大約只剩 {cfg:general.inquisitorium_armor.edict_reduction|mul:-1|add:1|pct}。",
-            "定罪：打中你的活物被定罪 {cfg:general.inquisitorium_armor.conviction_ticks|sec}，同一時間最多記 {cfg:general.inquisitorium_armor.conviction_max_targets|raw} 個，被定罪的身上會冒一下粒子。你親手打被定罪的目標多 {cfg:general.inquisitorium_armor.conviction_bonus|pct} 傷害，2 階起多 {cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct}；反傷、飾品打出的傷害和裁決之刃的裁斷不加。",
-            "定罪多出來的傷害打在玩家身上時，只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+            "抗魔：有攻擊者的魔法傷害按表中數值降低。腐化、「MRU 腐化」等沒有攻擊者的傷害不減。",
+            "首領減傷：受到首領的傷害按表中數值降低。",
+            "律令：身上有害效果的持續時間約降至表中該階的數值。",
+            "定罪：命中穿戴者的活物被定罪 {cfg:general.inquisitorium_armor.conviction_ticks|sec}，同一時間最多 {cfg:general.inquisitorium_armor.conviction_max_targets|raw} 個，被定罪時頭頂會落下一道光矛。穿戴者親手攻擊被定罪的目標時，傷害提高 {cfg:general.inquisitorium_armor.conviction_bonus|pct}，2 階起提高 {cfg:general.inquisitorium_armor.conviction_bonus_stage_2|pct}。反傷、飾品造成的傷害和裁決之刃的裁斷不享受此加成。",
+            "對玩家時，定罪增加的傷害只按 {cfg:general.attunement.pvp_effect_scale|pct} 計算。"
           ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.lifesteal|stage:2>0",
+          "text": "2 階起的吸血只對穿戴者親手命中被定罪目標的攻擊生效，按該次攻擊最終造成的傷害回復生命，與其他吸血一同受每秒回復上限限制，見[[attunement/gear_stats]]。"
         },
         {
           "type": "h",
@@ -936,7 +1592,7 @@
         },
         {
           "type": "p",
-          "text": "四件都到 1 階以後，親手打死一個被定罪的目標，就清掉自己身上一個有害效果，{cfg:general.inquisitorium_armor.absolution_cooldown|sec}裡最多一次。"
+          "text": "四件均達到 1 階後，親手擊殺被定罪的目標時，解除自身一個有害效果，每 {cfg:general.inquisitorium_armor.absolution_cooldown|sec}最多觸發一次。"
         },
         {
           "type": "h",
@@ -944,20 +1600,74 @@
         },
         {
           "type": "p",
-          "text": "四件都到 3 階以後，有攻擊者的一下傷害，護甲減過以後超過你最大生命 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} 的部分只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct}。4 階起從 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct} 算起，超出的只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct}。"
+          "text": "四件均達到 3 階後，有攻擊者的單次傷害經護甲減免後，超過穿戴者最大生命 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_3|pct} 的部分只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_3|mul:-1|add:1|pct}。4 階起門檻為 {cfg:general.inquisitorium_armor.bulwark_threshold_stage_4|pct}，超出部分只受 {cfg:general.inquisitorium_armor.bulwark_reduction_stage_4|mul:-1|add:1|pct}。門檻按穿戴者當時的最大生命計算，同調升階還會為每件盔甲增加最大生命，因此生命越高，門檻越高。"
         },
         {
           "type": "kv",
+          "if": [
+            "cfg:general.inquisitorium_armor.bulwark_threshold_stage_3==0.3",
+            "cfg:general.inquisitorium_armor.bulwark_reduction_stage_3==0.5",
+            "cfg:general.inquisitorium_armor.bulwark_threshold_stage_4==0.25",
+            "cfg:general.inquisitorium_armor.bulwark_reduction_stage_4==0.6"
+          ],
           "rows": [
             [
-              "100 點生命，護甲後挨 60 點",
-              "3 階受 45 點，4 階受 39 點"
+              "經護甲減免後單次傷害為最大生命的 60%",
+              "3 階實際受到 45%，4 階實際受到 39%"
+            ],
+            [
+              "經護甲減免後單次傷害為最大生命的 150%",
+              "3 階實際受到 90%，4 階實際受到 75%，殘血時仍會致死"
             ]
           ]
         },
         {
           "type": "p",
-          "text": "壁壘只是把重擊削平一些，碰上一下能打掉好幾倍生命的，照樣扛不住。"
+          "text": "壁壘只能削弱重擊，單次傷害達到最大生命的數倍時仍無法承受。"
+        },
+        {
+          "type": "h",
+          "text": "宣判（{cfg:general.gear_growth.inquisitorium_armor.sentence.stage} 階覺醒）",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.sentence.hits>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.sentence.hits>0",
+          "text": "四件均達到 {cfg:general.gear_growth.inquisitorium_armor.sentence.stage} 階後，被穿戴者定罪的目標受到其親手命中滿 {cfg:general.gear_growth.inquisitorium_armor.sentence.hits} 次時被宣判，同一目標每 {cfg:general.gear_growth.inquisitorium_armor.sentence.cooldown|sec}最多一次。普通生物會額外受到一次無視護甲的傷害，數值為其最大生命的 {cfg:general.gear_growth.inquisitorium_armor.sentence.percent|pctv}，最多 {cfg:general.gear_growth.inquisitorium_armor.sentence.cap} 點。首領不會額外受到傷害，而是使該次攻擊的增傷提高 {cfg:general.gear_growth.inquisitorium_armor.sentence.boss_pool|pct}，仍受首領增傷上限限制。玩家不會被宣判。"
+        },
+        {
+          "type": "h",
+          "text": "基礎屬性"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage>=0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage} 點，四件均達到 4 階時共提高 {cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage|mul:16} 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage<0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.armor.health_per_stage} 點，四件均達到 4 階時共提高 {cfg:general.gear_growth.armor.health_per_stage|mul:16} 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.inquisitorium_armor.base_stats.knockback|stage:4>0",
+          "text": "4 階時每件的擊退抗性由 {cfg:general.inquisitorium_armor.knockback_resistance|pct} 提高到 {cfg:general.gear_growth.inquisitorium_armor.base_stats.knockback|stage:4|addcfg:general.inquisitorium_armor.knockback_resistance|pct}，四件合計 {cfg:general.gear_growth.inquisitorium_armor.base_stats.knockback|stage:4|addcfg:general.inquisitorium_armor.knockback_resistance|mul:4|min:1|pct}。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.armor_helmet|stage:4==0",
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.armor_chestplate|stage:4==0",
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.armor_leggings|stage:4==0",
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.armor_boots|stage:4==0",
+            "cfg:general.gear_growth.inquisitorium_armor.base_stats.toughness|stage:4==0"
+          ],
+          "text": "這套盔甲 0 階的護甲值與盔甲韌性已達到原版的計算上限（護甲值最多計 30 點，盔甲韌性最多計 20 點），因此不隨階數提高。"
+        },
+        {
+          "type": "p",
+          "text": "以上數值直接計入物品提示中「穿在身上時」的屬性，按每件各自的階數計算。"
         },
         {
           "type": "h",
@@ -966,7 +1676,7 @@
         {
           "type": "table",
           "header": [
-            "升到",
+            "升至",
             "四角",
             "MRU"
           ],
@@ -999,7 +1709,7 @@
         },
         {
           "type": "p",
-          "text": "每一階要的矩陣階見[[attunement/stage_up]]。數學核心是打倒全息投影掉的，見[[hologram/math_cores]]。"
+          "text": "各階所需的矩陣階見[[attunement/stage_up]]。數學核心由擊敗全息投影掉落，見[[hologram/math_cores]]。"
         }
       ]
     },
@@ -1007,12 +1717,16 @@
       "id": "computer_armor",
       "title": "宅男套裝的同調",
       "icon": "essentialcraft5:computer_chestplate",
-      "summary": "模組槽變多，護盾擋得更多",
+      "summary": "增加模組槽，擴大護盾抵擋範圍，3 階起可自我修復",
       "if": "cfg:general.hoanna.portal_enabled",
       "blocks": [
         {
           "type": "p",
-          "text": "[[computer/suit|宅男套裝]]最高同調到 5 階。0 階就是你一直穿的樣子，往上每階多一樣本事。主線第二十一章要你把四件都升到 2 階，見[[terminal/attuned]]。"
+          "text": "[[computer/suit|宅男套裝]]最高可同調至 5 階。0 階即套裝原本的效果，此後每階增加一項能力。主線第二十一章要求將四件都升至 2 階，見[[terminal/attuned]]。"
+        },
+        {
+          "type": "p",
+          "text": "護盾單價與模組槽按每件各自的階數計算。增傷、矩陣修復、冷卻縮減、過載屏障和超載脈衝需要四件穿齊，按四件中最低的階數計算。"
         },
         {
           "type": "h",
@@ -1027,43 +1741,43 @@
           "rows": [
             [
               "1",
-              "胸甲模組槽變成 {cfg:general.computer_modules.slots_chestplate|add:1|min:4} 個；護盾每擋 1 點傷害的電費按 {cfg:general.computer_armor.mru_per_damage} MRU 的 {cfg:general.computer_armor.stage_price_multipliers|at:1|pct} 算"
+              "胸甲模組槽增至 {cfg:general.computer_modules.slots_chestplate|add:1|min:4} 個。護盾每抵擋 1 點傷害的消耗為 {cfg:general.computer_armor.mru_per_damage} MRU 的 {cfg:general.computer_armor.stage_price_multipliers|at:1|pct}。親手攻擊增傷 +{cfg:general.gear_growth.computer_armor.damage|stage:1|pct}"
             ],
             [
               "2",
-              "護盾也擋怪物打來的魔法傷害，這種每點電費是 {cfg:general.computer_armor.magic_price_multiplier} 倍"
+              "護盾可抵擋怪物的魔法傷害，每點消耗為平時的 {cfg:general.computer_armor.magic_price_multiplier} 倍。增傷 +{cfg:general.gear_growth.computer_armor.damage|stage:2|pct}"
             ],
             [
               "3",
-              "頭盔模組槽變成 {cfg:general.computer_modules.slots_helmet|add:1|min:4} 個，護腿變成 {cfg:general.computer_modules.slots_leggings|add:1|min:4} 個；矩陣修復"
+              "頭盔模組槽增至 {cfg:general.computer_modules.slots_helmet|add:1|min:4} 個，護腿增至 {cfg:general.computer_modules.slots_leggings|add:1|min:4} 個。全套：矩陣修復"
             ],
             [
               "4",
-              "電費按 {cfg:general.computer_armor.mru_per_damage} MRU 的 {cfg:general.computer_armor.stage_price_multipliers|at:4|pct} 算；怪物打來的無視護甲傷害（魔法以外）擋 {cfg:general.computer_armor.piercing_share|pct}，每點電費 {cfg:general.computer_armor.piercing_price_multiplier} 倍"
+              "護盾每點消耗按 {cfg:general.computer_armor.mru_per_damage} MRU 的 {cfg:general.computer_armor.stage_price_multipliers|at:4|pct} 計。承擔怪物無視護甲傷害的 {cfg:general.computer_armor.piercing_share|pct}，魔法傷害除外，每點消耗為平時的 {cfg:general.computer_armor.piercing_price_multiplier} 倍。回溯模組與過載屏障的冷卻縮短 {cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4|pct}"
             ],
             [
               "5",
-              "靴子模組槽變成 {cfg:general.computer_modules.slots_boots|add:1|min:4} 個；過載屏障"
+              "靴子模組槽增至 {cfg:general.computer_modules.slots_boots|add:1|min:4} 個。全套：過載屏障"
             ]
           ]
         },
         {
           "type": "h",
-          "text": "護盾擋得更多（2 階、4 階）"
+          "text": "護盾抵擋範圍（2 階、4 階）"
         },
         {
           "type": "list",
           "items": [
-            "2 階起多擋的魔法傷害，得是怪物衝你出的手，比如女巫扔來的傷害藥水、喚魔者召出的尖牙、監守者的音波。腐化效果、「MRU 腐化」、中毒這類沒有攻擊者的傷害照樣不擋，玩家打來的也不擋，見下面的「對玩家」。",
+            "2 階起新增抵擋的魔法傷害，必須來自怪物對穿戴者的攻擊，例如女巫投擲的傷害藥水、喚魔者召喚的尖牙、監守者的音波。腐化效果、「MRU 腐化」、中毒等沒有攻擊者的傷害仍無法抵擋，玩家造成的傷害也不抵擋，見下文「對玩家」。",
             {
               "if": "module:essentialcraft5:matrix_shunt_module",
-              "text": "胸甲裝著[[terminal/matrix_shunt|矩陣分流模組]]時，分流先拿走一半，護盾再擋剩下的。"
+              "text": "胸甲裝有[[terminal/matrix_shunt|矩陣分流模組]]時，分流先承擔一半，護盾再抵擋剩餘部分。"
             },
-            "4 階起擋一部分的，是怪物打來的、無視護甲又不算魔法的傷害。原版裡幾乎沒有這種傷害，主要是別的模組的技能。",
-            "擋這兩種新傷害時，不從{item:essentialcraft5:infinite_mru_crystal}里扣電，只扣別的靈魂儲存、矩陣容量和盔甲自己存的，付不起就不擋。",
+            "4 階起部分承擔的，是怪物造成的、無視護甲且不屬於魔法的傷害。原版中幾乎沒有此類傷害，主要來自其他模組的技能。",
+            "抵擋這兩類新增傷害時，不從{item:essentialcraft5:infinite_mru_crystal}中扣除 MRU，只扣除其他靈魂儲存、矩陣容量與盔甲自身儲存的 MRU，MRU 不足時不予抵擋。",
             {
               "if": "bauble:essentialcraft5:eta_amulet",
-              "text": "戴著{item:essentialcraft5:eta_amulet}時，不論幾階，它讓你多受的那一半傷害護盾都不擋，直接落到生命上。"
+              "text": "佩戴{item:essentialcraft5:eta_amulet}時，無論階數，護身符使穿戴者額外承受的一半傷害護盾均不抵擋，直接扣除生命。"
             }
           ]
         },
@@ -1073,7 +1787,7 @@
         },
         {
           "type": "p",
-          "text": "四件都到 3 階以後，只要 {cfg:general.computer_armor.repair_delay|sec}沒受傷，就每秒回你最大生命的 {cfg:general.computer_armor.repair_percent|pct}，每回 1 點生命花 {cfg:general.computer_armor.repair_mru_per_health} MRU。身上掛著腐蝕時回不了；受到的治療被減半時它也只回一半，電費按真正回上去的算。"
+          "text": "四件均達到 3 階後，連續 {cfg:general.computer_armor.repair_delay|sec}未受傷害時，每秒回復最大生命的 {cfg:general.gear_growth.computer_armor.repair_percent|pct}，每回復 1 點生命消耗 {cfg:general.computer_armor.repair_mru_per_health} MRU。處於腐蝕狀態時無法回復。受到的治療減半時同樣只回復一半，MRU 按實際回復量消耗。"
         },
         {
           "type": "h",
@@ -1081,7 +1795,40 @@
         },
         {
           "type": "p",
-          "text": "四件都到 5 階以後，護盾擋下的一下有你最大生命的 {cfg:general.computer_armor.overload_threshold|pct} 以上時，接下來 {cfg:general.computer_armor.overload_duration|sec}你什麼傷害都不吃（/kill、掉出世界這類除外）。之後要等 {cfg:general.computer_armor.overload_cooldown|sec}才能再觸發，退出重進也不清。"
+          "text": "四件均達到 5 階後，護盾單次抵擋的傷害達到穿戴者最大生命的 {cfg:general.computer_armor.overload_threshold|pct} 以上時，隨後 {cfg:general.computer_armor.overload_duration|sec}內免疫一切傷害，/kill、掉出世界等傷害除外。之後需等待 {cfg:general.gear_growth.computer_armor.overload_cooldown|sec}才能再次觸發，4 階起的冷卻縮減同樣生效。退出重進不會重置冷卻。"
+        },
+        {
+          "type": "h",
+          "text": "冷卻縮減（4 階）",
+          "if": "cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4>0",
+          "text": "四件均達到 4 階後，過載屏障的冷卻縮短 {cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4|pct}。該縮減與其他冷卻縮減相加，合計最多 {cfg:general.gear_growth.caps.cooldown_reduction|pct}，見[[attunement/gear_stats]]。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4>0",
+            "module:essentialcraft5:rewind_module"
+          ],
+          "text": "裝有[[terminal/rewind|回溯模組]]時，其冷卻同樣按該縮減縮短。"
+        },
+        {
+          "type": "h",
+          "text": "超載脈衝（{cfg:general.gear_growth.computer_armor.overcharge_pulse.stage} 階覺醒）",
+          "if": "cfg:general.gear_growth.computer_armor.overcharge_pulse.ratio>0"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.overcharge_pulse.ratio>0",
+          "text": "四件均達到 {cfg:general.gear_growth.computer_armor.overcharge_pulse.stage} 階後，過載屏障展開的同時釋放脈衝，對周圍 {cfg:general.gear_growth.computer_armor.overcharge_pulse.radius} 格內最多 {cfg:general.gear_growth.computer_armor.overcharge_pulse.max_targets} 個敵人各造成所擋傷害的 {cfg:general.gear_growth.computer_armor.overcharge_pulse.ratio|pct}，單個目標最多 {cfg:general.gear_growth.computer_armor.overcharge_pulse.cap} 點，被命中的目標獲得緩慢 III，持續 {cfg:general.gear_growth.computer_armor.overcharge_pulse.slow_ticks|sec}。脈衝隨過載屏障觸發，不另佔冷卻。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.overcharge_pulse.ratio>0",
+          "text": "脈衝屬於[[attunement/gear_stats|範圍傷害]]：不享受增傷，不會再觸發吸血、矩陣特性等效果，也不積累同調度。"
         },
         {
           "type": "h",
@@ -1089,7 +1836,41 @@
         },
         {
           "type": "p",
-          "text": "打你的是玩家時，護盾一下最多擋這一下的 {cfg:general.computer_armor.pvp_shield_max_share|pct}，每點電費是平時的 {cfg:general.computer_armor.pvp_shield_cost_multiplier} 倍；2 階、4 階新擋的那兩種傷害對玩家不起作用。過載屏障要是被玩家的一下打出來，只撐平時的 {cfg:general.attunement.pvp_effect_scale|pct}。"
+          "text": "受到其他玩家攻擊時，護盾單次最多抵擋該次傷害的 {cfg:general.computer_armor.pvp_shield_max_share|pct}，每點消耗為平時的 {cfg:general.computer_armor.pvp_shield_cost_multiplier} 倍。2 階、4 階新增抵擋的兩類傷害對玩家無效。由玩家的攻擊觸發的過載屏障，持續時間只有平時的 {cfg:general.attunement.pvp_effect_scale|pct}。"
+        },
+        {
+          "type": "h",
+          "text": "基礎屬性"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage>=0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.computer_armor.base_stats.health_per_stage} 點，四件均達到 5 階時共提高 {cfg:general.gear_growth.computer_armor.base_stats.health_per_stage|mul:20} 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage<0",
+          "text": "每升一階，每件的最大生命提高 {cfg:general.gear_growth.armor.health_per_stage} 點，四件均達到 5 階時共提高 {cfg:general.gear_growth.armor.health_per_stage|mul:20} 點。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.computer_armor.base_stats.knockback|stage:5>0",
+          "text": "5 階時每件的擊退抗性由 {cfg:general.computer_armor.knockback_resistance|pct} 提高到 {cfg:general.gear_growth.computer_armor.base_stats.knockback|stage:5|addcfg:general.computer_armor.knockback_resistance|pct}，四件合計 {cfg:general.gear_growth.computer_armor.base_stats.knockback|stage:5|addcfg:general.computer_armor.knockback_resistance|mul:4|min:1|pct}。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.computer_armor.base_stats.armor_helmet|stage:5==0",
+            "cfg:general.gear_growth.computer_armor.base_stats.armor_chestplate|stage:5==0",
+            "cfg:general.gear_growth.computer_armor.base_stats.armor_leggings|stage:5==0",
+            "cfg:general.gear_growth.computer_armor.base_stats.armor_boots|stage:5==0",
+            "cfg:general.gear_growth.computer_armor.base_stats.toughness|stage:5==0"
+          ],
+          "text": "這套盔甲 0 階的護甲值與盔甲韌性已達到原版的計算上限（護甲值最多計 30 點，盔甲韌性最多計 20 點），因此不隨階數提高。"
+        },
+        {
+          "type": "p",
+          "text": "以上數值直接計入物品提示中「穿在身上時」的屬性，按每件各自的階數計算。"
         },
         {
           "type": "h",
@@ -1098,7 +1879,7 @@
         {
           "type": "table",
           "header": [
-            "升到",
+            "升至",
             "四角",
             "MRU"
           ],
@@ -1110,7 +1891,7 @@
             ],
             [
               "2 階",
-              "胸甲用 1 個任一數學核心，另外三件用 1 個{item:essentialcraft5:logic_core}；2 個{item:essentialcraft5:tide_crystal}、1 個{item:essentialcraft5:demonic_core}",
+              "胸甲需 1 個任一數學核心，其餘三件需 1 個{item:essentialcraft5:logic_core}，另需 2 個{item:essentialcraft5:tide_crystal}、1 個{item:essentialcraft5:demonic_core}",
               "7 萬"
             ],
             [
@@ -1147,7 +1928,7 @@
         },
         {
           "type": "p",
-          "text": "每一階要的矩陣階見[[attunement/stage_up]]。數學核心是打倒全息投影掉的，見[[hologram/math_cores]]。"
+          "text": "各階所需的矩陣階見[[attunement/stage_up]]。數學核心由擊敗全息投影掉落，見[[hologram/math_cores]]。"
         }
       ]
     },
@@ -1155,12 +1936,12 @@
       "id": "ember_sword",
       "title": "餘燼元素劍的同調",
       "icon": "essentialcraft5:forged_elemental_sword",
-      "summary": "效果更長，2 階以後能升格",
+      "summary": "吸血與元素爆發，2 階後可升格",
       "if": "cfg:general.hoanna.portal_enabled",
       "blocks": [
         {
           "type": "p",
-          "text": "[[void_machines/ember_sword|餘燼元素劍]]最高同調到 2 階，靠拿在主手裡打仗攢同調度，見[[attunement/points]]。升到 2 階以後，它還能升格成{item:essentialcraft5:verdict_blade}。"
+          "text": "[[void_machines/ember_sword|餘燼元素劍]]最高可同調至 2 階，主手持劍作戰即可積累同調度，詳見[[attunement/points]]。達到 2 階後，可升格為{item:essentialcraft5:verdict_blade}。"
         },
         {
           "type": "h",
@@ -1170,30 +1951,91 @@
           "type": "table",
           "header": [
             "階",
-            "效果"
+            "攻擊",
+            "吸血",
+            "其他效果"
           ],
           "widths": [
             1,
+            2,
+            2,
             7
           ],
           "rows": [
             [
               "1",
-              "命中時的主元素效果和右鍵效果，持續時間都是原來的 {cfg:general.ember_sword.stage1_duration_multiplier} 倍"
+              "+{cfg:general.gear_growth.ember_sword.attack_per_stage|mul:1|pct}",
+              "{cfg:general.gear_growth.ember_sword.lifesteal|stage:1|pct}",
+              "主元素命中效果與右鍵效果的持續時間為原來的 {cfg:general.ember_sword.stage1_duration_multiplier} 倍"
             ],
             [
               "2",
-              "餘燼組合的命中效果每次只扣 {cfg:general.ember_sword.stage2_ember_cost_multiplier|mul:50} MRU，持續時間是原來的 {cfg:general.ember_sword.stage2_ember_duration_multiplier} 倍"
+              "+{cfg:general.gear_growth.ember_sword.attack_per_stage|mul:2|pct}",
+              "{cfg:general.gear_growth.ember_sword.lifesteal|stage:2|pct}",
+              "餘燼組合命中效果每次僅消耗 {cfg:general.ember_sword.stage2_ember_cost_multiplier|mul:50} MRU，持續時間為原來的 {cfg:general.ember_sword.stage2_ember_duration_multiplier} 倍"
             ]
           ]
         },
         {
           "type": "p",
-          "text": "這兩階多出來的時長，掛在別的玩家身上時只算 {cfg:general.attunement.pvp_effect_scale|pct}。"
+          "text": "「攻擊」一列為比 0 階多出的攻擊傷害，按物品原本顯示的攻擊傷害計算比例，每階至少 1 點，結果取到 0.5。這部分直接計入物品提示中的攻擊傷害，與增傷分開顯示，同樣受[[attunement/gear_stats|增傷合計上限]]限制。對玩家時只按 {cfg:general.attunement.pvp_effect_scale|pct} 計算。"
         },
         {
           "type": "p",
-          "text": "每階攻擊力還多 {cfg:general.attunement.damage_per_stage|pct}，2 階一共多 {cfg:general.attunement.damage_per_stage|mul:2|pct}。"
+          "if": "cfg:general.gear_growth.ember_sword.attack_per_stage==0.1",
+          "text": "例如餘燼組合最佳、攻擊傷害為 45 的餘燼元素劍，1 階時為 49.5，2 階時為 54。"
+        },
+        {
+          "type": "p",
+          "text": "作用於其他玩家時，這兩階延長的持續時間只按 {cfg:general.attunement.pvp_effect_scale|pct} 計算。吸血的計算方式和上限詳見[[attunement/gear_stats]]。"
+        },
+        {
+          "type": "p",
+          "text": "吸血按該次攻擊最終造成的傷害回復生命。餘燼組合中固定回復 1 點或 3 點生命的效果與吸血相互獨立，兩者同時存在時分別生效。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.gear_growth.ember_sword.burst.chance>0",
+          "text": "元素爆發（{cfg:general.gear_growth.ember_sword.burst.stage} 階覺醒）"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.ember_sword.burst.chance>0",
+          "text": "達到 {cfg:general.gear_growth.ember_sword.burst.stage} 階後，每次命中有 {cfg:general.gear_growth.ember_sword.burst.chance|pct} 的機率以目標為中心爆發劍的主元素，作用於半徑 {cfg:general.gear_growth.ember_sword.burst.radius} 格內至多 {cfg:general.gear_growth.ember_sword.burst.max_targets} 個敵人，每 {cfg:general.gear_growth.ember_sword.burst.cooldown|sec}至多觸發一次。主元素為複合的劍每次隨機選取一種元素。"
+        },
+        {
+          "type": "kv",
+          "if": "cfg:general.gear_growth.ember_sword.burst.chance>0",
+          "rows": [
+            [
+              "火",
+              "每個目標受到 {cfg:general.gear_growth.ember_sword.burst.fire_damage} 點加其最大生命 {cfg:general.gear_growth.ember_sword.burst.fire_percent|pctv} 的傷害，並著火 3 秒。首領只受到其中的 {cfg:general.gear_growth.ember_sword.burst.fire_damage} 點"
+            ],
+            {
+              "if": "cfg:general.gear_growth.ember_sword.burst.fire_cap>0",
+              "cells": [
+                "火 · 上限",
+                "每個目標每次最多受到 {cfg:general.gear_growth.ember_sword.burst.fire_cap} 點火爆發傷害，首領同樣受此上限"
+              ]
+            },
+            [
+              "水",
+              "每個目標獲得緩慢 II 與虛弱，持續 {cfg:general.gear_growth.ember_sword.burst.debuff_ticks|sec}"
+            ],
+            [
+              "地",
+              "持劍者獲得抗性提升，持續 {cfg:general.gear_growth.ember_sword.burst.debuff_ticks|sec}，每個目標受到 {cfg:general.gear_growth.ember_sword.burst.quake_damage} 點傷害"
+            ],
+            [
+              "風",
+              "將周圍的目標向外擊退，持劍者獲得迅捷 II，持續 2 秒"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.ember_sword.burst.chance>0",
+          "text": "爆發造成的是[[attunement/gear_stats|範圍傷害]]，不計增傷，也不會觸發餘燼效果、矩陣特性或積累同調度。水的減速作用於其他玩家時，持續時間只按 {cfg:general.attunement.pvp_effect_scale|pct} 計算。"
         },
         {
           "type": "h",
@@ -1202,7 +2044,7 @@
         {
           "type": "table",
           "header": [
-            "升到",
+            "升至",
             "四角",
             "MRU"
           ],
@@ -1225,7 +2067,7 @@
         },
         {
           "type": "p",
-          "text": "每一階要的矩陣階見[[attunement/stage_up]]。升到 2 階以後，接著看[[attunement/verdict_blade]]。"
+          "text": "各階所需的矩陣階見[[attunement/stage_up]]。達到 2 階後，請繼續閱讀[[attunement/verdict_blade]]。"
         }
       ]
     },
@@ -1233,7 +2075,7 @@
       "id": "verdict_blade",
       "title": "{item:essentialcraft5:verdict_blade}",
       "icon": "essentialcraft5:verdict_blade",
-      "summary": "餘燼元素劍升格而成，按目標生命補傷害",
+      "summary": "由余燼元素劍升格而成，按目標最大生命追加傷害",
       "complete": "essentialcraft5:guide/attunement/verdict_blade",
       "optional": true,
       "if": "cfg:general.hoanna.portal_enabled",
@@ -1243,11 +2085,11 @@
       "blocks": [
         {
           "type": "p",
-          "text": "<em>目標</em>（可選）：把一把同調 2 階的{item:essentialcraft5:forged_elemental_sword}升格成{item:essentialcraft5:verdict_blade}。它蓄滿力打實一下，就按目標的最大生命多補一截傷害，2 階起還能一下砍中身邊一圈敵人。"
+          "text": "<em>目標</em>（可選）：將一把同調 2 階的{item:essentialcraft5:forged_elemental_sword}升格為{item:essentialcraft5:verdict_blade}。蓄滿力命中時按目標的最大生命追加傷害，2 階起還能同時攻擊周圍一圈的敵人。"
         },
         {
           "type": "p",
-          "text": "<em>準備</em>：一把同調 2 階的餘燼元素劍，1 塊{item:essentialcraft5:inquisitorium_chip}、1 個{item:essentialcraft5:demonic_core}、1 塊{item:essentialcraft5:matter_of_eternity}、2 塊{item:essentialcraft5:matrix_crystal}，再在魔力工作台裡備好 20 萬 MRU。"
+          "text": "<em>準備</em>：一把同調 2 階的餘燼元素劍，1 塊{item:essentialcraft5:inquisitorium_chip}、1 個{item:essentialcraft5:demonic_core}、1 塊{item:essentialcraft5:matter_of_eternity}、2 塊{item:essentialcraft5:matrix_crystal}，以及魔力工作台中備好的 20 萬 MRU。"
         },
         {
           "type": "p",
@@ -1255,13 +2097,13 @@
             "cfg:general.matrix_rank.enabled",
             "cfg:general.attunement.rank_gate"
           ],
-          "text": "工作台還要看劍上記的矩陣階，至少要 {cfg:general.attunement.rank_gate|at:2} 階。把餘燼元素劍拿在主手裡幾秒，它就會記下你現在的矩陣階，見[[attunement/stage_up]]。"
+          "text": "魔力工作台還會檢查劍上記錄的矩陣階，至少需要 {cfg:general.attunement.rank_gate|at:2} 階。將餘燼元素劍持於主手數秒，即可記錄當前的矩陣階，詳見[[attunement/stage_up]]。"
         },
         {
           "type": "steps",
           "items": [
-            "把餘燼元素劍放在[[crafting/magician_table|魔力工作台]]正中，四角放上這幾樣材料。",
-            "等工作台做完，取出來的就是{item:essentialcraft5:verdict_blade}。"
+            "將餘燼元素劍置於[[crafting/magician_table|魔力工作台]]中央，四角放置上述材料。",
+            "合成完成後，取出的即為{item:essentialcraft5:verdict_blade}。"
           ]
         },
         {
@@ -1275,16 +2117,16 @@
         {
           "type": "list",
           "items": [
-            "鍛造時定下的主副元素、餘燼組合，還有附魔和存著的 MRU，都原樣帶過來。",
-            "同調從 0 階重新算，餘燼元素劍累計的同調度帶一半過來，最多填滿 0 階。",
-            "命中和右鍵時的元素、餘燼效果照舊，時長和花費按餘燼元素劍 2 階算。"
+            "鍛造時確定的主副元素與餘燼組合，以及附魔和儲存的 MRU，全部原樣保留。",
+            "同調從 0 階重新開始，餘燼元素劍累計同調度的一半轉入，至多填滿 0 階。",
+            "命中與右鍵時的元素效果和餘燼效果保持不變，持續時間與 MRU 消耗按餘燼元素劍 2 階計算。"
           ]
         },
         {
           "type": "tip",
           "style": "good",
           "title": "做成的標誌",
-          "text": "手裡有一把{item:essentialcraft5:verdict_blade}。"
+          "text": "持有一把{item:essentialcraft5:verdict_blade}。"
         },
         {
           "type": "h",
@@ -1295,7 +2137,7 @@
           "rows": [
             [
               "攻擊",
-              "比原來那把餘燼元素劍多 6 點，餘燼配到最好時約 51"
+              "比升格前的餘燼元素劍高 6 點，餘燼組合最佳時約為 51。同調階另外提高，見下方各階效果"
             ],
             [
               "攻擊速度",
@@ -1303,17 +2145,17 @@
             ],
             [
               "耐久",
-              "不掉耐久"
+              "不消耗耐久"
             ],
             [
               "MRU",
-              "自己能存 5 萬 MRU，扣 MRU 時先扣你身上的儲存物品"
+              "自身可儲存 5 萬 MRU，消耗時優先從身上的儲存物品中扣除"
             ],
             {
               "if": "cfg:general.matrix_rank.enabled",
               "cells": [
                 "[[matrix/alignment|矩陣特性]]",
-                "是普通帶特性武器的 {cfg:general.verdict_blade.trait_multiplier} 倍"
+                "效果為普通帶特性武器的 {cfg:general.verdict_blade.trait_multiplier} 倍"
               ]
             }
           ]
@@ -1325,13 +2167,13 @@
         },
         {
           "type": "p",
-          "text": "每次蓄滿力打實一個不是玩家的目標，這一刻結束時再補它一下，橫掃和斷罪打中的也算。0 階時補的是它最大生命的 {cfg:general.verdict_blade.verdict.percent|pctv}，一下最多 {cfg:general.verdict_blade.verdict.cap} 點，階越高補得越多。補的這一下無視護甲，每次花 {cfg:general.verdict_blade.verdict.mru} MRU，MRU 不夠就不補。",
+          "text": "每次蓄滿力命中非玩家目標時，在當前遊戲刻結束時對其追加一次傷害，橫掃與斷罪的命中同樣計入。0 階時追加傷害為目標最大生命的 {cfg:general.verdict_blade.verdict.percent|pctv}，單次至多 {cfg:general.verdict_blade.verdict.cap} 點，階數越高，追加越多。追加傷害無視護甲，每次消耗 {cfg:general.verdict_blade.verdict.mru} MRU，MRU 不足時不觸發。",
           "if": "cfg:general.verdict_blade.verdict.cap>0"
         },
         {
           "type": "p",
           "if": "cfg:general.verdict_blade.verdict.cap>0",
-          "text": "攻擊指示器還沒走滿就揮出去的那一下不補。"
+          "text": "攻擊指示器未充滿時揮出的攻擊不觸發裁斷。"
         },
         {
           "type": "p",
@@ -1339,16 +2181,16 @@
             "cfg:general.verdict_blade.verdict.cap>0",
             "cfg:general.verdict_blade.verdict.pvp_percent>0"
           ],
-          "text": "打玩家時也補，按對方最大生命的 {cfg:general.verdict_blade.verdict.pvp_percent|pctv} 算，一下最多 {cfg:general.verdict_blade.verdict.cap} 點，這兩個數都不隨階變。"
+          "text": "攻擊玩家時同樣觸發，傷害為對方最大生命的 {cfg:general.verdict_blade.verdict.pvp_percent|pctv}，單次至多 {cfg:general.verdict_blade.verdict.cap} 點，兩項數值均不隨階數變化。"
         },
         {
           "type": "p",
-          "text": "對 20 點生命的殭屍 0 階只補 {cfg:general.verdict_blade.verdict.percent|mul:0.2} 點，目標的生命越多，補得越多。",
+          "text": "例如對 20 點生命的殭屍，0 階時僅追加 {cfg:general.verdict_blade.verdict.percent|mul:0.2} 點。目標的生命越高，追加的傷害越多。",
           "if": "cfg:general.verdict_blade.verdict.cap>0"
         },
         {
           "type": "p",
-          "text": "打首領時不補這一截。",
+          "text": "攻擊首領時不觸發裁斷。",
           "if": "cfg:general.verdict_blade.verdict.cap>0"
         },
         {
@@ -1358,21 +2200,21 @@
         {
           "type": "p",
           "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
-          "text": "2 階起，按住右鍵 {cfg:general.verdict_blade.judgment.charge_ticks|sec}以上再鬆開，身邊 {cfg:general.verdict_blade.judgment.radius} 格內最多 {cfg:general.verdict_blade.judgment.max_targets} 個敵對生物各挨你一下，傷害是你現在攻擊力的 {cfg:general.verdict_blade.judgment.damage_multiplier|pct}，也會觸發裁斷。放一次花 {cfg:general.verdict_blade.judgment.mru} MRU，2 階時冷卻 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}，往上每階少 {cfg:general.verdict_blade.judgment.cooldown_per_stage|sec}。"
+          "text": "2 階起，按住右鍵 {cfg:general.verdict_blade.judgment.charge_ticks|sec}以上後鬆開，對周圍 {cfg:general.verdict_blade.judgment.radius} 格內至多 {cfg:general.verdict_blade.judgment.max_targets} 個敵對生物各造成一次傷害，傷害為當前攻擊力的 {cfg:general.verdict_blade.judgment.damage_multiplier|pct}，同樣會觸發裁斷。每次釋放消耗 {cfg:general.verdict_blade.judgment.mru} MRU。2 階時冷卻 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}，此後每升一階減少 {cfg:general.verdict_blade.judgment.cooldown_per_stage|sec}，3 階起再按下表縮短。"
         },
         {
           "type": "p",
           "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
-          "text": "斷罪只打敵對生物和首領，村民、寵物、玩家都不打，起了名字或拴著繩的敵對生物也不打。一個都沒打到時不花 MRU，也不進冷卻。2 階起右鍵不再格擋，改成蓄力放斷罪。"
+          "text": "斷罪只攻擊敵對生物和首領，不會攻擊村民、寵物和玩家，已命名或拴繩的敵對生物同樣不受攻擊。未命中任何目標時不消耗 MRU，也不進入冷卻。2 階起右鍵不再格擋，改為蓄力釋放斷罪。"
         },
         {
           "type": "p",
           "if": "cfg:general.verdict_blade.judgment.damage_multiplier<=0",
-          "text": "斷罪沒有開啟。2 階起右鍵照樣不再格擋。"
+          "text": "斷罪未啟用。2 階起右鍵同樣不再格擋。"
         },
         {
           "type": "p",
-          "text": "5 階起，被斷罪砍中的首領掛上{cfg:general.verdict_blade.judgment.bisect_ticks|sec}{lang:effect.essentialcraft5.bisected}，造成的傷害和受到的治療都減半。",
+          "text": "5 階起，被斷罪命中的首領獲得{lang:effect.essentialcraft5.bisected}效果，持續 {cfg:general.verdict_blade.judgment.bisect_ticks|sec}，造成的傷害與受到的治療均減半。",
           "if": [
             "cfg:general.verdict_blade.judgment.bisect_ticks>0",
             "cfg:general.verdict_blade.judgment.damage_multiplier>0"
@@ -1384,65 +2226,197 @@
         },
         {
           "type": "table",
-          "if": [
-            "cfg:general.verdict_blade.verdict.cap>0",
-            "cfg:general.verdict_blade.judgment.damage_multiplier>0",
-            "cfg:general.verdict_blade.judgment.bisect_ticks>0"
-          ],
+          "if": "cfg:general.verdict_blade.verdict.cap>0",
           "header": [
             "階",
-            "裁斷（最大生命 / 一下最多）",
-            "另外"
+            "攻擊",
+            "裁斷",
+            "吸血",
+            "穿透",
+            "斷罪冷卻縮短"
           ],
           "widths": [
             1,
+            2,
             3,
-            4
+            2,
+            2,
+            3
           ],
           "rows": [
             [
               "0",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:0|pct}",
               "{cfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap}",
-              "無"
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:0|pct}"
             ],
             [
               "1",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:1|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:1|addcfg:general.verdict_blade.verdict.cap}",
-              "無"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:1|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:1|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:1|pct}"
             ],
             [
               "2",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:2|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:2|addcfg:general.verdict_blade.verdict.cap}",
-              "斷罪，冷卻 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:2|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:2|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:2|pct}"
             ],
             [
               "3",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:3|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:3|addcfg:general.verdict_blade.verdict.cap}",
-              "斷罪冷卻 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-3|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:3|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:3|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:3|pct}"
             ],
             [
               "4",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:4|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:4|addcfg:general.verdict_blade.verdict.cap}",
-              "斷罪冷卻 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-4|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:4|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:4|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:4|pct}"
             ],
             [
               "5",
-              "{cfg:general.verdict_blade.verdict.percent_per_stage|mul:5|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.verdict_blade.verdict.cap_per_stage|mul:5|addcfg:general.verdict_blade.verdict.cap}",
-              "斷罪冷卻 {cfg:general.verdict_blade.judgment.cooldown_per_stage|mul:-5|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec}，首領掛{lang:effect.essentialcraft5.bisected}"
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.percent_per_stage|mul:5|addcfg:general.verdict_blade.verdict.percent|pctv} / {cfg:general.gear_growth.verdict_blade.cap_per_stage|mul:5|addcfg:general.verdict_blade.verdict.cap}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:5|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "if": "cfg:general.verdict_blade.verdict.cap<=0",
+          "header": [
+            "階",
+            "攻擊",
+            "吸血",
+            "穿透",
+            "斷罪冷卻縮短"
+          ],
+          "widths": [
+            1,
+            2,
+            2,
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "0",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:0|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:0|pct}"
+            ],
+            [
+              "1",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:1|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:1|pct}"
+            ],
+            [
+              "2",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:2|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:2|pct}"
+            ],
+            [
+              "3",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:3|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:3|pct}"
+            ],
+            [
+              "4",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:4|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:4|pct}"
+            ],
+            [
+              "5",
+              "+{cfg:general.gear_growth.verdict_blade.attack_per_stage|mul:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.lifesteal|stage:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.armor_pen|stage:5|pct}",
+              "{cfg:general.gear_growth.verdict_blade.judgment_cooldown_reduction|stage:5|pct}"
             ]
           ]
         },
         {
           "type": "p",
-          "if": [
-            "cfg:general.verdict_blade.verdict.cap>0",
-            "cfg:general.verdict_blade.judgment.damage_multiplier<=0||cfg:general.verdict_blade.judgment.bisect_ticks<=0"
-          ],
-          "text": "每升一階，裁斷多算最大生命的 {cfg:general.verdict_blade.verdict.percent_per_stage|pctv}，一下最多多 {cfg:general.verdict_blade.verdict.cap_per_stage} 點。"
+          "if": "cfg:general.verdict_blade.verdict.cap>0",
+          "text": "「裁斷」一列為追加傷害佔目標最大生命的比例，以及單次追加的上限。"
         },
         {
           "type": "p",
-          "text": "每階攻擊力還多 {cfg:general.attunement.damage_per_stage|pct}，5 階一共多 {cfg:general.attunement.damage_per_stage|mul:5|pct}。"
+          "text": "「攻擊」一列為比 0 階多出的攻擊傷害，按物品原本顯示的攻擊傷害計算比例，每階至少 1 點，結果取到 0.5。這部分直接計入物品提示中的攻擊傷害，與增傷分開顯示，同樣受[[attunement/gear_stats|增傷合計上限]]限制。對玩家時只按 {cfg:general.attunement.pvp_effect_scale|pct} 計算。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.verdict_blade.attack_per_stage==0.08",
+          "text": "例如攻擊傷害為 51 的裁決之刃，1～5 階依次為 55、59、63、67.5、71.5。攻擊傷害為 10 的裁決之刃每階按 1 點計算，5 階時為 15。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "斷罪自 2 階起解鎖。冷卻縮短至多為 {cfg:general.gear_growth.caps.cooldown_reduction|pct}。"
+        },
+        {
+          "type": "p",
+          "text": "吸血按該次攻擊最終造成的傷害回復生命。護甲穿透使目標的護甲按扣除相應比例後的數值計算，裁斷本身無視護甲，護甲穿透對其不起作用。各項的計算方式與上限詳見[[attunement/gear_stats]]。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.gear_growth.verdict_blade.execute_bonus>0",
+          "text": "斬殺（{cfg:general.gear_growth.verdict_blade.execute_stage} 階起）"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.verdict_blade.execute_bonus>0",
+          "text": "目標生命低於其最大生命的 {cfg:general.gear_growth.verdict_blade.execute_threshold|pct} 時，該次攻擊的增傷再提高 {cfg:general.gear_growth.verdict_blade.execute_bonus|pct}，與其他增傷相加計算。斬殺對首領和玩家無效。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "終審（{cfg:general.gear_growth.verdict_blade.final_verdict.stage} 階覺醒）"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "text": "達到該階後，被斷罪命中的每個目標會帶上持續 {cfg:general.gear_growth.verdict_blade.final_verdict.mark_ticks|sec}的<hl>罪印</hl>。在此期間親手再次命中該目標，罪印即引爆："
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "items": [
+            {
+              "if": "cfg:general.gear_growth.verdict_blade.final_verdict.cap>0",
+              "text": "普通目標：在當前遊戲刻結束時追加一次傷害，數值為其最大生命的 {cfg:general.gear_growth.verdict_blade.final_verdict.percent|pctv}，單次至多 {cfg:general.gear_growth.verdict_blade.final_verdict.cap} 點，無視護甲，不消耗 MRU。"
+            },
+            "首領：不追加傷害，改為引爆罪印的攻擊增傷再提高 {cfg:general.gear_growth.verdict_blade.final_verdict.boss_pool|pct}，仍受對首領的增傷合計上限限制。",
+            "斷罪本身的命中不會引爆罪印，裁斷的追加傷害與範圍傷害也不會。罪印只能由施加者本人引爆。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "info",
+          "if": "cfg:general.verdict_blade.judgment.damage_multiplier>0",
+          "title": "用法",
+          "text": "先釋放斷罪為周圍的敵人施加罪印，再逐個攻擊，每次命中引爆一枚罪印。對首領時，釋放斷罪後緊接一次高傷害的攻擊。"
         },
         {
           "type": "h",
@@ -1451,7 +2425,7 @@
         {
           "type": "table",
           "header": [
-            "升到",
+            "升至",
             "四角",
             "MRU"
           ],
@@ -1514,7 +2488,7 @@
         },
         {
           "type": "p",
-          "text": "每一階要的矩陣階見[[attunement/stage_up]]。數學核心是打倒全息投影掉的，見[[hologram/math_cores]]。"
+          "text": "各階所需的矩陣階見[[attunement/stage_up]]。數學核心由擊敗全息投影獲得，詳見[[hologram/math_cores]]。"
         }
       ]
     }

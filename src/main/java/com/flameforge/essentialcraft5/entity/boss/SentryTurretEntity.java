@@ -1,5 +1,6 @@
 package com.flameforge.essentialcraft5.entity.boss;
 
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
 import com.flameforge.essentialcraft5.registry.ECHoannaNativesA;
 import com.flameforge.essentialcraft5.registry.ECTownSentry;
@@ -31,6 +32,9 @@ import org.jetbrains.annotations.Nullable;
  * 不掉东西、不给经验；在 {@code growth_excluded} 里（不给同调点、不算公平来源）。注册在 {@code registry/ECTownSentry}。
  */
 public class SentryTurretEntity extends Monster {
+
+    /** 弹道的颜色（守望者的熔橙） */
+    public static final int TRACER_COLOR = 0xFF8A3A;
 
     /** 没有目标时多久再找一次（刻） */
     public static final int RETARGET_TICKS = 10;
@@ -123,13 +127,8 @@ public class SentryTurretEntity extends Monster {
         if (level() instanceof ServerLevel server) {
             server.playSound(null, getX(), getY(), getZ(), ECTownSentry.SOUND_TURRET_FIRE.get(), SoundSource.HOSTILE, 1F, 1.4F);
             server.playSound(null, getX(), getY(), getZ(), ECHoannaNativesA.SOUND_SCAVENGER_SHOOT.get(), SoundSource.HOSTILE, 0.8F, 1.1F);
-            Vec3 step = to.subtract(from);
-            int points = Mth.clamp((int) (step.length() * 2D), 2, 40);
-            for (int i = 1; i <= points; i++) {
-                Vec3 at = from.add(step.scale((double) i / points));
-                server.sendParticles(ParticleTypes.SMOKE, at.x, at.y, at.z, 1, 0D, 0D, 0D, 0D);
-            }
-            server.sendParticles(ParticleTypes.FLAME, from.x, from.y, from.z, 2, 0.05D, 0.05D, 0.05D, 0.01D);
+            // 枪口火光、弹道、命中由客户端画（FX_TRACER）
+            BossWarnings.resolve(this, S2CBossWarningPacket.FX_TRACER, from, 0D, 0D, to.subtract(from), 0, TRACER_COLOR, 0);
         }
         float damage = (float) ECTownSentry.Config.values().turrets().damage();
         return damage > 0F && target.hurt(ECDamageTypes.mobBolt(this), damage);

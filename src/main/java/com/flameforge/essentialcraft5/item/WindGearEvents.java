@@ -1,12 +1,12 @@
 package com.flameforge.essentialcraft5.item;
 
+import com.flameforge.essentialcraft5.network.GearFx;
+import com.flameforge.essentialcraft5.network.GearFxLimiter;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.item.attunement.AttunementGains;
 import com.flameforge.essentialcraft5.registry.ECWindGear;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -308,6 +308,7 @@ public final class WindGearEvents {
                 && state.impulses < values.airJumps(stage)) {
             state.impulses++;
             airJumpEffects(player);
+            com.flameforge.essentialcraft5.item.attunement.ArmorAwakenings.stormStep(player, stage);
         }
         remember(state, x, y, z, teleported ? 0D : dy, fall, grounded);
     }
@@ -321,23 +322,14 @@ public final class WindGearEvents {
         state.airborne = !grounded;
     }
 
-    /** 空中跳的一团风：服务端调时放给附近别的玩家（不含跳的人），客户端调时只放给自己（原版 playSound(玩家, …) 的预测写法） */
+    /**
+     * 空中跳的声音和画面：服务端调时声音放给附近别的玩家（不含跳的人），画面发 {@link GearFx#AIR_JUMP}；
+     * 客户端调时只放给自己（原版 playSound(玩家, …) 的预测写法），画面由 client/WindArmorClient 在本地先画，收到自己的事件就跳过
+     */
     public static void airJumpEffects(Player player) {
-        double x = player.getX();
-        double y = player.getY();
-        double z = player.getZ();
-        player.level().playSound(player, x, y, z, SoundEvents.PHANTOM_FLAP, SoundSource.PLAYERS, 0.4F, 1.6F);
+        player.level().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.PHANTOM_FLAP, SoundSource.PLAYERS, 0.4F, 1.6F);
         if (player.level() instanceof ServerLevel level) {
-            for (ServerPlayer viewer : level.players()) {
-                if (viewer != player && viewer.distanceToSqr(player) < 48D * 48D) {
-                    level.sendParticles(viewer, ParticleTypes.CLOUD, false, x, y + 0.1D, z, 6, 0.25D, 0.05D, 0.25D, 0.02D);
-                }
-            }
-        } else {
-            for (int i = 0; i < 6; i++) {
-                player.level().addParticle(ParticleTypes.CLOUD, x + (player.getRandom().nextDouble() - 0.5D) * 0.5D, y + 0.1D,
-                        z + (player.getRandom().nextDouble() - 0.5D) * 0.5D, 0D, -0.05D, 0D);
-            }
+            GearFxLimiter.send(level, GearFx.AIR_JUMP, player, player.position(), 0F, 3);
         }
     }
 

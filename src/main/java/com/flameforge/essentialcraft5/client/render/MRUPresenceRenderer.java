@@ -2,6 +2,7 @@ package com.flameforge.essentialcraft5.client.render;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.MRUVision;
+import com.flameforge.essentialcraft5.client.vfx.machine.MachineVfx;
 import com.flameforge.essentialcraft5.entity.MRUPresenceEntity;
 import com.flameforge.essentialcraft5.mru.MRUBalance;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -75,6 +76,7 @@ public class MRUPresenceRenderer extends EntityRenderer<MRUPresenceEntity> {
             } else if (alwaysVisible) {
                 renderRays(entity, mru, partialTick, poseStack, buffers.getBuffer(RayRenderType.RAYS));
             }
+            MachineVfx.submit(MachineVfx.PRESENCE, entity, entity.getX(), entity.getY(), entity.getZ());
         }
         super.render(entity, yaw, partialTick, poseStack, buffers, packedLight);
     }

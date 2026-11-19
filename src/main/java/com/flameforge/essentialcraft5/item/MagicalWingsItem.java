@@ -6,10 +6,8 @@ import com.flameforge.essentialcraft5.network.WingsFlight;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -23,7 +21,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -85,7 +82,6 @@ public class MagicalWingsItem extends Item implements ICurioItem, CreativeVarian
     public static final String SPEED_MODIFIER_NAME = "essentialcraft5:magical_wings";
 
     /** 原作 REDSTONE 粒子带参数 (0, 1, 1)：1.12 红石粒子红色为 0 时当 1，实际是白色 */
-    private static final DustParticleOptions PARTICLE = new DustParticleOptions(new Vector3f(1F, 1F, 1F), 1F);
 
     /** 付不起以后隔多少刻再试（拿着没电的翅膀时不每刻翻一遍物品栏） */
     public static final int RETRY_TICKS = 20;
@@ -348,15 +344,11 @@ public class MagicalWingsItem extends Item implements ICurioItem, CreativeVarian
         }
     }
 
-    /** 客户端：脚下一团白色粒子（原作 REDSTONE，x、z ±0.5，y 在脚下一格上下） */
+    /** 本地玩家最近一次用翅膀缓降 / 往上飞的那一刻（客户端；翅膀的画面 client/vfx/gear/WingsFx 看它） */
+    public static int clientFlightTick = Integer.MIN_VALUE;
+
     private static void particles(Player player) {
-        Level level = player.level();
-        RandomSource random = player.getRandom();
-        level.addParticle(PARTICLE,
-                player.getX() + (random.nextDouble() - random.nextDouble()) / 2D,
-                player.getY() - 0.5D + (random.nextDouble() - random.nextDouble()) / 2D,
-                player.getZ() + (random.nextDouble() - random.nextDouble()) / 2D,
-                0D, 0D, 0D);
+        clientFlightTick = player.tickCount;
     }
 
     /** 摘下（换成别的东西）时叫停往上飞。Curios 在翅膀的 NBT 变了（扣 MRU）时也会调这里，newStack 还是翅膀，不叫停 */

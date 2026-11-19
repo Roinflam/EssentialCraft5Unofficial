@@ -3,6 +3,7 @@ package com.flameforge.essentialcraft5.entity.boss;
 import com.flameforge.essentialcraft5.entity.anim.MobAnimStates;
 import com.flameforge.essentialcraft5.entity.mob.MRUGolemTrigger;
 import com.flameforge.essentialcraft5.entity.mob.hoanna.HoannaScavengerEntity;
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
 import com.flameforge.essentialcraft5.registry.ECHoannaNativesA;
 import com.flameforge.essentialcraft5.registry.ECTownSentry;
@@ -10,7 +11,6 @@ import com.flameforge.essentialcraft5.util.ECProtection;
 import com.flameforge.essentialcraft5.util.SpawnOrigin;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -57,7 +57,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -100,6 +99,8 @@ public class TownSentryEntity extends ECBossMonster {
 
     public static final int ANIM_SWEEP = 0;
     public static final int ANIM_SUPPRESS = 1;
+    /** 镇压落地的熔岩橙红（贴近守望者发光层的橙金；预警圈仍用危险红） */
+    public static final int SUPPRESS_COLOR = 0xFF5A24;
     public static final int ANIM_ALARM = 2;
     /** 名单脱战距离：离守望者水平这么远就不算参战（上下按 {@link #VERTICAL_REACH}） */
     public static final double ESCAPE_RANGE = 32D;
@@ -126,9 +127,6 @@ public class TownSentryEntity extends ECBossMonster {
     private static final String TAG_TOWN_CHUNK = "town_chunk";
     private static final String TAG_HOME = "guard_home";
     private static final String TAG_ALARM = "alarm_used";
-
-    /** 红圈的颜色 */
-    private static final DustParticleOptions RING = new DustParticleOptions(new Vector3f(0.95F, 0.15F, 0.1F), 1.3F);
 
     public final MobAnimStates anims = new MobAnimStates(3).channel(ANIM_SWEEP, 1).channel(ANIM_SUPPRESS, 1).channel(ANIM_ALARM, 1);
 
@@ -712,24 +710,16 @@ public class TownSentryEntity extends ECBossMonster {
         return suppressCooldown;
     }
 
-    /** 镇压开始蓄力：放动画、蓄力音效，标记蓄力中（客户端发光层变亮） */
+    /**
+     * 镇压开始蓄力：放动画、蓄力音效，标记蓄力中（客户端发光层变亮），把蓄力这段的预警圈发给附近的客户端
+     * （{@link BossWarnings}，危险红，圈心跟着它，蓄满 {@code suppress_warning_ticks} 刻落下）
+     */
     public void beginSuppress() {
         anims.play(this, ANIM_SUPPRESS);
         entityData.set(DATA_CHARGING, true);
         playSound(ECTownSentry.SOUND_SUPPRESS_CHARGE.get(), 1.5F, 0.6F);
-    }
-
-    /** 蓄力中画一圈红色的预警（服务端发粒子，所有人看得见） */
-    public void suppressWarning() {
-        if (!(level() instanceof ServerLevel server)) {
-            return;
-        }
-        double radius = config().attacks().suppressRadius();
-        int points = Math.max(16, (int) (radius * 8));
-        for (int i = 0; i < points; i++) {
-            double angle = Math.PI * 2D * i / points;
-            server.sendParticles(RING, getX() + Math.cos(angle) * radius, getY() + 0.1D, getZ() + Math.sin(angle) * radius, 1, 0D, 0D, 0D, 0D);
-        }
+        ECTownSentry.Config.Attacks attacks = config().attacks();
+        BossWarnings.circle(this, this, position(), attacks.suppressRadius(), attacks.suppressWarningTicks(), BossWarnings.DANGER);
     }
 
     /**
@@ -754,10 +744,8 @@ public class TownSentryEntity extends ECBossMonster {
                 hits++;
             }
         }
-        if (level() instanceof ServerLevel server) {
-            server.sendParticles(ParticleTypes.EXPLOSION, getX(), getY() + 0.2D, getZ(), 4, radius * 0.4D, 0.1D, radius * 0.4D, 0D);
-            server.sendParticles(ParticleTypes.LAVA, getX(), getY() + 0.3D, getZ(), 12, radius * 0.4D, 0.2D, radius * 0.4D, 0D);
-        }
+        // 镇压落地由客户端画（FX_SUPPRESS）
+        BossWarnings.resolve(this, S2CBossWarningPacket.FX_SUPPRESS, position(), radius, SUPPRESS_COLOR);
         playSound(ECTownSentry.SOUND_SUPPRESS.get(), 2F, 0.8F);
         return hits;
     }
@@ -958,9 +946,6 @@ public class TownSentryEntity extends ECBossMonster {
             if (target != null) {
                 getLookControl().setLookAt(target, 30F, 30F);
             }
-            if (windup % 4 == 0) {
-                suppressWarning();
-            }
             if (--windup <= 0) {
                 suppressImpact();
             }
@@ -971,6 +956,7 @@ public class TownSentryEntity extends ECBossMonster {
             if (windup > 0) {
                 entityData.set(DATA_CHARGING, false);
                 suppressCooldown = config().attacks().suppressCooldownTicks();
+                BossWarnings.cancel(TownSentryEntity.this);
             }
             windup = 0;
         }

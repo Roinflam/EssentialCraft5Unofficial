@@ -728,7 +728,7 @@ public final class AttunementTests {
     }
 
     /**
-     * 13a 只有宅男套装有升阶配方，13b 起七个家族都有了（batch13.md §4.5），数据包里的升阶配方家族正好是这七个；
+     * 13a 只有宅男套装有升阶配方，13b 起七个家族都有了（batch13.md §4.5），成长加强又加了枪械同调，数据包里的升阶配方家族正好是这八个；
      * 攒满不会自己升阶，升阶只走魔力工作台：魔力防护、风之、虚空、审判庭套装和余烬元素剑攒到 0 阶门槛 300 就停
      * （手册同调章「别的几套也会攒同调度」照这个写，转过去见下一条）
      */
@@ -741,7 +741,8 @@ public final class AttunementTests {
             }
         }
         Set<ResourceLocation> shipped = Set.of(ECAttunement.COMPUTER_ARMOR.id(), ECAttunement.MHS_ARMOR.id(), ECAttunement.WIND_ARMOR.id(),
-                ECAttunement.VOID_ARMOR.id(), ECAttunement.INQUISITORIUM_ARMOR.id(), ECAttunement.EMBER_SWORD.id(), ECAttunement.VERDICT_BLADE.id());
+                ECAttunement.VOID_ARMOR.id(), ECAttunement.INQUISITORIUM_ARMOR.id(), ECAttunement.EMBER_SWORD.id(), ECAttunement.VERDICT_BLADE.id(),
+                ECAttunement.MRU_GUN.id());
         helper.assertTrue(families.equals(shipped), "升阶配方应正好是这几个家族的 " + shipped + "，实际 " + families);
         ItemStack[] others = {stack(ECGear.MHS_CHESTPLATE.get()), stack(ECWindGear.WIND_BOOTS.get()), stack(ECVoidArmor.VOID_CHESTPLATE.get()),
                 stack(ECInquisitorium.INQUISITORIUM_LEGGINGS.get()), stack(ECEmberForge.FORGED_ELEMENTAL_SWORD.get())};
@@ -858,21 +859,25 @@ public final class AttunementTests {
         helper.succeed();
     }
 
-    /** 每阶通用加成：盔甲每阶 +1 最大生命（只在自己的槽位）、武器每阶攻击 ×1.03；0 阶没有 */
+    /**
+     * 每阶通用加成：宅男每阶每件 +3 最大生命（{@code gear_growth.computer_armor.base_stats.health_per_stage}，只在自己的槽位）；
+     * 刀剑每阶的攻击加在属性栏本体那一条上（不再有倍率修饰符，也不进增伤池）；0 阶没有
+     */
     @GameTest(template = EMPTY)
     public static void attunementStageBonuses(GameTestHelper helper) {
         ItemStack helmet = stack(ECComputer.COMPUTER_HELMET.get());
-        helper.assertTrue(bonus(helmet, EquipmentSlot.HEAD, "Attunement health") == 0D, "0 阶没有生命加成");
+        helper.assertTrue(healthOverPlain(helmet, EquipmentSlot.HEAD) == 0D, "0 阶没有生命加成");
         Attunement.set(helmet, 2, 0);
-        helper.assertTrue(Math.abs(bonus(helmet, EquipmentSlot.HEAD, "Attunement health") - 2D) < 1e-6, "2 阶头盔 +2 最大生命");
-        helper.assertTrue(bonus(helmet, EquipmentSlot.MAINHAND, "Attunement health") == 0D, "拿在手里不加");
+        helper.assertTrue(Math.abs(healthOverPlain(helmet, EquipmentSlot.HEAD) - 6D) < 1e-6, "2 阶宅男头盔 +6 最大生命");
+        helper.assertTrue(healthOverPlain(helmet, EquipmentSlot.MAINHAND) == 0D, "拿在手里不加");
         ItemStack sword = stack(ECEmberForge.FORGED_ELEMENTAL_SWORD.get());
         Attunement.set(sword, 2, 0);
-        double damage = bonus(sword, EquipmentSlot.MAINHAND, "Attunement damage");
-        helper.assertTrue(Math.abs(damage - 0.06D) < 1e-6, "2 阶剑攻击 ×1.06（MULTIPLY_TOTAL 0.06），实际 " + damage);
-        boolean total = sword.getAttributeModifiers(EquipmentSlot.MAINHAND).get(Attributes.ATTACK_DAMAGE).stream()
-                .anyMatch(m -> m.getName().equals("Attunement damage") && m.getOperation() == AttributeModifier.Operation.MULTIPLY_TOTAL);
-        helper.assertTrue(total, "攻击加成按总值乘");
+        helper.assertTrue(bonus(sword, EquipmentSlot.MAINHAND, "Attunement damage") == 0D, "武器不再挂攻击倍率修饰符");
+        double pool = com.flameforge.essentialcraft5.item.attunement.GearStatSheet.get(sword,
+                com.flameforge.essentialcraft5.item.attunement.GearStat.DAMAGE);
+        helper.assertTrue(pool == 0D, "刀剑的阶增伤不在增伤池里，实际 " + pool);
+        java.util.Collection<AttributeModifier> attack = sword.getAttributeModifiers(EquipmentSlot.MAINHAND).get(Attributes.ATTACK_DAMAGE);
+        helper.assertTrue(attack.size() == 1, "攻击伤害只有一条修饰符：" + attack);
         helper.succeed();
     }
 
@@ -880,7 +885,118 @@ public final class AttunementTests {
         return stack.getAttributeModifiers(slot).values().stream().filter(m -> m.getName().equals(name)).mapToDouble(AttributeModifier::getAmount).sum();
     }
 
-    /** 3 阶起带附魔光泽；全套阶取四件最低、没穿齐是 -1 */
+    /** 这件在 slot 上的最大生命比同种 0 阶的一件多多少（同调生命并进物品自己那一条以后，按名字已经分不出来） */
+    private static double healthOverPlain(ItemStack stack, EquipmentSlot slot) {
+        return healthSum(stack, slot) - healthSum(new ItemStack(stack.getItem()), slot);
+    }
+
+    private static double healthSum(ItemStack stack, EquipmentSlot slot) {
+        return stack.getAttributeModifiers(slot).get(Attributes.MAX_HEALTH).stream().mapToDouble(AttributeModifier::getAmount).sum();
+    }
+
+    /** 五套盔甲的胸甲：宅男、审判庭、虚空、魔力防护自己按配置给最大生命，风之没有 */
+    private static List<net.minecraft.world.item.Item> attunedChestplates() {
+        return List.of(ECComputer.COMPUTER_CHESTPLATE.get(), ECInquisitorium.INQUISITORIUM_CHESTPLATE.get(), ECVoidArmor.VOID_CHESTPLATE.get(),
+                ECGear.MHS_CHESTPLATE.get(), ECWindGear.WIND_CHESTPLATE.get());
+    }
+
+    /**
+     * 同调生命并进物品自己的最大生命那一条：自己有这一条的胸甲（宅男、审判庭、虚空、魔力防护）各阶都只剩一条，UUID 和 0 阶时一样，
+     * 数额 = 原值 + 每阶加成 × 阶；风之胸甲自己没有，另加一条「Attunement health」
+     */
+    @GameTest(template = EMPTY)
+    public static void attunementHealthMergedIntoOwnModifier(GameTestHelper helper) {
+        for (net.minecraft.world.item.Item item : attunedChestplates()) {
+            String what = net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(item).getPath();
+            double per = com.flameforge.essentialcraft5.item.attunement.ArmorBaseStats.healthPerStage(
+                    com.flameforge.essentialcraft5.item.attunement.AttunementFamily.of(stack(item)));
+            helper.assertTrue(per > 0D, what + " 测试前提：每阶生命加成大于 0");
+            java.util.Collection<AttributeModifier> plain = stack(item).getAttributeModifiers(EquipmentSlot.CHEST).get(Attributes.MAX_HEALTH);
+            AttributeModifier own = plain.stream().filter(m -> m.getOperation() == AttributeModifier.Operation.ADDITION).findFirst().orElse(null);
+            int max = Attunement.maxStage(stack(item));
+            for (int stage = 1; stage <= max; stage++) {
+                ItemStack staged = stack(item);
+                Attunement.set(staged, stage, 0);
+                java.util.Collection<AttributeModifier> health = staged.getAttributeModifiers(EquipmentSlot.CHEST).get(Attributes.MAX_HEALTH);
+                helper.assertTrue(health.size() == plain.size() + (own == null ? 1 : 0), what + " " + stage + " 阶最大生命修饰符条数不对：" + health);
+                double expected = (own == null ? 0D : own.getAmount()) + per * stage;
+                AttributeModifier merged = health.stream().filter(m -> own == null ? m.getName().equals("Attunement health") : m.getId().equals(own.getId()))
+                        .findFirst().orElse(null);
+                helper.assertTrue(merged != null && merged.getOperation() == AttributeModifier.Operation.ADDITION
+                        && Math.abs(merged.getAmount() - expected) < 1e-6, what + " " + stage + " 阶应是一条合计 +" + expected + "：" + health);
+                helper.assertTrue(Math.abs(healthSum(staged, EquipmentSlot.CHEST) - expected) < 1e-6, what + " " + stage + " 阶生命总值不对");
+            }
+            if (own != null) {
+                helper.assertTrue(plain.size() == 1, what + " 测试前提：自己只有一条最大生命");
+            }
+        }
+        helper.assertTrue(stack(ECWindGear.WIND_CHESTPLATE.get()).getAttributeModifiers(EquipmentSlot.CHEST).get(Attributes.MAX_HEALTH).isEmpty(),
+                "测试前提：风之胸甲自己没有最大生命");
+        helper.succeed();
+    }
+
+    /** 原版提示框「穿在身上时」一栏里，满阶胸甲的最大生命只有一行，写的是合计 */
+    @GameTest(template = EMPTY)
+    public static void attunementHealthSingleTooltipLine(GameTestHelper helper) {
+        String healthName = Attributes.MAX_HEALTH.getDescriptionId();
+        for (net.minecraft.world.item.Item item : attunedChestplates()) {
+            String what = net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(item).getPath();
+            ItemStack chest = stack(item);
+            Attunement.set(chest, Attunement.maxStage(chest), 0);
+            // 不写物品自己的说明（服务端测，只看原版属性栏）
+            chest.getOrCreateTag().putInt("HideFlags", ItemStack.TooltipPart.ADDITIONAL.getMask());
+            List<String> amounts = new ArrayList<>();
+            for (Component line : chest.getTooltipLines(null, net.minecraft.world.item.TooltipFlag.NORMAL)) {
+                if (line.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents contents
+                        && contents.getKey().startsWith("attribute.modifier.") && contents.getArgs().length >= 2
+                        && contents.getArgs()[1] instanceof Component name
+                        && name.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents nameKey
+                        && healthName.equals(nameKey.getKey())) {
+                    amounts.add(String.valueOf(contents.getArgs()[0]));
+                }
+            }
+            String total = ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(healthSum(chest, EquipmentSlot.CHEST));
+            helper.assertTrue(amounts.size() == 1 && amounts.get(0).equals(total), what + " 最大生命应只有一行 +" + total + "，实际 " + amounts);
+        }
+        helper.succeed();
+    }
+
+    /**
+     * 走原版换装：真玩家穿 1 阶胸甲 → 穿着升到 3 阶 → 脱下。每一步身上最大生命只挂这一件的一条（或没有），数和物品算的一样；
+     * 升阶时当前生命不往下掉，脱下后最大生命回到 20、一条都不留。物品自己有生命的（审判庭）和没有的（风之）各走一遍。
+     */
+    @GameTest(template = EMPTY)
+    public static void attunementHealthNoLeftoverAcrossStageAndTakeoff(GameTestHelper helper) {
+        for (net.minecraft.world.item.Item item : List.of(ECInquisitorium.INQUISITORIUM_CHESTPLATE.get(), ECWindGear.WIND_CHESTPLATE.get())) {
+            String what = net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(item).getPath();
+            ServerPlayer player = player(helper, "att-hp");
+            net.minecraft.world.entity.ai.attributes.AttributeInstance max = player.getAttribute(Attributes.MAX_HEALTH);
+            helper.assertTrue(max.getModifiers().isEmpty() && player.getMaxHealth() == 20F, what + " 测试前提：空身最大生命 20");
+            ItemStack chest = stack(item);
+            Attunement.set(chest, 1, 0);
+            player.setItemSlot(EquipmentSlot.CHEST, chest);
+            player.doTick();
+            helper.assertTrue(max.getModifiers().size() == 1 && Math.abs(player.getMaxHealth() - (20D + healthSum(chest, EquipmentSlot.CHEST))) < 1e-6,
+                    what + " 穿上 1 阶：应只挂一条、最大生命 " + (20D + healthSum(chest, EquipmentSlot.CHEST)) + "，实际 " + max.getModifiers());
+            player.setHealth(player.getMaxHealth());
+            float before = player.getHealth();
+            ItemStack worn = player.getItemBySlot(EquipmentSlot.CHEST);
+            Attunement.set(worn, 3, 0);
+            player.doTick();
+            helper.assertTrue(max.getModifiers().size() == 1 && Math.abs(player.getMaxHealth() - (20D + healthSum(worn, EquipmentSlot.CHEST))) < 1e-6,
+                    what + " 穿着升到 3 阶：应只挂一条、最大生命 " + (20D + healthSum(worn, EquipmentSlot.CHEST)) + "，实际 " + max.getModifiers());
+            helper.assertTrue(player.getHealth() >= before, what + " 升阶时当前生命不应往下掉：" + before + " → " + player.getHealth());
+            player.setItemSlot(EquipmentSlot.CHEST, ItemStack.EMPTY);
+            player.doTick();
+            player.doTick();
+            helper.assertTrue(max.getModifiers().isEmpty() && player.getMaxHealth() == 20F,
+                    what + " 脱下后最大生命应回到 20、不留修饰符，实际 " + player.getMaxHealth() + " " + max.getModifiers());
+            helper.assertTrue(player.getHealth() <= 20F, what + " 脱下后当前生命应夹回 20，实际 " + player.getHealth());
+        }
+        helper.succeed();
+    }
+
+    /** 3 阶起带附魔光泽（最高不到 3 阶的家族满阶就亮）；全套阶取四件最低、没穿齐是 -1 */
     @GameTest(template = EMPTY)
     public static void attunementGlintAndFullSet(GameTestHelper helper) {
         ItemStack helmet = stack(ECComputer.COMPUTER_HELMET.get());
@@ -890,7 +1006,7 @@ public final class AttunementTests {
         helper.assertTrue(helmet.hasFoil(), "3 阶宅男头盔发光");
         ItemStack sword = stack(ECEmberForge.FORGED_ELEMENTAL_SWORD.get());
         Attunement.set(sword, 2, 0);
-        helper.assertFalse(sword.hasFoil(), "余烬剑最高 2 阶，不发光");
+        helper.assertTrue(sword.hasFoil(), "余烬剑最高 2 阶，满阶也发光（光泽按 min(3, 家族最高阶)）");
         ServerPlayer player = player(helper, "att-set");
         ItemStack[] pieces = {stack(ECComputer.COMPUTER_HELMET.get()), stack(ECComputer.COMPUTER_CHESTPLATE.get()),
                 stack(ECComputer.COMPUTER_LEGGINGS.get()), stack(ECComputer.COMPUTER_BOOTS.get())};

@@ -1,8 +1,8 @@
 package com.flameforge.essentialcraft5.entity.boss;
 
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECMatrixShade;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -17,7 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,14 +77,12 @@ public class MatrixShadePillar extends Entity {
         }
         MatrixShadeEntity shade = owner;
         if (!struck && (shade == null || shade.isRemoved() || shade.isDeadOrDying() || shade.dissipating())) {
+            BossWarnings.cancel(this);
             discard();
             return;
         }
         if (!struck) {
-            if (tickCount % 5 == 0) {
-                MatrixShadeSkills.ring(server, position(), RADIUS * (1D - 0.6D * tickCount / (double) WARN),
-                        new DustParticleOptions(new Vector3f(0.75F, 0.13F, 0.6F), 1.2F), 20);
-            }
+            // 预警圈由起手时发的预警包画（MatrixShadeSkills#pillars → BossWarnings），这里只等时间到
             if (tickCount >= WARN && shade != null) {
                 strike(server, shade);
             }
@@ -99,7 +96,8 @@ public class MatrixShadePillar extends Entity {
         struck = true;
         List<ServerPlayer> hit = new ArrayList<>();
         ECMatrixShade.Config.Skills s = ECMatrixShade.Config.values().skills();
-        server.sendParticles(ParticleTypes.REVERSE_PORTAL, getX(), getY() + 1.5D, getZ(), 40, RADIUS * 0.4D, 1.2D, RADIUS * 0.4D, 0.05D);
+        // 炸开的画面由客户端画（FX_DISORDER）
+        BossWarnings.resolve(this, S2CBossWarningPacket.FX_DISORDER, position(), RADIUS, BossWarnings.MATRIX);
         server.playSound(null, getX(), getY(), getZ(), ECMatrixShade.SOUND_PILLAR.get(), SoundSource.HOSTILE, 1.5F, 1F);
         for (ServerPlayer player : shade.bossRoster().online()) {
             if (!shade.isSkillTarget(player) || !inside(player.position())) {

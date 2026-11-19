@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * 抖动 ×3）、1~2 段的分叉（长弧 12 条；十几像素的短火花只长 {@value #SHORT_BRANCHES} 条，塞满 12 条会成一团毛刺）。
  * 颜色是原作的电弧预设（色值和出处在 {@link CodexTheme} 的 {@code ARC_*}）：打向目标的放电 {@link CodexTheme#ARC_STRIKE}、
  * 线圈待机电弧 {@link CodexTheme#ARC_IDLE}、线圈基座的小火花 {@link CodexTheme#ARC_SPARK}。
- * 画法照 {@link com.flameforge.essentialcraft5.client.render.ArcRenderer} 的两层：外层柔光（宽 3 像素、低不透明度），
+ * 画法照原来世界电弧的两层：外层柔光（宽 3 像素、低不透明度），
  * 里层亮芯（1 像素；主干中心再叠半像素的白芯）。抖动和分叉长度按电弧长短换算成像素，长弧封顶。</p>
  *
  * <p><b>不做镜像折叠</b>：上一版把外框、块上沿的弧按基线镜像到一侧，主干首尾钉在基线上、一半的点被翻到基线上，

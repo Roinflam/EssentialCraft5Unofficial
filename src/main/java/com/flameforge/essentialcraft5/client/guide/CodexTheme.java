@@ -150,7 +150,7 @@ public final class CodexTheme {
      * 悬停、开场描框起笔
      */
     public static final int ARC_SPARK = arcColor(ArcEffect.Style.COIL_HARDENER);
-    /** 电弧外层柔光 = 预设色往白提这么多（照 {@code ArcRenderer} 的外层：更淡、更宽） */
+    /** 电弧外层柔光 = 预设色往白提这么多（照原来世界电弧的外层：更淡、更宽） */
     public static final float ARC_GLOW_LIFT = 0.45f;
     /** 主干中心那道白芯 = 预设色往白提这么多（原作电弧芯是发白的） */
     public static final float ARC_HOT_LIFT = 0.7f;

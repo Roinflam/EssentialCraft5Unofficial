@@ -1836,22 +1836,56 @@
               "同調預算",
               "每小時 {cfg:general.attunement.budget_per_hour}，最多存 {cfg:general.attunement.budget_cap}"
             ],
+            {
+              "if": [
+                "cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage<0",
+                "cfg:general.gear_growth.wind_armor.base_stats.health_per_stage<0"
+              ],
+              "cells": [
+                "每階生命",
+                "魔力防護、風之每件 +{cfg:general.gear_growth.armor.health_per_stage}"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.gear_growth.void_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage>=0"
+              ],
+              "cells": [
+                "每階生命（海納爾套裝）",
+                "虛空每件 +{cfg:general.gear_growth.void_armor.base_stats.health_per_stage}，審判庭 +{cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage}，宅男 +{cfg:general.gear_growth.computer_armor.base_stats.health_per_stage}"
+              ]
+            },
             [
-              "每階生命",
-              "每件 +{cfg:general.attunement.health_per_stage}"
+              "武器打實一下",
+              "{cfg:general.attunement.points_hit} 點；擊殺 {cfg:general.attunement.points_kill} 點，首領 {cfg:general.attunement.points_boss_kill} 點"
+            ],
+            [
+              "每階增傷",
+              "魔力槍械 +{cfg:general.gear_growth.weapon.damage_per_stage|pct}"
             ],
             {
               "if": "cfg:general.hoanna.portal_enabled",
               "cells": [
-                "武器打實一下",
-                "{cfg:general.attunement.points_hit} 點；擊殺 {cfg:general.attunement.points_kill} 點，首領 {cfg:general.attunement.points_boss_kill} 點"
+                "每階攻擊",
+                "按刀劍原有攻擊，餘燼元素劍 +{cfg:general.gear_growth.ember_sword.attack_per_stage|pct}，裁決之刃 +{cfg:general.gear_growth.verdict_blade.attack_per_stage|pct}"
               ]
             },
+            [
+              "增傷合計最多",
+              "怪 +{cfg:general.gear_growth.caps.pool_mob|pct}，首領 +{cfg:general.gear_growth.caps.pool_boss|pct}，玩家 +{cfg:general.gear_growth.caps.pool_player|pct}"
+            ],
+            [
+              "減傷合計最多",
+              "{cfg:general.gear_growth.caps.reduction|pct}，對玩家 {cfg:general.gear_growth.caps.reduction_player|pct}"
+            ],
             {
-              "if": "cfg:general.hoanna.portal_enabled",
+              "if": "cfg:general.gear_growth.scars.max_level>0",
               "cells": [
-                "每階攻擊",
-                "武器 +{cfg:general.attunement.damage_per_stage|pct}"
+                "戰痕",
+                "滿階後每 {cfg:general.gear_growth.scars.points_per_level} 點一級，最多 {cfg:general.gear_growth.scars.max_level} 級，武器每級增傷 +{cfg:general.gear_growth.scars.weapon_per_level|pct}"
               ]
             }
           ]

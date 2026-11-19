@@ -7,7 +7,9 @@ import com.flameforge.essentialcraft5.item.armor.ArmorBonus;
 import com.flameforge.essentialcraft5.item.armor.ArmorLook;
 import com.flameforge.essentialcraft5.item.armor.ConfiguredArmorStats;
 import com.flameforge.essentialcraft5.item.armor.ECArmorItem;
+import com.flameforge.essentialcraft5.item.attunement.ArmorGrowth;
 import com.flameforge.essentialcraft5.item.attunement.AttunementConfig;
+import com.flameforge.essentialcraft5.item.attunement.AttunementStageLines;
 import com.flameforge.essentialcraft5.matrix.MatrixResonance;
 import com.flameforge.essentialcraft5.registry.ECInquisitorium;
 import com.flameforge.essentialcraft5.registry.ECTags;
@@ -40,7 +42,7 @@ import java.util.function.Consumer;
  *   <li>提示框：原作写死在代码里的一句台词（改成翻译键）。第十批起生存里能做（每件要一个审判庭芯片），不再写「没有合成配方」。</li>
  * </ul>
  */
-public class InquisitoriumArmorItem extends ECArmorItem implements IMRUResistanceItem {
+public class InquisitoriumArmorItem extends ECArmorItem implements IMRUResistanceItem, AttunementStageLines {
 
     public static final ArmorLook LOOK = ArmorLook.modelArmorEC("special/armor/armorec3inquisitorium_0", "special/armor/armorec3inquisitorium_1");
     /** 生命 / 移速修饰符 UUID 用的套装名（{@link ConfiguredArmorStats#healthModifierId}） */
@@ -120,14 +122,18 @@ public class InquisitoriumArmorItem extends ECArmorItem implements IMRUResistanc
             tooltip.add(Component.translatable(prefix + "keep_durability").withStyle(ChatFormatting.DARK_PURPLE));
         }
         tooltip.add(Component.translatable(prefix + "fullset").withStyle(ChatFormatting.GRAY));
-        if (law.magicResistance() > 0D) {
-            tooltip.add(Component.translatable(prefix + "fullset.magic", percent(law.magicResistance())).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+        // 抗魔、首领减伤、律令的 0 阶数读 general.gear_growth.inquisitorium_armor.*（按阶的列表第 0 项）
+        double magic = ArmorGrowth.inqMagicResistance(0);
+        double boss = ArmorGrowth.inqBossResistance(0);
+        double edict = ArmorGrowth.inqEdict(0);
+        if (magic > 0D) {
+            tooltip.add(Component.translatable(prefix + "fullset.magic", percent(magic)).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
         }
-        if (law.bossResistance() > 0D) {
-            tooltip.add(Component.translatable(prefix + "fullset.boss", percent(law.bossResistance())).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+        if (boss > 0D) {
+            tooltip.add(Component.translatable(prefix + "fullset.boss", percent(boss)).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
         }
-        if (InquisitoriumArmorEvents.edictCut(law.edictReduction()) > 0) {
-            tooltip.add(Component.translatable(prefix + "fullset.edict", percent(law.edictReduction())).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+        if (InquisitoriumArmorEvents.edictCut(edict) > 0) {
+            tooltip.add(Component.translatable(prefix + "fullset.edict", percent(edict)).withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
         }
         if (law.convictionTicks() > 0 && law.convictionMaxTargets() > 0) {
             String seconds = MatrixResonance.decimal(law.convictionTicks() / 20D);
@@ -146,6 +152,29 @@ public class InquisitoriumArmorItem extends ECArmorItem implements IMRUResistanc
                         .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
             }
         }
+    }
+
+    /**
+     * 同调提示框里第 stage 阶那一行，抗魔 / 首领减伤 / 律令按 {@code general.gear_growth.inquisitorium_armor.*}、定罪 / 赦罪 / 壁垒 / 无视护甲减伤按
+     * {@code general.inquisitorium_armor.attuned.*} 现填，和结算用的是同一套数（{@link InquisitoriumArmorEvents}）。
+     */
+    @Override
+    public @Nullable Component attunementStageLine(ItemStack stack, int stage) {
+        ECInquisitorium.Config.Attuned a = ECInquisitorium.Config.attuned();
+        String key = "tooltip.essentialcraft5.attunement.inquisitorium_armor.stage_" + stage;
+        String magic = AttunementStageLines.percent(ArmorGrowth.inqMagicResistance(stage));
+        String boss = AttunementStageLines.percent(ArmorGrowth.inqBossResistance(stage));
+        return switch (stage) {
+            case 1 -> Component.translatable(key, magic, AttunementStageLines.percent(ArmorGrowth.inqEdict(stage)),
+                    AttunementStageLines.seconds(a.absolutionCooldown()));
+            case 2 -> Component.translatable(key, AttunementStageLines.percent(a.convictionBonus()),
+                    AttunementStageLines.percent(a.convictionBonus() + a.convictionBossBonus()), magic, boss);
+            case 3 -> Component.translatable(key, AttunementStageLines.percent(a.bulwarkThreshold()),
+                    AttunementStageLines.percent(1D - a.bulwarkReduction()), magic, boss);
+            case 4 -> Component.translatable(key, AttunementStageLines.percent(a.piercingResistance()),
+                    AttunementStageLines.percent(a.bulwarkThresholdTop()), AttunementStageLines.percent(1D - a.bulwarkReductionTop()), magic, boss);
+            default -> null;
+        };
     }
 
     private static String percent(double fraction) {

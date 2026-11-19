@@ -1,11 +1,17 @@
 package com.flameforge.essentialcraft5.item;
 
+import com.flameforge.essentialcraft5.network.GearFx;
+import com.flameforge.essentialcraft5.network.GearFxLimiter;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.HoannaWard;
 import com.flameforge.essentialcraft5.gun.RayHitGate;
 import com.flameforge.essentialcraft5.item.armor.MRUShield;
+import com.flameforge.essentialcraft5.item.attunement.ArmorAwakenings;
+import com.flameforge.essentialcraft5.item.attunement.ArmorGrowth;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
+import com.flameforge.essentialcraft5.item.attunement.GearCaps;
 import com.flameforge.essentialcraft5.item.attunement.AttunementGains;
+import com.flameforge.essentialcraft5.item.attunement.GearPool;
 import com.flameforge.essentialcraft5.matrix.MatrixResonance;
 import com.flameforge.essentialcraft5.registry.ECAttunement;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
@@ -13,7 +19,6 @@ import com.flameforge.essentialcraft5.registry.ECVoidArmor;
 import com.flameforge.essentialcraft5.util.ECDamageKinds;
 import com.flameforge.essentialcraft5.util.ECLandedHit;
 import com.flameforge.essentialcraft5.util.ECProtection;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -41,7 +46,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 
 import java.lang.ref.WeakReference;
 import java.util.Collections;
@@ -58,7 +62,7 @@ import java.util.WeakHashMap;
  * <ol>
  *   <li><b>相位</b>（HIGHEST，另在 {@link LivingAttackEvent} HIGHEST 先挡一次）：全套 4 阶闪避成功后 {@value #PHASE_TICKS} 刻里整下取消，
  *       只放过 {@code bypasses_invulnerability}（{@code /kill}、掉出世界）和 {@link #UNDODGEABLE} 里的伤害。是取消伤害事件，不是改生命。</li>
- *   <li><b>胸甲闪避</b>（HIGH）：穿着虚空胸甲时按胸甲的阶 {@link #dodgeChance}（0 阶 20%、1 阶 25%、4 阶 30%）取消这次事件
+ *   <li><b>胸甲闪避</b>（HIGH）：穿着虚空胸甲时按胸甲的阶 {@link #dodgeChance}（{@code general.gear_growth.void_armor.dodge}，默认 0~4 阶 20 / 24 / 27 / 30 / 35%；攻击者是玩家时最多 15%）取消这次事件
  *       （效果同原作 {@code setAmount(0)}：{@code actuallyHurt} 见到 0 就返回，不扣护甲、不发 LivingDamageEvent，也不扣 MRU）。
  *       1 阶、4 阶多出来的几率只给「有活物攻击者、不是自己」的伤害（{@link #dodgeChance(Player, DamageSource, int)}）：摔落、着火、
  *       腐化 #17 / #18、MRU 腐化这类没有攻击者的伤害照原作 20%，同调不让腐化的扣血变轻（batch13.md §8.1 D34，同宅男 2 阶、审判庭抗魔不减自伤）。
@@ -87,9 +91,9 @@ import java.util.WeakHashMap;
  * 纯 Forge 当场做；Mohist 系混合端上 LivingHurtEvent 在插件判定之前，闪避本身照常取消这一下，这几件事挂在 {@link MRUShield#defer} 上，
  * 等这一下真的放行（{@code LivingDamageEvent}，闪掉时伤害是 0）才做：站在禁 PvP 领地里被人打，不会给对方挂缓慢、也不白攒回击和相位。
  *
- * <h2>虚空回击（出手的一方，{@link LivingHurtEvent} NORMAL）</h2>
+ * <h2>虚空回击（出手的一方，总闸的增伤池）</h2>
  * 有回击记录、还穿着全套虚空、记录没过期时，你亲手的近战（攻击者和直接实体都是你、算物理伤害，反伤 / 饰品伤害 / 尖刺圆盾这类 {@link AttunementGains#notOwnHit} 不算）
- * 这一下 ×(1 + 加成)，打玩家时加成 × {@code pvp_effect_scale}。和相性的增减伤同在 NORMAL、都是乘法，先后不影响结果；
+ * 这一下多打「加成」（进总闸的增伤池，和躁动、定罪、同调阶等相加后封顶，{@code item/attunement/GearCombatEvents}），打玩家时加成 × {@code pvp_effect_scale}；
  * 在对方的护盾（LOW）之前，对方的盔甲按加过的伤害结算。记录在这一下<b>打实</b>（{@link LivingDamageEvent} LOWEST、没被取消，
  * 伤害 &gt; 0 或者打掉了对方的吸收值）时才用掉：原版先扣吸收值、再拿剩下的数发 LivingDamageEvent，吸收值整下吃掉时事件里是 0，
  * 吸收值是血条的一部分，照样算打实（原版统计也把它记成造成的伤害）。被对方闪避、护盾整下吃掉、混合端插件拦下的不算（这几种吸收值都不变），
@@ -124,9 +128,9 @@ public final class VoidArmorEvents {
 
     /** 0 阶闪避几率（原作 {@code nextFloat() <= 0.2F}） */
     public static final float DODGE_CHANCE = 0.2F;
-    /** 胸甲 1 阶起的闪避几率 */
+    /** 胸甲 1 阶起的闪避几率（旧值，已由 general.gear_growth.void_armor.dodge 接管，不再读） */
     public static final float DODGE_CHANCE_STAGE_1 = 0.25F;
-    /** 胸甲 4 阶的闪避几率 */
+    /** 胸甲 4 阶的闪避几率（旧值，已由 general.gear_growth.void_armor.dodge 接管，不再读） */
     public static final float DODGE_CHANCE_STAGE_4 = 0.3F;
     /** 0 阶靴子减掉的摔落伤害比例（原作 {@code amount - amount × 0.9F}） */
     public static final float FALL_REDUCTION = 0.9F;
@@ -158,7 +162,6 @@ public final class VoidArmorEvents {
     public static final TagKey<DamageType> UNDODGEABLE = ECDamageTypes.UNDODGEABLE;
 
     /** 闪避粒子：红色尘埃（原作 redstone 粒子） */
-    private static final DustParticleOptions DODGE_PARTICLE = new DustParticleOptions(new Vector3f(1F, 0F, 0F), 1F);
 
     /** 脱下了虚空盔甲、等着夹生命的生物（弱引用，实体没了自动去掉；只在服务端线程读写） */
     private static final Set<LivingEntity> PENDING_CLAMP = Collections.newSetFromMap(new WeakHashMap<>());
@@ -193,19 +196,22 @@ public final class VoidArmorEvents {
     // 各阶的数
     // ------------------------------------------------------------------
 
-    /** 胸甲这一阶闪避敌人攻击的几率 */
+    /**
+     * 胸甲这一阶闪避敌人攻击的几率：{@code general.gear_growth.void_armor.dodge}（默认 20 / 24 / 27 / 30 / 35%），过 {@code caps.dodge}
+     */
     public static float dodgeChance(int chestStage) {
-        if (chestStage >= 4) {
-            return DODGE_CHANCE_STAGE_4;
-        }
-        return chestStage >= 1 ? DODGE_CHANCE_STAGE_1 : DODGE_CHANCE;
+        return (float) Math.min(ArmorGrowth.voidDodge(chestStage), GearCaps.dodgeCap(null));
     }
 
     /**
-     * 这一下的闪避几率：有活物攻击者、不是自己时按胸甲的阶（{@link #dodgeChance(int)}），别的（摔落、着火、腐化这类自伤）照原作 {@value #DODGE_CHANCE}
+     * 这一下的闪避几率：有活物攻击者、不是自己时按胸甲的阶，攻击者是别的玩家时封顶 {@code caps.dodge_player}（默认 15%）；
+     * 别的（摔落、着火、腐化这类自伤）按 0 阶的数（原作 20%）
      */
     public static float dodgeChance(Player player, DamageSource source, int chestStage) {
-        return source.getEntity() instanceof LivingEntity attacker && attacker != player ? dodgeChance(chestStage) : DODGE_CHANCE;
+        if (source.getEntity() instanceof LivingEntity attacker && attacker != player) {
+            return (float) Math.min(ArmorGrowth.voidDodge(chestStage), GearCaps.dodgeCap(attacker));
+        }
+        return dodgeChance(0);
     }
 
     /** 靴子这一阶减掉的摔落伤害比例（2 阶起 1 = 全免） */
@@ -319,7 +325,7 @@ public final class VoidArmorEvents {
         if (chest.is(ECVoidArmor.VOID_CHESTPLATE.get()) && dodgeable(source) && dodgeRoll(player) <= dodgeChance(player, source, Attunement.stage(chest))) {
             event.setCanceled(true);
             dodgeParticles(player);
-            afterDodge(player, source, Attunement.stage(chest));
+            afterDodge(player, source, Attunement.stage(chest), amount);
             return;
         }
         ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
@@ -353,12 +359,16 @@ public final class VoidArmorEvents {
      * 闪掉一下以后（见类注释「闪避以后」）：没有活物攻击者、攻击者是自己时什么都不做。阶在闪避那一刻定下。
      * 纯 Forge 当场做；混合端挂到这一下放行时（{@link MRUShield#defer}，charges 是空表）。
      */
-    private static void afterDodge(Player player, DamageSource source, int chestStage) {
+    private static void afterDodge(Player player, DamageSource source, int chestStage, float amount) {
         if (!(source.getEntity() instanceof LivingEntity attacker) || attacker == player) {
             return;
         }
         int setStage = fullSetStage(player);
-        Runnable effects = () -> dodgeEffects(player, source, attacker, chestStage, setStage);
+        // 残像（满阶觉醒）和滞涩、回击一样等这一下放行再做：混合端上被领地 / PvP 插件拦下的攻击不留残像、不计冷却
+        Runnable effects = () -> {
+            dodgeEffects(player, source, attacker, chestStage, setStage);
+            ArmorAwakenings.afterimage(player, source, amount);
+        };
         if (RayHitGate.isBukkitHybrid()) {
             MRUShield.defer(player, source, List.of(), effects);
         } else {
@@ -402,7 +412,7 @@ public final class VoidArmorEvents {
 
     private static void dodgeParticles(Player player) {
         if (player.level() instanceof ServerLevel level) {
-            level.sendParticles(DODGE_PARTICLE, player.getX(), player.getY() + 1D, player.getZ(), 32, 0.25D, 0.5D, 0.25D, 0D);
+            GearFxLimiter.send(level, GearFx.VOID_DODGE, player, player.position(), 0F, 4);
         }
     }
 
@@ -415,34 +425,35 @@ public final class VoidArmorEvents {
     // 虚空回击（出手的一方）
     // ------------------------------------------------------------------
 
-    /** 你亲手的近战（NORMAL）：有回击就加，记下这一下等打实再用掉 */
-    @SubscribeEvent
-    public static void onVoidRiposteHurt(LivingHurtEvent event) {
+    /**
+     * 回击进总闸的池子（{@code item/attunement/GearPool}，{@code ECAttunement.init} 调）：你亲手的近战，有回击就加、记下这一下等打实再用掉。
+     * 以前在这里的 {@code LivingHurtEvent} NORMAL 里单独乘，现在和别的增伤相加后封顶。
+     */
+    public static void registerGearSources() {
+        GearPool.registerOffense("riposte", context -> riposteBonus(context.target(), context.source()));
+    }
+
+    /** 这一下回击加多少（0 = 不加）；加了就记下伤害源，等打实时用掉 */
+    public static double riposteBonus(LivingEntity target, DamageSource source) {
         if (RIPOSTE.isEmpty()) {
-            return;
+            return 0D;
         }
-        LivingEntity target = event.getEntity();
-        DamageSource source = event.getSource();
         if (target.level().isClientSide || !(source.getEntity() instanceof Player player) || source.getDirectEntity() != player || target == player
                 || !ECDamageKinds.isPhysical(source) || AttunementGains.notOwnHit(source)) {
-            return;
-        }
-        float amount = event.getAmount();
-        if (!(amount > 0F) || !Float.isFinite(amount)) {
-            return;
+            return 0D;
         }
         Riposte riposte = activeRiposte(player);
         if (riposte == null) {
-            return;
+            return 0D;
         }
         double bonus = riposte.bonus * MatrixResonance.pvpScale(target);
         if (!(bonus > 0D)) {
             // pvp_effect_scale 配成 0 时打玩家不加，回击也不算用掉，留给下一个目标
-            return;
+            return 0D;
         }
-        event.setAmount((float) (amount * (1D + bonus)));
         riposte.source = new WeakReference<>(source);
         riposte.tick = now(player);
+        return bonus;
     }
 
     /** 这一下打实了（LOWEST，不收已取消的；打实照 {@link ECLandedHit#landed}：伤害 &gt; 0 或者打掉了对方的伤害吸收）：用掉回击 */

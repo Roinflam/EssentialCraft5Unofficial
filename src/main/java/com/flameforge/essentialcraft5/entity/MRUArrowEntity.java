@@ -1,6 +1,5 @@
 package com.flameforge.essentialcraft5.entity;
 
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -52,22 +51,9 @@ public class MRUArrowEntity extends AbstractArrow {
         if (isRemoved()) {
             return;
         }
-        if (level().isClientSide) {
-            trail();
-        } else if (tickCount > LIFETIME) {
+        if (!level().isClientSide && tickCount > LIFETIME) {
             discard();
         }
-    }
-
-    private void trail() {
-        Vec3 motion = getDeltaMovement();
-        double spread = 0.05D;
-        level().addParticle(ParticleTypes.SMOKE,
-                getX() + (random.nextDouble() - 0.5D) * spread, getY() + (random.nextDouble() - 0.5D) * spread, getZ() + (random.nextDouble() - 0.5D) * spread,
-                motion.x * 0.05D, motion.y * 0.05D, motion.z * 0.05D);
-        level().addParticle(ParticleTypes.END_ROD,
-                getX() + (random.nextDouble() - 0.5D) * spread, getY() + (random.nextDouble() - 0.5D) * spread, getZ() + (random.nextDouble() - 0.5D) * spread,
-                motion.x * 0.02D, motion.y * 0.02D, motion.z * 0.02D);
     }
 
     /** 只打活体生物（不含盔甲架）；另外照原版：不打旁观者、刚射出时不打射手自己 */
@@ -97,11 +83,8 @@ public class MRUArrowEntity extends AbstractArrow {
 
     @Override
     public void handleEntityEvent(byte id) {
+        // 尾迹和碰墙散开都由客户端的 client/vfx/weapon/ProjectileTrailFx 画
         if (id == EVENT_FIZZLE) {
-            for (int i = 0; i < 6; i++) {
-                level().addParticle(ParticleTypes.SMOKE, getX(), getY(), getZ(),
-                        (random.nextDouble() - 0.5D) * 0.1D, random.nextDouble() * 0.05D, (random.nextDouble() - 0.5D) * 0.1D);
-            }
             return;
         }
         super.handleEntityEvent(id);

@@ -27,7 +27,7 @@ import java.util.UUID;
  * <p>
  * 原先这段在磁化法杖里（{@code MagnetizingStaffItem} 第三批），现在法杖改成调这里。
  * <p>
- * 另有 {@link #giveOrDrop}：交东西给可能已经死了的玩家（建筑魔杖的掉落和退回的材料、{@code ECProtection} 发事件时拿开的主手物品）；
+ * 另有 {@link #giveOrDrop}：交东西给可能已经死了的玩家（创世神之杖的掉落和退回的材料、{@code ECProtection} 发事件时拿开的主手物品）；
  * {@link #markForgeReleased} / {@link #forgeReleased}：余烬锻炉潜行放开的标记。
  */
 public final class ECItemEntities {
@@ -68,7 +68,7 @@ public final class ECItemEntities {
         if (stack.isEmpty()) {
             return;
         }
-        if (!player.isAlive() || player.isRemoved()) {
+        if (!player.isAlive() || player.isRemoved() || player.hasDisconnected()) {
             ItemEntity entity = new ItemEntity(player.level(), player.getX(), player.getY() + 0.5D, player.getZ(), stack);
             entity.setDefaultPickUpDelay();
             player.level().addFreshEntity(entity);

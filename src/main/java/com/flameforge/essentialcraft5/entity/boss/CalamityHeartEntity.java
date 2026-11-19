@@ -5,6 +5,7 @@ import com.flameforge.essentialcraft5.api.IPlayerData;
 import com.flameforge.essentialcraft5.entity.boss.seal.CalamitySeal;
 import com.flameforge.essentialcraft5.hoanna.event.HoannaEvent;
 import com.flameforge.essentialcraft5.network.S2CBossFxPacket;
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.player.PlayerDataEvents;
 import com.flameforge.essentialcraft5.registry.ECCalamityHeart;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
@@ -47,6 +48,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
@@ -143,8 +146,8 @@ public class CalamityHeartEntity extends ECBossMonster {
     private static final int BOUNDARY_INTERVAL = 40;
     private static final double INTRO_RING_SPACING = 1D;
     private static final double BOUNDARY_SPACING = 2.5D;
-    /** 灾柱破土的光柱多高 */
-    private static final int PILLAR_BURST_HEIGHT = 14;
+    /** 灾柱破土的光柱多高（场地外沿看过去要比灾柱高出一大截，才认得出是开场） */
+    private static final int PILLAR_BURST_HEIGHT = 22;
 
     /** 横幅编号（= 客户端那张表的下标，只追加）：灾柱倒下（+ 相的序号） */
     public static final int BANNER_PILLAR = 0;
@@ -865,7 +868,8 @@ public class CalamityHeartEntity extends ECBossMonster {
     public int pulse(ServerLevel server) {
         ECCalamityHeart.Config.Fight f = ECCalamityHeart.Config.values().fight();
         server.playSound(null, getX(), getY(), getZ(), ECCalamityHeart.SOUND_PULSE.get(), SoundSource.HOSTILE, 2F, 0.6F);
-        CalamityHeartSkills.ring(server, new Vec3(getX(), floorTop(), getZ()), Math.min(f.pulseRange(), 12D), ParticleTypes.FLAME, 32);
+        // 一圈冲击波从脚下扩出去（客户端画，FX_PULSE）
+        BossWarnings.resolve(this, S2CBossWarningPacket.FX_PULSE, new Vec3(getX(), floorTop(), getZ()), Math.min(f.pulseRange(), 12D), COLLAPSE_COLOR);
         int hit = 0;
         for (ServerPlayer player : heartSkills.targets(f.pulseRange())) {
             if (CalamityHeartSkills.hit(player, ECDamageTypes.calamity(this), f.pulseDamage(), f.pulsePercent())) {
@@ -1212,15 +1216,8 @@ public class CalamityHeartEntity extends ECBossMonster {
 
     /** 灾柱破土（开场、重立）：一道相色光柱冲天、轻震 */
     private void pillarBurst(ServerLevel server, CalamityPillarEntity pillar) {
-        float[] rgb = rgb(pillar.aspect().color());
-        DustParticleOptions dust = new DustParticleOptions(new Vector3f(rgb[0], rgb[1], rgb[2]), 2F);
-        for (int dy = 0; dy <= PILLAR_BURST_HEIGHT; dy++) {
-            server.sendParticles(dust, pillar.getX(), pillar.getY() + dy, pillar.getZ(), 3, 0.25D, 0.4D, 0.25D, 0D);
-            if (dy % 2 == 0) {
-                server.sendParticles(ParticleTypes.END_ROD, pillar.getX(), pillar.getY() + dy, pillar.getZ(), 1, 0.1D, 0.3D, 0.1D, 0.05D);
-            }
-        }
-        server.sendParticles(ParticleTypes.LARGE_SMOKE, pillar.getX(), pillar.getY() + 0.5D, pillar.getZ(), 12, 1D, 0.3D, 1D, 0.02D);
+        // 光柱、地裂、碎石由客户端画（FX_PILLAR_RISE，相色）
+        BossWarnings.resolve(this, S2CBossWarningPacket.FX_PILLAR_RISE, pillar.position(), PILLAR_BURST_HEIGHT, pillar.aspect().color());
         server.playSound(null, pillar.getX(), pillar.getY(), pillar.getZ(), ECCalamityHeart.SOUND_QUAKE.get(), SoundSource.HOSTILE, 2.5F, 0.8F);
         shake(SHAKE_LIGHT, SHAKE_TICKS);
     }
@@ -1376,6 +1373,16 @@ public class CalamityHeartEntity extends ECBossMonster {
             }
         }
         return super.hurt(source, amount);
+    }
+
+    /** 客户端：挨了一下（原版受击事件包），在被打的那一面放受击画面（{@code client/vfx/resolve/BodyHitFx}，不走网络） */
+    @Override
+    public void handleDamageEvent(DamageSource source) {
+        super.handleDamageEvent(source);
+        if (level().isClientSide) {
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> com.flameforge.essentialcraft5.client.vfx.resolve.BodyHitFx.onHurt(this, source,
+                    mainAspect().color()));
+        }
     }
 
     @Override

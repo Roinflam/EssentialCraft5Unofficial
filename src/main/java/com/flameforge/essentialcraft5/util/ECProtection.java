@@ -83,7 +83,7 @@ import java.util.function.Predicate;
  *       只问领地插件、不当成真挖（不通知 MONITOR 的统计插件、吞掉拒绝提示、不占全局破坏事件槽）。代破坏发的仍是普通 {@code BreakEvent}。</li>
  *   <li><b>Mohist 的 {@code Level.destroyBlock} 在有插件监听时先发可取消的 {@code ModsEntityDestroyBlockEvent}</b>（混合端的 {@code Level.java}：
  *       被取消就返回 false、方块不动）。所以破坏一律「先删、删成功再算掉落」（{@link #breakGuarded} 等），先掉落后删 = 删被取消时白送一份。
- *       例外是批量的 {@link #harvestGuarded(Player, Level, BlockPos, ItemStack, boolean)}（建筑魔杖一刻拆几十格）：它不调 destroyBlock，
+ *       例外是批量的 {@link #harvestGuarded(Player, Level, BlockPos, ItemStack, boolean)}（创世神之杖一刻拆几十格）：它不调 destroyBlock，
  *       直接把格子 setBlock 成剩下的流体，所以<b>不发</b> ModsEntityDestroyBlockEvent（Mohist 自己的钩子，不是 Forge 标准事件，领地插件认的是破坏事件）；
  *       Mohist 的 setBlock 同样先发可取消的 {@code SetBlockEvent}（混合端的 {@code Level.java}），被取消时返回 false，照样不掉落。</li>
  *   <li><b>Bukkit 的破坏事件是全局单槽</b>（{@code BlockEventDispatcher} 的 {@code blockBreakEvent}，每次转发都覆盖，
@@ -566,7 +566,7 @@ public final class ECProtection {
      *
      * @param face  朝向（混合端没有朝向就不转给插件，所以不能为 null）：点中的面；机器、范围效果传 {@link Direction#UP}
      * @param hand  用哪只手放的（混合端按它报手里的物品）；传 null 走 3 参版，混合端报的是主手和主手里的物品（机器、范围效果这样传就行）。
-     *              手里拿着施法的物品、又不想让插件以为放下的是它（建筑魔杖），传另一只手
+     *              手里拿着施法的物品、又不想让插件以为放下的是它（创世神之杖），传另一只手
      * @param flags 放行后通知用的 setBlock 标志（原版 BlockItem 用 UPDATE_ALL_IMMEDIATE，一般 UPDATE_ALL；只改外观不想触发邻居更新时 UPDATE_CLIENTS）
      * @return 是否已经改成 newState
      */
@@ -632,7 +632,7 @@ public final class ECProtection {
     }
 
     /**
-     * 同 {@link #harvestGuarded(Player, Level, BlockPos, ItemStack)}；{@code batch} 为 true 时是给一刻要拆几十格的调用方（建筑魔杖）用的批量写法，
+     * 同 {@link #harvestGuarded(Player, Level, BlockPos, ItemStack)}；{@code batch} 为 true 时是给一刻要拆几十格的调用方（创世神之杖）用的批量写法，
      * 权限这一段完全一样（出生点保护 / 世界边界、以玩家身份发破坏事件且主手拿空、事件期间格子被改过就不挖、先删后掉、掉落规则），只差三处：
      * <ul>
      *   <li><b>没有破坏粒子和声音</b>：不调 {@code destroyBlock}（它每格先发 levelEvent 2001，64 格内的客户端每格生成 64 个粒子、放一次声音，

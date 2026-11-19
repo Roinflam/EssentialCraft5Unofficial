@@ -6,16 +6,18 @@ import com.flameforge.essentialcraft5.config.ECConfig;
 import com.flameforge.essentialcraft5.item.ForgedElementalSwordItem;
 import com.flameforge.essentialcraft5.item.MRUStaffItem;
 import com.flameforge.essentialcraft5.item.MatrixTraits;
-import com.flameforge.essentialcraft5.item.VerdictBladeItem;
 import com.flameforge.essentialcraft5.item.VerdictBladeItem.Judgment;
 import com.flameforge.essentialcraft5.item.VerdictBladeItem.Outcome;
+import com.flameforge.essentialcraft5.item.VerdictBladeItem;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
 import com.flameforge.essentialcraft5.item.attunement.AttunementConfig;
 import com.flameforge.essentialcraft5.item.attunement.AttunementFamily;
+import com.flameforge.essentialcraft5.item.attunement.GearCaps;
 import com.flameforge.essentialcraft5.item.ember.EmberEffect;
 import com.flameforge.essentialcraft5.item.ember.EmberKind;
-import com.flameforge.essentialcraft5.item.ember.ForgedSwordData;
 import com.flameforge.essentialcraft5.item.ember.ForgedSwordData.Element;
+import com.flameforge.essentialcraft5.item.ember.ForgedSwordData;
+import com.flameforge.essentialcraft5.network.S2CVerdictJudgmentPacket;
 import com.flameforge.essentialcraft5.recipe.AttunementAscensionRecipe;
 import com.flameforge.essentialcraft5.registry.ECAttunement;
 import com.flameforge.essentialcraft5.registry.ECEffects;
@@ -72,9 +74,13 @@ import net.minecraftforge.gametest.PrefixGameTestTemplate;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * 第十三批 13b：余烬元素剑的两阶、裁决之刃（升格、属性、裁断、断罪）（batch13.md §4.4、§4.5、§12.2 13b 行）。
@@ -426,7 +432,7 @@ public final class VerdictBladeTests {
     // ================================================================ 裁断
 
     /**
-     * 普通目标：蓄满打实后本刻末补 最大生命 × 3%（2 阶 4%），无视护甲、攻击者是持剑人、不带直接实体、不再击退；扣 200。
+     * 普通目标：蓄满打实后本刻末补 最大生命 × 3%（2 阶 5%），无视护甲、攻击者是持剑人、不带直接实体、不再击退；扣 200。
      * 同一刻同一名玩家对同一个目标只补一下；补完目标的无敌帧放回原来那一下的。
      */
     @GameTest(template = EMPTY)
@@ -461,7 +467,7 @@ public final class VerdictBladeTests {
             later.hurt(player.damageSources().playerAttack(player), 1F);
             float mid = later.getHealth();
             VerdictBladeItem.flush();
-            helper.assertTrue(Math.abs(mid - later.getHealth() - 8F) < EPS, "2 阶 4%：8，实际 " + (mid - later.getHealth()));
+            helper.assertTrue(Math.abs(mid - later.getHealth() - 10F) < EPS, "2 阶 5%：10，实际 " + (mid - later.getHealth()));
         } finally {
             discard(zombie, later);
             reset();
@@ -567,10 +573,10 @@ public final class VerdictBladeTests {
         try {
             ItemStack stage0 = blade(0);
             ItemStack stage3 = blade(3);
-            helper.assertTrue(Math.abs(VerdictBladeItem.verdictAmount(stage3, zombie) - 9F) < EPS, "3 阶 4.5% × 200 = 9");
+            helper.assertTrue(Math.abs(VerdictBladeItem.verdictAmount(stage3, zombie) - 12F) < EPS, "3 阶 (3 + 3 × 1)% × 200 = 12");
             VerdictBladeItem.Config.setTestOverrides(values(3D, 0.5D, 4D, 200, 0D));
             helper.assertTrue(Math.abs(VerdictBladeItem.verdictAmount(stage0, zombie) - 4F) < EPS, "封顶 4：6 → 4");
-            helper.assertTrue(Math.abs(VerdictBladeItem.verdictAmount(stage3, zombie) - 9F) < EPS, "3 阶封顶 4 + 30 = 34：9 不夹");
+            helper.assertTrue(Math.abs(VerdictBladeItem.verdictAmount(stage3, zombie) - 9F) < EPS, "3 阶封顶 4 + 3 × 20 = 64：9 不夹");
 
             wield(player, stage0);
             VerdictBladeItem.Config.setTestOverrides(values(0D, 0D, 40D, 200, 0D));
@@ -615,7 +621,10 @@ public final class VerdictBladeTests {
             helper.assertTrue(VerdictBladeItem.verdictAmount(stack, boss) == 0F, "首领的裁断是 0");
             swing(player, boss);
             boss.hurt(player.damageSources().playerAttack(player), 10F);
-            helper.assertTrue(Math.abs(200F - boss.getHealth() - 10F) < EPS, "只掉这一下的 10，实际 " + (200F - boss.getHealth()));
+            // 5 阶的同调攻击在属性栏里（这里直接给 10 当作已含属性），总闸只管乘积：GearCaps 没开首领覆盖时按普通生物算，×2 夹不到，原样
+            double g = com.flameforge.essentialcraft5.item.attunement.AttunementBonuses.bladeAttackFactor(stack);
+            float want = (float) (10D * Math.min(g, 2D) / g);
+            helper.assertTrue(Math.abs(200F - boss.getHealth() - want) < EPS, "只掉这一下的 " + want + "，不补裁断，实际 " + (200F - boss.getHealth()));
             helper.assertTrue(VerdictBladeItem.pendingCount() == 0, "首领不记");
             float before = boss.getHealth();
             helper.assertTrue(VerdictBladeItem.flush() == 0 && boss.getHealth() == before && boss.invulnerableTime == 20,
@@ -662,7 +671,7 @@ public final class VerdictBladeTests {
 
     /**
      * 打玩家：默认 pvp_percent 0，不补不扣；改成 10：20 × 10% = 2，不随阶涨；被 PvP / 领地拦下（LivingAttackEvent 取消）不扣。
-     * 封顶对玩家也不随阶涨：pvp_percent 50、对方 200 生命、5 阶剑补的是 cap 40，不是 40 + 5 × 10 = 90。
+     * 封顶对玩家也不随阶涨：pvp_percent 50、对方 200 生命、5 阶剑补的是 cap 40，不是 40 + 5 × 20 = 140。
      */
     @GameTest(template = EMPTY)
     public static void verdictAgainstPlayers(GameTestHelper helper) {
@@ -708,8 +717,9 @@ public final class VerdictBladeTests {
                     "200 生命、pvp_percent 50、5 阶：封顶只用 cap 40，实际 " + VerdictBladeItem.verdictAmount(blade(5), victim));
             Zombie zombie = dummy(helper, EntityType.ZOMBIE, new BlockPos(4, 1, 0), 200D);
             try {
-                helper.assertTrue(Math.abs(VerdictBladeItem.verdictAmount(blade(5), zombie) - 90F) < EPS,
-                        "对照：打怪 52.5% × 200 = 105，封顶照随阶涨到 90，实际 " + VerdictBladeItem.verdictAmount(blade(5), zombie));
+                // 测试值的每阶百分比是 0.5，封顶的每阶数没盖、用默认 20：40 + 5 × 20 = 140
+                helper.assertTrue(Math.abs(VerdictBladeItem.verdictAmount(blade(5), zombie) - 105F) < EPS,
+                        "对照：打怪 52.5% × 200 = 105，封顶随阶涨到 140、夹不到，实际 " + VerdictBladeItem.verdictAmount(blade(5), zombie));
             } finally {
                 discard(zombie);
             }
@@ -783,7 +793,7 @@ public final class VerdictBladeTests {
         helper.assertTrue(stage2.getUseAnimation() == UseAnim.SPEAR && !stage2.canPerformAction(ToolActions.SHIELD_BLOCK)
                 && stage2.canPerformAction(ToolActions.SWORD_SWEEP), "2 阶：蓄力、不当盾、照样横扫");
         helper.assertTrue(VerdictBladeItem.judgmentCooldown(2, VerdictBladeItem.Config.DEFAULTS) == 260
-                && VerdictBladeItem.judgmentCooldown(5, VerdictBladeItem.Config.DEFAULTS) == 200, "冷却 300 − 20 / 阶");
+                && VerdictBladeItem.judgmentCooldown(5, VerdictBladeItem.Config.DEFAULTS) == 160, "冷却 300 − 20 / 阶，3 阶起再 −20%：5 阶 200 × 0.8 = 160");
         reset();
         helper.succeed();
     }
@@ -847,9 +857,17 @@ public final class VerdictBladeTests {
         try {
             ItemStack stack = blade(2);
             wield(player, stack);
+            // 2 阶的同调攻击已经在攻击属性里，断罪按属性出伤；打普通生物乘积 ×2 夹不到，就是属性 × 倍数（这里倍数 1）
             float attack = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
+            List<S2CVerdictJudgmentPacket> sent = new CopyOnWriteArrayList<>();
+            S2CVerdictJudgmentPacket.testSink = sent::add;
             Judgment result = VerdictBladeItem.judgment(player, stack);
             helper.assertTrue(result.outcome() == Outcome.DONE && result.landed() == 3, "应打中 3 个，实际 " + result);
+            // 画面包：一次断罪发一个，带施放者和打实的三个目标（多条测试并行，按施放者筛）
+            List<S2CVerdictJudgmentPacket> mine = sent.stream().filter(p -> p.caster() == player.getId()).toList();
+            Set<Integer> ids = mine.isEmpty() ? Set.of() : Arrays.stream(mine.get(0).targets()).boxed().collect(Collectors.toSet());
+            helper.assertTrue(mine.size() == 1 && ids.equals(Set.of(near.getId(), husk.getId(), diagonal.getId()))
+                    && Math.abs(mine.get(0).radius() - 6F) < EPS, "断罪画面包应发一个、带三个目标，实际 " + mine.size() + " 个 " + ids);
             for (LivingEntity hit : List.of(near, husk, diagonal)) {
                 helper.assertTrue(Math.abs(200F - hit.getHealth() - attack) < EPS, hit.getType() + " 应挨 " + attack + "，实际 " + (200F - hit.getHealth()));
                 DamageSource last = hit.getLastDamageSource();
@@ -859,9 +877,10 @@ public final class VerdictBladeTests {
                     "起了名字的、村民、驯服的狼、7 格外的不打");
             helper.assertTrue(mru(stack) == VerdictBladeItem.MAX_MRU - 20_000, "扣 20 000，剩 " + mru(stack));
             helper.assertTrue(VerdictBladeItem.judgment(player, stack).outcome() == Outcome.COOLDOWN, "冷却中");
+            helper.assertTrue(sent.stream().filter(p -> p.caster() == player.getId()).count() == 1, "冷却中没打成，不再发画面包");
 
             int dealt = VerdictBladeItem.flush();
-            helper.assertTrue(dealt == 3 && Math.abs(200F - near.getHealth() - attack - 8F) < EPS, "三个各补 8（2 阶 4%），实际 " + dealt + " 下");
+            helper.assertTrue(dealt == 3 && Math.abs(200F - near.getHealth() - attack - 10F) < EPS, "三个各补 10（2 阶 5%），实际 " + dealt + " 下");
             helper.assertTrue(mru(stack) == VerdictBladeItem.MAX_MRU - 20_000 - 600, "裁断 3 × 200，剩 " + mru(stack));
 
             for (int i = 0; i < 259; i++) {
@@ -871,6 +890,7 @@ public final class VerdictBladeTests {
             player.getCooldowns().tick();
             helper.assertFalse(player.getCooldowns().isOnCooldown(stack.getItem()), "260 刻冷却完");
         } finally {
+            S2CVerdictJudgmentPacket.testSink = null;
             discard(near, husk, diagonal, named, villager, wolf, far);
             reset();
         }
@@ -963,10 +983,19 @@ public final class VerdictBladeTests {
             ServerPlayer p4 = fighter(helper, "e5-boss4", new Vec3(2.5D, 1D, 1.5D));
             ItemStack stage4 = blade(4);
             wield(p4, stage4);
-            float attack4 = (float) p4.getAttributeValue(Attributes.ATTACK_DAMAGE);
-            helper.assertTrue(VerdictBladeItem.judgment(p4, stage4).outcome() == Outcome.DONE, "4 阶打首领");
-            helper.assertTrue(Math.abs(200F - boss4.getHealth() - attack4) < EPS,
-                    "只掉攻击力那么多、不补裁断，实际 " + (200F - boss4.getHealth()) + "（攻击 " + attack4 + "）");
+            // 4 阶的同调攻击已经在攻击属性里；总闸按乘积夹首领上限 ×1.5（g 不到 1.5 时原样），不补裁断
+            double g4 = com.flameforge.essentialcraft5.item.attunement.AttunementBonuses.bladeAttackFactor(stage4);
+            float attack4 = (float) (p4.getAttributeValue(Attributes.ATTACK_DAMAGE) * Math.min(g4, 1.5D) / g4);
+            GearCaps.setTestBossOverride(type -> type == EntityType.ZOMBIE);
+            Outcome outcome4;
+            try {
+                outcome4 = VerdictBladeItem.judgment(p4, stage4).outcome();
+            } finally {
+                GearCaps.setTestBossOverride(null);
+            }
+            helper.assertTrue(outcome4 == Outcome.DONE, "4 阶打首领");
+            helper.assertTrue(Math.abs(200F - boss4.getHealth() - attack4) < 1e-3F,
+                    "只掉攻击力（属性栏已含同调）、不补裁断，实际 " + (200F - boss4.getHealth()) + "（应 " + attack4 + "）");
             helper.assertTrue(!boss4.hasEffect(ECEffects.BISECTED.get()), "4 阶不挂二分");
             helper.assertTrue(VerdictBladeItem.pendingCount() == 0 && VerdictBladeItem.flush() == 0, "首领没有待补的");
             helper.assertTrue(mru(stage4) == VerdictBladeItem.MAX_MRU - 20_000, "只扣断罪 20 000，剩 " + mru(stage4));

@@ -42,19 +42,29 @@ public final class AttunementFamily {
         }
     }
 
+    /**
+     * 装备的「线」：同调转移只在同一条线里转（剑不能转给枪）。剑这条线的「亲手打实」认近战，枪这条线认 {@code mru_ray} 射线
+     * （{@link GearPool#ownWeapon}、{@link AttunementGains}）。
+     */
+    public enum Line {
+        BLADE, GUN, ARMOR
+    }
+
     private static final Map<ResourceLocation, AttunementFamily> FAMILIES = Collections.synchronizedMap(new LinkedHashMap<>());
 
     private final ResourceLocation id;
     private final Kind kind;
     private final int maxStage;
     private final int tier;
+    private final Line line;
     private final TagKey<Item> tag;
 
-    private AttunementFamily(ResourceLocation id, Kind kind, int maxStage, int tier) {
+    private AttunementFamily(ResourceLocation id, Kind kind, int maxStage, int tier, Line line) {
         this.id = id;
         this.kind = kind;
         this.maxStage = maxStage;
         this.tier = tier;
+        this.line = line;
         this.tag = tagFor(id);
     }
 
@@ -70,7 +80,13 @@ public final class AttunementFamily {
      * @param tier     档位：同调转移只许从档位小的家族转到档位大的同种家族
      */
     public static AttunementFamily register(ResourceLocation id, Kind kind, int maxStage, int tier) {
-        AttunementFamily family = new AttunementFamily(id, kind, Math.max(1, Math.min(Attunement.MAX_STAGE, maxStage)), tier);
+        return register(id, kind, maxStage, tier, kind == Kind.ARMOR ? Line.ARMOR : Line.BLADE);
+    }
+
+    /** 同上，指定线（盔甲一律 {@link Line#ARMOR}，武器默认 {@link Line#BLADE}） */
+    public static AttunementFamily register(ResourceLocation id, Kind kind, int maxStage, int tier, Line line) {
+        AttunementFamily family = new AttunementFamily(id, kind, Math.max(1, Math.min(Attunement.MAX_STAGE, maxStage)), tier,
+                kind == Kind.ARMOR ? Line.ARMOR : line);
         FAMILIES.put(id, family);
         return family;
     }
@@ -78,6 +94,10 @@ public final class AttunementFamily {
     /** 本模组的家族：{@code essentialcraft5:<path>} */
     public static AttunementFamily register(String path, Kind kind, int maxStage, int tier) {
         return register(EssentialCraft5.id(path), kind, maxStage, tier);
+    }
+
+    public static AttunementFamily register(String path, Kind kind, int maxStage, int tier, Line line) {
+        return register(EssentialCraft5.id(path), kind, maxStage, tier, line);
     }
 
     @Nullable
@@ -128,6 +148,10 @@ public final class AttunementFamily {
 
     public int tier() {
         return tier;
+    }
+
+    public Line line() {
+        return line;
     }
 
     public TagKey<Item> tag() {

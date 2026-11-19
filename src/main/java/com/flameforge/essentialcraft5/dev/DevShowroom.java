@@ -124,7 +124,7 @@ import java.util.function.Predicate;
  * 首页、各种块、结构图逐层、打勾、搜索、查阅后回物品栏、条件开关对照，640 那一轮另拍开场 / 查阅短开场 / 收场关键帧和换倍数的阅读位置锚定，
  * 见 {@link #guideSteps}）；最后退出游戏。
  * 只想看手册时加 {@code -PecShowroomGuide}（跳过方块排、场景和机器界面，约 1 分钟）；只看第六批 6a 加 {@code -PecShowroomHoanna}，
- * 只看第六批 6b（建筑魔杖、传送器与熔炉、终极产能器、虚空箱、高级过滤器、无尽道具，见 {@link DevShowroomVoid}）加 {@code -PecShowroom6b}；
+ * 只看第六批 6b（创世神之杖、传送器与熔炉、终极产能器、虚空箱、高级过滤器、无尽道具，见 {@link DevShowroomVoid}）加 {@code -PecShowroom6b}；
  * 只看第七批（恶魔与交易、余烬锻炉与余烬元素剑、水晶柱与灵魂五芒星 2 / 3 档、虚空套装、灵魂刻刀，见 {@link DevShowroomDemon}）加 {@code -PecShowroom7}；
  * 只看第八批（全息投影台与 Boss、遥控器与二分枪、宅男套装与反重力板，见 {@link DevShowroomHologram}）加 {@code -PecShowroom8}；
  * 只看第九批（地脉凝聚器，见 {@link DevShowroomCondenser}）加 {@code -PecShowroom9}；
@@ -171,6 +171,10 @@ public final class DevShowroom {
      * 截图名都以 {@code b13a_} 开头、不加分类前缀，存成 {@code ec5_b13a_*.png}
      */
     static final boolean BATCH13A_ONLY = Boolean.getBoolean("essentialcraft5.showroom.batch13aOnly");
+    /** 只拍武器防具成长加强（-PecShowroomGear）：物品格阶位菱形、名字颜色、提示框的同调词条，界面缩放 2 / 3 / 4 各一张（见 {@link DevShowroomGear}） */
+    static final boolean GEAR_ONLY = Boolean.getBoolean("essentialcraft5.showroom.gearOnly");
+    /** 只拍创世神之杖升级第 1 批的客户端部分（-PecShowroomBuilder）：虚影、准星下提示、施工 / 暂停 / 撤销，缩放 3 / 2，加手册里形状和撤销两节（见 {@link DevShowroomBuilder}） */
+    static final boolean BUILDER_ONLY = Boolean.getBoolean("essentialcraft5.showroom.builderOnly");
     /**
      * 只拍第十三批 13b（-PecShowroom13b）：四套盔甲与电量条、空中跳、定罪和断罪、本批的提示框和手册页（见 {@link DevShowroomBatch13b}）。
      * 截图名都以 {@code b13b_} 开头、不加分类前缀，存成 {@code ec5_b13b_*.png}
@@ -373,6 +377,9 @@ public final class DevShowroom {
                     DevShowroomBatch13c.clientFinish(mc);
                     DevShowroomBatch13d.clientFinish(mc);
                     DevShowroomBatch13e.clientFinish(mc);
+                    if (BUILDER_ONLY) {
+                        DevShowroomBuilder.clientFinish(mc);
+                    }
                     server.execute(() -> finishScenes(server));
                     next(Stage.SCREEN);
                 } else if (timer > 5) {
@@ -527,7 +534,9 @@ public final class DevShowroom {
     private static void prepareClient(Minecraft mc) {
         mc.options.pauseOnLostFocus = false;
         mc.options.guiScale().set(3);
-        GLFW.glfwSetWindowSize(mc.getWindow().getWindow(), 1280, 720);
+        // 窗口默认 1280×720；-PecShowroomWindow=1920x1080 这类换成别的尺寸（拍大窗口下的提示框用）
+        GLFW.glfwSetWindowSize(mc.getWindow().getWindow(), Integer.getInteger("essentialcraft5.showroom.width", 1280),
+                Integer.getInteger("essentialcraft5.showroom.height", 720));
         mc.resizeDisplay();
     }
 
@@ -617,6 +626,17 @@ public final class DevShowroom {
             DevShowroomBatch12.build(level, player, DevShowroom::sceneBase, 0);
             fillHotbar(player);
             EssentialCraft5.LOGGER.info("[showroom] 只拍第十二批：{} 张场景图，{} 个界面", scenes.size(), screens.size());
+            return;
+        }
+        if (BUILDER_ONLY) {
+            DevShowroomBuilder.build(level, player, DevShowroom::sceneBase, 0);
+            EssentialCraft5.LOGGER.info("[showroom] 只拍创世神之杖：{} 张场景图", scenes.size());
+            return;
+        }
+        if (GEAR_ONLY) {
+            DevShowroomGear.build(player);
+            fillHotbar(player);
+            EssentialCraft5.LOGGER.info("[showroom] 只拍成长加强：{} 个界面", screens.size());
             return;
         }
         if (BATCH13A_ONLY) {
@@ -784,7 +804,7 @@ public final class DevShowroom {
         buildLeyProjectorScene(level, player, sceneBase(10));
         screens.add(new ScreenShot("creative_decorations", p -> { }, p -> Minecraft.getInstance().execute(() ->
                 openCreativeTab(Minecraft.getInstance(), ECCreativeTabs.DECORATIONS.get()))));
-        // 第六批 6b：建筑魔杖、传送器与熔炉、终极产能器、无尽道具和传送器往返（往返回到主世界才结束，所以排在海纳尔部分前面）
+        // 第六批 6b：创世神之杖、传送器与熔炉、终极产能器、无尽道具和传送器往返（往返回到主世界才结束，所以排在海纳尔部分前面）
         DevShowroomVoid.build(level, player, DevShowroom::sceneBase, 11, false);
         // 第七批：恶魔五芒星与召唤、交易界面、余烬锻炉与剑、水晶柱、灵魂五芒星 2 / 3 档、虚空套装、恶魔护板（都在主世界，排在海纳尔部分前面）
         DevShowroomDemon.build(level, player, DevShowroom::sceneBase, 11 + DevShowroomVoid.SCENE_SLOTS, false);
@@ -1345,6 +1365,9 @@ public final class DevShowroom {
         DevShowroomBatch13d.finish(player);
         DevShowroomBatch13e.finish(player);
         DevShowroomHoanna.finish(server, player, origin);
+        if (BUILDER_ONLY) {
+            DevShowroomBuilder.serverFinish(player);
+        }
         fillHotbar(player);
     }
 
@@ -1417,6 +1440,14 @@ public final class DevShowroom {
             }
             if (BATCH12_ONLY) {
                 batch12GuidePages();
+                continue;
+            }
+            if (GEAR_ONLY) {
+                continue;
+            }
+            if (BUILDER_ONLY) {
+                page("builder_shapes", "void_machines/magical_builder", "h", 3, -1);
+                page("builder_undo", "void_machines/magical_builder", "h", 4, -1);
                 continue;
             }
             if (BATCH13A_ONLY) {

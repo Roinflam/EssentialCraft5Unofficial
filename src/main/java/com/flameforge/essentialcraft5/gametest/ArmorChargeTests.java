@@ -315,13 +315,13 @@ public final class ArmorChargeTests {
 
     /**
      * 魔力防护、虚空套装的「满电约挡」跟着各自的同调阶走（默认配置，20 点物理样本）：
-     * 魔力防护胸甲 0 / 1 / 2 阶 2 000 / 4 000 / 8 000 MRU、份额 2 / 3 / 4、每点 100 → 10 / 13 / 20 下，头盔 0 阶 20 下、靴子 2 阶 80 下；
-     * 虚空胸甲 0 阶 5 万 ÷ 3 200 = 15 下，1 阶容量翻倍 31 下，3 阶单价 350 → 35 下，头盔 0 阶 41 下。手册同调章和装备章的表照这些数写
+     * 魔力防护胸甲 0 / 1 / 2 阶 2 000 / 4 000 / 8 000 MRU、份额 2 / 3 / 4、每点 100（1 阶起 −10% 是 90）→ 10 / 14 / 22 下，头盔 0 阶 20 下、靴子 2 阶 88 下；
+     * 虚空胸甲 0 阶 5 万 ÷ 3 200 = 15 下，1 阶容量翻倍、单价 380 → 32 下，3 阶单价 333 → 37 下，头盔 0 阶 41 下。手册同调章和装备章的表照这些数写
      */
     @GameTest(template = EMPTY)
     public static void fullChargeHitsForMhsAndVoidStages(GameTestHelper helper) {
         DamageSource sample = ArmorCharge.samplePhysical(helper.getLevel());
-        int[][] mhs = {{0, 10}, {1, 13}, {2, 20}};
+        int[][] mhs = {{0, 10}, {1, 14}, {2, 22}};
         for (int[] row : mhs) {
             ItemStack chest = new ItemStack(ECGear.MHS_CHESTPLATE.get());
             Attunement.set(chest, row[0], 0);
@@ -331,9 +331,9 @@ public final class ArmorChargeTests {
         helper.assertTrue(ArmorCharge.fullChargeHits(new ItemStack(ECGear.MHS_HELMET.get()), sample) == 20, "魔力防护头盔 0 阶 20 下");
         ItemStack boots = new ItemStack(ECGear.MHS_BOOTS.get());
         Attunement.set(boots, 2, 0);
-        helper.assertTrue(ArmorCharge.fullChargeHits(boots, sample) == 80, "魔力防护靴子 2 阶 80 下");
+        helper.assertTrue(ArmorCharge.fullChargeHits(boots, sample) == 88, "魔力防护靴子 2 阶 8 000 ÷ 90 = 88 下，实际 " + ArmorCharge.fullChargeHits(boots, sample));
 
-        int[][] voids = {{0, 15}, {1, 31}, {3, 35}};
+        int[][] voids = {{0, 15}, {1, 32}, {3, 37}};
         for (int[] row : voids) {
             ItemStack chest = new ItemStack(ECVoidArmor.VOID_CHESTPLATE.get());
             Attunement.set(chest, row[0], 0);

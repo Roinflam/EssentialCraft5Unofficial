@@ -606,7 +606,7 @@ public final class ECComputer {
             repairDelay = builder.comment("Matrix Repair (full set at stage 3): ticks without taking damage before healing starts.",
                             "矩阵修复（全套 3 阶）：多少刻没受伤以后开始回血")
                     .defineInRange("repair_delay", ATTUNED_DEFAULTS.repairDelay(), 1, 72_000);
-            repairPercent = builder.comment("Matrix Repair: fraction of max health healed per second.", "矩阵修复：每秒回最大生命的比例（0.01 = 1%）")
+            repairPercent = builder.comment("No longer read: superseded by general.gear_growth.computer_armor.repair_percent (kept so old config files still load).", "已由 general.gear_growth.computer_armor.repair_percent 接管，不再读（留着是为了老配置文件照常加载）", "Matrix Repair: fraction of max health healed per second.", "矩阵修复：每秒回最大生命的比例（0.01 = 1%）")
                     .defineInRange("repair_percent", ATTUNED_DEFAULTS.repairPercent(), 0D, 1D);
             repairMruPerHealth = builder.comment("Matrix Repair: MRU spent per health point healed.", "矩阵修复：每回 1 点生命花多少 MRU")
                     .defineInRange("repair_mru_per_health", ATTUNED_DEFAULTS.repairMruPerHealth(), 0, 1_000_000);
@@ -616,7 +616,7 @@ public final class ECComputer {
             overloadDuration = builder.comment("Overload Barrier: ticks of immunity (anything that does not bypass invulnerability).",
                             "过载屏障：免疫多少刻（不无视无敌的伤害都免）")
                     .defineInRange("overload_duration", ATTUNED_DEFAULTS.overloadDuration(), 0, 1200);
-            overloadCooldown = builder.comment("Overload Barrier: cooldown in ticks (kept across relogging).", "过载屏障：冷却多少刻（退出重进不清）")
+            overloadCooldown = builder.comment("No longer read: superseded by general.gear_growth.computer_armor.overload_cooldown (kept so old config files still load).", "已由 general.gear_growth.computer_armor.overload_cooldown 接管，不再读（留着是为了老配置文件照常加载）", "Overload Barrier: cooldown in ticks (kept across relogging).", "过载屏障：冷却多少刻（退出重进不清）")
                     .defineInRange("overload_cooldown", ATTUNED_DEFAULTS.overloadCooldown(), 0, 72_000);
         }
 

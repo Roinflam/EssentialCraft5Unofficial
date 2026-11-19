@@ -309,6 +309,11 @@ public class MagicianTableBlockEntity extends MRUBlockEntity {
         // 物品栏变了，上面已经标记存盘
         lastRecipeId = recipe.getId();
         recipe.crafted(new SimpleContainer(before), inventory.getStackInSlot(SLOT_OUTPUT));
+        if (recipe instanceof com.flameforge.essentialcraft5.recipe.AttunementAscensionRecipe
+                && level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+            // 升阶 / 升格演出（事件包、音效、告诉附近的人）；指令改阶不走这里
+            com.flameforge.essentialcraft5.item.attunement.AttunementShowcase.ascended(serverLevel, worldPosition, result);
+        }
     }
 
     private void clearProgress() {

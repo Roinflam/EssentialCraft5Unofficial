@@ -3,6 +3,9 @@ package com.flameforge.essentialcraft5.item;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.config.ECConfig;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
+import com.flameforge.essentialcraft5.item.attunement.GearCaps;
+import com.flameforge.essentialcraft5.item.attunement.GearCombatEvents;
+import com.flameforge.essentialcraft5.item.attunement.GearGrowthConfig;
 import com.flameforge.essentialcraft5.item.bauble.BaubleEffects;
 import com.flameforge.essentialcraft5.item.ember.ForgedSwordData;
 import com.flameforge.essentialcraft5.item.ember.InlayEvents;
@@ -18,7 +21,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.particles.ParticleTypes;
+import com.flameforge.essentialcraft5.network.S2CVerdictJudgmentPacket;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -81,13 +84,15 @@ import java.util.function.Predicate;
  * {@code Attunement.promoted}）。
  * <p>
  * <b>属性</b>：攻击 = 余烬元素剑的原值（主元素 + 封顶后的余烬加成）+ {@value #ATTACK_BONUS}，攻速同余烬剑 1.6，不掉耐久、能附魔，自带 {@value #MAX_MRU} MRU
- * （不是储存物品，不会被别的物品当电池抽）；每阶攻击 ×1.03 是同调的通用加成（{@code AttunementBonuses}）。命中、右键照余烬元素剑，倍数一律按余烬剑 2 阶算
+ * （不是储存物品，不会被别的物品当电池抽）；每阶增伤 +8%、吸血、护甲穿透、斩杀、终审是成长加强的词条（{@code item/attunement/GearStatSheet}、{@link VerdictSeal}），
+ * 进总闸的池子结算。命中、右键照余烬元素剑，倍数一律按余烬剑 2 阶算
  * （{@link #primaryDurationMultiplier} 等）。矩阵特性 ×{@code trait_multiplier}（1.5，登记在 {@code ECEmberForge.init}）。余烬嵌片嵌不进来（它本来就带余烬）。
  *
  * <h2>裁断：蓄满打实以后再补一下</h2>
  * 真玩家用主手的裁决之刃<b>蓄满</b>打实非玩家、非首领的目标（近战直接来源是他本人，横扫跟着主目标算，断罪的每一下都算蓄满；
- * 弹射物、饰品、尖刺圆盾、反伤都不算）：补 目标最大生命 × ({@code verdict.percent} + 阶 × {@code verdict.percent_per_stage})%（3% + 0.5% / 阶），
- * 单下最多 {@code verdict.cap} + 阶 × {@code verdict.cap_per_stage}（40 + 10 / 阶）；每次 {@code verdict.mru}（200）MRU（{@code MRUDrain.playerUseMRU}，魔力相性折扣照算）。
+ * 弹射物、饰品、尖刺圆盾、反伤都不算）：补 目标最大生命 × ({@code verdict.percent} + 阶 × {@code gear_growth.verdict_blade.percent_per_stage})%（3% + 1% / 阶；
+ * 每阶的两项由 {@code general.gear_growth.verdict_blade} 接管，老键 {@code verdict.percent_per_stage} / {@code cap_per_stage} 不再读），
+ * 单下最多 {@code verdict.cap} + 阶 × {@code gear_growth.verdict_blade.cap_per_stage}（40 + 20 / 阶）；每次 {@code verdict.mru}（200）MRU（{@code MRUDrain.playerUseMRU}，魔力相性折扣照算）。
  * 打玩家按 {@code verdict.pvp_percent}（默认 0，不打），百分比和封顶都不随阶涨（封顶只用 {@code verdict.cap}）。
  * <ul>
  *   <li><b>只认蓄满的一下</b>：{@code AttackEntityEvent}（{@code Player.attack} 开头、攻击蓄力归零之前）记下这名玩家这一下蓄满了没有
@@ -115,7 +120,10 @@ import java.util.function.Predicate;
  * （混合端上用指令、插件刷出来的首领多半带名字，按名字跳过的话断罪对它们整个失效）。
  * {@code damage_multiplier} 填 0 时断罪不开（{@link Outcome#DISABLED}，不扣、不冷却）。普通目标打之前清无敌帧，首领不清。
  * 5 阶起打中的首领挂 {@code judgment.bisect_ticks}（40）刻「二分」，{@code essentialcraft5:divider_immune} 里的不挂（同二分枪、二分场）。
- * 花 {@code judgment.mru}（20 000）MRU、冷却 {@code judgment.cooldown}（300）− 阶 × {@code judgment.cooldown_per_stage}（20）刻（原版物品冷却，冷却中按不了右键）。
+ * 花 {@code judgment.mru}（20 000）MRU、冷却 {@code judgment.cooldown}（300）− 阶 × {@code judgment.cooldown_per_stage}（20）刻，3 阶起再按
+ * {@code gear_growth.verdict_blade.judgment_cooldown_reduction}（20%，过 {@code caps.cooldown_reduction}）打折（原版物品冷却，冷却中按不了右键）。
+ * 5 阶起打中的每个目标挂罪印（终审，{@link VerdictSeal}）。
+ * 打成以后给看得见施放者的人发一个 {@link S2CVerdictJudgmentPacket}（施放者、范围、打实的目标），画面由客户端画；蓄力的画面客户端自己看，不发包。
  * 冷却不存盘，重登、死亡重生都清零，所以这两项的配置上限压在 {@value #MAX_COOLDOWN_TICKS} 刻；要更长的冷却得改成存玩家数据（同 θ 腰带）。
  * 先算后扣：开始前要付得起；一个都没打成（全被拦下）不扣、不冷却；范围里没有目标也不扣、不冷却。
  * 打完扣费时付不起的情形只有一种：打的过程中有东西当场花了同一批 MRU（目标的荆棘反伤打到自己，魔力防护当场从储存物品扣电），储存物品又正好卡在边上。
@@ -176,8 +184,8 @@ public class VerdictBladeItem extends ForgedElementalSwordItem {
                              int cooldown, int cooldownStage, int bisectTicks) {
         }
 
-        /** batch13.md §4.4 的数 */
-        public static final Values DEFAULTS = new Values(1.5D, 3D, 0.5D, 40D, 10D, 200, 0D,
+        /** batch13.md §4.4 的数；每阶的两项是成长加强的新默认（{@code general.gear_growth.verdict_blade}） */
+        public static final Values DEFAULTS = new Values(1.5D, 3D, 1D, 40D, 20D, 200, 0D,
                 20, 6D, 16, 1D, 20_000, 300, 20, 40);
 
         private static ForgeConfigSpec.DoubleValue traitMultiplier;
@@ -211,12 +219,14 @@ public class VerdictBladeItem extends ForgedElementalSwordItem {
                     + "Bosses (#forge:bosses) never get it.", "裁断：蓄满打实以后本刻末按目标最大生命再补一下（无视护甲）；首领（#forge:bosses）不补").push("verdict");
             verdictPercent = builder.comment("Percent of the target's max health at attunement stage 0.", "0 阶时是目标最大生命的百分之几")
                     .defineInRange("percent", DEFAULTS.verdictPercent(), 0D, 100D);
-            verdictPercentStage = builder.comment("Added percent per attunement stage.", "每阶再加百分之几")
-                    .defineInRange("percent_per_stage", DEFAULTS.verdictPercentStage(), 0D, 100D);
+            verdictPercentStage = builder.comment("No longer read: replaced by general.gear_growth.verdict_blade.percent_per_stage.",
+                            "已由 general.gear_growth.verdict_blade.percent_per_stage 接管，不再读")
+                    .defineInRange("percent_per_stage", 0.5D, 0D, 100D);
             verdictCap = builder.comment("Cap per strike at stage 0. 0 = Verdict never triggers.", "0 阶时单下最多多少；0 = 不触发")
                     .defineInRange("cap", DEFAULTS.verdictCap(), 0D, 100_000D);
-            verdictCapStage = builder.comment("Added cap per attunement stage.", "每阶封顶再加多少")
-                    .defineInRange("cap_per_stage", DEFAULTS.verdictCapStage(), 0D, 100_000D);
+            verdictCapStage = builder.comment("No longer read: replaced by general.gear_growth.verdict_blade.cap_per_stage.",
+                            "已由 general.gear_growth.verdict_blade.cap_per_stage 接管，不再读")
+                    .defineInRange("cap_per_stage", 10D, 0D, 100_000D);
             verdictMru = builder.comment("MRU spent per strike, only when it lands. 0 = free.", "每补一下花多少 MRU，打成了才扣；0 = 不花")
                     .defineInRange("mru", DEFAULTS.verdictMru(), 0, 1_000_000);
             verdictPvpPercent = builder.comment("Percent of max health against players (PvP, teams and claims still apply). "
@@ -256,10 +266,14 @@ public class VerdictBladeItem extends ForgedElementalSwordItem {
                 return override;
             }
             if (traitMultiplier == null) {
-                return DEFAULTS;
+                return new Values(DEFAULTS.traitMultiplier(), DEFAULTS.verdictPercent(), GearGrowthConfig.verdictPercentPerStage(),
+                        DEFAULTS.verdictCap(), GearGrowthConfig.verdictCapPerStage(), DEFAULTS.verdictMru(), DEFAULTS.verdictPvpPercent(),
+                        DEFAULTS.chargeTicks(), DEFAULTS.radius(), DEFAULTS.maxTargets(), DEFAULTS.damageMultiplier(), DEFAULTS.judgmentMru(),
+                        DEFAULTS.cooldown(), DEFAULTS.cooldownStage(), DEFAULTS.bisectTicks());
             }
-            return new Values(ECConfig.get(traitMultiplier), ECConfig.get(verdictPercent), ECConfig.get(verdictPercentStage),
-                    ECConfig.get(verdictCap), ECConfig.get(verdictCapStage), ECConfig.get(verdictMru),
+            // 每阶的两项读 general.gear_growth（老键留着定义、不再读）
+            return new Values(ECConfig.get(traitMultiplier), ECConfig.get(verdictPercent), GearGrowthConfig.verdictPercentPerStage(),
+                    ECConfig.get(verdictCap), GearGrowthConfig.verdictCapPerStage(), ECConfig.get(verdictMru),
                     ECConfig.get(verdictPvpPercent), ECConfig.get(chargeTicks), ECConfig.get(radius), ECConfig.get(maxTargets),
                     ECConfig.get(damageMultiplier), ECConfig.get(judgmentMru), ECConfig.get(cooldown), ECConfig.get(cooldownStage),
                     ECConfig.get(bisectTicks));
@@ -481,6 +495,7 @@ public class VerdictBladeItem extends ForgedElementalSwordItem {
         float damage = (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) * values.damageMultiplier());
         ServerLevel level = player.serverLevel();
         int landed = 0;
+        List<LivingEntity> hit = new ArrayList<>(targets.size());
         judging = player.getUUID();
         try {
             for (LivingEntity target : targets) {
@@ -492,7 +507,10 @@ public class VerdictBladeItem extends ForgedElementalSwordItem {
                     continue;
                 }
                 landed++;
-                level.sendParticles(ParticleTypes.SWEEP_ATTACK, target.getX(), target.getY(0.5D), target.getZ(), 1, 0D, 0D, 0D, 0D);
+                hit.add(target);
+                if (stage >= GearGrowthConfig.finalVerdictStage()) {
+                    VerdictSeal.mark(player, target);
+                }
                 if (boss && stage >= BISECT_STAGE && values.bisectTicks() > 0 && target.isAlive() && !bisectImmune(target.getType())
                         && ECEffects.BISECTED.isPresent()) {
                     target.addEffect(new MobEffectInstance(ECEffects.BISECTED.get(), values.bisectTicks(), 0), player);
@@ -511,15 +529,19 @@ public class VerdictBladeItem extends ForgedElementalSwordItem {
         if (ticks > 0) {
             player.getCooldowns().addCooldown(blade.getItem(), ticks);
         }
-        ring(level, player, values.radius());
+        S2CVerdictJudgmentPacket.sendAround(player, values.radius(), hit);
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1F, 0.6F);
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 1F, 0.8F);
         return new Judgment(Outcome.DONE, landed);
     }
 
-    /** 冷却刻数：cooldown − 阶 × cooldown_per_stage，不小于 0 */
+    /**
+     * 冷却刻数：cooldown − 阶 × cooldown_per_stage（不小于 0），再按这一阶的 {@code gear_growth.verdict_blade.judgment_cooldown_reduction}
+     * 打折（过 {@code caps.cooldown_reduction}），四舍五入
+     */
     public static int judgmentCooldown(int stage, Config.Values values) {
-        return Math.max(0, values.cooldown() - values.cooldownStage() * Math.max(0, stage));
+        int base = Math.max(0, values.cooldown() - values.cooldownStage() * Math.max(0, stage));
+        return GearCaps.reducedCooldown(base, GearGrowthConfig.verdictJudgmentCdr(stage));
     }
 
     /** 这种生物挂不上断罪的二分：{@code essentialcraft5:divider_immune}（同二分枪的首领模式、二分场） */
@@ -549,16 +571,6 @@ public class VerdictBladeItem extends ForgedElementalSwordItem {
             return ECEntityRules.isTamed(entity) || entity instanceof Mob mob && mob.isLeashed();
         }
         return ECEntityRules.isSpared(entity);
-    }
-
-    /** 脚下一圈附魔粒子（服务端发，范围有多大一眼能看出来） */
-    private static void ring(ServerLevel level, Player player, double radius) {
-        int points = 32;
-        for (int i = 0; i < points; i++) {
-            double angle = Math.PI * 2D * i / points;
-            level.sendParticles(ParticleTypes.ENCHANTED_HIT, player.getX() + Math.cos(angle) * radius, player.getY() + 0.2D,
-                    player.getZ() + Math.sin(angle) * radius, 1, 0D, 0.05D, 0D, 0D);
-        }
     }
 
     // ------------------------------------------------------------------
@@ -592,12 +604,19 @@ public class VerdictBladeItem extends ForgedElementalSwordItem {
         int stage = Attunement.stage(blade);
         boolean player = target instanceof Player;
         double percent = player ? values.verdictPvpPercent() : values.verdictPercent() + values.verdictPercentStage() * stage;
-        double cap = player ? values.verdictCap() : values.verdictCap() + values.verdictCapStage() * stage;
+        double cap = verdictCap(blade, target);
         if (!(percent > 0D) || !(cap > 0D)) {
             return 0F;
         }
         double amount = Math.min(target.getMaxHealth() * percent / 100D, cap);
         return amount > 0D ? (float) amount : 0F;
+    }
+
+    /** 这把剑对 target 的裁断封顶：打玩家只用 {@code verdict.cap}，其余 cap + 阶 × cap_per_stage（总闸按它夹这一下的最终掉血） */
+    public static float verdictCap(ItemStack blade, LivingEntity target) {
+        Config.Values values = Config.values();
+        double cap = target instanceof Player ? values.verdictCap() : values.verdictCap() + values.verdictCapStage() * Attunement.stage(blade);
+        return cap > 0D ? (float) cap : 0F;
     }
 
     /** 裁断的伤害源：带攻击者（持剑人），不带直接实体和位置 */
@@ -706,7 +725,10 @@ public class VerdictBladeItem extends ForgedElementalSwordItem {
         boolean marked = target.hurtMarked;
         ECHurtWindow window = ECHurtWindow.of(target);
         target.invulnerableTime = 0;
-        boolean hurt = target.hurt(verdictSource(player), amount);
+        DamageSource source = verdictSource(player);
+        // 中间不管谁再乘多少，最终掉血都不超过封顶（总闸在 LivingDamageEvent LOWEST 夹）
+        GearCombatEvents.capNext(source, verdictCap(pending.blade(), target));
+        boolean hurt = target.hurt(source, amount);
         target.setDeltaMovement(motion);
         target.hurtMarked = marked;
         window.restore(target);

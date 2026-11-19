@@ -322,13 +322,13 @@ public final class ECInquisitorium {
             keepDurability = builder.comment("Pieces worn by a player don't lose durability (other mobs wearing them still wear them down).",
                             "穿在玩家身上不掉耐久（别的生物穿着照常掉）")
                     .define("keep_durability", d.keepDurability());
-            magicResistance = builder.comment("Full set: magic damage from an attacker is reduced by this fraction (with or without bypasses_armor; damage with no attacker, such as corruption, is not reduced; 0 = off).",
+            magicResistance = builder.comment("No longer read: superseded by general.gear_growth.inquisitorium_armor.magic_resistance (kept so old config files still load).", "已由 general.gear_growth.inquisitorium_armor.magic_resistance 接管，不再读（留着是为了老配置文件照常加载）", "Full set: magic damage from an attacker is reduced by this fraction (with or without bypasses_armor; damage with no attacker, such as corruption, is not reduced; 0 = off).",
                             "全套抗魔：有攻击者的魔法伤害减掉的比例（带不带 bypasses_armor 都算；腐化这类没有攻击者的不减；0 = 不减）")
                     .defineInRange("magic_resistance", d.magicResistance(), 0D, 1D);
-            bossResistance = builder.comment("Full set: damage from an attacker in #forge:bosses is reduced by this fraction (0 = off).",
+            bossResistance = builder.comment("No longer read: superseded by general.gear_growth.inquisitorium_armor.boss_resistance (kept so old config files still load).", "已由 general.gear_growth.inquisitorium_armor.boss_resistance 接管，不再读（留着是为了老配置文件照常加载）", "Full set: damage from an attacker in #forge:bosses is reduced by this fraction (0 = off).",
                             "全套首领减伤：攻击者在 #forge:bosses 里时减掉的比例（0 = 不减）")
                     .defineInRange("boss_resistance", d.bossResistance(), 0D, 1D);
-            edictReduction = builder.comment("Full set Edict: harmful effects wear off this much sooner (0.4 = they last about 60% as long; 0 = off).",
+            edictReduction = builder.comment("No longer read: superseded by general.gear_growth.inquisitorium_armor.edict_reduction (kept so old config files still load).", "已由 general.gear_growth.inquisitorium_armor.edict_reduction 接管，不再读（留着是为了老配置文件照常加载）", "Full set Edict: harmful effects wear off this much sooner (0.4 = they last about 60% as long; 0 = off).",
                             "Effects with infinite duration and effects in the essentialcraft5:unfilterable tag are left alone; to keep Edict off an effect (for example another mod's cooldown made as a harmful effect), add it to that tag (the Matrix Filter module will then let it through too).",
                             "全套律令：有害效果的时长缩短的比例（0.4 = 约剩六成；0 = 不缩）",
                             "无限时长的、essentialcraft5:unfilterable 标签里的效果不缩；不想让律令缩某个效果（比如别的模组做成有害效果的冷却），把它加进这个标签（矩阵过滤模块同样不再拦它）")
@@ -347,7 +347,7 @@ public final class ECInquisitorium {
         /** 同调阶那几项（同在 {@code inquisitorium_armor} 小节里） */
         private static void defineAttuned(ForgeConfigSpec.Builder builder) {
             Attuned d = ATTUNED_DEFAULTS;
-            attunedMagicResistance = builder.comment("Attunement stage 1 (all four pieces): magic resistance becomes this fraction.",
+            attunedMagicResistance = builder.comment("No longer read: superseded by general.gear_growth.inquisitorium_armor.magic_resistance (kept so old config files still load).", "已由 general.gear_growth.inquisitorium_armor.magic_resistance 接管，不再读（留着是为了老配置文件照常加载）", "Attunement stage 1 (all four pieces): magic resistance becomes this fraction.",
                             "同调 1 阶（四件都到）：抗魔换成这个比例")
                     .defineInRange("magic_resistance_stage_1", d.magicResistance(), 0D, 1D);
             absolutionCooldown = builder.comment("Attunement stage 1 Absolution: killing a creature you convicted clears one harmful effect from you, at most once per this many ticks.",

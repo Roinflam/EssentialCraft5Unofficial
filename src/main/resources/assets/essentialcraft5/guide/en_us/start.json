@@ -1836,22 +1836,56 @@
               "Budget",
               "{cfg:general.attunement.budget_per_hour} an hour, up to {cfg:general.attunement.budget_cap}"
             ],
+            {
+              "if": [
+                "cfg:general.gear_growth.mhs_armor.base_stats.health_per_stage<0",
+                "cfg:general.gear_growth.wind_armor.base_stats.health_per_stage<0"
+              ],
+              "cells": [
+                "Health per stage",
+                "+{cfg:general.gear_growth.armor.health_per_stage} per piece for MHS and Wind Armor"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:general.gear_growth.void_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage>=0",
+                "cfg:general.gear_growth.computer_armor.base_stats.health_per_stage>=0"
+              ],
+              "cells": [
+                "Health per stage (Hoanna sets)",
+                "+{cfg:general.gear_growth.void_armor.base_stats.health_per_stage} per piece for Void, +{cfg:general.gear_growth.inquisitorium_armor.base_stats.health_per_stage} for Inquisitorium, +{cfg:general.gear_growth.computer_armor.base_stats.health_per_stage} for the Computer Guy's Suit"
+              ]
+            },
             [
-              "Health per stage",
-              "+{cfg:general.attunement.health_per_stage} per piece"
+              "Weapon, per hit",
+              "{cfg:general.attunement.points_hit}; a kill {cfg:general.attunement.points_kill}, a boss {cfg:general.attunement.points_boss_kill}"
+            ],
+            [
+              "Bonus damage per stage",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|pct} for MRU guns"
             ],
             {
               "if": "cfg:general.hoanna.portal_enabled",
               "cells": [
-                "Weapon, per hit",
-                "{cfg:general.attunement.points_hit}; a kill {cfg:general.attunement.points_kill}, a boss {cfg:general.attunement.points_boss_kill}"
+                "Attack per stage",
+                "Of the blade's original attack: +{cfg:general.gear_growth.ember_sword.attack_per_stage|pct} for the Ember Elemental Sword, +{cfg:general.gear_growth.verdict_blade.attack_per_stage|pct} for the Verdict Blade"
               ]
             },
+            [
+              "Bonus damage, at most",
+              "creatures +{cfg:general.gear_growth.caps.pool_mob|pct}, bosses +{cfg:general.gear_growth.caps.pool_boss|pct}, players +{cfg:general.gear_growth.caps.pool_player|pct}"
+            ],
+            [
+              "Damage reduction, at most",
+              "{cfg:general.gear_growth.caps.reduction|pct}, against players {cfg:general.gear_growth.caps.reduction_player|pct}"
+            ],
             {
-              "if": "cfg:general.hoanna.portal_enabled",
+              "if": "cfg:general.gear_growth.scars.max_level>0",
               "cells": [
-                "Attack per stage",
-                "+{cfg:general.attunement.damage_per_stage|pct} for weapons"
+                "Battle scars",
+                "after the top stage, a level per {cfg:general.gear_growth.scars.points_per_level} points, up to {cfg:general.gear_growth.scars.max_level}; +{cfg:general.gear_growth.scars.weapon_per_level|pct} weapon bonus damage each"
               ]
             }
           ]

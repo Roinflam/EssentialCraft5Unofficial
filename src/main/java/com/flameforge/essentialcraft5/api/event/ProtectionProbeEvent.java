@@ -15,7 +15,7 @@ import net.minecraftforge.event.level.BlockEvent;
  * 按破坏发奖励、记日志、按主手工具连锁挖的监听器想区分探测和真挖，判 {@code event instanceof ProtectionProbeEvent} 就行（探测时跳过）。
  * 只想处理探测的，直接监听这个类。
  * <p>
- * 真的替玩家破坏方块（法杖熔掉、建筑魔杖拆格子）发的仍是普通的 {@code BreakEvent}，不是这个类。
+ * 真的替玩家破坏方块（法杖熔掉、创世神之杖拆格子）发的仍是普通的 {@code BreakEvent}，不是这个类。
  * <p>
  * 发事件的那一下玩家的主手是空的（构造器按主手算经验，所以 {@link #getExpToDrop()} 不反映玩家手上的工具）。
  * <p>

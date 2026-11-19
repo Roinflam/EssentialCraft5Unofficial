@@ -36,7 +36,7 @@ import java.util.function.Function;
 /**
  * 保留 NBT 的工作台配方（{@link KeepNbtRecipes}，第六批 6b 框架）：产物带上 {@code nbt_source} 那件原料的 tag，
  * 配方产物自己写的 nbt 合并在上面，别的格子的 tag 不带；JSON / 网络读写；仍是工作台配方，合成器能摆样本。
- * 配方对象直接构造（用原版物品），不靠数据包——建筑魔杖、高级过滤器的配方 JSON 由各自模块的测试守着。
+ * 配方对象直接构造（用原版物品），不靠数据包——创世神之杖、高级过滤器的配方 JSON 由各自模块的测试守着。
  */
 @GameTestHolder(EssentialCraft5.MODID)
 @PrefixGameTestTemplate(false)

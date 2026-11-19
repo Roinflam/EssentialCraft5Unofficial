@@ -126,4 +126,10 @@ public class ECArmorItem extends ArmorItem {
                 .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(0F, 225F, 0F).scale(0.4F).end()
                 .end();
     }
+
+    /** 名字随同调阶变色、满阶渐变、带战痕后缀（{@code item/attunement/AttunementLook}） */
+    @Override
+    public net.minecraft.network.chat.Component getName(ItemStack stack) {
+        return com.flameforge.essentialcraft5.item.attunement.AttunementLook.name(stack, super.getName(stack));
+    }
 }

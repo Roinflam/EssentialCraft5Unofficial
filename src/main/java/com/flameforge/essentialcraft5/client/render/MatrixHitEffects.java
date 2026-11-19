@@ -1,6 +1,12 @@
 package com.flameforge.essentialcraft5.client.render;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
+import com.flameforge.essentialcraft5.client.vfx.Vfx;
+import com.flameforge.essentialcraft5.client.vfx.VfxMode;
+import com.flameforge.essentialcraft5.client.vfx.VfxPalette;
+import com.flameforge.essentialcraft5.client.vfx.VfxParticles;
+import com.flameforge.essentialcraft5.client.vfx.VfxPlasma;
+import com.flameforge.essentialcraft5.client.vfx.machine.CoilVfx;
 import com.flameforge.essentialcraft5.registry.ECGuns;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
@@ -8,8 +14,6 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.particles.DustColorTransitionOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -24,7 +28,6 @@ import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -35,8 +38,8 @@ import java.util.Map;
  * 「矩阵受损」特效（ECGuns，GUNS-4 加的损坏特效）：射线打中玩家、加了矩阵损伤以后，服务端（{@code gun/GunMatrixFx}，已限频）给被打的人和
  * 看得见他的人发 {@code S2CGunMatrixHitPacket}，这里画：
  * <ul>
- *   <li><b>身上</b>（所有人看得见）：{@code 1 + 强度} 道短电弧从身体里窜出来（第四批的世界电弧 {@link ArcEffects}，原作电弧形状；品红 / 紫罗兰两种颜色，
- *       取原作线圈打击电弧的品红和研究手册的 MRU 紫），一团品红渐变到紫罗兰的尘粒子，几颗紫色的女巫粒子；
+ *   <li><b>身上</b>（所有人看得见）：{@code 1 + 强度} 道短电弧从身体里窜出来（等离子画法，{@code CoilVfx.shortArc}），
+ *       一团从粉白淡到紫罗兰的光点往外散，几颗余辉往上飘；
  *       本地放「MRU 矩阵受损」（{@link ECGuns#MATRIX_DAMAGE}，有字幕）。第一人称的被打者自己看不到身上这一套（镜头在身体里，电弧会糊脸）。</li>
  *   <li><b>被打的人自己的屏幕</b>：边缘泛一圈品红（{@link #renderVignette}，HUD 层，排在霜冻覆盖层之后、快捷栏之前，开狙击镜时也看得见）：
  *       {@value #RISE_TICKS} 刻升起、停 {@value #HOLD_TICKS} 刻、{@value #FALL_TICKS} 刻平滑淡出，最浓不透明度 0.30~0.40（按强度），
@@ -72,13 +75,6 @@ public final class MatrixHitEffects {
     private static final float VIGNETTE_B = 0xF0 / 255F;
     /** HUD 覆盖层的深度（原版暗角、霜冻覆盖层都画在 −90） */
     private static final float OVERLAY_Z = -90F;
-
-    /** 品红电弧：原作线圈打击电弧的颜色（1 / 0 / 0.7），短、细一点 */
-    private static final ArcEffect.Style ARC_MAGENTA = new ArcEffect.Style(0.07F, 1F, 0.1F, 0.8F, 10, 0.8F);
-    /** 紫罗兰电弧：研究手册的 MRU 紫（#A050FF） */
-    private static final ArcEffect.Style ARC_VIOLET = new ArcEffect.Style(0.07F, 0.63F, 0.31F, 1F, 8, 0.7F);
-    private static final Vector3f DUST_FROM = new Vector3f(0.94F, 0.31F, 0.94F);
-    private static final Vector3f DUST_TO = new Vector3f(0.42F, 0.25F, 1F);
 
     /** 客户端刻数（暂停时不走） */
     private static int ticks;
@@ -177,20 +173,19 @@ public final class MatrixHitEffects {
             double angle = random.nextDouble() * Math.PI * 2D;
             double reach = 0.45D + random.nextDouble() * 0.35D + 0.1D * strength;
             Vec3 end = start.add(Math.cos(angle) * reach, (random.nextDouble() - 0.35D) * reach, Math.sin(angle) * reach);
-            ArcEffects.spawn(level, start, end, (i & 1) == 0 ? ARC_MAGENTA : ARC_VIOLET);
+            CoilVfx.shortArc(start, end, (i & 1) == 0 ? 10 : 8);
         }
-        DustColorTransitionOptions dust = new DustColorTransitionOptions(DUST_FROM, DUST_TO, 0.9F);
-        int count = 6 + 4 * strength;
+        // 品红渐变到紫罗兰的光点往外散（原来是同色的尘粒子），几颗紫光慢慢往上飘
+        int count = Vfx.count(6 + 4 * strength, center);
         for (int i = 0; i < count; i++) {
             double x = box.minX + random.nextDouble() * width;
             double y = box.minY + random.nextDouble() * height;
             double z = box.minZ + random.nextDouble() * depth;
-            level.addParticle(dust, x, y, z, (x - center.x) * 0.6D, 0.05D + random.nextDouble() * 0.1D, (z - center.z) * 0.6D);
+            VfxParticles.spawn(x, y, z, (x - center.x) * 0.12D, 0.02D + random.nextDouble() * 0.04D, (z - center.z) * 0.12D,
+                    10 + random.nextInt(8), 0.07F, 0.02F, Vfx.argb(VfxPalette.PINK, 0.95F), Vfx.argb(VfxPalette.VIOLET, 0F),
+                    VfxMode.DOT, 600, 0.9F, 0F, 0F, 0F);
         }
-        for (int i = 0; i <= strength; i++) {
-            level.addParticle(ParticleTypes.WITCH, center.x + (random.nextDouble() - 0.5D) * width,
-                    box.minY + height * (0.5D + random.nextDouble() * 0.5D), center.z + (random.nextDouble() - 0.5D) * depth, 0D, 0.05D, 0D);
-        }
+        VfxPlasma.embers(new Vec3(center.x, box.minY + height * 0.5D, center.z), width * 0.5D, 1 + strength, VfxPlasma.MRU);
     }
 
     // ------------------------------------------------------------------

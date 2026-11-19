@@ -1,7 +1,8 @@
 package com.flameforge.essentialcraft5.client.render;
 
-import com.flameforge.essentialcraft5.blockentity.LeyCondenserBlockEntity;
 import com.flameforge.essentialcraft5.blockentity.LeyCondenserBlockEntity.Target;
+import com.flameforge.essentialcraft5.blockentity.LeyCondenserBlockEntity;
+import com.flameforge.essentialcraft5.client.vfx.machine.MachineVfx;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.LightTexture;
@@ -58,6 +59,7 @@ public class LeyCondenserRenderer implements BlockEntityRenderer<LeyCondenserBlo
         }
         if (working) {
             LeyProjectorRenderer.renderBeam(level, be.getBlockPos().getY(), LeyCondenserBlockEntity.BEAM_LENGTH, partialTick, pose, buffers);
+            MachineVfx.submit(MachineVfx.LEY, be, be.getBlockPos().getX() + 0.5D, be.getBlockPos().getY(), be.getBlockPos().getZ() + 0.5D);
         }
     }
 

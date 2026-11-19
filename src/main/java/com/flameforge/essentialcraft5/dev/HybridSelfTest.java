@@ -294,7 +294,7 @@ import java.util.function.Supplier;
  * 第六批 6a M2（审查修复时补，海纳尔之门）：C19 风之石板换门被领地拒绝——门跨在别人领地边上、多格放置事件的第一格在区外（查「只看第一格的插件」这条路），
  * 整扇不变、不扣 MRU；对照空隙里的门换成、扣 MRU；C20 海纳尔侧建门的 Bukkit 放置事件报哪个世界（玩家还在主世界、快照在海纳尔）。
  * 两组的门都摆在 3×3×3 小格子以外（z = 7 / 9 那几排和区间空隙），跑完自己拆掉 / 还原。C21、C22 预留给 M2。
- * 第六批 6b（集成时补）：C27 建筑魔杖的全部替换落在只拒放置区（拆得掉、放不上：留空气、圆石进背包、木板不少、只扣拆的 250）；
+ * 第六批 6b（集成时补）：C27 创世神之杖的全部替换落在只拒放置区（拆得掉、放不上：留空气、圆石进背包、木板不少、只扣拆的 250）；
  * C28 魔力传送器：同维度传一次、插件取消一次（人不动、不扣）、跨维度进海纳尔一次，记 PlayerTeleportEvent 的原因和两头的世界，
  * 并看落点的权限探测（BlockBreakEvent）报的是不是目标世界。要 6b 版测试插件（认 {@value #PROP_CANCEL_TELEPORT}）。
  * 第七批（集成时补）：C13 多两只僵尸（恶魔的 demon 伤害、主人的 soul_capture 伤害打死，都不掉落）；C29 余烬元素剑打玩家：领地插件拦下 PvP 时
@@ -546,7 +546,7 @@ public final class HybridSelfTest {
             cases.add(new Case("C24", "地震推人：服务端只给一次速度（≤ 0.6 格/刻），远低于移动过快门槛", this::c24));
             cases.add(new Case("C25", "玩家数据跟着 changeDimension 走：主世界 → 海纳尔 → 主世界", this::c25));
             cases.add(new Case("C26", "ξ 腰带打玩家：领地插件拦 PvP 不加辐射，野外照加", this::c26));
-            cases.add(new Case("C27", "建筑魔杖全部替换落在只拒放置区：留空气、圆石进背包、木板不少、只扣 250", this::c27));
+            cases.add(new Case("C27", "创世神之杖全部替换落在只拒放置区：留空气、圆石进背包、木板不少、只扣 250", this::c27));
             cases.add(new Case("C28", "魔力传送器：同维度 / 插件取消 / 跨维度，记传送原因，落点探测报目标世界", this::c28));
             cases.add(new Case("C29", "余烬元素剑打玩家：领地插件拦 PvP 时不着火、不扣 MRU、没有闪电伤害，野外照加", this::c29));
             cases.add(new Case("C30", "灵魂刻刀打村民：插件拦「玩家打村民」时村民还在、没有灵魂、工作站不放，野外收魂", this::c30));
@@ -1693,7 +1693,7 @@ public final class HybridSelfTest {
         }
 
         /**
-         * C27：建筑魔杖的「全部替换」落在只拒放置区（6b M1，batch6b §8）。主人主手拿满 MRU 的全部替换魔杖，两个点都框在只拒放置区里的一格石头上、
+         * C27：创世神之杖的「全部替换」落在只拒放置区（6b M1，batch6b §8）。主人主手拿满 MRU 的全部替换魔杖，两个点都框在只拒放置区里的一格石头上、
          * 选定橡木木板，背包里放 4 块木板，人站在旁边的区间空隙里；开工后直接调 {@code BuilderJobs} 的服务端 tick 处理器推进到做完
          * （和世界每刻调的是同一个方法，只是在这一组的同步代码里连着调）。
          * 期望：破坏放行、放置被插件取消 → 那一格留空气，圆石进背包，木板一块没少，魔杖只扣拆的 250（不是 300），地上没有掉落物；
@@ -1748,7 +1748,7 @@ public final class HybridSelfTest {
             Probe probe = Probe.read();
             probe.expectAll(problems, "BlockBreakEvent", PLACE_ONLY, OWNER_NAME, "CraftPlayer", false, 1);
             probe.expectAll(problems, "BlockPlaceEvent", PLACE_ONLY, OWNER_NAME, "CraftPlayer", true, 1);
-            // 魔杖报的是没拿魔杖的那只手（这里是空着的副手）：插件不能看到「放下了一根建筑魔杖」
+            // 魔杖报的是没拿魔杖的那只手（这里是空着的副手）：插件不能看到「放下了一根创世神之杖」
             Map<String, String> placeEvent = probe.first("BlockPlaceEvent");
             if (placeEvent != null && placeEvent.getOrDefault("item", "").contains("MAGICAL_BUILDER")) {
                 problems.add("BlockPlaceEvent 报的物品是魔杖：" + placeEvent.get("line"));

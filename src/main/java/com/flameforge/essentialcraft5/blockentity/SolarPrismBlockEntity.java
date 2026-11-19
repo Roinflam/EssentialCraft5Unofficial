@@ -381,6 +381,11 @@ public class SolarPrismBlockEntity extends BlockEntity {
         return gameTime < clientBeamUntil;
     }
 
+    /** 客户端：这一道光柱到第几刻结束（开始 = 结束 − {@link #BEAM_DURATION}） */
+    public long clientBeamUntil() {
+        return clientBeamUntil;
+    }
+
     /** 客户端：落点比棱镜低多少格 */
     public int clientBeamDepth() {
         return clientBeamDepth;

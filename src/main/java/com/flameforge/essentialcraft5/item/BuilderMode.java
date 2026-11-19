@@ -4,7 +4,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 建筑魔杖的 5 种模式（原作 ItemMagicalBuilder 的 meta 0~4），每种模式一个物品（{@code registry/ECBuilder}）。
+ * 创世神之杖的 5 种模式（原作 ItemMagicalBuilder 的 meta 0~4），每种模式一个物品（{@code registry/ECBuilder}）。
  * 工作台里单放一根换到 {@link #next()}，顺序同原作配方 magical_builder_0~4：填充 → 清除 → 清除选定方块 → 清除选定以外 → 全部替换 → 填充。
  * <p>
  * 每一格做什么由 {@link #decide} 决定（纯函数，GameTest 和手册都照它）：
@@ -69,6 +69,14 @@ public enum BuilderMode {
         return this == FILL || this == REPLACE_ALL;
     }
 
+    /**
+     * 作用于已有方块（清除三种、全部替换）：铺面、竖墙点中方块时从点中的那格本身起，沿面作用于连上的那层方块本身。
+     * 只有填充是往空处放，从点中那一面外侧那格起、沿面铺在外侧那一层（{@link BuilderShapes#area}、{@link BuilderSurface.Scan#area(boolean)}）。
+     */
+    public boolean inPlace() {
+        return this != FILL;
+    }
+
     /** 这一格是什么情况 */
     public enum CellKind {
         /** 空气（含洞穴空气、虚空空气） */
@@ -115,7 +123,7 @@ public enum BuilderMode {
         };
     }
 
-    /** 这件物品是哪种模式的建筑魔杖；不是建筑魔杖返回 null */
+    /** 这件物品是哪种模式的创世神之杖；不是创世神之杖返回 null */
     @Nullable
     public static BuilderMode of(ItemStack stack) {
         return stack.getItem() instanceof MagicalBuilderItem builder ? builder.mode() : null;

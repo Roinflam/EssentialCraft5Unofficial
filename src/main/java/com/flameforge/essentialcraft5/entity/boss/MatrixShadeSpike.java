@@ -1,7 +1,7 @@
 package com.flameforge.essentialcraft5.entity.boss;
 
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECMatrixShade;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -17,7 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 
 /**
  * 心智钉（矩阵之影心相的招，batch13.md §5.3.2）：浮在场地里的一根矩阵钉，立着时矩阵之影挨的伤害 ×{@code spike_damage_taken}（默认减半，
@@ -29,6 +28,8 @@ public class MatrixShadeSpike extends Mob {
 
     public static final int LIFE = 600;
     public static final double HEALTH = 12D;
+    /** 心智钉和连线的颜色（心相的紫） */
+    public static final int LINK_COLOR = 0x9A4CE0;
 
     @Nullable
     private MatrixShadeEntity owner;
@@ -66,21 +67,10 @@ public class MatrixShadeSpike extends Mob {
         MatrixShadeEntity shade = owner;
         if (shade == null || shade.isRemoved() || shade.isDeadOrDying() || shade.dissipating()
                 || shade.phase() != MatrixShadeEntity.Phase.MIND || tickCount > LIFE) {
-            server.sendParticles(ParticleTypes.REVERSE_PORTAL, getX(), getY() + 0.8D, getZ(), 10, 0.2D, 0.5D, 0.2D, 0.02D);
+            BossWarnings.resolve(this, S2CBossWarningPacket.FX_SHATTER, position(), getBbHeight(), 0.3D, Vec3.ZERO, 0, LINK_COLOR, 0);
             discard();
-            return;
         }
-        if (tickCount % 5 == 0) {
-            Vec3 from = position().add(0D, getBbHeight() * 0.5D, 0D);
-            Vec3 to = shade.position().add(0D, shade.getBbHeight() * 0.6D, 0D);
-            Vec3 delta = to.subtract(from);
-            int steps = Math.min(32, Math.max(2, (int) (delta.length() * 1.5D)));
-            DustParticleOptions dust = new DustParticleOptions(new Vector3f(0.42F, 0.17F, 0.6F), 0.8F);
-            for (int i = 0; i <= steps; i++) {
-                Vec3 at = from.add(delta.scale(i / (double) steps));
-                server.sendParticles(dust, at.x, at.y, at.z, 1, 0D, 0D, 0D, 0D);
-            }
-        }
+        // 到矩阵之影的连线由放钉子时发的 FX_LINK 画（MatrixShadeSkills#spike），钉子没了客户端自己断
     }
 
     @Override
@@ -90,7 +80,8 @@ public class MatrixShadeSpike extends Mob {
         if (wasDead || !dead || !(level() instanceof ServerLevel server)) {
             return;
         }
-        server.sendParticles(ParticleTypes.END_ROD, getX(), getY() + 0.8D, getZ(), 16, 0.2D, 0.5D, 0.2D, 0.08D);
+        // 被打碎（客户端画，FX_SHATTER）
+        BossWarnings.resolve(this, S2CBossWarningPacket.FX_SHATTER, position(), getBbHeight(), 0.5D, Vec3.ZERO, 0, LINK_COLOR, 0);
         server.playSound(null, getX(), getY(), getZ(), SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.HOSTILE, 1.2F, 0.7F);
         discard();
     }

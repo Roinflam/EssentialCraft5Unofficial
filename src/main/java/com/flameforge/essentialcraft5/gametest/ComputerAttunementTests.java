@@ -12,6 +12,7 @@ import com.flameforge.essentialcraft5.item.VoidArmorItem;
 import com.flameforge.essentialcraft5.item.armor.IMRUShieldArmor;
 import com.flameforge.essentialcraft5.item.armor.MRUShield;
 import com.flameforge.essentialcraft5.item.armor.MRUShieldAbsorbedEvent;
+import com.flameforge.essentialcraft5.item.attunement.ArmorGrowth;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
 import com.flameforge.essentialcraft5.item.attunement.AttunementConfig;
 import com.flameforge.essentialcraft5.item.attunement.AttunementStageEvent;
@@ -625,7 +626,7 @@ public final class ComputerAttunementTests {
 
     // ================================================================ 矩阵修复
 
-    /** 全套 3 阶、从没受过伤：回 1%（0.2）、胸甲扣 100；满血不回；2 阶、没穿齐不回 */
+    /** 全套 3 阶、从没受过伤：回 1.5%（0.3，gear_growth.computer_armor.repair_percent）、胸甲扣 150；满血不回；2 阶、没穿齐不回 */
     @GameTest(template = EMPTY)
     public static void computerAttunedRepairHeals(GameTestHelper helper) {
         Player player = mock(helper, 1.5D, 1.5D);
@@ -635,8 +636,8 @@ public final class ComputerAttunementTests {
             helper.assertTrue(ComputerAttunement.repair(player) == 0F && mru(stacks[1]) == 10_000, "满血不回、不扣");
             player.setHealth(10F);
             float healed = ComputerAttunement.repair(player);
-            helper.assertTrue(Math.abs(healed - 0.2F) < EPS && Math.abs(player.getHealth() - 10.2F) < EPS, "回 0.2，实际 " + healed);
-            helper.assertTrue(mru(stacks[1]) == 10_000 - 100, "扣 0.2 × 500 = 100，实际 " + (10_000 - mru(stacks[1])));
+            helper.assertTrue(Math.abs(healed - 0.3F) < EPS && Math.abs(player.getHealth() - 10.3F) < EPS, "回 0.3，实际 " + healed);
+            helper.assertTrue(mru(stacks[1]) == 10_000 - 150, "扣 0.3 × 500 = 150，实际 " + (10_000 - mru(stacks[1])));
 
             Player second = mock(helper, 3.5D, 1.5D);
             wear(second, new int[]{3, 3, 3, 2}, 10_000);
@@ -675,7 +676,7 @@ public final class ComputerAttunementTests {
         helper.succeed();
     }
 
-    /** 走 heal：腐蚀拦得住（不回不扣）；减半时回 0.1、按真回的扣 50 */
+    /** 走 heal：腐蚀拦得住（不回不扣）；减半时回 0.15、按真回的扣 75 */
     @GameTest(template = EMPTY)
     public static void computerAttunedRepairRespectsHealBlockers(GameTestHelper helper) {
         Player corroded = mock(helper, 1.5D, 1.5D);
@@ -689,8 +690,8 @@ public final class ComputerAttunementTests {
             bisected.setHealth(10F);
             bisected.addEffect(new MobEffectInstance(ECEffects.BISECTED.get(), 200));
             float healed = ComputerAttunement.repair(bisected);
-            helper.assertTrue(Math.abs(healed - 0.1F) < EPS, "减半：回 0.1，实际 " + healed);
-            helper.assertTrue(mru(halves[1]) == 10_000 - 50, "按真回的 0.1 扣 50，实际 " + (10_000 - mru(halves[1])));
+            helper.assertTrue(Math.abs(healed - 0.15F) < EPS, "减半：回 0.15，实际 " + healed);
+            helper.assertTrue(mru(halves[1]) == 10_000 - 75, "按真回的 0.15 扣 75，实际 " + (10_000 - mru(halves[1])));
             helper.assertTrue(ComputerAttunement.cost(0.2F, 500) == 100 && ComputerAttunement.cost(10.1F - 10F, 500) == 50, "电费按千分之一点取整");
         } finally {
             ComputerAttunement.forgetForTest(corroded);
@@ -712,7 +713,8 @@ public final class ComputerAttunementTests {
         try {
             hit(player, player.damageSources().mobAttack(zombie), rawFor(helper, 8F));
             helper.assertTrue(ComputerAttunement.barrierActive(player), "挡下 8 点：屏障展开");
-            helper.assertTrue(data(player).getAttunementOverloadCooldown() == 1200, "冷却记进玩家数据 1200，实际 " + data(player).getAttunementOverloadCooldown());
+            // 冷却读 gear_growth.computer_armor.overload_cooldown 900，全套 5 阶冷却缩减 15%：765
+            helper.assertTrue(data(player).getAttunementOverloadCooldown() == 765, "冷却记进玩家数据 765，实际 " + data(player).getAttunementOverloadCooldown());
             int after = mru(stacks[1]);
             player.invulnerableTime = 0;
             helper.assertFalse(player.hurt(player.damageSources().mobAttack(zombie), rawFor(helper, 8F)), "屏障里的近战被取消");
@@ -797,7 +799,8 @@ public final class ComputerAttunementTests {
             helper.assertTrue(data(victim).getAttunementOverloadCooldown() == 0 && !ComputerAttunement.barrierActive(victim), "不记冷却、没有屏障");
             helper.assertTrue(ComputerAttunement.tryOverload(victim, victim.damageSources().mobAttack(zombie), 10F)
                     && ComputerAttunement.barrierActive(victim), "接着怪物打出来的大伤害照样展开");
-            helper.assertTrue(data(victim).getAttunementOverloadCooldown() == ECComputer.Config.attuned().overloadCooldown(), "展开了才记冷却");
+            helper.assertTrue(data(victim).getAttunementOverloadCooldown() == ArmorGrowth.computerOverloadCooldown(5), "展开了才记冷却（765），实际 "
+                    + data(victim).getAttunementOverloadCooldown());
         } finally {
             AttunementConfig.clearTestOverrides();
             data(victim).setAttunementOverloadCooldown(0);

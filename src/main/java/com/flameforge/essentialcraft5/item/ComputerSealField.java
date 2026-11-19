@@ -1,5 +1,7 @@
 package com.flameforge.essentialcraft5.item;
 
+import com.flameforge.essentialcraft5.network.GearFx;
+import com.flameforge.essentialcraft5.network.S2CGearFxPacket;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.ECCapabilities;
 import com.flameforge.essentialcraft5.api.IMRUHandlerItem;
@@ -382,6 +384,7 @@ public final class ComputerSealField {
         }
         entries.sort(Comparator.comparingInt(S2CComputerTerminalPacket.Entry::distance));
         field.entries = List.copyOf(entries);
+        domeFx(wearer, field.state, state, radius);
         field.state = state;
         field.mruPerSecond = state == FieldState.STANDBY ? 0 : perSecond;
         field.sealedOthers = state == FieldState.RUNNING ? pass.size() : 0;
@@ -457,8 +460,28 @@ public final class ComputerSealField {
                 SealNotifier.disabledWorld(wearer);
             }
         }
+        domeFx(wearer, field.state, state, 0D);
         field.state = state;
         pushState(wearer, field);
+    }
+
+    /**
+     * 场的穹顶画面（{@link GearFx#SEAL_FIELD}）：运转、待机时每次评估发一次（param = 半径，待机取负），客户端两次之间自己续着画；
+     * 从这两种状态停下时发一次 0 让它收掉。只发给附近的人，间隔就是评估间隔（至少 10 刻）
+     */
+    private static void domeFx(ServerPlayer wearer, FieldState before, FieldState after, double radius) {
+        boolean wasShown = before == FieldState.RUNNING || before == FieldState.STANDBY;
+        float param;
+        if (after == FieldState.RUNNING) {
+            param = (float) radius;
+        } else if (after == FieldState.STANDBY && radius > 0D) {
+            param = (float) -radius;
+        } else if (wasShown) {
+            param = 0F;
+        } else {
+            return;
+        }
+        S2CGearFxPacket.sendAround(wearer.serverLevel(), GearFx.SEAL_FIELD, wearer, wearer.position(), param);
     }
 
     // ------------------------------------------------------------------ 终端

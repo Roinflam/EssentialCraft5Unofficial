@@ -1,5 +1,7 @@
 package com.flameforge.essentialcraft5.registry;
 
+import com.flameforge.essentialcraft5.network.ECNetwork;
+import com.flameforge.essentialcraft5.network.S2CVerdictJudgmentPacket;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.block.EmberForgeBlock;
 import com.flameforge.essentialcraft5.blockentity.EmberForgeBlockEntity;
@@ -125,5 +127,8 @@ public final class ECEmberForge {
         ECConfig.general(EmberInlayItem.Config::define);
         ECConfig.general(VerdictBladeItem.Config::define);
         MatrixTraits.registerWeaponMultiplier(VERDICT_BLADE, VerdictBladeItem.Config::traitMultiplier);
+        // 断罪松手时的画面（特效第 3 批，协议仍是 14）；处理器只在客户端调，VerdictClient 到执行时才加载
+        ECNetwork.registerS2C(S2CVerdictJudgmentPacket.class, S2CVerdictJudgmentPacket::encode, S2CVerdictJudgmentPacket::decode,
+                S2CVerdictJudgmentPacket::handleClient);
     }
 }

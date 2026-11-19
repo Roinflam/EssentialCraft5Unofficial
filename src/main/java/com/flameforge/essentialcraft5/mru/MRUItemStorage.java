@@ -12,6 +12,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.ToIntFunction;
+
 /**
  * 物品上的 MRU 存储，数据直接写在物品 NBT 顶层（mru / balance / storage），和原作 MRUItemStorage 同一套键名。
  * 由物品的 {@code initCapabilities} 创建；每次读写都直接读物品 NBT，不像原作那样缓存一份再比对。
@@ -25,7 +27,8 @@ public class MRUItemStorage implements IMRUHandlerItem, ICapabilityProvider {
     private static final String TAG_STORAGE = "storage";
 
     private final ItemStack stack;
-    private final int maxMRU;
+    /** 容量按物品现在的 NBT 算（创世神之杖按档位给）；普通物品是常数 */
+    private final ToIntFunction<ItemStack> maxMRU;
     /** null 表示可切换、存在 NBT 里 */
     @Nullable
     private final Boolean fixedStorage;
@@ -36,6 +39,14 @@ public class MRUItemStorage implements IMRUHandlerItem, ICapabilityProvider {
     }
 
     public MRUItemStorage(ItemStack stack, int maxMRU, @Nullable Boolean fixedStorage) {
+        this(stack, s -> maxMRU, fixedStorage);
+    }
+
+    /**
+     * 容量随物品 NBT 变的存储。能力在物品对象建好时就创建了，那时 NBT 可能还没写进去（{@code ItemStack.copy}、网络读物品都是先建对象再塞 NBT），
+     * 所以容量不能在构造时定死，每次读写时按当时的 NBT 算。
+     */
+    public MRUItemStorage(ItemStack stack, ToIntFunction<ItemStack> maxMRU, @Nullable Boolean fixedStorage) {
         this.stack = stack;
         this.maxMRU = maxMRU;
         this.fixedStorage = fixedStorage;
@@ -43,18 +54,18 @@ public class MRUItemStorage implements IMRUHandlerItem, ICapabilityProvider {
 
     @Override
     public int getMaxMRU() {
-        return maxMRU;
+        return Math.max(0, maxMRU.applyAsInt(stack));
     }
 
     @Override
     public int getMRU() {
         CompoundTag tag = stack.getTag();
-        return tag == null ? 0 : Mth.clamp(tag.getInt(TAG_MRU), 0, maxMRU);
+        return tag == null ? 0 : Mth.clamp(tag.getInt(TAG_MRU), 0, getMaxMRU());
     }
 
     @Override
     public void setMRU(int amount) {
-        stack.getOrCreateTag().putInt(TAG_MRU, Mth.clamp(amount, 0, maxMRU));
+        stack.getOrCreateTag().putInt(TAG_MRU, Mth.clamp(amount, 0, getMaxMRU()));
     }
 
     @Override
@@ -62,12 +73,13 @@ public class MRUItemStorage implements IMRUHandlerItem, ICapabilityProvider {
         if (amount <= 0) {
             return amount;
         }
+        int max = getMaxMRU();
         long total = (long) getMRU() + amount;
-        if (total >= maxMRU) {
+        if (total >= max) {
             if (doAdd) {
-                setMRU(maxMRU);
+                setMRU(max);
             }
-            return (int) (total - maxMRU);
+            return (int) (total - max);
         }
         if (doAdd) {
             setMRU((int) total);

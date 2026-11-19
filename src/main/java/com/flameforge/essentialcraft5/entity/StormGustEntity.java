@@ -3,7 +3,6 @@ package com.flameforge.essentialcraft5.entity;
 import com.flameforge.essentialcraft5.entity.mob.WildMobBolt;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
 import com.flameforge.essentialcraft5.registry.ECWildMobs;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -56,19 +55,12 @@ public class StormGustEntity extends WildMobBolt {
         target.hurtMarked = true;
     }
 
+    // 尾迹和散开都由客户端的 client/vfx/weapon/ProjectileTrailFx 画（跟着实体，移除时散开）
     @Override
     protected void trail() {
-        level().addParticle(ParticleTypes.CLOUD, getX(), getY() + getBbHeight() * 0.5D, getZ(), 0D, 0D, 0D);
-        if (random.nextBoolean()) {
-            level().addParticle(ParticleTypes.ELECTRIC_SPARK, getX(), getY() + getBbHeight() * 0.5D, getZ(), 0D, 0D, 0D);
-        }
     }
 
     @Override
     protected void burst() {
-        for (int i = 0; i < 6; i++) {
-            level().addParticle(ParticleTypes.CLOUD, getX(), getY() + getBbHeight() * 0.5D, getZ(),
-                    (random.nextDouble() - 0.5D) * 0.2D, (random.nextDouble() - 0.5D) * 0.2D, (random.nextDouble() - 0.5D) * 0.2D);
-        }
     }
 }

@@ -426,12 +426,12 @@ public final class MHSArmorTests {
 
     /**
      * 倍率顺序：护盾在 LivingHurtEvent LOW 先拿走份额，剩下的才过原版护甲和韧性（§4.1 表：带电 D = 20 实伤 0 阶 5.2、2 阶 3.4）。
-     * 0 阶全套剩 15 → 护甲 20 / 韧性 8 后 5.25；2 阶全套剩 11 → 3.41，四件共扣 900
+     * 0 阶全套剩 15 → 护甲 20 / 韧性 8 后 5.25；2 阶全套剩 11 → 护甲 28 / 韧性 16（基础属性随阶涨）后护甲顶到减 80%，2.2，四件共扣 900 × 0.9 = 810（1 阶起单价 −10%，gear_growth.mhs_armor.shield_discount）
      */
     @GameTest(template = EMPTY)
     public static void mhsShieldBeforeArmor(GameTestHelper helper) {
         Zombie zombie = zombie(helper);
-        float[] want = {5.25F, 3.41F};
+        float[] want = {5.25F, 2.2F};
         int[] stages = {0, 2};
         for (int i = 0; i < 2; i++) {
             Player player = mock(helper, 1.5D + 2D * i, 1.5D);
@@ -451,14 +451,14 @@ public final class MHSArmorTests {
                 for (int k = 0; k < 4; k++) {
                     spent += mruBefore[k] - mru(stacks[k]);
                 }
-                helper.assertTrue(spent == 900, "2 阶 20 点一下共扣 900，实际 " + spent);
+                helper.assertTrue(spent == 810, "2 阶 20 点一下共扣 900 × 0.9 = 810，实际 " + spent);
             }
         }
         helper.succeed();
     }
 
     /**
-     * 2 阶挡带攻击者的 MRU 放电（新覆盖面）：1 阶不挡；2 阶挡 45%、原价（四件 200 / 400 / 200 / 100）；没有攻击者的放电（聚集体、特斯拉线圈）、
+     * 2 阶挡带攻击者的 MRU 放电（新覆盖面）：1 阶不挡；2 阶挡 45%、单价 ×0.9（阶的护盾折扣，四件 180 / 360 / 180 / 90）；没有攻击者的放电（聚集体、特斯拉线圈）、
      * 玩家打来的放电不挡；身上带无尽 MRU 晶体时近战由晶体付，放电从盔甲自己扣
      */
     @GameTest(template = EMPTY)
@@ -472,13 +472,14 @@ public final class MHSArmorTests {
         Player second = mock(helper, 3.5D, 1.5D);
         ItemStack[] two = wear(second, 2);
         IMRUShieldArmor.Coverage coverage = item(ArmorItem.Type.CHESTPLATE).coverage(two[1], source(helper, ECDamageTypes.MRU_DISCHARGE, zombie));
-        helper.assertTrue(coverage != null && coverage.share() == 4D && coverage.priceMultiplier() == 1D && coverage.extended(),
-                "2 阶胸甲挡放电：4 份、原价、新覆盖面，实际 " + coverage);
+        helper.assertTrue(coverage != null && coverage.share() == 4D && Math.abs(coverage.priceMultiplier() - 0.9D) < EPS && coverage.extended(),
+                "2 阶胸甲挡放电：4 份、单价 ×0.9、新覆盖面，实际 " + coverage);
         float seenTwo = damageSeen(second, source(helper, ECDamageTypes.MRU_DISCHARGE, zombie), 20F);
         helper.assertTrue(Math.abs(seenTwo - 11F) < EPS, "2 阶挡 45%，应剩 11，实际 " + seenTwo);
-        int[] cost = {200, 400, 200, 100};
+        int[] cost = {180, 360, 180, 90};
         for (ArmorItem.Type type : TYPES) {
-            helper.assertTrue(mru(two[type.ordinal()]) == 8000 - cost[type.ordinal()], type + " 放电应扣 " + cost[type.ordinal()]);
+            helper.assertTrue(mru(two[type.ordinal()]) == 8000 - cost[type.ordinal()], type + " 放电应扣 " + cost[type.ordinal()] + "，实际 "
+                    + (8000 - mru(two[type.ordinal()])));
         }
         float lone = damageSeen(second, ECDamageTypes.mruDischarge(helper.getLevel()), 4F);
         helper.assertTrue(Math.abs(lone - 4F) < EPS, "没有攻击者的放电不挡，实际 " + lone);
@@ -493,10 +494,10 @@ public final class MHSArmorTests {
         damageSeen(rich, rich.damageSources().mobAttack(zombie), rawFor(helper, 20F));
         helper.assertTrue(mru(crystal[1]) == 8000, "近战由无尽晶体付，盔甲不动");
         damageSeen(rich, source(helper, ECDamageTypes.MRU_DISCHARGE, zombie), 20F);
-        helper.assertTrue(mru(crystal[1]) == 8000 - 400, "放电从胸甲自己扣 400，实际 " + (8000 - mru(crystal[1])));
+        helper.assertTrue(mru(crystal[1]) == 8000 - 360, "放电从胸甲自己扣 360，实际 " + (8000 - mru(crystal[1])));
         runConfig(ECGear.MHSConfig.DEFAULTS.toBuilder().dischargePriceMultiplier(2.5D).build(), () -> {
             IMRUShieldArmor.Coverage scaled = item(ArmorItem.Type.CHESTPLATE).coverage(two[1], source(helper, ECDamageTypes.MRU_DISCHARGE, zombie));
-            helper.assertTrue(scaled != null && scaled.priceMultiplier() == 2.5D, "放电单价倍数读配置");
+            helper.assertTrue(scaled != null && Math.abs(scaled.priceMultiplier() - 2.25D) < EPS, "放电单价倍数读配置（2.5 × 阶折扣 0.9），实际 " + scaled);
         });
         helper.succeed();
     }
@@ -609,7 +610,8 @@ public final class MHSArmorTests {
             List<MRUShield.Charge> charges = MRUShield.pendingCharges(victim, melee);
             helper.assertTrue(charges.size() == 4 && mru(stacks[1]) == 4000 && haste(victim) == 0, "放行前：记了四笔、没扣、没给余流，实际 " + charges);
             MinecraftForge.EVENT_BUS.post(new LivingDamageEvent(victim, melee, 0F));
-            helper.assertTrue(mru(stacks[1]) == 4000 - 300 && haste(victim) == 40, "放行后胸甲扣 300、给余流，实际 "
+            // 1 阶单价 −10%：胸甲 300 → 270
+            helper.assertTrue(mru(stacks[1]) == 4000 - 270 && haste(victim) == 40, "放行后胸甲扣 270、给余流，实际 "
                     + (4000 - mru(stacks[1])) + " / " + haste(victim));
             helper.assertTrue(MRUShield.pendingCharges(victim, melee).isEmpty(), "放行后记录清掉");
 
@@ -621,7 +623,7 @@ public final class MHSArmorTests {
             // 没被拦：同一次 hurt 里就扣了、给了
             DamageSource through = passed.damageSources().mobAttack(zombie);
             hit(passed, through, rawFor(helper, 20F));
-            helper.assertTrue(mru(paid[1]) == 4000 - 300 && haste(passed) == 40 && !MRUShield.hasPending(passed, through), "放行的那一下当场扣 300、给余流");
+            helper.assertTrue(mru(paid[1]) == 4000 - 270 && haste(passed) == 40 && !MRUShield.hasPending(passed, through), "放行的那一下当场扣 270、给余流");
         } finally {
             RayHitGate.setHybridForTest(null);
             MHSArmorEvents.setAfterflowForTest(victim, null);

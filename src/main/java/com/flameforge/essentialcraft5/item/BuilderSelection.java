@@ -13,13 +13,14 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 建筑魔杖的选区和选定方块：存在物品 NBT 里的读写，加上选区的几何计算。纯函数、两端共用（选区框、提示行在客户端用，任务在服务端用）。
+ * 创世神之杖的选区和选定方块：存在物品 NBT 里的读写，加上选区的几何计算。纯函数、两端共用（选区框、提示行在客户端用，任务在服务端用）。
  * <p>
  * NBT（和 MRU 的 {@code mru} 键并列，工作台换模式时整份带过去）：
  * <ul>
  *   <li>{@value #TAG_FIRST} / {@value #TAG_SECOND}：两个点，int[3]；</li>
  *   <li>{@value #TAG_DIMENSION}：点所在的维度 id（原作不存维度，到下界照同样的坐标改）；</li>
- *   <li>{@value #TAG_BLOCK}：选定方块的注册名（只存方块，不存状态，放的时候按物品自己的放置规则算状态）。</li>
+ *   <li>{@value #TAG_BLOCK}：选定方块的注册名（只存方块，不存状态，放的时候按物品自己的放置规则算状态）；</li>
+ *   <li>{@value #TAG_SHAPE} / {@value #TAG_SIZE}：形状和各形状的尺寸（{@link BuilderShape}），没有这两个键就是两点、行为和老魔杖一样。</li>
  * </ul>
  * 选区是两个点围成的长方体（含两端），格子顺序见 {@link #cellAt}。
  */
@@ -29,6 +30,10 @@ public final class BuilderSelection {
     public static final String TAG_SECOND = "point2";
     public static final String TAG_DIMENSION = "dimension";
     public static final String TAG_BLOCK = "stored_block";
+    /** 形状（{@link BuilderShape#id}）；没有 = 两点 */
+    public static final String TAG_SHAPE = "builder_shape";
+    /** 各形状的尺寸 */
+    public static final String TAG_SIZE = "builder_size";
 
     private BuilderSelection() {
     }
@@ -110,6 +115,52 @@ public final class BuilderSelection {
 
     public static void setStoredBlock(ItemStack stack, ResourceLocation block) {
         stack.getOrCreateTag().putString(TAG_BLOCK, block.toString());
+    }
+
+    /**
+     * 形状；没有 {@value #TAG_SHAPE} 键、认不得的值、这一档不能用的形状都当这一档的默认形状（{@link BuilderTier#defaultShape}：
+     * 老魔杖和二 / 三阶是两点，铺设魔杖是铺面）
+     */
+    public static BuilderShape shape(ItemStack stack) {
+        BuilderTier tier = BuilderTier.of(stack);
+        CompoundTag tag = stack.getTag();
+        if (tag == null || !tag.contains(TAG_SHAPE, Tag.TAG_STRING)) {
+            return tier.defaultShape();
+        }
+        BuilderShape shape = BuilderShape.byId(tag.getString(TAG_SHAPE));
+        return shape == null || !tier.allows(shape) ? tier.defaultShape() : shape;
+    }
+
+    public static void setShape(ItemStack stack, BuilderShape shape) {
+        stack.getOrCreateTag().putString(TAG_SHAPE, shape.id());
+    }
+
+    /**
+     * 这个形状存的尺寸（两个可调的数，没夹过）；没存过用形状的默认值。尺寸按形状分开存在 {@value #TAG_SIZE} 下
+     * （{@code {plane: [w, l, h], line: […], wall: […]}}），换形状不会互相冲掉。铺面、直线返回 {宽, 长}（h 存 1）；
+     * 竖墙返回 {宽, 高}（存成 {@code [w, 1, h]}，长恒为 1）。
+     */
+    public static int[] size(ItemStack stack, BuilderShape shape) {
+        CompoundTag tag = stack.getTag();
+        boolean wall = shape == BuilderShape.WALL;
+        if (tag != null && tag.contains(TAG_SIZE, Tag.TAG_COMPOUND)) {
+            CompoundTag sizes = tag.getCompound(TAG_SIZE);
+            if (sizes.contains(shape.id(), Tag.TAG_INT_ARRAY)) {
+                int[] whl = sizes.getIntArray(shape.id());
+                if (wall ? whl.length >= 3 : whl.length >= 2) {
+                    return new int[] {whl[0], wall ? whl[2] : whl[1]};
+                }
+            }
+        }
+        return new int[] {shape.defaultWidth(), shape.defaultLength()};
+    }
+
+    /** 写尺寸：铺面、直线是 (宽, 长)，竖墙是 (宽, 高)，见 {@link #size} */
+    public static void setSize(ItemStack stack, BuilderShape shape, int width, int second) {
+        CompoundTag tag = stack.getOrCreateTag();
+        CompoundTag sizes = tag.contains(TAG_SIZE, Tag.TAG_COMPOUND) ? tag.getCompound(TAG_SIZE) : new CompoundTag();
+        sizes.putIntArray(shape.id(), shape == BuilderShape.WALL ? new int[] {width, 1, second} : new int[] {width, second, 1});
+        tag.put(TAG_SIZE, sizes);
     }
 
     // ------------------------------------------------------------------

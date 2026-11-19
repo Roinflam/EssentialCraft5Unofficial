@@ -17,7 +17,7 @@ import net.minecraft.world.item.crafting.ShapelessRecipe;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 产物带上某件原料 NBT 的工作台配方：建筑魔杖在工作台里单放一根换模式（无序），普通过滤器加虚空板升级成高级过滤器（有序）。
+ * 产物带上某件原料 NBT 的工作台配方：创世神之杖在工作台里单放一根换模式（无序），普通过滤器加虚空板升级成高级过滤器（有序）。
  * 原作这两处的产物都不带 NBT，换一次模式魔杖里的 MRU、两个点、记下的方块全丢，升级过滤器样本全丢。
  * <pre>
  * { "type": "essentialcraft5:crafting_shapeless_keep_nbt",      有序的写 crafting_shaped_keep_nbt

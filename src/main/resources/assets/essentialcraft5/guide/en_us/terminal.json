@@ -532,6 +532,15 @@
           "text": "While it is cooling down, or if you can't pay for a rewind, nothing happens and nothing is spent. Logging out and dying don't reset the cooldown."
         },
         {
+          "type": "p",
+          "if": [
+            "cfg:general.attunement.enabled",
+            "cfg:general.hoanna.portal_enabled",
+            "cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4>0"
+          ],
+          "text": "Once all four pieces of the Computer Guy's Suit are attuned to stage 4, this cooldown is cut by {cfg:general.gear_growth.computer_armor.cooldown_reduction|stage:4|pct}; see [[attunement/computer_armor]]."
+        },
+        {
           "type": "h",
           "text": "When it saves you"
         },

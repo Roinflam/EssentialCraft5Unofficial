@@ -1,5 +1,7 @@
 package com.flameforge.essentialcraft5.gametest;
 
+import com.flameforge.essentialcraft5.network.GearFx;
+import com.flameforge.essentialcraft5.network.S2CGearFxPacket;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.ECCapabilities;
 import com.flameforge.essentialcraft5.api.IMRUHandlerItem;
@@ -690,12 +692,20 @@ public final class VoidArmorTests {
         Zombie zombie = helper.spawnWithNoFreeWill(EntityType.ZOMBIE, new BlockPos(3, 1, 1));
         float zombieHealth = zombie.getHealth();
         VoidArmorEvents.setTestDodgeRoll(0F);
+        List<S2CGearFxPacket> sent = new ArrayList<>();
         try {
             // σ 每下 10% 反弹：60 下都没被取消的话，攻击者几乎一定挨到（0.9^60 ≈ 0.2%）
-            for (int i = 0; i < 60; i++) {
-                victim.invulnerableTime = 0;
-                victim.hurt(victim.damageSources().mobAttack(zombie), rawFor(helper, 8F));
+            S2CGearFxPacket.setTestSink(sent::add);
+            try {
+                for (int i = 0; i < 60; i++) {
+                    victim.invulnerableTime = 0;
+                    victim.hurt(victim.damageSources().mobAttack(zombie), rawFor(helper, 8F));
+                }
+            } finally {
+                S2CGearFxPacket.setTestSink(null);
             }
+            long dodges = sent.stream().filter(p -> p.kind() == GearFx.VOID_DODGE && p.entity() == victim.getId()).count();
+            helper.assertTrue(dodges == 1, "同一刻闪避 60 下只发一个闪避事件（限流），实际 " + dodges);
             helper.assertTrue(victim.getHealth() == 20F, "闪避的那下不掉血");
             for (ItemStack stack : stacks) {
                 helper.assertTrue(mru(stack) == 5000, "闪避不扣 MRU");

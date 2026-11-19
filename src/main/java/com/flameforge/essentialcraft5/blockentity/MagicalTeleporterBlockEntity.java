@@ -1,6 +1,7 @@
 package com.flameforge.essentialcraft5.blockentity;
 
 import com.flameforge.essentialcraft5.advancement.StructureFormedTrigger;
+import com.flameforge.essentialcraft5.ambience.AmbienceParticles;
 import com.flameforge.essentialcraft5.block.RedstonePulse;
 import com.flameforge.essentialcraft5.client.render.SpellFx;
 import com.flameforge.essentialcraft5.config.ECConfig;
@@ -799,14 +800,14 @@ public class MagicalTeleporterBlockEntity extends MRUBlockEntity {
         for (int i = 0; i < count; i++) {
             if ((i & 1) == 0) {
                 // 站人的那一列
-                level.addParticle(MAGENTA_DUST, cx + (random.nextFloat() - 0.5F) * 0.5F, cy + 1D + random.nextFloat() * 2D,
+                AmbienceParticles.add(level, MAGENTA_DUST, cx + (random.nextFloat() - 0.5F) * 0.5F, cy + 1D + random.nextFloat() * 2D,
                         cz + (random.nextFloat() - 0.5F) * 0.5F, 0D, 0D, 0D);
             } else {
                 // 四面柱子（±2）之间
                 double side = random.nextBoolean() ? 2D : -2D;
                 double along = (random.nextFloat() - 0.5F) * 2D;
                 boolean xAxis = random.nextBoolean();
-                level.addParticle(MAGENTA_DUST, cx + (xAxis ? side : along), cy + 2D + random.nextFloat(),
+                AmbienceParticles.add(level, MAGENTA_DUST, cx + (xAxis ? side : along), cy + 2D + random.nextFloat(),
                         cz + (xAxis ? along : side), 0D, 0D, 0D);
             }
         }
@@ -872,6 +873,25 @@ public class MagicalTeleporterBlockEntity extends MRUBlockEntity {
     /** 客户端：蓄能开始的游戏时间，没在蓄能为 -1 */
     public long chargeStart() {
         return chargeStart;
+    }
+
+    /** 柱顶往中间打的电弧伸到两格外、三格高，渲染范围包住整个结构 */
+    @Override
+    public AABB getRenderBoundingBox() {
+        return new AABB(worldPosition).inflate(2.5D, 0D, 2.5D).expandTowards(0D, 3D, 0D);
+    }
+
+    /** 客户端：蓄能进度 0~1（展示厅摆的蓄能也算），没在蓄能为 -1 */
+    public float clientChargeProgress() {
+        if (level == null) {
+            return -1F;
+        }
+        int showroom = SHOWROOM_CHARGE.isEmpty() ? -1 : SHOWROOM_CHARGE.getOrDefault(worldPosition, -1);
+        if (showroom < 0 && chargeStart < 0L) {
+            return -1F;
+        }
+        long shown = showroom >= 0 ? showroom : level.getGameTime() - chargeStart;
+        return Math.max(0F, Math.min(1F, shown / (float) Math.max(1, ticksRequired())));
     }
 
     @Nullable

@@ -3972,7 +3972,7 @@
   "reason": "",
   "en": "Magical Building Wand (Fill)",
   "zh_legacy": "魔力建筑之杖",
-  "zh": "建筑魔杖（填充）",
+  "zh": "创世神之杖（填充）",
   "notes": "原作 meta 0（提示行 essentialcraft.txt.fillMode.normal）：只往选区里的空气格放选定方块。5 种模式拆成 5 个物品（item/BuilderMode），工作台单放一根换下一个模式（保留 NBT 的无序配方，MRU、两个点、选定方块都留着）。MRUStaffItem（自带 5000 MRU，创造栏放空 / 满两份）；物品格右下角画选定方块（原作 ItemOverlayMagicalBuilder）。英文旧名 Replace Air、中文旧名「填充空气」改成 Fill /「填充」，和手册、另外四种模式的叫法对齐（第六批 6b）"
  },
  {
@@ -3986,7 +3986,7 @@
   "reason": "",
   "en": "Magical Building Wand (Remove All)",
   "zh_legacy": "魔力建筑之杖",
-  "zh": "建筑魔杖（清除）",
+  "zh": "创世神之杖（清除）",
   "notes": "原作 meta 1（提示行 essentialcraft.txt.fillMode.air）：把选区里的方块全清成空气，唯一不用选定方块的模式（原作 L162、L284~291）。名字从 Set to Air /「清除为空气」改成 Remove All /「清除」，和清除选定方块 / 清除选定以外对齐（第六批 6b）"
  },
  {
@@ -4000,7 +4000,7 @@
   "reason": "",
   "en": "Magical Building Wand (Remove Selected)",
   "zh_legacy": "魔力建筑之杖",
-  "zh": "建筑魔杖（清除选定方块）",
+  "zh": "创世神之杖（清除选定方块）",
   "notes": "原作 meta 2（提示行 essentialcraft.txt.fillMode.replaceSelected，叫「只替换选定方块」），代码里只把选区内和记下的方块同种的格子清成空气、不放任何东西（ItemMagicalBuilder L376~433），所以显示名和注册名一起改成「清除选定方块」，原注册名 magical_builder_replace（第六批 6b，batch6b.md §9「按原则定了」；还没上线，不用迁移，以后再改就要接旧名）。合成台放一根换下一个模式（原作 magical_builder_0~4.json 循环；移植后用保留 NBT 的无序配方，MRU、两个点、记下的方块都留着）。靠 MRU 驱动（MRUStaffItem，创造栏放空 / 满两份）；GUI 叠加层显示记下的方块（ItemOverlayMagicalBuilder）"
  },
  {
@@ -4014,7 +4014,7 @@
   "reason": "",
   "en": "Magical Building Wand (Remove All But Selected)",
   "zh_legacy": "魔力建筑之杖",
-  "zh": "建筑魔杖（清除选定以外）",
+  "zh": "创世神之杖（清除选定以外）",
   "notes": "原作 meta 3（提示行 essentialcraft.txt.fillMode.replaceButSelected，叫「替换选定以外」），代码里只把选区内和记下的方块不同种的格子清成空气、不放任何东西（ItemMagicalBuilder L376~433），所以显示名和注册名一起改成「清除选定以外」，原注册名 magical_builder_replace_others（第六批 6b，batch6b.md §9「按原则定了」；还没上线，不用迁移，以后再改就要接旧名）。合成台放一根换下一个模式（原作 magical_builder_0~4.json 循环；移植后用保留 NBT 的无序配方，MRU、两个点、记下的方块都留着）。靠 MRU 驱动（MRUStaffItem，创造栏放空 / 满两份）；GUI 叠加层显示记下的方块（ItemOverlayMagicalBuilder）"
  },
  {
@@ -4028,7 +4028,7 @@
   "reason": "",
   "en": "Magical Building Wand (Replace All)",
   "zh_legacy": "魔力建筑之杖",
-  "zh": "建筑魔杖（全部替换）",
+  "zh": "创世神之杖（全部替换）",
   "notes": "原作 meta 4（提示行 essentialcraft.txt.fillMode.replaceAll）：空气和液体格放选定方块，别的方块换成它。原作先吃方块再扣 MRU、直接 setBlockState 不发事件（L455~486）；移植后先确认材料和 MRU，破坏放行后再 placeGuarded，放置被拒的格子留空气、只扣 250（第六批 6b）。MRUStaffItem（创造栏放空 / 满两份）；物品格右下角画选定方块"
  },
  {
@@ -5080,5 +5080,103 @@
   "zh_legacy": null,
   "zh": "天灾之心刷怪蛋",
   "notes": "EC5 新增（第十三批 batch13.md §5.3）：天灾之心 的刷怪蛋（13e 预备注册，registry/ECCalamityHeart），只放创造栏（policy §4.7），点刷怪笼不改类型（同全息投影）"
+ },
+ {
+  "old_id": null,
+  "meta": null,
+  "old_key": null,
+  "new_id": "paving_wand",
+  "class": "PavingWandItem",
+  "tile": null,
+  "status": "port",
+  "reason": "",
+  "en": "Paving Wand",
+  "zh_legacy": null,
+  "zh": "铺设魔杖",
+  "notes": "EC5 新增（建筑魔杖升级第 2 批，tools/plan/builder_upgrade.md §2.1）：建筑魔杖的一阶，只有填充模式，形状两点 / 铺面 / 直线（默认铺面），一次至多 256 格（配置 general.builder.paver.*）；放进建筑魔杖的配方顶替一个白名单过滤器升成二阶，NBT 和 MRU 整份带过去。三阶不是新物品：5 个模式物品在魔力工作台升格后 NBT 写 builder_tier = 3，名字叫「建筑魔杖·升格（模式）」（语言键 item.essentialcraft5.magical_builder_<模式>.ascended）"
+ },
+ {
+  "old_id": null,
+  "meta": null,
+  "old_key": null,
+  "new_id": "builder_module_range",
+  "class": "BuilderModuleItem",
+  "tile": null,
+  "status": "port",
+  "reason": "",
+  "en": "Range Module",
+  "zh_legacy": null,
+  "zh": "扩域模块",
+  "notes": "EC5 新增（建筑魔杖升级第 2 批，tools/plan/builder_upgrade.md §2.2）：建筑魔杖模块，一次的格数 ×2、铺面 / 直线边长 ×1.4（向下取整），仍不超过 hard_max_volume；在工作台里和建筑魔杖或铺设魔杖合在一起装上（特殊配方 builder_module_install），拆走魔杖的操作包，装上的存在 NBT builder_modules；倍率在配置 general.builder.modules.*"
+ },
+ {
+  "old_id": null,
+  "meta": null,
+  "old_key": null,
+  "new_id": "builder_module_haste",
+  "class": "BuilderModuleItem",
+  "tile": null,
+  "status": "port",
+  "reason": "",
+  "en": "Haste Module",
+  "zh_legacy": null,
+  "zh": "疾工模块",
+  "notes": "EC5 新增（建筑魔杖升级第 2 批，tools/plan/builder_upgrade.md §2.2）：建筑魔杖模块，每刻格数上限 ×2（仍受全服每刻格数和耗时预算限制）；在工作台里和建筑魔杖或铺设魔杖合在一起装上（特殊配方 builder_module_install），拆走魔杖的操作包，装上的存在 NBT builder_modules；倍率在配置 general.builder.modules.*"
+ },
+ {
+  "old_id": null,
+  "meta": null,
+  "old_key": null,
+  "new_id": "builder_module_efficiency",
+  "class": "BuilderModuleItem",
+  "tile": null,
+  "status": "port",
+  "reason": "",
+  "en": "Efficiency Module",
+  "zh_legacy": null,
+  "zh": "节能模块",
+  "notes": "EC5 新增（建筑魔杖升级第 2 批，tools/plan/builder_upgrade.md §2.2）：建筑魔杖模块，每格 MRU ×0.6（向下取整，三阶先 ×0.8 再 ×0.6）；在工作台里和建筑魔杖或铺设魔杖合在一起装上（特殊配方 builder_module_install），拆走魔杖的操作包，装上的存在 NBT builder_modules；倍率在配置 general.builder.modules.*"
+ },
+ {
+  "old_id": null,
+  "meta": null,
+  "old_key": null,
+  "new_id": "builder_module_reach",
+  "class": "BuilderModuleItem",
+  "tile": null,
+  "status": "port",
+  "reason": "",
+  "en": "Reach Module",
+  "zh_legacy": null,
+  "zh": "远域模块",
+  "notes": "EC5 新增（建筑魔杖升级第 2 批，tools/plan/builder_upgrade.md §2.2）：建筑魔杖模块，施工距离 +32；铺面、沿面的远距离瞄准（48 格）在后面的小批做；在工作台里和建筑魔杖或铺设魔杖合在一起装上（特殊配方 builder_module_install），拆走魔杖的操作包，装上的存在 NBT builder_modules；倍率在配置 general.builder.modules.*"
+ },
+ {
+  "old_id": null,
+  "meta": null,
+  "old_key": null,
+  "new_id": "builder_module_mix",
+  "class": "BuilderModuleItem",
+  "tile": null,
+  "status": "port",
+  "reason": "",
+  "en": "Mixing Module",
+  "zh_legacy": null,
+  "zh": "混铺模块",
+  "notes": "EC5 新增（建筑魔杖升级第 2 批，tools/plan/builder_upgrade.md §2.2）：建筑魔杖模块，最多 4 种方块按比例铺（效果在后面的小批做，现在只占槽）；在工作台里和建筑魔杖或铺设魔杖合在一起装上（特殊配方 builder_module_install），拆走魔杖的操作包，装上的存在 NBT builder_modules；倍率在配置 general.builder.modules.*"
+ },
+ {
+  "old_id": null,
+  "meta": null,
+  "old_key": null,
+  "new_id": "builder_module_salvage",
+  "class": "BuilderModuleItem",
+  "tile": null,
+  "status": "port",
+  "reason": "",
+  "en": "Salvage Module",
+  "zh_legacy": null,
+  "zh": "回收模块",
+  "notes": "EC5 新增（建筑魔杖升级第 2 批，tools/plan/builder_upgrade.md §2.2）：建筑魔杖模块，拆下的先塞进背包类随身容器，可设丢弃清单；一阶装不上（效果在后面的小批做，现在只占槽）；在工作台里和建筑魔杖或铺设魔杖合在一起装上（特殊配方 builder_module_install），拆走魔杖的操作包，装上的存在 NBT builder_modules；倍率在配置 general.builder.modules.*"
  }
 ]

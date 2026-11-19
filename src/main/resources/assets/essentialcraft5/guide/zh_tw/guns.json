@@ -905,6 +905,199 @@
           "text": "原作裡的四種透鏡只改射線的顏色，這四種命中效果是這一版補上的。"
         }
       ]
+    },
+    {
+      "id": "gun_attunement",
+      "title": "槍械同調",
+      "icon": "essentialcraft5:rifle",
+      "summary": "射擊積累同調度，滿階獲得過載射線",
+      "if": "cfg:general.attunement.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "四種魔力槍械均可[[attunement/overview|同調]]，最高 4 階。同調度透過<em>射擊</em>積累：主手持槍時，射線每命中敵對生物一次獲得 {cfg:general.attunement.points_hit} 點，擊殺一隻再獲得 {cfg:general.attunement.points_kill} 點，擊殺首領獲得 {cfg:general.attunement.points_boss_kill} 點。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "必須由玩家本人主手持槍射擊。透鏡、飾品和範圍傷害造成的命中不計入。",
+            "目標與防掛機規則和劍相同，詳見[[attunement/points]]。",
+            "槍械與劍共用同一份武器[[attunement/budget|同調預算]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "各階效果"
+        },
+        {
+          "type": "table",
+          "header": [
+            "階",
+            "增傷",
+            "每發 MRU 消耗降低",
+            "護甲穿透",
+            "裝填冷卻縮短"
+          ],
+          "widths": [
+            1,
+            2,
+            3,
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "1",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:1|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:1|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:1|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:1|pct}"
+            ],
+            [
+              "2",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:2|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:2|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:2|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:2|pct}"
+            ],
+            [
+              "3",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:3|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:3|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:3|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:3|pct}"
+            ],
+            [
+              "4",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:4|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:4|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:4|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:4|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每發 MRU 消耗與裝填冷卻按開火的槍自身計算，副手開火同樣適用。增傷、護甲穿透和下文的彈道累積按主手的槍計算。只有手槍和狙擊步槍有裝填冷卻，至多縮短 {cfg:general.gear_growth.caps.cooldown_reduction|pct}。各項的計算方式詳見[[attunement/gear_stats]]。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+          "text": "彈道累積（{cfg:general.gear_growth.mru_gun.accumulate_stage} 階起）"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+          "text": "生物受到攻擊後約有半秒的受擊無敵時間，期間命中的射線傷害會被完全吞沒。主手的槍達到該階後，被吞沒的傷害會累積記錄，在下一發真正命中時補入，至多補入該發自身傷害的 {cfg:general.gear_growth.mru_gun.accumulate_ratio|pct}。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+          "text": "受擊無敵不會因此清除。{cfg:general.computer_modules.accumulator.forget_ticks|sec}內沒有新的累積時，已記錄的傷害作廢。突擊步槍、加特林等連射槍械受益最大。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+            "cfg:general.hoanna.portal_enabled",
+            "module:essentialcraft5:accumulator_module"
+          ],
+          "text": "宅男套裝的[[terminal/accumulator]]原理相同。兩者同時生效時，單發補入的上限取較大者。"
+        },
+        {
+          "type": "h",
+          "text": "過載射線（{cfg:general.gear_growth.mru_gun.overload.stage} 階覺醒）"
+        },
+        {
+          "type": "p",
+          "text": "達到該階後，每發命中為槍充能一格：突擊步槍和加特林命中 {cfg:general.gear_growth.mru_gun.overload.shots} 發充滿，手槍和狙擊步槍命中 {cfg:general.gear_growth.mru_gun.overload.shots_single} 發充滿。充滿時會播放音效，動作欄出現提示，物品格左側的充能條也會顯示已滿。"
+        },
+        {
+          "type": "p",
+          "text": "充滿後的下一發無論是否命中都會釋放過載：以該發命中的第一個目標為中心，未命中時以光束末端為中心，對半徑 {cfg:general.gear_growth.mru_gun.overload.radius} 格內至多 {cfg:general.gear_growth.mru_gun.overload.max_targets} 個目標各造成該發傷害的 {cfg:general.gear_growth.mru_gun.overload.ratio|pct}。釋放後充能清零，釋放過載的一發不計入充能。"
+        },
+        {
+          "type": "p",
+          "text": "過載造成的是[[attunement/gear_stats|範圍傷害]]，不計增傷，不積累同調度，也不觸發矩陣特性。"
+        },
+        {
+          "type": "h",
+          "text": "升階材料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升至",
+            "四角",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1 階",
+              "2 塊{item:essentialcraft5:magic_plate}、1 塊{item:essentialcraft5:pale_ingot}、1 顆{item:essentialcraft5:pale_gem}",
+              "2 萬"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "2 階",
+                "2 塊{item:essentialcraft5:mithriline_plate}、1 塊{item:essentialcraft5:matrix_crystal}、1 塊{item:essentialcraft5:void_plating}",
+                "4 萬"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "3 階",
+                "2 塊{item:essentialcraft5:demonic_plate}、8 個{item:essentialcraft5:aberrant_residue}、1 個{item:essentialcraft5:void_mru_reactor}",
+                "7 萬"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.shade.enabled"
+              ],
+              "cells": [
+                "4 階",
+                "1 個{item:essentialcraft5:calamity_remnant}、4 個{item:essentialcraft5:umbral_crystal}、1 個{item:essentialcraft5:demonic_core}、1 顆{item:minecraft:nether_star}",
+                "12 萬"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:machines.enrichment_chamber.shade.enabled"
+              ],
+              "cells": [
+                "4 階",
+                "眼下湊不齊",
+                "12 萬"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "2～4 階",
+                "眼下湊不齊",
+                "4 萬～12 萬"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "與其他同調裝備相同，將同調度已滿的槍置於[[crafting/magician_table|魔力工作台]]中央，四角放置材料。各階所需的矩陣階見[[attunement/stage_up]]。"
+        },
+        {
+          "type": "h",
+          "text": "更換槍械"
+        },
+        {
+          "type": "p",
+          "text": "更換槍械種類時，舊槍積累的同調度可將一半轉移給新槍，方法與[[attunement/transfer]]相同：新槍置於中央，舊槍置於左上角，右上角放 2 份{item:essentialcraft5:crystal_dust}，左下角放 1 塊{item:essentialcraft5:combined_magical_alloys}。四種槍械之間可任意轉移，劍與槍械之間不能轉移。"
+        }
+      ]
     }
   ]
 }

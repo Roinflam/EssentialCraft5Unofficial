@@ -9,6 +9,7 @@ import com.flameforge.essentialcraft5.item.VerdictBladeItem;
 import com.flameforge.essentialcraft5.item.WindArmorItem;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
 import com.flameforge.essentialcraft5.item.attunement.AttunementStageLines;
+import com.flameforge.essentialcraft5.item.attunement.GearGrowthConfig;
 import com.flameforge.essentialcraft5.item.ember.EmberKind;
 import com.flameforge.essentialcraft5.item.ember.ForgedSwordData;
 import com.flameforge.essentialcraft5.item.ember.ForgedSwordData.Element;
@@ -227,11 +228,11 @@ public final class AttunementTextTests {
         expect(problems, "余烬剑 1 阶", List.of("2"), args(swordLines.attunementStageLine(emberSword, 1)));
         expect(problems, "余烬剑 2 阶", List.of("50", "1.5"), args(swordLines.attunementStageLine(emberSword, 2)));
         String[][] verdict = {
-                {"3.5", "50"},
-                {"13", "4", "60"},
-                {"4.5", "70", "12"},
-                {"5", "80", "11"},
-                {"2", "5.5", "90", "10"},
+                {"4", "60"},
+                {"13", "5", "80"},
+                {"6", "100", "9.6"},
+                {"7", "120", "8.8"},
+                {"2", "8", "140", "8"},
         };
         for (int stage = 1; stage <= 5; stage++) {
             Component line = bladeLines.attunementStageLine(blade, stage);
@@ -242,7 +243,7 @@ public final class AttunementTextTests {
             // 断罪关掉（damage_multiplier 0）：只写裁断，二分跟着断罪一起不写
             VerdictBladeItem.Config.Values v = VerdictBladeItem.Config.DEFAULTS;
             VerdictBladeItem.Config.setTestOverrides(withJudgment(v, 0D, v.verdictPercent(), v.verdictCap()));
-            String[][] verdictOnly = {{"4", "60"}, {"4.5", "70"}, {"5", "80"}, {"5.5", "90"}};
+            String[][] verdictOnly = {{"5", "80"}, {"6", "100"}, {"7", "120"}, {"8", "140"}};
             for (int stage = 2; stage <= 5; stage++) {
                 Component line = bladeLines.attunementStageLine(blade, stage);
                 expect(problems, "断罪关掉的 " + stage + " 阶的键", "tooltip.essentialcraft5.attunement.verdict_blade.stage_1", key(line));
@@ -255,8 +256,8 @@ public final class AttunementTextTests {
             helper.assertTrue(bladeLines.attunementStageLine(blade, 1) == null, "裁断关掉，1 阶那一行应该不写");
             expect(problems, "裁断关掉的 2 阶", "tooltip.essentialcraft5.attunement.verdict_blade.stage_2.judgment_only",
                     key(bladeLines.attunementStageLine(blade, 2)));
-            expect(problems, "裁断关掉的 4 阶", List.of("11"), args(bladeLines.attunementStageLine(blade, 4)));
-            expect(problems, "裁断关掉的 5 阶", List.of("2", "10"), args(bladeLines.attunementStageLine(blade, 5)));
+            expect(problems, "裁断关掉的 4 阶", List.of("8.8"), args(bladeLines.attunementStageLine(blade, 4)));
+            expect(problems, "裁断关掉的 5 阶", List.of("2", "8"), args(bladeLines.attunementStageLine(blade, 5)));
             VerdictBladeItem.Config.setTestOverrides(withJudgment(v, 0D, v.verdictPercent(), 0D));
             helper.assertTrue(bladeLines.attunementStageLine(blade, 3) == null, "裁断、断罪都关了，3 阶那一行应该不写");
         } finally {
@@ -286,7 +287,10 @@ public final class AttunementTextTests {
                 v.cooldown(), v.cooldownStage(), v.bisectTicks());
     }
 
-    /** 宅男套装各阶那一行：默认 225 MRU、×2、6 秒 1%、200 MRU 50% ×3、25% 1 秒 60 秒；改了过载屏障的配置跟着变 */
+    /**
+     * 宅男套装各阶那一行：默认 225 MRU、×2、6 秒 1.5%、200 MRU 50% ×3、25% 1 秒 38.25 秒（900 刻 × 0.85）；改了过载屏障的配置跟着变
+     * （门槛、时长读 general.computer_armor.attuned，冷却读 general.gear_growth.computer_armor.overload_cooldown）
+     */
     @GameTest(template = EMPTY)
     public static void computerStageLinesFollowConfig(GameTestHelper helper) {
         ItemStack chest = new ItemStack(ECComputer.COMPUTER_CHESTPLATE.get());
@@ -295,9 +299,9 @@ public final class AttunementTextTests {
         String[][] expected = {
                 {"225"},
                 {"2"},
-                {"6", "1"},
+                {"6", "1.5"},
                 {"200", "50", "3"},
-                {"25", "1", "60"},
+                {"25", "1", "38.25"},
         };
         for (int stage = 1; stage <= 5; stage++) {
             Component line = lines.attunementStageLine(chest, stage);
@@ -307,9 +311,11 @@ public final class AttunementTextTests {
         helper.assertTrue(lines.attunementStageLine(chest, 6) == null, "没有 6 阶");
         try {
             ECComputer.Config.setAttunedTestOverrides(ECComputer.Config.ATTUNED_DEFAULTS.toBuilder().overload(0.5D, 40, 2400).build());
-            expect(problems, "改过的 5 阶", List.of("50", "2", "120"), args(lines.attunementStageLine(chest, 5)));
+            GearGrowthConfig.setTestOverride("computer_armor.overload_cooldown", 2400);
+            expect(problems, "改过的 5 阶", List.of("50", "2", "102"), args(lines.attunementStageLine(chest, 5)));
         } finally {
             ECComputer.Config.setAttunedTestOverrides(null);
+            GearGrowthConfig.clearTestOverrides();
         }
         report(helper, "宅男的阶效果行", problems);
         helper.succeed();
@@ -388,6 +394,135 @@ public final class AttunementTextTests {
         helper.succeed();
     }
 
+    /**
+     * 同调块放不下屏幕时让出哪几行（AttunementTooltipFit）。附魔多的满阶裁决之刃在 720p、界面缩放 3、不按 Shift 时会差一行：
+     * 不按 Shift 先去掉逐阶效果、其余照原样和原顺序留；还不够只留标题；连标题都放不下整块不写；按住 Shift 直接只留标题（不先去逐阶效果）。
+     */
+    @GameTest(template = EMPTY)
+    public static void attunementBlockYieldsWhenTooTall(GameTestHelper helper) {
+        Component title = Component.literal("同调 满阶");
+        List<Component> block = new ArrayList<>();
+        block.add(title);
+        for (int n = 1; n <= 5; n++) {
+            block.add(Component.translatable(com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.EFFECT_KEY, n, Component.literal("效果" + n)));
+        }
+        Component stats = Component.translatable("tooltip.essentialcraft5.attunement.gear_stats");
+        Component awakening = Component.literal("觉醒");
+        Component hint = Component.translatable("tooltip.essentialcraft5.attunement.shift_notes");
+        block.addAll(List.of(stats, awakening, hint));
+        List<String> problems = new ArrayList<>();
+        // fits：原有提示框 15 行，屏幕放得下 max 行
+        java.util.function.IntFunction<java.util.function.Predicate<List<Component>>> screen = max -> extra -> 15 + extra.size() <= max;
+        expect(problems, "放得下原样", block, com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.fit(block, false, screen.apply(24)));
+        expect(problems, "不按 Shift 差一行：去逐阶效果", List.of(title, stats, awakening, hint),
+                com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.fit(block, false, screen.apply(23)));
+        expect(problems, "不按 Shift 去了还不够：只留标题", List.of(title),
+                com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.fit(block, false, screen.apply(17)));
+        expect(problems, "标题都放不下：整块不写", List.of(),
+                com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.fit(block, false, screen.apply(15)));
+        expect(problems, "按住 Shift 差一行：只留标题", List.of(title),
+                com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.fit(block, true, screen.apply(23)));
+        report(helper, "同调块让行", problems);
+        helper.succeed();
+    }
+
+    /**
+     * 按住 Shift 同调块让掉了物品说明还放不下：从说明末尾往前截最少的几行，末尾换一行「……还有 N 行」；
+     * 名字、附魔行、属性行不动；放得下不截；说明全截了还放不下也只截说明。
+     */
+    @GameTest(template = EMPTY)
+    public static void attunementNotesTruncateWhenTooTall(GameTestHelper helper) {
+        java.util.function.Supplier<List<Component>> tooltip = () -> {
+            List<Component> list = new ArrayList<>();
+            list.add(Component.literal("名字"));
+            for (int i = 1; i <= 10; i++) {
+                list.add(Component.literal("说明" + i));
+            }
+            list.add(Component.literal("锋利 V"));
+            list.add(Component.literal(""));
+            list.add(Component.literal("在主手时："));
+            list.add(Component.literal("攻击伤害"));
+            return list;
+        };
+        java.util.function.IntFunction<Component> more = n -> Component.translatable("tooltip.essentialcraft5.attunement.notes_more", n);
+        java.util.function.IntFunction<java.util.function.Predicate<List<Component>>> screen = max -> lines -> lines.size() <= max;
+        List<String> problems = new ArrayList<>();
+
+        List<Component> fits = tooltip.get();
+        expect(problems, "放得下不截（去掉行数）", 0,
+                com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.truncateNotes(fits, 1, 11, more, screen.apply(15)));
+        expect(problems, "放得下不截（行数）", 15, fits.size());
+
+        // 屏幕放 12 行：15 行要少 3 行，截 4 行说明、补一行「还有 4 行」
+        List<Component> cut = tooltip.get();
+        expect(problems, "差 3 行截几行", 4,
+                com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.truncateNotes(cut, 1, 11, more, screen.apply(12)));
+        expect(problems, "截后行数", 12, cut.size());
+        expect(problems, "名字不动", "名字", cut.get(0).getString());
+        expect(problems, "说明从末尾截，前面的留着", "说明6", cut.get(6).getString());
+        expect(problems, "末尾补「还有 N 行」", "tooltip.essentialcraft5.attunement.notes_more[4]",
+                cut.get(7).getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents t
+                        ? t.getKey() + java.util.Arrays.toString(t.getArgs()) : cut.get(7).getString());
+        expect(problems, "附魔行、属性行不动", "锋利 V|在主手时：|攻击伤害",
+                cut.get(8).getString() + "|" + cut.get(10).getString() + "|" + cut.get(11).getString());
+
+        // 屏幕只放 3 行：说明全截了也放不下，只截说明（10 行），剩名字、「还有 10 行」、附魔行和属性行
+        List<Component> all = tooltip.get();
+        expect(problems, "放不下时说明全截", 10,
+                com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.truncateNotes(all, 1, 11, more, screen.apply(3)));
+        expect(problems, "全截后行数", 6, all.size());
+        expect(problems, "全截后附魔行还在", "锋利 V", all.get(2).getString());
+
+        // 没有说明（范围为空）不动
+        List<Component> none = tooltip.get();
+        expect(problems, "没有说明不动", 0,
+                com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.truncateNotes(none, 1, 1, more, screen.apply(3)));
+        report(helper, "物品说明截断", problems);
+        helper.succeed();
+    }
+
+    /**
+     * MRU 护盾盔甲按住 Shift 时，MRU 那一行在截断之前被就地换成「MRU …（满电约挡 …）」（翻译文字、第一个参数是原来那一行）：
+     * 找说明那一段时这一行照样认得出，截断照常生效；别的行对不上时仍然找不到。
+     */
+    @GameTest(template = EMPTY)
+    public static void attunementNotesTruncateWithMergedMruLine(GameTestHelper helper) {
+        Component mruLine = Component.translatable("tooltip.essentialcraft5.mru", 100, 1000);
+        List<Component> own = new ArrayList<>();
+        own.add(Component.literal("护盾说明"));
+        own.add(mruLine);
+        for (int i = 1; i <= 8; i++) {
+            own.add(Component.literal("说明" + i));
+        }
+        List<Component> tooltip = new ArrayList<>();
+        tooltip.add(Component.literal("名字"));
+        tooltip.addAll(own);
+        tooltip.add(Component.literal("在身上时："));
+        tooltip.add(Component.literal("护甲"));
+        tooltip.set(2, Component.translatable("tooltip.essentialcraft5.armor_charge.with_mru", mruLine.copy(), 20, "12")
+                .copy().withStyle(mruLine.getStyle()));
+        List<String> problems = new ArrayList<>();
+        int at = com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.indexOfRun(tooltip, own);
+        expect(problems, "MRU 行被换过仍找得到说明段", 1, at);
+        java.util.function.IntFunction<Component> more = n -> Component.translatable("tooltip.essentialcraft5.attunement.notes_more", n);
+        int removed = com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.truncateNotes(tooltip, at, at + own.size(),
+                more, lines -> lines.size() <= 8);
+        expect(problems, "13 行放 8 行：截 6 行说明", 6, removed);
+        expect(problems, "截后行数", 8, tooltip.size());
+        expect(problems, "合并后的 MRU 行留着", "tooltip.essentialcraft5.armor_charge.with_mru",
+                tooltip.get(2).getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents t ? t.getKey() : "");
+        expect(problems, "属性行不动", "护甲", tooltip.get(tooltip.size() - 1).getString());
+
+        List<Component> changed = new ArrayList<>();
+        changed.add(Component.literal("名字"));
+        changed.addAll(own);
+        changed.set(3, Component.literal("别的文字"));
+        expect(problems, "别的行对不上照旧找不到", -1,
+                com.flameforge.essentialcraft5.item.attunement.AttunementTooltipFit.indexOfRun(changed, own));
+        report(helper, "MRU 行合并后截断", problems);
+        helper.succeed();
+    }
+
     // ================================================================ 配方图、手册
 
     /** 升格配方图下面只写「升格要矩阵 n 阶」（门槛照旧按升到 3 阶算）；普通升阶照旧写「升到 n 阶要矩阵 m 阶」 */
@@ -435,7 +570,7 @@ public final class AttunementTextTests {
 
     /**
      * 手册里 {@code addcfg:键} 引用的键都存在、是数字；同调一章裁决之刃那张阶表照引擎的写法算，默认配置下就是设计数值
-     * （裁断 3.5% / 50 … 5.5% / 90，断罪冷却 13 / 12 / 11 / 10 秒，对 20 生命的僵尸 0.6）。
+     * （裁断 4% / 60 … 8% / 140，2 阶断罪冷却 13 秒，对 20 生命的僵尸 0.6；3 阶起的冷却打折手册写「缩短 X%」，不现算秒数）。
      */
     @GameTest(template = EMPTY)
     public static void guideVerdictTableFollowsConfig(GameTestHelper helper) {
@@ -452,17 +587,16 @@ public final class AttunementTextTests {
                         problems.add(language + "：{cfg:" + token + "} 加的 " + part.substring(7) + " 不是数字配置");
                     }
                 }
-                if (token.startsWith("general.verdict_blade.")) {
+                if (token.startsWith("general.verdict_blade.") || token.startsWith("general.gear_growth.verdict_blade.")) {
                     tokens.add(token);
                 }
             }
             for (String[] row : new String[][]{
-                    {"general.verdict_blade.verdict.percent_per_stage|mul:1|addcfg:general.verdict_blade.verdict.percent|pctv", "3.5"},
-                    {"general.verdict_blade.verdict.percent_per_stage|mul:5|addcfg:general.verdict_blade.verdict.percent|pctv", "5.5"},
-                    {"general.verdict_blade.verdict.cap_per_stage|mul:1|addcfg:general.verdict_blade.verdict.cap", "50"},
-                    {"general.verdict_blade.verdict.cap_per_stage|mul:5|addcfg:general.verdict_blade.verdict.cap", "90"},
+                    {"general.gear_growth.verdict_blade.percent_per_stage|mul:1|addcfg:general.verdict_blade.verdict.percent|pctv", "4"},
+                    {"general.gear_growth.verdict_blade.percent_per_stage|mul:5|addcfg:general.verdict_blade.verdict.percent|pctv", "8"},
+                    {"general.gear_growth.verdict_blade.cap_per_stage|mul:1|addcfg:general.verdict_blade.verdict.cap", "60"},
+                    {"general.gear_growth.verdict_blade.cap_per_stage|mul:5|addcfg:general.verdict_blade.verdict.cap", "140"},
                     {"general.verdict_blade.judgment.cooldown_per_stage|mul:-2|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec", "260"},
-                    {"general.verdict_blade.judgment.cooldown_per_stage|mul:-5|addcfg:general.verdict_blade.judgment.cooldown|max:0|sec", "200"},
                     {"general.verdict_blade.verdict.percent|mul:0.2", "0.6"},
             }) {
                 if (!tokens.contains(row[0])) {

@@ -232,6 +232,7 @@ public final class ECRegistries {
         ECSunkenDistrict.init();
         ECInquisitoriumOutpost.init();
         ECGuide.init();
+        ECVfx.init();
 
         BLOCKS.register(modBus);
         ITEMS.register(modBus);

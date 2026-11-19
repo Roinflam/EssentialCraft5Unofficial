@@ -115,6 +115,8 @@ public class ForgedElementalSwordItem extends SwordItem implements CreativeVaria
     public static final int MAX_EMBER_DAMAGE = 36;
     /** 余烬伤害 + 主元素最多 36 + 8，留点余量；属性表按这个下标缓存 */
     private static final int MAX_CACHED_DAMAGE = 64;
+    /** 主手攻击伤害那一条修饰符的 UUID（原版 {@code Item.BASE_ATTACK_DAMAGE_UUID}，那边是 protected）：同调按阶加的攻击并进这一条 */
+    public static final UUID ATTACK_MODIFIER_ID = BASE_ATTACK_DAMAGE_UUID;
 
     /** 主元素命中的时长（刻）：水、地 40，风 50；火着火 5 秒 */
     public static final int PRIMARY_DEBUFF_TICKS = 40;
@@ -339,8 +341,19 @@ public class ForgedElementalSwordItem extends SwordItem implements CreativeVaria
                 }
             }
         }
+        if (player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+            // 满阶觉醒：元素爆发（只认余烬剑家族，裁决之刃不继承）
+            com.flameforge.essentialcraft5.item.ember.ElementBurst.onHit(stack, target, serverPlayer, data.primary());
+        }
         return true;
     }
+
+    /** 名字随同调阶变色、满阶渐变、带战痕后缀（{@code item/attunement/AttunementLook}） */
+    @Override
+    public net.minecraft.network.chat.Component getName(ItemStack stack) {
+        return com.flameforge.essentialcraft5.item.attunement.AttunementLook.name(stack, super.getName(stack));
+    }
+
 
     // ------------------------------------------------------------------
     // 同调阶（batch13.md §4.4）

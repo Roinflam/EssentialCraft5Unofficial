@@ -2,6 +2,7 @@ package com.flameforge.essentialcraft5.client.render;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.blockentity.RayTowerBlockEntity;
+import com.flameforge.essentialcraft5.client.vfx.machine.MachineVfx;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -73,6 +74,7 @@ public class RayTowerRenderer implements BlockEntityRenderer<RayTowerBlockEntity
         pose.mulPose(new Quaternionf().setAngleAxis(TILT, SIN_45, 0F, SIN_45));
         pose.mulPose(Axis.YP.rotationDegrees(spin));
         cube.render(pose, consumer, light, overlay);
+        MachineVfx.submit(MachineVfx.RAY, be, be.getBlockPos().getX() + 0.5D, be.getBlockPos().getY() + 2D, be.getBlockPos().getZ() + 0.5D);
         pose.popPose();
     }
 }

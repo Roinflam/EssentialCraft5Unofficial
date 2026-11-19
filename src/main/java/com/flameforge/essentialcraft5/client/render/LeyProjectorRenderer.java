@@ -2,6 +2,7 @@ package com.flameforge.essentialcraft5.client.render;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.blockentity.LeyProjectorBlockEntity;
+import com.flameforge.essentialcraft5.client.vfx.machine.MachineVfx;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.LightTexture;
@@ -43,6 +44,7 @@ public class LeyProjectorRenderer implements BlockEntityRenderer<LeyProjectorBlo
             return;
         }
         renderBeam(level, be.getBlockPos().getY(), LeyProjectorBlockEntity.BEAM_LENGTH, partialTick, pose, buffers);
+        MachineVfx.submit(MachineVfx.LEY, be, be.getBlockPos().getX() + 0.5D, be.getBlockPos().getY(), be.getBlockPos().getZ() + 0.5D);
     }
 
     /**

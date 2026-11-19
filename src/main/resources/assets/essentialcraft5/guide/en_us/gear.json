@@ -673,7 +673,7 @@
             ],
             [
               "{item:essentialcraft5:void_chestplate}",
-              "A <t>20%</t> chance to dodge any damage except falling out of the world and /kill, losing no health and spending no MRU"
+              "A <t>{cfg:general.gear_growth.void_armor.dodge|stage:0|pct}</t> chance to dodge any damage except falling out of the world and /kill, losing no health and spending no MRU"
             ],
             [
               "{item:essentialcraft5:void_leggings}",
@@ -1089,6 +1089,318 @@
           "type": "tip",
           "style": "lore",
           "text": "The original research book subtitled it \"A multitool?\" and said it could stand in for \"pretty much, any tool\". In the original, mining a single block while sneaking was free, yet blocks you weren't allowed to mine still cost MRU."
+        }
+      ]
+    },
+    {
+      "id": "paving_wand",
+      "title": "{item:essentialcraft5:paving_wand}",
+      "icon": "essentialcraft5:paving_wand",
+      "summary": "Lay a whole floor in one click; the entry-level building wand",
+      "complete": "essentialcraft5:guide/gear/paving_wand",
+      "optional": true,
+      "items": [
+        "essentialcraft5:paving_wand",
+        {
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:builder_module_range",
+            "essentialcraft5:builder_module_haste",
+            "essentialcraft5:builder_module_efficiency",
+            "essentialcraft5:builder_module_reach",
+            "essentialcraft5:builder_module_mix",
+            "essentialcraft5:builder_module_salvage"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>Goal</em> (optional): craft a {item:essentialcraft5:paving_wand}. One right-click on the ground lays a whole floor, path or platform from the blocks you carry. It is the first tier of the building wand: it only places blocks into empty spots and never breaks anything."
+        },
+        {
+          "type": "h",
+          "text": "Prepare"
+        },
+        {
+          "type": "p",
+          "text": "{item:essentialcraft5:world_interactor} ×1, {item:essentialcraft5:pale_plate} ×2, {item:essentialcraft5:magic_fortified_plating} ×2, {item:essentialcraft5:elemental_core} ×1 and {item:essentialcraft5:earth_focus} ×1. It comes out set to the Plane shape."
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:builder/paving_wand"
+        },
+        {
+          "type": "p",
+          "text": "The World Interacting Device and fortified plating are covered in [[crafting/magician_crafts]], pale plates in [[alloys/pale]], the elemental core in [[elements/parts]] and the earth focus in [[essence/fuel_and_focus]]."
+        },
+        {
+          "type": "h",
+          "text": "How to use it"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "Sneak + right-click a block to <hl>select</hl> it; that is the block the wand lays. With a block in your off hand, the wand lays that one instead, with no need to select it.",
+            "Carry that block, then right-click the top of a block: the wand lays a layer above it, centred on that block, 5 × 5 by default. Right-click the air to lay it at your feet.",
+            "Hold the <hl>wand key</hl> ({keybind:key.essentialcraft5.builder_wand}, rebindable in the controls) and scroll to make the area larger or smaller.",
+            "Keep holding the wand and stay close while it works. Sneak + right-click the air to stop part-way; whatever is already laid stays."
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "Done when",
+          "text": "You have the Paving Wand in your inventory. Point it at the ground and the area to be laid is marked out; right-click and the blocks spread outwards ring by ring from the spot you clicked."
+        },
+        {
+          "type": "h",
+          "text": "Three shapes"
+        },
+        {
+          "type": "p",
+          "text": "The <hl>shape</hl> decides which blocks are covered. The Paving Wand has three, Two Points, Plane and Line, switched on the Area page of the Blueprint Table described below. The current shape and size appear in the wand's tooltip and below the crosshair while you hold it."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Shape",
+            "How to use it",
+            "Default size"
+          ],
+          "widths": [
+            2,
+            7,
+            2
+          ],
+          "rows": [
+            [
+              "Two Points",
+              "Right-click two blocks to set the corners; the box between them is the selection. Right-click the air to start. When nothing is running, sneak + right-click the air clears the corners",
+              "—"
+            ],
+            [
+              "Plane",
+              "Right-click the top or bottom of a block to lay a layer above or below it, centred on that block; right-click a side to lay it outwards from that side; right-click the air to lay it at your feet",
+              "<t>5</t> × <t>5</t>"
+            ],
+            [
+              "Line",
+              "Starts from the block just outside the face you click and runs the way you face; right-click the air to start at your feet",
+              "<t>1</t> wide, <t>8</t> long"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "With Plane and Line a single right-click starts the work; no corners are needed. Sneak + right-click on a block still selects it, and sneak + right-click in the air still stops.",
+            "Hold the wand key and scroll to resize: a Plane grows or shrinks on both sides at once and becomes a square, a Line only changes length. Add sneak to change only the length of a Plane or only the width of a Line. While the wand key is held, scrolling does not change the hotbar slot.",
+            "A side can be at most {cfg:general.builder.paver.max_side} blocks, one job at most {cfg:general.builder.paver.max_volume} blocks, and the two corners at most {cfg:general.builder.paver.max_point_distance} blocks apart. Length runs the way you face and width spreads to both sides; with an even width the extra block goes to your right.",
+            "The area under the crosshair is marked out, and spots you lack the material or MRU for are shown in red.",
+            "The line below the crosshair shows the shape, size, how many blocks will be placed, how much material you carry and the MRU the job needs, with any shortfall in red. While building it shows progress and the time left, and it also says when the job is paused, queued or waiting for a second click."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "The Blueprint Table"
+        },
+        {
+          "type": "p",
+          "text": "Hold the wand and tap the wand key to spread out the <hl>Blueprint Table</hl> across the screen; tap it again or press Esc to put it away. Shape, size, selected block and modules are all set here, and the blueprint on the left updates as you change them."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The top bar shows the wand's name, tier and stored MRU.",
+            "On the left is the blueprint, a top-down drawing of every block this job will touch, with blocks to be placed painted in that block's colour. Below it are the shape, size, number of blocks to place and the MRU the job needs, in red if you are short. While building, the blueprint fills in block by block.",
+            "Area page: pick the shape and mode; the Paving Wand only has Fill. Adjust the size with the plus and minus buttons below the blueprint, or hold the wand key and scroll.",
+            "Blocks page: lists every block you could build with, from your inventory and carried containers, sorted by count. Click one to make it the selected block. With a Mixing Module fitted, the mix table sits on the right.",
+            "Modules page: lists the fitted modules; each can be switched off or removed on its own, and removed modules go back to your inventory. Below them are the wand's current limits.",
+            "The bottom bar has Undo last and Stop at either end. Between them is the job that can be undone, with its shape, block count and how long ago it was placed, and the progress while building. When nothing can be undone the button is greyed out and the reason is shown.",
+            "While a job is running, paused or queued, every setting except Undo last and Stop is greyed out; stop first to change anything. Resizing by holding the wand key and scrolling also needs the job stopped.",
+            "While the Blueprint Table is open, the line below the crosshair is hidden."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Materials and MRU"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It only uses items that aren't renamed and hold nothing: your inventory first, then your off hand.",
+            {
+              "if": "cfg:general.builder.allow_container_items",
+              "text": "When those run short it takes from containers you carry, meaning bag-like items with their own slots, in your inventory, off hand, armor or accessory slots. Stacked containers and containers inside containers are left alone, and nothing is taken from carried containers while another container screen is open."
+            },
+            {
+              "if": "cfg:general.builder.allow_container_items",
+              "text": "Material that a container's own rules won't let out is not counted as carried, nor when checking whether you have enough before starting."
+            },
+            "The wand holds 5,000 MRU of its own and comes out empty, so charge it in the [[storage/charging_chamber]]. It draws from the storage items you carry first ([[storage/soul_storage]]) and only then from itself.",
+            "Each block placed costs 25 MRU; spots that already hold a block and skipped spots cost nothing. Filling the largest area takes {cfg:general.builder.paver.max_volume|mul:25} MRU.",
+            {
+              "if": "cfg:general.builder.material_pause_seconds>0",
+              "text": "When materials or MRU run out it <hl>pauses</hl> for {cfg:general.builder.material_pause_seconds} seconds and carries on if you top up in time; otherwise it stops and keeps what is already laid."
+            },
+            "For a very large job, or when you clearly lack the materials or MRU, the first right-click only warns you. Right-click again within 3 seconds to start that same job."
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.builder.undo_window_seconds>0",
+          "text": "Undo"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.builder.undo_window_seconds>0",
+          "items": [
+            "Hold the wand key and right-click, or click Undo last on the Blueprint Table, to undo the last placement: the blocks are taken back and the material is refunded one for one. MRU is not refunded.",
+            "Only the most recent placement can be undone, within {cfg:general.builder.undo_window_seconds} seconds, in the same dimension, and no farther from the area than the wand's work range.",
+            "Spots that have since been mined, replaced with another block, grown, or had a slab completed into a double slab are left alone and refund nothing.",
+            "Undo claims blocks by type: if a spot later holds the same kind of block again, whoever placed it and however it got there, it is taken back and refunded too.",
+            "If an undo is interrupted, the rest stays on record and can be undone later. The record is cleared when you log out."
+          ]
+        },
+        {
+          "type": "h",
+          "text": "Modules"
+        },
+        {
+          "type": "p",
+          "text": "The Paving Wand has 2 module slots. Put the wand and one module in a crafting grid with nothing else, and the result is the wand with that module fitted. Each kind of module fits only once; modules are removed on the Modules page of the Blueprint Table."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Module",
+            "Effect"
+          ],
+          "widths": [
+            3,
+            7
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:builder_module_range}",
+              "Blocks per job ×{cfg:general.builder.modules.range.volume_multiplier}, sides ×{cfg:general.builder.modules.range.side_multiplier}"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_haste}",
+              "Blocks per tick ×{cfg:general.builder.modules.haste.cells_multiplier}"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_efficiency}",
+              "MRU per block ×{cfg:general.builder.modules.efficiency.cost_multiplier}"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_reach}",
+              "Work range +{cfg:general.builder.modules.reach.reach_bonus} blocks; a Plane can be aimed as far as the work range"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_mix}",
+              "Lays up to {cfg:general.builder.modules.mix.max_kinds} kinds of blocks mixed in set proportions"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "With a Reach Module, the area is still marked out when the crosshair is on a distant block, and a right-click starts the work there.",
+            "With a Mixing Module, set up the mix table on the Blocks page of the Blueprint Table: give each block a weight from 1 to 9, and higher weights are laid more often. When one kind runs out, the others fill in.",
+            "The {item:essentialcraft5:builder_module_salvage} only fits a Magical Building Wand, not the Paving Wand."
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Recipes and full details for every module are in [[void_machines/builder_module]]."
+        },
+        {
+          "type": "recipe",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:builder_module_range",
+            "essentialcraft5:builder_module_haste",
+            "essentialcraft5:builder_module_efficiency",
+            "essentialcraft5:builder_module_reach",
+            "essentialcraft5:builder_module_mix"
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Upgrading to tier 2"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "Once you have materials from Hoanna, the Paving Wand can be upgraded into the tier 2 [[void_machines/magical_builder|Magical Building Wand]]: lay out the Magical Building Wand recipe with the Paving Wand in place of one of the whitelist filters. Stored MRU, the selected block and fitted modules are kept, and the result is in Fill mode."
+        },
+        {
+          "type": "recipe",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "recipe": "essentialcraft5:builder/magical_builder_from_paver",
+          "caption": "Either the upper or the lower filter can be replaced"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "Pitfall",
+          "text": "Blocks in someone else's claim are left alone and cost nothing, but once {cfg:general.builder.denied_limit} have been refused the wand stops, so keep clear of other people's claims. Also, some blocks do something extra when placed by hand, such as using up two items or storing extra data. The wand only places the block itself, so such blocks may not turn out the same as hand-placed ones."
+        },
+        {
+          "type": "h",
+          "text": "Fine print"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Largest job",
+              "{cfg:general.builder.paver.max_volume} blocks"
+            ],
+            [
+              "Plane and Line sides",
+              "up to {cfg:general.builder.paver.max_side} blocks"
+            ],
+            [
+              "Corners at most",
+              "{cfg:general.builder.paver.max_point_distance} blocks apart"
+            ],
+            [
+              "Work range",
+              "within {cfg:general.builder.paver.max_reach} blocks"
+            ],
+            [
+              "Speed",
+              "up to {cfg:general.builder.paver.cells_per_tick} blocks per tick"
+            ],
+            {
+              "if": "cfg:general.builder.undo_window_seconds>0",
+              "cells": [
+                "Undo window",
+                "{cfg:general.builder.undo_window_seconds} seconds"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Blocks face the way they would if you placed them by hand from where you stand, so stairs and the like follow the direction you face. Slabs go in as bottom halves, candles and sea pickles as one, and crops start freshly planted.",
+            "If the new block can't stay in a spot, such as a flower on stone or kelp out of water, or someone is standing there, the spot is left untouched and costs nothing. The message at the end says how many spots were skipped.",
+            "Sand, gravel and other falling blocks are skipped where there is nothing under them, so no falling blocks are spawned.",
+            "It stops if you change what's in your hand, walk out of work range or change dimension. Each player works one area at a time. Starting another while one runs queues it, and if too many players are building at once you wait your turn; it starts by itself.",
+            "In Creative mode it costs no MRU or materials.",
+            "The marked-out area, the line below the crosshair and the size that asks for a second click can all be changed in the mod's client settings."
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "<em>Further reading</em>: to remove or replace blocks, raise walls or cover uneven ground, you need the tier 2 [[void_machines/magical_builder|Magical Building Wand]]."
         }
       ]
     },

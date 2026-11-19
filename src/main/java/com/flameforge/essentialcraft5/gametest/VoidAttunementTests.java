@@ -18,6 +18,10 @@ import com.flameforge.essentialcraft5.item.armor.MRUShield;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
 import com.flameforge.essentialcraft5.item.attunement.AttunementConfig;
 import com.flameforge.essentialcraft5.item.attunement.AttunementGains;
+import com.flameforge.essentialcraft5.item.attunement.GearGrowthConfig;
+import com.flameforge.essentialcraft5.item.attunement.AttunementFamily;
+import com.flameforge.essentialcraft5.item.attunement.GearStat;
+import com.flameforge.essentialcraft5.item.attunement.GearStatSheet;
 import com.flameforge.essentialcraft5.lore.ScrollVolumes;
 import com.flameforge.essentialcraft5.matrix.MatrixRank;
 import com.flameforge.essentialcraft5.player.PlayerDataEvents;
@@ -266,7 +270,7 @@ public final class VoidAttunementTests {
     // ================================================================ 容量、单价、元素
 
     /**
-     * 默认 5 万、1 阶起 10 万；升阶后同一个物品当场按新容量（能力现读），复制出来的也对；3 阶单价 350；
+     * 默认 5 万、1 阶起 10 万；升阶后同一个物品当场按新容量（能力现读），复制出来的也对；1 阶起单价 −5%（380），3 阶 400 × 0.875 × 0.95 ≈ 333；
      * 配置改成容量 1000、单价 0：读到的存量按新容量夹，有电的四件白挡、电不动，没电的那件照样不挡
      */
     @GameTest(template = EMPTY)
@@ -283,7 +287,7 @@ public final class VoidAttunementTests {
         helper.assertTrue(mru(copy) == 100_000 && copy.getCapability(ECCapabilities.MRU_ITEM).map(IMRUHandlerItem::getMaxMRU).orElse(0) == 100_000,
                 "复制出来的（能力先建、NBT 后抄）照样是 1 阶容量和存量");
 
-        int[] prices = {400, 400, 400, 350, 350};
+        int[] prices = {400, 380, 380, 333, 333};
         for (int stage = 0; stage <= 4; stage++) {
             ItemStack stack = piece(ArmorItem.Type.HELMET, stage, 0);
             helper.assertTrue(VoidArmorItem.price(stack) == prices[stage], stage + " 阶单价应是 " + prices[stage] + "，实际 " + VoidArmorItem.price(stack));
@@ -310,8 +314,8 @@ public final class VoidAttunementTests {
     }
 
     /**
-     * 3 阶起元素伤害（火、爆炸）照份额挡、每点 700（350 × 2）；2 阶不挡元素；魔法、无视护甲的着火 3 阶也不挡；物理 3 阶每点 350。
-     * 实打：3 阶全套挨 8 点火（in_fire）四件各扣 700 / 2 100 / 1 400 / 700、不掉血
+     * 3 阶起元素伤害（火、爆炸）照份额挡、每点 665（400 × 0.875 × 0.95 × 2）；2 阶不挡元素；魔法、没有攻击者的着火 3 阶也不挡；物理 3 阶每点 ×0.875 × 0.95。
+     * 实打：3 阶全套挨 8 点火（in_fire）四件各扣 665 / 1 995 / 1 330 / 665、不掉血
      */
     @GameTest(template = EMPTY)
     public static void voidAttunedElementalFromStageThree(GameTestHelper helper) {
@@ -324,32 +328,35 @@ public final class VoidAttunementTests {
         DamageSource explosion = victim.damageSources().explosion(zombie, zombie);
         helper.assertTrue(chest.coverage(stage2, fire) == null && chest.coverage(stage2, explosion) == null, "2 阶不挡元素");
         IMRUShieldArmor.Coverage fireCover = chest.coverage(stage3, fire);
-        helper.assertTrue(fireCover != null && fireCover.share() == 8D && Math.abs(fireCover.priceMultiplier() - 1.75D) < 1e-9 && !fireCover.extended(),
-                "3 阶挡火：8 份、单价 ×0.875×2、不是新覆盖面，实际 " + fireCover);
+        helper.assertTrue(fireCover != null && fireCover.share() == 8D && Math.abs(fireCover.priceMultiplier() - 0.875D * 0.95D * 2D) < 1e-9 && !fireCover.extended(),
+                "3 阶挡火：8 份、单价 ×0.875×0.95×2、不是新覆盖面，实际 " + fireCover);
         helper.assertTrue(chest.coverage(stage3, explosion) != null, "3 阶挡爆炸");
-        helper.assertTrue(chest.coverage(stage3, victim.damageSources().magic()) == null, "魔法照旧不挡");
-        helper.assertTrue(chest.coverage(stage3, victim.damageSources().onFire()) == null, "着火带 bypasses_armor，不挡");
+        // 3 阶起无视护甲的伤害走新覆盖面（只认有活物攻击者、不是玩家的），没有攻击者的着火照样不挡
+        helper.assertTrue(MRUShield.coverageFor(victim, stage3, victim.damageSources().onFire()) == null, "着火带 bypasses_armor、没有攻击者，不挡");
         IMRUShieldArmor.Coverage melee = chest.coverage(stage3, victim.damageSources().mobAttack(zombie));
-        helper.assertTrue(melee != null && Math.abs(melee.priceMultiplier() - 0.875D) < 1e-9, "3 阶物理单价 ×0.875");
+        helper.assertTrue(melee != null && Math.abs(melee.priceMultiplier() - 0.875D * 0.95D) < 1e-9, "3 阶物理单价 ×0.875×0.95");
 
         ItemStack[] stacks = wear(victim, 3, 50_000);
         withRoll(1F, () -> hit(victim, fire, 8F));
         helper.assertTrue(victim.getHealth() == 20F, "3 阶全套挡下 8 点火，实际生命 " + victim.getHealth());
-        int[] cost = {700, 2100, 1400, 700};
+        int[] cost = {665, 1995, 1330, 665};
         for (ArmorItem.Type type : TYPES) {
             int spent = 50_000 - mru(stacks[type.ordinal()]);
             helper.assertTrue(spent == cost[type.ordinal()], type + " 火应扣 " + cost[type.ordinal()] + "，实际 " + spent);
         }
+        // 魔法照旧不挡：怪物打来的间接魔法带 bypasses_armor，也不算 3 阶「分担无视护甲」那一条（放最后，挂了不挡住上面几项）
+        IMRUShieldArmor.Coverage spell = chest.coverage(stage3, victim.damageSources().indirectMagic(zombie, zombie));
+        helper.assertTrue(chest.coverage(stage3, victim.damageSources().magic()) == null && spell == null, "魔法照旧不挡，实际 " + spell);
         helper.succeed();
     }
 
     /**
-     * 提示框的单价和实扣同一个算式：单价配成 403 时 3 阶物理 round(403 × 0.875) = 353、元素 round(403 × 0.875 × 2) = 705
-     * （先取整再翻倍会写成 706），都等于 MRUShield.cost 挡 1 点的价；全套那两行写的是 0 阶的数（回击 50%、3 秒），不随这件的阶变
+     * 提示框的单价和实扣同一个算式：单价配成 401 时 3 阶物理 round(401 × 0.875 × 0.95) = 333、元素 round(401 × 0.875 × 0.95 × 2) = 667
+     * （先取整再翻倍会写成 666），都等于 MRUShield.cost 挡 1 点的价；全套那两行写的是 0 阶的数（回击 50%、3 秒），不随这件的阶变
      */
     @GameTest(template = EMPTY)
     public static void voidTooltipPricesMatchCharge(GameTestHelper helper) {
-        ECVoidArmor.Config.setShieldTestOverrides(new ECVoidArmor.Config.Shield(50_000, 403));
+        ECVoidArmor.Config.setShieldTestOverrides(new ECVoidArmor.Config.Shield(50_000, 401));
         try {
             ItemStack chest = piece(ArmorItem.Type.CHESTPLATE, 3, 0);
             VoidArmorItem item = ECVoidArmor.VOID_CHESTPLATE.get();
@@ -361,9 +368,9 @@ public final class VoidAttunementTests {
             int fireCharge = MRUShield.cost(1F, VoidArmorItem.TOTAL_SHARES, item.mruPerDamage(chest), fire.priceMultiplier());
             Object[] shield = tooltipArgs(chest, "tooltip.essentialcraft5.void_armor.shield");
             Object[] elemental = tooltipArgs(chest, "tooltip.essentialcraft5.void_armor.shield.elemental");
-            helper.assertTrue(physicalCharge == 353 && shield != null && Integer.valueOf(physicalCharge).equals(shield[0]),
+            helper.assertTrue(physicalCharge == 333 && shield != null && Integer.valueOf(physicalCharge).equals(shield[0]),
                     "物理：实扣 " + physicalCharge + "，提示 " + (shield == null ? null : shield[0]));
-            helper.assertTrue(fireCharge == 705 && elemental != null && Integer.valueOf(fireCharge).equals(elemental[0]),
+            helper.assertTrue(fireCharge == 667 && elemental != null && Integer.valueOf(fireCharge).equals(elemental[0]),
                     "元素：实扣 " + fireCharge + "，提示 " + (elemental == null ? null : elemental[0]));
             Object[] riposte = tooltipArgs(chest, "tooltip.essentialcraft5.void_armor.fullset.riposte");
             helper.assertTrue(riposte != null && "50%".equals(riposte[0]) && Integer.valueOf(3).equals(riposte[1]), "全套那行写 0 阶的数");
@@ -376,31 +383,32 @@ public final class VoidAttunementTests {
     // ================================================================ 闪避、滞涩
 
     /**
-     * 闪避几率 0 阶 20%、1~3 阶 25%、4 阶 30%（掷 0.24 时 0 阶不闪、1 阶闪；掷 0.29 时 4 阶闪）；胸甲提示跟着阶写几率；
-     * undodgeable 里的伤害掷 0 也不闪；没有攻击者的伤害照样能闪，但不攒回击
+     * 闪避几率按 general.gear_growth.void_armor.dodge：0~4 阶 20 / 25 / 27 / 30 / 35%（掷 0.23 时 0 阶不闪、1 阶闪；掷 0.34 时 4 阶闪）；
+     * 同调词条跟着阶写几率（胸甲不再另写说明行）；undodgeable 里的伤害掷 0 也不闪；没有攻击者的伤害照样能闪，但不攒回击
      */
     @GameTest(template = EMPTY)
     public static void voidAttunedDodgeChanceAndUndodgeable(GameTestHelper helper) {
-        float[] chances = {0.2F, 0.25F, 0.25F, 0.25F, 0.3F};
+        float[] chances = {0.2F, 0.25F, 0.27F, 0.3F, 0.35F};
         for (int stage = 0; stage <= 4; stage++) {
             helper.assertTrue(VoidArmorEvents.dodgeChance(stage) == chances[stage], stage + " 阶闪避几率");
-            Object[] args = tooltipArgs(piece(ArmorItem.Type.CHESTPLATE, stage, 0), "tooltip.essentialcraft5.void_chestplate");
-            String want = Math.round(chances[stage] * 100F) + "%";
-            helper.assertTrue(args != null && args.length == 1 && want.equals(args[0]), stage + " 阶胸甲提示应写 " + want);
+            ItemStack chest = piece(ArmorItem.Type.CHESTPLATE, stage, 0);
+            helper.assertTrue(tooltipArgs(chest, "tooltip.essentialcraft5.void_chestplate") == null, stage + " 阶胸甲不再单写闪避说明行");
+            Double listed = GearStatSheet.at(chest, AttunementFamily.of(chest), stage).get(GearStat.DODGE);
+            helper.assertTrue(listed != null && Math.abs(listed - chances[stage]) < 1.0E-6D, stage + " 阶同调词条应写闪避 " + chances[stage]);
         }
         Zombie zombie = zombie(helper, 3, 1);
         Player low = mock(helper, 1.5D, 1.5D);
         low.setItemSlot(EquipmentSlot.CHEST, piece(ArmorItem.Type.CHESTPLATE, 0, 0));
-        withRoll(0.24F, () -> hit(low, low.damageSources().mobAttack(zombie), 4F));
-        helper.assertTrue(low.getHealth() < 20F, "0 阶掷 0.24 不闪");
+        withRoll(0.23F, () -> hit(low, low.damageSources().mobAttack(zombie), 4F));
+        helper.assertTrue(low.getHealth() < 20F, "0 阶掷 0.23 不闪");
         Player mid = mock(helper, 1.5D, 3.5D);
         mid.setItemSlot(EquipmentSlot.CHEST, piece(ArmorItem.Type.CHESTPLATE, 1, 0));
-        withRoll(0.24F, () -> hit(mid, mid.damageSources().mobAttack(zombie), 4F));
-        helper.assertTrue(mid.getHealth() == 20F, "1 阶掷 0.24 闪");
+        withRoll(0.23F, () -> hit(mid, mid.damageSources().mobAttack(zombie), 4F));
+        helper.assertTrue(mid.getHealth() == 20F, "1 阶掷 0.23 闪");
         Player top = mock(helper, 3.5D, 3.5D);
         top.setItemSlot(EquipmentSlot.CHEST, piece(ArmorItem.Type.CHESTPLATE, 4, 0));
-        withRoll(0.29F, () -> hit(top, top.damageSources().mobAttack(zombie), 4F));
-        helper.assertTrue(top.getHealth() == 20F, "4 阶掷 0.29 闪");
+        withRoll(0.34F, () -> hit(top, top.damageSources().mobAttack(zombie), 4F));
+        helper.assertTrue(top.getHealth() == 20F, "4 阶掷 0.34 闪");
 
         withRoll(0F, () -> hit(top, undodgeable(helper), 3F));
         helper.assertTrue(Math.abs(top.getHealth() - 17F) < EPS, "undodgeable 里的伤害掷 0 也不闪，实际生命 " + top.getHealth());
@@ -447,8 +455,8 @@ public final class VoidAttunementTests {
     }
 
     /**
-     * 1 阶、4 阶多出来的闪避几率只给敌人的攻击：4 阶胸甲掷 0.25，怪物、别的玩家打来的闪掉；magic() 自伤（腐化 #17 / #18 这类）、
-     * 攻击者是自己的不闪（照原作 20%），掷 0.19 才闪
+     * 1 阶起多出来的闪避几率只给敌人的攻击：4 阶胸甲掷 0.25，怪物打来的闪掉；magic() 自伤（腐化 #17 / #18 这类）、
+     * 攻击者是自己的不闪（照原作 20%），掷 0.19 才闪；别的玩家打来的封顶 caps.dodge_player 15%：掷 0.25 不闪、掷 0.14 闪
      */
     @GameTest(template = EMPTY)
     public static void voidDodgeExtraChanceOnlyForAttacks(GameTestHelper helper) {
@@ -460,8 +468,9 @@ public final class VoidAttunementTests {
         DamageSource self = victim.damageSources().playerAttack(victim);
         helper.assertTrue(VoidArmorEvents.dodgeChance(victim, magic, 4) == VoidArmorEvents.DODGE_CHANCE
                 && VoidArmorEvents.dodgeChance(victim, self, 4) == VoidArmorEvents.DODGE_CHANCE
-                && VoidArmorEvents.dodgeChance(victim, victim.damageSources().mobAttack(zombie), 4) == VoidArmorEvents.DODGE_CHANCE_STAGE_4,
-                "几率：没有攻击者、攻击者是自己 20%，怪物 30%");
+                && VoidArmorEvents.dodgeChance(victim, victim.damageSources().mobAttack(zombie), 4) == 0.35F
+                && VoidArmorEvents.dodgeChance(victim, victim.damageSources().playerAttack(other), 4) == 0.15F,
+                "几率：没有攻击者、攻击者是自己 20%，怪物 35%，别的玩家 15%");
         withRoll(0.25F, () -> hit(victim, magic, 2F));
         helper.assertTrue(Math.abs(victim.getHealth() - 18F) < EPS, "magic() 自伤掷 0.25 不闪，实际生命 " + victim.getHealth());
         withRoll(0.25F, () -> hit(victim, self, 2F));
@@ -469,8 +478,11 @@ public final class VoidAttunementTests {
         withRoll(0.19F, () -> hit(victim, magic, 2F));
         helper.assertTrue(Math.abs(victim.getHealth() - 16F) < EPS, "自伤照旧 20%：掷 0.19 闪，实际生命 " + victim.getHealth());
         withRoll(0.25F, () -> hit(victim, victim.damageSources().mobAttack(zombie), 2F));
+        helper.assertTrue(Math.abs(victim.getHealth() - 16F) < EPS, "怪物打来的掷 0.25 闪，实际生命 " + victim.getHealth());
+        withRoll(0.14F, () -> hit(victim, victim.damageSources().playerAttack(other), 2F));
+        helper.assertTrue(Math.abs(victim.getHealth() - 16F) < EPS, "别的玩家打来的掷 0.14 闪，实际生命 " + victim.getHealth());
         withRoll(0.25F, () -> hit(victim, victim.damageSources().playerAttack(other), 2F));
-        helper.assertTrue(Math.abs(victim.getHealth() - 16F) < EPS, "怪物、别的玩家打来的掷 0.25 都闪，实际生命 " + victim.getHealth());
+        helper.assertTrue(victim.getHealth() < 16F - EPS, "别的玩家打来的掷 0.25 不闪（封顶 15%），实际生命 " + victim.getHealth());
         helper.succeed();
     }
 
@@ -518,7 +530,8 @@ public final class VoidAttunementTests {
 
     /**
      * 伤害事件里的先后：回击（NORMAL）在对方护盾（LOW）之前。0 阶回击打穿着满电虚空的玩家（× pvp 0.5 → 4 × 1.25 = 5）：
-     * 对方按 5 点扣（胸甲 2 点 × 400 = 800，没加的话是 400），整下被护盾吃掉，回击不算用掉；对方脱掉以后再打，5 点打实才用掉
+     * 对方按 5 点扣（胸甲 2 点 × 400 = 800，没加的话是 400），整下被护盾吃掉，回击不算用掉；对方脱掉以后再打，5 点打实才用掉。
+     * 这一条只验先后：虚空的 PvP 修正（份额 ×0.5、单价 ×2）在挨打那一下临时盖成 1，不然护盾整下吃不掉
      */
     @GameTest(template = EMPTY)
     public static void voidRiposteBeforeTargetShield(GameTestHelper helper) {
@@ -529,7 +542,13 @@ public final class VoidAttunementTests {
         try {
             dodge(attacker, zombie);
             ItemStack[] shield = wear(target, 0, 5000);
-            withPvpScale(0.5D, () -> withRoll(1F, () -> hit(target, target.damageSources().playerAttack(attacker), 4F)));
+            GearGrowthConfig.setTestOverride("void_armor.pvp_shield_max_share", 1D);
+            GearGrowthConfig.setTestOverride("void_armor.pvp_shield_cost_multiplier", 1D);
+            try {
+                withPvpScale(0.5D, () -> withRoll(1F, () -> hit(target, target.damageSources().playerAttack(attacker), 4F)));
+            } finally {
+                GearGrowthConfig.clearTestOverrides();
+            }
             helper.assertTrue(target.getHealth() == 20F, "满电全套整下挡掉");
             int[] cost = {400, 800, 400, 400};
             for (ArmorItem.Type type : TYPES) {
@@ -555,7 +574,8 @@ public final class VoidAttunementTests {
     }
 
     /**
-     * 全套 2 阶回击 +75%：打猪 4 → 7；打玩家 × pvp 0.5 → 5.5；pvp_effect_scale 配成 0 时打玩家不加、也不用掉，留给下一只猪（7）
+     * 全套 2 阶回击 +75%：打猪 4 → 7；打玩家 × pvp 0.5 = +37.5%，再被打玩家的增伤池上限 30% 夹住 → 5.2；
+     * pvp_effect_scale 配成 0 时打玩家不加、也不用掉，留给下一只猪（7）
      */
     @GameTest(template = EMPTY)
     public static void voidRiposteStageTwoAndPvpScale(GameTestHelper helper) {
@@ -572,7 +592,8 @@ public final class VoidAttunementTests {
 
             dodge(attacker, zombie);
             float pvp = withPvpScaleStrike(target, target.damageSources().playerAttack(attacker));
-            helper.assertTrue(Math.abs(pvp - 5.5F) < EPS && VoidArmorEvents.pendingRiposte(attacker) == 0D, "打玩家 4 × (1 + 0.75 × 0.5) = 5.5、用掉，实际 " + pvp);
+            helper.assertTrue(Math.abs(pvp - 5.2F) < EPS && VoidArmorEvents.pendingRiposte(attacker) == 0D,
+                    "打玩家 4 × (1 + min(0.75 × 0.5, 0.3)) = 5.2、用掉，实际 " + pvp);
 
             dodge(attacker, zombie);
             float[] zero = {-1F};

@@ -1,8 +1,12 @@
 package com.flameforge.essentialcraft5.item;
 
+import com.flameforge.essentialcraft5.network.GearFx;
+import com.flameforge.essentialcraft5.network.GearFxLimiter;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
 import com.flameforge.essentialcraft5.item.attunement.AttunementConfig;
+import com.flameforge.essentialcraft5.item.attunement.ArmorGrowth;
+import com.flameforge.essentialcraft5.item.attunement.GearPool;
 import com.flameforge.essentialcraft5.item.attunement.AttunementGains;
 import com.flameforge.essentialcraft5.item.module.MatrixFilterEvents;
 import com.flameforge.essentialcraft5.registry.ECAttunement;
@@ -12,7 +16,6 @@ import com.flameforge.essentialcraft5.util.ECDamageKinds;
 import com.flameforge.essentialcraft5.util.ECLandedHit;
 import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.server.MinecraftServer;
@@ -38,7 +41,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 import org.slf4j.Logger;
 
 import java.lang.ref.WeakReference;
@@ -65,7 +67,7 @@ import java.util.WeakHashMap;
  *       不重新加效果；对象从医师腰带的八种扩到全部 {@link MobEffectCategory#HARMFUL}；无限时长的、{@code essentialcraft5:unfilterable} 里的
  *       （锚定这类机制效果，矩阵过滤同样不拦）不动。和医师腰带叠着戴时两边各削各的。</li>
  *   <li><b>定罪</b>：活物打实你一下（{@link LivingDamageEvent} LOWEST、没被取消，伤害 &gt; 0 或者打掉了你的伤害吸收；反伤不算它动手）
- *       就记它 {@code conviction_ticks} 刻，每人最多 {@code conviction_max_targets} 个（满了挤掉最快到期的），新记上时在它身上 {@code sendParticles} 一次；
+ *       就记它 {@code conviction_ticks} 刻，每人最多 {@code conviction_max_targets} 个（满了挤掉最快到期的），新记上时发一个定罪的特效事件（{@link GearFx#CONVICT}）；
  *       你亲手打被你定罪的目标 × (1 + {@code conviction_bonus})，目标是玩家时增伤再乘 {@code general.attunement.pvp_effect_scale}。
  *       反伤、饰品打出的伤害、尖刺圆盾的范围伤害（{@link AttunementGains#notOwnHit}）和裁决之刃的裁断不加，和虚空回击、相性、矩阵特性同一口径。
  *       记在内存里（按玩家对象弱引用、按服务器刻数到期），重登、死亡后从零开始。</li>
@@ -82,8 +84,9 @@ import java.util.WeakHashMap;
  * </table>
  *
  * <h2>倍率的位置和顺序</h2>
- * 抗魔、首领减伤、4 阶无视护甲、定罪增伤都在 {@link LivingHurtEvent} NORMAL（护甲之前），和相性的增减伤（{@code MatrixResonanceEvents}）、
- * 矩阵特性、η 护身符同一层，全是按比例相乘，同一层里谁先谁后结果一样；MRU 护盾在 LOW，看到的是乘过的数。
+ * 抗魔、首领减伤、4 阶无视护甲、定罪增伤都进总闸的池子（{@code item/attunement/GearCombatEvents}，{@link LivingHurtEvent} NORMAL，护甲之前）：
+ * 定罪和相性躁动、矩阵特性、同调阶等相加后过增伤上限，抗魔等和凝滞、吞噬相加后过减伤上限（以前是各项连乘：定罪 30% + 躁动 15% 从 ×1.495 变 ×1.45，
+ * 抗魔 35% + 吞噬 15% 从减 44.75% 变减 50%）；MRU 护盾在 LOW，看到的是乘过的数。
  * 壁垒要「护甲后」的数，放在 {@link LivingDamageEvent} HIGH：在后面按最终伤害记账的监听器（同调点、透镜吸取、定罪本身）之前改好。
  * {@code bypasses_invulnerability}（{@code /kill}、掉出世界）和 {@code essentialcraft5:unshieldable} 里的伤害这几条都不减。
  *
@@ -116,11 +119,6 @@ public final class InquisitoriumArmorEvents {
     public static final int TOP_STAGE = 4;
     /** 律令每多少刻削一次 */
     public static final int EDICT_INTERVAL = 20;
-    /** 定罪的粒子数 */
-    public static final int CONVICTION_PARTICLES = 12;
-
-    /** 定罪的粒子：审判庭的品红（同哨兵刷怪蛋的斑点色 #E040FF） */
-    private static final DustParticleOptions CONVICTION_PARTICLE = new DustParticleOptions(new Vector3f(0.878F, 0.251F, 1F), 1.2F);
 
     /** 一条定罪：被定罪的生物（弱引用）、到哪一个服务器刻为止（不含） */
     private static final class Conviction {
@@ -179,27 +177,41 @@ public final class InquisitoriumArmorEvents {
     // ------------------------------------------------------------------
 
     /**
-     * 穿全套的玩家挨这一下时乘的倍数（1 = 不减）：抗魔或 4 阶无视护甲（二者互斥：魔法走抗魔）× 首领减伤。
+     * 穿全套的玩家挨这一下少挨的比例之和（0 = 不减）：抗魔或 4 阶无视护甲（二者互斥：魔法走抗魔）+ 首领减伤。
      * 都要有攻击者、攻击者不是自己；{@code bypasses_invulnerability}、{@code unshieldable} 不减。
+     * 进总闸的减伤池（{@code item/attunement/GearPool}）：和别的减伤先相加、再封顶（有攻击者 60%，攻击者是玩家 40%），以前是各项连乘。
      */
-    public static double incomingMultiplier(LivingEntity victim, DamageSource source) {
+    public static double incomingReductions(LivingEntity victim, DamageSource source) {
         int stage = setStage(victim);
         if (stage < 0 || excluded(source) || !hasOtherAttacker(source, victim)) {
-            return 1D;
+            return 0D;
         }
-        ECInquisitorium.Config.Law law = ECInquisitorium.Config.law();
         ECInquisitorium.Config.Attuned attuned = ECInquisitorium.Config.attuned();
-        double factor = 1D;
+        double reduction = 0D;
+        // 抗魔、首领减伤按阶的列表读 general.gear_growth.inquisitorium_armor.*（接管 law.magic_resistance / boss_resistance、attuned.magic_resistance_stage_1）
         if (ECDamageKinds.isMagic(source)) {
-            factor *= 1D - fraction(stage >= ABSOLUTION_STAGE ? attuned.magicResistance() : law.magicResistance());
+            reduction += fraction(ArmorGrowth.inqMagicResistance(stage));
         } else if (stage >= TOP_STAGE && source.is(DamageTypeTags.BYPASSES_ARMOR)) {
-            factor *= 1D - fraction(attuned.piercingResistance());
+            reduction += fraction(attuned.piercingResistance());
         }
         Entity attacker = source.getEntity();
         if (attacker != null && attacker.getType().is(Tags.EntityTypes.BOSSES)) {
-            factor *= 1D - fraction(law.bossResistance());
+            reduction += fraction(ArmorGrowth.inqBossResistance(stage));
         }
-        return factor;
+        return reduction;
+    }
+
+    /** 只看审判庭这一项时这一下乘的倍数（1 − {@link #incomingReductions}；实际结算和别的减伤相加、过封顶，见 {@code GearCombatEvents}） */
+    public static double incomingMultiplier(LivingEntity victim, DamageSource source) {
+        return Math.max(0D, 1D - incomingReductions(victim, source));
+    }
+
+    /** 抗魔 / 首领减伤 / 无视护甲减伤（受害者侧）、定罪（攻击者侧）进总闸的池子（{@code ECAttunement.init} 调） */
+    public static void registerGearSources() {
+        GearPool.registerDefense("inquisitorium",
+                context -> incomingReductions(context.target(), context.source()));
+        GearPool.registerOffense("conviction",
+                context -> context.source().getEntity() instanceof Player attacker ? convictionBonus(attacker, context.target(), context.source()) : 0D);
     }
 
     // ------------------------------------------------------------------
@@ -231,27 +243,6 @@ public final class InquisitoriumArmorEvents {
             return 0D;
         }
         return target instanceof Player ? bonus * Math.max(0D, AttunementConfig.pvpEffectScale()) : bonus;
-    }
-
-    /** 抗魔、首领减伤、无视护甲、定罪增伤（NORMAL，不收已取消的；护甲之前） */
-    @SubscribeEvent
-    public static void onInquisitoriumHurt(LivingHurtEvent event) {
-        LivingEntity victim = event.getEntity();
-        if (victim.level().isClientSide()) {
-            return;
-        }
-        float amount = event.getAmount();
-        if (!(amount > 0F) || !Float.isFinite(amount)) {
-            return;
-        }
-        DamageSource source = event.getSource();
-        double factor = incomingMultiplier(victim, source);
-        if (source.getEntity() instanceof Player attacker) {
-            factor *= 1D + convictionBonus(attacker, victim, source);
-        }
-        if (factor != 1D) {
-            event.setAmount((float) Math.max(0D, amount * factor));
-        }
     }
 
     // ------------------------------------------------------------------
@@ -377,8 +368,7 @@ public final class InquisitoriumArmorEvents {
         }
         list.add(new Conviction(target, now + ticks));
         if (target.level() instanceof ServerLevel level) {
-            level.sendParticles(CONVICTION_PARTICLE, target.getX(), target.getY() + target.getBbHeight() * 0.6D, target.getZ(),
-                    CONVICTION_PARTICLES, target.getBbWidth() * 0.4D, target.getBbHeight() * 0.3D, target.getBbWidth() * 0.4D, 0D);
+            GearFxLimiter.send(level, GearFx.CONVICT, target, target.position().add(0D, target.getBbHeight() * 0.6D, 0D), ticks, 10);
         }
         return true;
     }
@@ -532,10 +522,12 @@ public final class InquisitoriumArmorEvents {
      * @return 削了几个效果
      */
     public static int edict(LivingEntity entity) {
-        if (setStage(entity) < 0) {
+        int stage = setStage(entity);
+        if (stage < 0) {
             return 0;
         }
-        return shortenHarmful(entity, edictCut(ECInquisitorium.Config.law().edictReduction()));
+        // 律令按阶读 general.gear_growth.inquisitorium_armor.edict_reduction（接管 law.edict_reduction；1 阶起 ×0.5）
+        return shortenHarmful(entity, edictCut(ArmorGrowth.inqEdict(stage)));
     }
 
     /**

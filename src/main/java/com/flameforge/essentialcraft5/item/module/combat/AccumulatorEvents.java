@@ -2,8 +2,10 @@ package com.flameforge.essentialcraft5.item.module.combat;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.config.ECConfig;
+import com.flameforge.essentialcraft5.gun.GunAttunement;
 import com.flameforge.essentialcraft5.gun.RayHitGate;
 import com.flameforge.essentialcraft5.item.bauble.BaubleEffects;
+import com.flameforge.essentialcraft5.item.attunement.GearGrowthConfig;
 import com.flameforge.essentialcraft5.item.ember.InlayEvents;
 import com.flameforge.essentialcraft5.item.module.ModuleCache;
 import com.flameforge.essentialcraft5.registry.ECCombatModules;
@@ -74,6 +76,11 @@ import java.util.UUID;
  * 伤害被改成 0（被盔甲、别的模组整下挡掉了——这一下已经打到了对方身上）。Mohist 系混合端的插件在 {@code LivingHurtEvent} 之后拦下的那一下
  * 两样都不满足，账留着，什么都没发生。
  *
+ * <h2>枪械同调的弹道累积</h2>
+ * 同调枪（家族 {@code mru_gun}）{@code gear_growth.mru_gun.accumulate_stage}（默认 2）阶起，拿在主手开的射线不装模块也照这套记账、结算
+ * （{@link GunAttunement#accumulates}）：开关从「开着模块」扩成「开着模块，或这一下是这样的射线」，别的规则一样（不清无敌帧、账照样过期）。
+ * 结算补的上限：只靠枪的取 {@code mru_gun.accumulate_ratio}，只靠模块的取 {@code max_ratio}，两样都有取大的那个；在攻击事件时定下、记在这一下上。
+ *
  * <h2>和 ζ 的区别</h2>
  * ζ 每下花 UBMRU 硬清目标的受击无敌；累加器不清，只把浪费掉的记账。戴着 ζ 时目标总不在受击无敌里，没有可记的，累加器自然闲着。
  *
@@ -111,15 +118,18 @@ public final class AccumulatorEvents {
         final LivingEntity target;
         final UUID attacker;
         final float base;
+        /** 最多补这一下的几倍（攻击事件时按模块 / 枪械同调定下） */
+        final double ratio;
         @Nullable
         LivingHurtEvent hurt;
         boolean settled;
 
-        Strike(DamageSource source, LivingEntity target, UUID attacker, float base) {
+        Strike(DamageSource source, LivingEntity target, UUID attacker, float base, double ratio) {
             this.source = source;
             this.target = target;
             this.attacker = attacker;
             this.base = base;
+            this.ratio = ratio;
         }
     }
 
@@ -241,6 +251,21 @@ public final class AccumulatorEvents {
                 && !ECDamageKinds.isMagic(source);
     }
 
+    /**
+     * 这一下归不归累加器管、补的上限是几倍：开着模块取 {@code max_ratio}；是本人主手同调枪够阶的射线（{@link GunAttunement#accumulates}）取
+     * {@code mru_gun.accumulate_ratio}；两样都有取大的。都不是返回 −1。
+     */
+    static double ratio(ServerPlayer attacker, DamageSource source) {
+        double ratio = -1D;
+        if (ModuleCache.active(attacker, ECCombatModules.ACCUMULATOR)) {
+            ratio = Config.values().maxRatio();
+        }
+        if (GunAttunement.accumulates(attacker, source)) {
+            ratio = Math.max(ratio, Math.max(0D, GearGrowthConfig.gunAccumulateRatio()));
+        }
+        return ratio;
+    }
+
     /** 目标的 {@code lastHurt}（反射读不到时 null：不记账，只少一个功能） */
     @Nullable
     static Float lastHurt(LivingEntity entity) {
@@ -282,7 +307,11 @@ public final class AccumulatorEvents {
             return;
         }
         float amount = event.getAmount();
-        if (!(amount > 0F) || !settleable(source, attacker) || !ModuleCache.active(attacker, ECCombatModules.ACCUMULATOR)) {
+        if (!(amount > 0F) || !settleable(source, attacker)) {
+            return;
+        }
+        double ratio = ratio(attacker, source);
+        if (ratio < 0D) {
             return;
         }
         int now = attacker.server.getTickCount();
@@ -296,7 +325,7 @@ public final class AccumulatorEvents {
         }
         // 举盾挡得住的不登记：混合端在 LivingHurtEvent 之后才格挡，登记了会把账白白清掉（见类注释「结算」）
         if (STRIKES.size() < MAX_PENDING && !target.isDamageSourceBlocked(source) && balance(attacker.getUUID(), target.getUUID(), now) > 0F) {
-            STRIKES.add(new Strike(source, target, attacker.getUUID(), amount));
+            STRIKES.add(new Strike(source, target, attacker.getUUID(), amount, ratio));
         }
     }
 
@@ -317,7 +346,7 @@ public final class AccumulatorEvents {
             return;
         }
         float balance = balance(strike.attacker, strike.target.getUUID(), strike.target.getServer().getTickCount());
-        float bonus = (float) Math.min(balance, strike.base * Config.values().maxRatio());
+        float bonus = (float) Math.min(balance, strike.base * strike.ratio);
         if (!(bonus > 0F)) {
             return;
         }

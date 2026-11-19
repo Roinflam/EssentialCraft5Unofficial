@@ -63,9 +63,12 @@ public final class ECNetwork {
      * 12：第十三批 13d 的天灾状态包认得第五种天灾地脉风暴（事件 id 5），13d 各路还要登记模块包（地脉风暴、勘测图等），
      * 一次升到 12；玩家数据加了渊盐冷却、首领每日领奖记录，普通同步包不带（batch13.md §9.4，2026-11-01）；
      * 13：天灾之心加强（calamity_heart_v2.md）加了天灾封印状态包（S2C，模块包，ECCalamityHeart 登记），首领画面包多了三种类型
-     * （开场名字、横幅、镜头震动）；第十三批还没发布，和 13a~13e 一起上（2026-11-02）
+     * （开场名字、横幅、镜头震动）；第十三批还没发布，和 13a~13e 一起上（2026-11-02）；
+     * 14：特效大改第 1 批在框架自带的包里加了首领预警包 {@link S2CBossWarningPacket}（S2C，接在首领画面包后面，ID 6），
+     * 模块包和配置重发包整体后挪一位；首领预警不再撒原版粒子（2026-11-09）；同一版本里武器防具成长加强又加了装备特效事件包
+     * {@link S2CGearFxPacket}（模块包，{@code ECAttunement.init} 登记，排在它之后的模块包和配置重发包再后挪一位）。14 还没上服，不再升号
      */
-    public static final String PROTOCOL = "13";
+    public static final String PROTOCOL = "14";
 
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             EssentialCraft5.id("main"), () -> PROTOCOL, PROTOCOL::equals, PROTOCOL::equals);
@@ -115,6 +118,12 @@ public final class ECNetwork {
                 .encoder(S2CBossFxPacket::encode)
                 .decoder(S2CBossFxPacket::decode)
                 .consumerMainThread(S2CBossFxPacket::handle)
+                .add();
+        // 特效大改第 1 批（协议 14）：首领招式的预警，起手时发一次，客户端自己画完
+        CHANNEL.messageBuilder(S2CBossWarningPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(S2CBossWarningPacket::encode)
+                .decoder(S2CBossWarningPacket::decode)
+                .consumerMainThread(S2CBossWarningPacket::handle)
                 .add();
         for (IntConsumer packet : MODULE_PACKETS) {
             packet.accept(id++);

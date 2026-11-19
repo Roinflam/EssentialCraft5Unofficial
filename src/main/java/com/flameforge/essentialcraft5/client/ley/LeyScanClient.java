@@ -40,7 +40,7 @@ import java.util.OptionalDouble;
  *       按距离留最近的 {@code max_highlights} 格。</li>
  *   <li><b>描边</b>：扫完才换上新结果（再扫一次替换上一次）。每格一个关深度测试的线框盒（隔墙可见），贵重金 #FFD34D、本模组的元素蕴魔矿紫 #B57CFF、
  *       其余青 #6FE3E3；画 {@code display_ticks} 刻，最后 {@value #FADE_TICKS} 刻透明度线性降到 0。那一格已经被挖掉、换成别的方块时不再画。
- *       画在 {@code AFTER_PARTICLES}（同建筑魔杖的选区框，那一套线框渲染已经在整合包里看过）。</li>
+ *       画在 {@code AFTER_PARTICLES}（同创世神之杖的选区框，那一套线框渲染已经在整合包里看过）。</li>
  *   <li>换维度、换世界、断线时清空。</li>
  * </ul>
  * 只在客户端主线程读写。

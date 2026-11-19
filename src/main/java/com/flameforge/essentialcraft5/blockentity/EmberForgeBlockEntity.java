@@ -1,6 +1,7 @@
 package com.flameforge.essentialcraft5.blockentity;
 
 import com.flameforge.essentialcraft5.advancement.StructureFormedTrigger;
+import com.flameforge.essentialcraft5.ambience.AmbienceParticles;
 import com.flameforge.essentialcraft5.ambience.MachineAmbience;
 import com.flameforge.essentialcraft5.ambience.MachineAmbiences;
 import com.flameforge.essentialcraft5.block.RedstonePulse;
@@ -677,23 +678,23 @@ public class EmberForgeBlockEntity extends MRUBlockEntity {
                 if (everyFourth) {
                     for (int step = 0; step < 10; step++) {
                         double t = step / 10D;
-                        level.addParticle(EMBER_DUST, cx + offset.getX() * t, cy + 0.9D + step / 12.5D, cz + offset.getZ() * t, 0D, 0D, 0D);
+                        AmbienceParticles.add(level, EMBER_DUST, cx + offset.getX() * t, cy + 0.9D + step / 12.5D, cz + offset.getZ() * t, 0D, 0D, 0D);
                     }
-                    level.addParticle(ParticleTypes.FLAME, cx + offset.getX(), cy + 2D, cz + offset.getZ(), 0D, 0D, 0D);
+                    AmbienceParticles.add(level, ParticleTypes.FLAME, cx + offset.getX(), cy + 2D, cz + offset.getZ(), 0D, 0D, 0D);
                 }
                 if (!forging && random.nextInt(40) == 0) {
                     level.playLocalSound(cx + offset.getX(), cy + offset.getY(), cz + offset.getZ(), SoundEvents.FIRE_AMBIENT, SoundSource.BLOCKS, 0.2F, 2F, false);
                 }
             } else if (everyFourth) {
                 // 传送门粒子从「起点 + 速度」飞回起点：放在锻炉上方、速度指向焦点，看起来是从焦点流进锻炉
-                level.addParticle(ParticleTypes.PORTAL, cx, cy + 0.9D, cz, offset.getX(), 1D, offset.getZ());
-                level.addParticle(FOCUS_DUST, cx + offset.getX(), cy + 2.7D, cz + offset.getZ(), 0D, 0D, 0D);
+                AmbienceParticles.add(level, ParticleTypes.PORTAL, cx, cy + 0.9D, cz, offset.getX(), 1D, offset.getZ());
+                AmbienceParticles.add(level, FOCUS_DUST, cx + offset.getX(), cy + 2.7D, cz + offset.getZ(), 0D, 0D, 0D);
             }
         }
         if (forging) {
             int lava = Math.min(5, clientProgress / 100);
             for (int i = 0; i < lava; i++) {
-                level.addParticle(ParticleTypes.LAVA, worldPosition.getX() + random.nextDouble(), cy + 1D, worldPosition.getZ() + random.nextDouble(), 0D, 0D, 0D);
+                AmbienceParticles.add(level, ParticleTypes.LAVA, worldPosition.getX() + random.nextDouble(), cy + 1D, worldPosition.getZ() + random.nextDouble(), 0D, 0D, 0D);
             }
         }
     }

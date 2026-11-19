@@ -2,6 +2,7 @@ package com.flameforge.essentialcraft5.item;
 
 import com.flameforge.essentialcraft5.api.ECCapabilities;
 import com.flameforge.essentialcraft5.client.GunsClient;
+import com.flameforge.essentialcraft5.gun.GunAttunement;
 import com.flameforge.essentialcraft5.gun.GunMaterials;
 import com.flameforge.essentialcraft5.gun.GunParts;
 import com.flameforge.essentialcraft5.gun.GunStats;
@@ -61,6 +62,9 @@ import java.util.UUID;
  *   <li>假玩家（机械手之类）拿着不开火（伤害记在假玩家头上，领地插件认不出是谁，policy「假玩家不给权限」）。</li>
  *   <li>按住期间手上换成另一把：只有部件和装填状态都一样才接着算（{@link #canContinueUsing}）；客户端打开任何界面时替玩家松开（{@code client/GunsClientEvents}）。</li>
  * </ul>
+ * 同调（家族 {@code mru_gun}，{@link GunAttunement}）：每发 MRU 折扣、装填后冷却缩减、过载射线都按开火的这把枪自己的阶算，
+ * 扣费、客户端预判、提示框、MRU 不够的提示一律用 {@link GunAttunement#mruPerShot}。
+ * <p>
  * 加特林拿在主手或副手时移动速度 −60%（属性修饰符，等于缓慢 IV；原作主手每刻上一次缓慢药水，副手不减是审查 GUNS-5 补上的）。
  */
 public class GunItem extends MRUStaffItem {
@@ -141,7 +145,7 @@ public class GunItem extends MRUStaffItem {
         if (player.getCooldowns().isOnCooldown(this)) {
             return InteractionResultHolder.fail(stack);
         }
-        int cost = type.mruPerShot(stats);
+        int cost = GunAttunement.mruPerShot(stack, type, stats);
         if (level.isClientSide) {
             // 客户端只预判：够 MRU 就把枪口抬起来（后坐只在客户端生效，服务端的朝向下一个移动包就被客户端覆盖）
             if (!MRUDrain.canAfford(player, stack, cost)) {
@@ -199,7 +203,7 @@ public class GunItem extends MRUStaffItem {
         }
         boolean sound = type != GunType.GATLING || since % GATLING_SOUND_INTERVAL == 0;
         if (!shoot(player, stack, type, stats, player.getRandom(), sound, RayShot.PACKET)) {
-            tellNoMRU(player, type.mruPerShot(stats));
+            tellNoMRU(player, GunAttunement.mruPerShot(stack, type, stats));
             player.releaseUsingItem();
             return;
         }
@@ -215,7 +219,8 @@ public class GunItem extends MRUStaffItem {
             if (stats.isPresent() && needsReload(stack, stats.get())) {
                 GunParts.setFired(stack, 0);
                 if (!type.automatic() && entity instanceof Player player) {
-                    player.getCooldowns().addCooldown(this, RELOAD_COOLDOWN);
+                    // 同调 3 阶起装填后冷却打折（GunAttunement.reloadCooldown，过总闸上限）
+                    player.getCooldowns().addCooldown(this, GunAttunement.reloadCooldown(stack));
                 }
             }
         }
@@ -259,14 +264,15 @@ public class GunItem extends MRUStaffItem {
     }
 
     /**
-     * 开一枪（服务端）：扣 MRU → 这一匣 +1 → 磨损 / 卡壳 → 射线（{@link RayShot#fire}）。不管冷却（冷却由调用方加）。
+     * 开一枪（服务端）：扣 MRU → 这一匣 +1 → 磨损 / 卡壳 → 射线（{@link RayShot#fire}）→ 过载充能 / 爆发（{@link GunAttunement#afterShot}）。
+     * 不管冷却（冷却由调用方加）。
      * GameTest 用固定种子的随机源和自己的光束出口直接调。
      *
      * @return MRU 不够时 false（什么都没动）
      */
     public static boolean shoot(Player player, ItemStack stack, GunType type, GunStats stats, RandomSource random, boolean sound,
                                 RayShot.BeamSink sink) {
-        if (!MRUDrain.playerUseMRU(player, stack, type.mruPerShot(stats))) {
+        if (!MRUDrain.playerUseMRU(player, stack, GunAttunement.mruPerShot(stack, type, stats))) {
             return false;
         }
         int fired = GunParts.fired(stack) + 1;
@@ -278,7 +284,10 @@ public class GunItem extends MRUStaffItem {
             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1F, 1F);
         }
         GunParts.setFired(stack, fired);
-        RayShot.fire(player, stats, random, sound, sink);
+        // 过载射线：开火前就充满的这一发放过载；没满的按打没打实充能（GunAttunement.afterShot）
+        boolean overload = GunAttunement.ready(stack);
+        RayShot.Result result = RayShot.fire(player, stats, random, sound, sink);
+        GunAttunement.afterShot(player, stack, stats, overload, result);
         return true;
     }
 
@@ -422,9 +431,15 @@ public class GunItem extends MRUStaffItem {
         if (needsReload(stack, stats)) {
             tooltip.add(Component.translatable("tooltip.essentialcraft5.gun.overheated").withStyle(ChatFormatting.RED));
         }
+        int chargeMax = GunAttunement.chargeMax(stack);
+        if (chargeMax > 0) {
+            int charge = Math.min(GunAttunement.charge(stack), chargeMax);
+            tooltip.add(Component.translatable(charge >= chargeMax ? "tooltip.essentialcraft5.gun.overload_ready" : "tooltip.essentialcraft5.gun.overload_charge",
+                    charge, chargeMax).withStyle(ChatFormatting.LIGHT_PURPLE));
+        }
         Boolean shift = DistExecutor.unsafeCallWhenOn(Dist.CLIENT, () -> GunsClient::hasShiftDown);
         if (Boolean.TRUE.equals(shift)) {
-            statLines(stats, tooltip);
+            statLines(stack, stats, tooltip);
         } else {
             tooltip.add(usage("tooltip.essentialcraft5.gun.shift"));
         }
@@ -432,9 +447,16 @@ public class GunItem extends MRUStaffItem {
     }
 
     /** 按住 Shift 看的属性（原作 addInformation 的 9 行，改成如实写：射击间隔是实际的刻数、「击退」其实是后坐、装填后的 3 秒冷却写出来） */
-    private void statLines(GunStats stats, List<Component> tooltip) {
-        tooltip.add(stat("tooltip.essentialcraft5.gun.damage", number(stats.damage())));
-        tooltip.add(stat("tooltip.essentialcraft5.gun.mru_per_shot", type.mruPerShot(stats)));
+    private void statLines(ItemStack stack, GunStats stats, List<Component> tooltip) {
+        // 同调每阶的增伤在池里（属性栏没有伤害这一行），这里写乘过以后的数，括号注明同调那份
+        double attuned = com.flameforge.essentialcraft5.item.attunement.GearStatSheet.get(stack, com.flameforge.essentialcraft5.item.attunement.GearStat.DAMAGE);
+        if (attuned > 0D) {
+            tooltip.add(stat("tooltip.essentialcraft5.gun.damage_attuned", number((float) (stats.damage() * (1D + attuned))),
+                    com.flameforge.essentialcraft5.item.attunement.AttunementStageLines.percent(attuned)));
+        } else {
+            tooltip.add(stat("tooltip.essentialcraft5.gun.damage", number(stats.damage())));
+        }
+        tooltip.add(stat("tooltip.essentialcraft5.gun.mru_per_shot", GunAttunement.mruPerShot(stack, type, stats)));
         tooltip.add(stat("tooltip.essentialcraft5.gun.durability", stats.durabilityInt()));
         tooltip.add(stat("tooltip.essentialcraft5.gun.magazine", stats.magazine()));
         if (type.automatic()) {
@@ -444,7 +466,8 @@ public class GunItem extends MRUStaffItem {
                 tooltip.add(stat("tooltip.essentialcraft5.gun.spin_up", number(type.spinUpTicks() / 20F)));
             }
         } else {
-            tooltip.add(stat("tooltip.essentialcraft5.gun.reload_cooldown", number(stats.reloadTicks() / 20F), number(RELOAD_COOLDOWN / 20F)));
+            tooltip.add(stat("tooltip.essentialcraft5.gun.reload_cooldown", number(stats.reloadTicks() / 20F),
+                    number(GunAttunement.reloadCooldown(stack) / 20F)));
             tooltip.add(stat("tooltip.essentialcraft5.gun.interval", stats.cooldownTicks()));
         }
         if (type.hasRecoil()) {
@@ -489,5 +512,11 @@ public class GunItem extends MRUStaffItem {
     public static String number(float value) {
         String text = String.format(Locale.ROOT, "%.1f", value);
         return text.endsWith(".0") ? text.substring(0, text.length() - 2) : text;
+    }
+
+    /** 名字随同调阶变色、满阶渐变、带战痕后缀（{@code item/attunement/AttunementLook}） */
+    @Override
+    public net.minecraft.network.chat.Component getName(ItemStack stack) {
+        return com.flameforge.essentialcraft5.item.attunement.AttunementLook.name(stack, super.getName(stack));
     }
 }

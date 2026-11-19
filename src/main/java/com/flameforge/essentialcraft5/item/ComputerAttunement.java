@@ -4,6 +4,8 @@ import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.IPlayerData;
 import com.flameforge.essentialcraft5.item.armor.IMRUShieldArmor;
 import com.flameforge.essentialcraft5.item.armor.MRUShieldAbsorbedEvent;
+import com.flameforge.essentialcraft5.item.attunement.ArmorAwakenings;
+import com.flameforge.essentialcraft5.item.attunement.ArmorGrowth;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
 import com.flameforge.essentialcraft5.item.attunement.AttunementConfig;
 import com.flameforge.essentialcraft5.item.attunement.AttunementStageEvent;
@@ -141,11 +143,11 @@ public final class ComputerAttunement {
             case CHEST_SLOT_STAGE -> Component.translatable(prefix + stage, cfg.price(base, stage));
             case MAGIC_STAGE -> Component.translatable(prefix + stage, AttunementStageLines.number(cfg.magicPriceMultiplier()));
             case HEAD_LEGS_SLOT_STAGE -> Component.translatable(prefix + stage, AttunementStageLines.seconds(cfg.repairDelay()),
-                    AttunementStageLines.percent(cfg.repairPercent()));
+                    AttunementStageLines.percent(ArmorGrowth.computerRepairPercent()));
             case PIERCING_STAGE -> Component.translatable(prefix + stage, cfg.price(base, stage), AttunementStageLines.percent(cfg.piercingShare()),
                     AttunementStageLines.number(cfg.piercingPriceMultiplier()));
             case BOOTS_SLOT_STAGE -> Component.translatable(prefix + stage, AttunementStageLines.percent(cfg.overloadThreshold()),
-                    AttunementStageLines.seconds(cfg.overloadDuration()), AttunementStageLines.seconds(cfg.overloadCooldown()));
+                    AttunementStageLines.seconds(cfg.overloadDuration()), AttunementStageLines.seconds(ArmorGrowth.computerOverloadCooldown(stage)));
             default -> null;
         };
     }
@@ -229,7 +231,8 @@ public final class ComputerAttunement {
         if (last != null && now(player) - last < cfg.repairDelay()) {
             return 0F;
         }
-        float amount = (float) Math.min(max * cfg.repairPercent(), max - health);
+        // 每秒回的比例读 general.gear_growth.computer_armor.repair_percent（接管 attuned.repair_percent，1% → 1.5%）
+        float amount = (float) Math.min(max * ArmorGrowth.computerRepairPercent(), max - health);
         if (!(amount > 0F)) {
             return 0F;
         }
@@ -291,10 +294,12 @@ public final class ComputerAttunement {
         if (ticks <= 0) {
             return false;
         }
-        data.setAttunementOverloadCooldown(cfg.overloadCooldown());
+        // 冷却读 general.gear_growth.computer_armor.overload_cooldown（接管 attuned.overload_cooldown，1200 → 900），再按全套的冷却缩减打折
+        data.setAttunementOverloadCooldown(ArmorGrowth.computerOverloadCooldown(fullSetStage(player)));
         BARRIER_UNTIL.put(player, now(player) + ticks);
         player.displayClientMessage(Component.translatable("message.essentialcraft5.computer_armor.overload").withStyle(ChatFormatting.LIGHT_PURPLE), true);
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BEACON_POWER_SELECT, SoundSource.PLAYERS, 0.8F, 1.6F);
+        ArmorAwakenings.overchargePulse(player, source, absorbed);
         return true;
     }
 

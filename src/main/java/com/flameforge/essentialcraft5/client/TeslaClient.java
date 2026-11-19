@@ -3,10 +3,9 @@ package com.flameforge.essentialcraft5.client;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.block.MRUCoilHardenerBlock;
 import com.flameforge.essentialcraft5.blockentity.MRUCoilBlockEntity;
-import com.flameforge.essentialcraft5.client.render.ArcEffect;
-import com.flameforge.essentialcraft5.client.render.ArcEffects;
 import com.flameforge.essentialcraft5.client.render.MRUCoilRenderer;
 import com.flameforge.essentialcraft5.client.screen.MRUCoilScreen;
+import com.flameforge.essentialcraft5.client.vfx.machine.CoilVfx;
 import com.flameforge.essentialcraft5.registry.ECSounds;
 import com.flameforge.essentialcraft5.registry.ECTesla;
 import it.unimi.dsi.fastutil.longs.Long2LongOpenHashMap;
@@ -26,12 +25,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 特斯拉线圈模块的客户端部分（模组总线，Forge 自动发现）：界面、线圈的 BER；另外两个客户端效果的静态入口：
  * <ul>
  *   <li>{@link #coilStrike}：线圈放电，服务端把打中的实体 id 放进更新包（{@code MRUCoilBlockEntity.getUpdateTag}），客户端读到后从线圈画电弧到每个目标
- *       （{@link ArcEffects}，世界坐标，存活 20 tick），在线圈处放一次 {@code lightning_hit}（原作音量 2、音高 2）。</li>
+ *       （{@link CoilVfx#strike}，等离子画法），在线圈处放一次 {@code lightning_hit}（原作音量 2、音高 2）。</li>
  *   <li>{@link #hardenerSpark}：基座的 {@code animateTick}（已按 {@link MRUCoilHardenerBlock#SPARK_CHANCE} 抽过）：往上最多找 64 格，线圈在工作就在随机一面冒一道
  *       1 格高的小电弧、放 0.1 音量的 {@code gen_electricity}；按位置记 {@link #SPARK_COOLDOWN} 刻冷却（原作电弧存活 40 刻、期间不再冒）。
  *       冷却表换世界清空、超过 {@link #SPARK_TABLE_LIMIT} 条时清掉过期的。</li>
@@ -70,16 +71,15 @@ public final class TeslaClient {
         if (level == null || targetIds.length == 0) {
             return;
         }
-        Vec3 from = coil.emitPoint();
-        boolean any = false;
+        List<Entity> targets = new ArrayList<>(targetIds.length);
         for (int id : targetIds) {
             Entity target = level.getEntity(id);
             if (target != null) {
-                ArcEffects.spawn(level, from, target.getBoundingBox().getCenter(), ArcEffect.Style.COIL_STRIKE);
-                any = true;
+                targets.add(target);
             }
         }
-        if (any) {
+        if (!targets.isEmpty()) {
+            CoilVfx.strike(coil.emitPoint(), targets);
             BlockPos pos = coil.getBlockPos();
             level.playLocalSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, ECSounds.LIGHTNING_HIT.get(),
                     SoundSource.BLOCKS, 2F, 2F, false);
@@ -108,7 +108,7 @@ public final class TeslaClient {
         Direction side = Direction.from2DDataValue(random.nextInt(4));
         double x = pos.getX() + 0.5D + side.getStepX() / 2.3D;
         double z = pos.getZ() + 0.5D + side.getStepZ() / 2.3D;
-        ArcEffects.spawn(level, new Vec3(x, pos.getY(), z), new Vec3(x, pos.getY() + 1D, z), ArcEffect.Style.COIL_HARDENER);
+        CoilVfx.spark(new Vec3(x, pos.getY(), z), new Vec3(x, pos.getY() + 1D, z));
         level.playLocalSound(x, pos.getY() + 0.5D, z, ECSounds.GEN_ELECTRICITY.get(), SoundSource.BLOCKS, 0.1F, 1F, false);
     }
 

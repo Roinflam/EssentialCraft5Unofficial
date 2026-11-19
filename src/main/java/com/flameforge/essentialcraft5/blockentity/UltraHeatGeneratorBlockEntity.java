@@ -1,5 +1,6 @@
 package com.flameforge.essentialcraft5.blockentity;
 
+import com.flameforge.essentialcraft5.ambience.AmbienceParticles;
 import com.flameforge.essentialcraft5.config.ECConfig;
 import com.flameforge.essentialcraft5.menu.UltraHeatGeneratorMenu;
 import com.flameforge.essentialcraft5.registry.ECMaterials;
@@ -337,9 +338,9 @@ public class UltraHeatGeneratorBlockEntity extends RandomBalanceBlockEntity {
         double z = worldPosition.getZ();
         double cornerX = random.nextBoolean() ? 0.05D : 0.95D;
         double cornerZ = random.nextBoolean() ? 0.05D : 0.95D;
-        level.addParticle(ParticleTypes.FLAME, x + cornerX, y + 1.2D, z + cornerZ, 0, 0.01D, 0);
+        AmbienceParticles.add(level, ParticleTypes.FLAME, x + cornerX, y + 1.2D, z + cornerZ, 0, 0.01D, 0);
         if (random.nextInt(4) == 0) {
-            level.addParticle(ParticleTypes.FLAME, x + 0.5D, y + 0.5D, z + 0.5D, 0, 0.1D, 0);
+            AmbienceParticles.add(level, ParticleTypes.FLAME, x + 0.5D, y + 0.5D, z + 0.5D, 0, 0.1D, 0);
         }
     }
 

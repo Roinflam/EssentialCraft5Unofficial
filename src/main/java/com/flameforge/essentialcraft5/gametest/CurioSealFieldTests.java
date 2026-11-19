@@ -1,5 +1,7 @@
 package com.flameforge.essentialcraft5.gametest;
 
+import com.flameforge.essentialcraft5.network.S2CGearFxPacket;
+import com.flameforge.essentialcraft5.network.GearFx;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.ECCapabilities;
 import com.flameforge.essentialcraft5.compat.CuriosCompat;
@@ -251,7 +253,15 @@ public final class CurioSealFieldTests {
             if (g != null) {
                 fought(w, g, now);
             }
-            result = ComputerSealField.evaluate(w, all, now);
+            List<S2CGearFxPacket> sent = new ArrayList<>();
+            S2CGearFxPacket.setTestSink(sent::add);
+            try {
+                result = ComputerSealField.evaluate(w, all, now);
+            } finally {
+                S2CGearFxPacket.setTestSink(null);
+            }
+            helper.assertTrue(sent.stream().anyMatch(p -> p.kind() == GearFx.SEAL_FIELD && p.entity() == w.getId() && p.param() > 0F),
+                    "运转时发一个穹顶事件（param = 半径）");
             resolve(now, w, a, i, h, c);
             hBreaks = claims.breaksAt(h.blockPosition());
             cBreaks = claims.breaksAt(c.blockPosition());

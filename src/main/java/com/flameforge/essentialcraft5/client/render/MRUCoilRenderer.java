@@ -2,10 +2,12 @@ package com.flameforge.essentialcraft5.client.render;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.blockentity.MRUCoilBlockEntity;
+import com.flameforge.essentialcraft5.client.vfx.machine.MachineVfx;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.core.BlockPos;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
@@ -23,7 +25,7 @@ import org.joml.Quaternionf;
  * <p>
  * 水晶和射线塔同一个模型（{@link RayTowerRenderer}，末影水晶去掉底座：外层玻璃壳、内层方块，斜 60°、每 tick 转 3°），
  * 只是位置和大小不同：原作先移到 (0.5, 0.6, 0.5)、缩小到 0.2，再走 ModelFloatingCube.render 的变换——中心约在方块内 0.86 格高、比中杆顶略高。
- * 待机电弧（{@code MRUCoilBlockEntity.idleArc}，坐标相对方块角）用 {@link ArcRenderer} 画；打向目标的电弧在 {@link ArcEffects} 里画。
+ * 待机电弧（{@code MRUCoilBlockEntity.idleArc}，坐标相对方块角）登记给 {@link MachineVfx}，在特效阶段用等离子画法画；打向目标的电弧见 {@code CoilVfx.strike}。
  * 渲染盒只包住线圈周围 1.5 格（{@code MRUCoilBlockEntity.getRenderBoundingBox}，原作是无限大）。
  */
 public class MRUCoilRenderer implements BlockEntityRenderer<MRUCoilBlockEntity> {
@@ -74,9 +76,9 @@ public class MRUCoilRenderer implements BlockEntityRenderer<MRUCoilBlockEntity> 
         cube.render(pose, consumer, light, overlay);
         pose.popPose();
 
-        ArcEffect idle = be.idleArc();
-        if (idle != null) {
-            ArcRenderer.render(idle, pose, buffers, partialTick);
+        if (be.idleArc() != null) {
+            BlockPos pos = be.getBlockPos();
+            MachineVfx.submit(MachineVfx.COIL, be, pos.getX() + 0.5D, pos.getY() + 0.9D, pos.getZ() + 0.5D);
         }
     }
 }

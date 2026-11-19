@@ -1,5 +1,6 @@
 package com.flameforge.essentialcraft5.blockentity;
 
+import com.flameforge.essentialcraft5.ambience.AmbienceParticles;
 import com.flameforge.essentialcraft5.config.ECConfig;
 import com.flameforge.essentialcraft5.menu.UltraNaturalFurnaceMenu;
 import com.flameforge.essentialcraft5.registry.ECTags;
@@ -322,17 +323,17 @@ public class UltraNaturalFurnaceBlockEntity extends RandomBalanceBlockEntity {
         double x = worldPosition.getX() + 0.5;
         double y = worldPosition.getY();
         double z = worldPosition.getZ() + 0.5;
-        level.addParticle(ParticleTypes.FLAME, x + (random.nextFloat() - random.nextFloat()) * 0.4, y + 0.1,
+        AmbienceParticles.add(level, ParticleTypes.FLAME, x + (random.nextFloat() - random.nextFloat()) * 0.4, y + 0.1,
                 z + (random.nextFloat() - random.nextFloat()) * 0.4, 0, 0.01, 0);
         if (random.nextInt(3) == 0) {
-            level.addParticle(ParticleTypes.SMOKE, x + (random.nextFloat() - random.nextFloat()) * 0.1, y + 0.6,
+            AmbienceParticles.add(level, ParticleTypes.SMOKE, x + (random.nextFloat() - random.nextFloat()) * 0.1, y + 0.6,
                     z + (random.nextFloat() - random.nextFloat()) * 0.1, 0, 0, 0);
         }
         if (burnTime > 0 && !neighborPowered()) {
-            level.addParticle(ParticleTypes.FLAME, x + (random.nextFloat() - random.nextFloat()) * 0.2,
+            AmbienceParticles.add(level, ParticleTypes.FLAME, x + (random.nextFloat() - random.nextFloat()) * 0.2,
                     y + 0.4 + random.nextFloat() * 0.3, z + (random.nextFloat() - random.nextFloat()) * 0.2, 0, 0.01, 0);
             if (random.nextInt(2) == 0) {
-                level.addParticle(ParticleTypes.SMOKE, x + (random.nextFloat() - random.nextFloat()) * 0.2,
+                AmbienceParticles.add(level, ParticleTypes.SMOKE, x + (random.nextFloat() - random.nextFloat()) * 0.2,
                         y + 0.7, z + (random.nextFloat() - random.nextFloat()) * 0.2, 0, 0.02, 0);
             }
         }

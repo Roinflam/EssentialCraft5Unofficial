@@ -1,6 +1,7 @@
 package com.flameforge.essentialcraft5.entity.boss;
 
 import com.flameforge.essentialcraft5.entity.anim.MobAnimStates;
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECMatrixShade;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -18,6 +19,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -78,7 +80,8 @@ public class MatrixShadeMirror extends Monster {
             MatrixShadeEntity shade = owner;
             if (shade == null || shade.isRemoved() || shade.isDeadOrDying() || shade.dissipating()
                     || shade.phase() != MatrixShadeEntity.Phase.MIND || tickCount > LIFE) {
-                server.sendParticles(ParticleTypes.REVERSE_PORTAL, getX(), getY() + getBbHeight() * 0.5D, getZ(), 12, 0.4D, 0.8D, 0.4D, 0.02D);
+                // 到时间 / 换相：碎成小片散掉（客户端画，FX_SHATTER，规模小一点）
+                BossWarnings.resolve(this, S2CBossWarningPacket.FX_SHATTER, position(), getBbHeight(), 0.5D, Vec3.ZERO, 0, BossWarnings.MATRIX, 0);
                 discard();
             }
         }
@@ -102,7 +105,8 @@ public class MatrixShadeMirror extends Monster {
         if (owner != null && !owner.isRemoved() && source.getEntity() instanceof Player player) {
             MatrixShadeSkills.mirrorBacklash(owner, player);
         }
-        server.sendParticles(ParticleTypes.REVERSE_PORTAL, getX(), getY() + getBbHeight() * 0.5D, getZ(), 24, 0.4D, 0.8D, 0.4D, 0.05D);
+        // 被打碎（客户端画，FX_SHATTER）
+        BossWarnings.resolve(this, S2CBossWarningPacket.FX_SHATTER, position(), getBbHeight(), 1D, Vec3.ZERO, 0, BossWarnings.MATRIX, 0);
         server.playSound(null, getX(), getY(), getZ(), ECMatrixShade.SOUND_MIRROR_BREAK.get(), SoundSource.HOSTILE, 1.2F, 1F);
         discard();
     }

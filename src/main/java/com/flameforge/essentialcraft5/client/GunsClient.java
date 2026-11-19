@@ -4,6 +4,7 @@ import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.client.model.GunModel;
 import com.flameforge.essentialcraft5.client.render.BeamEffects;
 import com.flameforge.essentialcraft5.client.render.MatrixHitEffects;
+import com.flameforge.essentialcraft5.client.vfx.weapon.GunFireFx;
 import com.flameforge.essentialcraft5.gun.GunParts;
 import com.flameforge.essentialcraft5.gun.GunStats;
 import com.flameforge.essentialcraft5.gun.GunType;
@@ -127,7 +128,7 @@ public final class GunsClient {
      *   <li>自己开着狙击镜打的（{@link #sniperScoped}，枪不画）：从<b>瞄准镜正下方</b>画（{@link #scopedBeam}，像枪管在镜子下面），
      *       不再从右边斜着挡住准星右侧（2026-09-29 改）。</li>
      *   <li>别人打的：从眼睛往前让开 {@value #OTHER_START} 格起画，开头 {@value #OTHER_FADE_IN} 格渐显。</li>
-     *   <li>镜头贴着光束（被射线穿过脑袋、走进还没散的光束）时由 {@link BeamEffects} 按距离变淡。</li>
+     *   <li>镜头贴着光束（被射线穿过脑袋、走进还没散的光束）时按距离变淡（{@link GunFireFx}）。光束、枪口闪光、命中点都由它画。</li>
      * </ul>
      */
     public static void onBeamPacket(S2CGunBeamPacket packet) {
@@ -144,7 +145,7 @@ public final class GunsClient {
                 scopedBeam(player, eye, look, to, packet.balance());
                 return;
             }
-            BeamEffects.spawn(muzzle(player, eye, look), to, packet.balance(), OWN_FADE_IN);
+            GunFireFx.shot(packet.shooter(), from, muzzle(player, eye, look), to, packet.balance(), OWN_FADE_IN, 0F, 0F, false);
             return;
         }
         Vec3 axis = to.subtract(from);
@@ -152,7 +153,7 @@ public final class GunsClient {
         if (length <= OTHER_START + MIN_VISIBLE) {
             return;
         }
-        BeamEffects.spawn(from.add(axis.scale(OTHER_START / length)), to, packet.balance(), OTHER_FADE_IN);
+        GunFireFx.shot(packet.shooter(), from, from.add(axis.scale(OTHER_START / length)), to, packet.balance(), OTHER_FADE_IN, 0F, 0F, false);
     }
 
     /**
@@ -160,7 +161,7 @@ public final class GunsClient {
      * 手持物品固定按视野 {@value #HAND_FOV} 画、世界按视野设置画，所以侧偏和下偏按 tan(视野设置 / 2) / tan(35°) 缩放，
      * 光束在屏幕上才从枪口出来（只看视野设置，不看疾跑、狙击镜这类临时倍率：开镜时枪不画，缩了反而会让管口贴着镜头中心）。
      */
-    static Vec3 muzzle(LocalPlayer player, Vec3 eye, Vec3 look) {
+    public static Vec3 muzzle(LocalPlayer player, Vec3 eye, Vec3 look) {
         HumanoidArm arm = player.getMainArm();
         if (!(player.getMainHandItem().getItem() instanceof GunItem) && player.getOffhandItem().getItem() instanceof GunItem) {
             arm = arm.getOpposite();
@@ -184,7 +185,7 @@ public final class GunsClient {
      *   <li>起点在眼睛正前方 {@value #MUZZLE_FORWARD} 格、<b>正下方</b>（不往两边偏），往下的量刚好让起点落在镜子圆边外面一点
      *       （角度 = 半个视野角 × {@value #SCOPE_EDGE}，视野角按视野设置 ÷ 瞄具倍率算，同 {@link GunsClientEvents} 的缩放）：
      *       镜里看是一道从镜子下沿中间升上来、收进准星的光。</li>
-     *   <li>镜头一放大，贴着镜头的那一截照常粗细会糊满镜子下半边，所以起点一段收成锥形（{@link BeamEffects#spawn(Vec3, Vec3, int, float, float, float)}）：
+     *   <li>镜头一放大，贴着镜头的那一截照常粗细会糊满镜子下半边，所以起点一段收成锥形：
      *       锥尖在镜头处，角半径取「光束在终点处本来的角半径」× {@value #SCOPED_WIDTH}（夹在半个视野角的 {@value #SCOPED_TAPER_MIN}~{@value #SCOPED_TAPER_MAX} 倍之间），
      *       整道光束在镜里是一条等宽的细线（只是射手自己看到的样子，别人看到的照常）。</li>
      *   <li>光束还没散就关了镜，看到的是一根从准星正下方伸出去的细线（整条都收细了），不会凭空悬在半空。</li>
@@ -197,7 +198,7 @@ public final class GunsClient {
         Vec3 from = eye.add(look.scale(MUZZLE_FORWARD)).subtract(up.scale(MUZZLE_FORWARD * Math.tan(halfFov) * SCOPE_EDGE));
         double distance = Math.max(1.0E-3D, to.distanceTo(eye));
         double slope = Mth.clamp(SCOPED_WIDTH * BeamEffects.BASE_RADIUS / distance, SCOPED_TAPER_MIN * halfFov, SCOPED_TAPER_MAX * halfFov);
-        BeamEffects.spawn(from, to, balance, OWN_FADE_IN, (float) slope, (float) from.distanceTo(eye));
+        GunFireFx.shot(player.getId(), eye, from, to, balance, OWN_FADE_IN, (float) slope, (float) from.distanceTo(eye), true);
     }
 
     // ------------------------------------------------------------------

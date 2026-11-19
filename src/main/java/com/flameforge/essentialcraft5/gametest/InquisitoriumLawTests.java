@@ -6,6 +6,7 @@ import com.flameforge.essentialcraft5.item.InquisitoriumArmorItem;
 import com.flameforge.essentialcraft5.item.VerdictBladeItem;
 import com.flameforge.essentialcraft5.item.attunement.Attunement;
 import com.flameforge.essentialcraft5.item.attunement.AttunementConfig;
+import com.flameforge.essentialcraft5.item.attunement.GearGrowthConfig;
 import com.flameforge.essentialcraft5.item.bauble.BaubleEffects;
 import com.flameforge.essentialcraft5.item.ember.InlayEvents;
 import com.flameforge.essentialcraft5.recipe.AttunementAscensionRecipe;
@@ -65,8 +66,9 @@ import java.util.function.Consumer;
 /**
  * 审判庭套装的「审判庭之律」与同调阶（第十三批 13b，batch13.md §4.3、§4.4、D14、D35 A；实现 {@code item/InquisitoriumArmorEvents}）的 GameTest：
  * <ul>
- *   <li>抗魔：有攻击者的魔法 ×0.65（带不带 bypasses_armor 都算），没有攻击者、攻击者是自己、无视无敌、不是魔法的都不减；1 阶 ×0.55；混穿不算；填 0 不减。</li>
- *   <li>首领减伤 ×0.85，和抗魔相乘（不是相加）；4 阶无视护甲（非魔法）×0.7，魔法不叠这一条。</li>
+ *   <li>抗魔：有攻击者的魔法 ×0.65（带不带 bypasses_armor 都算），没有攻击者、攻击者是自己、无视无敌、不是魔法的都不减；1 阶 ×0.6；混穿不算；填 0 不减。</li>
+ *   <li>首领减伤 0 阶 15%，和抗魔相加进减伤池；4 阶无视护甲（非魔法）×0.7，魔法不叠这一条。抗魔、首领减伤、律令按阶的数读
+ *       {@code general.gear_growth.inquisitorium_armor.*}，填 0 那几条用 {@link #withGrowth} 盖。</li>
  *   <li>倍率顺序：减伤在护甲前，壁垒在护甲后、按减过的数算门槛以上那段。</li>
  *   <li>壁垒：3 阶超过 30% 的部分减半、4 阶 25% 起只受四成；没有攻击者的不管；填 0 不减；按扣黄心之前的整下算，减掉的扣不完退回黄心。</li>
  *   <li>律令：每 20 刻削 13 刻（约 ×0.6），有益、无限时长、unfilterable 的不动；没穿齐、填 0 不削；真玩家每刻走一遍也是 20 刻削一次；
@@ -153,6 +155,27 @@ public final class InquisitoriumLawTests {
             body.run();
         } finally {
             ECInquisitorium.Config.setLawTestOverrides(null);
+        }
+    }
+
+    /**
+     * 抗魔 / 首领减伤 / 律令改由 {@code general.gear_growth.inquisitorium_armor.*} 按阶的列表管（{@code law.*} 的旧键不再读）：
+     * 给了数的那几项盖成「全阶都是这个数」，null 的不动；设、测、清都在同一段同步代码里
+     */
+    private static void withGrowth(Double magic, Double boss, Double edict, Runnable body) {
+        if (magic != null) {
+            GearGrowthConfig.setTestOverride("inquisitorium_armor.magic_resistance", List.of(magic));
+        }
+        if (boss != null) {
+            GearGrowthConfig.setTestOverride("inquisitorium_armor.boss_resistance", List.of(boss));
+        }
+        if (edict != null) {
+            GearGrowthConfig.setTestOverride("inquisitorium_armor.edict_reduction", List.of(edict));
+        }
+        try {
+            body.run();
+        } finally {
+            GearGrowthConfig.clearTestOverrides();
         }
     }
 
@@ -245,7 +268,7 @@ public final class InquisitoriumLawTests {
 
     // ================================================================ 抗魔、首领、无视护甲
 
-    /** 抗魔：有攻击者的魔法 ×0.65（带 bypasses_armor 的间接魔法、不带的荆棘都算）；没有攻击者、自己、无视无敌、物理不减；1 阶 ×0.55；混穿、填 0 不减 */
+    /** 抗魔：有攻击者的魔法 ×0.65（带 bypasses_armor 的间接魔法、不带的荆棘都算）；没有攻击者、自己、无视无敌、物理不减；1 阶 ×0.6；混穿、填 0 不减 */
     @GameTest(template = EMPTY)
     public static void inquisitoriumMagicResistance(GameTestHelper helper) {
         Player victim = mock(helper, 1.5D, 1.5D);
@@ -271,13 +294,12 @@ public final class InquisitoriumLawTests {
         victim.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ECComputer.armor().get(1).get()));
         close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, spell), 1D, "混穿宅男胸甲没有全套效果");
         suit(victim, 0);
-        ECInquisitorium.Config.Law d = ECInquisitorium.Config.LAW_DEFAULTS;
-        withLaw(law(true, 0D, 0D, d.edictReduction(), d.convictionBonus(), d.convictionTicks(), d.convictionMaxTargets()),
+        withGrowth(0D, 0D, null,
                 () -> close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, spell), 1D, "magic_resistance 填 0 不减"));
         helper.succeed();
     }
 
-    /** 首领减伤 ×0.85，和抗魔相乘：首领的魔法 ×0.65 × 0.85 = 0.5525（不是相加的 0.5）；首领填 0 只剩抗魔 */
+    /** 首领减伤 0 阶 15%，和抗魔相加进减伤池：首领的魔法 1 − (35% + 15%) = 0.5；首领填 0 只剩抗魔 */
     @GameTest(template = EMPTY)
     public static void inquisitoriumBossReductionMultiplies(GameTestHelper helper) {
         Player victim = mock(helper, 1.5D, 1.5D);
@@ -288,11 +310,10 @@ public final class InquisitoriumLawTests {
             return;
         }
         close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, victim.damageSources().mobAttack(wither)), 0.85D, "首领近战");
-        close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, source(helper, DamageTypes.INDIRECT_MAGIC, wither)), 0.65D * 0.85D,
-                "首领的魔法：两条相乘");
+        close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, source(helper, DamageTypes.INDIRECT_MAGIC, wither)), 0.5D,
+                "首领的魔法：两条相加（35% + 15%，进总闸的减伤池）");
         close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, victim.damageSources().mobAttack(zombie(helper, 3, 1))), 1D, "普通怪近战不减");
-        ECInquisitorium.Config.Law d = ECInquisitorium.Config.LAW_DEFAULTS;
-        withLaw(law(true, d.magicResistance(), 0D, d.edictReduction(), d.convictionBonus(), d.convictionTicks(), d.convictionMaxTargets()),
+        withGrowth(null, 0D, null,
                 () -> close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, source(helper, DamageTypes.INDIRECT_MAGIC, wither)), 0.65D,
                         "boss_resistance 填 0 只剩抗魔"));
         helper.succeed();
@@ -309,8 +330,8 @@ public final class InquisitoriumLawTests {
         suit(victim, 4);
         close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, crush), 0.7D, "4 阶无视护甲 ×0.7");
         close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, victim.damageSources().cramming()), 1D, "没有攻击者的挤压不减");
-        close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, source(helper, DamageTypes.INDIRECT_MAGIC, zombie)), 0.55D,
-                "魔法走抗魔（45%），不再乘 0.7");
+        close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, source(helper, DamageTypes.INDIRECT_MAGIC, zombie)), 0.45D,
+                "魔法走抗魔（4 阶 55%），不再乘 0.7");
         close(helper, InquisitoriumArmorEvents.incomingMultiplier(victim, victim.damageSources().mobAttack(zombie)), 1D, "普通近战不减");
         helper.succeed();
     }
@@ -343,8 +364,8 @@ public final class InquisitoriumLawTests {
     }
 
     /**
-     * 倍率顺序：首领的间接魔法 40（护甲前）在 LivingHurtEvent 乘 0.55 × 0.85 = 18.7，无视护甲，到 LivingDamageEvent 时 4 阶壁垒按 18.7 算：
-     * 5 + 13.7 × 0.4 = 10.48。近战走护甲：3 阶、护甲属性加上以后，最终伤害 = 壁垒(护甲公式(105))。
+     * 倍率顺序：首领的间接魔法 40（护甲前）在 LivingHurtEvent 进减伤池，4 阶抗魔 55% + 首领减伤 25% 相加 = 80%，夹到有攻击者时的池上限 60% → 16，
+     * 无视护甲，到 LivingDamageEvent 时 4 阶壁垒按 16 算：5 + 11 × 0.4 = 9.4。近战走护甲：3 阶、护甲属性加上以后，最终伤害 = 壁垒(护甲公式(105))。
      */
     @GameTest(template = EMPTY)
     public static void inquisitoriumMultiplierOrder(GameTestHelper helper) {
@@ -356,7 +377,7 @@ public final class InquisitoriumLawTests {
             return;
         }
         float dealt = hurtAndRead(victim, source(helper, DamageTypes.INDIRECT_MAGIC, wither), rawFor(helper, 40F));
-        close(helper, dealt, 5D + (40D * 0.55D * 0.85D - 5D) * 0.4D, "减伤在护甲前、壁垒在后");
+        close(helper, dealt, 5D + (40D * (1D - Math.min(0.55D + 0.25D, 0.6D)) - 5D) * 0.4D, "减伤池在护甲前、壁垒在后");
 
         Player armored = mock(helper, 3.5D, 3.5D);
         ItemStack[] stacks = suit(armored, 3);
@@ -471,8 +492,7 @@ public final class InquisitoriumLawTests {
         helper.assertTrue(player.getEffect(MobEffects.WEAKNESS).isInfiniteDuration(), "无限时长不动");
         helper.assertTrue(duration(player, ECEffects.ANCHORED.get()) == 200, "unfilterable 里的锚定不动");
 
-        ECInquisitorium.Config.Law d = ECInquisitorium.Config.LAW_DEFAULTS;
-        withLaw(law(true, d.magicResistance(), d.bossResistance(), 0D, d.convictionBonus(), d.convictionTicks(), d.convictionMaxTargets()),
+        withGrowth(null, null, 0D,
                 () -> helper.assertTrue(InquisitoriumArmorEvents.edict(player) == 0 && duration(player, MobEffects.POISON) == 187,
                         "edict_reduction 填 0 不削"));
         player.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
@@ -970,7 +990,7 @@ public final class InquisitoriumLawTests {
             AttunementConfig.setTestPvpEffectScale(null);
         }
 
-        withLaw(law(false, 0D, 0D, 0D, 0D, 200, 8), () -> {
+        withLaw(law(false, 0D, 0D, 0D, 0D, 200, 8), () -> withGrowth(0D, 0D, 0D, () -> {
             List<Component> off = new ArrayList<>();
             InquisitoriumArmorItem.lawTooltip(off);
             for (String key : List.of("keep_durability", "fullset.magic", "fullset.boss", "fullset.edict", "fullset.conviction", "fullset.conviction.pvp")) {
@@ -979,7 +999,7 @@ public final class InquisitoriumLawTests {
             TranslatableContents mark = contents(off, prefix + "fullset.conviction.mark_only");
             helper.assertTrue(mark != null && "10".equals(String.valueOf(mark.getArgs()[0])) && "8".equals(String.valueOf(mark.getArgs()[1])),
                     "增伤填 0 但还在定罪（赦罪、2 阶要用）：只写被定罪 10 秒、8 个");
-        });
+        }));
         withLaw(law(true, 0D, 0D, 0D, 0.2D, 0, 8), () -> {
             List<Component> off = new ArrayList<>();
             InquisitoriumArmorItem.lawTooltip(off);

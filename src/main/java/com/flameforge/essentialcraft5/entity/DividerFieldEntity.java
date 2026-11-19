@@ -4,7 +4,6 @@ import com.flameforge.essentialcraft5.gun.RayHitGate;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
 import com.flameforge.essentialcraft5.registry.ECEffects;
 import com.flameforge.essentialcraft5.registry.ECHoloWeapons;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -22,7 +21,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,9 +53,9 @@ import java.util.function.Predicate;
  *       所以原版凋灵挂不上，末影龙本来就过不了探测。不用 {@code forceAddEffect}：它会绕过实体自己的免疫，也不发 {@code MobEffectEvent.Added}。
  *       {@code divider_immune} 里的照旧完全不碰。</li>
  *   <li><b>攻击者没了就熄灭</b>：放下时带了攻击者、到点时它已移除 / 死了 / 不在同一个世界，就什么都不做、直接消失。</li>
- *   <li>每 {@value #SOUND_INTERVAL} 刻一声苦力怕点燃声（音量 1、音高 0.5，原作）；品红粒子只在客户端出。不存盘、不能 {@code /summon}。</li>
+ *   <li>每 {@value #SOUND_INTERVAL} 刻一声苦力怕点燃声（音量 1、音高 0.5，原作）。不存盘、不能 {@code /summon}。</li>
  * </ul>
- * 渲染见 {@code client/render/DividerFieldRenderer}（反应堆的球体模型放大 3 倍，品红半透明）。
+ * 画面全在客户端 {@code client/vfx/weapon/DividerFieldFx}（实体渲染器是空的）：等离子球壳，真张开时广播实体事件 {@value #EVENT_OPEN}。
  */
 public class DividerFieldEntity extends Entity {
 
@@ -73,7 +71,8 @@ public class DividerFieldEntity extends Entity {
     public static final int BLIND_TICKS = 100;
     public static final int BLIND_AMPLIFIER = 0;
 
-    private static final DustParticleOptions MAGENTA_DUST = new DustParticleOptions(new Vector3f(1F, 0F, 1F), 1F);
+    /** 真张开（结算了）时广播的实体事件：熄灭的不发 */
+    public static final byte EVENT_OPEN = 90;
 
     private int delay = 40;
     @Nullable
@@ -86,6 +85,7 @@ public class DividerFieldEntity extends Entity {
     private boolean gated;
     private boolean armed;
     private boolean fired;
+    private boolean openedClient;
     private boolean showroomHold;
 
     public DividerFieldEntity(EntityType<? extends DividerFieldEntity> type, Level level) {
@@ -144,7 +144,6 @@ public class DividerFieldEntity extends Entity {
     public void tick() {
         super.tick();
         if (!(level() instanceof ServerLevel level)) {
-            level().addParticle(MAGENTA_DUST, getX(), getY(), getZ(), 0D, 0D, 0D);
             return;
         }
         if (isRemoved()) {
@@ -183,6 +182,7 @@ public class DividerFieldEntity extends Entity {
             if (!armed || (expectsAttacker && !attackerPresent(level))) {
                 return;
             }
+            level.broadcastEntityEvent(this, EVENT_OPEN);
             for (LivingEntity target : targets(level, extra)) {
                 // 先定好是哪一种（减半还是首领模式），探测之后不再重判
                 boolean halve = affects.test(target);
@@ -201,6 +201,20 @@ public class DividerFieldEntity extends Entity {
         } finally {
             discard();
         }
+    }
+
+    @Override
+    public void handleEntityEvent(byte id) {
+        if (id == EVENT_OPEN) {
+            openedClient = true;
+            return;
+        }
+        super.handleEntityEvent(id);
+    }
+
+    /** 客户端：真张开了（实体随后被移除；没收到就是熄灭） */
+    public boolean openedOnClient() {
+        return openedClient;
     }
 
     /** 0 伤害探测：放行了才算（见类注释）；无敌帧计时原样放回 */

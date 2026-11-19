@@ -176,7 +176,9 @@ public final class MRUResistance {
 
         @SubscribeEvent
         public static void onTooltip(ItemTooltipEvent event) {
-            if (event.getItemStack().getItem() instanceof IMRUResistanceItem) {
+            // 同调装备没按住 Shift 时，抗性行和物品说明一起收起
+            if (event.getItemStack().getItem() instanceof IMRUResistanceItem
+                    && !com.flameforge.essentialcraft5.client.AttunementTooltips.holdsBackNotes(event)) {
                 appendTooltip(event.getItemStack(), event.getToolTip());
             }
         }

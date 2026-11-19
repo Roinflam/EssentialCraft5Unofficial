@@ -2,6 +2,7 @@ package com.flameforge.essentialcraft5.registry;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.recipe.KeepNbtRecipes;
+import com.flameforge.essentialcraft5.recipe.MagicianTableKeepNbtRecipe;
 import com.flameforge.essentialcraft5.recipe.MagicianTableRecipe;
 import com.flameforge.essentialcraft5.recipe.RadiatingChamberRecipe;
 import net.minecraft.world.item.crafting.Recipe;
@@ -33,6 +34,9 @@ public final class ECRecipes {
     public static final RegistryObject<RecipeType<MagicianTableRecipe>> MAGICIAN_TABLE = type("magician_table");
     public static final RegistryObject<RecipeSerializer<MagicianTableRecipe>> MAGICIAN_TABLE_SERIALIZER =
             serializer("magician_table", MagicianTableRecipe.Serializer::new);
+    /** 魔力工作台：中心那件照留、合并几个 NBT 键（创世神之杖升格），配方类型同上 */
+    public static final RegistryObject<RecipeSerializer<MagicianTableKeepNbtRecipe>> MAGICIAN_TABLE_KEEP_NBT_SERIALIZER =
+            serializer("magician_table_keep_nbt", MagicianTableKeepNbtRecipe.Serializer::new);
 
     public static final RegistryObject<RecipeType<RadiatingChamberRecipe>> RADIATING_CHAMBER = type("radiating_chamber");
     public static final RegistryObject<RecipeSerializer<RadiatingChamberRecipe>> RADIATING_CHAMBER_SERIALIZER =
@@ -40,7 +44,7 @@ public final class ECRecipes {
 
     /**
      * 产物带上某件原料 NBT 的工作台配方（类型仍是 {@code minecraft:crafting}），JSON 的 {@code "type"} 写这两个名字，
-     * 其余字段同原版 crafting_shaped / crafting_shapeless，另加 {@code "nbt_source"}。建筑魔杖换模式用无序的，过滤器升级用有序的。
+     * 其余字段同原版 crafting_shaped / crafting_shapeless，另加 {@code "nbt_source"}。创世神之杖换模式用无序的，过滤器升级用有序的。
      */
     public static final RegistryObject<RecipeSerializer<KeepNbtRecipes.ShapedKeepNbt>> CRAFTING_SHAPED_KEEP_NBT =
             serializer("crafting_shaped_keep_nbt", KeepNbtRecipes.ShapedSerializer::new);

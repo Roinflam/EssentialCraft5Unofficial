@@ -4,7 +4,6 @@ import com.flameforge.essentialcraft5.gun.RayHitGate;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
 import com.flameforge.essentialcraft5.registry.ECHoloWeapons;
 import com.flameforge.essentialcraft5.util.ECProtection;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -44,7 +43,7 @@ import java.util.function.Predicate;
  *       放受击声、让目标记仇，只是不着火、不击退、不叫增援（僵尸的叫增援也由 {@link HoloStrikeEvents} 按「落没落下」拦）。</li>
  *   <li><b>攻击者没了就熄灭</b>：放下时带了攻击者、到点时它已移除（下线、死后重生）、死了、或不在同一个世界，就不结算、不爆炸，直接消失——不留匿名伤害。</li>
  *   <li><b>爆炸只出声光</b>：结算完以后 {@code ECProtection.safeExplode(…, e -> false)}（不破坏方块、不放火、不伤也不推任何实体），
- *       另补 {@value #IMPACT_PARTICLES} 个大爆炸粒子（原作客户端每刻 20 个）。不让爆炸去算伤害：原版爆炸给不出平的数值，
+ *       落点的画面由客户端画（广播实体事件 {@value #EVENT_LAND}，{@code client/vfx/weapon/OrbitalStrikeFx}）。不让爆炸去算伤害：原版爆炸给不出平的数值，
  *       而且在 {@code hurt} 之后无条件击退，纯 Forge 的领地模组拦下伤害后目标照样被炸飞。</li>
  *   <li><b>不改任何方块</b>：原作在 5×5×5 内删水、冰、雪，把能烧的方块就地按熔炉配方烧掉、产物掉地上（远程熔炉 + 采矿器，不看领地），全部删掉。</li>
  *   <li>充能声 {@code sound.orbital_strike} 在第 {@value #CHARGE_SOUND_TICK} 刻放一次，音量 {@value #CHARGE_SOUND_VOLUME}（32 格内听得到；
@@ -57,7 +56,7 @@ import java.util.function.Predicate;
  * <h2>同步</h2>
  * 总延迟写进一个 int 的同步字段（原作每刻同步一次字符串），客户端按 {@code tickCount} 自己倒数（{@link #remainingTicks}）；
  * 中途才进入追踪范围的玩家靠生成包里的 {@code data} 字段对上已经过去的刻数（{@link #getAddEntityPacket} / {@link #recreateFromPacket}）。
- * 渲染见 {@code client/render/OrbitalStrikeRenderer}：原版信标光柱，品红，高到建筑上限，随剩余时间收细。
+ * 画面全在客户端 {@code client/vfx/weapon/OrbitalStrikeFx}（实体渲染器是空的）：倒数时的光柱、落下、落点。
  */
 public class OrbitalStrikeEntity extends Entity {
 
@@ -69,8 +68,8 @@ public class OrbitalStrikeEntity extends Entity {
     public static final float CHARGE_SOUND_VOLUME = 2F;
     /** 伤害落下后着火几秒（原作 setFire(2)） */
     public static final int FIRE_SECONDS = 2;
-    /** 落下时补的大爆炸粒子数 */
-    public static final int IMPACT_PARTICLES = 20;
+    /** 真落下（结算了）时广播的实体事件：攻击者没了、熄灭的不发，客户端靠它分辨「落下」和「熄灭」 */
+    public static final byte EVENT_LAND = 90;
     /** 只出声光的爆炸的威力（原版爆炸半径 1 的声音和粒子） */
     public static final float IMPACT_POWER = 1F;
     /** 跟随：落下前这么多刻定住（给被锁定的目标一个躲开的窗口，光柱也在这时停下） */
@@ -92,6 +91,8 @@ public class OrbitalStrikeEntity extends Entity {
     /** 由 {@link #spawn} 放下的才会结算（别的途径造出来的下一刻就消失） */
     private boolean armed;
     private boolean fired;
+    /** 客户端：收到了落下的实体事件 */
+    private boolean landedClient;
     /** 跟着谁走（服务端；没锁定、目标没了以后为 null） */
     @Nullable
     private Entity follow;
@@ -232,7 +233,21 @@ public class OrbitalStrikeEntity extends Entity {
             }
         }
         ECProtection.safeExplode(level, this, ECDamageTypes.orbitalStrike(level, attacker), center, IMPACT_POWER, living -> false);
-        level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, center.x, center.y, center.z, IMPACT_PARTICLES, 0.5D, 0.5D, 0.5D, 0D);
+        level.broadcastEntityEvent(this, EVENT_LAND);
+    }
+
+    @Override
+    public void handleEntityEvent(byte id) {
+        if (id == EVENT_LAND) {
+            landedClient = true;
+            return;
+        }
+        super.handleEntityEvent(id);
+    }
+
+    /** 客户端：这一击是真落下了（实体随后被移除；没收到就是熄灭） */
+    public boolean landedOnClient() {
+        return landedClient;
     }
 
     private List<LivingEntity> targets(ServerLevel level, AABB cube, Collection<? extends LivingEntity> extra) {

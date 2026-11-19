@@ -715,7 +715,7 @@
             ],
             [
               "{item:essentialcraft5:void_chestplate}",
-              "受到任何伤害都有 <t>20%</t> 的几率闪开，掉出世界和 /kill 除外，闪开时不掉血也不花 MRU"
+              "受到任何伤害都有 <t>{cfg:general.gear_growth.void_armor.dodge|stage:0|pct}</t> 的几率闪开，掉出世界和 /kill 除外，闪开时不掉血也不花 MRU"
             ],
             [
               "{item:essentialcraft5:void_leggings}",
@@ -1180,6 +1180,344 @@
         "item/MagicalDiggerEvents.java:131-144 — 邻格要同一种方块、硬度 ≥ 0、mayInteract；调玩家本人的 gameMode.destroyBlock（掉落、附魔、经验照常），挖成才扣",
         "item/MagicalDiggerItem.java:147 canBeDepleted false、:153 isEnchantable true（耐久、经验修补附不上）",
         "data/essentialcraft5/recipes/wind/wind_tablet.json 风之焦点 ×4、demon/demonic_pentacle.json 火之焦点 ×4（海纳尔之门开着时才是主线）"
+      ]
+    },
+    {
+      "id": "paving_wand",
+      "title": "{item:essentialcraft5:paving_wand}",
+      "icon": "essentialcraft5:paving_wand",
+      "summary": "点一下铺好一片地面，创世神之杖的入门版",
+      "complete": "essentialcraft5:guide/gear/paving_wand",
+      "optional": true,
+      "items": [
+        "essentialcraft5:paving_wand",
+        {
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:builder_module_range",
+            "essentialcraft5:builder_module_haste",
+            "essentialcraft5:builder_module_efficiency",
+            "essentialcraft5:builder_module_reach",
+            "essentialcraft5:builder_module_mix",
+            "essentialcraft5:builder_module_salvage"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目标</em>（可选）：做一根{item:essentialcraft5:paving_wand}。对着地面右键一下，就能用身上的方块铺好一整片地板、一条路或一层平台。它是创世神之杖的前一阶，只往空着的格子里放方块，不会拆除方块。"
+        },
+        {
+          "type": "h",
+          "text": "准备"
+        },
+        {
+          "type": "p",
+          "text": "需要 1 个{item:essentialcraft5:world_interactor}、2 块{item:essentialcraft5:pale_plate}、2 块{item:essentialcraft5:magic_fortified_plating}、1 个{item:essentialcraft5:elemental_core}和 1 个{item:essentialcraft5:earth_focus}。刚做出来时是铺面形状。"
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:builder/paving_wand"
+        },
+        {
+          "type": "p",
+          "text": "世界交互器和魔力强化板见[[crafting/magician_crafts]]，淡青板见[[alloys/pale]]，元素核心见[[elements/parts]]，地之焦点见[[essence/fuel_and_focus]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎么用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "潜行右键一个方块，把它<hl>选定</hl>，魔杖铺的就是这种方块。副手拿着一种方块时，魔杖直接铺副手这种，不用另外选定。",
+            "把这种方块带在身上，对着一个方块的顶面右键，魔杖以这一格为中心，在它上方铺一层，默认 5 × 5。对着空气右键时，铺在脚下那一层。",
+            "按住<hl>魔杖键</hl>（{keybind:key.essentialcraft5.builder_wand}，可在按键设置里更改）滚动滚轮，可以把这一片调大或调小。",
+            "施工期间要一直拿着魔杖，人也要留在附近。潜行对着空气右键可以中途停下，已经铺好的部分留着。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的标志",
+          "text": "拿到铺设魔杖，这一步就打勾了。拿着它对准地面，地上会标出要铺的范围；右键以后，方块从点中的地方一圈圈向外铺开。"
+        },
+        {
+          "type": "h",
+          "text": "三种形状"
+        },
+        {
+          "type": "p",
+          "text": "<hl>形状</hl>决定圈哪些格子。铺设魔杖有两点、铺面、直线三种形状，在下文蓝图台的「范围」页里切换。当前的形状和尺寸写在魔杖的提示框里，拿着魔杖时也显示在准星下方。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "形状",
+            "怎么用",
+            "默认尺寸"
+          ],
+          "widths": [
+            2,
+            7,
+            2
+          ],
+          "rows": [
+            [
+              "两点",
+              "右键两个方块定下两个角，两个角之间的长方体就是选区，再对着空气右键开工；没在施工时，潜行对着空气右键清掉两个角",
+              "—"
+            ],
+            [
+              "铺面",
+              "右键方块的顶面或底面，以这一格为中心在上方或下方铺一层；右键侧面，从侧面向外铺；对着空气右键，铺在脚下那一层",
+              "<t>5</t> × <t>5</t>"
+            ],
+            [
+              "直线",
+              "从点中的面外侧那一格起，沿面朝的方向铺一条；对着空气右键，从脚下那一格起铺",
+              "宽 <t>1</t>、长 <t>8</t>"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "铺面和直线右键一下就开工，不用先定角。潜行右键方块照样是选定方块，潜行对着空气右键是停下。",
+            "按住魔杖键滚动滚轮调整尺寸：铺面的长和宽一起变、变成正方形，直线只变长度；同时按住潜行，铺面只调长度，直线只调宽度。按住魔杖键时滚轮不切换快捷栏。",
+            "边长最多 {cfg:general.builder.paver.max_side} 格，一次最多 {cfg:general.builder.paver.max_volume} 格，两点形状的两个角最远相隔 {cfg:general.builder.paver.max_point_distance} 格。长沿面朝的方向，宽向左右两边展开，宽是偶数时多出的一格在右手边。",
+            "准星对着的地方会标出要铺的范围，材料或 MRU 不够的格子标成红色。",
+            "准星下方的提示写着形状、尺寸、要放几格、持有多少材料、这一单要多少 MRU，不够的那项标成红色；施工时换成进度和剩余时间，暂停、排队、待确认时也会写明。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "蓝图台"
+        },
+        {
+          "type": "p",
+          "text": "拿着魔杖单按魔杖键，屏幕上会铺开<hl>蓝图台</hl>，再按一次魔杖键或按 Esc 收起。形状、尺寸、选定方块和模块都在这里调整，左边的蓝图随之更新。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "顶栏写着魔杖的名称、档位和存着的 MRU。",
+            "左边是蓝图，俯视画出这一次要动的格子，要放的格子涂成方块的颜色。蓝图下方写着形状、尺寸、要放几格和这一单要多少 MRU，MRU 不够时标成红色。施工时蓝图随进度逐格填上。",
+            "「范围」页：切换形状和模式，铺设魔杖只有填充一种模式。尺寸在蓝图下方用加减号调整，按住魔杖键滚动滚轮也可以。",
+            "「方块」页：列出身上和随身容器里能当材料的方块，按数量排列，点一下就设为选定方块。装了混铺模块时，右边是混铺表。",
+            "「模块」页：列出装着的模块，每块可以单独开关或拆下，拆下的模块回到背包；下方列出这根魔杖现在的各项上限。",
+            "底栏两头是「撤销上一次」和「停下」，中间写着可以撤销的那一单的形状、格数和放下了多久，施工时还显示进度。不能撤销时按钮变灰，并写明原因。",
+            "施工、暂停或排队期间，除了「撤销上一次」和「停下」，其余设置都变灰，要先停下才能更改。按住魔杖键滚动滚轮调尺寸也要先停下。",
+            "蓝图台开着时，准星下方的提示暂时收起。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "材料与 MRU"
+        },
+        {
+          "type": "list",
+          "items": [
+            "材料只用没改过名、里面没装东西的物品，先用背包里的，再用副手的。",
+            {
+              "if": "cfg:general.builder.allow_container_items",
+              "text": "背包和副手里的不够时，再从身上的随身容器里取，也就是带物品格的背包类物品，放在背包、副手、盔甲栏或饰品栏都行。叠了好几个的容器、容器里套的容器不碰；开着别的容器界面时，也不从随身容器里取。"
+            },
+            {
+              "if": "cfg:general.builder.allow_container_items",
+              "text": "随身容器自己的规则不让取出的料，不算在持有的数量里，也不算进开工前的「材料够不够」。"
+            },
+            "魔杖自己能存 5000 MRU，刚做出来时是空的，可以放进[[storage/charging_chamber]]充能。用的时候先扣身上储存物品里的 MRU，不够了才扣魔杖自己的，储存物品见[[storage/soul_storage]]。",
+            "每放成一格扣 25 MRU，原本就有方块的格子和跳过的格子都不扣。铺满最大的一片要 {cfg:general.builder.paver.max_volume|mul:25} MRU。",
+            {
+              "if": "cfg:general.builder.material_pause_seconds>0",
+              "text": "材料或 MRU 用完时先<hl>暂停</hl> {cfg:general.builder.material_pause_seconds} 秒，期间补上就接着铺，等不到才停下，已经铺好的部分留着。"
+            },
+            "一单要铺的格子很多，或者身上的材料、MRU 明显不够时，第一次右键只给出提示，3 秒内同一单再右键一次才开工。"
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.builder.undo_window_seconds>0",
+          "text": "撤销"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.builder.undo_window_seconds>0",
+          "items": [
+            "按住魔杖键再右键，或者点蓝图台底栏的「撤销上一次」，撤销上一次放置：放下的方块收回，材料按 1 比 1 退还，MRU 不退还。",
+            "只能撤销最近的一次，要在 {cfg:general.builder.undo_window_seconds} 秒以内、在同一个维度，并且离那片范围不超过魔杖的施工距离。",
+            "已经被挖掉、换成了别的方块、长大了或者台阶补成了双层的格子，撤销时不动，也不退材料。",
+            "撤销按方块的种类认领：某一格后来又出现了同一种方块，不论是谁放的、怎么来的，也会被收回并退还材料。",
+            "撤销途中被打断时，剩下的部分留在记录里，可以接着撤销。下线以后记录清空。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "模块"
+        },
+        {
+          "type": "p",
+          "text": "铺设魔杖有 2 个模块槽。在工作台里放这根魔杖和一块模块，别的格子空着，合出来的就是装上模块的魔杖。同一种模块只能装一块，拆模块在蓝图台的「模块」页。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "模块",
+            "效果"
+          ],
+          "widths": [
+            3,
+            7
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:builder_module_range}",
+              "一次最多的格数 ×{cfg:general.builder.modules.range.volume_multiplier}，边长 ×{cfg:general.builder.modules.range.side_multiplier}"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_haste}",
+              "每刻最多铺的格数 ×{cfg:general.builder.modules.haste.cells_multiplier}"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_efficiency}",
+              "每格 MRU ×{cfg:general.builder.modules.efficiency.cost_multiplier}"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_reach}",
+              "施工距离增加 {cfg:general.builder.modules.reach.reach_bonus} 格，铺面的瞄准距离随之增加"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_mix}",
+              "最多 {cfg:general.builder.modules.mix.max_kinds} 种方块按比例混着铺"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "装了远域模块，准星对着远处的方块时地上照样标出范围，右键就在那里开工。",
+            "装了混铺模块，在蓝图台的「方块」页配混铺表：每种方块设一个 1 到 9 的权重，权重越大铺得越多；某一种用完时由其余几种补上。",
+            "{item:essentialcraft5:builder_module_salvage}只能装在创世神之杖上，铺设魔杖装不了。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "每种模块的配方和详细用法见[[void_machines/builder_module]]。"
+        },
+        {
+          "type": "recipe",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:builder_module_range",
+            "essentialcraft5:builder_module_haste",
+            "essentialcraft5:builder_module_efficiency",
+            "essentialcraft5:builder_module_reach",
+            "essentialcraft5:builder_module_mix"
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "升到二阶"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "有了海纳尔的材料以后，可以把铺设魔杖升成二阶的[[void_machines/magical_builder|创世神之杖]]：照创世神之杖的配方摆放，用铺设魔杖顶替其中一个白名单过滤器。存着的 MRU、选定方块和装着的模块都会留下，升好后是填充模式。"
+        },
+        {
+          "type": "recipe",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "recipe": "essentialcraft5:builder/magical_builder_from_paver",
+          "caption": "上下两个过滤器顶替哪一个都可以"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "别人领地里的格子不会被改动，也不扣 MRU，但被拒的格子累计到 {cfg:general.builder.denied_limit} 格时魔杖就会停下，所以铺的时候要避开别人的领地。另外，有的方块亲手放下时会多做一些事，比如一次扣两个物品或记下额外的数据；魔杖只按方块本身放下，这类方块铺出来可能和亲手放的不一样。"
+        },
+        {
+          "type": "h",
+          "text": "进阶细节"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "一次最多",
+              "{cfg:general.builder.paver.max_volume} 格"
+            ],
+            [
+              "铺面、直线边长",
+              "最多 {cfg:general.builder.paver.max_side} 格"
+            ],
+            [
+              "两个角最远",
+              "{cfg:general.builder.paver.max_point_distance} 格"
+            ],
+            [
+              "施工距离",
+              "{cfg:general.builder.paver.max_reach} 格以内"
+            ],
+            [
+              "速度",
+              "每刻最多 {cfg:general.builder.paver.cells_per_tick} 格"
+            ],
+            {
+              "if": "cfg:general.builder.undo_window_seconds>0",
+              "cells": [
+                "撤销时限",
+                "{cfg:general.builder.undo_window_seconds} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "放下的方块朝向和站在原地亲手放时一样，楼梯这类方块按人面朝的方向摆，台阶放下半块，蜡烛、海泡菜只放 1 个，作物从刚种下的样子开始长。",
+            "新方块在这一格立不住时，比如花放在石头上、海带放在没水的地方，或者这一格站着人或生物，这一格就原样不动，也不扣 MRU。做完时会报告跳过了几格。",
+            "沙子、砂砾这类会掉落的方块，下面是空的那格会跳过，不会生成一堆下落的方块。",
+            "施工途中换了手里的东西、走出施工距离或者换了维度，施工就会停下。每人同一时间只做一片，正在做时再开一单会排在后面，同时施工的人太多时也会排队，轮到了自动开工。",
+            "创造模式下不扣 MRU，也不耗材料。",
+            "地上标出的范围、准星下的提示、超过多少格要再点一次确认，都可以在模组的客户端设置里调整。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "<em>想深入</em>：要清除、替换方块，或者砌竖墙、顺着地形铺一层，需要二阶的[[void_machines/magical_builder|创世神之杖]]。"
+        }
+      ],
+      "_src": [
+        "data/essentialcraft5/recipes/builder/paving_wand.json — 有形配方 RPE / MCM / _P_：世界交互器、淡青板 ×2、魔力强化板 ×2、元素核心、地之焦点",
+        "data/essentialcraft5/advancements/guide/gear/paving_wand.json — 拿到铺设魔杖就打勾",
+        "item/PavingWandItem.java — 填充模式的 MagicalBuilderItem，不能在工作台换模式",
+        "item/BuilderTier.java:38 PAVER — 自带 MRU 5000、撤销栈深 1、模块槽 2；:45 PAVER_SHAPES 两点 / 铺面 / 直线；:80 allows(mode) 只有填充；:90 defaultShape 一阶默认铺面",
+        "registry/ECBuilder.java:156 PAVER_DEFAULTS — general.builder.paver.*：max_volume 256、max_side 16、max_point_distance 16、max_reach 32、cells_per_tick 8，没有花费倍率（放置 25）",
+        "item/BuilderMode.java:35 — 放置 25 MRU（原作常量）",
+        "item/BuilderShape.java — 铺面默认 5 × 5，直线默认宽 1 长 8",
+        "item/BuilderShapes.java:70 area — 铺面点中顶面 / 底面以点中格为中心铺上方 / 下方一层，侧面沿法线往外；直线从点中面外侧那格沿玩家朝向；没点中铺脚下；:102 偶数宽多出的一格在右手边",
+        "client/BuilderInput.java:315 resize — 按住魔杖键滚轮：铺面长宽一起变正方形、直线调长，加潜行铺面调长、直线调宽；:306 openPanel 单按魔杖键铺开面板",
+        "item/BuilderTier.java:117 stats — 档位配置值 → 模块修正 → hard_max_volume",
+        "item/BuilderMaterials.java — 取料顺序：背包 0~35、副手、随身容器（背包 → 副手 → 盔甲 → 饰品栏，数量为 1、有物品处理能力、不是魔杖、不在 builder_container_blacklist），只看一层；containersUsable 开着别的容器界面时不碰随身容器；countTakeable 取不出的不算持有",
+        "mru/MRUDrain.java:31 playerUseMRU — 先扣身上储存物品，再扣魔杖自己的；创造模式不扣",
+        "item/BuilderJobs.java pause / tickPaused — 材料或 MRU 用完暂停 material_pause_seconds 秒，每 10 刻看一次",
+        "item/BuilderJobs.java:149 CONFIRM_TICKS 60 — 需确认时 3 秒内同一单再点；needsConfirm 超过确认阈值（客户端，默认 1024）或材料 / MRU 不够",
+        "item/BuilderUndo.java / BuilderJobs.java:1009 undo — 只撤放置、1 比 1 退料不退 MRU、undo_window_seconds 秒内、同维度、离外框不超过手里魔杖的施工距离（:1020）；方块变了不动不退；中断压回；下线清空",
+        "item/BuilderModules.java:56 Kind — 六种模块，回收 minTier = 二阶；recipe/BuilderModuleRecipe — 工作台里正好一根魔杖 + 一块模块，别的格子空；同种只装一块、槽满不出产物",
+        "registry/ECBuilder.java:168 MODULE_DEFAULTS — 扩域 ×2 / 边长 ×1.4、疾工 ×2、节能 ×0.6、远域 +32；max_aim_distance 128（瞄准距离 = 施工距离，不超过它）；mix.max_kinds 4",
+        "item/BuilderShape.java:70 longAim — 远距离瞄准（瞄准距离 = 施工距离）：铺面、竖墙、沿面（一阶只有铺面）",
+        "item/BuilderMix.java:41 MIN_WEIGHT 1、MAX_WEIGHT 9；用完由其余几种补上（BuilderJobs place）",
+        "data/essentialcraft5/recipes/builder/magical_builder_from_paver.json、magical_builder_from_paver_lower.json — 铺设魔杖顶替上 / 下白名单过滤器，crafting_shaped_keep_nbt，产物填充模式、NBT 照抄",
+        "item/BuilderJobs.java classify / place — 带方块实体、硬度 < 0、builder_blacklist 不碰；立不住、有人站着跳过；会掉落的方块下面空着跳过（canStand）；placementState 台阶下半、蜡烛 / 海泡菜 1 个、作物最小、楼梯朝玩家",
+        "item/BuilderJobs.java enqueue — 每人一个在做 + max_queued_per_player 个排队；全服 max_jobs_total 个；stillValid 换手、走远、换维度停",
+        "item/BuilderJobs.java preProbe / denied_limit — 被拒累计 general.builder.denied_limit 格停",
+        "client/BuilderClientConfig — 虚影、准星下提示、确认阈值在客户端配置 builder 节"
       ]
     },
     {

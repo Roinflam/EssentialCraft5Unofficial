@@ -3,6 +3,7 @@ package com.flameforge.essentialcraft5.entity.boss;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.api.IPlayerData;
 import com.flameforge.essentialcraft5.entity.anim.MobAnimStates;
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.player.PlayerDataEvents;
 import com.flameforge.essentialcraft5.registry.ECSunkenDistrict;
 import net.minecraft.ChatFormatting;
@@ -75,6 +76,9 @@ import java.util.List;
  * 注册在 {@code registry/ECSunkenDistrict}；模型复用渊鳗的几何（{@code client/model/mob/AbyssTyrantModel}）。
  */
 public class AbyssTyrantEntity extends ECBossMonster {
+
+    /** 漩涡的颜色（渊潮的青蓝） */
+    public static final int VORTEX_COLOR = 0x3CC8C0;
 
     public static final int ANIM_BITE = 0;
     public static final int ANIM_VORTEX = 1;
@@ -310,6 +314,9 @@ public class AbyssTyrantEntity extends ECBossMonster {
         vortexClock = 0;
         anims.play(this, ANIM_VORTEX);
         playSound(ECSunkenDistrict.SOUND_TYRANT_VORTEX.get(), 2F, 1F);
+        // 漩涡画面跟着它画完整段（客户端画，FX_VORTEX）；它没了客户端自己收
+        BossWarnings.attach(this, this, S2CBossWarningPacket.FX_VORTEX, position().add(0D, getBbHeight() * 0.5D, 0D), cfg.vortexRadius(), vortexLeft,
+                VORTEX_COLOR);
     }
 
     /** 服务端每刻：名单里有人时计时，到点起一次漩涡；正在放就拉一刻 */

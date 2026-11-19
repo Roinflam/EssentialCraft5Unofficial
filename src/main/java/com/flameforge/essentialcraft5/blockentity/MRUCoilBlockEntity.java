@@ -124,7 +124,7 @@ import java.util.UUID;
  * 见上；另外：只在服务端算（原作两端都跑、客户端也扣 MRU）；每击费用统一 1 000（原作静态 200 / 配置 1 000 / 手册 2 000）；
  * 原作线圈旁有 MRU 聚集体时每秒 1 000 MRU 全花在它身上、永远打不到别的（查错 capability + 聚集体恒不受伤 + break），这里聚集体不是生物、伤害生效才扣，自然避开；
  * 白名单每人每 tick 解析一次字符串 → 按物品缓存 UUID 集合；1 号格不收自动化插入（否则领地外放个漏斗就能塞进写着自己名字的白名单）；
- * 渲染盒原作无限大 → 只包住线圈和待机电弧（打向目标的电弧走 ArcEffects，世界坐标）。女巫吃满伤害（原作 MAGIC 对女巫只有 15%）。
+ * 渲染盒原作无限大 → 只包住线圈和待机电弧（打向目标的放电是客户端的一次性特效，世界坐标）。女巫吃满伤害（原作 MAGIC 对女巫只有 15%）。
  */
 public class MRUCoilBlockEntity extends MRUBlockEntity {
 
@@ -1096,7 +1096,7 @@ public class MRUCoilBlockEntity extends MRUBlockEntity {
         }
     }
 
-    /** 只包住线圈和待机电弧（打向目标的电弧由 ArcEffects 在世界坐标里画）；原作是无限大 */
+    /** 只包住线圈和待机电弧（打向目标的放电由客户端特效在世界坐标里画）；原作是无限大 */
     @Override
     public AABB getRenderBoundingBox() {
         return new AABB(worldPosition).inflate(1.5D);

@@ -498,11 +498,11 @@ public final class GuideFormatTests {
         GuideConditions normal = new GuideConditions(base, false, (key, message) -> warnings.add(message));
         GuideConditions jumpsOff = new GuideConditions(noJumps, false, (key, message) -> warnings.add(message));
         GuideConditions every = new GuideConditions(noCooldown, false, (key, message) -> warnings.add(message));
-        // 英文的「每一颗都」有句首大写和句中小写两种写法，只比后半截
-        Map<String, String[]> words = Map.of("zh_cn", new String[]{"空中跳", "每一个都"}, "en_us", new String[]{"Midair jumps", "very incoming projectile"});
+        // 第一项是小节标题，后面是「每一颗都」的几种写法（中文阶表写「所有飞来的」、风之护甲篇写「每一个都」；英文有句首大写和句中小写两种，只比后半截）
+        Map<String, String[]> words = Map.of("zh_cn", new String[]{"空中跳", "每一个都", "所有飞来的"}, "en_us", new String[]{"Midair jumps", "very incoming projectile"});
         for (String language : List.of("zh_cn", "en_us")) {
             String heading = words.get(language)[0];
-            String all = words.get(language)[1];
+            List<String> alls = List.of(words.get(language)).subList(1, words.get(language).length);
             List<JsonElement> blocks = windArmorBlocks(language, problems);
             List<String> jumpsNormal = new ArrayList<>();
             List<String> cooldownNormal = new ArrayList<>();
@@ -514,11 +514,13 @@ public final class GuideFormatTests {
             for (JsonElement b : blocks) {
                 visibleMentions(b, normal, "air_jumps|stage:", language, jumpsNormal);
                 visibleMentions(b, normal, "deflect_cooldown_ticks|stage:", language, cooldownNormal);
-                visibleMentions(b, normal, all, language, allNormal);
+                for (String all : alls) {
+                    visibleMentions(b, normal, all, language, allNormal);
+                    visibleMentions(b, every, all, language, allZero);
+                }
                 visibleMentions(b, jumpsOff, "air_jumps|stage:", language, jumpsHidden);
                 visibleMentions(b, jumpsOff, heading, language, headingHidden);
                 visibleMentions(b, every, "deflect_cooldown_ticks|stage:", language, cooldownZero);
-                visibleMentions(b, every, all, language, allZero);
             }
             headingHidden.removeIf(s -> !s.equals(language + "：" + heading));
             if (jumpsNormal.size() < 3 || cooldownNormal.size() < 4 || !allNormal.isEmpty()) {

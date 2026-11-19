@@ -16,10 +16,13 @@ import org.jetbrains.annotations.Nullable;
  *   points: 650    本阶已攒的同调度，攒满本阶门槛就停（等升阶）
  *   total: 1750    累计攒过的同调度（同调转移按它的一半算）
  *   rank: 5b       阶戳：穿戴者攒点时写进去的矩阵阶，只升不降；升阶配方只读它（魔力工作台查配方时没有玩家）
- *   v: 1b
+ *   scar: 4120     战痕（v2）：最高阶以后接着攒的同调度（{@link BattleScars}，每 {@code scars.points_per_level} 点一级）
+ *   bosses: 3      击杀过的首领数（v2）
+ *   dealt: 81234L  累计打实的伤害（v2，取整）
+ *   v: 2b
  * }
  * </pre>
- * 没有这个键 = 0 阶 0 点（老存档、刚做出来的装备）。各家族的阶效果读 {@link #stage}，全套效果读 {@link #fullSetStage}。
+ * 没有这个键 = 0 阶 0 点（老存档、刚做出来的装备）；v1 的装备没有 scar / bosses / dealt，读出来都是 0，不迁移。各家族的阶效果读 {@link #stage}，全套效果读 {@link #fullSetStage}。
  * <p>
  * 这里只改物品本身，不管谁拿着：在线攒点经 {@link AttunementGains} 节流写盘，升阶在魔力工作台（{@code recipe/AttunementAscensionRecipe}），
  * 指令改动走 {@code command/AttunementCommands}。阶变化时发 {@link AttunementStageEvent}（工作台升阶时没有玩家）。
@@ -32,8 +35,11 @@ public final class Attunement {
     public static final String KEY_POINTS = "points";
     public static final String KEY_TOTAL = "total";
     public static final String KEY_RANK = "rank";
+    public static final String KEY_SCAR = "scar";
+    public static final String KEY_BOSSES = "bosses";
+    public static final String KEY_DEALT = "dealt";
     public static final String KEY_VERSION = "v";
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
 
     /** 任何家族的阶都不超过这个数 */
     public static final int MAX_STAGE = 5;
@@ -79,6 +85,48 @@ public final class Attunement {
         return tag == null ? 0 : Math.max(0, tag.getByte(KEY_RANK));
     }
 
+    /** 战痕点数（最高阶以后攒的同调度；没有是 0） */
+    public static int scar(ItemStack stack) {
+        CompoundTag tag = data(stack);
+        return tag == null ? 0 : Math.max(0, tag.getInt(KEY_SCAR));
+    }
+
+    /** 击杀过几只首领 */
+    public static int bosses(ItemStack stack) {
+        CompoundTag tag = data(stack);
+        return tag == null ? 0 : Math.max(0, tag.getInt(KEY_BOSSES));
+    }
+
+    /** 累计打实的伤害 */
+    public static long dealt(ItemStack stack) {
+        CompoundTag tag = data(stack);
+        return tag == null ? 0L : Math.max(0L, tag.getLong(KEY_DEALT));
+    }
+
+    /** 战痕还能攒多少点：最高阶、战痕没封顶时 = 最高级 × 每级点数 − 已攒的；不是最高阶、战痕关掉（最高 0 级）是 0 */
+    public static int scarRoom(ItemStack stack) {
+        if (!isMaxed(stack)) {
+            return 0;
+        }
+        long cap = (long) GearGrowthConfig.scarMaxLevel() * GearGrowthConfig.scarPointsPerLevel();
+        return (int) Math.max(0L, Math.min(Integer.MAX_VALUE, cap - scar(stack)));
+    }
+
+    /** 首领击杀数 + 1（当场写） */
+    public static void addBossKill(ItemStack stack) {
+        CompoundTag tag = write(stack);
+        tag.putInt(KEY_BOSSES, (int) Math.min(Integer.MAX_VALUE, (long) bosses(stack) + 1));
+    }
+
+    /** 累计伤害加上 n（取整、不小于 0） */
+    public static void addDealt(ItemStack stack, long n) {
+        if (n <= 0L) {
+            return;
+        }
+        long total = dealt(stack);
+        write(stack).putLong(KEY_DEALT, total > Long.MAX_VALUE - n ? Long.MAX_VALUE : total + n);
+    }
+
     /** 物品上有没有同调键 */
     public static boolean hasData(ItemStack stack) {
         return data(stack) != null;
@@ -112,18 +160,38 @@ public final class Attunement {
         return family != null && stage(stack) >= family.maxStage();
     }
 
-    /** 几阶起带附魔光泽（物品类 isFoil 调它） */
+    /**
+     * 带不带附魔光泽（物品类 isFoil 调它）：阶 ≥ min({@value #GLINT_STAGE}, 家族最高阶)——最高只有 2 阶的家族（魔力防护、余烬元素剑）满阶也亮。
+     * 0 阶不亮；不是同调装备按 {@value #GLINT_STAGE} 算。
+     */
     public static boolean hasGlint(ItemStack stack) {
-        return stage(stack) >= GLINT_STAGE;
+        int stage = stage(stack);
+        if (stage <= 0) {
+            return false;
+        }
+        AttunementFamily family = AttunementFamily.of(stack);
+        int need = family == null ? GLINT_STAGE : Math.min(GLINT_STAGE, family.maxStage());
+        return stage >= need;
     }
 
     /**
-     * 往本阶加同调度：加到本阶门槛为止，累计跟着加。返回实际加上的点数（满了、最高阶、不是同调装备、n ≤ 0 时为 0，不动 NBT）。
+     * 往本阶加同调度：加到本阶门槛为止，累计跟着加；已经是最高阶时加进战痕（{@value #KEY_SCAR}，到战痕封顶为止，累计也跟着加）。
+     * 返回实际加上的点数（满了、战痕封顶、不是同调装备、n ≤ 0 时为 0，不动 NBT）。
      */
     public static int addPoints(ItemStack stack, int n) {
-        int need = need(stack);
-        if (n <= 0 || need <= 0) {
+        if (n <= 0) {
             return 0;
+        }
+        int need = need(stack);
+        if (need <= 0) {
+            int added = Math.min(n, scarRoom(stack));
+            if (added <= 0) {
+                return 0;
+            }
+            CompoundTag tag = write(stack);
+            tag.putInt(KEY_SCAR, scar(stack) + added);
+            tag.putInt(KEY_TOTAL, (int) Math.min(Integer.MAX_VALUE, (long) total(stack) + added));
+            return added;
         }
         int points = points(stack);
         int added = Math.min(n, need - points);
@@ -182,7 +250,7 @@ public final class Attunement {
         return Math.max(0, Math.min(Math.min(half, cap), room));
     }
 
-    /** 同调转移后旧件的样子（不改 stack 本身）：清掉本阶点数和累计，阶、阶戳照留 */
+    /** 同调转移后旧件的样子（不改 stack 本身）：清掉本阶点数、累计和战痕，阶、阶戳、首领击杀数、累计伤害照留 */
     public static ItemStack cleared(ItemStack stack) {
         ItemStack out = stack.copy();
         CompoundTag root = out.getTag();
@@ -190,12 +258,14 @@ public final class Attunement {
             CompoundTag tag = root.getCompound(TAG);
             tag.putInt(KEY_POINTS, 0);
             tag.putInt(KEY_TOTAL, 0);
+            tag.remove(KEY_SCAR);
         }
         return out;
     }
 
     /**
-     * 升格成另一件物品（裁决之刃）时把旧件的 NBT 搬到新物品上：全部 NBT 照抄，同调从 0 阶起、拿旧件累计的一半（{@link #transferAmount}），阶戳照留。
+     * 升格成另一件物品（裁决之刃）时把旧件的 NBT 搬到新物品上：全部 NBT 照抄，同调从 0 阶起、拿旧件累计的一半（{@link #transferAmount}），阶戳照留；
+     * 战痕、首领击杀数、累计伤害不跟着走（新件从 0 起）。
      */
     public static ItemStack promoted(ItemStack from, ItemStack resultTemplate) {
         ItemStack out = resultTemplate.copy();
@@ -214,6 +284,9 @@ public final class Attunement {
         tag.putInt(KEY_POINTS, 0);
         tag.putInt(KEY_TOTAL, 0);
         tag.putByte(KEY_RANK, (byte) rank);
+        tag.remove(KEY_SCAR);
+        tag.remove(KEY_BOSSES);
+        tag.remove(KEY_DEALT);
         int gained = transferAmount(from, out);
         tag.putInt(KEY_POINTS, gained);
         tag.putInt(KEY_TOTAL, gained);

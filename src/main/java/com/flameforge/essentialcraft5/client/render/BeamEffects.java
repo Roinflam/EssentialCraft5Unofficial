@@ -30,7 +30,7 @@ import java.util.Deque;
 
 /**
  * 枪械射线的一次性光束（第五批框架 F5-5 建的入口，ECGuns 模块实现）。只在客户端：{@code ECGuns.init()} 登记的 {@code S2CGunBeamPacket}
- * 处理器收到包就调 {@link #spawn}（{@code ECNetwork.registerS2C} 已经套了 {@code DistExecutor}）。写法照 {@link ArcEffects}。
+ * 处理器收到包就调 {@link #spawn}（{@code ECNetwork.registerS2C} 已经套了 {@code DistExecutor}）。
  * <ul>
  *   <li>外形照原作 {@code RenderMRURay}：8 边形细管，贴图 {@code special/mru_beam.png}，沿长度每 32 格平铺一次；寿命 {@value #LIFETIME} 刻，
  *       半径 {@code 0.075 × (1 + age / 60)}（慢慢变粗），透明度 {@code 1 − age / 60}（慢慢变淡）；

@@ -972,6 +972,212 @@
         "gun/GunMaterials.java:76 LENSES — 混沌 1、冰冻 2、魔力（pure）3、暗影 4",
         "gun/LensEffects.java drain — 射手 heal(RayHitGate.Watch.dealt() × lens_drain_percent%)；dealt 是 LivingDamageEvent 跑完所有监听器后的量（已过护甲、附魔、伤害吸收）；吸取不看目标死活（打死的那一下也算），另外三种要目标还活着；heal 会被 EffectEvents.onCorrosionHeal 取消，射手挂腐蚀时回不了"
       ]
+    },
+    {
+      "id": "gun_attunement",
+      "title": "枪械同调",
+      "icon": "essentialcraft5:rifle",
+      "summary": "射击积累同调度，满阶获得过载射线",
+      "if": "cfg:general.attunement.enabled",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "四种魔力枪械均可[[attunement/overview|同调]]，最高 4 阶。同调度通过<em>射击</em>积累：主手持枪时，射线每命中敌对生物一次获得 {cfg:general.attunement.points_hit} 点，击杀一只再获得 {cfg:general.attunement.points_kill} 点，击杀首领获得 {cfg:general.attunement.points_boss_kill} 点。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "必须由玩家本人主手持枪射击。透镜、饰品和范围伤害造成的命中不计入。",
+            "目标与防挂机规则和剑相同，详见[[attunement/points]]。",
+            "枪械与剑共用同一份武器[[attunement/budget|同调预算]]。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "各阶效果"
+        },
+        {
+          "type": "table",
+          "header": [
+            "阶",
+            "增伤",
+            "每发 MRU 消耗降低",
+            "护甲穿透",
+            "装填冷却缩短"
+          ],
+          "widths": [
+            1,
+            2,
+            3,
+            2,
+            3
+          ],
+          "rows": [
+            [
+              "1",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:1|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:1|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:1|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:1|pct}"
+            ],
+            [
+              "2",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:2|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:2|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:2|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:2|pct}"
+            ],
+            [
+              "3",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:3|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:3|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:3|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:3|pct}"
+            ],
+            [
+              "4",
+              "+{cfg:general.gear_growth.weapon.damage_per_stage|mul:4|pct}",
+              "{cfg:general.gear_growth.mru_gun.mru_discount|stage:4|pct}",
+              "{cfg:general.gear_growth.mru_gun.armor_pen|stage:4|pct}",
+              "{cfg:general.gear_growth.mru_gun.reload_cooldown_reduction|stage:4|pct}"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "每发 MRU 消耗与装填冷却按开火的枪自身计算，副手开火同样适用。增伤、护甲穿透和下文的弹道累积按主手的枪计算。只有手枪和狙击步枪有装填冷却，至多缩短 {cfg:general.gear_growth.caps.cooldown_reduction|pct}。各项的计算方式详见[[attunement/gear_stats]]。"
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+          "text": "弹道累积（{cfg:general.gear_growth.mru_gun.accumulate_stage} 阶起）"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+          "text": "生物受到攻击后约有半秒的受击无敌时间，期间命中的射线伤害会被完全吞没。主手的枪达到该阶后，被吞没的伤害会累积记录，在下一发真正命中时补入，至多补入该发自身伤害的 {cfg:general.gear_growth.mru_gun.accumulate_ratio|pct}。"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+          "text": "受击无敌不会因此清除。{cfg:general.computer_modules.accumulator.forget_ticks|sec}内没有新的累积时，已记录的伤害作废。突击步枪、加特林等连射枪械受益最大。"
+        },
+        {
+          "type": "p",
+          "if": [
+            "cfg:general.gear_growth.mru_gun.accumulate_stage>0",
+            "cfg:general.hoanna.portal_enabled",
+            "module:essentialcraft5:accumulator_module"
+          ],
+          "text": "宅男套装的[[terminal/accumulator]]原理相同。两者同时生效时，单发补入的上限取较大者。"
+        },
+        {
+          "type": "h",
+          "text": "过载射线（{cfg:general.gear_growth.mru_gun.overload.stage} 阶觉醒）"
+        },
+        {
+          "type": "p",
+          "text": "达到该阶后，每发命中为枪充能一格：突击步枪和加特林命中 {cfg:general.gear_growth.mru_gun.overload.shots} 发充满，手枪和狙击步枪命中 {cfg:general.gear_growth.mru_gun.overload.shots_single} 发充满。充满时会播放音效，动作栏出现提示，物品格左侧的充能条也会显示已满。"
+        },
+        {
+          "type": "p",
+          "text": "充满后的下一发无论是否命中都会释放过载：以该发命中的第一个目标为中心，未命中时以光束末端为中心，对半径 {cfg:general.gear_growth.mru_gun.overload.radius} 格内至多 {cfg:general.gear_growth.mru_gun.overload.max_targets} 个目标各造成该发伤害的 {cfg:general.gear_growth.mru_gun.overload.ratio|pct}。释放后充能清零，释放过载的一发不计入充能。"
+        },
+        {
+          "type": "p",
+          "text": "过载造成的是[[attunement/gear_stats|范围伤害]]，不计增伤，不积累同调度，也不触发矩阵特性。"
+        },
+        {
+          "type": "h",
+          "text": "升阶材料"
+        },
+        {
+          "type": "table",
+          "header": [
+            "升至",
+            "四角",
+            "MRU"
+          ],
+          "rows": [
+            [
+              "1 阶",
+              "2 块{item:essentialcraft5:magic_plate}、1 块{item:essentialcraft5:pale_ingot}、1 颗{item:essentialcraft5:pale_gem}",
+              "2 万"
+            ],
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "2 阶",
+                "2 块{item:essentialcraft5:mithriline_plate}、1 块{item:essentialcraft5:matrix_crystal}、1 块{item:essentialcraft5:void_plating}",
+                "4 万"
+              ]
+            },
+            {
+              "if": "cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "3 阶",
+                "2 块{item:essentialcraft5:demonic_plate}、8 个{item:essentialcraft5:aberrant_residue}、1 个{item:essentialcraft5:void_mru_reactor}",
+                "7 万"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "cfg:machines.enrichment_chamber.shade.enabled"
+              ],
+              "cells": [
+                "4 阶",
+                "1 个{item:essentialcraft5:calamity_remnant}、4 个{item:essentialcraft5:umbral_crystal}、1 个{item:essentialcraft5:demonic_core}、1 颗{item:minecraft:nether_star}",
+                "12 万"
+              ]
+            },
+            {
+              "if": [
+                "cfg:general.hoanna.portal_enabled",
+                "!cfg:machines.enrichment_chamber.shade.enabled"
+              ],
+              "cells": [
+                "4 阶",
+                "眼下凑不齐",
+                "12 万"
+              ]
+            },
+            {
+              "if": "!cfg:general.hoanna.portal_enabled",
+              "cells": [
+                "2～4 阶",
+                "眼下凑不齐",
+                "4 万～12 万"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "与其他同调装备相同，将同调度已满的枪置于[[crafting/magician_table|魔力工作台]]中央，四角放置材料。各阶所需的矩阵阶见[[attunement/stage_up]]。"
+        },
+        {
+          "type": "h",
+          "text": "更换枪械"
+        },
+        {
+          "type": "p",
+          "text": "更换枪械种类时，旧枪积累的同调度可将一半转移给新枪，方法与[[attunement/transfer]]相同：新枪置于中央，旧枪置于左上角，右上角放 2 份{item:essentialcraft5:crystal_dust}，左下角放 1 块{item:essentialcraft5:combined_magical_alloys}。四种枪械之间可任意转移，剑与枪械之间不能转移。"
+        }
+      ],
+      "_src": [
+        "registry/ECAttunement.java:50 — MRU_GUN = register(\"mru_gun\", WEAPON, 4, 1, Line.GUN)：四把枪（pistol / rifle / sniper / gatling），最高 4 阶，武器预算",
+        "item/attunement/AttunementGains.weaponHit / weaponKill — 射线 source.is(ECGuns.MRU_RAY)、source.getEntity() == 本人、主手是同调家族的枪；其余防挂机规则照剑（tools/plan/gear_growth.md §4.3）",
+        "item/attunement/GearStatSheet.java:61 — mru_gun 填 MRU_DISCOUNT = mru_gun.mru_discount[阶]、ARMOR_PEN = mru_gun.armor_pen[阶]、COOLDOWN = mru_gun.reload_cooldown_reduction[阶]；武器每阶增伤 = 阶 × weapon.damage_per_stage（池来源 attunement_stage 认 mru_ray）",
+        "gun/GunAttunement.mruPerShot / reloadCooldown — 按开火的这把枪自己的阶（副手也算）；RELOAD_COOLDOWN 只有手枪、狙击有；过 caps.cooldown_reduction（GearCaps.reducedCooldown）；GearPool.ownWeapon 认主手",
+        "gun/GunAttunement.accumulates — 本人射线、主手同调枪阶 ≥ mru_gun.accumulate_stage 时 AccumulatorEvents 记账；补的上限 max(模块 max_ratio, mru_gun.accumulate_ratio)；不清无敌帧、账按 computer_modules.accumulator.forget_ticks 过期（tools/plan/gear_growth.md §4.3）",
+        "gun/GunAttunement.afterShot / burst / chargeMax — 阶 ≥ overload.stage 时每发打实（RayShot.Result.damaged 非空）充 1，手枪、狙击 shots_single，别的 shots；充满发 OVERLOAD_READY + 音效 + 动作栏 message.essentialcraft5.gun.overload_ready；下一发不管打没打中都放：中心 = 第一个打实目标的碰撞箱中心，没有就光束终点；GearAoe.targets 半径 radius、最多 max_targets，每个 gear_burst = 这一发伤害 × ratio；清零，放的那一发不充",
+        "client/AttunementDecorator — 枪在物品格左边 x+0~1 画充能条",
+        "item/attunement/GearAoe — gear_burst 不吃增伤池、不给同调点、不触发特性（AttunementGains.notOwnHit）",
+        "tools/plan/gear_growth.md §4.3 — 升阶配方 recipes/attunement/mru_gun_1..4.json：1 阶 魔力板 ×2 + 淡青锭 + 淡青宝石 2 万；2 阶 米斯莱板 ×2 + 矩阵结晶 + 虚空板 4 万；3 阶 恶魔板 ×2 + 异变残质 ×8 + MRU 反应核 7 万；4 阶 天灾残核 + 影晶 ×4 + 恶魔核心 + 下界之星 12 万；矩阵阶门照 rank_gate（写手册时配方文件还没合进来，按清单写，没放配方图块）",
+        "2 阶起要虚空板等海纳尔的材料，门关着时 2～4 阶那一行写「眼下凑不齐」；影晶要富集仓暗影凝结（machines.enrichment_chamber.shade.enabled），关着时 4 阶写「眼下凑不齐」（同裁决之刃 5 阶）",
+        "item/attunement/AttunementFamily.Line、recipe/AttunementTransferRecipe — 同调转移只在同一条线里，枪这条线允许同家族之间转；recipes/attunement/transfer_gun.json：水晶粉 ×2 + 注魔合金，10 000 MRU，摆法同 transfer_armor（tools/plan/gear_growth.md §4.3）"
+      ]
     }
   ]
 }

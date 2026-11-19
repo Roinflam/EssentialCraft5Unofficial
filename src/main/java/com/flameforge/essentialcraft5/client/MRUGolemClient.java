@@ -2,11 +2,13 @@ package com.flameforge.essentialcraft5.client;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.client.model.mob.MRUGolemModel;
-import com.flameforge.essentialcraft5.client.render.ArcEffect;
-import com.flameforge.essentialcraft5.client.render.ArcEffects;
 import com.flameforge.essentialcraft5.client.render.mob.MRUGolemRenderer;
+import com.flameforge.essentialcraft5.client.vfx.VfxEffects;
+import com.flameforge.essentialcraft5.client.vfx.resolve.ArcFx;
+import com.flameforge.essentialcraft5.entity.boss.BossWarnings;
 import com.flameforge.essentialcraft5.entity.mob.MRUGolemEntity;
 import com.flameforge.essentialcraft5.registry.ECMRUGolem;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,12 +24,8 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = EssentialCraft5.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class MRUGolemClient {
 
-    /** 护盾抵掉一下：聚集体到魔像胸口，青蓝、弯得厉害 */
-    private static final ArcEffect.Style SHIELD = new ArcEffect.Style(0.25F, 0.35F, 0.85F, 1F, 12, 1.2F);
-    /** 护盾在供能时偶尔冒的一条：细、淡一点 */
-    private static final ArcEffect.Style SHIELD_IDLE = new ArcEffect.Style(0.2F, 0.3F, 0.7F, 0.9F, 10, 0.6F);
-    /** 电弧鞭：魔像左拳到目标 */
-    private static final ArcEffect.Style WHIP = new ArcEffect.Style(0.12F, 0.5F, 0.9F, 1F, 8, 1.4F);
+    /** 魔像电弧的颜色（MRU 靛紫，和聚能冲击的预警圈同色） */
+    private static final int ARC_COLOR = BossWarnings.MRU_BLUE;
 
     private MRUGolemClient() {
     }
@@ -49,7 +47,10 @@ public final class MRUGolemClient {
             return;
         }
         Vec3 chest = golem.position().add(0D, golem.getBbHeight() * 0.62D, 0D);
-        ArcEffects.spawn(golem.level(), presence.position(), chest, idle ? SHIELD_IDLE : SHIELD);
+        // 等离子电弧（特效大改第 2 批，client/vfx/resolve/ArcFx）：抵掉一下是粗的、带分叉，待机偶尔冒的那条细一点
+        if (golem.level() instanceof ClientLevel level) {
+            VfxEffects.add(ArcFx.local(level, golem, presence.position(), chest, ARC_COLOR, idle ? 0.03F : 0.05F, idle ? 1 : 3));
+        }
     }
 
     /** 电弧鞭：魔像左拳的大致位置到目标身体中间 */
@@ -61,6 +62,8 @@ public final class MRUGolemClient {
         float yaw = golem.yBodyRot * ((float) Math.PI / 180F);
         // 左拳在身体左侧约 0.6 格、胸口高度（模型的左边是 +X，转到世界坐标）
         Vec3 fist = golem.position().add(Math.cos(yaw) * 0.6D, golem.getBbHeight() * 0.55D, Math.sin(yaw) * 0.6D);
-        ArcEffects.spawn(golem.level(), fist, target.position().add(0D, target.getBbHeight() * 0.5D, 0D), WHIP);
+        if (golem.level() instanceof ClientLevel level) {
+            VfxEffects.add(ArcFx.local(level, golem, fist, target.position().add(0D, target.getBbHeight() * 0.5D, 0D), ARC_COLOR, 0.065F, 4));
+        }
     }
 }

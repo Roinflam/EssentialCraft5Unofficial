@@ -251,7 +251,10 @@ public final class RewindEvents {
             if (data != null) {
                 CorruptionEffects.addMatrixDamage(data, cfg.matrixDamage());
             }
-            ModuleCooldowns.start(player, ECSurvivalModules.REWIND, cfg.cooldownTicks());
+            // 宅男全套 4 阶起的冷却缩减（general.gear_growth.computer_armor.cooldown_reduction，过 caps.cooldown_reduction）
+            int setStage = com.flameforge.essentialcraft5.item.ComputerAttunement.fullSetStage(player);
+            ModuleCooldowns.start(player, ECSurvivalModules.REWIND, com.flameforge.essentialcraft5.item.attunement.GearCaps.reducedCooldown(cfg.cooldownTicks(),
+                    com.flameforge.essentialcraft5.item.attunement.ArmorGrowth.computerCdr(setStage)));
             // 退回去以后旧的位置都作废：下一次（冷却好以后）从新记的开始
             HISTORY.remove(player);
             long seconds = Math.max(1L, Math.round((now - snapshot.at()) / 20.0D));

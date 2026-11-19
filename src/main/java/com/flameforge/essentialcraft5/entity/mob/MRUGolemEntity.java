@@ -7,12 +7,13 @@ import com.flameforge.essentialcraft5.entity.anim.MobAnimStates;
 import com.flameforge.essentialcraft5.entity.boss.BossDamageBudget;
 import com.flameforge.essentialcraft5.entity.boss.BossRoster;
 import com.flameforge.essentialcraft5.entity.boss.BossTier;
+import com.flameforge.essentialcraft5.entity.boss.BossWarnings;
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.entity.boss.ECBossMonster;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
 import com.flameforge.essentialcraft5.registry.ECMRUGolem;
 import com.flameforge.essentialcraft5.util.ECProtection;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
@@ -58,7 +59,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -115,9 +115,6 @@ public class MRUGolemEntity extends ECBossMonster {
     private static final String TAG_PRESENCE = "guard_presence";
     private static final String TAG_HOME = "guard_home";
     private static final String TAG_RETURN = "guard_return";
-
-    /** 蓝圈的颜色（聚集体的青蓝） */
-    private static final DustParticleOptions RING = new DustParticleOptions(new Vector3f(0.35F, 0.85F, 1F), 1.2F);
 
     public final MobAnimStates anims = new MobAnimStates(3).channel(ANIM_HAMMER, 1).channel(ANIM_SLAM, 1).channel(ANIM_WHIP, 1);
 
@@ -443,24 +440,16 @@ public class MRUGolemEntity extends ECBossMonster {
         return whipCooldown;
     }
 
-    /** 聚能冲击开始蓄力：放动画、蓄力音效，标记蓄力中（客户端核心变亮） */
+    /**
+     * 聚能冲击开始蓄力：放动画、蓄力音效，标记蓄力中（客户端核心变亮），把蓄力这段的预警圈发给附近的客户端
+     * （{@link BossWarnings}，MRU 靛紫，圈心跟着它，蓄满 {@code slam_warning_ticks} 刻落下）
+     */
     public void beginSlam() {
         anims.play(this, ANIM_SLAM);
         entityData.set(DATA_CHARGING, true);
         playSound(ECMRUGolem.SOUND_SLAM_CHARGE.get(), 1.5F, 0.8F);
-    }
-
-    /** 蓄力中画一圈蓝色的预警（服务端发粒子，所有人看得见） */
-    public void slamWarning() {
-        if (!(level() instanceof ServerLevel server)) {
-            return;
-        }
-        double radius = config().attacks().slamRadius();
-        int points = Math.max(12, (int) (radius * 8));
-        for (int i = 0; i < points; i++) {
-            double angle = Math.PI * 2D * i / points;
-            server.sendParticles(RING, getX() + Math.cos(angle) * radius, getY() + 0.1D, getZ() + Math.sin(angle) * radius, 1, 0D, 0D, 0D, 0D);
-        }
+        ECMRUGolem.Config.Attacks attacks = config().attacks();
+        BossWarnings.circle(this, this, position(), attacks.slamRadius(), attacks.slamWarningTicks(), BossWarnings.MRU_BLUE);
     }
 
     /**
@@ -485,10 +474,8 @@ public class MRUGolemEntity extends ECBossMonster {
                 hits++;
             }
         }
-        if (level() instanceof ServerLevel server) {
-            server.sendParticles(ParticleTypes.EXPLOSION, getX(), getY() + 0.2D, getZ(), 3, radius * 0.4D, 0.1D, radius * 0.4D, 0D);
-            server.sendParticles(ParticleTypes.ELECTRIC_SPARK, getX(), getY() + 0.3D, getZ(), 30, radius * 0.5D, 0.2D, radius * 0.5D, 0.2D);
-        }
+        // 砸地 + 放电由客户端画（FX_GOLEM_SLAM）
+        BossWarnings.resolve(this, S2CBossWarningPacket.FX_GOLEM_SLAM, position(), radius, BossWarnings.MRU_BLUE);
         playSound(ECMRUGolem.SOUND_SLAM.get(), 2F, 0.9F);
         return hits;
     }
@@ -708,9 +695,6 @@ public class MRUGolemEntity extends ECBossMonster {
             if (target != null) {
                 getLookControl().setLookAt(target, 30F, 30F);
             }
-            if (windup % 4 == 0) {
-                slamWarning();
-            }
             if (--windup <= 0) {
                 slamImpact();
             }
@@ -719,9 +703,10 @@ public class MRUGolemEntity extends ECBossMonster {
         @Override
         public void stop() {
             if (windup > 0) {
-                // 蓄力被打断（死了）也上冷却，不留半截的蓄力标记
+                // 蓄力被打断（死了）也上冷却，不留半截的蓄力标记，客户端的预警圈撤掉
                 entityData.set(DATA_CHARGING, false);
                 slamCooldown = config().attacks().slamCooldownTicks();
+                BossWarnings.cancel(MRUGolemEntity.this);
             }
             windup = 0;
         }

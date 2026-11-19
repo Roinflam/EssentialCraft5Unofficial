@@ -6,6 +6,8 @@ import com.flameforge.essentialcraft5.item.armor.MRUShield;
 import com.flameforge.essentialcraft5.item.bauble.BaubleEffects;
 import com.flameforge.essentialcraft5.mru.MRUDrain;
 import com.flameforge.essentialcraft5.network.C2SComputerArmorPacket;
+import com.flameforge.essentialcraft5.network.GearFx;
+import com.flameforge.essentialcraft5.network.GearFxLimiter;
 import com.flameforge.essentialcraft5.network.S2CBoardFlyingPacket;
 import com.flameforge.essentialcraft5.registry.ECComputer;
 import com.flameforge.essentialcraft5.registry.ECSounds;
@@ -423,6 +425,7 @@ public final class ComputerArmorEvents {
         player.hurtMarked = true;
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, SoundSource.PLAYERS,
                 1F, 0.5F + player.getRandom().nextFloat());
+        GearFxLimiter.send(player.serverLevel(), GearFx.JET_DASH, player, player.position(), (float) values.dashStrength(), 4);
         return true;
     }
 

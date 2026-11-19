@@ -10,6 +10,7 @@ import com.flameforge.essentialcraft5.item.bauble.BaubleEffects;
 import com.flameforge.essentialcraft5.item.ember.InlayEvents;
 import com.flameforge.essentialcraft5.player.MobKillLedger;
 import com.flameforge.essentialcraft5.player.PlayerDataEvents;
+import com.flameforge.essentialcraft5.registry.ECGuns;
 import com.flameforge.essentialcraft5.registry.ECTags;
 import com.flameforge.essentialcraft5.util.ECDamageKinds;
 import com.flameforge.essentialcraft5.util.ECLandedHit;
@@ -56,11 +57,12 @@ import java.util.function.ToIntFunction;
  *   <li><b>盔甲</b>：穿着挨了一下，身上每件符合的同调盔甲各得 {@code points_hit}（攻击者是首领 {@code points_boss_hit}）。攻击者要是活物、{@link Enemy} 或首领，
  *       不是刷怪笼 / 刷怪蛋来的（{@link SpawnOrigin#isArtificial}）、不在 {@code growth_excluded}，而且<b>这名攻击者 200 刻内被你打实过</b>（站着挨打不还手不攒）；
  *       同一攻击者 10 刻内只算一次。被本模组护盾 / 闪避 / 偏转整下吃掉的那一下没有 {@code LivingDamageEvent}，由那几处调 {@link #armorHitAbsorbed}。</li>
- *   <li><b>武器</b>：主手这件近战打实一下 {@code points_hit}；目标是 {@link Enemy} 或首领、来源公平、{@code isNoAi()} 为假，而且此刻在追你、或 200 刻内打中过你、或是首领。
+ *   <li><b>武器</b>：主手这件亲手打实一下 {@code points_hit}（剑近战，同调枪认本人的射线 {@code mru_ray}）；目标是 {@link Enemy} 或首领、来源公平、{@code isNoAi()} 为假，而且此刻在追你、或 200 刻内打中过你、或是首领。
  *       击杀另给 {@code points_kill}（首领 {@code points_boss_kill}）。</li>
  *   <li>对面是玩家时一律给 {@code points_pvp}（默认 0，两个号对刷拿不到东西）。</li>
  * </ul>
  * <b>不是本人亲手打的不算</b>（{@link #notOwnHit}）：反伤（原版荆棘附魔、宅男全套的反伤、σ 的反弹，{@code ECDamageKinds.isReflected}）不算「被你打实过」，
+ * 装备觉醒的范围伤害（{@code essentialcraft5:gear_burst}，{@link GearAoe}）不给点、不触发特性 / 嵌刻 / 补伤；
  * 也不给武器点；ν 的连锁、ι 的追击这类饰品自己打出的伤害（{@code BaubleEffects.isBaubleDamage}）和尖刺圆盾的范围伤害（{@code InlayEvents.isNotWeaponHit}）
  * 不给武器点。这几种伤害的攻击者、直接实体都是玩家本人，只看伤害源分不出来，靠它们打出时的作用域标记认。不然穿着全套宅男站着不动，
  * 怪打你一下就被反伤打回去，同时满足「被你打实过」和「主手打实」，挂机也能攒满两份预算。
@@ -338,14 +340,27 @@ public final class AttunementGains {
      * 只在伤害事件发生的当时问（作用域标记是同步的；{@code LivingDeathEvent} 在 hurt 里面发，那时标记还在）。
      */
     public static boolean notOwnHit(DamageSource source) {
-        return ECDamageKinds.isReflected(source) || BaubleEffects.isBaubleDamage() || InlayEvents.isNotWeaponHit();
+        return ECDamageKinds.isReflected(source) || BaubleEffects.isBaubleDamage() || InlayEvents.isNotWeaponHit()
+                || source.is(GearAoe.GEAR_BURST);
     }
 
     /**
-     * 主手这件打实了 target（{@code source} 的直接来源是玩家本人、不是 {@link #notOwnHit} 那几种才算）。返回记的点数（0 = 没给）。
+     * 这一下算不算主手武器亲手打的：主手是枪这条线的同调武器时认本人的射线（{@code mru_ray}、记在他头上），
+     * 别的（剑这条线、不是同调武器）照旧要直接来源是本人。拿着枪去砍、拿着剑开别的枪都不算。
+     */
+    private static boolean ownHand(ServerPlayer player, DamageSource source) {
+        AttunementFamily family = AttunementFamily.of(player.getMainHandItem());
+        if (family != null && family.line() == AttunementFamily.Line.GUN) {
+            return source.is(ECGuns.MRU_RAY) && source.getEntity() == player;
+        }
+        return source.getDirectEntity() == player;
+    }
+
+    /**
+     * 主手这件打实了 target（{@link #ownHand}：剑认直接来源是玩家本人，枪认本人的射线；不是 {@link #notOwnHit} 那几种才算）。返回记的点数（0 = 没给）。
      */
     public static float weaponHit(ServerPlayer player, LivingEntity target, DamageSource source) {
-        if (source.getDirectEntity() != player || notOwnHit(source) || !gaining(player, EquipmentSlot.MAINHAND, AttunementFamily.Kind.WEAPON)) {
+        if (!ownHand(player, source) || notOwnHit(source) || !gaining(player, EquipmentSlot.MAINHAND, AttunementFamily.Kind.WEAPON)) {
             return 0F;
         }
         Engagement engagement = engagement(player, target);
@@ -380,9 +395,9 @@ public final class AttunementGains {
         return granted;
     }
 
-    /** 主手这件击杀了 victim（不算 {@link #notOwnHit} 那几种）。返回记的点数（0 = 没给）。不受每只生物的上限管 */
+    /** 主手这件击杀了 victim（同 {@link #weaponHit} 认亲手，不算 {@link #notOwnHit} 那几种）。返回记的点数（0 = 没给）。不受每只生物的上限管 */
     public static float weaponKill(ServerPlayer player, LivingEntity victim, DamageSource source) {
-        if (source.getDirectEntity() != player || notOwnHit(source) || !gaining(player, EquipmentSlot.MAINHAND, AttunementFamily.Kind.WEAPON)) {
+        if (!ownHand(player, source) || notOwnHit(source) || !gaining(player, EquipmentSlot.MAINHAND, AttunementFamily.Kind.WEAPON)) {
             return 0F;
         }
         Engagement engagement = engagement(player, victim);
@@ -475,19 +490,20 @@ public final class AttunementGains {
         return room(player, slot, stack, kind) > 0F;
     }
 
-    /** 这件还能放多少点（本阶门槛 − 已写的 − 待写的）；不符合条件是 0 */
+    /** 这件还能放多少点（本阶门槛 − 已写的 − 待写的；最高阶时是战痕还能攒的 − 待写的）；不符合条件是 0 */
     private static float room(Player player, EquipmentSlot slot, ItemStack stack, AttunementFamily.Kind kind) {
         AttunementFamily family = AttunementFamily.of(stack);
         if (family == null || family.kind() != kind || AttunementFamily.slotOf(stack, kind) != slot || !family.active()) {
             return 0F;
         }
         int need = Attunement.need(family, Attunement.stage(stack));
-        if (need <= 0) {
-            return 0F;
-        }
         State state = PLAYERS.get(player);
         Pending pending = state == null ? null : state.pending.get(slot);
         float waiting = pending != null && pending.stack == stack ? pending.points : 0F;
+        if (need <= 0) {
+            // 最高阶：接着攒战痕，攒到战痕封顶为止（封顶以后不拿点、不占预算）
+            return Attunement.scarRoom(stack) - waiting;
+        }
         return need - Attunement.points(stack) - waiting;
     }
 
@@ -594,11 +610,19 @@ public final class AttunementGains {
                     } else {
                         int whole = (int) pending.points;
                         if (whole > 0) {
+                            int before = BattleScars.level(current);
                             Attunement.addPoints(current, whole);
                             pending.points -= whole;
+                            int after = BattleScars.level(current);
+                            if (after > before && player instanceof ServerPlayer serverPlayer) {
+                                BattleScars.onLevelUp(serverPlayer, current, after);
+                            }
                         }
                     }
                 }
+            }
+            if (slot == EquipmentSlot.MAINHAND) {
+                BattleScars.flushDealt(player, current);
             }
             AttunementFamily family = AttunementFamily.of(current);
             if (family != null && AttunementFamily.slotOf(current, family.kind()) == slot
@@ -617,6 +641,18 @@ public final class AttunementGains {
         if (computer != null && Attunement.fullSetStage(player, computer) >= GUIDE_TERMINAL_STAGE) {
             CorruptionTicker.award(player, GUIDE_TERMINAL_ATTUNED);
         }
+    }
+
+    /** 测试：给这个槽上现在那件直接记 points 点待写（不扣预算、不看条件），下次 {@link #flush} 写进物品 */
+    public static void addPendingForTest(Player player, EquipmentSlot slot, float points) {
+        ItemStack stack = player.getItemBySlot(slot);
+        State state = state(player);
+        Pending pending = state.pending.get(slot);
+        if (pending == null || pending.stack != stack) {
+            pending = new Pending(stack);
+            state.pending.put(slot, pending);
+        }
+        pending.points += points;
     }
 
     /** 丢掉这个槽上没写的点（指令直接改了这件时用） */

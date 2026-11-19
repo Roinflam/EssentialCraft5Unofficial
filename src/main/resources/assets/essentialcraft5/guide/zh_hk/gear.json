@@ -673,7 +673,7 @@
             ],
             [
               "{item:essentialcraft5:void_chestplate}",
-              "受到任何傷害都有 <t>20%</t> 的幾率閃開，掉出世界和 /kill 除外，閃開時不掉血也不花 MRU"
+              "受到任何傷害都有 <t>{cfg:general.gear_growth.void_armor.dodge|stage:0|pct}</t> 的幾率閃開，掉出世界和 /kill 除外，閃開時不掉血也不花 MRU"
             ],
             [
               "{item:essentialcraft5:void_leggings}",
@@ -1089,6 +1089,318 @@
           "type": "tip",
           "style": "lore",
           "text": "原作研究書給它的副標題是「一種複合工具？」，正文説它「幾乎能替代任何工具」。原作裏潛行挖一格不花 MRU，挖不動的格子反倒照樣扣。"
+        }
+      ]
+    },
+    {
+      "id": "paving_wand",
+      "title": "{item:essentialcraft5:paving_wand}",
+      "icon": "essentialcraft5:paving_wand",
+      "summary": "點一下鋪好一片地面，創世神之杖的入門版",
+      "complete": "essentialcraft5:guide/gear/paving_wand",
+      "optional": true,
+      "items": [
+        "essentialcraft5:paving_wand",
+        {
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:builder_module_range",
+            "essentialcraft5:builder_module_haste",
+            "essentialcraft5:builder_module_efficiency",
+            "essentialcraft5:builder_module_reach",
+            "essentialcraft5:builder_module_mix",
+            "essentialcraft5:builder_module_salvage"
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "type": "p",
+          "text": "<em>目標</em>（可選）：做一根{item:essentialcraft5:paving_wand}。對着地面右鍵一下，就能用身上的方塊鋪好一整片地板、一條路或一層平台。它是創世神之杖的前一階，只往空着的格子裏放方塊，不會拆除方塊。"
+        },
+        {
+          "type": "h",
+          "text": "準備"
+        },
+        {
+          "type": "p",
+          "text": "需要 1 個{item:essentialcraft5:world_interactor}、2 塊{item:essentialcraft5:pale_plate}、2 塊{item:essentialcraft5:magic_fortified_plating}、1 個{item:essentialcraft5:elemental_core}和 1 個{item:essentialcraft5:earth_focus}。剛做出來時是鋪面形狀。"
+        },
+        {
+          "type": "recipe",
+          "recipe": "essentialcraft5:builder/paving_wand"
+        },
+        {
+          "type": "p",
+          "text": "世界交互器和魔力強化板見[[crafting/magician_crafts]]，淡青板見[[alloys/pale]]，元素核心見[[elements/parts]]，地之焦點見[[essence/fuel_and_focus]]。"
+        },
+        {
+          "type": "h",
+          "text": "怎麼用"
+        },
+        {
+          "type": "steps",
+          "items": [
+            "潛行右鍵一個方塊，把它<hl>選定</hl>，魔杖鋪的就是這種方塊。副手拿着一種方塊時，魔杖直接鋪副手這種，不用另外選定。",
+            "把這種方塊帶在身上，對着一個方塊的頂面右鍵，魔杖以這一格為中心，在它上方鋪一層，預設 5 × 5。對着空氣右鍵時，鋪在腳下那一層。",
+            "按住<hl>魔杖鍵</hl>（{keybind:key.essentialcraft5.builder_wand}，可在按鍵設定裏更改）滾動滾輪，可以把這一片調大或調小。",
+            "施工期間要一直拿着魔杖，人也要留在附近。潛行對着空氣右鍵可以中途停下，已經鋪好的部分留着。"
+          ]
+        },
+        {
+          "type": "tip",
+          "style": "good",
+          "title": "做成的標誌",
+          "text": "拿到鋪設魔杖，這一步就打勾了。拿着它對準地面，地上會標出要鋪的範圍；右鍵以後，方塊從點中的地方一圈圈向外鋪開。"
+        },
+        {
+          "type": "h",
+          "text": "三種形狀"
+        },
+        {
+          "type": "p",
+          "text": "<hl>形狀</hl>決定圈哪些格子。鋪設魔杖有兩點、鋪面、直線三種形狀，在下文藍圖台的「範圍」頁裏切換。當前的形狀和尺寸寫在魔杖的提示框裏，拿着魔杖時也顯示在準星下方。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "形狀",
+            "怎麼用",
+            "預設尺寸"
+          ],
+          "widths": [
+            2,
+            7,
+            2
+          ],
+          "rows": [
+            [
+              "兩點",
+              "右鍵兩個方塊定下兩個角，兩個角之間的長方體就是選區，再對着空氣右鍵開工；沒在施工時，潛行對着空氣右鍵清掉兩個角",
+              "—"
+            ],
+            [
+              "鋪面",
+              "右鍵方塊的頂面或底面，以這一格為中心在上方或下方鋪一層；右鍵側面，從側面向外鋪；對着空氣右鍵，鋪在腳下那一層",
+              "<t>5</t> × <t>5</t>"
+            ],
+            [
+              "直線",
+              "從點中的面外側那一格起，沿面朝的方向鋪一條；對着空氣右鍵，從腳下那一格起鋪",
+              "寬 <t>1</t>、長 <t>8</t>"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "鋪面和直線右鍵一下就開工，不用先定角。潛行右鍵方塊照樣是選定方塊，潛行對着空氣右鍵是停下。",
+            "按住魔杖鍵滾動滾輪調整尺寸：鋪面的長和寬一起變、變成正方形，直線只變長度；同時按住潛行，鋪面只調長度，直線只調寬度。按住魔杖鍵時滾輪不切換快捷欄。",
+            "邊長最多 {cfg:general.builder.paver.max_side} 格，一次最多 {cfg:general.builder.paver.max_volume} 格，兩點形狀的兩個角最遠相隔 {cfg:general.builder.paver.max_point_distance} 格。長沿面朝的方向，寬向左右兩邊展開，寬是偶數時多出的一格在右手邊。",
+            "準星對着的地方會標出要鋪的範圍，材料或 MRU 不夠的格子標成紅色。",
+            "準星下方的提示寫着形狀、尺寸、要放幾格、持有多少材料、這一單要多少 MRU，不夠的那項標成紅色；施工時換成進度和剩餘時間，暫停、排隊、待確認時也會寫明。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "藍圖台"
+        },
+        {
+          "type": "p",
+          "text": "拿着魔杖單按魔杖鍵，屏幕上會鋪開<hl>藍圖台</hl>，再按一次魔杖鍵或按 Esc 收起。形狀、尺寸、選定方塊和模塊都在這裏調整，左邊的藍圖隨之更新。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "頂欄寫着魔杖的名稱、檔位和存着的 MRU。",
+            "左邊是藍圖，俯視畫出這一次要動的格子，要放的格子塗成方塊的顏色。藍圖下方寫着形狀、尺寸、要放幾格和這一單要多少 MRU，MRU 不夠時標成紅色。施工時藍圖隨進度逐格填上。",
+            "「範圍」頁：切換形狀和模式，鋪設魔杖只有填充一種模式。尺寸在藍圖下方用加減號調整，按住魔杖鍵滾動滾輪也可以。",
+            "「方塊」頁：列出身上和隨身容器裏能當材料的方塊，按數量排列，點一下就設為選定方塊。裝了混鋪模塊時，右邊是混鋪表。",
+            "「模塊」頁：列出裝着的模塊，每塊可以單獨開關或拆下，拆下的模塊回到背包；下方列出這根魔杖現在的各項上限。",
+            "底欄兩頭是「撤銷上一次」和「停下」，中間寫着可以撤銷的那一單的形狀、格數和放下了多久，施工時還顯示進度。不能撤銷時按鈕變灰，並寫明原因。",
+            "施工、暫停或排隊期間，除了「撤銷上一次」和「停下」，其餘設定都變灰，要先停下才能更改。按住魔杖鍵滾動滾輪調尺寸也要先停下。",
+            "藍圖台開着時，準星下方的提示暫時收起。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "材料與 MRU"
+        },
+        {
+          "type": "list",
+          "items": [
+            "材料只用沒改過名、裏面沒裝東西的物品，先用背包裏的，再用副手的。",
+            {
+              "if": "cfg:general.builder.allow_container_items",
+              "text": "背包和副手裏的不夠時，再從身上的隨身容器裏取，也就是帶物品格的背包類物品，放在背包、副手、盔甲欄或飾品欄都行。疊了好幾個的容器、容器裏套的容器不碰；開着別的容器界面時，也不從隨身容器裏取。"
+            },
+            {
+              "if": "cfg:general.builder.allow_container_items",
+              "text": "隨身容器自己的規則不讓取出的料，不算在持有的數量裏，也不算進開工前的「材料夠不夠」。"
+            },
+            "魔杖自己能存 5000 MRU，剛做出來時是空的，可以放進[[storage/charging_chamber]]充能。用的時候先扣身上儲存物品裏的 MRU，不夠了才扣魔杖自己的，儲存物品見[[storage/soul_storage]]。",
+            "每放成一格扣 25 MRU，原本就有方塊的格子和跳過的格子都不扣。鋪滿最大的一片要 {cfg:general.builder.paver.max_volume|mul:25} MRU。",
+            {
+              "if": "cfg:general.builder.material_pause_seconds>0",
+              "text": "材料或 MRU 用完時先<hl>暫停</hl> {cfg:general.builder.material_pause_seconds} 秒，期間補上就接着鋪，等不到才停下，已經鋪好的部分留着。"
+            },
+            "一單要鋪的格子很多，或者身上的材料、MRU 明顯不夠時，第一次右鍵只給出提示，3 秒內同一單再右鍵一次才開工。"
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.builder.undo_window_seconds>0",
+          "text": "撤銷"
+        },
+        {
+          "type": "list",
+          "if": "cfg:general.builder.undo_window_seconds>0",
+          "items": [
+            "按住魔杖鍵再右鍵，或者點藍圖台底欄的「撤銷上一次」，撤銷上一次放置：放下的方塊收回，材料按 1 比 1 退還，MRU 不退還。",
+            "只能撤銷最近的一次，要在 {cfg:general.builder.undo_window_seconds} 秒以內、在同一個維度，並且離那片範圍不超過魔杖的施工距離。",
+            "已經被挖掉、換成了別的方塊、長大了或者台階補成了雙層的格子，撤銷時不動，也不退材料。",
+            "撤銷按方塊的種類認領：某一格後來又出現了同一種方塊，不論是誰放的、怎麼來的，也會被收回並退還材料。",
+            "撤銷途中被打斷時，剩下的部分留在記錄裏，可以接着撤銷。下線以後記錄清空。"
+          ]
+        },
+        {
+          "type": "h",
+          "text": "模塊"
+        },
+        {
+          "type": "p",
+          "text": "鋪設魔杖有 2 個模塊槽。在工作台裏放這根魔杖和一塊模塊，別的格子空着，合出來的就是裝上模塊的魔杖。同一種模塊只能裝一塊，拆模塊在藍圖台的「模塊」頁。"
+        },
+        {
+          "type": "table",
+          "header": [
+            "模塊",
+            "效果"
+          ],
+          "widths": [
+            3,
+            7
+          ],
+          "rows": [
+            [
+              "{item:essentialcraft5:builder_module_range}",
+              "一次最多的格數 ×{cfg:general.builder.modules.range.volume_multiplier}，邊長 ×{cfg:general.builder.modules.range.side_multiplier}"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_haste}",
+              "每刻最多鋪的格數 ×{cfg:general.builder.modules.haste.cells_multiplier}"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_efficiency}",
+              "每格 MRU ×{cfg:general.builder.modules.efficiency.cost_multiplier}"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_reach}",
+              "施工距離增加 {cfg:general.builder.modules.reach.reach_bonus} 格，鋪面的瞄準距離隨之增加"
+            ],
+            [
+              "{item:essentialcraft5:builder_module_mix}",
+              "最多 {cfg:general.builder.modules.mix.max_kinds} 種方塊按比例混着鋪"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "裝了遠域模塊，準星對着遠處的方塊時地上照樣標出範圍，右鍵就在那裏開工。",
+            "裝了混鋪模塊，在藍圖台的「方塊」頁配混鋪表：每種方塊設一個 1 到 9 的權重，權重越大鋪得越多；某一種用完時由其餘幾種補上。",
+            "{item:essentialcraft5:builder_module_salvage}只能裝在創世神之杖上，鋪設魔杖裝不了。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "每種模塊的配方和詳細用法見[[void_machines/builder_module]]。"
+        },
+        {
+          "type": "recipe",
+          "if": "!cfg:general.hoanna.portal_enabled",
+          "items": [
+            "essentialcraft5:builder_module_range",
+            "essentialcraft5:builder_module_haste",
+            "essentialcraft5:builder_module_efficiency",
+            "essentialcraft5:builder_module_reach",
+            "essentialcraft5:builder_module_mix"
+          ]
+        },
+        {
+          "type": "h",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "升到二階"
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "有了海納爾的材料以後，可以把鋪設魔杖升成二階的[[void_machines/magical_builder|創世神之杖]]：照創世神之杖的配方擺放，用鋪設魔杖頂替其中一個白名單過濾器。存着的 MRU、選定方塊和裝着的模塊都會留下，升好後是填充模式。"
+        },
+        {
+          "type": "recipe",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "recipe": "essentialcraft5:builder/magical_builder_from_paver",
+          "caption": "上下兩個過濾器頂替哪一個都可以"
+        },
+        {
+          "type": "tip",
+          "style": "warn",
+          "title": "坑",
+          "text": "別人領地裏的格子不會被改動，也不扣 MRU，但被拒的格子累計到 {cfg:general.builder.denied_limit} 格時魔杖就會停下，所以鋪的時候要避開別人的領地。另外，有的方塊親手放下時會多做一些事，比如一次扣兩個物品或記下額外的數據；魔杖只按方塊本身放下，這類方塊鋪出來可能和親手放的不一樣。"
+        },
+        {
+          "type": "h",
+          "text": "進階細節"
+        },
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "一次最多",
+              "{cfg:general.builder.paver.max_volume} 格"
+            ],
+            [
+              "鋪面、直線邊長",
+              "最多 {cfg:general.builder.paver.max_side} 格"
+            ],
+            [
+              "兩個角最遠",
+              "{cfg:general.builder.paver.max_point_distance} 格"
+            ],
+            [
+              "施工距離",
+              "{cfg:general.builder.paver.max_reach} 格以內"
+            ],
+            [
+              "速度",
+              "每刻最多 {cfg:general.builder.paver.cells_per_tick} 格"
+            ],
+            {
+              "if": "cfg:general.builder.undo_window_seconds>0",
+              "cells": [
+                "撤銷時限",
+                "{cfg:general.builder.undo_window_seconds} 秒"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "放下的方塊朝向和站在原地親手放時一樣，樓梯這類方塊按人面朝的方向擺，台階放下半塊，蠟燭、海泡菜只放 1 個，作物從剛種下的樣子開始長。",
+            "新方塊在這一格立不住時，比如花放在石頭上、海帶放在沒水的地方，或者這一格站着人或生物，這一格就原樣不動，也不扣 MRU。做完時會報告跳過了幾格。",
+            "沙子、砂礫這類會掉落的方塊，下面是空的那格會跳過，不會生成一堆下落的方塊。",
+            "施工途中換了手裏的東西、走出施工距離或者換了維度，施工就會停下。每人同一時間只做一片，正在做時再開一單會排在後面，同時施工的人太多時也會排隊，輪到了自動開工。",
+            "創造模式下不扣 MRU，也不耗材料。",
+            "地上標出的範圍、準星下的提示、超過多少格要再點一次確認，都可以在模組的客户端設定裏調整。"
+          ]
+        },
+        {
+          "type": "p",
+          "if": "cfg:general.hoanna.portal_enabled",
+          "text": "<em>想深入</em>：要清除、替換方塊，或者砌豎牆、順着地形鋪一層，需要二階的[[void_machines/magical_builder|創世神之杖]]。"
         }
       ]
     },

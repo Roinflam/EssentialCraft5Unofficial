@@ -11,10 +11,10 @@ import java.util.List;
 
 /**
  * 一道电弧的折线（第四批框架 F4-14），移植 DummyCore {@code Utils/Lightning}（149 行）。特斯拉线圈、线圈基座、反应堆共用，以后全息也用得上。
- * 画在客户端：{@link ArcRenderer} 把它画成两层发光的细条；世界坐标的电弧交给 {@link ArcEffects}（没有方块实体的基座、打向远处目标的线圈）。
+ * 画在客户端：{@code client/vfx/machine/CoilVfx} 按这里的起点、终点、寿命用等离子画法画（形状另按中点位移生成，几刻换一次）。
  * <p>
  * <b>这个类只做几何和寿命，不引用任何客户端类、不加 {@code @OnlyIn}</b>：GameTest 在专用服上直接测它（段数、分叉数、端点、寿命）。
- * 坐标系由调用方决定：给方块实体渲染器用就传相对方块角的坐标（原作都是这样），给 {@link ArcEffects} 用就传世界坐标。
+ * 坐标系由调用方决定：给方块实体渲染器用就传相对方块角的坐标（原作都是这样），给世界坐标的特效用就传世界坐标。
  *
  * <h2>形状（和原作的对应）</h2>
  * <ul>
@@ -57,7 +57,7 @@ public final class ArcEffect {
     }
 
     /**
-     * 电弧的样式：弯曲程度（原作的 curve / factor）、颜色（0~1）、寿命（tick）、粗细倍数（1 = {@link ArcRenderer} 的默认粗细）。
+     * 电弧的样式：弯曲程度（原作的 curve / factor）、颜色（0~1）、寿命（tick）、粗细倍数（1 = 默认粗细）。
      * 预设的数值照原作各处 {@code new Lightning(...)} 的参数。
      */
     public record Style(float curve, float red, float green, float blue, int lifetime, float width) {

@@ -28,11 +28,15 @@ import java.util.Locale;
  *       其余三角照 JSON（可带数量）。</li>
  *   <li>出来的是新件：拿到旧件累计的一半，只进本阶点数、不跨阶，最多新件 1 阶门槛的两倍（{@link Attunement#transferAmount}）。</li>
  *   <li>旧件留在左上角（工作台只有一个输出格），只清掉同调度和累计，阶照留，玩家自己取回；三角材料照数量扣。</li>
+ *   <li>只在同一条线（{@link AttunementFamily#line()}）里转：剑和枪不能互转。</li>
+ *   <li>写了 {@code family} 的配方只认这一个家族（新件、旧件都是），而且<b>同家族之间也能转</b>（不看档位）：枪这条线只有一个家族，
+ *       换一把枪（手枪 → 步枪）靠它带走一半（{@code transfer_gun.json}）。同一部位照旧要对上（武器都是主手）。</li>
  * </ul>
  * 余烬元素剑 → 裁决之刃不走这里：升格配方（{@link AttunementAscensionRecipe} 写了 result）自带一半。
  * <pre>
  * { "type": "essentialcraft5:attunement_transfer",
  *   "kind": "armor",                            armor / weapon
+ *   "family": "mru_gun",                        可省：只认这个家族、允许同家族之间转（不带命名空间按本模组）
  *   "ingredients": [ 右上, 左下, 右下 ],          同升阶配方，可带 count
  *   "mru": 10000 }
  * </pre>
@@ -47,11 +51,20 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
     private static final int EXTRAS = 3;
 
     private final AttunementFamily.Kind kind;
+    /** 写了就只认这个家族、允许同家族之间转；null = 这一种（盔甲 / 武器）的全部家族、只从低档转到高档 */
+    @Nullable
+    private final ResourceLocation family;
     private final int[] counts;
 
     public AttunementTransferRecipe(ResourceLocation id, AttunementFamily.Kind kind, NonNullList<Ingredient> extras, int[] extraCounts, int mru) {
-        super(id, inputs(kind, extras), ItemStack.EMPTY, mru);
+        this(id, kind, null, extras, extraCounts, mru);
+    }
+
+    public AttunementTransferRecipe(ResourceLocation id, AttunementFamily.Kind kind, @Nullable ResourceLocation family, NonNullList<Ingredient> extras,
+                                    int[] extraCounts, int mru) {
+        super(id, inputs(kind, family, extras), ItemStack.EMPTY, mru);
         this.kind = kind;
+        this.family = family;
         this.counts = new int[INPUTS];
         this.counts[0] = 1;
         this.counts[OLD_SLOT] = 1;
@@ -60,9 +73,9 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
         }
     }
 
-    private static NonNullList<Ingredient> inputs(AttunementFamily.Kind kind, NonNullList<Ingredient> extras) {
+    private static NonNullList<Ingredient> inputs(AttunementFamily.Kind kind, @Nullable ResourceLocation family, NonNullList<Ingredient> extras) {
         NonNullList<Ingredient> list = NonNullList.withSize(INPUTS, Ingredient.EMPTY);
-        Ingredient gear = gearOf(kind);
+        Ingredient gear = family != null ? Ingredient.of(AttunementFamily.tagFor(family)) : gearOf(kind);
         list.set(0, gear);
         list.set(OLD_SLOT, gear);
         for (int i = 0; i < EXTRAS && i < extras.size(); i++) {
@@ -80,6 +93,12 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
 
     public AttunementFamily.Kind kind() {
         return kind;
+    }
+
+    /** 只认的家族（没写是 null） */
+    @Nullable
+    public ResourceLocation family() {
+        return family;
     }
 
     @Override
@@ -110,15 +129,24 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
 
     @Nullable
     private AttunementFamily familyOf(ItemStack stack) {
-        AttunementFamily family = AttunementFamily.of(stack);
-        return family != null && family.kind() == kind ? family : null;
+        AttunementFamily found = AttunementFamily.of(stack);
+        if (found == null || found.kind() != kind) {
+            return null;
+        }
+        return family == null || family.equals(found.id()) ? found : null;
     }
 
-    /** 旧件能不能转给新件：同一部位、旧件家族档位更低、真能转出点数 */
+    /**
+     * 旧件能不能转给新件：同一条线、同一部位、真能转出点数；没写 {@code family} 的配方另要旧件家族档位更低，
+     * 写了的只认那个家族（同家族之间转）
+     */
     public boolean pairs(ItemStack newPiece, ItemStack oldPiece) {
         AttunementFamily to = familyOf(newPiece);
         AttunementFamily from = familyOf(oldPiece);
-        if (to == null || from == null || from.tier() >= to.tier()) {
+        if (to == null || from == null || from.line() != to.line()) {
+            return false;
+        }
+        if (family == null && from.tier() >= to.tier()) {
             return false;
         }
         if (AttunementFamily.slotOf(newPiece, kind) != AttunementFamily.slotOf(oldPiece, kind)) {
@@ -196,8 +224,11 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
         return out;
     }
 
-    /** 示例：最高档家族的每件配最低档家族的同一部位 */
+    /** 示例：最高档家族的每件配最低档家族的同一部位；写了 {@code family} 的是这个家族里每件配前一件（只有一件时配自己） */
     public List<ItemStack[]> displayPairs() {
+        if (family != null) {
+            return sameFamilyPairs();
+        }
         AttunementFamily low = null;
         AttunementFamily high = null;
         for (AttunementFamily family : AttunementFamily.all()) {
@@ -230,6 +261,22 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
         return out;
     }
 
+    private List<ItemStack[]> sameFamilyPairs() {
+        List<ItemStack[]> out = new ArrayList<>();
+        AttunementFamily only = AttunementFamily.byId(family);
+        if (only == null) {
+            return out;
+        }
+        List<ItemStack> members = only.members();
+        for (int i = 0; i < members.size(); i++) {
+            ItemStack oldCopy = members.get((i + members.size() - 1) % members.size()).copyWithCount(1);
+            Attunement.set(oldCopy, 1, 0);
+            oldCopy.getOrCreateTagElement(Attunement.TAG).putInt(Attunement.KEY_TOTAL, DISPLAY_OLD_TOTAL);
+            out.add(new ItemStack[]{members.get(i).copyWithCount(1), oldCopy});
+        }
+        return out;
+    }
+
     /** 中心放 newPiece、左上放 oldPiece 时出来的样子 */
     public ItemStack displayResult(ItemStack newPiece, ItemStack oldPiece) {
         if (newPiece.isEmpty()) {
@@ -247,6 +294,7 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
         @Override
         public AttunementTransferRecipe fromJson(ResourceLocation id, JsonObject json) {
             AttunementFamily.Kind kind = kind(GsonHelper.getAsString(json, "kind"));
+            ResourceLocation family = json.has("family") ? AttunementAscensionRecipe.familyId(GsonHelper.getAsString(json, "family")) : null;
             List<AttunementAscensionRecipe.Counted> extras = AttunementAscensionRecipe.countedList(json, "ingredients", EXTRAS);
             NonNullList<Ingredient> ingredients = NonNullList.withSize(EXTRAS, Ingredient.EMPTY);
             int[] counts = new int[EXTRAS];
@@ -254,7 +302,7 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
                 ingredients.set(i, extras.get(i).ingredient());
                 counts[i] = extras.get(i).count();
             }
-            return new AttunementTransferRecipe(id, kind, ingredients, counts, GsonHelper.getAsInt(json, "mru"));
+            return new AttunementTransferRecipe(id, kind, family, ingredients, counts, GsonHelper.getAsInt(json, "mru"));
         }
 
         static AttunementFamily.Kind kind(String name) {
@@ -268,14 +316,19 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
         @Override
         public AttunementTransferRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             AttunementFamily.Kind kind = buf.readEnum(AttunementFamily.Kind.class);
+            ResourceLocation family = buf.readBoolean() ? buf.readResourceLocation() : null;
             NonNullList<Ingredient> extras = RecipeJson.readIngredients(buf);
             int[] counts = buf.readVarIntArray();
-            return new AttunementTransferRecipe(id, kind, extras, counts, buf.readVarInt());
+            return new AttunementTransferRecipe(id, kind, family, extras, counts, buf.readVarInt());
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, AttunementTransferRecipe recipe) {
             buf.writeEnum(recipe.kind);
+            buf.writeBoolean(recipe.family != null);
+            if (recipe.family != null) {
+                buf.writeResourceLocation(recipe.family);
+            }
             NonNullList<Ingredient> extras = NonNullList.withSize(EXTRAS, Ingredient.EMPTY);
             int[] counts = new int[EXTRAS];
             for (int i = 0; i < EXTRAS; i++) {
@@ -290,12 +343,18 @@ public class AttunementTransferRecipe extends MagicianTableRecipe implements Pos
 
     /** 测试用：同 JSON */
     public static AttunementTransferRecipe of(ResourceLocation id, AttunementFamily.Kind kind, List<AttunementAscensionRecipe.Counted> extras, int mru) {
+        return of(id, kind, null, extras, mru);
+    }
+
+    /** 测试用：同 JSON，带 {@code family} */
+    public static AttunementTransferRecipe of(ResourceLocation id, AttunementFamily.Kind kind, @Nullable ResourceLocation family,
+                                              List<AttunementAscensionRecipe.Counted> extras, int mru) {
         NonNullList<Ingredient> ingredients = NonNullList.withSize(EXTRAS, Ingredient.EMPTY);
         int[] counts = new int[EXTRAS];
         for (int i = 0; i < EXTRAS && i < extras.size(); i++) {
             ingredients.set(i, extras.get(i).ingredient());
             counts[i] = extras.get(i).count();
         }
-        return new AttunementTransferRecipe(id, kind, ingredients, counts, mru);
+        return new AttunementTransferRecipe(id, kind, family, ingredients, counts, mru);
     }
 }

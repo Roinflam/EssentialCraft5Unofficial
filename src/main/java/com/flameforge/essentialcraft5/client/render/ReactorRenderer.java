@@ -3,6 +3,7 @@ package com.flameforge.essentialcraft5.client.render;
 import com.flameforge.essentialcraft5.EssentialCraft5;
 import com.flameforge.essentialcraft5.block.ReactorBlock;
 import com.flameforge.essentialcraft5.blockentity.ReactorBlockEntity;
+import com.flameforge.essentialcraft5.client.vfx.machine.MachineVfx;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
@@ -24,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
  *   <li>浮球：OBJ {@code sphere}（半径 1、底贴 y = 0，贴图 block/model/sphere），缩放 0.55。没成形时灰色（×0.4）、贴在方块里；
  *       成形后上浮 0.5 格、原色。原作关了光照（不分明暗面），但照样吃所在位置的亮度——这里用方块的实心渲染类型画
  *       （方块着色器不按法线算明暗，亮度按传进来的 light），和原作的观感一致。</li>
- *   <li>电弧：方块实体在客户端 tick 里维护的 {@link ReactorBlockEntity#arcs()}（相对方块角），成形时才有，交给框架的 {@link ArcRenderer}。</li>
+ *   <li>电弧：方块实体在客户端 tick 里维护的 {@link ReactorBlockEntity#arcs()}（相对方块角），成形时才有，登记给 {@link MachineVfx}，在特效阶段用等离子画法画（连浮球外的辉光）。</li>
  * </ul>
  * 原作这个类里还载入了底座 OBJ {@code mrureactor_btm}，但从没画过（底座是方块模型）；这里也只画浮球。
  * 浮球不属于任何方块状态，模型文件由 datagen 随方块生成（{@code block/reactor_sphere}），在 {@code ReactorClient} 里登记成额外模型。
@@ -59,10 +60,8 @@ public class ReactorRenderer implements BlockEntityRenderer<ReactorBlockEntity> 
         draw(model, null, last, consumer, shade, light, overlay);
         pose.popPose();
 
-        if (formed) {
-            for (ArcEffect arc : be.arcs()) {
-                ArcRenderer.render(arc, pose, buffers, partialTick);
-            }
+        if (formed && !be.arcs().isEmpty()) {
+            MachineVfx.submit(MachineVfx.REACTOR, be, be.getBlockPos().getX() + 0.5D, be.getBlockPos().getY() + 1D, be.getBlockPos().getZ() + 0.5D);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.flameforge.essentialcraft5.blockentity;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
+import com.flameforge.essentialcraft5.ambience.AmbienceParticles;
 import com.flameforge.essentialcraft5.api.CorruptionEffects;
 import com.flameforge.essentialcraft5.api.IESPEHandler;
 import com.flameforge.essentialcraft5.api.IPlayerData;
@@ -401,8 +402,8 @@ public class PlayerPentacleBlockEntity extends MRUBlockEntity {
                 }
                 double x = at.getX() + 0.5D;
                 double z = at.getZ() + 0.5D;
-                level.addParticle(dust, x, at.getY() + movement / 30D, z, 0D, 0D, 0D);
-                level.addParticle(dust, x, at.getY() + 2D + movement / 30D, z, 0D, 0D, 0D);
+                AmbienceParticles.add(level, dust, x, at.getY() + movement / 30D, z, 0D, 0D, 0D);
+                AmbienceParticles.add(level, dust, x, at.getY() + 2D + movement / 30D, z, 0D, 0D, 0D);
             }
         }
     }

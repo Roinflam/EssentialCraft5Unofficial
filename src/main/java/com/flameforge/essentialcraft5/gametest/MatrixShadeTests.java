@@ -7,6 +7,7 @@ import com.flameforge.essentialcraft5.blockentity.MithrilineCrystalPillarBlockEn
 import com.flameforge.essentialcraft5.blockentity.PlayerPentacleBlockEntity;
 import com.flameforge.essentialcraft5.entity.boss.BossLoot;
 import com.flameforge.essentialcraft5.entity.boss.BossRoster;
+import com.flameforge.essentialcraft5.entity.boss.BossWarnings;
 import com.flameforge.essentialcraft5.entity.boss.BossTier;
 import com.flameforge.essentialcraft5.entity.boss.ECBoss;
 import com.flameforge.essentialcraft5.entity.boss.MatrixShadeContracts;
@@ -20,6 +21,7 @@ import com.flameforge.essentialcraft5.entity.mob.MobDamageShare;
 import com.flameforge.essentialcraft5.item.MatrixConduitItem;
 import com.flameforge.essentialcraft5.player.PlayerDataEvents;
 import com.flameforge.essentialcraft5.recipe.MagicianTableRecipe;
+import com.flameforge.essentialcraft5.network.S2CBossWarningPacket;
 import com.flameforge.essentialcraft5.registry.ECBossFramework;
 import com.flameforge.essentialcraft5.registry.ECDamageTypes;
 import com.flameforge.essentialcraft5.registry.ECMatrixShade;
@@ -1326,6 +1328,197 @@ public final class MatrixShadeTests {
         }
         helper.succeed();
     }
+
+    /**
+     * 特效大改第 2 批：落下时的结算画面——坠身（落点、半径 3）、矩阵电弧每一跳一道（第 n 跳晚 n × 2 刻）、镜影现身（每个镜影 + 它原来的位置）、
+     * 镜影碎裂、心智钉连线（持续：跟着矩阵之影、最长画钉子的寿命，能撤）、失序之柱、收束冲击；都单独记，不混进预警包
+     */
+    @GameTest(template = LARGE, batch = BATCH)
+    public static void matrixShadeResolvePackets(GameTestHelper helper) {
+        ECMatrixShade.Config.setTestOverrides(local());
+        BossWarnings.captureForTest();
+        Difficulty old = setDifficulty(helper, Difficulty.NORMAL);
+        Rig rig = null;
+        List<Entity> spawned = new ArrayList<>();
+        try {
+            rig = summon(helper, "ms-resolve", 30_000);
+            MatrixShadeEntity shade = rig.shade();
+            ServerPlayer summoner = rig.summoner();
+            summoner.setInvulnerable(true);
+            MatrixShadeSkills skills = shade.shadeSkills();
+            BossWarnings.clearForTest(shade);
+
+            skills.start(MatrixShadeSkills.Skill.SLAM, summoner);
+            Vec3 pos = skills.castPos();
+            for (int i = 0; i < MatrixShadeSkills.Skill.SLAM.windup(); i++) {
+                shade.serverBossStep();
+            }
+            List<S2CBossWarningPacket> res = BossWarnings.resolvedForTest(shade);
+            helper.assertTrue(res.size() == 1 && pos != null && res.get(0).style() == S2CBossWarningPacket.FX_SLAM
+                            && Math.abs(res.get(0).x() - pos.x) < EPS && Math.abs(res.get(0).z() - pos.z) < EPS
+                            && Math.abs(res.get(0).size() - MatrixShadeSkills.SLAM_RADIUS) < EPS && !res.get(0).persistent(),
+                    "坠身落下：落点、半径 3，实际 " + res);
+            helper.assertTrue(BossWarnings.sentForTest(shade).stream().noneMatch(p -> p.kind() == S2CBossWarningPacket.RESOLVE), "结算画面不混进预警包");
+
+            BossWarnings.clearForTest(shade);
+            List<ServerPlayer> hit = skills.arc(helper.getLevel(), summoner);
+            res = BossWarnings.resolvedForTest(shade);
+            helper.assertTrue(!hit.isEmpty() && res.size() == hit.size(), "矩阵电弧：每一跳一道，实际 " + res.size() + " / " + hit.size());
+            for (int i = 0; i < res.size(); i++) {
+                S2CBossWarningPacket p = res.get(i);
+                helper.assertTrue(p.style() == S2CBossWarningPacket.FX_ARC && p.delay() == i * MatrixShadeSkills.ARC_HOP_DELAY
+                                && new Vec3(p.dirX(), p.dirY(), p.dirZ()).length() > 0.5D && p.color() == BossWarnings.MATRIX,
+                        "第 " + i + " 跳：起点 → 终点、晚 " + i * MatrixShadeSkills.ARC_HOP_DELAY + " 刻、矩阵品红，实际 " + p);
+            }
+
+            BossWarnings.clearForTest(shade);
+            skills.start(MatrixShadeSkills.Skill.MIRRORS, summoner);
+            for (int i = 0; i < MatrixShadeSkills.Skill.MIRRORS.windup(); i++) {
+                shade.serverBossStep();
+            }
+            List<Entity> mirrors = new ArrayList<>(shade.skills().alive(MatrixShadeSkills.KIND_MIRROR));
+            spawned.addAll(mirrors);
+            helper.assertTrue(!mirrors.isEmpty(), "放出了镜影");
+            for (Entity mirror : mirrors) {
+                List<S2CBossWarningPacket> own = BossWarnings.resolvedForTest(mirror);
+                helper.assertTrue(own.size() == 1 && own.get(0).style() == S2CBossWarningPacket.FX_MIRROR
+                        && Math.abs(own.get(0).size() - mirror.getBbHeight()) < EPS, "每个镜影现身一次（所属是镜影），实际 " + own);
+            }
+            res = BossWarnings.resolvedForTest(shade);
+            helper.assertTrue(res.size() == 1 && res.get(0).style() == S2CBossWarningPacket.FX_MIRROR, "它原来站的地方也闪一下，实际 " + res);
+            MatrixShadeMirror broken = (MatrixShadeMirror) mirrors.get(0);
+            BossWarnings.clearForTest(broken);
+            broken.hurt(summoner.damageSources().playerAttack(summoner), 999F);
+            List<S2CBossWarningPacket> shatter = BossWarnings.resolvedForTest(broken);
+            helper.assertTrue(shatter.size() == 1 && shatter.get(0).style() == S2CBossWarningPacket.FX_SHATTER && Math.abs(shatter.get(0).size2() - 1F) < EPS,
+                    "镜影被打碎：碎裂画面（规模 1），实际 " + shatter);
+
+            skills.start(MatrixShadeSkills.Skill.SPIKE, summoner);
+            for (int i = 0; i < MatrixShadeSkills.Skill.SPIKE.windup(); i++) {
+                shade.serverBossStep();
+            }
+            List<Entity> spikes = new ArrayList<>(shade.skills().alive(MatrixShadeSkills.KIND_SPIKE));
+            spawned.addAll(spikes);
+            helper.assertTrue(spikes.size() == 1, "立起一根心智钉，实际 " + spikes.size());
+            Entity spike = spikes.get(0);
+            List<S2CBossWarningPacket> link = BossWarnings.resolvedForTest(spike);
+            helper.assertTrue(link.size() == 1 && link.get(0).style() == S2CBossWarningPacket.FX_LINK && link.get(0).persistent()
+                            && link.get(0).owner() == spike.getId() && link.get(0).follow() == shade.getId() && link.get(0).duration() == MatrixShadeSpike.LIFE,
+                    "心智钉连线：所属钉子、跟着矩阵之影、最长画钉子的寿命，实际 " + link);
+            BossWarnings.cancel(spike);
+            List<S2CBossWarningPacket> cancel = BossWarnings.sentForTest(spike);
+            helper.assertTrue(cancel.size() == 1 && cancel.get(0).kind() == S2CBossWarningPacket.CANCEL, "持续画面能撤（发撤销包），实际 " + cancel);
+
+            skills.start(MatrixShadeSkills.Skill.PILLARS, summoner);
+            for (int i = 0; i < MatrixShadeSkills.Skill.PILLARS.windup(); i++) {
+                shade.serverBossStep();
+            }
+            List<Entity> pillars = new ArrayList<>(shade.skills().alive(MatrixShadeSkills.KIND_PILLAR));
+            spawned.addAll(pillars);
+            helper.assertTrue(!pillars.isEmpty(), "立起了失序之柱");
+            MatrixShadePillar pillar = (MatrixShadePillar) pillars.get(0);
+            pillar.strike(helper.getLevel(), shade);
+            List<S2CBossWarningPacket> disorder = BossWarnings.resolvedForTest(pillar);
+            helper.assertTrue(disorder.size() == 1 && disorder.get(0).style() == S2CBossWarningPacket.FX_DISORDER
+                    && Math.abs(disorder.get(0).size() - MatrixShadePillar.RADIUS) < EPS, "失序之柱落下（所属是柱子），实际 " + disorder);
+
+            BossWarnings.clearForTest(shade);
+            skills.start(MatrixShadeSkills.Skill.CONVERGE, summoner);
+            for (int i = 0; i < MatrixShadeSkills.Skill.CONVERGE.windup(); i++) {
+                shade.serverBossStep();
+            }
+            res = BossWarnings.resolvedForTest(shade);
+            helper.assertTrue(res.size() == 1 && res.get(0).style() == S2CBossWarningPacket.FX_SHOCK
+                    && Math.abs(res.get(0).size() - MatrixShadeSkills.CONVERGE_SHOCK_RADIUS) < EPS, "收束的冲击，实际 " + res);
+            BossWarnings.clearForTest(shade);
+        } finally {
+            for (Entity e : spawned) {
+                BossWarnings.clearForTest(e);
+                e.discard();
+            }
+            setDifficulty(helper, old);
+            cleanup(helper, rig);
+        }
+        helper.succeed();
+    }
+
+    /**
+     * 特效大改第 1 批：坠身起手发一个落点的圆（蓄满结算不发撤销），蓄到一半被打断发撤销；收束发一个跟着它的冲击圈 + 一道从场地边往里收的环；
+     * 失序之柱每根一个圆（所属是柱子）
+     */
+    @GameTest(template = LARGE, batch = BATCH)
+    public static void matrixShadeWarningPackets(GameTestHelper helper) {
+        ECMatrixShade.Config.setTestOverrides(local());
+        BossWarnings.captureForTest();
+        Difficulty old = setDifficulty(helper, Difficulty.NORMAL);
+        Rig rig = null;
+        try {
+            rig = summon(helper, "ms-warn", 30_000);
+            MatrixShadeEntity shade = rig.shade();
+            ServerPlayer summoner = rig.summoner();
+            MatrixShadeSkills skills = shade.shadeSkills();
+            BossWarnings.clearForTest(shade);
+
+            skills.start(MatrixShadeSkills.Skill.SLAM, summoner);
+            List<S2CBossWarningPacket> sent = BossWarnings.sentForTest(shade);
+            Vec3 pos = skills.castPos();
+            helper.assertTrue(sent.size() == 1 && pos != null, "坠身起手发一个包，实际 " + sent);
+            S2CBossWarningPacket slam = sent.get(0);
+            helper.assertTrue(slam.kind() == S2CBossWarningPacket.CIRCLE && slam.follow() == -1 && Math.abs(slam.size() - MatrixShadeSkills.SLAM_RADIUS) < EPS
+                            && slam.duration() == MatrixShadeSkills.Skill.SLAM.windup() && Math.abs(slam.x() - pos.x) < EPS && Math.abs(slam.z() - pos.z) < EPS
+                            && slam.color() == BossWarnings.DANGER,
+                    "坠身：落点的圆、半径 3、蓄招刻数、危险红，实际 " + slam);
+            for (int i = 0; i < MatrixShadeSkills.Skill.SLAM.windup(); i++) {
+                shade.serverBossStep();
+            }
+            helper.assertTrue(BossWarnings.sentForTest(shade).size() == 1, "蓄满结算不发撤销，预警期也不再发");
+
+            BossWarnings.clearForTest(shade);
+            skills.start(MatrixShadeSkills.Skill.SLAM, summoner);
+            shade.serverBossStep();
+            skills.cancelCast();
+            sent = BossWarnings.sentForTest(shade);
+            helper.assertTrue(sent.size() == 2 && sent.get(1).kind() == S2CBossWarningPacket.CANCEL && sent.get(1).owner() == shade.getId(),
+                    "蓄到一半被打断发撤销，实际 " + sent);
+
+            BossWarnings.clearForTest(shade);
+            skills.start(MatrixShadeSkills.Skill.CONVERGE, summoner);
+            sent = BossWarnings.sentForTest(shade);
+            double arena = ECMatrixShade.Config.values().fight().arenaRadius();
+            helper.assertTrue(sent.size() == 2, "收束起手发两个包，实际 " + sent);
+            S2CBossWarningPacket shock = sent.get(0);
+            S2CBossWarningPacket pull = sent.get(1);
+            helper.assertTrue(shock.kind() == S2CBossWarningPacket.CIRCLE && shock.follow() == shade.getId()
+                            && Math.abs(shock.size() - MatrixShadeSkills.CONVERGE_SHOCK_RADIUS) < EPS && shock.duration() == MatrixShadeSkills.Skill.CONVERGE.windup(),
+                    "收束：跟着它的冲击圈（半径 5），实际 " + shock);
+            helper.assertTrue(pull.kind() == S2CBossWarningPacket.RING && pull.follow() == shade.getId() && Math.abs(pull.size() - arena) < EPS
+                            && Math.abs(pull.size2() - 2D) < EPS && pull.dirX() < 0F && pull.color() == BossWarnings.MATRIX,
+                    "收束：从场地边往里收到 2 格的环（矩阵品红），实际 " + pull);
+            skills.cancelCast();
+
+            skills.start(MatrixShadeSkills.Skill.PILLARS, summoner);
+            for (int i = 0; i < MatrixShadeSkills.Skill.PILLARS.windup(); i++) {
+                shade.serverBossStep();
+            }
+            List<Entity> pillars = new ArrayList<>(shade.skills().alive(MatrixShadeSkills.KIND_PILLAR));
+            helper.assertTrue(!pillars.isEmpty(), "立起了失序之柱");
+            for (Entity pillar : pillars) {
+                List<S2CBossWarningPacket> own = BossWarnings.sentForTest(pillar);
+                helper.assertTrue(own.size() == 1 && own.get(0).kind() == S2CBossWarningPacket.CIRCLE
+                                && Math.abs(own.get(0).size() - MatrixShadePillar.RADIUS) < EPS && own.get(0).duration() == MatrixShadePillar.WARN
+                                && own.get(0).color() == BossWarnings.MATRIX,
+                        "失序之柱：每根一个圆（半径 2.5、30 刻、矩阵品红），实际 " + own);
+                BossWarnings.clearForTest(pillar);
+                pillar.discard();
+            }
+            BossWarnings.clearForTest(shade);
+        } finally {
+            setDifficulty(helper, old);
+            cleanup(helper, rig);
+        }
+        helper.succeed();
+    }
+
 
     /**
      * 矩阵相：失序之柱只炸圈里的参战者（8 + 12% = 10.4），伤害类型 matrix_rend（无视护甲、算魔法、闪不掉），直接实体是它本体不是柱子；

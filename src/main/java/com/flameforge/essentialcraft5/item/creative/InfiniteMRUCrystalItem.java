@@ -26,7 +26,7 @@ import java.util.List;
  * 无尽 MRU 晶体（只放创造栏，registry/ECCreative）：无底的 MRU 储存物品。
  * <p>
  * 和灵魂碎片一样是「储存物品」（{@code isStorage} 恒为 true）：放在背包、副手、盔甲位或饰品栏指环位，
- * 玩家花 MRU 的东西（法杖、护符、魔力之翼、建筑魔杖……都走 {@code mru/MRUDrain}）都从它扣。
+ * 玩家花 MRU 的东西（法杖、护符、魔力之翼、创世神之杖……都走 {@code mru/MRUDrain}）都从它扣。
  * 它的存量和上限都是 {@link Integer#MAX_VALUE}，扣多少都不减；{@code MRUDrain} 认它（{@link IMRUHandlerItem#isInfinite()}），
  * 带着它时由它全付，身上别的储存物品一点不动。别的东西往里充 MRU 一律退回（已经满了），充能仓不会白耗。
  * 物品不存任何 NBT，平衡值恒为纯净。

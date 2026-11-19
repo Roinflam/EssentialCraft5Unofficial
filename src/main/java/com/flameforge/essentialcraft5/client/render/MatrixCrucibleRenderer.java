@@ -1,6 +1,7 @@
 package com.flameforge.essentialcraft5.client.render;
 
 import com.flameforge.essentialcraft5.blockentity.MatrixCrucibleBlockEntity;
+import com.flameforge.essentialcraft5.client.vfx.machine.MachineVfx;
 import com.flameforge.essentialcraft5.registry.ECBootstrap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -47,5 +48,6 @@ public class MatrixCrucibleRenderer implements BlockEntityRenderer<MatrixCrucibl
         itemRenderer.renderStatic(display, ItemDisplayContext.FIXED, active ? LightTexture.FULL_BRIGHT : light, overlay, pose, buffers, level,
                 (int) be.getBlockPos().asLong());
         pose.popPose();
+        MachineVfx.submit(MachineVfx.CRUCIBLE, be, be.getBlockPos().getX() + 0.5D, be.getBlockPos().getY() + 1D, be.getBlockPos().getZ() + 0.5D);
     }
 }

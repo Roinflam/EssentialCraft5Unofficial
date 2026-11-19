@@ -5,7 +5,7 @@
 再从开局能拿到的东西出发反复推，直到推不动为止：
 
   数据（自动读）
-    - 配方：data/*/recipes 下全部 JSON（工作台、保留 NBT、魔术师台、辐射仓、米斯莱熔炉、矿石加工、注风，原版熔炉类），
+    - 配方：data/*/recipes 下全部 JSON（工作台、保留 NBT、魔术师台（含保留 NBT 的升格）、辐射仓、米斯莱熔炉、矿石加工、注风，原版熔炉类），
       forge:item_exists / mod_loaded 条件照游戏里的判定；引用了不存在的物品的配方整条不加载（游戏里也一样），记为数据问题
     - 战利品表：方块（方块在世界里 → 掉什么）、实体、箱子、注入表、地脉投影表，loot_table 引用照着展开
     - 世界生成：forge 群系修改器（矿、聚集体遗迹、刷怪）、海纳尔的群系（地物、刷怪）、地表规则、结构集
@@ -1400,6 +1400,7 @@ class Graph:
     # 本模组配方类型必填的字段（缺了序列化器抛异常，整条配方不加载；见 recipe/*Recipe.java 的 Serializer）
     REQUIRED_FIELDS = {
         MODID + ':magician_table': ('ingredients', 'result', 'mru'),
+        MODID + ':magician_table_keep_nbt': ('ingredients', 'result', 'mru', 'set_nbt'),
         MODID + ':radiating_chamber': ('ingredients', 'result', 'mru'),
         MODID + ':mithriline_furnace': ('ingredient', 'result', 'espe'),
         MODID + ':wind_imbue': ('ingredient', 'result', 'espe'),
@@ -1764,7 +1765,7 @@ class Graph:
         if missing:
             self.problems.append(('配方缺字段', '%s 缺 %s（整条配方不会加载）' % (ctx, '、'.join(missing))))
             return [()], [], '缺字段'
-        if t.endswith('_keep_nbt'):
+        if t in (MODID + ':crafting_shaped_keep_nbt', MODID + ':crafting_shapeless_keep_nbt'):
             src = self.ingredient(d['nbt_source'], ctx) or ()
             pool = set()
             for ing in (d.get('key') or {}).values() if 'key' in d else d.get('ingredients', []):
@@ -1795,7 +1796,9 @@ class Graph:
             for k in ('template', 'base', 'addition'):
                 add_ing(d.get(k))
             return needs, self.result_items(d.get('result')), '锻造台'
-        if t == MODID + ':magician_table':
+        if t in (MODID + ':magician_table', MODID + ':magician_table_keep_nbt'):
+            # magician_table_keep_nbt（MagicianTableKeepNbtRecipe）：产物是中心那件合并 set_nbt（建筑魔杖升格），
+            # 不产新物品；result 只是显示用的那件，照普通配方记（中心那件本来就要先有）
             for ing in d.get('ingredients', []):
                 add_ing(ing)
             needs.append(('block:' + ec('magician_table'),))

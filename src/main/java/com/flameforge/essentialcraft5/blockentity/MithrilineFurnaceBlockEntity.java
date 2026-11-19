@@ -1,6 +1,7 @@
 package com.flameforge.essentialcraft5.blockentity;
 
 import com.flameforge.essentialcraft5.EssentialCraft5;
+import com.flameforge.essentialcraft5.ambience.AmbienceParticles;
 import com.flameforge.essentialcraft5.ambience.MachineAmbience;
 import com.flameforge.essentialcraft5.ambience.MachineAmbiences;
 import com.flameforge.essentialcraft5.config.ECConfig;
@@ -430,7 +431,7 @@ public class MithrilineFurnaceBlockEntity extends MRUBlockEntity {
         }
         RandomSource random = level.random;
         for (int i = 0; i < 2; i++) {
-            level.addParticle(GREEN_DUST,
+            AmbienceParticles.add(level, GREEN_DUST,
                     worldPosition.getX() + 0.5D + (random.nextDouble() - 0.5D) * 0.8D,
                     worldPosition.getY() + 0.2D + random.nextDouble() * 0.6D,
                     worldPosition.getZ() + 0.5D + (random.nextDouble() - 0.5D) * 0.8D,
@@ -444,8 +445,8 @@ public class MithrilineFurnaceBlockEntity extends MRUBlockEntity {
         for (Vec3i offset : SOURCES) {
             BlockPos pos = worldPosition.offset(offset);
             if (level.getBlockEntity(pos) instanceof MithrilineCrystalPillarBlockEntity) {
-                level.addParticle(GREEN_DUST, pos.getX() + 0.5D, pos.getY() + bob, pos.getZ() + 0.5D, 0D, 0D, 0D);
-                level.addParticle(GREEN_DUST, pos.getX() + 0.5D, pos.getY() + 2D + bob, pos.getZ() + 0.5D, 0D, 0D, 0D);
+                AmbienceParticles.add(level, GREEN_DUST, pos.getX() + 0.5D, pos.getY() + bob, pos.getZ() + 0.5D, 0D, 0D, 0D);
+                AmbienceParticles.add(level, GREEN_DUST, pos.getX() + 0.5D, pos.getY() + 2D + bob, pos.getZ() + 0.5D, 0D, 0D, 0D);
             }
         }
     }
